@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My experiment</title>
+
+    <script src="./jspsych/dist/jspsych.js"></script>
+    <script src="./jspsych/dist/plugin-audio-button-response.js"></script>
+    <script src="./jspsych/dist/plugin-html-button-response.js"></script>
+    <script src="./jspsych/dist/extension-accelerometer.js"> </script>
+    <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" />
+    <link href="jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />
+
+  </head>
+  <body></body>
+  <script>
+
+    var jsPsych = initJsPsych({
+      extensions: [
+        {type: jsPsychExtensionAccelerometer }
+      ],
+      on_finish: function() {
+        jsPsych.data.displayData();
+      }
+    });
+
+    var welcome = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: 'Hello',
+        choices: ['Start'],
+    };
+
+    var trial = {
+        type: jsPsychAudioButtonResponse,
+        stimulus: '../standaloneApp/binary_ternary.mp3',
+        choices: ['Done'],
+        prompt: "<p>Dance</p>",
+        extensions: [
+          {type: jsPsychExtensionAccelerometer}
+        ],
+    };
+
+    jsPsych.run([welcome, trial]);
+  </script>
+</html>
