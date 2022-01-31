@@ -26,14 +26,13 @@
     var welcome = {
         type: jsPsychHtmlButtonResponse,
         stimulus: 'Hello',
-        choices: ['Start'],
+        choices: ['Start']
     };
 
     var trial = {
-        type: jsPsychAudioButtonResponse,
-        stimulus: '../standaloneApp/binary_ternary.mp3',
+        type: jsPsychHtmlButtonResponse,
         choices: ['Done'],
-        prompt: "<p>Dance</p>",
+        stimulus: '<p style="font-size:48px;">Dance</p>',
         extensions: [
           {type: jsPsychExtensionAccelerometer}
         ],

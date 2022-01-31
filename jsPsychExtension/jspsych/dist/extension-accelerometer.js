@@ -34,6 +34,13 @@ var jsPsychExtensionAccelerometer = (function () {
                 this.minimumSampleTime = minimum_sample_time;
             });
             this.on_start = (params) => {
+
+                if (
+                  DeviceMotionEvent &&
+                  typeof DeviceMotionEvent.requestPermission === "function"
+                ) {
+                  DeviceMotionEvent.requestPermission();
+                }
                 params = params || {};
                 this.currentTrialData = [];
                 this.currentTrialTargets = new Map();
