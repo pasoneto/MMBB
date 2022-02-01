@@ -12,8 +12,8 @@
 .jspsych-display-element {
   display: flex;
   flex-direction: column;
-  overflow-y: hidden;
-  overflow-x: hidden;
+  /*overflow-y: hidden;
+  overflow-x: hidden;*/
   background-color:	#808080;
 }
 

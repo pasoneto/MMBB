@@ -20,7 +20,6 @@
       ],
       on_finish: function() {
         jsPsych.data.get().localSave('csv','mydata.csv');
-        console.log(jsPsych.data.getLastTimelineData()['trials'][1]['device_motion_data']);
       }
     });
 
