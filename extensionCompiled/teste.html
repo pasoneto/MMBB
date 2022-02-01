@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My experiment</title>
+
+    <script src="https://unpkg.com/jspsych@7.1.2"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.0"></script>
+
+    <script src="./extension-device-motion/dist/index.browser.js"></script>
+    <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body></body>
+  <script>
+
+    var jsPsych = initJsPsych({
+      extensions: [
+        {type: jsPsychExtensionDeviceMotion }
+      ],
+      on_finish: function() {
+        jsPsych.data.displayData();
+      }
+    });
+
+    var welcome = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: 'Hello',
+        choices: ['Start']
+    };
+
+    var trial = {
+        type: jsPsychHtmlButtonResponse,
+        choices: ['Done'],
+        stimulus: '<p style="font-size:48px;">Dance</p>',
+        extensions: [
+          {type: jsPsychExtensionDeviceMotion }
+        ],
+    };
+
+    jsPsych.run([welcome, trial]);
+  </script>
+</html>
