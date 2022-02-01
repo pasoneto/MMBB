@@ -20,6 +20,7 @@
       ],
       on_finish: function() {
         jsPsych.data.displayData();
+        console.log(jsPsych.data.getLastTimelineData()['trials'][1]['device_motion_data']);
       }
     });
 
