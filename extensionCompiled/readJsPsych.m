@@ -1,5 +1,9 @@
 function d = readJsPsych(fn, index)
 
+%input parameters:
+%  fn = file name;
+%  index = JsPsych trial in which you collected movement data; 
+
 file = fileread(fn); 
 jsonData = jsondecode(file);
 data = jsonData{index}.device_motion_data;
