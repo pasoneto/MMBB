@@ -11,6 +11,7 @@
     <script src="./jspsych/dist/plugin-instructions.js"> </script>
     <script src="./jspsych/dist/plugin-survey-likert.js"> </script>
     <script src="./jspsych/dist/extension-accelerometer.js"> </script>
+    <script src="./jspsych/dist/plugin-html-keyboard-response.js"> </script>
     <script src="./jspsych/dist/plugin-survey-multi-choice.js"> </script>
     <script src="./jspsych/dist/plugin-initialize-microphone.js"> </script>
     <script src="./jspsych/dist/plugin-html-audio-response.js"> </script>
@@ -26,7 +27,7 @@
         {type: jsPsychExtensionAccelerometer }
       ],
       on_finish: function() {
-        //jsPsych.data.get().localSave('json','mydata.json');
+        jsPsych.data.get().localSave('json','mydata.json');
       }
     });
 
@@ -139,8 +140,14 @@
         recording_duration: 3500,
         allow_playback: true,
     };
+    var end = {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: '<p style="font-size: 48px;">End of demo.</p>',
+        choices: "NO_KEYS",
+        trial_duration: 10000,
+    };     
 
-    jsPsych.run([instruction1, trialAccelerometer, displayAccel, instruction2, trialTapping, displayTapping, trialSurvey, initializeMic, record]);
+    jsPsych.run([instruction1, trialAccelerometer, displayAccel, instruction2, trialTapping, displayTapping, initializeMic, record, trialSurvey, trialLikert, end]);
 
  </script>
 </html>
