@@ -10,7 +10,7 @@
     <script src="./jspsych/dist/plugin-audio-button-response.js"> </script>
     <script src="./jspsych/dist/plugin-instructions.js"> </script>
     <script src="./jspsych/dist/plugin-survey-likert.js"> </script>
-    <script src="./jspsych/dist/plugin-canvas-keyboard-response.js"> </script>
+    <script src="./jspsych/dist/plugin-canvas-button-response.js"> </script>
     <script src="./jspsych/dist/extension-accelerometer.js"> </script>
     <script src="./jspsych/dist/plugin-html-keyboard-response.js"> </script>
     <script src="./jspsych/dist/plugin-survey-multi-choice.js"> </script>
@@ -72,12 +72,11 @@
     }
 
     var displayAccel = {
-        type: jsPsychCanvasKeyboardResponse,
+        type: jsPsychCanvasButtonResponse,
         canvas_size: [300, 300],
         stimulus: drawGraph,
-        choices: ['e','i'],
+        choices: ['Next'],
         prompt: '<p>Is this a circle or a rectangle? Press "e" for circle and "i" for rectangle.</p>',
-        data: {shape: 'rectangle'}
     }
 
     var instruction2 = {
