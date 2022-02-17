@@ -68,7 +68,11 @@
         }
         console.log(lasttimelinedata)
         var dataSet = [x, y, z];
-        graphCustom(dataSet, ctx, 'line')
+        try{
+          graphCustom(dataSet, ctx, 'line')
+        } catch(e){
+          alert(e)
+        }
     }
 
     var displayAccel = {
