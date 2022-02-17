@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>My experiment</title>
+    <title>MMBB batery</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script src="https://unpkg.com/jspsych@7.1.2"></script>
@@ -9,8 +9,11 @@
     <script src="https://unpkg.com/@jspsych/plugin-audio-keyboard-response@1.1.0"></script>
     <script src="./jspsych/dist/plugin-audio-button-response.js"> </script>
     <script src="./jspsych/dist/plugin-instructions.js"> </script>
+    <script src="./jspsych/dist/plugin-survey-likert.js"> </script>
     <script src="./jspsych/dist/extension-accelerometer.js"> </script>
     <script src="./jspsych/dist/plugin-survey-multi-choice.js"> </script>
+    <script src="./jspsych/dist/plugin-initialize-microphone.js"> </script>
+    <script src="./jspsych/dist/plugin-html-audio-response.js"> </script>
     <link href="./jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
@@ -104,21 +107,41 @@
 
     var trialSurvey = {
       type: jsPsychSurveyMultiChoice,
-      questions: [
-        {
+      questions: [{
           prompt: '<p style="font-size:7vw;">I am a </p>',
           options: ['Profesisonal musician', 'Amateur', 'Non musician'], 
           required: false
-        }
-      ],
-      on_start: function(trial){
-         console.log(document.getElementById("jspsych-survey-multi-choice-next"))
-      }
+        }]
     };
-    
+ 
+    var options = [
+      "Strongly Disagree", 
+      "Disagree", 
+      "Neutral", 
+      "Agree", 
+      "Strongly Agree"
+    ];
 
-    jsPsych.run([trialSurvey]);
-    //jsPsych.run([instruction1, trialAccelerometer, displayAccel, instruction2, trialTapping, displayTapping]);
+    var trialLikert = {
+      type: jsPsychSurveyLikert,
+      questions: [
+        {prompt: "I like music.", labels: options},
+      ],
+      randomize_question_order: true
+    };
+
+    var initializeMic = {
+      type: jsPsychInitializeMicrophone
+    };
+    var record = {
+        type: jsPsychHtmlAudioResponse,
+        stimulus: '<p style="font-size:48px;">Sing</p>',
+        recording_duration: 3500,
+        allow_playback: true,
+    };
+
+    //jsPsych.run([instruction1, trialAccelerometer, displayAccel, instruction2, trialTapping, displayTapping, trialSurvey]);
+    jsPsych.run([initializeMic, record]);
 
  </script>
 </html>

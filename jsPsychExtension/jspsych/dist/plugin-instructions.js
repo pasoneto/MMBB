@@ -114,7 +114,7 @@ var jsPsychInstructions = (function (jspsych) {
                   if (trial.allow_backward) {
                       var allowed = current_page > 0 ? "" : "disabled='disabled'";
                       nav_html +=
-                          "<button id='jspsych-instructions-back' class='jspsych-btn' style='margin-right: 5px;' " +
+                          "<button id='jspsych-instructions-back' class='jspsych-instructions-btn' style='margin-right: 5px;' " +
                               allowed +
                               ">&lt; " +
                               trial.button_label_previous +
@@ -124,7 +124,7 @@ var jsPsychInstructions = (function (jspsych) {
                       nav_html += pagenum_display;
                   }
                   nav_html +=
-                      "<button id='jspsych-instructions-next' class='jspsych-btn'" +
+                      "<button id='jspsych-instructions-next' class='jspsych-instructions-btn'" +
                           "style='margin-left: 5px;'>" +
                           trial.button_label_next +
                           " &gt;</button></div>";

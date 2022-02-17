@@ -71,7 +71,7 @@ var jsPsychHtmlAudioResponse = (function (jspsych) {
           ro.observe(display_element);
           let html = `<div id="jspsych-html-audio-response-stimulus">${trial.stimulus}</div>`;
           if (trial.show_done_button) {
-              html += `<p><button class="jspsych-btn" id="finish-trial">${trial.done_button_label}</button></p>`;
+              html += `<p><button class="jspsych-instructions-btn" id="finish-trial">${trial.done_button_label}</button></p>`;
           }
           display_element.innerHTML = html;
       }
@@ -161,8 +161,8 @@ var jsPsychHtmlAudioResponse = (function (jspsych) {
       showPlaybackControls(display_element, trial) {
           display_element.innerHTML = `
       <p><audio id="playback" src="${this.audio_url}" controls></audio></p>
-      <button id="record-again" class="jspsych-btn">${trial.record_again_button_label}</button>
-      <button id="continue" class="jspsych-btn">${trial.accept_button_label}</button>
+      <button id="record-again" class="jspsych-instructions-btn">${trial.record_again_button_label}</button>
+      <button id="continue" class="jspsych-instructions-btn">${trial.accept_button_label}</button>
     `;
           display_element.querySelector("#record-again").addEventListener("click", () => {
               // release object url to save memory

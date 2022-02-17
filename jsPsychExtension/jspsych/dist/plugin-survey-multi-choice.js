@@ -172,7 +172,7 @@ var jsPsychSurveyMultiChoice = (function (jspsych) {
                   plugin_id_name +
                   '-next" class="' +
                   plugin_id_name +
-                  ' jspsych-btn"' +
+                  ' jspsych-survey-btn"' +
                   (trial.button_label ? ' value="' + trial.button_label + '"' : "") +
                   "></input>";
           html += "</form>";

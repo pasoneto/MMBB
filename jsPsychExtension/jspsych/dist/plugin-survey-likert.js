@@ -96,7 +96,7 @@ var jsPsychSurveyLikert = (function (jspsych) {
                   ".jspsych-survey-likert-opts { list-style:none; width:" +
                   w +
                   "; margin:auto; padding:0 0 35px; display:block; font-size: 14px; line-height:1.1em; }" +
-                  ".jspsych-survey-likert-opt-label { line-height: 1.1em; color: #444; }" +
+                  ".jspsych-survey-likert-opt-label { line-height: 1.1em; color: white; }" +
                   ".jspsych-survey-likert-opts:before { content: ''; position:relative; top:11px; /*left:9.5%;*/ display:block; background-color:#efefef; height:4px; width:100%; }" +
                   ".jspsych-survey-likert-opts:last-of-type { border-bottom: 0; }" +
                   ".jspsych-survey-likert-opts li { display:inline-block; /*width:19%;*/ text-align:center; vertical-align: top; }" +
@@ -155,7 +155,7 @@ var jsPsychSurveyLikert = (function (jspsych) {
           }
           // add submit button
           html +=
-              '<input type="submit" id="jspsych-survey-likert-next" class="jspsych-survey-likert jspsych-btn" value="' +
+              '<input type="submit" id="jspsych-survey-likert-next" class="jspsych-survey-likert jspsych-instructions-btn" value="' +
                   trial.button_label +
                   '"></input>';
           html += "</form>";
