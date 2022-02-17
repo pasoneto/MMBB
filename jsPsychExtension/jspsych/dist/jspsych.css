@@ -1,19 +1,19 @@
+/*
+ * CSS for jsPsych experiments.
+ *
+ * This stylesheet provides minimal styling to make jsPsych
+ * experiments look polished without any additional styles.
+ */
+
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700);
 
 /* Container holding jsPsych content */
-
 .jspsych-display-element {
-
-
-  justify-content: center;
-  height: 100vh;
-  width: 100vw;
-  top: 0;
-  text-align: center;
-  left: 0;
-
+  display: flex;
   flex-direction: column;
-  overflow-y: auto;
+  /*overflow-y: hidden;
+  overflow-x: hidden;*/
+  background-color:	#808080;
 }
 
 .jspsych-display-element:focus {
@@ -44,15 +44,15 @@
 /* fonts and type */
 
 .jspsych-display-element {
-  font-family: "Open Sans", "Arial", sans-serif;
-  font-size: 50px;
-  line-height: 1.6em;
+  text-shadow: 2px 2px 4px #000000;
+  color: white;
+  text-shadow: 2px 2px 4px #000000;
+  line-height: 12vw;
 }
 
 /* Form elements like input fields and buttons */
 
 .jspsych-display-element input[type="text"] {
-  font-family: "Open Sans", "Arial", sans-serif;
   font-size: 14px;
 }
 
@@ -61,20 +61,83 @@
   display: inline-block;
   padding: 6px 12px;
   margin: 0px;
-  font-size: 50px;
   font-weight: 400;
-  font-family: "Open Sans", "Arial", sans-serif;
   cursor: pointer;
-  line-height: 1.4;
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
   background-image: none;
   border: 1px solid transparent;
-  border-radius: 4px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  border-radius: 10px;
   color: #333;
   background-color: #fff;
   border-color: #ccc;
+  width: 150px;
+  height: 100px;
+}
+
+.jspsych-btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin: 0px;
+  font-weight: 400;
+  cursor: pointer;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-image: none;
+  border: 1px solid transparent;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  border-radius: 10px;
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+  height: 150px;
+  width: 250px;
+}
+@media only screen and (max-width: 600px) {
+  .jspsych-btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 0px;
+    font-weight: 400;
+    cursor: pointer;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-image: none;
+    border: 1px solid transparent;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    border-radius: 10px;
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+    height: 200px;
+    width: 150px;
+  }
+}
+
+displayFinal {
+  display: inline-block;
+  padding: 6px 12px;
+  font-size:5vw;
+  margin: 0px;
+  font-size: 60px;
+  font-weight: 400;
+  cursor: pointer;
+  line-height: 0;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-image: none;
+  border: 1px solid transparent;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  border-radius: 10px;
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+  width: 100%;
 }
 
 /* only apply the hover style on devices with a mouse/pointer that can hover - issue #977 */

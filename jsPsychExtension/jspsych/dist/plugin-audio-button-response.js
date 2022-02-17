@@ -163,9 +163,9 @@ var jsPsychAudioButtonResponse = (function (jspsych) {
               if (trial.response_allowed_while_playing) {
                   enable_buttons();
               }
-              else {
-                  disable_buttons();
-              }
+              //else {
+                //disable_buttons();
+              //}
               // start time
               startTime = performance.now();
               // start audio
@@ -184,6 +184,7 @@ var jsPsychAudioButtonResponse = (function (jspsych) {
               }
               on_load();
           };
+          var rts = []
           // function to handle responses by the subject
           function after_response(choice) {
               // measure rt
@@ -194,9 +195,11 @@ var jsPsychAudioButtonResponse = (function (jspsych) {
                   rt = Math.round((endTime - startTime) * 1000);
               }
               response.button = parseInt(choice);
-              response.rt = rt;
+              console.log(rts)
+              rts.push(rt);
+              console.log(rts)
               // disable all the buttons after a response
-              disable_buttons();
+              //disable_buttons();
               if (trial.response_ends_trial) {
                   end_trial();
               }
@@ -217,7 +220,7 @@ var jsPsychAudioButtonResponse = (function (jspsych) {
               this.audio.removeEventListener("ended", enable_buttons);
               // gather the data to store for the trial
               var trial_data = {
-                  rt: response.rt,
+                  rt: rts,
                   stimulus: trial.stimulus,
                   response: response.button,
               };

@@ -2,13 +2,17 @@
 <html>
   <head>
     <title>My experiment</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <script src="./jspsych/dist/jspsych.js"></script>
-    <script src="./jspsych/dist/plugin-audio-button-response.js"></script>
-    <script src="./jspsych/dist/plugin-html-button-response.js"></script>
+    <script src="https://unpkg.com/jspsych@7.1.2"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-audio-keyboard-response@1.1.0"></script>
+    <script src="./jspsych/dist/plugin-audio-button-response.js"> </script>
+    <script src="./jspsych/dist/plugin-instructions.js"> </script>
     <script src="./jspsych/dist/extension-accelerometer.js"> </script>
-    <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" />
-    <link href="jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />
+    <script src="./jspsych/dist/plugin-survey-multi-choice.js"> </script>
+    <link href="./jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
   </head>
   <body></body>
@@ -19,25 +23,102 @@
         {type: jsPsychExtensionAccelerometer }
       ],
       on_finish: function() {
-        jsPsych.data.displayData();
+        //jsPsych.data.get().localSave('json','mydata.json');
       }
     });
 
-    var welcome = {
-        type: jsPsychHtmlButtonResponse,
-        stimulus: 'Hello',
-        choices: ['Start']
-    };
-
-    var trial = {
-        type: jsPsychHtmlButtonResponse,
-        choices: ['Done'],
-        stimulus: '<p style="font-size:48px;">Dance</p>',
-        extensions: [
-          {type: jsPsychExtensionAccelerometer}
+    var instruction1 = {
+        type: jsPsychInstructions,
+        pages: [
+        '<p style="font-size:7vw;">Welcome MMBB batery.</p>',
+        '<p style="font-size:7vw;">Movement task</p>',
+        '<p style="font-size:7vw;">When you click start, you will hear a song.</p>',
+        '<p style="font-size:7vw;">Your task is to move along with the beat.</p>'
         ],
-    };
+        button_label_next: "Next",
+        button_label_previous: "Previous",
+        show_clickable_nav: true
+    }
 
-    jsPsych.run([welcome, trial]);
-  </script>
+    var trialAccelerometer = {
+        type: jsPsychAudioKeyboardResponse,
+        stimulus: '../standaloneApp/binary_ternary.mp3',
+        prompt: '<p style="font-size:45px;">Move your phone along with the beat.</p>',
+        trial_duration: 10000,
+        choices: ["NO_KEYS"],
+        extensions: [
+          {type: jsPsychExtensionAccelerometer }
+        ],
+    }
+
+    var displayAccel = {
+        type: jsPsychInstructions,
+        pages: [
+        '<p style="font-size:7vw;">Click next to see your accelerometer data</p>',
+        ],
+        button_label_next: 'Next',
+        button_label_previous: 'Previous',
+        show_clickable_nav: true,
+        on_start: function(trial) {
+          var lasttimelinedata = jsPsych.data.getLastTimelineData();
+          trial.pages.push('x axis: '+lasttimelinedata.trials[1].accelerometer_data[0].x);
+          trial.pages.push('y axis: '+lasttimelinedata.trials[1].accelerometer_data[0].y);
+          trial.pages.push('z axis: '+lasttimelinedata.trials[1].accelerometer_data[0].z);
+          trial.pages.push('Sampling rate: '+lasttimelinedata.trials[1].accelerometer_data[0].interval+'ms');
+        }
+    }
+
+    var instruction2 = {
+        type: jsPsychInstructions,
+        pages: [
+        '<p style="font-size:7vw;">Tapping task.</p>',
+        '<p style="font-size:7vw;">When you click start, you will hear a song.</p>',
+        '<p style="font-size:7vw;">Your task is to tap the button along with what you hear.</p>'
+        ],
+        button_label_next: 'Next',
+        button_label_previous: 'Previous',
+        show_clickable_nav: true
+    }
+
+    var trialTapping = {
+        type: jsPsychAudioButtonResponse,
+        stimulus: '../standaloneApp/binary_ternary.mp3',
+        choices: ['Tap here'],
+        trial_duration: 5000,
+        response_ends_trial: false
+    }
+
+    var displayTapping = {
+        type: jsPsychInstructions,
+        pages: [
+        '<p style="font-size:7vw;">Click next to see your tapping times (ms)</p>',
+        ],
+        button_label_next: 'Next',
+        button_label_previous: 'Previous',
+        show_clickable_nav: true,
+        on_start: function(trial) {
+          var lasttimelinedata = jsPsych.data.getLastTimelineData();
+          trial.pages.push(lasttimelinedata.trials[4].rt); // this will change what stimulus is displayed in the trial
+        }
+    }
+
+    var trialSurvey = {
+      type: jsPsychSurveyMultiChoice,
+      questions: [
+        {
+          prompt: '<p style="font-size:7vw;">I am a </p>',
+          options: ['Profesisonal musician', 'Amateur', 'Non musician'], 
+          required: false
+        }
+      ],
+      on_start: function(trial){
+         console.log(document.getElementById("jspsych-survey-multi-choice-next"))
+      }
+    };
+    
+
+    jsPsych.run([trialSurvey]);
+    //jsPsych.run([instruction1, trialAccelerometer, displayAccel, instruction2, trialTapping, displayTapping]);
+
+ </script>
 </html>
