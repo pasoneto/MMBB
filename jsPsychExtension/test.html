@@ -99,18 +99,20 @@
         response_ends_trial: false
     }
 
+    function drawTap(c){
+        var ctx = c;
+        var lasttimelinedata = jsPsych.data.getLastTimelineData();
+        var t = lasttimelinedata.trials[4].rt;
+        console.log(t.length)
+        var dataSet = [Array(t.length).fill().map(Math.random)]
+        graphCustom(dataSet, ctx, 'bar', t)
+    }
+
     var displayTapping = {
-        type: jsPsychInstructions,
-        pages: [
-        '<p style="font-size:7vw;">Click next to see your tapping times (ms)</p>',
-        ],
-        button_label_next: 'Next',
-        button_label_previous: 'Previous',
-        show_clickable_nav: true,
-        on_start: function(trial) {
-          var lasttimelinedata = jsPsych.data.getLastTimelineData();
-          trial.pages.push(lasttimelinedata.trials[4].rt); // this will change what stimulus is displayed in the trial
-        }
+        type: jsPsychCanvasButtonResponse,
+        canvas_size: [300, 300],
+        stimulus: drawTap,
+        choices: ['Next'],
     }
 
     var trialSurvey = {
