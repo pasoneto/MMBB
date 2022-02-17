@@ -3,13 +3,14 @@
   <head>
     <title>MMBB batery</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+    <script src="/Users/pdealcan/Documents/Luke/graphFunction.js"> </script>
     <script src="https://unpkg.com/jspsych@7.1.2"></script>
     <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-audio-keyboard-response@1.1.0"></script>
     <script src="./jspsych/dist/plugin-audio-button-response.js"> </script>
     <script src="./jspsych/dist/plugin-instructions.js"> </script>
     <script src="./jspsych/dist/plugin-survey-likert.js"> </script>
+    <script src="./jspsych/dist/plugin-canvas-keyboard-response.js"> </script>
     <script src="./jspsych/dist/extension-accelerometer.js"> </script>
     <script src="./jspsych/dist/plugin-html-keyboard-response.js"> </script>
     <script src="./jspsych/dist/plugin-survey-multi-choice.js"> </script>
@@ -54,29 +55,29 @@
           {type: jsPsychExtensionAccelerometer }
         ],
     }
+    function drawGraph(c){
+        var ctx = c.getContext('2d');
+        var lasttimelinedata = jsPsych.data.getLastTimelineData().trials[1].accelerometer_data;
+        var x = []
+        var y = []
+        var z = []
+        for(var p of lasttimelinedata){
+              x.push(p.x)
+              y.push(p.y)
+              z.push(p.z)
+        }
+        console.log(x)
+        var dataSet = [x, y, z];
+        graphCustom(dataSet, ctx, 'line')
+    }
 
     var displayAccel = {
-        type: jsPsychInstructions,
-        pages: [
-        '<p style="font-size:7vw;">Click next to see your accelerometer data</p>',
-        ],
-        button_label_next: 'Next',
-        button_label_previous: 'Previous',
-        show_clickable_nav: true,
-        on_start: function(trial) {
-          var lasttimelinedata = jsPsych.data.getLastTimelineData().trials[1].accelerometer_data;
-          var x = []
-          var y = []
-          var z = []
-          for(var p of lasttimelinedata){
-                x.push(p.x)
-                y.push(p.y)
-                z.push(p.z)
-          }
-          trial.pages.push(x);
-          trial.pages.push(y);
-          trial.pages.push(z);
-          }
+        type: jsPsychCanvasKeyboardResponse,
+        canvas_size: [300, 300],
+        stimulus: drawGraph,
+        choices: ['e','i'],
+        prompt: '<p>Is this a circle or a rectangle? Press "e" for circle and "i" for rectangle.</p>',
+        data: {shape: 'rectangle'}
     }
 
     var instruction2 = {
