@@ -64,12 +64,19 @@
         button_label_previous: 'Previous',
         show_clickable_nav: true,
         on_start: function(trial) {
-          var lasttimelinedata = jsPsych.data.getLastTimelineData();
-          trial.pages.push('x axis: '+lasttimelinedata.trials[1].accelerometer_data[0].x);
-          trial.pages.push('y axis: '+lasttimelinedata.trials[1].accelerometer_data[0].y);
-          trial.pages.push('z axis: '+lasttimelinedata.trials[1].accelerometer_data[0].z);
-          trial.pages.push('Sampling rate: '+lasttimelinedata.trials[1].accelerometer_data[0].interval+'ms');
-        }
+          var lasttimelinedata = jsPsych.data.getLastTimelineData().trials[1].accelerometer_data;
+          var x = []
+          var y = []
+          var z = []
+          for(var p of lasttimelinedata){
+                x.push(p.x)
+                y.push(p.y)
+                z.push(p.z)
+          }
+          trial.pages.push(x);
+          trial.pages.push(y);
+          trial.pages.push(z);
+          }
     }
 
     var instruction2 = {
