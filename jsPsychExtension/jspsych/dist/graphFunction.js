@@ -13,11 +13,12 @@ function dataGenerator(dataSet){
 }
 
 //Generates graph and appends to given element by ID
-function graphCustom(dataSet, id, type){
+function graphCustom(dataSet, id, type, xLabels){
   var dataConstructor = dataGenerator(dataSet)
   new Chart(id, {
     type: type,
     data: {
+      labels: xLabels,
       datasets: dataConstructor },
     options: {
       legend: {display: false}

@@ -49,30 +49,27 @@
         type: jsPsychAudioKeyboardResponse,
         stimulus: '../standaloneApp/binary_ternary.mp3',
         prompt: '<p style="font-size:45px;">Move your phone along with the beat.</p>',
-        trial_duration: 10000,
+        trial_duration: 5000,
         choices: ["NO_KEYS"],
         extensions: [
           {type: jsPsychExtensionAccelerometer }
         ],
     }
     function drawGraph(c){
-        var ctx = c.getContext('2d');
+        var ctx = c;
         var lasttimelinedata = jsPsych.data.getLastTimelineData().trials[1].accelerometer_data;
         var x = []
         var y = []
         var z = []
+        var t = []
         for(var p of lasttimelinedata){
               x.push(p.x)
               y.push(p.y)
               z.push(p.z)
+              t.push(p.t)
         }
-        alert(x)
-        var dataSet = [x, y, z];
-        try{
-          graphCustom(dataSet, ctx, 'line')
-        } catch(e){
-          alert(e)
-        }
+        var dataSet = [data1, data2, data3];
+        graphCustom(dataSet, ctx, 'line', t)
     }
 
     var displayAccel = {
