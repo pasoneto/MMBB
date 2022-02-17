@@ -21,7 +21,7 @@ var jsPsychCanvasButtonResponse = (function (jspsych) {
           button_html: {
               type: jspsych.ParameterType.HTML_STRING,
               pretty_name: "Button HTML",
-              default: '<button class="jspsych-btn">%choice%</button>',
+              default: '<button class="jspsych-survey-btn">%choice%</button>',
               array: true,
           },
           /** Any content here will be displayed under the button. */
