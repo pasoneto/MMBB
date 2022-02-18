@@ -68,13 +68,13 @@
               z.push(p.z)
               t.push(p.t)
         }
-        var dataSet = [x, y, z];
-        graphCustom(dataSet, ctx, 'line', t)
+        var yAxis = [x, y, z];
+        graphCustom(t, yAxis, ['x', 'y', 'z'], ctx, 'line')
     }
 
     var displayAccel = {
         type: jsPsychCanvasButtonResponse,
-        canvas_size: [300, 300],
+        canvas_size: [250, 500],
         stimulus: drawGraph,
         choices: ['Next'],
     }
@@ -104,8 +104,8 @@
         var lasttimelinedata = jsPsych.data.getLastTimelineData();
         var t = lasttimelinedata.trials[4].rt;
         console.log(t.length)
-        var dataSet = [Array(t.length).fill().map(Math.random)]
-        graphCustom(dataSet, ctx, 'bar', t)
+        var yAxis = [Array(t.length).fill().map(Math.random)]
+        graphCustom(t, yAxis, ['tap-timing'], ctx, 'line')
     }
 
     var displayTapping = {
