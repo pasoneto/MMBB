@@ -9,6 +9,10 @@ var jsPsychHtmlAudioResponse = (function (jspsych) {
               type: jspsych.ParameterType.HTML_STRING,
               default: undefined,
           },
+          audiostimulus: {
+              type: jspsych.ParameterType.STRING,
+              default: undefined,
+          },
           /** How long to show the stimulus. */
           stimulus_duration: {
               type: jspsych.ParameterType.INT,
@@ -58,6 +62,7 @@ var jsPsychHtmlAudioResponse = (function (jspsych) {
           this.recorded_data_chunks = [];
       }
       trial(display_element, trial) {
+          this.audiostimulus = new Audio(trial.audiostimulus);
           this.recorder = this.jsPsych.pluginAPI.getMicrophoneRecorder();
           this.setupRecordingEvents(display_element, trial);
           this.startRecording();
@@ -150,10 +155,13 @@ var jsPsychHtmlAudioResponse = (function (jspsych) {
           this.recorder.addEventListener("start", this.start_event_handler);
       }
       startRecording() {
+          this.audiostimulus.play();
           this.recorder.start();
       }
       stopRecording() {
           this.recorder.stop();
+          this.audiostimulus.pause();
+          this.audiostimulus.currentTime = 0;
           return new Promise((resolve) => {
               this.load_resolver = resolve;
           });
@@ -168,6 +176,8 @@ var jsPsychHtmlAudioResponse = (function (jspsych) {
               // release object url to save memory
               URL.revokeObjectURL(this.audio_url);
               this.startRecording();
+              this.audiostimulus.play();
+
           });
           display_element.querySelector("#continue").addEventListener("click", () => {
               this.endTrial(display_element, trial);
@@ -185,6 +195,7 @@ var jsPsychHtmlAudioResponse = (function (jspsych) {
           // gather the data to store for the trial
           var trial_data = {
               rt: this.rt,
+              audiostimulus: trial.audiostimulus,
               stimulus: trial.stimulus,
               response: this.response,
               estimated_stimulus_onset: Math.round(this.stimulus_start_time - this.recorder_start_time),

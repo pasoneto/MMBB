@@ -28,7 +28,8 @@
         {type: jsPsychExtensionAccelerometer }
       ],
       on_finish: function() {
-        jsPsych.data.get().localSave('json','mydata.json');
+        jsPsych.data.displayData();
+        //jsPsych.data.get().localSave('json','mydata.json');
       }
     });
 
@@ -143,8 +144,10 @@
     var initializeMic = {
       type: jsPsychInitializeMicrophone
     };
+
     var record = {
         type: jsPsychHtmlAudioResponse,
+        audiostimulus: '../standaloneApp/binary_ternary.mp3',
         stimulus: '<p style="font-size:48px;">Sing</p>',
         recording_duration: 3500,
         allow_playback: true,
@@ -156,7 +159,8 @@
         trial_duration: 10000,
     };     
 
-    jsPsych.run([instruction1, trialAccelerometer, displayAccel, instruction2, trialTapping, displayTapping, initializeMic, record, trialSurvey, trialLikert, end]);
+    //jsPsych.run([instruction1, trialAccelerometer, displayAccel, instruction2, trialTapping, displayTapping, initializeMic, record, trialSurvey, trialLikert, end]);
+    jsPsych.run([initializeMic, record]);
 
  </script>
 </html>
