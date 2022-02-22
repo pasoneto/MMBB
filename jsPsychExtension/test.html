@@ -29,7 +29,6 @@
       ],
       on_finish: function() {
         jsPsych.data.displayData();
-        //jsPsych.data.get().localSave('json','mydata.json');
       }
     });
 
@@ -151,7 +150,6 @@
         stimulus: '<p style="font-size:48px;">Sing</p>',
         recording_duration: 3500,
         allow_playback: true,
-        save_audio_url: true,
     };
     var end = {
         type: jsPsychHtmlKeyboardResponse,
