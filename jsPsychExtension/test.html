@@ -22,7 +22,7 @@
   </head>
   <body></body>
   <script>
-
+    //navigator.mediaDevices.enumerateDevices().then(a => {console.log(a)})
     var jsPsych = initJsPsych({
       extensions: [
         {type: jsPsychExtensionAccelerometer }
@@ -158,8 +158,8 @@
         trial_duration: 10000,
     };     
 
-    //jsPsych.run([instruction1, trialAccelerometer, displayAccel, instruction2, trialTapping, displayTapping, initializeMic, record, trialSurvey, trialLikert, end]);
-    jsPsych.run([instruction1, initializeMic, record]);
+    jsPsych.run([instruction1, trialAccelerometer, displayAccel, instruction2, trialTapping, displayTapping, initializeMic, record, trialSurvey, trialLikert, end]);
+    //jsPsych.run([instruction1, initializeMic, record]);
 
  </script>
 </html>

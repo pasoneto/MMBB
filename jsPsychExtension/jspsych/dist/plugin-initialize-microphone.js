@@ -99,8 +99,13 @@ var jsPsychInitializeMicrophone = (function (jspsych) {
         updateDeviceList(display_element) {
             navigator.mediaDevices.enumerateDevices().then((devices) => {
                 const mics = devices.filter((d) => d.kind === "audioinput" && d.deviceId !== "default" && d.deviceId !== "communications");
+
+              //console.log(mics)
                 // remove entries with duplicate groupID
                 const unique_mics = mics.filter((mic, index, arr) => arr.findIndex((v) => v.groupId == mic.groupId) == index);
+
+                console.log(unique_mics)
+
                 // reset the list by clearing all current options
                 display_element.querySelector("#which-mic").innerHTML = "";
                 unique_mics.forEach((d) => {
@@ -113,6 +118,7 @@ var jsPsychInitializeMicrophone = (function (jspsych) {
         }
     }
     InitializeMicrophonePlugin.info = info;
+
 
     return InitializeMicrophonePlugin;
 
