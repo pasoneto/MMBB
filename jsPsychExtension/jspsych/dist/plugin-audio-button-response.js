@@ -20,7 +20,7 @@ var jsPsychAudioButtonResponse = (function (jspsych) {
           button_html: {
               type: jspsych.ParameterType.HTML_STRING,
               pretty_name: "Button HTML",
-              default: '<button class="jspsych-tapping-btn" onclick="change()">%choice%</button>',
+              default: '<button class="jspsych-tapping-btn" onclick="">%choice%</button>',
               array: true,
           },
           /** Any content here will be displayed below the stimulus. */
