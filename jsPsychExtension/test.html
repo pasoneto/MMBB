@@ -22,6 +22,11 @@
   </head>
   <body></body>
   <script>
+    function change() {
+                    setTimeout(() => {document.body.style.backgroundColor = "lightgray"}, 5);
+                    document.body.style.backgroundColor = "#fff";
+            }
+
     //navigator.mediaDevices.enumerateDevices().then(a => {console.log(a)})
     var jsPsych = initJsPsych({
       extensions: [
@@ -96,7 +101,7 @@
         stimulus: '../standaloneApp/binary_ternary.mp3',
         choices: ['Tap here'],
         trial_duration: 5000,
-        response_ends_trial: false
+        response_ends_trial: false,
     }
 
     function drawTap(c){
@@ -158,7 +163,8 @@
         trial_duration: 10000,
     };     
 
-    jsPsych.run([instruction1, trialAccelerometer, displayAccel, instruction2, trialTapping, displayTapping, initializeMic, record, trialSurvey, trialLikert, end]);
+    //jsPsych.run([instruction1, trialAccelerometer, displayAccel, instruction2, trialTapping, displayTapping, initializeMic, record, trialSurvey, trialLikert, end]);
+    jsPsych.run([instruction2, trialTapping])
     //jsPsych.run([instruction1, initializeMic, record]);
 
  </script>

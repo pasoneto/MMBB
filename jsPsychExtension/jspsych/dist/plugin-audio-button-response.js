@@ -1,6 +1,5 @@
 var jsPsychAudioButtonResponse = (function (jspsych) {
   'use strict';
-
   const info = {
       name: "audio-button-response",
       parameters: {
@@ -21,7 +20,7 @@ var jsPsychAudioButtonResponse = (function (jspsych) {
           button_html: {
               type: jspsych.ParameterType.HTML_STRING,
               pretty_name: "Button HTML",
-              default: '<button class="jspsych-tapping-btn">%choice%</button>',
+              default: '<button class="jspsych-tapping-btn" onclick="change()">%choice%</button>',
               array: true,
           },
           /** Any content here will be displayed below the stimulus. */
@@ -109,6 +108,9 @@ var jsPsychAudioButtonResponse = (function (jspsych) {
                   this.audio.currentTime = 0;
               }
               setupTrial();
+
+              document.getElementById('tapping-btn');
+
           })
               .catch((err) => {
               console.error(`Failed to load audio file "${trial.stimulus}". Try checking the file path. We recommend using the preload plugin to load audio files.`);
