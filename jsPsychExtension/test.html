@@ -8,6 +8,7 @@
     <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-audio-keyboard-response@1.1.0"></script>
     <script src="./jspsych/dist/plugin-audio-button-response.js"> </script>
+    <script src="./jspsych/dist/plugin-html-button-response.js"> </script>
     <script src="./jspsych/dist/plugin-instructions.js"> </script>
     <script src="./jspsych/dist/plugin-survey-likert.js"> </script>
     <script src="./jspsych/dist/plugin-canvas-button-response.js"> </script>
@@ -167,8 +168,27 @@
         trial_duration: 10000,
     };     
 
+    var images = ['./img/elephant.png', './img/lion.png', './img/monkey.png']
+
+    var emotion0 = {
+        type: jsPsychAudioKeyboardResponse,
+        stimulus: '../standaloneApp/binary_ternary.mp3',
+        prompt: '<p style="font-size:45px;">Listen to the music</p>',
+        trial_duration: 5000,
+        choices: ["NO_KEYS"],
+    }
+
+    const emotion = {
+      type: jsPsychHtmlButtonResponse,
+    	choices: images,
+      stimulus: "Judge emotion",
+    	prompt: "",
+    	button_html: '<img src="%choice%" />',
+      data: 
+    };
+
     //jsPsych.run([instruction1, trialAccelerometer, displayAccel, instruction2, trialTapping, displayTapping, initializeMic, record, trialSurvey, trialLikert, end]);
-    jsPsych.run([initializeMic, record]);
+    jsPsych.run([instruction1, emotion0, emotion]);
 
  </script>
 </html>
