@@ -2,11 +2,10 @@
 <html>
   <head>
     <title>MMBB batery</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="./jspsych/dist/graphFunction.js"> </script>
-    <script src="https://unpkg.com/jspsych@7.1.2"></script>
-    <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.0"></script>
-    <script src="https://unpkg.com/@jspsych/plugin-audio-keyboard-response@1.1.0"></script>
+    <script src="./jspsych/dist/jspsych.js"></script>
+    <script src="./jspsych/dist/plugin-html-button-response.js"></script>
+    <script src="./jspsych/dist/plugin-audio-keyboard-response.js"></script>
     <script src="./jspsych/dist/plugin-audio-button-response.js"> </script>
     <script src="./jspsych/dist/plugin-html-button-response.js"> </script>
     <script src="./jspsych/dist/plugin-instructions.js"> </script>
@@ -44,51 +43,72 @@
         show_clickable_nav: true
     }
 
-    var images = ['./img/elephant.png', './img/lion.png', './img/monkey.png']
+    var images = ['./basic_emoji/v1a1.png', './basic_emoji/v1a5.png', './basic_emoji/v5a1.png',
+        './basic_emoji/v5a5.png']
 
-    var angryStim = {
+    var t1_1Stim = {
         type: jsPsychAudioKeyboardResponse,
-        stimulus: '../standaloneApp/binary_ternary.mp3',
+        stimulus: './final_stimuli/092.mp3',
         prompt: '<p style="font-size:45px;">Listen to the music</p>',
-        trial_duration: 5000,
+        trial_duration: 16000,
         choices: ["NO_KEYS"],
     }
 
-    const angryResp = {
+    const t1_1Resp = {
       type: jsPsychHtmlButtonResponse,
-    	choices: [images[0], images[1]],
-      stimulus: "Judge emotion",
-    	prompt: "Angry",
+    	choices: [images[1], images[3]],
+      stimulus: "Select the right emotion",
     	button_html: '<img src="%choice%" />',
+      data: {type: '1'},
+      post_trial_gap: 1000
     };
     
-    const angry = {
-        timeline: [angryStim, angryResp]
+    const t1_1 = {
+        timeline: [t1_1Stim, t1_1Resp]
     }
      
-    var sadStim = {
+    var t1_2Stim = {
         type: jsPsychAudioKeyboardResponse,
-        stimulus: '../standaloneApp/binary_ternary.mp3',
+        stimulus: './final_stimuli/106.mp3',
         prompt: '<p style="font-size:45px;">Listen to the music</p>',
-        trial_duration: 5000,
+        trial_duration: 16000,
         choices: ["NO_KEYS"],
     }
 
-    const sadResp = {
+    const t1_2Resp = {
       type: jsPsychHtmlButtonResponse,
-    	choices: images,
-      stimulus: "Judge emotion",
-    	prompt: "Sad",
+    	choices: [images[2], images[3]],
+      stimulus: "Select the right emotion",
     	button_html: '<img src="%choice%" />',
-      data: {type: 'angry'}
+      data: {type: '2'},
+      post_trial_gap: 1000
     };
     
-    const sad = {
-        timeline: [sadStim, sadResp]
+    const t1_2 = {
+        timeline: [t1_2Stim, t1_2Resp]
+    }
+    var t1_3Stim = {
+        type: jsPsychAudioKeyboardResponse,
+        stimulus: './final_stimuli/043.mp3',
+        prompt: '<p style="font-size:45px;">Listen to the music</p>',
+        trial_duration: 16000,
+        choices: ["NO_KEYS"],
     }
 
+    const t1_3Resp = {
+      type: jsPsychHtmlButtonResponse,
+    	choices: [images[0], images[2]],
+      stimulus: "Select the right emotion",
+    	button_html: '<img src="%choice%" />',
+      data: {type: '3'},
+      post_trial_gap: 1000
+    };
+    
+    const t1_3 = {
+        timeline: [t1_3Stim, t1_3Resp]
+    }
     const randomTrials = {
-        timeline: jsPsych.randomization.shuffle([sad, angry])
+        timeline: jsPsych.randomization.shuffle([t1_1, t1_2,t1_3])
     }
 
 
