@@ -94,7 +94,6 @@ var jsPsychHtmlButtonResponse = (function (jspsych) {
           for (var i = 0; i < trial.choices.length; i++) {
               var str = buttons[i].replace(/%choice%/g, trial.choices[i].img);
               html +=
-                  '<p>' + trial.choices[i].type + '</p>'+
                   '<div class="jspsych-html-button-response-button" style="display: inline-block; margin:' +
                       trial.margin_vertical +
                       " " +
@@ -105,6 +104,7 @@ var jsPsychHtmlButtonResponse = (function (jspsych) {
                       i +
                       '">' +
                       str +
+                      '<h2 style="margin:0">' + trial.choices[i].type + '</h2>' +
                       "</div>";
           }
           html += "</div>";
