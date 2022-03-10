@@ -43,8 +43,12 @@
         show_clickable_nav: true
     }
 
-    var images = ['./basic_emoji/v1a1.png', './basic_emoji/v1a5.png', './basic_emoji/v5a1.png',
-        './basic_emoji/v5a5.png']
+    var images = [
+      { img: "./basic_emoji/v1a1.png",  type: 'Happy'},
+      { img: "./basic_emoji/v1a5.png",  type: 'Super Happy'},
+      { img: "./basic_emoji/v5a1.png",  type: 'Radiant'},
+      { img: "./basic_emoji/v5a5.png",  type: 'Louis CK'}
+    ];
 
     var t1_1Stim = {
         type: jsPsychAudioKeyboardResponse,
@@ -58,7 +62,7 @@
       type: jsPsychHtmlButtonResponse,
     	choices: [images[1], images[3]],
       stimulus: "Select the right emotion",
-    	button_html: '<p>Hi</p><img src="%choice%" />',
+    	button_html: '<img src="%choice%" />',
       data: {type: '1'},
       post_trial_gap: 1000
     };
@@ -79,7 +83,7 @@
       type: jsPsychHtmlButtonResponse,
     	choices: [images[2], images[3]],
       stimulus: "Select the right emotion",
-    	button_html: '<p>Hi</p><img src="%choice%" />',
+    	button_html: '<img src="%choice%" />',
       data: {type: '2'},
       post_trial_gap: 1000
     };
@@ -94,12 +98,12 @@
         trial_duration: 16000,
         choices: ["NO_KEYS"],
     }
-
+    console.log(images[0])
     const t1_3Resp = {
       type: jsPsychHtmlButtonResponse,
     	choices: [images[0], images[2]],
       stimulus: "Select the right emotion",
-    	button_html: '<p>Hi</p><img src="%choice%" />',
+    	button_html: '<img src="%choice%" />',
       data: {type: '3'},
       post_trial_gap: 1000
     };
