@@ -56,7 +56,7 @@
         type: jsPsychAudioKeyboardResponse,
         stimulus: '../standaloneApp/binary_ternary.mp3',
         prompt: '<p style="font-size:45px;">Move your phone along with the beat.</p>',
-        //trial_duration: 30000,
+        trial_duration: 30000,
         choices: ["NO_KEYS"],
         extensions: [
           {type: jsPsychExtensionAccelerometer }
@@ -187,7 +187,7 @@
     };
 
     //jsPsych.run([instruction1, trialAccelerometer, displayAccel, instruction2, trialTapping, displayTapping, initializeMic, record, trialSurvey, trialLikert, end]);
-    jsPsych.run([instruction1, trialAccelerometer]);
+    jsPsych.run([initializeMic, record]);
 
  </script>
 </html>
