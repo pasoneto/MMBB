@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<button onclick="begin()">Start song</button>
+
+<div class="slidecontainer">
+  <input type="range" min="150" max="1000" value="200" class="slider" id="myRange">
+  <div id="show"></div>
+</div>
+
+
+</body>
+
+<script>
+
+var audio = new Audio('beat.wav');
+var audio2 = new Audio('../standaloneApp/binary_ternary.mp3');
+
+function begin(){
+  audio2.play()
+}
+
+function playNew(){
+  audio.currentTime = 0
+  audio.play();
+}
+
+var interval;
+function wrap(){
+      clearInterval(interval)
+      interval = setInterval(function() {
+          playNew();
+      }, this.value);
+      document.getElementById("show").innerHTML = this.value
+}
+
+var slide = document.getElementById("myRange")
+slide.addEventListener('change', wrap);
+
+// Then, later at some future time, 
+// to restart a new 4 second interval starting at this exact moment in time
+//clearInterval(myTimer);
+//myTimer = setInterval(myFn, 4000);
+
+
+</script>
+
+</html>
+
+
+
+
+
