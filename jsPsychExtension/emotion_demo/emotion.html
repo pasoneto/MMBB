@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>MMBB batery</title>
+    <script src="./jspsych/dist/graphFunction.js"> </script>
     <script src="./jspsych/dist/jspsych.js"></script>
     <script src="./jspsych/dist/plugin-html-button-response.js"></script>
     <script src="./jspsych/dist/plugin-audio-keyboard-response.js"></script>
@@ -27,7 +28,7 @@
         {type: jsPsychExtensionAccelerometer }
       ],
       on_finish: function() {
-        jsPsych.data.get().localSave('csv','mydata.csv');
+        jsPsych.data.get().localSave('csv','dataEmoENGPart1.csv');
       }
     });
 
@@ -42,7 +43,6 @@
         show_clickable_nav: true
     }
 
-    //Need to pass ../emotion_demo directory because code is run from parent directory
     var images = [
       { img: "./basic_emoji/v1a1.png",  type: 'Sad'},
       { img: "./basic_emoji/v1a5.png",  type: 'Anger'},
@@ -63,7 +63,7 @@
     	choices: [images[1], images[3]],
       stimulus: "Select the right emotion",
     	button_html: '<img src="%choice%" />',
-      data: {type: '1'},
+      data: {type: '1',condition: 'angry',correct_response: 0},
       post_trial_gap: 1000
     };
     
@@ -84,7 +84,7 @@
     	choices: [images[2], images[3]],
       stimulus: "Select the right emotion",
     	button_html: '<img src="%choice%" />',
-      data: {type: '2'},
+      data: {type: '2',condition: 'tender',correct_response: 0},
       post_trial_gap: 1000
     };
     
@@ -104,7 +104,7 @@
     	choices: [images[0], images[2]],
       stimulus: "Select the right emotion",
     	button_html: '<img src="%choice%" />',
-      data: {type: '3'},
+      data: {type: '3',condition: 'sad',correct_response: 0},
       post_trial_gap: 1000
     };
     
@@ -124,7 +124,7 @@
     	choices: [images[0], images[1]],
       stimulus: "Select the right emotion",
     	button_html: '<img src="%choice%" />',
-      data: {type: '4'},
+      data: {type: '4',condition: 'angry',correct_response: 1},
       post_trial_gap: 1000
     };
     
@@ -140,17 +140,17 @@
         choices: ["NO_KEYS"],
     }
 
-    const fullResp = {
+    const t1_5Resp = {
       type: jsPsychHtmlButtonResponse,
     	choices: images,
       stimulus: "Select the right emotion",
     	button_html: '<img src="%choice%" />',
-      data: {type: '5'},
+      data: {type: '5',condition: 'happy',correct_response: 3},
       post_trial_gap: 1000
     };
     
     const t1_5 = {
-        timeline: [t1_5Stim, fullResp]
+        timeline: [t1_5Stim, t1_5Resp]
     }
 
     var t1_6Stim = {
@@ -161,8 +161,17 @@
         choices: ["NO_KEYS"],
     }
 
+    const t1_6Resp = {
+      type: jsPsychHtmlButtonResponse,
+    	choices: images,
+      stimulus: "Select the right emotion",
+    	button_html: '<img src="%choice%" />',
+      data: {type: '6',condition: 'sad',correct_response: 0},
+      post_trial_gap: 1000
+    };
+
     const t1_6 = {
-        timeline: [t1_6Stim, fullResp]
+        timeline: [t1_6Stim, t1_6Resp]
     }
 
     const randomTrials2Responses = {
@@ -194,7 +203,7 @@
     	choices: [images[1], images[3]],
       stimulus: "Select the right emotion",
     	button_html: '<img src="%choice%" />',
-      data: {type: '7'},
+      data: {type: '7',condition: 'happy',correct_response: 1},
       post_trial_gap: 1000
     };
     
@@ -214,8 +223,8 @@
       type: jsPsychHtmlButtonResponse,
     	choices: [images[2], images[3]],
       stimulus: "Select the right emotion",
-    	button_html: '<img src="%choice%" />',
-      data: {type: '8'},
+      button_html: '<img src="%choice%" />',
+      data: {type: '8',condition: 'happy',correct_response: 1},
       post_trial_gap: 1000
     };
     
@@ -235,7 +244,7 @@
     	choices: [images[0], images[2]],
       stimulus: "Select the right emotion",
     	button_html: '<img src="%choice%" />',
-      data: {type: '9'},
+      data: {type: '9',condition: 'tender',correct_response: 1},
       post_trial_gap: 1000
     };
     
@@ -255,7 +264,7 @@
     	choices: [images[0], images[1]],
       stimulus: "Select the right emotion",
     	button_html: '<img src="%choice%" />',
-      data: {type: '10'},
+      data: {type: '10',condition: 'sad',correct_response: 0},
       post_trial_gap: 1000
     };
     
@@ -271,8 +280,17 @@
         choices: ["NO_KEYS"],
     }
     
+    const t2_5Resp = {
+      type: jsPsychHtmlButtonResponse,
+    	choices: images,
+      stimulus: "Select the right emotion",
+    	button_html: '<img src="%choice%" />',
+      data: {type: '11',condition: 'anger',correct_response: 1},
+      post_trial_gap: 1000
+    };
+
     const t2_5 = {
-        timeline: [t2_5Stim, fullResp]
+        timeline: [t2_5Stim, t2_5Resp]
     }
 
     var t2_6Stim = {
@@ -283,8 +301,17 @@
         choices: ["NO_KEYS"],
     }
 
+    const t2_6Resp = {
+      type: jsPsychHtmlButtonResponse,
+    	choices: images,
+      stimulus: "Select the right emotion",
+    	button_html: '<img src="%choice%" />',
+      data: {type: '12',condition: 'tender',correct_response: 2},
+      post_trial_gap: 1000
+    };
+
     const t2_6 = {
-        timeline: [t2_6Stim, fullResp]
+        timeline: [t2_6Stim, t2_6Resp]
     }
 
     const randomTrials2Responses2 = {
