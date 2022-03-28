@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MMBB batery</title>
+    <script src="./jspsych/dist/graphFunction.js"> </script>
+    <script src="./jspsych/dist/jspsych.js"></script>
+    <script src="./jspsych/dist/plugin-html-button-response.js"></script>
+    <script src="./jspsych/dist/plugin-audio-keyboard-response.js"></script>
+    <script src="./jspsych/dist/plugin-audio-button-response.js"> </script>
+    <script src="./jspsych/dist/plugin-html-button-response.js"> </script>
+    <script src="./jspsych/dist/plugin-instructions.js"> </script>
+    <script src="./jspsych/dist/plugin-survey-likert.js"> </script>
+    <script src="./jspsych/dist/plugin-canvas-button-response.js"> </script>
+    <script src="./jspsych/dist/extension-accelerometer.js"> </script>
+    <script src="./jspsych/dist/plugin-html-keyboard-response.js"> </script>
+    <script src="./jspsych/dist/plugin-survey-multi-choice.js"> </script>
+    <script src="./jspsych/dist/plugin-initialize-microphone.js"> </script>
+    <script src="./jspsych/dist/plugin-html-audio-response.js"> </script>
+    <script src="./jspsych/dist/plugin-html-slider-response.js"> </script>
+    <link href="./jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+  </head>
+  <body></body>
+  <script>
+
+    var jsPsych = initJsPsych({
+      extensions: [
+        {type: jsPsychExtensionAccelerometer }
+      ],
+      on_finish: function() {
+        jsPsych.data.get().localSave('csv','mydata.csv');
+      }
+    });
+
+    var instruction = {
+        type: jsPsychInstructions,
+        pages: [
+        '<p style="font-size:7vw;">Emotion task Part 2</p>',
+        ],
+        button_label_next: "Next",
+        button_label_previous: "Previous",
+        show_clickable_nav: true
+    }
+
+    var instruction1 = {
+        type: jsPsychInstructions,
+        pages: [
+        '<p style="font-size:7vw;">Rate the emotions expressed by the music</p>',
+        ],
+        button_label_next: "Next",
+        button_label_previous: "Previous",
+        show_clickable_nav: true
+    }
+
+    var t_2_1Stim = {
+        type: jsPsychAudioKeyboardResponse,
+        stimulus: './final_stimuli/092.mp3',
+        prompt: '<p style="font-size:45px;">Listen to the music</p>',
+        trial_duration: 15500,
+        choices: ["NO_KEYS"],
+    }
+
+    var valence = {
+    type: jsPsychHtmlSliderResponse,
+    stimulus: `<div style="width:500px;">
+        <p style="font-size:32px;">Music Mood</p>
+        </div>`,
+    require_movement: true,
+    labels: ['<p style="font-size:30px;"> Negative</p>', '<p style="font-size:30px;">Neutral</p>', '<p style="font-size:30px;">Positive</p>']
+    };
+
+    var energy = {
+    type: jsPsychHtmlSliderResponse,
+    stimulus: `<div style="width:500px;">
+        <p style="font-size:32px;">Music Energy</p>
+        </div>`,
+    require_movement: true,
+    labels: ['<p style="font-size:30px;"> Low Energy</p>', '<p style="font-size:30px;">High Energy</p>']
+    };
+
+    var tension = {
+    type: jsPsychHtmlSliderResponse,
+    stimulus: `<div style="width:500px;">
+        <p style="font-size:32px;">Music Tension</p>
+        </div>`,
+    require_movement: true,
+    labels: ['<p style="font-size:30px;"> Low Tension</p>', '<p style="font-size:30px;">High Tension</p>']
+   };
+    
+   jsPsych.run([instruction, instruction1, valence, energy, tension, t_2_1Stim]);
+
+ </script>
+</html>
