@@ -4,7 +4,7 @@
 
 <button onclick="start(250, [1, 0, 1, 0])">Half on beat</button>
 <button onclick="start(250, [0, 1, 0, 1])">Half counter beat</button>
-<button onclick="stopBeat()">Stop beat</button>
+<button onclick="stop()">Stop beat</button>
 
 <div class="slidecontainer">
   <input type="range" min="-2" max="2" value="0" class="slider" id="myRange">
@@ -47,6 +47,12 @@ const barMaker = (bpm, beatStructure)=>{
       }, i * bpm)
     }
 }
+
+function stop(){
+  clearInterval(barLoop)
+  clearTimeout(barRun)
+}
+
 
 function start(bpm, beatStructure){
   clearInterval(barLoop)
