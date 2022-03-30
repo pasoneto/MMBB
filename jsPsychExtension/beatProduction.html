@@ -1,48 +1,52 @@
 <!DOCTYPE html>
 <html>
-<body>
+<body style="background-color: lightgray">
 
-<button onclick="start(250, [1, 0, 1, 0])">Half on beat</button>
-<button onclick="start(250, [0, 1, 0, 1])">Half counter beat</button>
+<h1>Slide to hear and adjust the beat</h1>
 <button onclick="stop()">Stop beat</button>
+<button onclick="startExp(250, [1, 0, 1, 0], audio1, audio2)">Start beat</button>
 
 <div class="slidecontainer">
   <input type="range" min="-2" max="2" value="0" class="slider" id="myRange">
   <div id="show"></div>
 </div>
 
-<div id="0" style='background-color:red'>1/4</div>
-<div id="1" style='background-color:red'>1/4</div>
-<div id="2" style='background-color:red'>1/4</div>
-<div id="3" style='background-color:red'>1/4</div>
+<h1>Beat to be adjusted</h1>
+<div style='display: flex; float: left; font-size: 50px; color: white'>
+<div id="0" style='margin: 10px; padding: 20; background-color:lightblue'>1</div>
+<div id="1" style='margin: 10px; padding: 20; background-color:lightblue'>0</div>
+<div id="2" style='margin: 10px; padding: 20; background-color:lightblue'>1</div>
+<div id="3" style='margin: 10px; padding: 20; background-color:lightblue'>0</div>
+</div>
+
 
 </body>
 
 <script>
 
-var audio = new Audio('./beat.wav');
+var audio1 = new Audio('./beat.wav');
+var audio2 = new Audio('./emotion_demo/final_stimuli/072.mp3');
 
-function audioPlayer(){
-  audio.pause()
-  audio.currentTime = 0
-  audio.play()
+function audioPlayer(audioFile){
+  audioFile.pause()
+  audioFile.currentTime = 0
+  audioFile.play()
 }
 
-var barRun;
 var barLoop;
+var barRun;
 
-const barMaker = (bpm, beatStructure)=>{
+//Makes loop within one bar
+const barMaker = (bpm, beatStructure, audioFile)=>{
   for (let i = 0; i <= 3; i++) {
       barRun = setTimeout( () =>{
-        console.log(beatStructure[i])
-
         if(beatStructure[i] === 1){
-            audioPlayer()
-            document.getElementById("0").style.backgroundColor = 'red'
-            document.getElementById("1").style.backgroundColor = 'red'
-            document.getElementById("2").style.backgroundColor = 'red'
-            document.getElementById("3").style.backgroundColor = 'red'
-            document.getElementById(i).style.backgroundColor = 'gray'
+            audioPlayer(audioFile)
+            document.getElementById("0").style.backgroundColor = 'lightblue'
+            document.getElementById("1").style.backgroundColor = 'lightblue'
+            document.getElementById("2").style.backgroundColor = 'lightblue'
+            document.getElementById("3").style.backgroundColor = 'lightblue'
+            document.getElementById(i).style.backgroundColor = 'blue'
         }
       }, i * bpm)
     }
@@ -53,12 +57,18 @@ function stop(){
   clearTimeout(barRun)
 }
 
+//Clears previous loops and starts new one
+function startAdjustBeat(bpm, beatStructure, audioFile){
+  stop()
+  barRun = barMaker(bpm, beatStructure, audioFile) // i
+  barLoop = setInterval( function(){barMaker(bpm, beatStructure, audioFile)}, bpm*4)
+}
 
-function start(bpm, beatStructure){
-  clearInterval(barLoop)
-  clearTimeout(barRun)
-  barRun = barMaker(bpm, beatStructure)
-  barLoop = setInterval( function(){barMaker(bpm, beatStructure)}, bpm*4)
+//Function initiates base beat and beat to be aligned
+function startExp(bpm, beatStructure, beatAudio, baseAudio){
+  audioPlayer(baseAudio) //starts base audio
+  startAdjustBeat(bpm, beatStructure, beatAudio) //Starts audio to be adjusted
+
 }
 
 function arrayRotate(arr, count) {
@@ -68,15 +78,23 @@ function arrayRotate(arr, count) {
 }
 
 var slide = document.getElementById("myRange")
-slide.addEventListener('input', function(){
-    beatStructure = [0, 1, 0, 1]
+slide.addEventListener('change', function(){
+
+    beatStructure = [1, 0, 1, 0]
+
     newBeatStructure = arrayRotate(beatStructure, this.value)
-    console.log(
-        newBeatStructure
-    )
-    document.getElementById('shifter').innerHTML = newBeatStructure
+
+    document.getElementById("0").innerHTML = newBeatStructure[0]
+    document.getElementById("1").innerHTML = newBeatStructure[1]
+    document.getElementById("2").innerHTML = newBeatStructure[2]
+    document.getElementById("3").innerHTML = newBeatStructure[3]
+    
+    stop()
+    startAdjustBeat(250, newBeatStructure, audio1, audio2)
+
   }
 );
+
 
 
 </script>
