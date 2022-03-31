@@ -4,7 +4,7 @@
 
 <h1>Slide to hear and adjust the beat</h1>
 <button onclick="startExp(250/2, [1, 0, 0, 0, 1, 0, 0, 0], audio1, audio2)">Start beat</button>
-<button onclick="stop()">Stop beat</button>
+<button onclick="audioStop(audio1)">Stop beat</button>
 
 <div class="slidecontainer">
   <input type="range" min="-3" max="4" value="0" class="slider" id="myRange">
@@ -74,8 +74,8 @@ function stopLoop(){
 
 //Clears previous loops and starts new one
 function startAdjustBeat(bpm, beatStructure, audioFile){
-  audioStop(audioFile)
   stopLoop()
+  audioStop(audioFile)
   barRun = barMaker(bpm, beatStructure, audioFile) // i
   barLoop = setInterval( function(){barMaker(bpm, beatStructure, audioFile)}, bpm*8)
 }
