@@ -1,28 +1,59 @@
 <!DOCTYPE html>
 <html>
-<body style="background-color: lightgray">
 
-<h1>Slide to hear and adjust the beat</h1>
-<button onclick="startExp(250/2, [1, 0, 0, 0, 1, 0, 0, 0], audio1, audio2)">Start beat</button>
-<button onclick="audioStop(audio1)">Stop beat</button>
+<head>
+<style>
+
+body{
+  background-color: lightgray;
+}
+.slidecontainer{
+  margin: auto;
+  width: 80%;
+}
+.slider{
+  margin-top: 20px;
+  width: 100%
+}
+.buttonTitle{
+  text-align: center;
+  margin: auto;
+}
+#visualizer{
+  display: flex;
+  float: left;
+  font-size: 50px;
+  color: white;
+  margin: auto;
+  text-align: center;
+  background-color: lightblue;
+  padding: 20
+}
+
+</style>
+</head>
+<body>
+
+<div class="buttonTitle">
+  <h1>Slide to hear and adjust the beat</h1>
+  <button onclick="startExp(250/2, [1, 0, 0, 0, 1, 0, 0, 0], audio1, audio2)">Start beat</button>
+  <button onclick="audioStop(audio1)">Stop beat</button>
+</div>
 
 <div class="slidecontainer">
   <input type="range" min="-3" max="4" value="0" class="slider" id="myRange">
-  <div id="show"></div>
 </div>
 
-<h1>Beat to be adjusted</h1>
-<div style='display: flex; float: left; font-size: 50px; color: white'>
-<div id="0" style='margin: 10px; padding: 20; background-color:lightblue'>1</div>
-<div id="1" style='margin: 10px; padding: 20; background-color:lightblue'>0</div>
-<div id="2" style='margin: 10px; padding: 20; background-color:lightblue'>0</div>
-<div id="3" style='margin: 10px; padding: 20; background-color:lightblue'>0</div>
-<div id="4" style='margin: 10px; padding: 20; background-color:lightblue'>1</div>
-<div id="5" style='margin: 10px; padding: 20; background-color:lightblue'>0</div>
-<div id="6" style='margin: 10px; padding: 20; background-color:lightblue'>0</div>
-<div id="7" style='margin: 10px; padding: 20; background-color:lightblue'>0</div>
+<div id="visualizer">
+<div class = "beatVisu" id="0">1</div>
+<div class = "beatVisu" id="1">0</div>
+<div class = "beatVisu" id="2">0</div>
+<div class = "beatVisu" id="3">0</div>
+<div class = "beatVisu" id="4">1</div>
+<div class = "beatVisu" id="5">0</div>
+<div class = "beatVisu" id="6">0</div>
+<div class = "beatVisu" id="7">0</div>
 </div>
-
 
 </body>
 

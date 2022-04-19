@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+ <html>
+   <head>
+<meta charset="utf‐8">
+<title> Hello web audio </title> </head>
+<body>
+  <button onclick="sine.start()">Start beat</button>
+</body>
+   <script>
+
+    var audioCtx = new (window.AudioContext || window.webkitAudioContext);
+    var sine = audioCtx.createOscillator();
+    sine.connect(audioCtx.destination);
+
+   </script>
+</html>

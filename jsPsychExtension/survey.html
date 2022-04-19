@@ -10,6 +10,7 @@
     <script src="./jspsych/dist/plugin-audio-button-response.js"> </script>
     <script src="./jspsych/dist/plugin-html-button-response.js"> </script>
     <script src="./jspsych/dist/plugin-instructions.js"> </script>
+    <script src="./jspsych/dist/plugin-free-sort.js"> </script>
     <script src="./jspsych/dist/plugin-survey-likert.js"> </script>
     <script src="./jspsych/dist/plugin-canvas-button-response.js"> </script>
     <script src="./jspsych/dist/extension-accelerometer.js"> </script>
@@ -47,6 +48,21 @@
         show_clickable_nav: true
     }
 
+    const sorting_stimuli = ['../data/im/a/a.001.png', '../data/im/a/a.002.png']
+
+    var closeness = {
+        type: jsPsychFreeSort,
+        stimuli: sorting_stimuli,
+        sort_area_shape: "square",
+        scale_factor: 1,
+        stim_width: 375,
+        stim_height: 300,
+        stim_starts_inside: true,
+        sort_area_width: 500,
+        sort_area_height: 500,
+        prompt: "<p>Click and drag the images below to sort them so that they represent how close you feel to your partner.</p>"
+    };
+
     var trialSurvey = {
       type: jsPsychSurveyMultiChoice,
       questions: [{
@@ -72,7 +88,8 @@
       randomize_question_order: true
     };
 
-    jsPsych.run([instruction1, trialSurvey, trialLikert]);
+    jsPsych.run([closeness]);
+    //jsPsych.run([instruction1, closeness, trialSurvey, trialLikert]);
 
  </script>
 </html>
