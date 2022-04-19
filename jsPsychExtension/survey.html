@@ -58,7 +58,7 @@
         stim_width: 375,
         stim_height: 300,
         stim_starts_inside: true,
-        sort_area_width: 500,
+        sort_area_width: 1000,
         sort_area_height: 500,
         prompt: "<p>Click and drag the images below to sort them so that they represent how close you feel to your partner.</p>"
     };
@@ -88,8 +88,7 @@
       randomize_question_order: true
     };
 
-    jsPsych.run([closeness]);
-    //jsPsych.run([instruction1, closeness, trialSurvey, trialLikert]);
+    jsPsych.run([instruction1, closeness, trialSurvey, trialLikert]);
 
  </script>
 </html>
