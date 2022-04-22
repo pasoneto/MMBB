@@ -147,6 +147,9 @@ var jsPsychImageSliderResponse = (function (jspsych) {
               canvas.id = "jspsych-image-slider-response-stimulus";
               canvas.style.margin = "0";
               canvas.style.padding = "0";
+              canvas.style.position = "absolute";
+              canvas.style.top = "0px";
+              canvas.style.left = "0px";
               var ctx = canvas.getContext("2d");
               var img = new Image();
               img.onload = () => {
@@ -250,7 +253,7 @@ var jsPsychImageSliderResponse = (function (jspsych) {
           else {
               html = '<div id="jspsych-image-slider-response-wrapper" style="margin: 100px 0px;">';
               html += '<div id="jspsych-image-slider-response-stimulus">';
-              html += '<img src="' + trial.stimulus + '" style="';
+              html += '<img id="jspsych-image-position" src="' + trial.stimulus + '" style="position: absolute;';
               if (trial.stimulus_height !== null) {
                   html += "height:" + trial.stimulus_height + "px; ";
                   if (trial.stimulus_width == null && trial.maintain_aspect_ratio) {
@@ -374,6 +377,12 @@ var jsPsychImageSliderResponse = (function (jspsych) {
               // next trial
               this.jsPsych.finishTrial(trialdata);
           };
+        display_element.querySelector("#jspsych-image-slider-response-response")
+          .addEventListener("input", () => {
+            var position_image = display_element.querySelector("#jspsych-image-slider-response-response").valueAsNumber
+            display_element.querySelector("#jspsych-image-slider-response-stimulus").style.position="absolute"
+            display_element.querySelector("#jspsych-image-slider-response-stimulus").style.left=position_image+"px"
+          })
           display_element
               .querySelector("#jspsych-image-slider-response-next")
               .addEventListener("click", () => {

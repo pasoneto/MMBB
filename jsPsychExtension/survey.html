@@ -9,6 +9,7 @@
     <script src="https://unpkg.com/@jspsych/plugin-audio-keyboard-response@1.1.0"></script>
     <script src="./jspsych/dist/plugin-audio-button-response.js"> </script>
     <script src="./jspsych/dist/plugin-html-button-response.js"> </script>
+    <script src="./jspsych/dist/plugin-image-slider-response.js"> </script>
     <script src="./jspsych/dist/plugin-instructions.js"> </script>
     <script src="./jspsych/dist/plugin-free-sort.js"> </script>
     <script src="./jspsych/dist/plugin-survey-likert.js"> </script>
@@ -83,12 +84,25 @@
     var trialLikert = {
       type: jsPsychSurveyLikert,
       questions: [
-        {prompt: "I like music.", labels: options},
+        {prompt: "I am enjoying this experiment", labels: options},
       ],
       randomize_question_order: true
     };
 
-    jsPsych.run([instruction1, closeness, trialSurvey, trialLikert]);
+    var closeness = {
+      type: jsPsychImageSliderResponse,
+      stimulus: './img/survey/a.001.png',
+      stimulus_height: 150,
+      min: 0,
+      max: 550,
+      maintain_aspect_ration: true,
+      labels: ['happy', 'sad'],
+      prompt: "<p>How happy/sad is this person?</p>",
+    };
+
+
+    jsPsych.run([closeness]);
+    //jsPsych.run([instruction1, closeness, trialLikert, trialSurvey]);
 
  </script>
 </html>

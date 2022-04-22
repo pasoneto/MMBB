@@ -3,33 +3,49 @@
    <head>
 <meta charset="utf‐8">
 <title> Hello web audio </title> </head>
+
 <body>
-  <button onclick="playSound()">Start beat</button>
+  <button id="start">Start</button>
 </body>
+
    <script>
+function playSound(buffer, time) {
+  var source = context.createBufferSource();
+  source.buffer = buffer;
+  source.connect(context.destination);
+  source.start(time);
+}
 
-    function loadSound(url) {
-      var request = new XMLHttpRequest();
-      request.open('GET', url, true);
-      request.responseType = 'arraybuffer';
-
-      // Decode asynchronously
-      request.onload = function() {
-        context.decodeAudioData(request.response, function(buffer) {
-          drum = buffer;
-        }, onError);
-      }
-      request.send();
+    function playSound(buffer, time, context){
+      const source = context.createBufferSource();
+      source.buffer = buffer
+      source.connect(context.destination);
+      source.start(time);
     }
 
-    function playSound() {
-      var context = new AudioContext();
-      var source = context.createBufferSource(); // creates a sound source
-      source.buffer = loadSound('./beat.wav');                    // tell the source which sound to play
-      source.connect(context.destination);       // connect the source to the context's destination (the speakers)
-      source.start(0);                           // play the source now
-                                                 // note: on older systems, may have to use deprecated noteOn(time);
-    }
+    const startLoop = (() => {
+      let context = null;
+      return async url => {
+        if (context) context.close();
+        context = new AudioContext();
+    
+        var buffer = await fetch(url)
+          .then(res => res.arrayBuffer())
+          .then(arrayBuffer => context.decodeAudioData(arrayBuffer));
+
+        var startTime = context.currentTime;
+        var tempo = 120; // BPM (beats per minute)
+        var eighthNoteTime = (60 / tempo);
+        
+        for (var bar = 0; bar < 5000; bar++) {
+          var time = startTime + bar;
+          playSound(buffer, time + 4 * eighthNoteTime, context);
+        }
+
+      };
+    })();
+    
+    document.querySelector('#start').onclick = () => startLoop('./beat.wav');
 
 
    </script>
