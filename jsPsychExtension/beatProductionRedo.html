@@ -5,16 +5,22 @@
 <title> Hello web audio </title> </head>
 
 <body>
+  <p>Start</p>
   <button id="start">Start</button>
+  <p>Adjust</p>
+  <button type="button" id="add">+</button>
+  <button type="button" onclick="">-</button>
+
+
 </body>
 
    <script>
-function playSound(buffer, time) {
-  var source = context.createBufferSource();
-  source.buffer = buffer;
-  source.connect(context.destination);
-  source.start(time);
-}
+
+    function arrayRotate(arr, count) {
+      count -= arr.length * Math.floor(count / arr.length);
+      arr.push.apply(arr, arr.splice(0, count));
+      return arr;
+    }
 
     function playSound(buffer, time, context){
       const source = context.createBufferSource();
@@ -23,29 +29,77 @@ function playSound(buffer, time) {
       source.start(time);
     }
 
-    const startLoop = (() => {
-      let context = null;
-      return async url => {
-        if (context) context.close();
-        context = new AudioContext();
-    
-        var buffer = await fetch(url)
-          .then(res => res.arrayBuffer())
-          .then(arrayBuffer => context.decodeAudioData(arrayBuffer));
+    function createTimeline(interBeatInterval, nBars){
+      var timeline = [0];
+      var startTime = 0;
+      for(var bar = 0; bar < 8*nBars; bar++) {
+          var startTime = startTime + interBeatInterval
+          timeline.push(startTime)
+      }
+      return (timeline)
+    }
 
-        var startTime = context.currentTime;
-        var tempo = 120; // BPM (beats per minute)
-        var eighthNoteTime = (60 / tempo);
-        
-        for (var bar = 0; bar < 5000; bar++) {
-          var time = startTime + bar;
-          playSound(buffer, time + 4 * eighthNoteTime, context);
+    async function startLoop(url, structure, context, timeline){
+      
+      var buffer = await fetch(url)
+        .then(res => res.arrayBuffer())
+        .then(arrayBuffer => context.decodeAudioData(arrayBuffer));
+       
+      for (i in timeline) {
+        if(structure[i] === 1){
+          playSound(buffer, timeline[i], context);
         }
+      }
+    }
 
-      };
-    })();
-    
-    document.querySelector('#start').onclick = () => startLoop('./beat.wav');
+    function initiateContext(structure, timeline, trimmedTimeline = null){
+      
+      let context = null;
+      if (context) context.close();
+      window.context = new AudioContext();
+
+      if(trimmedTimeline !== null){
+        var timeline = trimmedTimeline
+      }
+
+      startLoop('./beat.wav', structure, window.context, timeline);
+    }
+
+    function fluidBeat(structure, context, timeline){
+
+      var timePassed = context.currentTime
+      var small = timeline.findIndex(element => element > timePassed)
+
+      var timeline = timeline.slice(small)
+      var structure = structure.slice(small)
+
+      //var timeline = timeline.map( function(value) { return value - timePassed;});
+
+      console.log(timePassed)
+      console.log(timeline)
+
+      context.close()
+
+      initiateContext(structure, interBeatInterval, trimmedTimeline = timeline)
+
+    }
+
+    var tempo = 60; // BPM (beats per minute)
+    var subdivisions = 8;
+    var beatTime = (60 / tempo);
+    var interBeatInterval = beatTime/subdivisions;
+    var nBars = 100;
+
+    var structure = [1, 0, 0, 0, 1, 0, 0, 0]
+
+    var structure = [].concat.apply([], Array(10).fill(structure))
+    var context = null;
+
+    var timeline = createTimeline(interBeatInterval, nBars);
+    var structure = [].concat.apply([], Array(nBars).fill(structure))
+
+    document.querySelector('#start').onclick = () => initiateContext(structure, timeline);
+    document.querySelector('#add').onclick = () => fluidBeat(structure, window.context, timeline)
 
 
    </script>
