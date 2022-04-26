@@ -32,7 +32,7 @@ info = table(avgISI, sdISI, maxISI, minISI, observedSR, originalNSamples, report
 data = data(unique_indeces,:); %It is possible that 2 event recordings happen in the same time slot. This keeps the first
 
 %Interpolated time series
-t = (min(data.t):10:max(data.t)); %New time
+t = (min(data.t):12:max(data.t)); %New time
 
 %non interpolated data
 x = interp1(data.t, data.x, t)';
