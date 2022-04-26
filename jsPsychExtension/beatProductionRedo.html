@@ -9,9 +9,9 @@
   <button id="start">Start</button>
   <p>Adjust</p>
   <button type="button" id="add">+</button>
-  <button type="button" onclick="">-</button>
-
-
+  <button type="button" id="subtract">-</button>
+  <p></p>
+  <div id="offset">Offset of 0</div>
 </body>
 
    <script>
@@ -22,11 +22,24 @@
       return arr;
     }
 
-    function playSound(buffer, time, context){
+    var gainNode1 = null
+    var gainNode2 = null
+    var gainNode3 = null
+    var gainNode4 = null
+    var gainNodeBase = null
+
+    function playSound(buffer, context, volume){
+
+      window.gainNode = context.createGain();
+
       const source = context.createBufferSource();
       source.buffer = buffer
-      source.connect(context.destination);
-      source.start(time);
+      source.loop = true;
+      source.connect(window.gainNode);
+      window.gainNode.connect(context.destination);
+      window.gainNode.gain.value = volume
+      source.start(1);
+      return (gainNode)
     }
 
     function createTimeline(interBeatInterval, nBars){
@@ -39,67 +52,83 @@
       return (timeline)
     }
 
-    async function startLoop(url, structure, context, timeline){
+    async function startLoop(url, context, volume){
       
       var buffer = await fetch(url)
         .then(res => res.arrayBuffer())
         .then(arrayBuffer => context.decodeAudioData(arrayBuffer));
        
-      for (i in timeline) {
-        if(structure[i] === 1){
-          playSound(buffer, timeline[i], context);
-        }
-      }
+      var gainNode = playSound(buffer, context, volume);
+      return (gainNode)
     }
 
-    function initiateContext(structure, timeline, trimmedTimeline = null){
+    async function initiateContext(){
       
       let context = null;
       if (context) context.close();
       window.context = new AudioContext();
 
-      if(trimmedTimeline !== null){
-        var timeline = trimmedTimeline
+      window.gainNode1 = await startLoop('./beat/beat.wav', window.context, 1);
+      window.gainNode2 = await startLoop('./beat/beat2.wav', window.context, 0);
+      window.gainNode3 = await startLoop('./beat/beat3.wav', window.context, 0);
+      window.gainNode4 = await startLoop('./beat/beat4.wav', window.context, 0);
+
+      window.gainNodeBase = await startLoop('./beat/beatBase.wav', window.context, 1);
+
+    }
+
+    Number.prototype.mod = function (n) {
+      return ((this % n) + n) % n;
+    };
+
+    function shift(plus = false){
+      if(plus == true){
+        window.count = (window.count+1).mod(4)
+      } else {
+        window.count = (window.count-1).mod(4)
       }
-
-      startLoop('./beat.wav', structure, window.context, timeline);
+      document.getElementById("offset").innerHTML = "Offset of " + window.count
     }
 
-    function fluidBeat(structure, context, timeline){
+    function fluidBeat(plus){
 
-      var timePassed = context.currentTime
-      var small = timeline.findIndex(element => element > timePassed)
+      shift(plus) 
+      var audioLine = window.count
+     
+      if(audioLine == 0){
+        window.gainNode1.gain.value = 1
+        window.gainNode2.gain.value = 0
+        window.gainNode3.gain.value = 0
+        window.gainNode4.gain.value = 0
+      } else if(audioLine == 1){
+        window.gainNode1.gain.value = 0
+        window.gainNode2.gain.value = 1
+        window.gainNode3.gain.value = 0
+        window.gainNode4.gain.value = 0
+      } else if(audioLine == 2){
+        window.gainNode1.gain.value = 0
+        window.gainNode2.gain.value = 0
+        window.gainNode3.gain.value = 1
+        window.gainNode4.gain.value = 0
+      } else if(audioLine == 3){
+        window.gainNode1.gain.value = 0
+        window.gainNode2.gain.value = 0
+        window.gainNode3.gain.value = 0
+        window.gainNode4.gain.value = 1
+      } 
 
-      var timeline = timeline.slice(small)
-      var structure = structure.slice(small)
-
-      //var timeline = timeline.map( function(value) { return value - timePassed;});
-
-      console.log(timePassed)
-      console.log(timeline)
-
-      context.close()
-
-      initiateContext(structure, interBeatInterval, trimmedTimeline = timeline)
+      window.gainNodeBase.gain.value = 1
 
     }
+  
 
-    var tempo = 60; // BPM (beats per minute)
-    var subdivisions = 8;
-    var beatTime = (60 / tempo);
-    var interBeatInterval = beatTime/subdivisions;
-    var nBars = 100;
 
-    var structure = [1, 0, 0, 0, 1, 0, 0, 0]
-
-    var structure = [].concat.apply([], Array(10).fill(structure))
     var context = null;
+    var count = 0;
 
-    var timeline = createTimeline(interBeatInterval, nBars);
-    var structure = [].concat.apply([], Array(nBars).fill(structure))
-
-    document.querySelector('#start').onclick = () => initiateContext(structure, timeline);
-    document.querySelector('#add').onclick = () => fluidBeat(structure, window.context, timeline)
+    document.querySelector('#start').onclick = () => initiateContext();
+    document.querySelector('#add').onclick = () => fluidBeat(plus = true)
+    document.querySelector('#subtract').onclick = () => fluidBeat(plus = false)
 
 
    </script>
