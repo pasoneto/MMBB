@@ -139,27 +139,55 @@ var jsPsychImageSliderResponse = (function (jspsych) {
                       display_element.removeChild(display_element.firstChild);
                   }
               }
+            
               // create wrapper div, canvas element and image
               var content_wrapper = document.createElement("div");
               content_wrapper.id = "jspsych-image-slider-response-wrapper";
               content_wrapper.style.margin = "100px 0px";
-              var canvas = document.createElement("canvas");
-              canvas.id = "jspsych-image-slider-response-stimulus";
-              canvas.style.margin = "0";
-              canvas.style.padding = "0";
-              canvas.style.position = "absolute";
-              canvas.style.top = "0px";
-              canvas.style.left = "0px";
-              var ctx = canvas.getContext("2d");
+            
+              // IMAGE 1
+              var canvas1 = document.createElement("canvas");
+              canvas1.id = "jspsych-image-slider-response-stimulus1";
+              canvas1.style.margin = "0";
+              canvas1.style.padding = "0";
+              canvas1.style.position = "absolute";
+              canvas1.style.top = "5%";
+              canvas1.style.left = "0px";
+              var ctx1 = canvas1.getContext("2d");
+              var img = new Image();
+
+              img.onload = () => {
+                  // if image wasn't preloaded, then it will need to be drawn whenever it finishes loading
+                  if (!image_drawn) {
+                      getHeightWidth(); // only possible to get width/height after image loads
+                      ctx1.drawImage(img, 0, 0, width, height);
+                      ctx2.drawImage(img, 0, 0, width, height);
+                  }
+              };
+              img.src = trial.stimulus[0];
+
+              //IMAGE 2
+              // create wrapper div, canvas element and image
+              var canvas2 = document.createElement("canvas");
+              canvas2.id = "jspsych-image-slider-response-stimulus2";
+              canvas2.style.margin = "0";
+              canvas2.style.padding = "0";
+              canvas2.style.position = "absolute";
+              canvas2.style.top = "5%";
+              canvas2.style.right = "0px";
+              var ctx2 = canvas2.getContext("2d");
               var img = new Image();
               img.onload = () => {
                   // if image wasn't preloaded, then it will need to be drawn whenever it finishes loading
                   if (!image_drawn) {
                       getHeightWidth(); // only possible to get width/height after image loads
-                      ctx.drawImage(img, 0, 0, width, height);
+                      ctx2.drawImage(img, 0, 0, width, height);
+                      ctx1.drawImage(img, 0, 0, width, height);
+                      ctx2.drawImage(img, 0, 0, width, height);
                   }
               };
-              img.src = trial.stimulus;
+              img.src = trial.stimulus[1];
+            
               // get/set image height and width - this can only be done after image loads because uses image's naturalWidth/naturalHeight properties
               const getHeightWidth = () => {
                   if (trial.stimulus_height !== null) {
@@ -182,8 +210,11 @@ var jsPsychImageSliderResponse = (function (jspsych) {
                       // in the if statement above, based on a specified height and maintain_aspect_ratio = true
                       width = img.naturalWidth;
                   }
-                  canvas.height = height;
-                  canvas.width = width;
+                  canvas1.height = height;
+                  canvas1.width = width;
+
+                  canvas2.height = height;
+                  canvas2.width = width;
               };
               getHeightWidth(); // call now, in case image loads immediately (is cached)
               // create container with slider and labels
@@ -228,14 +259,17 @@ var jsPsychImageSliderResponse = (function (jspsych) {
               html += "</div>";
               slider_container.innerHTML = html;
               // add canvas and slider to content wrapper div
-              content_wrapper.insertBefore(canvas, content_wrapper.firstElementChild);
-              content_wrapper.insertBefore(slider_container, canvas.nextElementSibling);
+              content_wrapper.insertBefore(canvas1, content_wrapper.firstElementChild);
+              content_wrapper.insertBefore(canvas2, content_wrapper.firstElementChild);
+              content_wrapper.insertBefore(slider_container, canvas1.nextElementSibling);
+              content_wrapper.insertBefore(slider_container, canvas2.nextElementSibling);
               // add content wrapper div to screen and draw image on canvas
               display_element.insertBefore(content_wrapper, null);
               if (img.complete && Number.isFinite(width) && Number.isFinite(height)) {
                   // if image has loaded and width/height have been set, then draw it now
                   // (don't rely on img onload function to draw image when image is in the cache, because that causes a delay in the image presentation)
-                  ctx.drawImage(img, 0, 0, width, height);
+                  ctx1.drawImage(img, 0, 0, width, height);
+                  ctx2.drawImage(img, 0, 0, width, height);
                   image_drawn = true;
               }
               // add prompt if there is one
@@ -253,7 +287,7 @@ var jsPsychImageSliderResponse = (function (jspsych) {
           else {
               html = '<div id="jspsych-image-slider-response-wrapper" style="margin: 100px 0px;">';
               html += '<div id="jspsych-image-slider-response-stimulus">';
-              html += '<img id="jspsych-image-position" src="' + trial.stimulus + '" style="position: absolute;';
+              html += '<img id="jspsych-image-position" src="' + trial.stimulus[0] + '" style="position: absolute;';
               if (trial.stimulus_height !== null) {
                   html += "height:" + trial.stimulus_height + "px; ";
                   if (trial.stimulus_width == null && trial.maintain_aspect_ratio) {
@@ -369,7 +403,7 @@ var jsPsychImageSliderResponse = (function (jspsych) {
               // save data
               var trialdata = {
                   rt: response.rt,
-                  stimulus: trial.stimulus,
+                  stimulus: trial.stimulus[0],
                   slider_start: trial.slider_start,
                   response: response.response,
               };
@@ -380,8 +414,10 @@ var jsPsychImageSliderResponse = (function (jspsych) {
         display_element.querySelector("#jspsych-image-slider-response-response")
           .addEventListener("input", () => {
             var position_image = display_element.querySelector("#jspsych-image-slider-response-response").valueAsNumber
-            display_element.querySelector("#jspsych-image-slider-response-stimulus").style.position="absolute"
-            display_element.querySelector("#jspsych-image-slider-response-stimulus").style.left=position_image+"px"
+            display_element.querySelector("#jspsych-image-slider-response-stimulus1").style.position="absolute"
+            display_element.querySelector("#jspsych-image-slider-response-stimulus1").style.left=position_image+"px"
+            display_element.querySelector("#jspsych-image-slider-response-stimulus2").style.position="absolute"
+            display_element.querySelector("#jspsych-image-slider-response-stimulus2").style.right=position_image+"px"
           })
           display_element
               .querySelector("#jspsych-image-slider-response-next")
@@ -421,7 +457,7 @@ var jsPsychImageSliderResponse = (function (jspsych) {
       }
       create_simulation_data(trial, simulation_options) {
           const default_data = {
-              stimulus: trial.stimulus,
+              stimulus: trial.stimulus[0],
               slider_start: trial.slider_start,
               response: this.jsPsych.randomization.randomInt(trial.min, trial.max),
               rt: this.jsPsych.randomization.sampleExGaussian(500, 50, 1 / 150, true),
