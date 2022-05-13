@@ -89,7 +89,7 @@
       randomize_question_order: true
     };
 
-    var closeness = {
+    var closeness1 = {
       type: jsPsychImageSliderResponse,
       stimulus: ['./emotion_demo/basic_emoji/v5a1.png', './emotion_demo/basic_emoji/v5a1.png'],
       stimulus_width: 200,
@@ -100,8 +100,34 @@
       maintain_aspect_ration: true,
     };
 
+    var closeness2 = {
+      type: jsPsychImageSliderResponse,
+      stimulus: ['./emotion_demo/basic_emoji/v5a1.png', './emotion_demo/basic_emoji/v5a1.png'],
+      stimulus_width: 200,
+      min: 0,
+      slider_start: 0,
+      step: 1,
+      max: 1000,
+      maintain_aspect_ration: true,
+      on_start: function(trial) {
+        var allData = jsPsych.data.get().values()
+        console.log(allData.length - 2)
+        console.log(allData)
+        var startPoint = allData[allData.length - 2]['response']
+        trial.slider_start = startPoint
+        trial.start_separation = startPoint
+      }
+    };
 
-    jsPsych.run([closeness]);
+    var inter = {
+        type: jsPsychInstructions,
+        pages: [
+        '<p style="font-size:7vw;">Next trial</p>',
+        ],
+    }
+
+
+    jsPsych.run([closeness1, inter, closeness2, inter, closeness2, inter, closeness2]);
     //jsPsych.run([instruction1, closeness, trialLikert, trialSurvey]);
 
  </script>

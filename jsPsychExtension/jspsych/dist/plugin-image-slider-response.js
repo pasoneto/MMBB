@@ -16,6 +16,12 @@ var jsPsychImageSliderResponse = (function (jspsych) {
               pretty_name: "Image height",
               default: null,
           },
+          /** Set the image height in pixels */
+          start_separation: {
+              type: jspsych.ParameterType.INT,
+              pretty_name: "Image separation",
+              default: 0,
+          },
           /** Set the image width in pixels */
           stimulus_width: {
               type: jspsych.ParameterType.INT,
@@ -152,7 +158,7 @@ var jsPsychImageSliderResponse = (function (jspsych) {
               canvas1.style.padding = "0";
               canvas1.style.position = "absolute";
               canvas1.style.top = "5%";
-              canvas1.style.left = "0px";
+              canvas1.style.left = trial.start_separation + "px";
               var ctx1 = canvas1.getContext("2d");
               var img = new Image();
 
@@ -174,7 +180,7 @@ var jsPsychImageSliderResponse = (function (jspsych) {
               canvas2.style.padding = "0";
               canvas2.style.position = "absolute";
               canvas2.style.top = "5%";
-              canvas2.style.right = "0px";
+              canvas2.style.right = trial.start_separation + "px";
               var ctx2 = canvas2.getContext("2d");
               var img = new Image();
               img.onload = () => {
