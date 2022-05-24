@@ -217,6 +217,7 @@ canvas {
     width: 300px;
     height: 300px;
   }
+  
 }
 displayFinal {
   display: inline-block;
@@ -368,3 +369,40 @@ displayFinal {
 #jspsych-data-display {
   text-align: left;
 }
+
+/* Styles for button music selector (tapping task) */
+#b1 {
+  border-radius: 12px;
+  width: 20vw;
+  background-color: lightgray;
+}
+#b2 {
+  border-radius: 12px;
+  width: 20vw;
+  background-color: lightgray;
+}
+#b3 {
+  border-radius: 12px;
+  width: 20vw;
+  background-color: lightgray;
+}
+#b4 {
+  border-radius: 12px;
+  width: 20vw;
+  background-color: lightgray;
+}
+#b5 {
+  border-radius: 12px;
+  width: 20vw;
+  background-color: lightgray;
+}
+#pause {
+  border-radius: 12px;
+  width: 20vw;
+  background-color: lightgray;
+}
+#coverImage {
+  object-fit: contain;
+  width: 15vw;
+}
+/* End of styles for button music selector (tapping task) */
