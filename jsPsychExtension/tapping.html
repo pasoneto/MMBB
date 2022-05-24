@@ -29,6 +29,18 @@
           document.body.style.backgroundColor = '#fff';
     }
 
+    //Calculates difference between consecutive elements of array
+    function diff(A) {
+      return A.slice(1).map(function(n, i) { return n - A[i]; });
+    }
+
+    function bpmEstimator(rts){
+      var arr = diff(rts)
+      var ioi = arr.reduce((a, b) => a + b, 0) / arr.length;
+      var bpm = 60/(ioi/1000)
+      return bpm
+    }
+     
     var jsPsych = initJsPsych({
       extensions: [
         {type: jsPsychExtensionAccelerometer }
@@ -42,10 +54,13 @@
     var instruction1 = {
         type: jsPsychInstructions,
         pages: [
-        '<p style="font-size:7vw;">Welcome MMBB batery.</p>',
-        '<p style="font-size:7vw;">Tapping task</p>',
-        '<p style="font-size:7vw;">When you click start, you will hear a song.</p>',
-        '<p style="font-size:7vw;">Your task is to tap the button along with what you hear.</p>'
+        '<p style="font-size:6vw;">Welcome MMBB batery.</p>',
+        '<p style="font-size:6vw;">Tapping task</p>',
+        '<p style="font-size:6vw;">Listen to the music and to tap along with what you hear</p>',
+        '<p style="font-size:6vw;">Tap on the pad using whichever hand you are most comfortable with</p>',
+        '<p style="font-size:6vw;">Tap at the speed that is the most natural for you (neither too fast nor too slow)</p>',
+        '<p style="font-size:6vw;">Try to maintain the tapping speed as constant as possible until the task ends.</p>',
+        '<p style="font-size:6vw;">Click next when you are ready to begin</p>',
         ],
         button_label_next: "Next",
         button_label_previous: "Previous",
@@ -54,9 +69,9 @@
 
     var trialTapping = {
         type: jsPsychAudioButtonResponse,
-        stimulus: '../standaloneApp/binary_ternary.mp3',
+        stimulus: './elPesebre.mp3',
         choices: ['Tap here'],
-        trial_duration: 5000,
+        trial_duration: 50000,
         response_ends_trial: false,
         on_start: function(trial) {
               document.addEventListener("mousedown", change);
@@ -71,6 +86,7 @@
         var lasttimelinedata = jsPsych.data.getLastTimelineData();
         var t = lasttimelinedata.trials[1].rt;
         var yAxis = [Array(t.length).fill().map(function(){return(1)})]
+        alert("Your BPM was approximatelly: " + bpmEstimator(t))
         graphCustom(t, yAxis, ['tap-timing'], ctx, 'scatter')
     }
 

@@ -20,7 +20,7 @@ var jsPsychImageSliderResponse = (function (jspsych) {
           start_separation: {
               type: jspsych.ParameterType.INT,
               pretty_name: "Image separation",
-              default: 0,
+              default: 250,
           },
           /** Set the image width in pixels */
           stimulus_width: {
