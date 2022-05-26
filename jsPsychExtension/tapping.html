@@ -32,10 +32,20 @@
 
     //first stimulus batch
     // Determining order of presentation of songs to sort.
-    
+    var songNames = ["Surround&nbspme&nbspwith&nbspyour&nbsplove&nbsp-&nbspPorter",
+                     "Simple&nbspLife&nbsp-&nbspSeeb",
+                     "Airborne&nbspRobots&nbsp-&nbspF-777",
+                     "Edge&nbsp-&nbspRezz",
+                     "Discovered&nbsp-&nbspBeats&nbspAntique", 
+                     "Cafe&nbspTropical&nbsp-&nbspJohannes&nbspLinstead", 
+                     "Tebel&nbspRousin&nbsp-&nbspHypnotic&nbspBrass&nbspEnsamble", 
+                     "Primadonna&nbsp-&nbspSkogsrå",
+                     "Ketto&nbsp-&nbspBonobo",
+                     "Slow&nbspAcid&nbsp-&nbspCalvin&nbspHarris", 
+                     "Temptation&nbsp-&nbspDala"] 
     var songs = [];
     var albumCovers = [];
-    for (let i = 1; i < 12; i++) {
+    for (let i = 1; i < 13; i++) {
       if(i != 3){ //song 3 is defectuous
         var s = new Audio();
         s.src = './songs/CoEPlaylist/' + i + '.mp3';
@@ -43,6 +53,7 @@
         albumCovers.push('./songs/CoEPlaylist/imageAlbums/' + i + '.jpg');
       }
     }
+    console.log(songs)
 
     function PlaySound(song) {
         if(song.paused){
@@ -75,19 +86,25 @@
     }
     
     var chosenSong;
-    function setNextSong(i){
-      var n = Number(i)+1
-      console.log(n)
-      window.chosenSong = './songs/CoEPlaylist/' + n + '.mp3';
+    function setNextSong(sourceSound){
+      window.chosenSong = sourceSound;
       console.log(window.chosenSong)
     }
 
+    function displaySongName(songName){
+      document.getElementById("songName").innerHTML = songName
+    }
+
     var prompt_songs = function(listSongs){
-          html = "Choose a song below<br>"
+          html = "<div id='songName'>Choose a song below</div>"
+          html += "<div id='songWrapperBox'>"
           for(i in listSongs){
-            html += "<audio></audio> <button id='b" + i+1 + "' name='buttonMusic' onclick=" + "othersStop(songs);PlaySound(songs[" + i + "]);changeColor(this);setNextSong(" + i + ")><img id='coverImage' src="+albumCovers[i]+"></button>"
+            var songPath = listSongs[i].src
+            var songName = songNames[i]
+            console.log(songName)
+            html += "<audio></audio> <button id='b" + i+1 + "' name='buttonMusic' onclick=" + "othersStop(songs);PlaySound(songs[" + i + "]);changeColor(this);setNextSong('" + songPath + "');displaySongName('" + songName + "')><img id='coverImage' src="+albumCovers[i]+"></button>"
           }
-          html += "<button id='pause' name='buttonMusic' onclick=othersStop(songs);changeColor(this)>Pause</button>"
+          html += "</div>"
           return(html)
     };
 
