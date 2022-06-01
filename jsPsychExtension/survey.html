@@ -9,6 +9,9 @@
     <script src="https://unpkg.com/@jspsych/plugin-audio-keyboard-response@1.1.0"></script>
     <script src="./jspsych/dist/plugin-audio-button-response.js"> </script>
     <script src="./jspsych/dist/plugin-html-button-response.js"> </script>
+    <script src="./jspsych/dist/plugin-html-slider-response.js"> </script>
+    <script src="./jspsych/dist/plugin-html-button-response.js"> </script>
+    <script src="./jspsych/dist/plugin-survey-html-form.js"> </script>
     <script src="./jspsych/dist/plugin-image-slider-response.js"> </script>
     <script src="./jspsych/dist/plugin-instructions.js"> </script>
     <script src="./jspsych/dist/plugin-free-sort.js"> </script>
@@ -36,10 +39,17 @@
       }
     });
 
+    var participantID = {
+      type: jsPsychSurveyHtmlForm,
+      preamble: '<p style="font-size:7vw">Participant ID</p>',
+      html: '<p><input type="text" id="test-resp-box" name="response" size="10" /></p>',
+      autofocus: 'test-resp-box'
+    };
+
     var instruction1 = {
         type: jsPsychInstructions,
         pages: [
-        '<p style="font-size:7vw;">Welcome MMBB batery.</p>',
+        '<p style="font-size:7vw;">Welcome!</p>',
         '<p style="font-size:7vw;">Survey</p>',
         '<p style="font-size:7vw;">When you click start, you will see some questions.</p>',
         '<p style="font-size:7vw;">Your task is to answer them.</p>'
@@ -84,9 +94,18 @@
     var trialLikert = {
       type: jsPsychSurveyLikert,
       questions: [
-        {prompt: "I am enjoying this experiment", labels: options},
+        {prompt: "<p style='font-size:3vw;'>I am enjoying this experiment<p>", labels: options},
       ],
       randomize_question_order: true
+    };
+
+    var trialLikert = {
+        type: jsPsychHtmlSliderResponse,
+        stimulus: `<div style="width:500px;">
+            <p style="font-size:3vw;">I am enjoying this experiment</p>
+            </div>`,
+        require_movement: true,
+        labels: ['<p style="font-size:3vw">Not at all</p>', '<p style="font-size:3vw">Very much</p>']
     };
 
     var closeness1 = {
@@ -94,9 +113,9 @@
       stimulus: ['./emotion_demo/basic_emoji/v5a1.png', './emotion_demo/basic_emoji/v5a1.png'],
       stimulus_width: 200,
       min: 0,
-      slider_start: 500,
+      slider_start: 0,
       step: 1,
-      max: 350,
+      max: 490,
       maintain_aspect_ration: true,
     };
 
@@ -107,7 +126,7 @@
       min: 0,
       slider_start: 500,
       step: 1,
-      max: 350,
+      max: 490,
       maintain_aspect_ration: true,
       on_start: function(trial) {
         var allData = jsPsych.data.get().values()
@@ -126,8 +145,25 @@
         ],
     }
 
+    var songRating1 = {
+        type: jsPsychHtmlSliderResponse,
+        stimulus: `<div style="width:500px;">
+            <p style="font-size:3vw;">How much do you like song 1?</p>
+            </div>`,
+        require_movement: true,
+        labels: ['<p style="font-size:3vw">Not at all</p>', '<p style="font-size:3vw">Very much</p>']
+    };
 
-    jsPsych.run([closeness1, inter, closeness2, inter, closeness2, inter, closeness2]);
+    var songRating2 = {
+        type: jsPsychHtmlSliderResponse,
+        stimulus: `<div style="width:500px;">
+            <p style="font-size:3vw;">How much do you like song 2?</p>
+            </div>`,
+        require_movement: true,
+        labels: ['<p style="font-size:3vw">Not at all</p>', '<p style="font-size:3vw">Very much</p>']
+    };
+
+    jsPsych.run([participantID, instruction1, closeness1, inter, closeness2, inter, closeness2, inter, closeness2, trialSurvey, trialLikert, songRating1, songRating2]);
     //jsPsych.run([instruction1, closeness, trialLikert, trialSurvey]);
 
  </script>

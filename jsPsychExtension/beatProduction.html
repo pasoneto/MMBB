@@ -1,159 +1,188 @@
 <!DOCTYPE html>
-<html>
+ <html>
+   <head>
+<meta charset="utf‐8">
+<title> Hello web audio </title> </head>
 
-<head>
-<style>
-
-body{
-  background-color: lightgray;
-}
-.slidecontainer{
-  margin: auto;
-  width: 80%;
-}
-.slider{
-  margin-top: 20px;
-  width: 100%
-}
-.buttonTitle{
-  text-align: center;
-  margin: auto;
-}
-#visualizer{
-  display: flex;
-  float: left;
-  font-size: 50px;
-  color: white;
-  margin: auto;
-  text-align: center;
-  background-color: lightblue;
-  padding: 20
-}
-
-</style>
-</head>
 <body>
-
-<div class="buttonTitle">
-  <h1>Slide to hear and adjust the beat</h1>
-  <button onclick="startExp(250/2, [1, 0, 0, 0, 1, 0, 0, 0], audio1, audio2)">Start beat</button>
-  <button onclick="audioStop(audio1)">Stop beat</button>
-</div>
-
-<div class="slidecontainer">
-  <input type="range" min="-3" max="4" value="0" class="slider" id="myRange">
-</div>
-
-<div id="visualizer">
-<div class = "beatVisu" id="0">1</div>
-<div class = "beatVisu" id="1">0</div>
-<div class = "beatVisu" id="2">0</div>
-<div class = "beatVisu" id="3">0</div>
-<div class = "beatVisu" id="4">1</div>
-<div class = "beatVisu" id="5">0</div>
-<div class = "beatVisu" id="6">0</div>
-<div class = "beatVisu" id="7">0</div>
-</div>
-
+  <p>Start</p>
+  <button id="start">Start</button>
+  <p>Adjust</p>
+  <button type="button" id="add">+</button>
+  <button type="button" id="subtract">-</button>
+  <p></p>
+  <div id="offset">Offset of 0</div>
 </body>
 
-<script>
+   <script>
 
-var audio1 = new Audio('./beat.wav');
-var audio2 = new Audio('./emotion_demo/final_stimuli/072.mp3');
-audio2.loop = true;
-
-function audioPlayer(audioFile){
-  audioFile.pause()
-  audioFile.currentTime = 0
-  audioFile.play()
-}
-
-function audioStop(audioFile){
-  audioFile.pause()
-  audioFile.currentTime = 0
-}
-
-var barLoop;
-var barRun;
-
-//Makes loop within one bar
-const barMaker = (bpm, beatStructure, audioFile)=>{
-  for (let i = 0; i <= 7; i++) {
-      barRun = setTimeout( () =>{
-        if(beatStructure[i] === 1){
-          audioStop(audioFile)
-          audioPlayer(audioFile)
-          document.getElementById("0").style.backgroundColor = 'lightblue'
-          document.getElementById("1").style.backgroundColor = 'lightblue'
-          document.getElementById("2").style.backgroundColor = 'lightblue'
-          document.getElementById("3").style.backgroundColor = 'lightblue'
-          document.getElementById("4").style.backgroundColor = 'lightblue'
-          document.getElementById("5").style.backgroundColor = 'lightblue'
-          document.getElementById("6").style.backgroundColor = 'lightblue'
-          document.getElementById("7").style.backgroundColor = 'lightblue'
-          document.getElementById(i).style.backgroundColor = 'blue'
-        }
-      }, i * bpm)
+    function arrayRotate(arr, count) {
+      count -= arr.length * Math.floor(count / arr.length);
+      arr.push.apply(arr, arr.splice(0, count));
+      return arr;
     }
-}
 
-function stopLoop(){
-  clearInterval(barLoop)
-  clearTimeout(barRun)
-}
+    var gainNode1 = null
+    var gainNode2 = null
+    var gainNode3 = null
+    var gainNode4 = null
+    var gainNode5 = null
+    var gainNode6 = null
+    var gainNode7 = null
+    var gainNode8 = null
+    var gainNodeBase = null
 
-//Clears previous loops and starts new one
-function startAdjustBeat(bpm, beatStructure, audioFile){
-  stopLoop()
-  audioStop(audioFile)
-  barRun = barMaker(bpm, beatStructure, audioFile) // i
-  barLoop = setInterval( function(){barMaker(bpm, beatStructure, audioFile)}, bpm*8)
-}
+    function playSound(buffer, context, volume){
 
-//Function initiates base beat and beat to be aligned
-function startExp(bpm, beatStructure, beatAudio, baseAudio){
-  audioStop(baseAudio)
-  audioStop(beatAudio)
-  stopLoop()
-  audioPlayer(baseAudio) //starts base audio
-  startAdjustBeat(bpm, beatStructure, beatAudio) //Starts audio to be adjusted
-}
+      window.gainNode = context.createGain();
 
-function arrayRotate(arr, count) {
-  count -= arr.length * Math.floor(count / arr.length);
-  arr.push.apply(arr, arr.splice(0, count));
-  return arr;
-}
+      const source = context.createBufferSource();
+      source.buffer = buffer
+      source.loop = true;
+      source.connect(window.gainNode);
+      window.gainNode.connect(context.destination);
+      window.gainNode.gain.value = volume
+      source.start(1);
+      return (gainNode)
+    }
 
-var slide = document.getElementById("myRange")
-slide.addEventListener('change', function(){
+    //95 - 60
+    //1 - x
+    //60/95
+    //
 
-    beatStructure = [1, 0, 0, 0, 1, 0, 0, 0]
+    async function startLoop(url, context, volume){
+      
+      var buffer = await fetch(url)
+        .then(res => res.arrayBuffer())
+        .then(arrayBuffer => context.decodeAudioData(arrayBuffer));
+       
+      var gainNode = playSound(buffer, context, volume);
+      return (gainNode)
+    }
 
-    newBeatStructure = arrayRotate(beatStructure, this.value)
-    console.log(newBeatStructure)
-    document.getElementById("0").innerHTML = newBeatStructure[0]
-    document.getElementById("1").innerHTML = newBeatStructure[1]
-    document.getElementById("2").innerHTML = newBeatStructure[2]
-    document.getElementById("3").innerHTML = newBeatStructure[3]
-    document.getElementById("4").innerHTML = newBeatStructure[4]
-    document.getElementById("5").innerHTML = newBeatStructure[5]
-    document.getElementById("6").innerHTML = newBeatStructure[6]
-    document.getElementById("7").innerHTML = newBeatStructure[7]
+    async function initiateContext(){
+      
+      let context = null;
+      if (context) context.close();
+      window.context = new AudioContext();
 
-    startAdjustBeat(250/2, newBeatStructure, audio1, audio2)
+      window.gainNode1 = await startLoop('./beat/beat.wav', window.context, 1);
+      window.gainNode2 = await startLoop('./beat/beat2.wav', window.context, 0);
+      window.gainNode3 = await startLoop('./beat/beat3.wav', window.context, 0);
+      window.gainNode4 = await startLoop('./beat/beat4.wav', window.context, 0);
+      window.gainNode5 = await startLoop('./beat/beat5.wav', window.context, 0);
+      window.gainNode6 = await startLoop('./beat/beat6.wav', window.context, 0);
+      window.gainNode7 = await startLoop('./beat/beat7.wav', window.context, 0);
+      window.gainNode8 = await startLoop('./beat/beat8.wav', window.context, 0);
 
-  }
-);
+      window.gainNodeBase = await startLoop('./songs/elPesebre.mp3', window.context, 1);
+
+    }
+
+    Number.prototype.mod = function (n) {
+      return ((this % n) + n) % n;
+    };
+
+    function shift(plus = false){
+      if(plus == true){
+        window.count = (window.count+1).mod(8)
+      } else {
+        window.count = (window.count-1).mod(8)
+      }
+      document.getElementById("offset").innerHTML = "Offset of " + window.count
+    }
+
+    function fluidBeat(plus){
+
+      shift(plus) 
+      var audioLine = window.count
+     
+      if(audioLine == 0){
+        window.gainNode1.gain.value = 1
+        window.gainNode2.gain.value = 0
+        window.gainNode3.gain.value = 0
+        window.gainNode4.gain.value = 0
+        window.gainNode5.gain.value = 0
+        window.gainNode6.gain.value = 0
+        window.gainNode7.gain.value = 0
+        window.gainNode8.gain.value = 0
+      } else if(audioLine == 1){
+        window.gainNode1.gain.value = 0
+        window.gainNode2.gain.value = 1
+        window.gainNode3.gain.value = 0
+        window.gainNode4.gain.value = 0
+        window.gainNode5.gain.value = 0
+        window.gainNode6.gain.value = 0
+        window.gainNode7.gain.value = 0
+        window.gainNode8.gain.value = 0
+      } else if(audioLine == 2){
+        window.gainNode1.gain.value = 0
+        window.gainNode2.gain.value = 0
+        window.gainNode3.gain.value = 1
+        window.gainNode4.gain.value = 0
+        window.gainNode5.gain.value = 0
+        window.gainNode6.gain.value = 0
+        window.gainNode7.gain.value = 0
+        window.gainNode8.gain.value = 0
+      } else if(audioLine == 3){
+        window.gainNode1.gain.value = 0
+        window.gainNode2.gain.value = 0
+        window.gainNode3.gain.value = 0
+        window.gainNode4.gain.value = 1
+        window.gainNode5.gain.value = 0
+        window.gainNode6.gain.value = 0
+        window.gainNode7.gain.value = 0
+        window.gainNode8.gain.value = 0
+      } else if(audioLine == 4){
+        window.gainNode1.gain.value = 0
+        window.gainNode2.gain.value = 0
+        window.gainNode3.gain.value = 0
+        window.gainNode4.gain.value = 0
+        window.gainNode5.gain.value = 1
+        window.gainNode6.gain.value = 0
+        window.gainNode7.gain.value = 0
+        window.gainNode8.gain.value = 0
+      } else if(audioLine == 5){
+        window.gainNode1.gain.value = 0
+        window.gainNode2.gain.value = 0
+        window.gainNode3.gain.value = 0
+        window.gainNode4.gain.value = 0
+        window.gainNode5.gain.value = 0
+        window.gainNode6.gain.value = 1
+        window.gainNode7.gain.value = 0
+        window.gainNode8.gain.value = 0
+      } else if(audioLine == 6){
+        window.gainNode1.gain.value = 0
+        window.gainNode2.gain.value = 0
+        window.gainNode3.gain.value = 0
+        window.gainNode4.gain.value = 0
+        window.gainNode5.gain.value = 0
+        window.gainNode6.gain.value = 0
+        window.gainNode7.gain.value = 1
+        window.gainNode8.gain.value = 0
+      } else if(audioLine == 7){
+        window.gainNode1.gain.value = 0
+        window.gainNode2.gain.value = 0
+        window.gainNode3.gain.value = 0
+        window.gainNode4.gain.value = 0
+        window.gainNode5.gain.value = 0
+        window.gainNode6.gain.value = 0
+        window.gainNode7.gain.value = 0
+        window.gainNode8.gain.value = 1
+      } 
+
+      window.gainNodeBase.gain.value = 1
+
+    }
+  
+    var context = null;
+    var count = 0;
+
+    document.querySelector('#start').onclick = () => initiateContext();
+    document.querySelector('#add').onclick = () => fluidBeat(plus = true)
+    document.querySelector('#subtract').onclick = () => fluidBeat(plus = false)
 
 
-
-</script>
-
+   </script>
 </html>
-
-
-
-
-

@@ -5,6 +5,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="./jspsych/dist/graphFunction.js"> </script>
     <script src="https://unpkg.com/jspsych@7.1.2"></script>
+    <script src="./jspsych/dist/plugin-html-songselector-response.js"> </script>
     <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-audio-keyboard-response@1.1.0"></script>
     <script src="./jspsych/dist/plugin-audio-button-response.js"> </script>
@@ -23,12 +24,7 @@
   </head>
   <body></body>
   <script>
-    //function change() {
-                    //setTimeout(() => {document.body.style.backgroundColor = "lightgray"}, 5);
-                    //document.body.style.backgroundColor = "#fff";
-            //}
 
-    //navigator.mediaDevices.enumerateDevices().then(a => {console.log(a)})
     var jsPsych = initJsPsych({
       extensions: [
         {type: jsPsychExtensionAccelerometer }
@@ -39,22 +35,158 @@
       }
     });
 
+    //first stimulus batch
+    // Determining order of presentation of songs to sort.
+    var songNames = ["Surround&nbspme&nbspwith&nbspyour&nbsplove&nbsp-&nbspPorter",
+                     "Simple&nbspLife&nbsp-&nbspSeeb",
+                     "Airborne&nbspRobots&nbsp-&nbspF-777",
+                     "Edge&nbsp-&nbspRezz",
+                     "Discovered&nbsp-&nbspBeats&nbspAntique", 
+                     "Cafe&nbspTropical&nbsp-&nbspJohannes&nbspLinstead", 
+                     "Tebel&nbspRousin&nbsp-&nbspHypnotic&nbspBrass&nbspEnsamble", 
+                     "Primadonna&nbsp-&nbspSkogsrå",
+                     "Ketto&nbsp-&nbspBonobo",
+                     "Slow&nbspAcid&nbsp-&nbspCalvin&nbspHarris", 
+                     "Temptation&nbsp-&nbspDala"] 
+
+    var songBPMS = ["Surround&nbspme&nbspwith&nbspyour&nbsplove&nbsp-&nbspPorter",
+                     "Simple&nbspLife&nbsp-&nbspSeeb",
+                     "Airborne&nbspRobots&nbsp-&nbspF-777",
+                     "Edge&nbsp-&nbspRezz",
+                     "Discovered&nbsp-&nbspBeats&nbspAntique", 
+                     "Cafe&nbspTropical&nbsp-&nbspJohannes&nbspLinstead", 
+                     "Tebel&nbspRousin&nbsp-&nbspHypnotic&nbspBrass&nbspEnsamble", 
+                     "Primadonna&nbsp-&nbspSkogsrå",
+                     "Ketto&nbsp-&nbspBonobo",
+                     "Slow&nbspAcid&nbsp-&nbspCalvin&nbspHarris", 
+                     "Temptation&nbsp-&nbspDala"] 
+    var songs = [];
+    var albumCovers = [];
+    for (let i = 1; i < 13; i++) {
+      if(i != 3){ //song 3 is defectuous
+        var s = new Audio();
+        s.src = './songs/CoEPlaylist/' + i + '.mp3';
+        songs.push(s)
+        albumCovers.push('./songs/CoEPlaylist/imageAlbums/' + i + '.jpg');
+      }
+    }
+    console.log(songs)
+
+    function PlaySound(song) {
+        if(song.paused){
+            song.play();
+            const color_change = 'blue';
+          } else{
+            song.pause()
+            song.currentTime = 0;
+          }
+    }
+
+    function othersStop(songList) {
+      for(i in songList){
+        songList[i].pause()
+        songList[i].currentTime = 0;
+      }
+    }
+    
+    var chosenSong;
+    function setNextSong(sourceSound){
+      window.chosenSong = sourceSound;
+      console.log(window.chosenSong)
+    }
+
+    function displaySongName(songName){
+      document.getElementById("songName").innerHTML = songName
+    }
+
+    var prompt_songs = function(listSongs){
+          html = "<div id='songName'>Choose a song below</div>"
+          for(i in listSongs){
+            var songPath = listSongs[i].src
+            var songName = songNames[i]
+            console.log(songName)
+            html += "<audio></audio> <button id='buttonSongItem' name='buttonMusic' onclick=" + "othersStop(songs);PlaySound(songs[" + i + "]);changeColor(this);setNextSong('" + songPath + "');displaySongName('" + songName + "')><img id='coverImage' src="+albumCovers[i]+"></button>"
+          }
+          html += "</div>"
+          return(html)
+    };
+
+    function changeColor(btn) {
+        var buttonsList = document.getElementsByName("buttonMusic");
+        for (let i = 0; i < buttonsList.length; i++) {
+          buttonsList[i].style.backgroundColor = "lightgray"
+        }
+
+        if(btn.style.backgroundColor !== 'lightblue'){
+            btn.style.backgroundColor = "lightblue";
+            } else{
+            btn.style.backgroundColor = "lightgray";
+          }
+    }
+        
+    var chooseSongs = {
+      type: jsPsychHtmlSongSelectorResponse,
+      stimulus: prompt_songs(songs),
+      choices: ["Next"],
+      on_finish: function(){
+        for(k in songs){
+          songs[k].pause()
+        }
+      },
+    };
+
     var instruction1 = {
         type: jsPsychInstructions,
         pages: [
         '<p style="font-size:7vw;">Welcome MMBB batery.</p>',
         '<p style="font-size:7vw;">Movement task</p>',
-        '<p style="font-size:7vw;">When you click start, you will hear a song.</p>',
-        '<p style="font-size:7vw;">Your task is to move along with the beat.</p>'
+        '<p style="font-size:7vw;">Please walk at your comfortable speed, like when you are walking along a street</p>',
+        '<p style="font-size:7vw;">When you click next, you will hear a voice countdown when the task starts and when it ends</p>',
         ],
         button_label_next: "Next",
         button_label_previous: "Previous",
         show_clickable_nav: true
     }
 
-    var trialAccelerometer = {
+    var instruction2 = {
+        type: jsPsychInstructions,
+        pages: [
+        '<p style="font-size:7vw;">Now you will hear a song.</p>',
+        '<p style="font-size:7vw;">Your task is to move along with the beat.</p>',
+        '<p style="font-size:7vw;">In this task you are asked to bounce to a musical piece in a way that feels natural to you</p>',
+        '<p style="font-size:7vw;">Try to remain in place and to avoid any other movements besides the bouncing motion.'
+        ],
+        button_label_next: "Next",
+        button_label_previous: "Previous",
+        show_clickable_nav: true
+    }
+
+    var instruction3 = {
+        type: jsPsychInstructions,
+        pages: [
+        '<p style="font-size:7vw;">In this task you are asked to move to two musical pieces in a way that feels natural to you</p>',
+        '<p style="font-size:7vw;">Feel free to dance to the music if you want to</p>',
+        ],
+        button_label_next: "Next",
+        button_label_previous: "Previous",
+        show_clickable_nav: true
+    }
+
+    var instruction4 = {
+        type: jsPsychInstructions,
+        pages: [
+        '<p style="font-size:7vw;">Now we will ask you  to choose a song</p>',
+        '<p style="font-size:7vw;">After that, you are again asked to move to two musical pieces in a way that feels natural to you</p>',
+        '<p style="font-size:7vw;">Feel free to dance to the music if you want to</p>',
+        ],
+        button_label_next: "Next",
+        button_label_previous: "Previous",
+        show_clickable_nav: true
+    }
+
+    var trialAccelerometer1 = {
         type: jsPsychAudioKeyboardResponse,
-        stimulus: '../standaloneApp/binary_ternary.mp3',
+        stimulus: './songs/silence.wav',
         prompt: '<p style="font-size:45px;">Move your phone along with the beat.</p>',
         trial_duration: 5000,
         choices: ["NO_KEYS"],
@@ -62,6 +194,45 @@
           {type: jsPsychExtensionAccelerometer }
         ],
     }
+
+    var trialAccelerometer2 = {
+        type: jsPsychAudioKeyboardResponse,
+        stimulus: './songs/metronome_clave_hemiola.mp3',
+        prompt: '<p style="font-size:45px;">Move your phone along with the beat.</p>',
+        trial_duration: 5000,
+        choices: ["NO_KEYS"],
+        extensions: [
+          {type: jsPsychExtensionAccelerometer }
+        ],
+    }
+
+    var trialAccelerometer3 = {
+        type: jsPsychAudioKeyboardResponse,
+        stimulus: './songs/elPesebre.mp3',
+        prompt: '<p style="font-size:45px;">Move your phone along with the beat.</p>',
+        trial_duration: 5000,
+        choices: ["NO_KEYS"],
+        extensions: [
+          {type: jsPsychExtensionAccelerometer }
+        ],
+    }
+
+    var trialAccelerometer4 = {
+        type: jsPsychAudioKeyboardResponse,
+        stimulus: '',
+        prompt: '<p style="font-size:45px;">Move</p>',
+        trial_duration: 5000,
+        choices: ["NO_KEYS"],
+        extensions: [
+          {type: jsPsychExtensionAccelerometer }
+        ],
+        on_start: function(trial) {
+            var allData = jsPsych.data.get().values()
+            var chosenS = allData[allData.length - 1].chosen
+            trial.stimulus = chosenS
+        },
+    }
+
 
     function drawGraph(c){
         var ctx = c;
@@ -87,8 +258,7 @@
         choices: ['Next'],
     }
 
-    //jsPsych.run([instruction1, trialAccelerometer, displayAccel, instruction2, trialTapping, displayTapping, initializeMic, record, trialSurvey, trialLikert, end]);
-    jsPsych.run([instruction1, trialAccelerometer, displayAccel]);
+    jsPsych.run([instruction1, trialAccelerometer1, instruction2, trialAccelerometer2, instruction3, trialAccelerometer3, instruction4, chooseSongs, trialAccelerometer4, displayAccel]);
 
  </script>
 </html>

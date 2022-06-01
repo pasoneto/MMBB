@@ -17,7 +17,8 @@
     <script src="./jspsych/dist/plugin-html-keyboard-response.js"> </script>
     <script src="./jspsych/dist/plugin-survey-multi-choice.js"> </script>
     <script src="./jspsych/dist/plugin-initialize-microphone.js"> </script>
-    <script src="./jspsych/dist/plugin-html-audio-response.js"> </script>
+    <script src="./jspsych/dist/plugin-html-audio-response.js"></script>
+    <script src="../utilFuncs/util.js"></script>
     <link href="./jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
@@ -30,84 +31,20 @@
           document.body.style.backgroundColor = '#fff';
     }
 
-    //first stimulus batch
-    // Determining order of presentation of songs to sort.
-    var songNames = ["Surround&nbspme&nbspwith&nbspyour&nbsplove&nbsp-&nbspPorter",
-                     "Simple&nbspLife&nbsp-&nbspSeeb",
-                     "Airborne&nbspRobots&nbsp-&nbspF-777",
-                     "Edge&nbsp-&nbspRezz",
-                     "Discovered&nbsp-&nbspBeats&nbspAntique", 
-                     "Cafe&nbspTropical&nbsp-&nbspJohannes&nbspLinstead", 
-                     "Tebel&nbspRousin&nbsp-&nbspHypnotic&nbspBrass&nbspEnsamble", 
-                     "Primadonna&nbsp-&nbspSkogsrå",
-                     "Ketto&nbsp-&nbspBonobo",
-                     "Slow&nbspAcid&nbsp-&nbspCalvin&nbspHarris", 
-                     "Temptation&nbsp-&nbspDala"] 
-    var songs = [];
-    var albumCovers = [];
-    for (let i = 1; i < 13; i++) {
-      if(i != 3){ //song 3 is defectuous
-        var s = new Audio();
-        s.src = './songs/CoEPlaylist/' + i + '.mp3';
-        songs.push(s)
-        albumCovers.push('./songs/CoEPlaylist/imageAlbums/' + i + '.jpg');
-      }
-    }
-    console.log(songs)
-
-    function PlaySound(song) {
-        if(song.paused){
-            song.play();
-            const color_change = 'blue';
-          } else{
-            song.pause()
-            song.currentTime = 0;
-          }
+    //Count difference between elements of array
+    function diff(ary) {
+        var newA = [];
+        for (var i = 1; i < ary.length; i++)  newA.push(ary[i] - ary[i - 1])
+        return newA;
     }
 
-    function changeColor(btn) {
-        var buttonsList = document.getElementsByName("buttonMusic");
-        for (let i = 0; i < buttonsList.length; i++) {
-          buttonsList[i].style.backgroundColor = "lightgray"
-        }
-
-        if(btn.style.backgroundColor !== 'lightblue'){
-            btn.style.backgroundColor = "lightblue";
-            } else{
-            btn.style.backgroundColor = "lightgray";
-          }
+    function bpmEstimator(rts){
+      var arr = diff(rts)
+      var ioi = arr.reduce((a, b) => a + b, 0) / arr.length;
+      var bpm = 60/(ioi/1000)
+      return bpm
     }
-
-    function othersStop(songList) {
-      for(i in songList){
-        songList[i].pause()
-        songList[i].currentTime = 0;
-      }
-    }
-    
-    var chosenSong;
-    function setNextSong(sourceSound){
-      window.chosenSong = sourceSound;
-      console.log(window.chosenSong)
-    }
-
-    function displaySongName(songName){
-      document.getElementById("songName").innerHTML = songName
-    }
-
-    var prompt_songs = function(listSongs){
-          html = "<div id='songName'>Choose a song below</div>"
-          html += "<div id='songWrapperBox'>"
-          for(i in listSongs){
-            var songPath = listSongs[i].src
-            var songName = songNames[i]
-            console.log(songName)
-            html += "<audio></audio> <button id='b" + i+1 + "' name='buttonMusic' onclick=" + "othersStop(songs);PlaySound(songs[" + i + "]);changeColor(this);setNextSong('" + songPath + "');displaySongName('" + songName + "')><img id='coverImage' src="+albumCovers[i]+"></button>"
-          }
-          html += "</div>"
-          return(html)
-    };
-
+     
     var jsPsych = initJsPsych({
       on_finish: function() {
         //jsPsych.data.displayData();
@@ -120,9 +57,9 @@
         pages: [
         '<p style="font-size:6vw;">Welcome MMBB batery.</p>',
         '<p style="font-size:6vw;">Tapping task</p>',
-        '<p style="font-size:6vw;">Listen to the music and to tap along with what you hear</p>',
-        '<p style="font-size:6vw;">Tap on the pad using whichever hand you are most comfortable with</p>',
-        '<p style="font-size:6vw;">Tap at the speed that is the most natural for you (neither too fast nor too slow)</p>',
+        '<p style="font-size:6vw;">Tap on the pad at the speed that is the most natural for you</p>',
+        '<p style="font-size:6vw;">Neither too fast nor too slow</p>',
+        '<p style="font-size:6vw;">Please tap on the pad using whichever hand you are most comfortable with</p>',
         '<p style="font-size:6vw;">Try to maintain the tapping speed as constant as possible until the task ends.</p>',
         '<p style="font-size:6vw;">Click next when you are ready to begin</p>',
         ],
@@ -130,50 +67,90 @@
         button_label_previous: "Previous",
         show_clickable_nav: true,
     }
-    var chooseSongs = {
-      type: jsPsychHtmlSongSelectorResponse,
-      stimulus: prompt_songs(songs),
-      choices: ["Next"],
-      on_finish: function(){
-        for(k in songs){
-          songs[k].pause()
-        }
-      },
-    };
 
-    var trialTapping = {
+    var instruction2 = {
+        type: jsPsychInstructions,
+        pages: [
+        '<p style="font-size:6vw;">In this task you will hear a beat</p>',
+        '<p style="font-size:6vw;">Tap in synchrony to the beat</p>',
+        '<p style="font-size:6vw;">using whichever hand you are most comfortable with</p>',
+        '<p style="font-size:6vw;">Click next when you are ready to begin</p>',
+        ],
+        button_label_next: "Next",
+        button_label_previous: "Previous",
+        show_clickable_nav: true,
+    }
+
+    var instruction3 = {
+        type: jsPsychInstructions,
+        pages: [
+        '<p style="font-size:6vw;">In this task you will hear a musical piece</p>',
+        '<p style="font-size:6vw;">Please tap in synchrony to the beat of the music</p>',
+        '<p style="font-size:6vw;">using whichever hand you are most comfortable with</p>',
+        '<p style="font-size:6vw;">Click next when you are ready to begin</p>',
+        ],
+        button_label_next: "Next",
+        button_label_previous: "Previous",
+        show_clickable_nav: true,
+    }
+
+    var trialTapping1 = {
         type: jsPsychAudioButtonResponse,
         choices: ['Tap here'],
-        stimulus: '',
-        trial_duration: 50000,
+        stimulus: './songs/silence.wav',
+        trial_duration: 5000,
         response_ends_trial: false,
         on_start: function(trial) {
-              var chosenS = jsPsych.data.getLastTrialData().trials[0].chosen
-              trial.stimulus = chosenS
-              document.addEventListener("mousedown", change);
+            document.addEventListener("mousedown", change);
         },
         on_finish: function(trial) {
-              document.removeEventListener("mousedown", change);
+            document.removeEventListener("mousedown", change);
         }
     }
 
-    function drawTap(c){
-        var ctx = c;
-        var lasttimelinedata = jsPsych.data.getLastTimelineData();
-        var t = lasttimelinedata.trials[1].rt;
-        var yAxis = [Array(t.length).fill().map(function(){return(1)})]
-        alert("Your BPM was approximatelly: " + bpmEstimator(t))
-        graphCustom(t, yAxis, ['tap-timing'], ctx, 'scatter')
+    var trialTapping2 = {
+        type: jsPsychAudioButtonResponse,
+        choices: ['Tap here'],
+        stimulus: './songs/metronome_clave_hemiola.mp3',
+        trial_duration: 5000,
+        response_ends_trial: false,
+        on_start: function(trial) {
+            document.addEventListener("mousedown", change);
+        },
+        on_finish: function(trial) {
+            document.removeEventListener("mousedown", change);
+        }
     }
 
-    var displayTapping = {
-        type: jsPsychCanvasButtonResponse,
-        canvas_size: [300, 300],
-        stimulus: drawTap,
-        choices: ['Next'],
+    var trialTapping3 = {
+        type: jsPsychAudioButtonResponse,
+        choices: ['Tap here'],
+        stimulus: './songs/elPesebre.mp3',
+        trial_duration: 5000,
+        response_ends_trial: false,
+        on_start: function(trial) {
+            document.addEventListener("mousedown", change);
+        },
+        on_finish: function(trial) {
+            document.removeEventListener("mousedown", change);
+        }
     }
 
-    jsPsych.run([instruction1, chooseSongs, trialTapping, displayTapping]);
+    var showBPM = {
+      type: jsPsychHtmlButtonResponse,
+      prompt: '',
+      choices: ["Continue"],
+      stimulus: '',
+      on_start: function(trial){
+          var allData = jsPsych.data.get().values()
+          var lastIndex = allData.length - 1
+          var t = allData[lastIndex].rt;
+          var bpm = bpmEstimator(t)
+          trial.stimulus = '<p style="font-size:6vw;">Your overall BPM was:<br>' + Math.round(bpm)  + '</p>'
+      }
+    };
+
+    jsPsych.run([instruction1, trialTapping1, showBPM, instruction2, trialTapping2, showBPM, instruction3, trialTapping3, showBPM]);
 
  </script>
 </html>

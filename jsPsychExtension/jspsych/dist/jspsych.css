@@ -60,6 +60,23 @@ canvas {
   font-size: 14px;
 }
 
+/* Styles for button music selector (tapping task) */
+#buttonSongItem{
+  border-radius: 12px;
+  width: 20vw;
+  background-color: lightgray;
+}
+#pause {
+  border-radius: 12px;
+  width: 20vw;
+  background-color: lightgray;
+}
+#coverImage {
+  object-fit: contain;
+  width: 15vw;
+}
+/* End of styles for button music selector (tapping task) */
+
 /* borrowing Bootstrap style for btn elements, but combining styles a bit */
 .jspsych-btn {
   display: inline-block;
@@ -217,6 +234,14 @@ canvas {
     width: 300px;
     height: 300px;
   }
+  #buttonSongItem{
+    border-radius: 12px;
+    width: 90vw;
+    background-color: lightgray;
+  }
+  #coverImage {
+    width: 80vw;
+  }
   
 }
 displayFinal {
@@ -370,39 +395,3 @@ displayFinal {
   text-align: left;
 }
 
-/* Styles for button music selector (tapping task) */
-#b1 {
-  border-radius: 12px;
-  width: 20vw;
-  background-color: lightgray;
-}
-#b2 {
-  border-radius: 12px;
-  width: 20vw;
-  background-color: lightgray;
-}
-#b3 {
-  border-radius: 12px;
-  width: 20vw;
-  background-color: lightgray;
-}
-#b4 {
-  border-radius: 12px;
-  width: 20vw;
-  background-color: lightgray;
-}
-#b5 {
-  border-radius: 12px;
-  width: 20vw;
-  background-color: lightgray;
-}
-#pause {
-  border-radius: 12px;
-  width: 20vw;
-  background-color: lightgray;
-}
-#coverImage {
-  object-fit: contain;
-  width: 15vw;
-}
-/* End of styles for button music selector (tapping task) */
