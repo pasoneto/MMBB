@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MMBB batery</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./jspsych/dist/graphFunction.js"> </script>
+    <script src="https://unpkg.com/jspsych@7.1.2"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-audio-keyboard-response@1.1.0"></script>
+    <script src="./jspsych/dist/plugin-audio-button-response.js"> </script>
+    <script src="./jspsych/dist/plugin-html-button-response.js"> </script>
+    <script src="./jspsych/dist/plugin-survey-text.js"> </script>
+    <script src="./jspsych/dist/plugin-html-slider-response.js"> </script>
+    <script src="./jspsych/dist/plugin-html-button-response.js"> </script>
+    <script src="./jspsych/dist/plugin-survey-html-form.js"> </script>
+    <script src="./jspsych/dist/plugin-image-slider-response.js"> </script>
+    <script src="./jspsych/dist/plugin-instructions.js"> </script>
+    <script src="./jspsych/dist/plugin-free-sort.js"> </script>
+    <script src="./jspsych/dist/plugin-survey-likert.js"> </script>
+    <script src="./jspsych/dist/plugin-canvas-button-response.js"> </script>
+    <script src="./jspsych/dist/extension-accelerometer.js"> </script>
+    <script src="./jspsych/dist/plugin-html-keyboard-response.js"> </script>
+    <script src="./jspsych/dist/plugin-survey-multi-choice.js"> </script>
+    <script src="./jspsych/dist/plugin-initialize-microphone.js"> </script>
+    <script src="./jspsych/dist/plugin-html-audio-response.js"> </script>
+    <link href="./jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+  </head>
+  <body></body>
+  <script>
+
+    var jsPsych = initJsPsych({
+      extensions: [
+        {type: jsPsychExtensionAccelerometer }
+      ],
+      on_finish: function() {
+        //jsPsych.data.displayData();
+        jsPsych.data.get().localSave('csv','mydata.csv');
+      }
+    });
+
+    var instruction1 = {
+        type: jsPsychInstructions,
+        pages: [
+        '<p style="font-size:7vw;">Welcome!</p>',
+        '<p style="font-size:7vw;">Survey</p>',
+        '<p style="font-size:7vw;">We are interested in your musical taste</p>',
+        '<p style="font-size:7vw;">Tell us 3 songs that you like to dance to</p>',
+        '<p style="font-size:7vw;">If possible, give us youtube our spotify links</p>',
+        ],
+        button_label_next: "Next",
+        button_label_previous: "Previous",
+        show_clickable_nav: true
+    }
+
+    var songs = {
+      type: jsPsychSurveyText,
+      questions: [
+        {prompt: 'Song 1', name: ''},
+        {prompt: 'Song 2', name: ''},
+        {prompt: 'Song 3', name: 'Lunch'}
+      ]
+    }
+
+    var instruction2 = {
+        type: jsPsychInstructions,
+        pages: [
+        '<p style="font-size:7vw;">Now tell us a bit about yourself</p>',
+        ],
+        button_label_next: "Next",
+        button_label_previous: "Previous",
+        show_clickable_nav: true
+    }
+
+    var age = {
+        type: jsPsychHtmlSliderResponse,
+        stimulus: '<div style="font-size:3vw">How old are you?</div><div id="showAge">50</div>',
+        require_movement: true,
+        labels: ['<div style="font-size:3vw">0</div>', '<div style="font-size:3vw">100+</div>'],
+    };
+ 
+    jsPsych.run([instruction1, songs, instruction2, age]);
+
+ </script>
+</html>

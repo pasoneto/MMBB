@@ -173,6 +173,12 @@ var jsPsychHtmlSliderResponse = (function (jspsych) {
               display_element
                   .querySelector("#jspsych-html-slider-response-response")
                   .addEventListener("change", enable_button);
+              display_element
+                  .querySelector("#jspsych-html-slider-response-response")
+                  .addEventListener("input", () => {
+                    var positionSlider = display_element.querySelector("#jspsych-html-slider-response-response").value
+                    document.getElementById("showAge").innerHTML = positionSlider
+                  })
           }
           const end_trial = () => {
               this.jsPsych.pluginAPI.clearAllTimeouts();
