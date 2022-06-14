@@ -46,7 +46,7 @@
         '<p style="font-size:7vw;">Welcome!</p>',
         '<p style="font-size:7vw;">We are interested in your musical taste</p>',
         '<p style="font-size:7vw;">Tell us 3 songs that you like to dance to</p>',
-        '<p style="font-size:7vw;">Please, give us only youtube links</p>',
+        '<p style="font-size:7vw;">If possible, give us only youtube links</p>',
         ],
         button_label_next: "Next",
         button_label_previous: "Previous",
@@ -56,21 +56,21 @@
     var song1 = {
       type: jsPsychSurveyText,
       questions: [
-        {prompt: 'Song 1', name: ''},
+        {prompt: 'Song 1', required: true},
       ]
     }
 
     var song2 = {
       type: jsPsychSurveyText,
       questions: [
-        {prompt: 'Song 2', name: ''},
+        {prompt: 'Song 2', required: true},
       ]
     }
 
     var song3 = {
       type: jsPsychSurveyText,
       questions: [
-        {prompt: 'Song 3', name: ''},
+        {prompt: 'Song 3', required: true},
       ]
     }
 
@@ -100,6 +100,8 @@
         '<p style="font-size:7vw;">Put your phone inside your pocket</p>',
         '<p style="font-size:7vw;">Or put it inside a backback that you are wearing</p>',
         '<p style="font-size:7vw;">Whatever is easier and feels more comfortable to you</p>',
+        '<p style="font-size:7vw;">It\'s important that you do not lock the screen,</p>',
+        '<p style="font-size:7vw;">Otherwise the youtube video will stop</p>',
         '<p style="font-size:7vw;">When you click next, the song will start playing</p>',
         ],
         button_label_next: "Next",
@@ -118,7 +120,7 @@
     function youtubeEmbed(link){
       //Getting only video code to create embed url
       var videoID = getId(link)
-      var url = '<iframe width="560" height="315" src="https://www.youtube.com/embed/' + videoID + '?autoplay=1' + '" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen></iframe>'
+      var url = '<iframe style="width: 90vw" width="560" height="315" src="https://www.youtube.com/embed/' + videoID + '?autoplay=1' + '" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen></iframe>'
       return(url)
     }
 
