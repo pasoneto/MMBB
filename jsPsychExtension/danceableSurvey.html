@@ -107,16 +107,18 @@
         show_clickable_nav: true
     }
 
+    function getId(url) {
+        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+        const match = url.match(regExp);
+        return (match && match[2].length === 11)
+          ? match[2]
+          : null;
+    }
+
     function youtubeEmbed(link){
-      var urlSearchParams = new URLSearchParams(link);
-      const params = Object.fromEntries(urlSearchParams.entries()); 
       //Getting only video code to create embed url
-      if(params['https://www.youtube.com/watch?v'] !== undefined){
-        var videoCode = params['https://www.youtube.com/watch?v']
-      } else if(params['https://m.youtube.com/watch?v'] !== undefined){
-        var videoCode = params['https://m.youtube.com/watch?v']
-      }
-      var url = '<iframe width="560" height="315" src="https://www.youtube.com/embed/' + videoCode + '?autoplay=1' + '" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen></iframe>'
+      var videoID = getId(link)
+      var url = '<iframe width="560" height="315" src="https://www.youtube.com/embed/' + videoID + '?autoplay=1' + '" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen></iframe>'
       return(url)
     }
 
