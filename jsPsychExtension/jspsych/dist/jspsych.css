@@ -394,4 +394,19 @@ displayFinal {
 #jspsych-data-display {
   text-align: left;
 }
+.jspsych-survey-text{
+  font-size: 25px;
+  margin: 0px;
+  height: 50px
+}
+
+
+/*Show slider value for html-slider-response*/
+#showAge{
+  height: 30px
+}
+#extremetySlider{
+  line-height: 1vh
+}
+/*Show slider value for html-slider-response*/
 

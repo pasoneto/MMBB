@@ -44,24 +44,36 @@
         type: jsPsychInstructions,
         pages: [
         '<p style="font-size:7vw;">Welcome!</p>',
-        '<p style="font-size:7vw;">Survey</p>',
         '<p style="font-size:7vw;">We are interested in your musical taste</p>',
         '<p style="font-size:7vw;">Tell us 3 songs that you like to dance to</p>',
-        '<p style="font-size:7vw;">If possible, give us youtube our spotify links</p>',
+        '<p style="font-size:7vw;">Please, give us only youtube links</p>',
         ],
         button_label_next: "Next",
         button_label_previous: "Previous",
         show_clickable_nav: true
     }
 
-    var songs = {
+    var song1 = {
       type: jsPsychSurveyText,
       questions: [
         {prompt: 'Song 1', name: ''},
-        {prompt: 'Song 2', name: ''},
-        {prompt: 'Song 3', name: 'Lunch'}
       ]
     }
+
+    var song2 = {
+      type: jsPsychSurveyText,
+      questions: [
+        {prompt: 'Song 2', name: ''},
+      ]
+    }
+
+    var song3 = {
+      type: jsPsychSurveyText,
+      questions: [
+        {prompt: 'Song 3', name: ''},
+      ]
+    }
+
 
     var instruction2 = {
         type: jsPsychInstructions,
@@ -75,12 +87,55 @@
 
     var age = {
         type: jsPsychHtmlSliderResponse,
-        stimulus: '<div style="font-size:3vw">How old are you?</div><div id="showAge">50</div>',
+        stimulus: '<div style="font-size:35px">How old are you?</div><div id="showAge" style="font-size:20px">50</div>',
         require_movement: true,
-        labels: ['<div style="font-size:3vw">0</div>', '<div style="font-size:3vw">100+</div>'],
+        labels: ['<div style="font-size:20px">0</div>', '<div style="font-size:20px">100+</div>'],
     };
  
-    jsPsych.run([instruction1, songs, instruction2, age]);
+    var instruction3 = {
+        type: jsPsychInstructions,
+        pages: [
+        '<p style="font-size:7vw;">Great!</p>',
+        '<p style="font-size:7vw;">Your task now is to move freely to the music you chose</p>',
+        '<p style="font-size:7vw;">Put your phone inside your pocket</p>',
+        '<p style="font-size:7vw;">Or put it inside a backback that you are wearing</p>',
+        '<p style="font-size:7vw;">Whatever is easier and feels more comfortable to you</p>',
+        '<p style="font-size:7vw;">When you click next, the song will start playing</p>',
+        ],
+        button_label_next: "Next",
+        button_label_previous: "Previous",
+        show_clickable_nav: true
+    }
+
+    function youtubeEmbed(link){
+      var urlSearchParams = new URLSearchParams(link);
+      const params = Object.fromEntries(urlSearchParams.entries()); 
+      //Getting only video code to create embed url
+      if(params['https://www.youtube.com/watch?v'] !== undefined){
+        var videoCode = params['https://www.youtube.com/watch?v']
+      } else if(params['https://m.youtube.com/watch?v'] !== undefined){
+        var videoCode = params['https://m.youtube.com/watch?v']
+      }
+      var url = '<iframe width="560" height="315" src="https://www.youtube.com/embed/' + videoCode + '?autoplay=1' + '" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen></iframe>'
+      return(url)
+    }
+
+    var youtubeShow = {
+        type: jsPsychInstructions,
+        pages: [],
+        button_label_next: "Next",
+        button_label_previous: "Previous",
+        show_clickable_nav: true,
+        on_start: function(trial) {
+          var allData = jsPsych.data.get().values()
+          var link1 = allData[allData.length - 4]['response']['Q0']
+          var link2 = allData[allData.length - 5]['response']['Q0']
+          var link3 = allData[allData.length - 6]['response']['Q0']
+          trial.pages = [youtubeEmbed(link1), youtubeEmbed(link2), youtubeEmbed(link3)]
+        }
+    }
+
+    jsPsych.run([instruction1, song1, song2, song3, instruction2, age, instruction3, youtubeShow]);
 
  </script>
 </html>

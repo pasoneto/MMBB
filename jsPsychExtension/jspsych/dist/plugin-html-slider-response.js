@@ -139,7 +139,7 @@ var jsPsychHtmlSliderResponse = (function (jspsych) {
                       "px); text-align: center; width: " +
                       label_width_perc +
                       '%;">';
-              html += '<span style="text-align: center; font-size: 80%;">' + trial.labels[j] + "</span>";
+              html += '<span id="extremetySlider" style="text-align: center; font-size: 80%;">' + trial.labels[j] + "</span>";
               html += "</div>";
           }
           html += "</div>";
