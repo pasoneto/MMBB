@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MMBB batery</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./jspsych/dist/graphFunction.js"> </script>
+    <script src="https://unpkg.com/jspsych@7.1.2"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-audio-keyboard-response@1.1.0"></script>
+    <script src="./jspsych/dist/plugin-audio-button-response.js"> </script>
+    <script src="./jspsych/dist/plugin-html-button-response.js"> </script>
+    <script src="./jspsych/dist/plugin-html-slider-response.js"> </script>
+    <script src="./jspsych/dist/plugin-html-button-response.js"> </script>
+    <script src="./jspsych/dist/plugin-survey-html-form.js"> </script>
+    <script src="./jspsych/dist/plugin-image-slider-response.js"> </script>
+    <script src="./jspsych/dist/plugin-instructions.js"> </script>
+    <script src="./jspsych/dist/plugin-free-sort.js"> </script>
+    <script src="./jspsych/dist/plugin-survey-likert.js"> </script>
+    <script src="./jspsych/dist/plugin-canvas-button-response.js"> </script>
+    <script src="./jspsych/dist/extension-accelerometer.js"> </script>
+    <script src="./jspsych/dist/plugin-html-keyboard-response.js"> </script>
+    <script src="./jspsych/dist/plugin-survey-multi-choice.js"> </script>
+    <script src="./jspsych/dist/plugin-initialize-microphone.js"> </script>
+    <script src="./jspsych/dist/plugin-html-audio-response.js"> </script>
+    <link href="./jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+  </head>
+  <body></body>
+  <script>
+
+    var jsPsych = initJsPsych({
+      on_finish: function() {
+        jsPsych.data.displayData();
+        //jsPsych.data.get().localSave('csv','mydata.csv');
+      }
+    });
+
+    //Beat alignment code
+    function arrayRotate(arr, count) {
+      count -= arr.length * Math.floor(count / arr.length);
+      arr.push.apply(arr, arr.splice(0, count));
+      return arr;
+    }
+
+    //var gainNode1 = null
+    //var gainNode2 = null
+    //var gainNode3 = null
+    //var gainNode4 = null
+    //var gainNode5 = null
+    //var gainNode6 = null
+    //var gainNode7 = null
+    //var gainNode8 = null
+    //var gainNodeBase = null
+
+    function playSound(buffer, context, volume){
+
+      window.gainNode = context.createGain();
+
+      const source = context.createBufferSource();
+      source.buffer = buffer
+      source.loop = true;
+      source.connect(window.gainNode);
+      window.gainNode.connect(context.destination);
+      window.gainNode.gain.value = volume
+      source.start(3);
+      return (gainNode)
+    }
+
+    async function startLoop(url, context, volume){
+      
+      var buffer = await fetch(url)
+        .then(res => res.arrayBuffer())
+        .then(arrayBuffer => context.decodeAudioData(arrayBuffer));
+       
+      var gainNode = playSound(buffer, context, volume);
+      return (gainNode)
+    }
+
+    async function initiateContext(offset){
+
+      console.log(offset) 
+
+      let context = null;
+      if (context) context.close();
+      window.context = new AudioContext();
+
+      if(offset == 1){
+        window.gainNode1 = await startLoop('./beat/beat.wav', window.context, 1);
+        window.gainNode2 = await startLoop('./beat/beat2.wav', window.context, 0);
+        window.gainNode3 = await startLoop('./beat/beat3.wav', window.context, 0);
+        window.gainNode4 = await startLoop('./beat/beat4.wav', window.context, 0);
+        window.gainNode5 = await startLoop('./beat/beat5.wav', window.context, 0);
+        window.gainNode6 = await startLoop('./beat/beat6.wav', window.context, 0);
+        window.gainNode7 = await startLoop('./beat/beat7.wav', window.context, 0);
+        window.gainNode8 = await startLoop('./beat/beat8.wav', window.context, 0);
+      } else
+
+      if(offset == 2){
+        window.gainNode1 = await startLoop('./beat/beat.wav', window.context, 0);
+        window.gainNode2 = await startLoop('./beat/beat2.wav', window.context, 1);
+        window.gainNode3 = await startLoop('./beat/beat3.wav', window.context, 0);
+        window.gainNode4 = await startLoop('./beat/beat4.wav', window.context, 0);
+        window.gainNode5 = await startLoop('./beat/beat5.wav', window.context, 0);
+        window.gainNode6 = await startLoop('./beat/beat6.wav', window.context, 0);
+        window.gainNode7 = await startLoop('./beat/beat7.wav', window.context, 0);
+        window.gainNode8 = await startLoop('./beat/beat8.wav', window.context, 0);
+      } else
+
+      if(offset == 3){
+        window.gainNode1 = await startLoop('./beat/beat.wav', window.context, 0);
+        window.gainNode2 = await startLoop('./beat/beat2.wav', window.context, 0);
+        window.gainNode3 = await startLoop('./beat/beat3.wav', window.context, 1);
+        window.gainNode4 = await startLoop('./beat/beat4.wav', window.context, 0);
+        window.gainNode5 = await startLoop('./beat/beat5.wav', window.context, 0);
+        window.gainNode6 = await startLoop('./beat/beat6.wav', window.context, 0);
+        window.gainNode7 = await startLoop('./beat/beat7.wav', window.context, 0);
+        window.gainNode8 = await startLoop('./beat/beat8.wav', window.context, 0);
+      } else
+
+      if(offset == 4){
+        window.gainNode1 = await startLoop('./beat/beat.wav', window.context, 0);
+        window.gainNode2 = await startLoop('./beat/beat2.wav', window.context, 0);
+        window.gainNode3 = await startLoop('./beat/beat3.wav', window.context, 0);
+        window.gainNode4 = await startLoop('./beat/beat4.wav', window.context, 1);
+        window.gainNode5 = await startLoop('./beat/beat5.wav', window.context, 0);
+        window.gainNode6 = await startLoop('./beat/beat6.wav', window.context, 0);
+        window.gainNode7 = await startLoop('./beat/beat7.wav', window.context, 0);
+        window.gainNode8 = await startLoop('./beat/beat8.wav', window.context, 0);
+      } else
+
+      if(offset == 5){
+        window.gainNode1 = await startLoop('./beat/beat.wav', window.context, 0);
+        window.gainNode2 = await startLoop('./beat/beat2.wav', window.context, 0);
+        window.gainNode3 = await startLoop('./beat/beat3.wav', window.context, 0);
+        window.gainNode4 = await startLoop('./beat/beat4.wav', window.context, 0);
+        window.gainNode5 = await startLoop('./beat/beat5.wav', window.context, 1);
+        window.gainNode6 = await startLoop('./beat/beat6.wav', window.context, 0);
+        window.gainNode7 = await startLoop('./beat/beat7.wav', window.context, 0);
+        window.gainNode8 = await startLoop('./beat/beat8.wav', window.context, 0);
+      } else
+
+      if(offset == 6){
+        window.gainNode1 = await startLoop('./beat/beat.wav', window.context, 0);
+        window.gainNode2 = await startLoop('./beat/beat2.wav', window.context, 0);
+        window.gainNode3 = await startLoop('./beat/beat3.wav', window.context, 0);
+        window.gainNode4 = await startLoop('./beat/beat4.wav', window.context, 0);
+        window.gainNode5 = await startLoop('./beat/beat5.wav', window.context, 0);
+        window.gainNode6 = await startLoop('./beat/beat6.wav', window.context, 1);
+        window.gainNode7 = await startLoop('./beat/beat7.wav', window.context, 0);
+        window.gainNode8 = await startLoop('./beat/beat8.wav', window.context, 0);
+      } else
+
+      if(offset == 7){
+        window.gainNode1 = await startLoop('./beat/beat.wav', window.context, 0);
+        window.gainNode2 = await startLoop('./beat/beat2.wav', window.context, 0);
+        window.gainNode3 = await startLoop('./beat/beat3.wav', window.context, 0);
+        window.gainNode4 = await startLoop('./beat/beat4.wav', window.context, 0);
+        window.gainNode5 = await startLoop('./beat/beat5.wav', window.context, 0);
+        window.gainNode6 = await startLoop('./beat/beat6.wav', window.context, 0);
+        window.gainNode7 = await startLoop('./beat/beat7.wav', window.context, 1);
+        window.gainNode8 = await startLoop('./beat/beat8.wav', window.context, 0);
+      } else
+
+      if(offset == 8){
+        window.gainNode1 = await startLoop('./beat/beat.wav', window.context, 0);
+        window.gainNode2 = await startLoop('./beat/beat2.wav', window.context, 0);
+        window.gainNode3 = await startLoop('./beat/beat3.wav', window.context, 0);
+        window.gainNode4 = await startLoop('./beat/beat4.wav', window.context, 0);
+        window.gainNode5 = await startLoop('./beat/beat5.wav', window.context, 0);
+        window.gainNode6 = await startLoop('./beat/beat6.wav', window.context, 0);
+        window.gainNode7 = await startLoop('./beat/beat7.wav', window.context, 0);
+        window.gainNode8 = await startLoop('./beat/beat8.wav', window.context, 1);
+      }
+
+      window.gainNodeBase = await startLoop('./beat/beatBase.wav', window.context, 1);
+
+    }
+
+    Number.prototype.mod = function (n) {
+      return ((this % n) + n) % n;
+    };
+
+    function shift(plus = false){
+      if(plus == true){
+        window.count = (window.count+1).mod(8)
+      } else {
+        window.count = (window.count-1).mod(8)
+      }
+    }
+
+    function fluidBeat(plus, offset){
+
+      shift(plus) 
+      var offset = window.count
+     
+      if(offset == 0){
+        window.gainNode1.gain.value = 1
+        window.gainNode2.gain.value = 0
+        window.gainNode3.gain.value = 0
+        window.gainNode4.gain.value = 0
+        window.gainNode5.gain.value = 0
+        window.gainNode6.gain.value = 0
+        window.gainNode7.gain.value = 0
+        window.gainNode8.gain.value = 0
+      } else if(offset == 1){
+        window.gainNode1.gain.value = 0
+        window.gainNode2.gain.value = 1
+        window.gainNode3.gain.value = 0
+        window.gainNode4.gain.value = 0
+        window.gainNode5.gain.value = 0
+        window.gainNode6.gain.value = 0
+        window.gainNode7.gain.value = 0
+        window.gainNode8.gain.value = 0
+      } else if(offset == 2){
+        window.gainNode1.gain.value = 0
+        window.gainNode2.gain.value = 0
+        window.gainNode3.gain.value = 1
+        window.gainNode4.gain.value = 0
+        window.gainNode5.gain.value = 0
+        window.gainNode6.gain.value = 0
+        window.gainNode7.gain.value = 0
+        window.gainNode8.gain.value = 0
+      } else if(offset == 3){
+        window.gainNode1.gain.value = 0
+        window.gainNode2.gain.value = 0
+        window.gainNode3.gain.value = 0
+        window.gainNode4.gain.value = 1
+        window.gainNode5.gain.value = 0
+        window.gainNode6.gain.value = 0
+        window.gainNode7.gain.value = 0
+        window.gainNode8.gain.value = 0
+      } else if(offset == 4){
+        window.gainNode1.gain.value = 0
+        window.gainNode2.gain.value = 0
+        window.gainNode3.gain.value = 0
+        window.gainNode4.gain.value = 0
+        window.gainNode5.gain.value = 1
+        window.gainNode6.gain.value = 0
+        window.gainNode7.gain.value = 0
+        window.gainNode8.gain.value = 0
+      } else if(offset == 5){
+        window.gainNode1.gain.value = 0
+        window.gainNode2.gain.value = 0
+        window.gainNode3.gain.value = 0
+        window.gainNode4.gain.value = 0
+        window.gainNode5.gain.value = 0
+        window.gainNode6.gain.value = 1
+        window.gainNode7.gain.value = 0
+        window.gainNode8.gain.value = 0
+      } else if(offset == 6){
+        window.gainNode1.gain.value = 0
+        window.gainNode2.gain.value = 0
+        window.gainNode3.gain.value = 0
+        window.gainNode4.gain.value = 0
+        window.gainNode5.gain.value = 0
+        window.gainNode6.gain.value = 0
+        window.gainNode7.gain.value = 1
+        window.gainNode8.gain.value = 0
+      } else if(offset == 7){
+        window.gainNode1.gain.value = 0
+        window.gainNode2.gain.value = 0
+        window.gainNode3.gain.value = 0
+        window.gainNode4.gain.value = 0
+        window.gainNode5.gain.value = 0
+        window.gainNode6.gain.value = 0
+        window.gainNode7.gain.value = 0
+        window.gainNode8.gain.value = 1
+      } 
+
+      window.gainNodeBase.gain.value = 1
+
+    }
+
+    const randomInt = (min, max) => Math.floor(Math.random() * (max - min)) + min;
+
+    //Initial offset  
+    var count = randomInt(0, 8);
+    console.log(count)
+
+    var instruction1 = {
+        type: jsPsychInstructions,
+        pages: [
+        '<p style="font-size:7vw;">Welcome!</p>',
+        ],
+        button_label_next: "Next",
+        button_label_previous: "Previous",
+        show_clickable_nav: true
+    }
+
+    var trialBeat = {
+      type: jsPsychHtmlButtonResponse,
+      stimulus: '<p style="margin: 0px; height: 30px">Adjust the beat</p><button style="width: 25vw; height: 5vh; margin-bottom: 10px" type="button" id="subtract">-</button><button type="button" style="width: 25vw;height: 5vh; margin-bottom: 10px" id="add">+</button>',
+      choices: ['Continue'],
+      prompt: "",
+      on_load: function(){
+        
+        var gainNode1 = null
+        var gainNode2 = null
+        var gainNode3 = null
+        var gainNode4 = null
+        var gainNode5 = null
+        var gainNode6 = null
+        var gainNode7 = null
+        var gainNode8 = null
+        var gainNodeBase = null
+            
+        var context = null;
+
+        document.querySelector('#add').onclick = () => fluidBeat(plus = true, offset = window.count)
+        document.querySelector('#subtract').onclick = () => fluidBeat(plus = false, offset = window.count)
+
+        initiateContext(window.count)
+      },
+      on_finish: function(data){
+        data.offset = window.count;
+      }
+    };
+
+    jsPsych.run([trialBeat]);
+    //jsPsych.run([instruction1, closeness, trialLikert, trialSurvey]);
+
+ </script>
+</html>

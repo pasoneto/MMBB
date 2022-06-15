@@ -410,3 +410,11 @@ displayFinal {
 }
 /*Show slider value for html-slider-response*/
 
+/*Subtract and add buttons for beat production task*/
+#subtract{
+  width: 25vw;
+  height: 5vh;
+}
+#add{
+}
+/*Subtract and add buttons for beat production task*/
