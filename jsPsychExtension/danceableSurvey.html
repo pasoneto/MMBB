@@ -35,8 +35,8 @@
         {type: jsPsychExtensionAccelerometer }
       ],
       on_finish: function() {
-        //jsPsych.data.displayData();
-        jsPsych.data.get().localSave('csv','mydata.csv');
+        jsPsych.data.displayData();
+        //jsPsych.data.get().localSave('csv','mydata.csv');
       }
     });
 
@@ -56,21 +56,27 @@
     var song1 = {
       type: jsPsychSurveyText,
       questions: [
-        {prompt: 'Song 1', required: true},
+        {prompt: '1. Song\'s name and artist (optional)', required: false},
+        {prompt: '1. Youtube link (required)', required: true},
+        {prompt: '1. Spotify link (optional)', required: false},
       ]
     }
 
     var song2 = {
       type: jsPsychSurveyText,
       questions: [
-        {prompt: 'Song 2', required: true},
+        {prompt: '2. Song name', required: false},
+        {prompt: '2. Song youtube link', required: true},
+        {prompt: '2. Song spotify link', required: false},
       ]
     }
 
     var song3 = {
       type: jsPsychSurveyText,
       questions: [
-        {prompt: 'Song 3', required: true},
+        {prompt: '3. Song name', required: false},
+        {prompt: '3. Song youtube link', required: true},
+        {prompt: '3. Song spotify link', required: false},
       ]
     }
 
@@ -132,13 +138,14 @@
         show_clickable_nav: true,
         on_start: function(trial) {
           var allData = jsPsych.data.get().values()
-          var link1 = allData[allData.length - 4]['response']['Q0']
-          var link2 = allData[allData.length - 5]['response']['Q0']
-          var link3 = allData[allData.length - 6]['response']['Q0']
+          console.log(allData)
+          var link1 = allData[allData.length - 4]['response']['Q1']
+          var link2 = allData[allData.length - 5]['response']['Q1']
+          var link3 = allData[allData.length - 6]['response']['Q1']
           trial.pages = [youtubeEmbed(link1), youtubeEmbed(link2), youtubeEmbed(link3)]
         }
     }
-
+  
     jsPsych.run([instruction1, song1, song2, song3, instruction2, age, instruction3, youtubeShow]);
 
  </script>
