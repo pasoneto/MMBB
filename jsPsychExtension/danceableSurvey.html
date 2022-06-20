@@ -55,8 +55,9 @@
 
     var song1 = {
       type: jsPsychSurveyText,
+      preamble: 'Song 1<br><div style="text-shadow: 0px 0px 0px #000000;"><a href="https://www.youtube.com" target="_blank">Open YouTube in new tab</a></div>',
       questions: [
-        {prompt: '1. Song\'s name and artist (optional)', required: false},
+        {prompt: '1. Name and artist (optional)', required: false},
         {prompt: '1. Youtube link (required)', required: true},
         {prompt: '1. Spotify link (optional)', required: false},
       ]
@@ -64,6 +65,7 @@
 
     var song2 = {
       type: jsPsychSurveyText,
+      preamble: 'Song 2<br><div style="text-shadow: 0px 0px 0px #000000;"><a href="https://www.youtube.com" target="_blank">Open YouTube in new tab</a></div>',
       questions: [
         {prompt: '2. Song name', required: false},
         {prompt: '2. Song youtube link', required: true},
@@ -73,6 +75,7 @@
 
     var song3 = {
       type: jsPsychSurveyText,
+      preamble: 'Song 3<br><div style="text-shadow: 0px 0px 0px #000000;"><a href="https://www.youtube.com" target="_blank">Open YouTube in new tab</a></div>',
       questions: [
         {prompt: '3. Song name', required: false},
         {prompt: '3. Song youtube link', required: true},
@@ -130,7 +133,7 @@
       return(url)
     }
 
-    var youtubeShow = {
+    var youtubeShow1 = {
         type: jsPsychInstructions,
         pages: [],
         button_label_next: "Next",
@@ -140,13 +143,44 @@
           var allData = jsPsych.data.get().values()
           console.log(allData)
           var link1 = allData[allData.length - 4]['response']['Q1']
-          var link2 = allData[allData.length - 5]['response']['Q1']
-          var link3 = allData[allData.length - 6]['response']['Q1']
-          trial.pages = [youtubeEmbed(link1), youtubeEmbed(link2), youtubeEmbed(link3)]
-        }
+          trial.pages = [youtubeEmbed(link1)]
+        },
+        extensions: [
+          {type: jsPsychExtensionAccelerometer }
+        ],
+    }
+    var youtubeShow2 = {
+        type: jsPsychInstructions,
+        pages: [],
+        button_label_next: "Next",
+        button_label_previous: "Previous",
+        show_clickable_nav: true,
+        on_start: function(trial) {
+          var allData = jsPsych.data.get().values()
+          var link1 = allData[allData.length - 6]['response']['Q1']
+          trial.pages = [youtubeEmbed(link1)]
+        },
+        extensions: [
+          {type: jsPsychExtensionAccelerometer }
+        ],
+    }
+    var youtubeShow3 = {
+        type: jsPsychInstructions,
+        pages: [],
+        button_label_next: "Next",
+        button_label_previous: "Previous",
+        show_clickable_nav: true,
+        on_start: function(trial) {
+          var allData = jsPsych.data.get().values()
+          var link1 = allData[allData.length - 7]['response']['Q1']
+          trial.pages = [youtubeEmbed(link1)]
+        },
+        extensions: [
+          {type: jsPsychExtensionAccelerometer }
+        ],
     }
   
-    jsPsych.run([instruction1, song1, song2, song3, instruction2, age, instruction3, youtubeShow]);
+    jsPsych.run([instruction1, song1, song2, song3, instruction2, age, instruction3, youtubeShow1, youtubeShow2, youtubeShow3]);
 
  </script>
 </html>
