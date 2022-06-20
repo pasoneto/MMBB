@@ -177,6 +177,12 @@ canvas {
     height: 200px;
     width: 150px;
   }
+  .jspsych-survey-text{
+    font-size: 25px;
+    margin: 0px;
+    width: 80vw;
+    height: 50px
+  }
   .jspsych-survey-btn {
     display: inline-block;
     padding: 6px 12px;

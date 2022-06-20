@@ -60,7 +60,10 @@
         {prompt: '1. Name and artist (optional)', required: false},
         {prompt: '1. Youtube link (required)', required: true},
         {prompt: '1. Spotify link (optional)', required: false},
-      ]
+      ],
+      on_load: function(){
+        document.getElementById("jspsych-survey-text-next").style.marginTop = '50px'
+      }
     }
 
     var song2 = {
@@ -70,7 +73,10 @@
         {prompt: '2. Song name', required: false},
         {prompt: '2. Song youtube link', required: true},
         {prompt: '2. Song spotify link', required: false},
-      ]
+      ],
+      on_load: function(){
+        document.getElementById("jspsych-survey-text-next").style.marginTop = '50px'
+      }
     }
 
     var song3 = {
@@ -80,7 +86,10 @@
         {prompt: '3. Song name', required: false},
         {prompt: '3. Song youtube link', required: true},
         {prompt: '3. Song spotify link', required: false},
-      ]
+      ],
+      on_load: function(){
+        document.getElementById("jspsych-survey-text-next").style.marginTop = '50px'
+      }
     }
 
 
@@ -101,6 +110,37 @@
         labels: ['<div style="font-size:20px">0</div>', '<div style="font-size:20px">100+</div>'],
     };
  
+    var instruction4 = {
+        type: jsPsychInstructions,
+        pages: [
+        '<p style="font-size:7vw;">Ok,</p>',
+        '<p style="font-size:7vw;">Now, your task is to bounce</p>',
+        '<p style="font-size:7vw;">We will play you a sound</p>',
+        '<p style="font-size:7vw;">And you will move your body in synchrony with that sound</p>',
+        '<p style="font-size:7vw;">Click next to see an example</p>',
+        ],
+        button_label_next: "Next",
+        button_label_previous: "Previous",
+        show_clickable_nav: true,
+    }
+
+    var instruction4 = {
+        type: jsPsychInstructions,
+        pages: [
+        '<p style="font-size:7vw;">Ok,</p>',
+        '<p style="font-size:7vw;">Now, your task is to bounce</p>',
+        '<p style="font-size:7vw;">We will play you a sound</p>',
+        '<p style="font-size:7vw;">And you will move your body in synchrony with that sound</p>',
+        '<p style="font-size:7vw;">Now, put your phone inside your pocket</p>',
+        '<p style="font-size:7vw;">Or put it inside a backback that you are wearing</p>',
+        '<p style="font-size:7vw;">Whatever is easier and feels more comfortable to you</p>',
+        '<p style="font-size:7vw;">When you click next, the song will start playing</p>',
+        ],
+        button_label_next: "Next",
+        button_label_previous: "Previous",
+        show_clickable_nav: true,
+    }
+
     var instruction3 = {
         type: jsPsychInstructions,
         pages: [
@@ -132,6 +172,16 @@
       var url = '<iframe style="width: 90vw" width="560" height="315" src="https://www.youtube.com/embed/' + videoID + '?autoplay=1' + '" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen></iframe>'
       return(url)
     }
+
+    var hemiola = {
+        type: jsPsychAudioButtonResponse,
+        stimulus: './songs/3_2.mp3',
+        choices: ['Continue'],
+        prompt: "<p>Dance to this song</p>",
+        extensions: [
+          {type: jsPsychExtensionAccelerometer }
+        ],
+    };
 
     var youtubeShow1 = {
         type: jsPsychInstructions,
@@ -180,7 +230,7 @@
         ],
     }
   
-    jsPsych.run([instruction1, song1, song2, song3, instruction2, age, instruction3, youtubeShow1, youtubeShow2, youtubeShow3]);
+    jsPsych.run([instruction1, song1, song2, song3, instruction2, age,  hemiola, instruction4, youtubeShow1, youtubeShow2, youtubeShow3]);
 
  </script>
 </html>
