@@ -26,7 +26,7 @@ def createBeat(bpm, shiftN, beat, name):
     print(len(soundOneBar))
 
     bar = AudioSegment.empty()
-    nBars = 20
+    nBars = 1
     for i in range(nBars):
         bar = bar + soundOneBar
 

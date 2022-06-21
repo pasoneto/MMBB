@@ -33,9 +33,26 @@
       on_finish: function() {
         jsPsych.data.displayData();
         //jsPsych.data.get().localSave('csv','mydata.csv');
-      }
+      },
     });
 
+    const randomInt = (min, max) => Math.floor(Math.random() * (max - min)) + min;
+
+    //Initial offset  
+    var count = randomInt(0, 8);
+
+    window.count
+    var source1 = null
+    var source2 = null
+    var source3 = null
+    var source4 = null
+    var source5 = null
+    var source6 = null
+    var source7 = null
+    var source8 = null
+    var sourceBase = null
+
+    initiateContext(window.count)
     //Beat alignment code
     function arrayRotate(arr, count) {
       count -= arr.length * Math.floor(count / arr.length);
@@ -53,8 +70,8 @@
       source.connect(window.gainNode);
       window.gainNode.connect(context.destination);
       window.gainNode.gain.value = volume
-      source.start(5);
-      return (gainNode)
+      //source.start(5);
+      return [gainNode, source]
     }
 
     async function startLoop(url, context, volume){
@@ -63,8 +80,8 @@
         .then(res => res.arrayBuffer())
         .then(arrayBuffer => context.decodeAudioData(arrayBuffer));
        
-      var gainNode = playSound(buffer, context, volume);
-      return (gainNode)
+      var [gainNode, source] = playSound(buffer, context, volume);
+      return [gainNode, source]
     }
 
     async function initiateContext(offset){
@@ -75,94 +92,94 @@
       if (context) context.close();
       window.context = new AudioContext();
 
-      window.gainNodeBase = await startLoop('./beat/beatModified/baseSongs/habstrack_clownsModified.mp3', window.context, 1);
+      [window.gainNodeBase, window.sourceBase] = await startLoop('./beat/beatModified/baseSongs/habstrack_clownsModified.mp3', window.context, 1);
 
       if(offset == 1){
-        window.gainNode1 = await startLoop('./beat/beatModified/metronome_0.wav', window.context, 1);
-        window.gainNode2 = await startLoop('./beat/beatModified/metronome_1.wav', window.context, 0);
-        window.gainNode3 = await startLoop('./beat/beatModified/metronome_2.wav', window.context, 0);
-        window.gainNode4 = await startLoop('./beat/beatModified/metronome_3.wav', window.context, 0);
-        window.gainNode5 = await startLoop('./beat/beatModified/metronome_4.wav', window.context, 0);
-        window.gainNode6 = await startLoop('./beat/beatModified/metronome_5.wav', window.context, 0);
-        window.gainNode7 = await startLoop('./beat/beatModified/metronome_6.wav', window.context, 0);
-        window.gainNode8 = await startLoop('./beat/beatModified/metronome_7.wav', window.context, 0);
+        [window.gainNode1, window.source1] = await startLoop('./beat/beatModified/metronome_0.wav', window.context, 1);
+        [window.gainNode2, window.source2] = await startLoop('./beat/beatModified/metronome_1.wav', window.context, 0);
+        [window.gainNode3, window.source3] = await startLoop('./beat/beatModified/metronome_2.wav', window.context, 0);
+        [window.gainNode4, window.source4] = await startLoop('./beat/beatModified/metronome_3.wav', window.context, 0);
+        [window.gainNode5, window.source5] = await startLoop('./beat/beatModified/metronome_4.wav', window.context, 0);
+        [window.gainNode6, window.source6] = await startLoop('./beat/beatModified/metronome_5.wav', window.context, 0);
+        [window.gainNode7, window.source7] = await startLoop('./beat/beatModified/metronome_6.wav', window.context, 0);
+        [window.gainNode8, window.source8] = await startLoop('./beat/beatModified/metronome_7.wav', window.context, 0);
       } else
 
       if(offset == 2){
-        window.gainNode1 = await startLoop('./beat/beatModified/metronome_0.wav', window.context, 0);
-        window.gainNode2 = await startLoop('./beat/beatModified/metronome_1.wav', window.context, 1);
-        window.gainNode3 = await startLoop('./beat/beatModified/metronome_2.wav', window.context, 0);
-        window.gainNode4 = await startLoop('./beat/beatModified/metronome_3.wav', window.context, 0);
-        window.gainNode5 = await startLoop('./beat/beatModified/metronome_4.wav', window.context, 0);
-        window.gainNode6 = await startLoop('./beat/beatModified/metronome_5.wav', window.context, 0);
-        window.gainNode7 = await startLoop('./beat/beatModified/metronome_6.wav', window.context, 0);
-        window.gainNode8 = await startLoop('./beat/beatModified/metronome_7.wav', window.context, 0);
+        [window.gainNode1, window.source1] = await startLoop('./beat/beatModified/metronome_0.wav', window.context, 0);
+        [window.gainNode2, window.source2] = await startLoop('./beat/beatModified/metronome_1.wav', window.context, 1);
+        [window.gainNode3, window.source3] = await startLoop('./beat/beatModified/metronome_2.wav', window.context, 0);
+        [window.gainNode4, window.source4] = await startLoop('./beat/beatModified/metronome_3.wav', window.context, 0);
+        [window.gainNode5, window.source5] = await startLoop('./beat/beatModified/metronome_4.wav', window.context, 0);
+        [window.gainNode6, window.source6] = await startLoop('./beat/beatModified/metronome_5.wav', window.context, 0);
+        [window.gainNode7, window.source7] = await startLoop('./beat/beatModified/metronome_6.wav', window.context, 0);
+        [window.gainNode8, window.source8] = await startLoop('./beat/beatModified/metronome_7.wav', window.context, 0);
       } else
 
       if(offset == 3){
-        window.gainNode1 = await startLoop('./beat/beatModified/metronome_0.wav', window.context, 0);
-        window.gainNode2 = await startLoop('./beat/beatModified/metronome_1.wav', window.context, 0);
-        window.gainNode3 = await startLoop('./beat/beatModified/metronome_2.wav', window.context, 1);
-        window.gainNode4 = await startLoop('./beat/beatModified/metronome_3.wav', window.context, 0);
-        window.gainNode5 = await startLoop('./beat/beatModified/metronome_4.wav', window.context, 0);
-        window.gainNode6 = await startLoop('./beat/beatModified/metronome_5.wav', window.context, 0);
-        window.gainNode7 = await startLoop('./beat/beatModified/metronome_6.wav', window.context, 0);
-        window.gainNode8 = await startLoop('./beat/beatModified/metronome_7.wav', window.context, 0);
+        [window.gainNode1, window.source1] = await startLoop('./beat/beatModified/metronome_0.wav', window.context, 0);
+        [window.gainNode2, window.source2] = await startLoop('./beat/beatModified/metronome_1.wav', window.context, 0);
+        [window.gainNode3, window.source3] = await startLoop('./beat/beatModified/metronome_2.wav', window.context, 1);
+        [window.gainNode4, window.source4] = await startLoop('./beat/beatModified/metronome_3.wav', window.context, 0);
+        [window.gainNode5, window.source5] = await startLoop('./beat/beatModified/metronome_4.wav', window.context, 0);
+        [window.gainNode6, window.source6] = await startLoop('./beat/beatModified/metronome_5.wav', window.context, 0);
+        [window.gainNode7, window.source7] = await startLoop('./beat/beatModified/metronome_6.wav', window.context, 0);
+        [window.gainNode8, window.source8] = await startLoop('./beat/beatModified/metronome_7.wav', window.context, 0);
       } else
 
       if(offset == 4){
-        window.gainNode1 = await startLoop('./beat/beatModified/metronome_0.wav', window.context, 0);
-        window.gainNode2 = await startLoop('./beat/beatModified/metronome_1.wav', window.context, 0);
-        window.gainNode3 = await startLoop('./beat/beatModified/metronome_2.wav', window.context, 0);
-        window.gainNode4 = await startLoop('./beat/beatModified/metronome_3.wav', window.context, 1);
-        window.gainNode5 = await startLoop('./beat/beatModified/metronome_4.wav', window.context, 0);
-        window.gainNode6 = await startLoop('./beat/beatModified/metronome_5.wav', window.context, 0);
-        window.gainNode7 = await startLoop('./beat/beatModified/metronome_6.wav', window.context, 0);
-        window.gainNode8 = await startLoop('./beat/beatModified/metronome_7.wav', window.context, 0);
+        [window.gainNode1, window.source1] = await startLoop('./beat/beatModified/metronome_0.wav', window.context, 0);
+        [window.gainNode2, window.source2] = await startLoop('./beat/beatModified/metronome_1.wav', window.context, 0);
+        [window.gainNode3, window.source3] = await startLoop('./beat/beatModified/metronome_2.wav', window.context, 0);
+        [window.gainNode4, window.source4] = await startLoop('./beat/beatModified/metronome_3.wav', window.context, 1);
+        [window.gainNode5, window.source5] = await startLoop('./beat/beatModified/metronome_4.wav', window.context, 0);
+        [window.gainNode6, window.source6] = await startLoop('./beat/beatModified/metronome_5.wav', window.context, 0);
+        [window.gainNode7, window.source7] = await startLoop('./beat/beatModified/metronome_6.wav', window.context, 0);
+        [window.gainNode8, window.source8] = await startLoop('./beat/beatModified/metronome_7.wav', window.context, 0);
       } else
 
       if(offset == 5){
-        window.gainNode1 = await startLoop('./beat/beatModified/metronome_0.wav', window.context, 0);
-        window.gainNode2 = await startLoop('./beat/beatModified/metronome_1.wav', window.context, 0);
-        window.gainNode3 = await startLoop('./beat/beatModified/metronome_2.wav', window.context, 0);
-        window.gainNode4 = await startLoop('./beat/beatModified/metronome_3.wav', window.context, 0);
-        window.gainNode5 = await startLoop('./beat/beatModified/metronome_4.wav', window.context, 1);
-        window.gainNode6 = await startLoop('./beat/beatModified/metronome_5.wav', window.context, 0);
-        window.gainNode7 = await startLoop('./beat/beatModified/metronome_6.wav', window.context, 0);
-        window.gainNode8 = await startLoop('./beat/beatModified/metronome_7.wav', window.context, 0);
+        [window.gainNode1, window.source1] = await startLoop('./beat/beatModified/metronome_0.wav', window.context, 0);
+        [window.gainNode2, window.source2] = await startLoop('./beat/beatModified/metronome_1.wav', window.context, 0);
+        [window.gainNode3, window.source3] = await startLoop('./beat/beatModified/metronome_2.wav', window.context, 0);
+        [window.gainNode4, window.source4] = await startLoop('./beat/beatModified/metronome_3.wav', window.context, 0);
+        [window.gainNode5, window.source5] = await startLoop('./beat/beatModified/metronome_4.wav', window.context, 1);
+        [window.gainNode6, window.source6] = await startLoop('./beat/beatModified/metronome_5.wav', window.context, 0);
+        [window.gainNode7, window.source7] = await startLoop('./beat/beatModified/metronome_6.wav', window.context, 0);
+        [window.gainNode8, window.source8] = await startLoop('./beat/beatModified/metronome_7.wav', window.context, 0);
       } else
 
       if(offset == 6){
-        window.gainNode1 = await startLoop('./beat/beatModified/metronome_0.wav', window.context, 0);
-        window.gainNode2 = await startLoop('./beat/beatModified/metronome_1.wav', window.context, 0);
-        window.gainNode3 = await startLoop('./beat/beatModified/metronome_2.wav', window.context, 0);
-        window.gainNode4 = await startLoop('./beat/beatModified/metronome_3.wav', window.context, 0);
-        window.gainNode5 = await startLoop('./beat/beatModified/metronome_4.wav', window.context, 0);
-        window.gainNode6 = await startLoop('./beat/beatModified/metronome_5.wav', window.context, 1);
-        window.gainNode7 = await startLoop('./beat/beatModified/metronome_6.wav', window.context, 0);
-        window.gainNode8 = await startLoop('./beat/beatModified/metronome_7.wav', window.context, 0);
+        [window.gainNode1, window.source1] = await startLoop('./beat/beatModified/metronome_0.wav', window.context, 0);
+        [window.gainNode2, window.source2] = await startLoop('./beat/beatModified/metronome_1.wav', window.context, 0);
+        [window.gainNode3, window.source3] = await startLoop('./beat/beatModified/metronome_2.wav', window.context, 0);
+        [window.gainNode4, window.source4] = await startLoop('./beat/beatModified/metronome_3.wav', window.context, 0);
+        [window.gainNode5, window.source5] = await startLoop('./beat/beatModified/metronome_4.wav', window.context, 0);
+        [window.gainNode6, window.source6] = await startLoop('./beat/beatModified/metronome_5.wav', window.context, 1);
+        [window.gainNode7, window.source7] = await startLoop('./beat/beatModified/metronome_6.wav', window.context, 0);
+        [window.gainNode8, window.source8] = await startLoop('./beat/beatModified/metronome_7.wav', window.context, 0);
       } else
 
       if(offset == 7){
-        window.gainNode1 = await startLoop('./beat/beatModified/metronome_0.wav', window.context, 0);
-        window.gainNode2 = await startLoop('./beat/beatModified/metronome_1.wav', window.context, 0);
-        window.gainNode3 = await startLoop('./beat/beatModified/metronome_2.wav', window.context, 0);
-        window.gainNode4 = await startLoop('./beat/beatModified/metronome_3.wav', window.context, 0);
-        window.gainNode5 = await startLoop('./beat/beatModified/metronome_4.wav', window.context, 0);
-        window.gainNode6 = await startLoop('./beat/beatModified/metronome_5.wav', window.context, 0);
-        window.gainNode7 = await startLoop('./beat/beatModified/metronome_6.wav', window.context, 1);
-        window.gainNode8 = await startLoop('./beat/beatModified/metronome_7.wav', window.context, 0);
+        [window.gainNode1, window.source1] = await startLoop('./beat/beatModified/metronome_0.wav', window.context, 0);
+        [window.gainNode2, window.source2] = await startLoop('./beat/beatModified/metronome_1.wav', window.context, 0);
+        [window.gainNode3, window.source3] = await startLoop('./beat/beatModified/metronome_2.wav', window.context, 0);
+        [window.gainNode4, window.source4] = await startLoop('./beat/beatModified/metronome_3.wav', window.context, 0);
+        [window.gainNode5, window.source5] = await startLoop('./beat/beatModified/metronome_4.wav', window.context, 0);
+        [window.gainNode6, window.source6] = await startLoop('./beat/beatModified/metronome_5.wav', window.context, 0);
+        [window.gainNode7, window.source7] = await startLoop('./beat/beatModified/metronome_6.wav', window.context, 1);
+        [window.gainNode8, window.source8] = await startLoop('./beat/beatModified/metronome_7.wav', window.context, 0);
       } else
 
       if(offset == 8){
-        window.gainNode1 = await startLoop('./beat/beatModified/metronome_0.wav', window.context, 0);
-        window.gainNode2 = await startLoop('./beat/beatModified/metronome_1.wav', window.context, 0);
-        window.gainNode3 = await startLoop('./beat/beatModified/metronome_2.wav', window.context, 0);
-        window.gainNode4 = await startLoop('./beat/beatModified/metronome_3.wav', window.context, 0);
-        window.gainNode5 = await startLoop('./beat/beatModified/metronome_4.wav', window.context, 0);
-        window.gainNode6 = await startLoop('./beat/beatModified/metronome_5.wav', window.context, 0);
-        window.gainNode7 = await startLoop('./beat/beatModified/metronome_6.wav', window.context, 0);
-        window.gainNode8 = await startLoop('./beat/beatModified/metronome_7.wav', window.context, 1);
+        [window.gainNode1, window.source1] = await startLoop('./beat/beatModified/metronome_0.wav', window.context, 0);
+        [window.gainNode2, window.source2] = await startLoop('./beat/beatModified/metronome_1.wav', window.context, 0);
+        [window.gainNode3, window.source3] = await startLoop('./beat/beatModified/metronome_2.wav', window.context, 0);
+        [window.gainNode4, window.source4] = await startLoop('./beat/beatModified/metronome_3.wav', window.context, 0);
+        [window.gainNode5, window.source5] = await startLoop('./beat/beatModified/metronome_4.wav', window.context, 0);
+        [window.gainNode6, window.source6] = await startLoop('./beat/beatModified/metronome_5.wav', window.context, 0);
+        [window.gainNode7, window.source7] = await startLoop('./beat/beatModified/metronome_6.wav', window.context, 0);
+        [window.gainNode8, window.source8] = await startLoop('./beat/beatModified/metronome_7.wav', window.context, 1);
       }
     }
 
@@ -261,11 +278,6 @@
 
     }
 
-    const randomInt = (min, max) => Math.floor(Math.random() * (max - min)) + min;
-
-    //Initial offset  
-    var count = randomInt(0, 8);
-    console.log(count)
 
     var instruction1 = {
         type: jsPsychInstructions,
@@ -299,7 +311,15 @@
         document.querySelector('#add').onclick = () => fluidBeat(plus = true, offset = window.count)
         document.querySelector('#subtract').onclick = () => fluidBeat(plus = false, offset = window.count)
 
-        initiateContext(window.count)
+        window.source1.start(3) 
+        window.source2.start(3) 
+        window.source3.start(3) 
+        window.source4.start(3) 
+        window.source5.start(3) 
+        window.source6.start(3) 
+        window.source7.start(3) 
+        window.source8.start(3) 
+        window.sourceBase.start(3) 
       },
       on_finish: function(data){
         data.offset = window.count;
