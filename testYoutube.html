@@ -3,6 +3,7 @@
   <body>
     <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
     <div id="player"></div>
+
     <script>
       // 2. This code loads the IFrame Player API code asynchronously.
       var tag = document.createElement('script');
@@ -18,7 +19,7 @@
         player = new YT.Player('player', {
           height: '390',
           width: '640',
-          videoId: 'Kt-tLuszKBA',
+          videoId: 'A8Mc6cGgdZA',
           playerVars: {
             'playsinline': 1
           },
@@ -32,6 +33,7 @@
       // 4. The API will call this function when the video player is ready.
       function onPlayerReady(event) {
         event.target.playVideo();
+        setTimeout(stopVideo, 500);
       }
 
       // 5. The API calls this function when the player's state changes.
@@ -40,12 +42,13 @@
       var done = false;
       function onPlayerStateChange(event) {
         if (event.data == YT.PlayerState.PLAYING && !done) {
-          setTimeout(stopVideo, 6000);
+          setTimeout(stopVideo, 500);
           done = true;
         }
       }
       function stopVideo() {
         player.stopVideo();
+        player.playVideo();
       }
     </script>
   </body>
