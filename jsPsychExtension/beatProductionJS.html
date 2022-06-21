@@ -43,16 +43,6 @@
       return arr;
     }
 
-    //var gainNode1 = null
-    //var gainNode2 = null
-    //var gainNode3 = null
-    //var gainNode4 = null
-    //var gainNode5 = null
-    //var gainNode6 = null
-    //var gainNode7 = null
-    //var gainNode8 = null
-    //var gainNodeBase = null
-
     function playSound(buffer, context, volume){
 
       window.gainNode = context.createGain();
@@ -63,7 +53,7 @@
       source.connect(window.gainNode);
       window.gainNode.connect(context.destination);
       window.gainNode.gain.value = volume
-      source.start(3);
+      source.start(5);
       return (gainNode)
     }
 
@@ -84,6 +74,8 @@
       let context = null;
       if (context) context.close();
       window.context = new AudioContext();
+
+      window.gainNodeBase = await startLoop('./beat/beatModified/baseSongs/habstrack_clownsModified.mp3', window.context, 1);
 
       if(offset == 1){
         window.gainNode1 = await startLoop('./beat/beatModified/metronome_0.wav', window.context, 1);
@@ -172,9 +164,6 @@
         window.gainNode7 = await startLoop('./beat/beatModified/metronome_6.wav', window.context, 0);
         window.gainNode8 = await startLoop('./beat/beatModified/metronome_7.wav', window.context, 1);
       }
-
-        window.gainNodeBase = await startLoop('./beat/beatModified/baseSongs/habstrack_clownsModified.mp3', window.context, 1);
-
     }
 
     Number.prototype.mod = function (n) {
