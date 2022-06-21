@@ -311,15 +311,12 @@
         document.querySelector('#add').onclick = () => fluidBeat(plus = true, offset = window.count)
         document.querySelector('#subtract').onclick = () => fluidBeat(plus = false, offset = window.count)
 
-        window.source1.start(3) 
-        window.source2.start(3) 
-        window.source3.start(3) 
-        window.source4.start(3) 
-        window.source5.start(3) 
-        window.source6.start(3) 
-        window.source7.start(3) 
-        window.source8.start(3) 
-        window.sourceBase.start(3) 
+        var allSources = [window.source1, window.source2, window.source3, window.source4, window.source5, window.source6, window.source7, window.source8, window.sourceBase]
+        for(i in allSources) {
+          console.log(allSources[i] == null)
+          allSources[i].start(3)
+        }
+
       },
       on_finish: function(data){
         data.offset = window.count;
