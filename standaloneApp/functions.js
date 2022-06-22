@@ -100,7 +100,7 @@ function handleMotionEvent(event) {
       var ac = autoCorrelate(windowX)
       var freq = findFrequency(ac, 16)
       document.getElementById("showFreq").innerHTML = freq
-      document.getElementById("showFreq2").innerHTML = windowX
+      document.getElementById("showFreq2").innerHTML = windowX.length
     }
 
 }
