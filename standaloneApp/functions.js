@@ -95,6 +95,13 @@ function handleMotionEvent(event) {
     
     updateChart(x, y, z)
 
+    if(window.xhist.length >= 32){
+      var windowX = window.xhist.slice(-32);
+      var ac = autoCorrelate(windowX)
+      var freq = findFrequency(ac)
+      document.getElementById("showFreq").innerHTML = freq
+    }
+
 }
 
 //Handle audio
@@ -129,3 +136,5 @@ function startCollection(){
     alert("Your browser may not support accelerometer reading. Details of error: " + e)
   }
 }
+
+
