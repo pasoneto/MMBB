@@ -26,14 +26,14 @@ def createBeat(bpm, shiftN, beat, name):
     print(len(soundOneBar))
 
     bar = AudioSegment.empty()
-    nBars = 1
+    nBars = 10
     for i in range(nBars):
         bar = bar + soundOneBar
 
     bar.export(f"./{name}_{shiftN}.wav", format="wav")
 
 beat = AudioSegment.from_wav("./beatUnit.wav")
-bpm = 75.138
+bpm = 75.1526
 
 createBeat(bpm, 0, beat, "metronome")
 createBeat(bpm, 1, beat, "metronome")

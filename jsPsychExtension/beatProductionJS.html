@@ -66,7 +66,7 @@
 
       const source = context.createBufferSource();
       source.buffer = buffer
-      source.loop = true;
+      source.loop = false;
       source.connect(window.gainNode);
       window.gainNode.connect(context.destination);
       window.gainNode.gain.value = volume

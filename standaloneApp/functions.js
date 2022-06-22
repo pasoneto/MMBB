@@ -94,9 +94,9 @@ function handleMotionEvent(event) {
     audiohist.push(audio.currentTime);
     
     updateChart(x, y, z)
-
-    if(window.xhist.length >= 32){
-      var windowX = window.xhist.slice(-32);
+    
+    if(xhist.length >= 32){
+      var windowX = xhist.slice(-32);
       var ac = autoCorrelate(windowX)
       var freq = findFrequency(ac)
       alert(freq)
