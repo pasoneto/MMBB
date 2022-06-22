@@ -90,6 +90,7 @@ function handleMotionEvent(event) {
     xhist.push(x);
     yhist.push(y);
     zhist.push(z);
+    console.log()
     audiohist.push(audio.currentTime);
     
     updateChart(x, y, z)
