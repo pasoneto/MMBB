@@ -99,6 +99,7 @@ function handleMotionEvent(event) {
       var windowX = window.xhist.slice(-32);
       var ac = autoCorrelate(windowX)
       var freq = findFrequency(ac)
+      alert(freq)
       document.getElementById("showFreq").innerHTML = freq
     }
 
