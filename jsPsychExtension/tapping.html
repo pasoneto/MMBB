@@ -122,12 +122,11 @@
         }
     }
 
-    var randomElPesebre = './'
     var trialTapping3 = {
         type: jsPsychAudioButtonResponse,
         choices: ['Tap here'],
-        stimulus: randomElPesebre,
-        trial_duration: 5000,
+        stimulus: './songs/elPesebre.mp3',
+        trial_duration: 10000,
         response_ends_trial: false,
         on_start: function(trial) {
             document.addEventListener("mousedown", change);
