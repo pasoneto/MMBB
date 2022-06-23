@@ -57,9 +57,9 @@
       type: jsPsychSurveyText,
       preamble: 'Song 1<br><div style="text-shadow: 0px 0px 0px #000000;"><a href="https://www.youtube.com" target="_blank">Open YouTube in new tab</a></div>',
       questions: [
-        {prompt: '1. Name and artist (optional)', required: false},
-        {prompt: '1. Youtube link (required)', required: true},
-        {prompt: '1. Spotify link (optional)', required: false},
+        {prompt: '1. Name and artist', required: false},
+        {prompt: '1. Youtube link*', required: true},
+        {prompt: '1. Spotify link', required: false},
       ],
       on_load: function(){
         document.getElementById("jspsych-survey-text-next").style.marginTop = '50px'
@@ -70,8 +70,8 @@
       type: jsPsychSurveyText,
       preamble: 'Song 2<br><div style="text-shadow: 0px 0px 0px #000000;"><a href="https://www.youtube.com" target="_blank">Open YouTube in new tab</a></div>',
       questions: [
-        {prompt: '2. Song name', required: false},
-        {prompt: '2. Song youtube link', required: true},
+        {prompt: '2. Name and artist', required: false},
+        {prompt: '2. Youtube link*', required: true},
         {prompt: '2. Song spotify link', required: false},
       ],
       on_load: function(){
@@ -83,9 +83,9 @@
       type: jsPsychSurveyText,
       preamble: 'Song 3<br><div style="text-shadow: 0px 0px 0px #000000;"><a href="https://www.youtube.com" target="_blank">Open YouTube in new tab</a></div>',
       questions: [
-        {prompt: '3. Song name', required: false},
-        {prompt: '3. Song youtube link', required: true},
-        {prompt: '3. Song spotify link', required: false},
+        {prompt: '3. Name and artist', required: false},
+        {prompt: '3. Youtube link*', required: true},
+        {prompt: '3. Spotify link', required: false},
       ],
       on_load: function(){
         document.getElementById("jspsych-survey-text-next").style.marginTop = '50px'
