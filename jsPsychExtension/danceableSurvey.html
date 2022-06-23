@@ -247,7 +247,7 @@
         choices: ['Tap here'],
         stimulus: './songs/beatLags.wav',
         response_ends_trial: false,
-        trial_duration: 12000,
+        trial_duration: 13000,
     }
 
     function change(time, color) {
@@ -270,14 +270,14 @@
         choices: ['Tap here'],
         stimulus: './songs/silence.wav',
         response_ends_trial: false,
-        trial_duration: 12000,
+        trial_duration: 13000,
         on_start: function(trial) {
             var times = [2000, 3500, 4500, 6000, 7800, 9500]
             var colors = ["red", "blue", "green", "purple", "yellow", "brown"]
             for(k in times){
               change(times[k], colors[k])
             }
-            change(12000, "#808080")
+            change(13000, "#808080")
         },
     }
 
