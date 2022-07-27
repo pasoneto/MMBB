@@ -312,22 +312,10 @@
         document.querySelector('#subtract').onclick = () => fluidBeat(plus = false, offset = window.count)
 
         var allSources = [window.source1, window.source2, window.source3, window.source4, window.source5, window.source6, window.source7, window.source8, window.sourceBase]
-        var allLoaded = allSources.every(i => i !== null)
-        console.log(allLoaded)
-        while (allLoaded == false) {
-           console.log("Not loaded. Run again")
-           var allLoaded = allSources.every(i => i !== null)
-           if (allLoaded == true) {
-              break;
-           }
+        for(i in allSources) {
+          console.log(allSources[i] == null)
+          allSources[i].start(3)
         }
-       console.log('All loaded');
-       for(i in allSources) {
-         console.log(allSources[i] == null)
-         allSources[i].start(3)
-       }
-
-
       },
       on_finish: function(data){
         data.offset = window.count;

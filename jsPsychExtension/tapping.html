@@ -139,7 +139,8 @@
     var showBPM = {
       type: jsPsychHtmlButtonResponse,
       prompt: '',
-      choices: ["Continue"],
+      choices: [],
+      trial_duration: 3000,
       stimulus: '',
       on_start: function(trial){
           var allData = jsPsych.data.get().values()
