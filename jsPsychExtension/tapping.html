@@ -55,13 +55,12 @@
     var instruction1 = {
         type: jsPsychInstructions,
         pages: [
-        '<p style="font-size:6vw;">Welcome MMBB batery.</p>',
+        '<p style="font-size:6vw;">Welcome MMBB battery.</p>',
         '<p style="font-size:6vw;">Tapping task</p>',
-        '<p style="font-size:6vw;">Tap on the pad at the speed that is the most natural for you</p>',
-        '<p style="font-size:6vw;">Neither too fast nor too slow</p>',
-        '<p style="font-size:6vw;">Please tap on the pad using whichever hand you are most comfortable with</p>',
+        '<p style="font-size:6vw;">In this task, we will ask you to tap on a button</p>',
+        '<p style="font-size:6vw;">Tap on the button with your prefered hand, at the speed that is most natural for you</p>',
         '<p style="font-size:6vw;">Try to maintain the tapping speed as constant as possible until the task ends.</p>',
-        '<p style="font-size:6vw;">Click next when you are ready to begin</p>',
+        '<p style="font-size:6vw;">Are you ready? If yes, click next to begin</p>',
         ],
         button_label_next: "Next",
         button_label_previous: "Previous",
@@ -71,10 +70,9 @@
     var instruction2 = {
         type: jsPsychInstructions,
         pages: [
-        '<p style="font-size:6vw;">In this task you will hear a beat</p>',
+        '<p style="font-size:6vw;">In the next task, you will hear a beat</p>',
         '<p style="font-size:6vw;">Tap in synchrony to the beat</p>',
-        '<p style="font-size:6vw;">using whichever hand you are most comfortable with</p>',
-        '<p style="font-size:6vw;">Click next when you are ready to begin</p>',
+        '<p style="font-size:6vw;">Are you ready? If yes, click next to begin</p>',
         ],
         button_label_next: "Next",
         button_label_previous: "Previous",
@@ -84,10 +82,9 @@
     var instruction3 = {
         type: jsPsychInstructions,
         pages: [
-        '<p style="font-size:6vw;">In this task you will hear a musical piece</p>',
+        '<p style="font-size:6vw;">In the next task you will hear a musical piece</p>',
         '<p style="font-size:6vw;">Please tap in synchrony to the beat of the music</p>',
-        '<p style="font-size:6vw;">using whichever hand you are most comfortable with</p>',
-        '<p style="font-size:6vw;">Click next when you are ready to begin</p>',
+        '<p style="font-size:6vw;">Are you ready? If yes, click next to begin</p>',
         ],
         button_label_next: "Next",
         button_label_previous: "Previous",
@@ -100,12 +97,12 @@
         stimulus: './songs/silence.wav',
         trial_duration: 5000,
         response_ends_trial: false,
-        on_start: function(trial) {
-            document.addEventListener("mousedown", change);
-        },
-        on_finish: function(trial) {
-            document.removeEventListener("mousedown", change);
-        }
+        //on_start: function(trial) {
+            //document.addEventListener("mousedown", change);
+        //},
+        //on_finish: function(trial) {
+            //document.removeEventListener("mousedown", change);
+        //}
     }
 
     var trialTapping2 = {
@@ -114,12 +111,12 @@
         stimulus: './songs/metronome_clave_hemiola.mp3',
         trial_duration: 5000,
         response_ends_trial: false,
-        on_start: function(trial) {
-            document.addEventListener("mousedown", change);
-        },
-        on_finish: function(trial) {
-            document.removeEventListener("mousedown", change);
-        }
+        //on_start: function(trial) {
+            //document.addEventListener("mousedown", change);
+        //},
+        //on_finish: function(trial) {
+            //document.removeEventListener("mousedown", change);
+        //}
     }
 
     var trialTapping3 = {
@@ -128,30 +125,39 @@
         stimulus: './songs/elPesebre.mp3',
         trial_duration: 10000,
         response_ends_trial: false,
-        on_start: function(trial) {
-            document.addEventListener("mousedown", change);
-        },
-        on_finish: function(trial) {
-            document.removeEventListener("mousedown", change);
-        }
+        //on_start: function(trial) {
+            //document.addEventListener("mousedown", change);
+        //},
+        //on_finish: function(trial) {
+            //document.removeEventListener("mousedown", change);
+        //}
     }
 
-    var showBPM = {
+    var showBPM1 = {
       type: jsPsychHtmlButtonResponse,
-      prompt: '',
+      prompt: 'End of task 1',
       choices: [],
       trial_duration: 3000,
       stimulus: '',
-      on_start: function(trial){
-          var allData = jsPsych.data.get().values()
-          var lastIndex = allData.length - 1
-          var t = allData[lastIndex].rt;
-          var bpm = bpmEstimator(t)
-          trial.stimulus = '<p style="font-size:6vw;">Your overall BPM was:<br>' + Math.round(bpm)  + '</p>'
-      }
     };
 
-    jsPsych.run([instruction1, trialTapping1, showBPM, instruction2, trialTapping2, showBPM, instruction3, trialTapping3, showBPM]);
+    var showBPM2 = {
+      type: jsPsychHtmlButtonResponse,
+      prompt: 'End of task 2',
+      choices: [],
+      trial_duration: 3000,
+      stimulus: '',
+    };
+
+    var showBPM3 = {
+      type: jsPsychHtmlButtonResponse,
+      prompt: 'End of task 3',
+      choices: [],
+      trial_duration: 3000,
+      stimulus: '',
+    };
+
+    jsPsych.run([instruction1, trialTapping1, showBPM1, instruction2, trialTapping2, showBPM2, instruction3, trialTapping3, showBPM3]);
 
  </script>
 </html>

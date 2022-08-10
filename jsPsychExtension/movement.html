@@ -100,12 +100,12 @@
     }
 
     var prompt_songs = function(listSongs){
-          html = "<div id='songName'>Choose a song below</div>"
+          html = "<div id='songName'>Choose a song below and click nex when you have made your choice</div>"
           for(i in listSongs){
             var songPath = listSongs[i].src
             var songName = songNames[i]
             console.log(songName)
-            html += "<audio></audio> <button id='buttonSongItem' name='buttonMusic' onclick=" + "othersStop(songs);PlaySound(songs[" + i + "]);changeColor(this);setNextSong('" + songPath + "');displaySongName('" + songName + "')><img id='coverImage' src="+albumCovers[i]+"></button>"
+            html += "<audio></audio> <button id='buttonSongItem' name='buttonMusic' onclick=" + "othersStop(songs);PlaySound(songs[" + i + "]);changeColor(this);setNextSong('" + songPath + "');><img id='coverImage' src="+albumCovers[i]+"></button>"
           }
           html += "</div>"
           return(html)
@@ -135,12 +135,27 @@
       },
     };
 
+    var instruction0 = {
+        type: jsPsychInstructions,
+        pages: [
+        '<p style="font-size:7vw;">Welcome MMBB battery.</p>',
+        '<p style="font-size:7vw;">Movement task</p>',
+        '<p style="font-size:7vw;">In the following tasks, you will be asked to perform body movements in different situations</p>',
+        '<p style="font-size:7vw;">Between each task, you will have a chance to take breaks</p>',
+        '<p style="font-size:7vw;">Your body movements will be recorded using the accelerometers of your phone</p>',
+        ],
+        button_label_next: "Next",
+        button_label_previous: "Previous",
+        show_clickable_nav: true
+    }
+    
+    //'<p style="font-size:7vw;">Feel free to take breaks between the tasks to drink or have a rest</p>',
+
     var instruction1 = {
         type: jsPsychInstructions,
         pages: [
-        '<p style="font-size:7vw;">Welcome MMBB batery.</p>',
-        '<p style="font-size:7vw;">Movement task</p>',
-        '<p style="font-size:7vw;">Please walk at a comfortable speed, like when you are walking along a street</p>',
+        '<p style="font-size:7vw;">In the first task, you will be asked to walk at a comfortable speed</p>',
+        '<p style="font-size:6vw;">Try to find a space where you can walk at the speed that is most natural for you</p>',
         '<p style="font-size:7vw;">When you click next, you will hear a voice countdown when the task starts and when it ends</p>',
         ],
         button_label_next: "Next",
@@ -176,9 +191,10 @@
     var instruction4 = {
         type: jsPsychInstructions,
         pages: [
-        '<p style="font-size:7vw;">Now we will ask you  to choose a song</p>',
-        '<p style="font-size:7vw;">After that, you are again asked to move to two musical pieces in a way that feels natural to you</p>',
+        '<p style="font-size:7vw;">Now we will ask you to choose a song that you would dance to</p>',
+        '<p style="font-size:7vw;">Move to the song in way that feels natural to you</p>',
         '<p style="font-size:7vw;">Feel free to dance to the music if you want to</p>',
+        '<p style="font-size:7vw;">Are you ready? When you click next, you will be asked to choose the song</p>',
         ],
         button_label_next: "Next",
         button_label_previous: "Previous",
