@@ -163,7 +163,25 @@
         labels: ['<p style="font-size:3vw">Not at all</p>', '<p style="font-size:3vw">Very much</p>']
     };
 
-    jsPsych.run([participantID, instruction1, closeness1, inter, closeness2, inter, closeness2, inter, closeness2, trialSurvey, trialLikert, songRating1, songRating2]);
+    var feeling1 = {
+        type: jsPsychHtmlSliderResponse,
+        stimulus: `<div style="width:500px;">
+            <p style="font-size:3vw;">What is your current mood?</p>
+            </div>`,
+        require_movement: true,
+        labels: ['<p style="font-size:3vw">Very bad</p>', '<p style="font-size:3vw">Very good</p>']
+    };
+
+    var feeling2 = {
+        type: jsPsychHtmlSliderResponse,
+        stimulus: `<div style="width:500px;">
+            <p style="font-size:3vw;">What is your current mood?</p>
+            </div>`,
+        require_movement: true,
+        labels: ['<p style="font-size:3vw">Very bad</p>', '<p style="font-size:3vw">Very good</p>']
+    };
+
+    jsPsych.run([participantID, instruction1, closeness1, feeling1, inter, closeness2, feeling2, inter, closeness2, inter, closeness2, trialSurvey, trialLikert, songRating1, songRating2]);
     //jsPsych.run([instruction1, closeness, trialLikert, trialSurvey]);
 
  </script>
