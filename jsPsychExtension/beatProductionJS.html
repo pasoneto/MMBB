@@ -7,6 +7,7 @@
     <script src="https://unpkg.com/jspsych@7.1.2"></script>
     <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-audio-keyboard-response@1.1.0"></script>
+    <script src="./customFunctions/beatProductionFunctions.js"> </script>
     <script src="./jspsych/dist/plugin-audio-button-response.js"> </script>
     <script src="./jspsych/dist/plugin-html-button-response.js"> </script>
     <script src="./jspsych/dist/plugin-html-slider-response.js"> </script>
@@ -22,6 +23,7 @@
     <script src="./jspsych/dist/plugin-survey-multi-choice.js"> </script>
     <script src="./jspsych/dist/plugin-initialize-microphone.js"> </script>
     <script src="./jspsych/dist/plugin-html-audio-response.js"> </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="./jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
@@ -36,249 +38,6 @@
       },
     });
 
-    const randomInt = (min, max) => Math.floor(Math.random() * (max - min)) + min;
-
-    //Initial offset  
-    var count = randomInt(1, 8);
-
-    window.count
-    var source1 = null
-    var source2 = null
-    var source3 = null
-    var source4 = null
-    var source5 = null
-    var source6 = null
-    var source7 = null
-    var source8 = null
-    var sourceBase = null
-
-    initiateContext(window.count)
-    //Beat alignment code
-    function arrayRotate(arr, count) {
-      count -= arr.length * Math.floor(count / arr.length);
-      arr.push.apply(arr, arr.splice(0, count));
-      return arr;
-    }
-
-    function playSound(buffer, context, volume){
-
-      window.gainNode = context.createGain();
-
-      const source = context.createBufferSource();
-      source.buffer = buffer
-      source.loop = false;
-      source.connect(window.gainNode);
-      window.gainNode.connect(context.destination);
-      window.gainNode.gain.value = volume
-      //source.start(5);
-      return [gainNode, source]
-    }
-
-    async function startLoop(url, context, volume){
-      
-      var buffer = await fetch(url)
-        .then(res => res.arrayBuffer())
-        .then(arrayBuffer => context.decodeAudioData(arrayBuffer));
-       
-      var [gainNode, source] = playSound(buffer, context, volume);
-      return [gainNode, source]
-    }
-
-    async function initiateContext(offset){
-
-      console.log(offset) 
-
-      let context = null;
-      if (context) context.close();
-      window.context = new AudioContext();
-
-      [window.gainNodeBase, window.sourceBase] = await startLoop('./beat/beatModified/baseSongs/habstrack_clownsModified.mp3', window.context, 1);
-
-      if(offset == 1){
-        [window.gainNode1, window.source1] = await startLoop('./beat/beatModified/metronome_0.wav', window.context, 1);
-        [window.gainNode2, window.source2] = await startLoop('./beat/beatModified/metronome_1.wav', window.context, 0);
-        [window.gainNode3, window.source3] = await startLoop('./beat/beatModified/metronome_2.wav', window.context, 0);
-        [window.gainNode4, window.source4] = await startLoop('./beat/beatModified/metronome_3.wav', window.context, 0);
-        [window.gainNode5, window.source5] = await startLoop('./beat/beatModified/metronome_4.wav', window.context, 0);
-        [window.gainNode6, window.source6] = await startLoop('./beat/beatModified/metronome_5.wav', window.context, 0);
-        [window.gainNode7, window.source7] = await startLoop('./beat/beatModified/metronome_6.wav', window.context, 0);
-        [window.gainNode8, window.source8] = await startLoop('./beat/beatModified/metronome_7.wav', window.context, 0);
-      } else
-
-      if(offset == 2){
-        [window.gainNode1, window.source1] = await startLoop('./beat/beatModified/metronome_0.wav', window.context, 0);
-        [window.gainNode2, window.source2] = await startLoop('./beat/beatModified/metronome_1.wav', window.context, 1);
-        [window.gainNode3, window.source3] = await startLoop('./beat/beatModified/metronome_2.wav', window.context, 0);
-        [window.gainNode4, window.source4] = await startLoop('./beat/beatModified/metronome_3.wav', window.context, 0);
-        [window.gainNode5, window.source5] = await startLoop('./beat/beatModified/metronome_4.wav', window.context, 0);
-        [window.gainNode6, window.source6] = await startLoop('./beat/beatModified/metronome_5.wav', window.context, 0);
-        [window.gainNode7, window.source7] = await startLoop('./beat/beatModified/metronome_6.wav', window.context, 0);
-        [window.gainNode8, window.source8] = await startLoop('./beat/beatModified/metronome_7.wav', window.context, 0);
-      } else
-
-      if(offset == 3){
-        [window.gainNode1, window.source1] = await startLoop('./beat/beatModified/metronome_0.wav', window.context, 0);
-        [window.gainNode2, window.source2] = await startLoop('./beat/beatModified/metronome_1.wav', window.context, 0);
-        [window.gainNode3, window.source3] = await startLoop('./beat/beatModified/metronome_2.wav', window.context, 1);
-        [window.gainNode4, window.source4] = await startLoop('./beat/beatModified/metronome_3.wav', window.context, 0);
-        [window.gainNode5, window.source5] = await startLoop('./beat/beatModified/metronome_4.wav', window.context, 0);
-        [window.gainNode6, window.source6] = await startLoop('./beat/beatModified/metronome_5.wav', window.context, 0);
-        [window.gainNode7, window.source7] = await startLoop('./beat/beatModified/metronome_6.wav', window.context, 0);
-        [window.gainNode8, window.source8] = await startLoop('./beat/beatModified/metronome_7.wav', window.context, 0);
-      } else
-
-      if(offset == 4){
-        [window.gainNode1, window.source1] = await startLoop('./beat/beatModified/metronome_0.wav', window.context, 0);
-        [window.gainNode2, window.source2] = await startLoop('./beat/beatModified/metronome_1.wav', window.context, 0);
-        [window.gainNode3, window.source3] = await startLoop('./beat/beatModified/metronome_2.wav', window.context, 0);
-        [window.gainNode4, window.source4] = await startLoop('./beat/beatModified/metronome_3.wav', window.context, 1);
-        [window.gainNode5, window.source5] = await startLoop('./beat/beatModified/metronome_4.wav', window.context, 0);
-        [window.gainNode6, window.source6] = await startLoop('./beat/beatModified/metronome_5.wav', window.context, 0);
-        [window.gainNode7, window.source7] = await startLoop('./beat/beatModified/metronome_6.wav', window.context, 0);
-        [window.gainNode8, window.source8] = await startLoop('./beat/beatModified/metronome_7.wav', window.context, 0);
-      } else
-
-      if(offset == 5){
-        [window.gainNode1, window.source1] = await startLoop('./beat/beatModified/metronome_0.wav', window.context, 0);
-        [window.gainNode2, window.source2] = await startLoop('./beat/beatModified/metronome_1.wav', window.context, 0);
-        [window.gainNode3, window.source3] = await startLoop('./beat/beatModified/metronome_2.wav', window.context, 0);
-        [window.gainNode4, window.source4] = await startLoop('./beat/beatModified/metronome_3.wav', window.context, 0);
-        [window.gainNode5, window.source5] = await startLoop('./beat/beatModified/metronome_4.wav', window.context, 1);
-        [window.gainNode6, window.source6] = await startLoop('./beat/beatModified/metronome_5.wav', window.context, 0);
-        [window.gainNode7, window.source7] = await startLoop('./beat/beatModified/metronome_6.wav', window.context, 0);
-        [window.gainNode8, window.source8] = await startLoop('./beat/beatModified/metronome_7.wav', window.context, 0);
-      } else
-
-      if(offset == 6){
-        [window.gainNode1, window.source1] = await startLoop('./beat/beatModified/metronome_0.wav', window.context, 0);
-        [window.gainNode2, window.source2] = await startLoop('./beat/beatModified/metronome_1.wav', window.context, 0);
-        [window.gainNode3, window.source3] = await startLoop('./beat/beatModified/metronome_2.wav', window.context, 0);
-        [window.gainNode4, window.source4] = await startLoop('./beat/beatModified/metronome_3.wav', window.context, 0);
-        [window.gainNode5, window.source5] = await startLoop('./beat/beatModified/metronome_4.wav', window.context, 0);
-        [window.gainNode6, window.source6] = await startLoop('./beat/beatModified/metronome_5.wav', window.context, 1);
-        [window.gainNode7, window.source7] = await startLoop('./beat/beatModified/metronome_6.wav', window.context, 0);
-        [window.gainNode8, window.source8] = await startLoop('./beat/beatModified/metronome_7.wav', window.context, 0);
-      } else
-
-      if(offset == 7){
-        [window.gainNode1, window.source1] = await startLoop('./beat/beatModified/metronome_0.wav', window.context, 0);
-        [window.gainNode2, window.source2] = await startLoop('./beat/beatModified/metronome_1.wav', window.context, 0);
-        [window.gainNode3, window.source3] = await startLoop('./beat/beatModified/metronome_2.wav', window.context, 0);
-        [window.gainNode4, window.source4] = await startLoop('./beat/beatModified/metronome_3.wav', window.context, 0);
-        [window.gainNode5, window.source5] = await startLoop('./beat/beatModified/metronome_4.wav', window.context, 0);
-        [window.gainNode6, window.source6] = await startLoop('./beat/beatModified/metronome_5.wav', window.context, 0);
-        [window.gainNode7, window.source7] = await startLoop('./beat/beatModified/metronome_6.wav', window.context, 1);
-        [window.gainNode8, window.source8] = await startLoop('./beat/beatModified/metronome_7.wav', window.context, 0);
-      } else
-
-      if(offset == 8){
-        [window.gainNode1, window.source1] = await startLoop('./beat/beatModified/metronome_0.wav', window.context, 0);
-        [window.gainNode2, window.source2] = await startLoop('./beat/beatModified/metronome_1.wav', window.context, 0);
-        [window.gainNode3, window.source3] = await startLoop('./beat/beatModified/metronome_2.wav', window.context, 0);
-        [window.gainNode4, window.source4] = await startLoop('./beat/beatModified/metronome_3.wav', window.context, 0);
-        [window.gainNode5, window.source5] = await startLoop('./beat/beatModified/metronome_4.wav', window.context, 0);
-        [window.gainNode6, window.source6] = await startLoop('./beat/beatModified/metronome_5.wav', window.context, 0);
-        [window.gainNode7, window.source7] = await startLoop('./beat/beatModified/metronome_6.wav', window.context, 0);
-        [window.gainNode8, window.source8] = await startLoop('./beat/beatModified/metronome_7.wav', window.context, 1);
-      }
-    }
-
-    Number.prototype.mod = function (n) {
-      return ((this % n) + n) % n;
-    };
-
-    function shift(plus = false){
-      if(plus == true){
-        window.count = (window.count+1).mod(8)
-      } else {
-        window.count = (window.count-1).mod(8)
-      }
-    }
-
-    function fluidBeat(plus, offset){
-
-      shift(plus) 
-      var offset = window.count
-     
-      if(offset == 0){
-        window.gainNode1.gain.value = 1
-        window.gainNode2.gain.value = 0
-        window.gainNode3.gain.value = 0
-        window.gainNode4.gain.value = 0
-        window.gainNode5.gain.value = 0
-        window.gainNode6.gain.value = 0
-        window.gainNode7.gain.value = 0
-        window.gainNode8.gain.value = 0
-      } else if(offset == 1){
-        window.gainNode1.gain.value = 0
-        window.gainNode2.gain.value = 1
-        window.gainNode3.gain.value = 0
-        window.gainNode4.gain.value = 0
-        window.gainNode5.gain.value = 0
-        window.gainNode6.gain.value = 0
-        window.gainNode7.gain.value = 0
-        window.gainNode8.gain.value = 0
-      } else if(offset == 2){
-        window.gainNode1.gain.value = 0
-        window.gainNode2.gain.value = 0
-        window.gainNode3.gain.value = 1
-        window.gainNode4.gain.value = 0
-        window.gainNode5.gain.value = 0
-        window.gainNode6.gain.value = 0
-        window.gainNode7.gain.value = 0
-        window.gainNode8.gain.value = 0
-      } else if(offset == 3){
-        window.gainNode1.gain.value = 0
-        window.gainNode2.gain.value = 0
-        window.gainNode3.gain.value = 0
-        window.gainNode4.gain.value = 1
-        window.gainNode5.gain.value = 0
-        window.gainNode6.gain.value = 0
-        window.gainNode7.gain.value = 0
-        window.gainNode8.gain.value = 0
-      } else if(offset == 4){
-        window.gainNode1.gain.value = 0
-        window.gainNode2.gain.value = 0
-        window.gainNode3.gain.value = 0
-        window.gainNode4.gain.value = 0
-        window.gainNode5.gain.value = 1
-        window.gainNode6.gain.value = 0
-        window.gainNode7.gain.value = 0
-        window.gainNode8.gain.value = 0
-      } else if(offset == 5){
-        window.gainNode1.gain.value = 0
-        window.gainNode2.gain.value = 0
-        window.gainNode3.gain.value = 0
-        window.gainNode4.gain.value = 0
-        window.gainNode5.gain.value = 0
-        window.gainNode6.gain.value = 1
-        window.gainNode7.gain.value = 0
-        window.gainNode8.gain.value = 0
-      } else if(offset == 6){
-        window.gainNode1.gain.value = 0
-        window.gainNode2.gain.value = 0
-        window.gainNode3.gain.value = 0
-        window.gainNode4.gain.value = 0
-        window.gainNode5.gain.value = 0
-        window.gainNode6.gain.value = 0
-        window.gainNode7.gain.value = 1
-        window.gainNode8.gain.value = 0
-      } else if(offset == 7){
-        window.gainNode1.gain.value = 0
-        window.gainNode2.gain.value = 0
-        window.gainNode3.gain.value = 0
-        window.gainNode4.gain.value = 0
-        window.gainNode5.gain.value = 0
-        window.gainNode6.gain.value = 0
-        window.gainNode7.gain.value = 0
-        window.gainNode8.gain.value = 1
-      } 
-
-      window.gainNodeBase.gain.value = 1
-
-    }
-
-
     var instruction1 = {
         type: jsPsychInstructions,
         pages: [
@@ -289,25 +48,37 @@
         show_clickable_nav: true
     }
 
+    var instruction2 = {
+        type: jsPsychInstructions,
+        pages: [
+        '<p style="font-size:7vw;">Welcome!</p>',
+        '<p style="font-size:7vw;">In this task, you will hear a song and a click</p>',
+        '<p style="font-size:7vw;">The song and the click may or may not be aligned to each other</p>',
+        '<p style="font-size:7vw;">Your task is to adjust the click until you think it is well aligned to the song</p>',
+        '<p style="font-size:7vw;">Click next when you are ready to begin</p>',
+        ],
+        button_label_next: "Next",
+        button_label_previous: "Previous",
+        show_clickable_nav: true
+    }
+
+    //Load songs and beats for given trial 
+    var songBaseURL1 = './songs/beatProductionAudio/beatModified/baseSongs/habstrack_clowns/habstrack_clownsModified.mp3'
+    var beatsURL1 = './songs/beatProductionAudio/beatModified/habstrackBeats'
+    var loadTrial1 = generateContextTrial(songBaseURL1, beatsURL1)
+
+    //Load songs and beats for given trial 
+    var songBaseURL2 = './songs/beatProductionAudio/beatModified/baseSongs/honeySuckle/honeysuckleRoseModified.mp3'
+    var beatsURL2 = './songs/beatProductionAudio/beatModified/honeysuckleBeats'
+    var loadTrial2 = generateContextTrial(songBaseURL2, beatsURL2)
+
     var trialBeat = {
       type: jsPsychHtmlButtonResponse,
-      stimulus: '<p style="margin: 0px; height: 30px">Adjust the beat</p><button style="width: 25vw; height: 5vh; margin-bottom: 10px" type="button" id="subtract">-</button><button type="button" style="width: 25vw;height: 5vh; margin-bottom: 10px" id="add">+</button>',
+      stimulus: '<p style="margin: 0px; height: 30px">Adjust the beat</p><button style="width: 25vw; height: 5vh; margin-bottom: 10px" type="button" id="subtract"><i class="fa fa-arrow-left" aria-hidden="true"></i></button><button type="button" style="width: 25vw;height: 5vh; margin-bottom: 10px" id="add"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>',
       choices: ['Continue'],
       prompt: "",
       on_load: function(){
         
-        var gainNode1 = null
-        var gainNode2 = null
-        var gainNode3 = null
-        var gainNode4 = null
-        var gainNode5 = null
-        var gainNode6 = null
-        var gainNode7 = null
-        var gainNode8 = null
-        var gainNodeBase = null
-            
-        var context = null;
-
         document.querySelector('#add').onclick = () => fluidBeat(plus = true, offset = window.count)
         document.querySelector('#subtract').onclick = () => fluidBeat(plus = false, offset = window.count)
 
@@ -319,10 +90,14 @@
       },
       on_finish: function(data){
         data.offset = window.count;
+        var allSources = [window.source1, window.source2, window.source3, window.source4, window.source5, window.source6, window.source7, window.source8, window.sourceBase]
+        for(i in allSources) {
+          allSources[i].stop()
+        }
       }
     };
 
-    jsPsych.run([instruction1, trialBeat]);
+    jsPsych.run([instruction1, instruction2, loadTrial1, trialBeat, loadTrial2, trialBeat]);
 
  </script>
 </html>

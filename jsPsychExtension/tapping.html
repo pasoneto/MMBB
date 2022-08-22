@@ -24,6 +24,9 @@
 
   </head>
   <body></body>
+  <style>
+
+  </style>
   <script>
 
     function change() {
@@ -55,7 +58,7 @@
     var instruction1 = {
         type: jsPsychInstructions,
         pages: [
-        '<p style="font-size:6vw;">Welcome MMBB battery.</p>',
+        '<p style="font-size:6vw;">Welcome MMBB battery</p>',
         '<p style="font-size:6vw;">Tapping task</p>',
         '<p style="font-size:6vw;">In this task, we will ask you to tap on a button</p>',
         '<p style="font-size:6vw;">Tap on the button with your prefered hand, at the speed that is most natural for you</p>',
@@ -97,9 +100,9 @@
         stimulus: './songs/silence.wav',
         trial_duration: 5000,
         response_ends_trial: false,
-        //on_start: function(trial) {
+        on_start: function(trial) {
             //document.addEventListener("mousedown", change);
-        //},
+        },
         //on_finish: function(trial) {
             //document.removeEventListener("mousedown", change);
         //}
@@ -111,9 +114,10 @@
         stimulus: './songs/metronome_clave_hemiola.mp3',
         trial_duration: 5000,
         response_ends_trial: false,
-        //on_start: function(trial) {
+        on_start: function(trial) {
             //document.addEventListener("mousedown", change);
-        //},
+            console.log(document.querySelector("jspsych-tapping-btn"))
+        },
         //on_finish: function(trial) {
             //document.removeEventListener("mousedown", change);
         //}
@@ -135,7 +139,7 @@
 
     var showBPM1 = {
       type: jsPsychHtmlButtonResponse,
-      prompt: 'End of task 1',
+      prompt: '<p style="font-size:6vw;">End of task 1</p>',
       choices: [],
       trial_duration: 3000,
       stimulus: '',
@@ -143,7 +147,7 @@
 
     var showBPM2 = {
       type: jsPsychHtmlButtonResponse,
-      prompt: 'End of task 2',
+      prompt: '<p style="font-size:6vw;">End of task 2</p>',
       choices: [],
       trial_duration: 3000,
       stimulus: '',
@@ -151,7 +155,7 @@
 
     var showBPM3 = {
       type: jsPsychHtmlButtonResponse,
-      prompt: 'End of task 3',
+      prompt: '<p style="font-size:6vw;">End of task 3</p>',
       choices: [],
       trial_duration: 3000,
       stimulus: '',

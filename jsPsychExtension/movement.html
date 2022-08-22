@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MMBB batery</title>
+    <title>MMBB battery</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="./jspsych/dist/graphFunction.js"> </script>
     <script src="https://unpkg.com/jspsych@7.1.2"></script>
@@ -135,14 +135,39 @@
       },
     };
 
+    var frontPage = {
+        type: jsPsychInstructions,
+        pages: [
+        '<p style="font-size:7vw;">Welcome to the Movement task</p>',
+        ],
+        button_label_next: "Next",
+        button_label_previous: "Previous",
+        show_clickable_nav: true
+    }
+    
+
+    var loadAccel = {
+        type: jsPsychAudioKeyboardResponse,
+        stimulus: './songs/silence.wav',
+        prompt: '<p style="font-size:45px;">Authorize access to accelerometer</p>',
+        trial_duration: 3000,
+        choices: ["NO_KEYS"],
+        extensions: [
+          {type: jsPsychExtensionAccelerometer }
+        ],
+    }
+
     var instruction0 = {
         type: jsPsychInstructions,
         pages: [
-        '<p style="font-size:7vw;">Welcome MMBB battery.</p>',
         '<p style="font-size:7vw;">Movement task</p>',
         '<p style="font-size:7vw;">In the following tasks, you will be asked to perform body movements in different situations</p>',
         '<p style="font-size:7vw;">Between each task, you will have a chance to take breaks</p>',
         '<p style="font-size:7vw;">Your body movements will be recorded using the accelerometers of your phone</p>',
+        '<p style="font-size:7vw;">In order for you to move freely, we ask you to put your phone on your pocket before before each task starts</p>',
+        '<p style="font-size:7vw;">There is no need to lock the screen of your phone</p>',
+        '<p style="font-size:7vw;">Before each task, you will hear a voice countdown indicating that it is about to start</p>',
+        '<p style="font-size:7vw;">There will also another voice indicating that the task ended</p>',
         ],
         button_label_next: "Next",
         button_label_previous: "Previous",
@@ -156,7 +181,7 @@
         pages: [
         '<p style="font-size:7vw;">In the first task, you will be asked to walk at a comfortable speed</p>',
         '<p style="font-size:6vw;">Try to find a space where you can walk at the speed that is most natural for you</p>',
-        '<p style="font-size:7vw;">When you click next, you will hear a voice countdown when the task starts and when it ends</p>',
+        '<p style="font-size:6vw;">Click next when you are ready to begin</p>',
         ],
         button_label_next: "Next",
         button_label_previous: "Previous",
@@ -168,9 +193,10 @@
         pages: [
         '<p style="font-size:7vw;">Now you will hear a song.</p>',
         '<p style="font-size:7vw;">Your task is to bounce along with the beat of the song.</p>',
-        '<p style="font-size:7vw;">This is an example of bouncing <br><video id="myVideo" width="100%" controls><source src="./bouncing.mp4" type="video/mp4"></video>',
+        '<p style="font-size:7vw;">This is an example of bouncing <br><video id="myVideo" width="100%" controls><source src="./songs/movementAudio/bouncing.mp4" type="video/mp4"></video>',
         '<p style="font-size:7vw;">Try to bounce in a way that feels natural to you</p>',
         '<p style="font-size:7vw;">Also, try to remain in place and to avoid any other movements besides the bouncing motion.</p>',
+        '<p style="font-size:6vw;">Click next when you are ready to begin</p>',
         ],
         button_label_next: "Next",
         button_label_previous: "Previous",
@@ -194,11 +220,38 @@
         '<p style="font-size:7vw;">Now we will ask you to choose a song that you would dance to</p>',
         '<p style="font-size:7vw;">Move to the song in way that feels natural to you</p>',
         '<p style="font-size:7vw;">Feel free to dance to the music if you want to</p>',
-        '<p style="font-size:7vw;">Are you ready? When you click next, you will be asked to choose the song</p>',
+        '<p style="font-size:7vw;">When you click next, you will see many album covers representing a particular song</p>',
+        '<p style="font-size:7vw;">Click on the album cover to hear the song</p>',
+        '<p style="font-size:7vw;">When you have made your choice, scroll down to the bottom of the page and click on the continue button</p>',
+        '<p style="font-size:7vw;">Click next when you are ready to begin</p>',
         ],
         button_label_next: "Next",
         button_label_previous: "Previous",
         show_clickable_nav: true
+    }
+
+    var phonePocket = {
+        type: jsPsychAudioKeyboardResponse,
+        stimulus: './songs/movementAudio/phonePocket.mp3',
+        prompt: '<p style="font-size:45px;">Please put your phone in your pocket</p>',
+        trial_duration: 7000,
+        choices: ["NO_KEYS"],
+    }
+
+    var countDown = {
+        type: jsPsychAudioKeyboardResponse,
+        stimulus: './songs/movementAudio/countdown.mp3',
+        prompt: '<p style="font-size:45px;"></p>',
+        trial_duration: 6500,
+        choices: ["NO_KEYS"],
+    }
+
+    var pickUpPhone = {
+        type: jsPsychAudioKeyboardResponse,
+        stimulus: './songs/movementAudio/pickPhone.mp3',
+        prompt: '<p style="font-size:45px;"></p>',
+        choices: ["NO_KEYS"],
+        trial_duration: 10000,
     }
 
     var trialAccelerometer1 = {
@@ -245,7 +298,7 @@
         ],
         on_start: function(trial) {
             var allData = jsPsych.data.get().values()
-            var chosenS = allData[allData.length - 1].chosen
+            var chosenS = allData[allData.length - 3].chosen
             trial.stimulus = chosenS
         },
     }
@@ -275,7 +328,7 @@
         choices: ['Next'],
     }
 
-    jsPsych.run([instruction1, trialAccelerometer1, instruction2, trialAccelerometer2, instruction3, trialAccelerometer3, instruction4, chooseSongs, trialAccelerometer4, displayAccel]);
+    jsPsych.run([frontPage, loadAccel, instruction0, instruction1, phonePocket, countDown, trialAccelerometer1, pickUpPhone, instruction2, phonePocket, countDown, trialAccelerometer2, pickUpPhone,  instruction3, phonePocket, countDown, trialAccelerometer3, pickUpPhone, instruction4, chooseSongs, phonePocket, countDown, trialAccelerometer4, pickUpPhone]);
 
  </script>
 </html>
