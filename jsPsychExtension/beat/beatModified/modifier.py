@@ -2,10 +2,10 @@ import numpy as np
 import soundfile
 from pydub import AudioSegment
 
-def createBeat(segundosSegment, nBeatsSegment, shiftN, beat, name, repetitions):
+def createBeat(segundosSegment, beats, shiftN, beat, name, repetitions):
     
     segundosSegment = segundosSegment*1000
-    segundosSegment = segundosSegment/nBeatsSegment
+    segundosSegment = segundosSegment/beats
     segundosEight = segundosSegment/8
 
     silentDurationOneBeat = segundosEight - len(beat)
@@ -32,25 +32,23 @@ def createBeat(segundosSegment, nBeatsSegment, shiftN, beat, name, repetitions):
 
 beat = AudioSegment.from_wav("./beatUnit.wav")
 
-sr = 24 #Sampling rate used to measure nSamples of excerpt
-beats = 8 #Number of beats within excerpt
-frames = 154 #Number of frames within excerpt
+sr = 75 #Sampling rate used to measure nSamples of excerpt
+beats = 4*4 #How many beats happen throughout all of the segment
+frames = 960 #Number of frames within excerpt
 
-segundosTotal = frames/sr
-segundosBeat = segundosTotal/beats
+segundosSegment = frames/sr #How many seconds does the whole segment have
+segundosBeat = segundosSegment/beats
 
-segundosSegment = segundosBeat*beats #How many seconds does the whole segment have
-nBeatsSegment = 8 #How many beats happen throughout all of the segment
-repetitions = nBeatsSegment*1 #How many repetitions for each segment should the output have
+repetitions = beats*4 #How many repetitions for each segment should the output have
 
 #The output of this function will not be exactly the same as the length of the excerpt used as model.
 #Excerpt should then be trimmed to fit perfectly with output of this function
 #Then I come back here and set the number of repertitions to cover how many segments I want for each trial
-createBeat(segundosSegment, nBeatsSegment, 0, beat, "metronome", repetitions)
-createBeat(segundosSegment, nBeatsSegment, 1, beat, "metronome", repetitions)
-createBeat(segundosSegment, nBeatsSegment, 2, beat, "metronome", repetitions)
-createBeat(segundosSegment, nBeatsSegment, 3, beat, "metronome", repetitions)
-createBeat(segundosSegment, nBeatsSegment, 4, beat, "metronome", repetitions)
-createBeat(segundosSegment, nBeatsSegment, 5, beat, "metronome", repetitions)
-createBeat(segundosSegment, nBeatsSegment, 6, beat, "metronome", repetitions)
-createBeat(segundosSegment, nBeatsSegment, 7, beat, "metronome", repetitions)
+createBeat(segundosSegment, beats, 0, beat, "metronome", repetitions)
+createBeat(segundosSegment, beats, 1, beat, "metronome", repetitions)
+createBeat(segundosSegment, beats, 2, beat, "metronome", repetitions)
+createBeat(segundosSegment, beats, 3, beat, "metronome", repetitions)
+createBeat(segundosSegment, beats, 4, beat, "metronome", repetitions)
+createBeat(segundosSegment, beats, 5, beat, "metronome", repetitions)
+createBeat(segundosSegment, beats, 6, beat, "metronome", repetitions)
+createBeat(segundosSegment, beats, 7, beat, "metronome", repetitions)
