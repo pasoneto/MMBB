@@ -18,6 +18,7 @@
     <script src="./jspsych/dist/plugin-survey-multi-choice.js"> </script>
     <script src="./jspsych/dist/plugin-initialize-microphone.js"> </script>
     <script src="./jspsych/dist/plugin-html-audio-response.js"></script>
+    <script src="./songs/movementTapAudio/songKeysNames.js"></script>
     <script src="../utilFuncs/util.js"></script>
     <link href="./jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -97,8 +98,8 @@
     var trialTapping1 = {
         type: jsPsychAudioButtonResponse,
         choices: ['Tap here'],
-        stimulus: './songs/silence.wav',
-        trial_duration: 5000,
+        stimulus: './songs/movementTapAudio/silence.wav',
+        trial_duration: 10000,
         response_ends_trial: false,
         on_start: function(trial) {
             //document.addEventListener("mousedown", change);
@@ -107,12 +108,24 @@
             //document.removeEventListener("mousedown", change);
         //}
     }
+    
+    const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
+    //Call random hemiola
+    var randomHemioleIndex = random(0, songKeys['14'].length -1)
+    var randomHemioleSong = songKeys['14'][randomHemioleIndex]
+     
+    var randomElPesebreIndex = random(0, songKeys['13'].length -1)
+    var randomElPesebreSong = songKeys['13'][randomElPesebreIndex]
+
+    console.log(randomElPesebreSong)
+    console.log(randomHemioleSong)
+        
     var trialTapping2 = {
         type: jsPsychAudioButtonResponse,
         choices: ['Tap here'],
-        stimulus: './songs/metronome_clave_hemiola.mp3',
-        trial_duration: 5000,
+        stimulus: './songs/movementTapAudio/modifiedAudio/' + randomHemioleSong,
+        trial_duration: 10000,
         response_ends_trial: false,
         on_start: function(trial) {
             //document.addEventListener("mousedown", change);
@@ -126,7 +139,7 @@
     var trialTapping3 = {
         type: jsPsychAudioButtonResponse,
         choices: ['Tap here'],
-        stimulus: './songs/elPesebre.mp3',
+        stimulus: './songs/movementTapAudio/modifiedAudio/' + randomElPesebreSong,
         trial_duration: 10000,
         response_ends_trial: false,
         //on_start: function(trial) {

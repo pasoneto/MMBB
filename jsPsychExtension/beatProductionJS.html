@@ -72,6 +72,11 @@
     var beatsURL2 = './songs/beatProductionAudio/beatModified/honeysuckleBeats'
     var loadTrial2 = generateContextTrial(songBaseURL2, beatsURL2)
 
+    //Load songs and beats for given trial 
+    var songBaseURL3 = './songs/beatProductionAudio/beatModified/baseSongs/lettuce/lettuceModified.mp3'
+    var beatsURL3 = './songs/beatProductionAudio/beatModified/lettuceBeats'
+    var loadTrial3 = generateContextTrial(songBaseURL3, beatsURL3)
+
     var trialBeat = {
       type: jsPsychHtmlButtonResponse,
       stimulus: '<p style="margin: 0px; height: 30px">Adjust the beat</p><button style="width: 25vw; height: 5vh; margin-bottom: 10px" type="button" id="subtract"><i class="fa fa-arrow-left" aria-hidden="true"></i></button><button type="button" style="width: 25vw;height: 5vh; margin-bottom: 10px" id="add"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>',
@@ -97,7 +102,7 @@
       }
     };
 
-    jsPsych.run([instruction1, instruction2, loadTrial1, trialBeat, loadTrial2, trialBeat]);
+    jsPsych.run([instruction1, instruction2, loadTrial1, trialBeat, loadTrial2, trialBeat, loadTrial3, trialBeat]);
 
  </script>
 </html>

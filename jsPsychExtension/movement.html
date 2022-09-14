@@ -9,6 +9,7 @@
     <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-audio-keyboard-response@1.1.0"></script>
     <script src="./jspsych/dist/plugin-audio-button-response.js"> </script>
+    <script src="./jspsych/dist/plugin-html-slider-response.js"> </script>
     <script src="./jspsych/dist/plugin-html-button-response.js"> </script>
     <script src="./jspsych/dist/plugin-instructions.js"> </script>
     <script src="./jspsych/dist/plugin-survey-likert.js"> </script>
@@ -18,6 +19,7 @@
     <script src="./jspsych/dist/plugin-survey-multi-choice.js"> </script>
     <script src="./jspsych/dist/plugin-initialize-microphone.js"> </script>
     <script src="./jspsych/dist/plugin-html-audio-response.js"> </script>
+    <script src="./songs/movementTapAudio/songKeysNames.js"> </script>
     <link href="./jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
@@ -61,16 +63,17 @@
                      "Slow&nbspAcid&nbsp-&nbspCalvin&nbspHarris", 
                      "Temptation&nbsp-&nbspDala"] 
     var songs = [];
+    var songCodes = [];
     var albumCovers = [];
     for (let i = 1; i < 13; i++) {
       if(i != 3){ //song 3 is defectuous
         var s = new Audio();
-        s.src = './songs/CoEPlaylist/' + i + '.mp3';
+        s.src = './songs/movementTapAudio/vitrineSongs/' + i + '.mp3';
         songs.push(s)
-        albumCovers.push('./songs/CoEPlaylist/imageAlbums/' + i + '.jpg');
+        songCodes.push(i)
+        albumCovers.push('./songs/movementTapAudio/imageAlbums/' + i + '.jpg');
       }
     }
-    console.log(songs)
 
     function PlaySound(song) {
         if(song.paused){
@@ -99,13 +102,13 @@
       document.getElementById("songName").innerHTML = songName
     }
 
-    var prompt_songs = function(listSongs){
+    var prompt_songs = function(listSongs, songCodes){
           html = "<div id='songName'>Choose a song below and click nex when you have made your choice</div>"
           for(i in listSongs){
             var songPath = listSongs[i].src
             var songName = songNames[i]
-            console.log(songName)
-            html += "<audio></audio> <button id='buttonSongItem' name='buttonMusic' onclick=" + "othersStop(songs);PlaySound(songs[" + i + "]);changeColor(this);setNextSong('" + songPath + "');><img id='coverImage' src="+albumCovers[i]+"></button>"
+            var songCode = songCodes[i]
+            html += "<audio></audio> <button id='buttonSongItem' name='buttonMusic' onclick=" + "othersStop(songs);PlaySound(songs[" + i + "]);changeColor(this);setNextSong('" + songCode + "');><img id='coverImage' src="+albumCovers[i]+"></button>"
           }
           html += "</div>"
           return(html)
@@ -126,7 +129,7 @@
         
     var chooseSongs = {
       type: jsPsychHtmlSongSelectorResponse,
-      stimulus: prompt_songs(songs),
+      stimulus: prompt_songs(songs, songCodes),
       choices: ["Next"],
       on_finish: function(){
         for(k in songs){
@@ -148,7 +151,7 @@
 
     var loadAccel = {
         type: jsPsychAudioKeyboardResponse,
-        stimulus: './songs/silence.wav',
+        stimulus: './songs/movementTapAudio/silence.wav',
         prompt: '<p style="font-size:45px;">Authorize access to accelerometer</p>',
         trial_duration: 3000,
         choices: ["NO_KEYS"],
@@ -193,7 +196,7 @@
         pages: [
         '<p style="font-size:7vw;">Now you will hear a song.</p>',
         '<p style="font-size:7vw;">Your task is to bounce along with the beat of the song.</p>',
-        '<p style="font-size:7vw;">This is an example of bouncing <br><video id="myVideo" width="100%" controls><source src="./songs/movementAudio/bouncing.mp4" type="video/mp4"></video>',
+        '<p style="font-size:7vw;">This is an example of bouncing <br><video id="myVideo" width="100%" controls><source src="./songs/movementTapAudio/instructionsAudio/bouncing.mp4" type="video/mp4"></video>',
         '<p style="font-size:7vw;">Try to bounce in a way that feels natural to you</p>',
         '<p style="font-size:7vw;">Also, try to remain in place and to avoid any other movements besides the bouncing motion.</p>',
         '<p style="font-size:6vw;">Click next when you are ready to begin</p>',
@@ -230,9 +233,26 @@
         show_clickable_nav: true
     }
 
+    var familiarityRating = {
+        type: jsPsychHtmlSliderResponse,
+        stimulus: '',
+        stimulus: `<div style="width:500px;">
+            <p>Please rate your level of familiarity with this piece of music?</p>
+            <div style="width:240px; float: left;">
+              <p>10 wins, 5 losses, 6 draws</p>
+            </div>
+            <div style="width:240px; float: right;">
+              <p>6 wins, 4 losses, 11 draws</p>
+            </div>
+            </div>`,
+        require_movement: true,
+        //labels: ["never heard it before", "may have heard it before", "know the song and certain that you have heard it before", "heard it several times before", "know this song so well that<br>I can predict what happens next in the song"],
+        labels: ["0", "1", "2", "3", "4"]
+    };
+
     var phonePocket = {
         type: jsPsychAudioKeyboardResponse,
-        stimulus: './songs/movementAudio/phonePocket.mp3',
+        stimulus: './songs/movementTapAudio/instructionsAudio/phonePocket.mp3',
         prompt: '<p style="font-size:45px;">Please put your phone in your pocket</p>',
         trial_duration: 7000,
         choices: ["NO_KEYS"],
@@ -240,7 +260,7 @@
 
     var countDown = {
         type: jsPsychAudioKeyboardResponse,
-        stimulus: './songs/movementAudio/countdown.mp3',
+        stimulus: './songs/movementTapAudio/instructionsAudio/countdown.mp3',
         prompt: '<p style="font-size:45px;"></p>',
         trial_duration: 6500,
         choices: ["NO_KEYS"],
@@ -248,7 +268,7 @@
 
     var pickUpPhone = {
         type: jsPsychAudioKeyboardResponse,
-        stimulus: './songs/movementAudio/pickPhone.mp3',
+        stimulus: './songs/movementTapAudio/instructionsAudio/pickPhone.mp3',
         prompt: '<p style="font-size:45px;"></p>',
         choices: ["NO_KEYS"],
         trial_duration: 10000,
@@ -256,7 +276,7 @@
 
     var trialAccelerometer1 = {
         type: jsPsychAudioKeyboardResponse,
-        stimulus: './songs/silence.wav',
+        stimulus: './songs/movementTapAudio/silence.wav',
         prompt: '<p style="font-size:45px;">Walk</p>',
         trial_duration: 15000,
         choices: ["NO_KEYS"],
@@ -264,10 +284,16 @@
           {type: jsPsychExtensionAccelerometer }
         ],
     }
+    
+    const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
+    var randomHemiolaIndex = random(0, songKeys['14'].length -1)
+
+    var randomHemiolaSong = songKeys['14'][randomHemiolaIndex]
+    console.log(randomHemiolaSong)
 
     var trialAccelerometer2 = {
         type: jsPsychAudioKeyboardResponse,
-        stimulus: './songs/metronome_clave_hemiola.mp3',
+        stimulus: './songs/movementTapAudio/modifiedAudio/' + randomHemiolaSong,
         prompt: '<p style="font-size:45px;">Bounce</p>',
         trial_duration: 15000,
         choices: ["NO_KEYS"],
@@ -276,9 +302,14 @@
         ],
     }
 
+    var randomElPesebreIndex = random(0, songKeys['13'].length -1)
+    var randomElPesebreSong = songKeys['13'][randomElPesebreIndex]
+
+    console.log(randomElPesebreSong)
+
     var trialAccelerometer3 = {
         type: jsPsychAudioKeyboardResponse,
-        stimulus: './songs/elPesebre.mp3',
+        stimulus: './songs/movementTapAudio/modifiedAudio/' + randomElPesebreSong,
         prompt: '<p style="font-size:45px;">Move freely</p>',
         trial_duration: 30000,
         choices: ["NO_KEYS"],
@@ -298,8 +329,12 @@
         ],
         on_start: function(trial) {
             var allData = jsPsych.data.get().values()
-            var chosenS = allData[allData.length - 3].chosen
-            trial.stimulus = chosenS
+            //var chosenS = allData[allData.length - 3].chosen
+            var chosenSongCode = window.chosenSong
+            var randomChosenIndex = random(0, songKeys[chosenSongCode].length -1)
+            var randomChosenSong = songKeys[chosenSongCode][randomChosenIndex]
+            console.log(randomChosenSong)
+            trial.stimulus = './songs/movementTapAudio/modifiedAudio/' + randomChosenSong
         },
     }
 
@@ -328,6 +363,7 @@
         choices: ['Next'],
     }
 
+    //jsPsych.run([familiarityRating])
     jsPsych.run([frontPage, loadAccel, instruction0, instruction1, phonePocket, countDown, trialAccelerometer1, pickUpPhone, instruction2, phonePocket, countDown, trialAccelerometer2, pickUpPhone,  instruction3, phonePocket, countDown, trialAccelerometer3, pickUpPhone, instruction4, chooseSongs, phonePocket, countDown, trialAccelerometer4, pickUpPhone]);
 
  </script>
