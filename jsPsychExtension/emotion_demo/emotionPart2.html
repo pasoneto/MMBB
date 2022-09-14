@@ -48,7 +48,7 @@
     var instruction1 = {
         type: jsPsychInstructions,
         pages: [
-        '<p style="font-size:30px;">Rate the emotions expressed by the music</p>',
+        '<p style="font-size:30px;">Please rate the emotional content of the music</p>',
         ],
         button_label_next: "Next",
         button_label_previous: "Previous",
@@ -86,15 +86,47 @@
         trial_duration: 15500,
         choices: ["NO_KEYS"],
     }
+    var t2_5Stim = {
+        type: jsPsychAudioKeyboardResponse,
+        stimulus: './final_stimuli/069.mp3',
+        prompt: '<p style="font-size:30px;">Listen to the music</p>',
+        trial_duration: 15500,
+        choices: ["NO_KEYS"],
+    }
+
+    var t2_6Stim = {
+        type: jsPsychAudioKeyboardResponse,
+        stimulus: './final_stimuli/105.mp3',
+        prompt: '<p style="font-size:30px;">Listen to the music</p>',
+        trial_duration: 15500,
+        choices: ["NO_KEYS"],
+    }
+
+    var t2_7Stim = {
+        type: jsPsychAudioKeyboardResponse,
+        stimulus: './final_stimuli/033.mp3',
+        prompt: '<p style="font-size:30px;">Listen to the music</p>',
+        trial_duration: 15500,
+        choices: ["NO_KEYS"],
+    }
+
+    var t2_8Stim = {
+        type: jsPsychAudioKeyboardResponse,
+        stimulus: './final_stimuli/041.mp3',
+        prompt: '<p style="font-size:30px;">Listen to the music</p>',
+        trial_duration: 15500,
+        choices: ["NO_KEYS"],
+    }
 
     var part2_scales = {
     type: jsPsychHtmlSliderResponse,
-    stimulus: ['Mood', 'Energy', 'Tension'],
-    nSliders: 3,
+    stimulus: ['Mood', 'Energy', 'How much did you like/dislike the music?','How familiar did the music sound to you?'],
+    nSliders: 4,
     require_movement: true,
     slider_width: 250,
-    prompt: 'Rate the emotions expressed by the music',
-    labels: [['Negative', 'Neutral','Positive'],['Low Energy', 'High Energy'],['Low Tension', 'High Tension']]
+    labels: [['Negative', 'Neutral','Positive'],['Low Energy', 'High Energy'],
+    ['Strongly dislike','Strongly like'],['Unfamiliar','Very Familiar']],
+    prompt: 'Please rate the emotional content of the music',
     };
     
     const t2_1 = {
@@ -113,8 +145,24 @@
         timeline: [t2_4Stim, part2_scales]
     }
 
+    const t2_5 = {
+        timeline: [t2_5Stim, part2_scales]
+    }
+
+    const t2_6 = {
+        timeline: [t2_6Stim, part2_scales]
+    }
+
+    const t2_7 = {
+        timeline: [t2_7Stim, part2_scales]
+    }
+
+    const t2_8 = {
+        timeline: [t2_8Stim, part2_scales]
+    }
+
     const randomPart2Trials = {
-        timeline: jsPsych.randomization.shuffle([t2_1, t2_2,t2_3,t2_4])
+        timeline: jsPsych.randomization.shuffle([t2_1, t2_2,t2_3,t2_4,t2_5, t2_6,t2_7,t2_8])
     }
 
    var instruction2 = {
