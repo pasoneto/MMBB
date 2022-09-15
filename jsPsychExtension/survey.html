@@ -143,6 +143,9 @@
         pages: [
         '<p style="font-size:7vw;">Next trial</p>',
         ],
+        button_label_next: "Next",
+        button_label_previous: "Previous",
+        show_clickable_nav: true
     }
 
     var songRating1 = {
@@ -154,19 +157,22 @@
         labels: ['<p style="font-size:3vw">Not at all</p>', '<p style="font-size:3vw">Very much</p>']
     };
 
+//First one "" how do you feel now. 
+//Next ones better or worst
+//How much did you like the music you were dancing to?
     var songRating2 = {
         type: jsPsychHtmlSliderResponse,
         stimulus: `<div style="width:500px;">
             <p style="font-size:3vw;">How much do you like song 2?</p>
             </div>`,
         require_movement: true,
-        labels: ['<p style="font-size:3vw">Not at all</p>', '<p style="font-size:3vw">Very much</p>']
+        labels: ['<p style="font-size:3vw">bad</p>', '<p style="font-size:3vw">Very much</p>']
     };
 
     var feeling1 = {
         type: jsPsychHtmlSliderResponse,
         stimulus: `<div style="width:500px;">
-            <p style="font-size:3vw;">How much are you enjoying this experience?</p>
+            <p style="font-size:3vw;">mood. how feeling??</p>
             </div>`,
         require_movement: true,
         labels: ['<p style="font-size:3vw">Not at all</p>', '<p style="font-size:3vw">A lot</p>']
@@ -175,7 +181,7 @@
     var feeling2 = {
         type: jsPsychHtmlSliderResponse,
         stimulus: `<div style="width:500px;">
-            <p style="font-size:3vw;">How much are you enjoying this experience?</p>
+            <p style="font-size:3vw;">mood. how feeling??</p>
             </div>`,
         require_movement: true,
         labels: ['<p style="font-size:3vw">Not at all</p>', '<p style="font-size:3vw">A lot</p>']

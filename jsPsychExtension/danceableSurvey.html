@@ -43,10 +43,10 @@
     var instruction1 = {
         type: jsPsychInstructions,
         pages: [
-        '<p style="font-size:7vw;">Welcome!</p>',
-        '<p style="font-size:7vw;">We are interested in your musical taste</p>',
-        '<p style="font-size:7vw;">Tell us 3 songs that you like to dance to</p>',
-        '<p style="font-size:7vw;">If possible, give us only youtube links</p>',
+        '<p style="font-size:5vw;">Welcome!</p>',
+        '<p style="font-size:5vw;">We are interested in your musical taste</p>',
+        '<p style="font-size:5vw;">Tell us 3 songs that you like to dance to</p>',
+        '<p style="font-size:5vw;">If possible, give us only youtube links</p>',
         ],
         button_label_next: "Next",
         button_label_previous: "Previous",
@@ -55,7 +55,7 @@
 
     var song1 = {
       type: jsPsychSurveyText,
-      preamble: 'Song 1<br><div style="text-shadow: 0px 0px 0px #000000;"><a href="https://www.youtube.com" target="_blank">Open YouTube in new tab</a></div>',
+      preamble: 'Song 1 <div style="text-shadow: 0px 0px 0px #000000;"><a href="https://www.youtube.com" target="_blank">Open YouTube in new tab</a></div>',
       questions: [
         {prompt: '1. Name and artist', required: false},
         {prompt: '1. Youtube link*', required: true},
@@ -63,12 +63,13 @@
       ],
       on_load: function(){
         document.getElementById("jspsych-survey-text-next").style.marginTop = '50px'
+        document.querySelector(".jspsych-display-element").style.lineHeight = "25px"
       }
     }
 
     var song2 = {
       type: jsPsychSurveyText,
-      preamble: 'Song 2<br><div style="text-shadow: 0px 0px 0px #000000;"><a href="https://www.youtube.com" target="_blank">Open YouTube in new tab</a></div>',
+      preamble: 'Song 2 <div style="text-shadow: 0px 0px 0px #000000;"><a href="https://www.youtube.com" target="_blank">Open YouTube in new tab</a></div>',
       questions: [
         {prompt: '2. Name and artist', required: false},
         {prompt: '2. Youtube link*', required: true},
@@ -76,12 +77,13 @@
       ],
       on_load: function(){
         document.getElementById("jspsych-survey-text-next").style.marginTop = '50px'
+        document.querySelector(".jspsych-display-element").style.lineHeight = "25px"
       }
     }
 
     var song3 = {
       type: jsPsychSurveyText,
-      preamble: 'Song 3<br><div style="text-shadow: 0px 0px 0px #000000;"><a href="https://www.youtube.com" target="_blank">Open YouTube in new tab</a></div>',
+      preamble: 'Song 3 <div style="text-shadow: 0px 0px 0px #000000;"><a href="https://www.youtube.com" target="_blank">Open YouTube in new tab</a></div>',
       questions: [
         {prompt: '3. Name and artist', required: false},
         {prompt: '3. Youtube link*', required: true},
@@ -89,6 +91,7 @@
       ],
       on_load: function(){
         document.getElementById("jspsych-survey-text-next").style.marginTop = '50px'
+        document.querySelector(".jspsych-display-element").style.lineHeight = "25px"
       }
     }
 
@@ -96,7 +99,7 @@
     var instruction2 = {
         type: jsPsychInstructions,
         pages: [
-        '<p style="font-size:7vw;">Now tell us a bit about yourself</p>',
+        '<p style="font-size:5vw;">Now tell us a bit about yourself</p>',
         ],
         button_label_next: "Next",
         button_label_previous: "Previous",
@@ -108,134 +111,45 @@
         stimulus: '<div style="font-size:35px">How old are you?</div><div id="showAge" style="font-size:20px">50</div>',
         require_movement: true,
         labels: ['<div style="font-size:20px">0</div>', '<div style="font-size:20px">100+</div>'],
+        on_load: function(){
+          document.getElementById("jspsych-html-slider-response-next").style.height = "100px"
+          document.getElementById("showAge").style.marginTop = "10px"
+        }
     };
 
     var country = {
       type: jsPsychSurveyText,
       preamble: '<div style="font-size:35px">About your nationality</div>',
       questions: [
-        {prompt: 'Where were you born?', required: true},
+        {prompt: 'In which country were you borne?', required: true},
         {prompt: 'Where do you live?', required: true},
       ],
       on_load: function(){
-        document.getElementById("jspsych-survey-text-next").style.marginTop = '50px'
+        document.getElementById("input-1").style.marginBottom = "60px"
+        document.querySelector(".jspsych-survey-text").style.fontSize = "20px"
       }
     }
  
     var instruction4 = {
         type: jsPsychInstructions,
         pages: [
-        '<p style="font-size:7vw;">Ok,</p>',
-        '<p style="font-size:7vw;">Now, your task is to bounce</p>',
-        '<p style="font-size:7vw;">We will play you a sound</p>',
-        '<p style="font-size:7vw;">And you will move your body in synchrony with that sound</p>',
-        '<p style="font-size:7vw;">This is an example of bouncing <br><video id="myVideo" width="100%" controls><source src="./bouncing.mp4" type="video/mp4"></video>',
-        '<p style="font-size:7vw;">Now, put your phone inside your pocket</p>',
-        '<p style="font-size:7vw;">Or put it inside a backback that you are wearing</p>',
-        '<p style="font-size:7vw;">Whatever is easier and feels more comfortable to you</p>',
-        '<p style="font-size:7vw;">When you click next, the song will start playing.</p>',
+        '<p style="font-size:5vw;">Ok,</p>',
+        '<p style="font-size:5vw;">This is the end of the survey</p>',
+        '<p style="font-size:5vw;">Press "Next" to send us your responses</p>',
         ],
         button_label_next: "Next",
         button_label_previous: "Previous",
         show_clickable_nav: true,
     }
 
-    var instruction5 = {
-        type: jsPsychInstructions,
-        pages: [
-        '<p style="font-size:7vw;">Great!</p>',
-        '<p style="font-size:7vw;">Your task now is to move freely to the music you chose</p>',
-        '<p style="font-size:7vw;">Put your phone inside your pocket</p>',
-        '<p style="font-size:7vw;">Or put it inside a backback that you are wearing</p>',
-        '<p style="font-size:7vw;">Whatever is easier and feels more comfortable to you</p>',
-        '<p style="font-size:7vw;">It\'s important that you do not lock the screen,</p>',
-        '<p style="font-size:7vw;">Otherwise the youtube video will stop</p>',
-        '<p style="font-size:7vw;">Click play to start the video and then put the phone in your pocket</p>',
-        ],
-        button_label_next: "Next",
-        button_label_previous: "Previous",
-        show_clickable_nav: true
-    }
-
-    function getId(url) {
-        const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-        const match = url.match(regExp);
-        return (match && match[2].length === 11)
-          ? match[2]
-          : null;
-    }
-
-    function youtubeEmbed(link){
-      //Getting only video code to create embed url
-      var videoID = getId(link)
-      var url = '<iframe style="width: 90vw" width="560" height="315" src="https://www.youtube.com/embed/' + videoID + '?autoplay=1' + '" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen></iframe>'
-      return(url)
-    }
-
-    var hemiola = {
-        type: jsPsychAudioButtonResponse,
-        stimulus: './songs/3_2.mp3',
-        choices: ['Continue'],
-        prompt: "<p>Bounce</p>",
-        extensions: [
-          {type: jsPsychExtensionAccelerometer }
-        ],
-    };
-
-    var youtubeShow1 = {
-        type: jsPsychInstructions,
-        pages: [],
-        button_label_next: "Next",
-        button_label_previous: "Previous",
-        show_clickable_nav: true,
-        on_start: function(trial) {
-          var allData = jsPsych.data.get().values()
-          console.log(allData)
-          var link1 = allData[allData.length - 7]['response']['Q1']
-          trial.pages = [youtubeEmbed(link1)]
-        },
-        extensions: [
-          {type: jsPsychExtensionAccelerometer }
-        ],
-    }
-    var youtubeShow2 = {
-        type: jsPsychInstructions,
-        pages: [],
-        button_label_next: "Next",
-        button_label_previous: "Previous",
-        show_clickable_nav: true,
-        on_start: function(trial) {
-          var allData = jsPsych.data.get().values()
-          var link1 = allData[allData.length - 8]['response']['Q1']
-          trial.pages = [youtubeEmbed(link1)]
-        },
-        extensions: [
-          {type: jsPsychExtensionAccelerometer }
-        ],
-    }
-    var youtubeShow3 = {
-        type: jsPsychInstructions,
-        pages: [],
-        button_label_next: "Next",
-        button_label_previous: "Previous",
-        show_clickable_nav: true,
-        on_start: function(trial) {
-          var allData = jsPsych.data.get().values()
-          var link1 = allData[allData.length - 9]['response']['Q1']
-          trial.pages = [youtubeEmbed(link1)]
-        },
-        extensions: [
-          {type: jsPsychExtensionAccelerometer }
-        ],
-    }
   
     var instruction6 = {
         type: jsPsychInstructions,
         pages: [
-        '<p style="font-size:7vw;">Last task before you leave</p>',
-        '<p style="font-size:7vw;">We want to measure if there\'s a delay in the audio</p>',
-        '<p style="font-size:7vw;">You will hear a series of clicks</p>',
-        '<p style="font-size:7vw;">Press the button as soon as you hear each one of them</p>',
+        '<p style="font-size:5vw;">Last task before you leave</p>',
+        '<p style="font-size:5vw;">We want to measure if there\'s a delay in the audio</p>',
+        '<p style="font-size:5vw;">You will hear a series of clicks</p>',
+        '<p style="font-size:5vw;">Press the button as soon as you hear each one of them</p>',
         ],
         button_label_next: "Next",
         button_label_previous: "Previous",
@@ -257,8 +171,8 @@
     var instruction7 = {
         type: jsPsychInstructions,
         pages: [
-        '<p style="font-size:7vw;">Finally,</p>',
-        '<p style="font-size:7vw;">Press the button every time you see a color change</p>',
+        '<p style="font-size:5vw;">Finally,</p>',
+        '<p style="font-size:5vw;">Press the button every time you see a color change</p>',
         ],
         button_label_next: "Next",
         button_label_previous: "Previous",
@@ -268,7 +182,7 @@
     var tappingColor = {
         type: jsPsychAudioButtonResponse,
         choices: ['Tap here'],
-        stimulus: './songs/silence.wav',
+        stimulus: './songs/movementTapAudio/silence.wav',
         response_ends_trial: false,
         trial_duration: 13000,
         on_start: function(trial) {
@@ -284,7 +198,7 @@
     var instruction8 = {
         type: jsPsychInstructions,
         pages: [
-        '<p style="font-size:7vw;">Press next to download the data</p>',
+        '<p style="font-size:5vw;">Press next to download the data</p>',
         ],
         button_label_next: "Next",
         button_label_previous: "Previous",
@@ -294,7 +208,7 @@
         }
     }
 
-    jsPsych.run([instruction1, song1, song2, song3, instruction2, age, country, instruction4, hemiola, instruction5, youtubeShow1, youtubeShow2, youtubeShow3, instruction6, tappingAudio, instruction7, tappingColor, instruction8]);
+    jsPsych.run([instruction1, song1, song2, song3, instruction2, age, country, instruction4]);
 
  </script>
 </html>
