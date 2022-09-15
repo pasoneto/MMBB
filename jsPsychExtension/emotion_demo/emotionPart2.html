@@ -120,13 +120,13 @@
 
     var part2_scales = {
     type: jsPsychHtmlSliderResponse,
-    stimulus: ['Mood', 'Energy', 'How much did you like/dislike the music?','How familiar did the music sound to you?'],
-    nSliders: 4,
+    stimulus: ['Mood', 'Energy', 'Is this song emotionally intensive?','How much did you like/dislike the music?','How familiar did the music sound to you?'],
+    nSliders: 5,
     require_movement: true,
     slider_width: 250,
     labels: [['Negative', 'Neutral','Positive'],['Low Energy', 'High Energy'],
-    ['Strongly dislike','Strongly like'],['Unfamiliar','Very Familiar']],
-    prompt: 'Please rate the emotional content of the music',
+    ['Low intensity', 'High intensity'],['Strongly dislike','Neutral','Strongly like'],['Very unfamiliar','Very familiar']],
+    prompt: 'Please rate the emotional content of the music'
     };
     
     const t2_1 = {
