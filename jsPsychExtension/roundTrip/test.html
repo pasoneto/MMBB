@@ -3,11 +3,20 @@
   <head>
     <meta name="viewport" content="width=device-width initial-scale=1.0" />
     <script src="./latencyMeasurer.js"></script>
+    <script src="./main.js"></script>
  </head>
   <body>
     <button onclick="startStop(10)">Sound</button>
     <script>
-      
+
+      (async () => {
+        const recorder = await recordAudio();
+        recorder.start();
+        await sleep(3000);
+        const audio = await recorder.stop();
+        audio.play();
+      })(); 
+
     </script>
   </body>
 
