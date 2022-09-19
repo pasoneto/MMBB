@@ -1,41 +1,92 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
 
-<h1>Latency</h1>
+    <title>Latency measure</title>
+  </head>
 
-Press start to measure the latency of audio. If you are wearing headphones or earplugs, position the speakers right in front of your phone/computer's microphone.
-Find a quiet place, and turn up your device volume as much as possible. 
+  <body>
+    <h1>Latency measure</h1>
+    <div>Constantly measures output latency</div>
+    <div id="showLatency"></div>
+    <div>Try connecting and disconnecting an external speaker (earplug/headphone) while the audio plays</div>
+    <button class="play">Play</button>
+    <button class="stop">Stop</button>
 
-<p>
-<button id="startButton">Start</button>
-<div id="showLatency"></div>
+  </body>
+  
+  <script>
+    // define variables
+    const audioCtx = new AudioContext();
+    let source;
+    let songLength;
 
-<script>
+    const play = document.querySelector(".play");
+    const stop = document.querySelector(".stop");
 
-async function start() {
-  document.removeEventListener("click", start);
+    function getData() {
+      source = new AudioBufferSourceNode(audioCtx);
+      request = new XMLHttpRequest();
 
-  var audioCtx = new (window.AudioContext || window.webkitAudioContext)({
-    latencyHint: 0,
-  });
+      request.open("GET", "../../songs/beatProductionAudio/beatModified/beatUnit.wav", true);
+      request.responseType = "arraybuffer";
 
-  var micStream = await navigator.mediaDevices.getUserMedia({
-    audio: {
-      latency: 0,
-      echoCancellation: false,
-      noiseSuppression: false,
-      autoGainControl: false,
+      request.onload = () => {
+        let audioData = request.response;
+
+        audioCtx.decodeAudioData(
+          audioData,
+          (buffer) => {
+            songLength = buffer.duration;
+            source.buffer = buffer;
+            source.connect(audioCtx.destination);
+            source.loop = true;
+          },
+          (e) => {
+            `Error with decoding audio data ${e.error}`;
+          }
+        );
+      };
+      request.send();
     }
-  });
 
-  var micNode = new MediaStreamAudioSourceNode(audioCtx, { mediaStream: micStream });
-  await audioCtx.audioWorklet.addModule('./latencyMeasurer.js');
-  var playerNode = new AudioWorkletNode(audioCtx, 'player');
-  micNode.connect(playerNode)
-  playerNode.connect(audioCtx.destination);
+    //Fetch output latency every t seconds
+    let nIntervId;
 
-}
+    function displayLatency() {
+      var el = document.getElementById("showLatency");
+      el.innerHTML = window.audioCtx.outputLatency
+    }
 
-document.getElementById("startButton").addEventListener("click", start);
+    function fetchLatency() {
+      // check if an interval has already been set up
+      if (!nIntervId) {
+        nIntervId = setInterval(displayLatency, 1000);
+      }
+    }
 
-</script>
+    function stopFetchLatency() {
+      clearInterval(nIntervId);
+      nIntervId = null;
+    }
+
+    // wire up buttons to stop and play audio, and range slider control
+
+    play.onclick = () => {
+      getData();
+      source.start(0);
+      source.loop = true
+      play.setAttribute("disabled", "disabled");
+      fetchLatency()
+    };
+
+    stop.onclick = () => {
+      source.stop(0);
+      play.removeAttribute("disabled");
+      stopFetchLatency()
+    };
+
+  </script>
 </html>

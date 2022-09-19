@@ -12,7 +12,7 @@ class Player extends AudioWorkletProcessor {
     this.click_frame_interval = Math.round(sampleRate / FRAME_SIZE * 60 / bpm);
     this.click_index_samples = 0;
     this.click_length_samples = sampleRate / 64;
-
+    
     // peak detection
     this.window = [];
     this.last_peak = Date.now();
@@ -95,9 +95,11 @@ class Player extends AudioWorkletProcessor {
       var latency_samples = index + FRAME_SIZE*this.frames_since_last_beat;
       var latency_ms = 1000.0 * latency_samples / sampleRate;
       if (latency_ms > 500) {
+        console.log("Latency larger than 500. Value is " + latency_ms)
         latency_ms -= 1000;
       }
-      window.latencyMeasured = latency_ms;
+      this.latencies.push(latency_ms)
+      console.log(this.latencies)
       console.log(latency_ms);
     }
   }
