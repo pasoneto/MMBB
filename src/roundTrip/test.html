@@ -1,16 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta name="viewport" content="width=device-width initial-scale=1.0" />
-    <script src="./latencyMeasurer.js"></script>
-    <script src="./main.js"></script>
- </head>
-  <body>
-    <button onclick="startStop(10)">Sound</button>
-    <script>
+<html>
 
+<h1>Latency</h1>
 
-    </script>
-  </body>
+Turn the volume loud enough that the mic can hear the speaker.  When ready, press start.
 
+<button id="startButton">Start</button>
+
+<script>
+
+async function start() {
+  document.removeEventListener("click", start);
+
+  var audioCtx = new (window.AudioContext || window.webkitAudioContext)({
+    latencyHint: 0,
+  });
+  var micStream = await navigator.mediaDevices.getUserMedia({
+    audio: {
+      latency: 0,
+      echoCancellation: false,
+      noiseSuppression: false,
+      autoGainControl: false,
+    }
+  });
+  var micNode = new MediaStreamAudioSourceNode(audioCtx, { mediaStream: micStream });
+  await audioCtx.audioWorklet.addModule('./latencyMeasurer.js');
+  var playerNode = new AudioWorkletNode(audioCtx, 'player');
+  micNode.connect(playerNode)
+  playerNode.connect(audioCtx.destination);
+}
+
+document.getElementById("startButton").addEventListener("click", start);
+
+</script>
 </html>
