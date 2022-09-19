@@ -1,4 +1,5 @@
 const FRAME_SIZE = 128;
+var latencyMeasured;
 
 class Player extends AudioWorkletProcessor {
   constructor() {
@@ -96,7 +97,6 @@ class Player extends AudioWorkletProcessor {
       if (latency_ms > 500) {
         latency_ms -= 1000;
       }
-      document.getElementById("showLatency").innerHTML = latency_ms
       console.log(latency_ms);
     }
   }
