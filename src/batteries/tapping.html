@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MMBB batery</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../../jspsych/dist/graphFunction.js"> </script>
+    <script src="https://unpkg.com/jspsych@7.1.2"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-audio-keyboard-response@1.1.0"></script>
+    <script src="../../jspsych/dist/plugin-audio-button-response.js"> </script>
+    <script src="../../jspsych/dist/plugin-html-button-response.js"> </script>
+    <script src="../../jspsych/dist/plugin-html-songselector-response.js"> </script>
+    <script src="../../jspsych/dist/plugin-instructions.js"> </script>
+    <script src="../../jspsych/dist/plugin-survey-likert.js"> </script>
+    <script src="../../jspsych/dist/plugin-canvas-button-response.js"> </script>
+    <script src="../../jspsych/dist/extension-accelerometer.js"> </script>
+    <script src="../../jspsych/dist/plugin-html-keyboard-response.js"> </script>
+    <script src="../../jspsych/dist/plugin-survey-multi-choice.js"> </script>
+    <script src="../../jspsych/dist/plugin-initialize-microphone.js"> </script>
+    <script src="../../jspsych/dist/plugin-html-audio-response.js"></script>
+    <script src="../../songs/movementTapAudio/songKeysNames.js"></script>
+    <link href="../../jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+  </head>
+  <body></body>
+  <style>
+
+  </style>
+  <script>
+
+    function change() {
+          setTimeout(() => {document.body.style.backgroundColor = "#808080"}, 2);
+          document.body.style.backgroundColor = '#fff';
+    }
+
+    //Count difference between elements of array
+    function diff(ary) {
+        var newA = [];
+        for (var i = 1; i < ary.length; i++)  newA.push(ary[i] - ary[i - 1])
+        return newA;
+    }
+
+    function bpmEstimator(rts){
+      var arr = diff(rts)
+      var ioi = arr.reduce((a, b) => a + b, 0) / arr.length;
+      var bpm = 60/(ioi/1000)
+      return bpm
+    }
+     
+    var jsPsych = initJsPsych({
+      on_finish: function() {
+        //jsPsych.data.displayData();
+        jsPsych.data.get().localSave('csv','mydata.csv');
+      }
+    });
+
+    var instruction1 = {
+        type: jsPsychInstructions,
+        pages: [
+        '<p style="font-size:6vw;">Welcome MMBB battery</p>',
+        '<p style="font-size:6vw;">Tapping task</p>',
+        '<p style="font-size:6vw;">In this task, we will ask you to tap on a button</p>',
+        '<p style="font-size:6vw;">Tap on the button with your prefered hand, at the speed that is most natural for you</p>',
+        '<p style="font-size:6vw;">Try to maintain the tapping speed as constant as possible until the task ends.</p>',
+        '<p style="font-size:6vw;">Are you ready? If yes, click next to begin</p>',
+        ],
+        button_label_next: "Next",
+        button_label_previous: "Previous",
+        show_clickable_nav: true,
+    }
+
+    var instruction2 = {
+        type: jsPsychInstructions,
+        pages: [
+        '<p style="font-size:6vw;">In the next task, you will hear a beat</p>',
+        '<p style="font-size:6vw;">Tap in synchrony to the beat</p>',
+        '<p style="font-size:6vw;">Are you ready? If yes, click next to begin</p>',
+        ],
+        button_label_next: "Next",
+        button_label_previous: "Previous",
+        show_clickable_nav: true,
+    }
+
+    var instruction3 = {
+        type: jsPsychInstructions,
+        pages: [
+        '<p style="font-size:6vw;">In the next task you will hear a musical piece</p>',
+        '<p style="font-size:6vw;">Please tap in synchrony to the beat of the music</p>',
+        '<p style="font-size:6vw;">Are you ready? If yes, click next to begin</p>',
+        ],
+        button_label_next: "Next",
+        button_label_previous: "Previous",
+        show_clickable_nav: true,
+    }
+
+    var trialTapping1 = {
+        type: jsPsychAudioButtonResponse,
+        choices: ['Tap here'],
+        stimulus: '../../songs/movementTapAudio/silence.wav',
+        trial_duration: 10000,
+        response_ends_trial: false,
+        on_start: function(trial) {
+            //document.addEventListener("mousedown", change);
+        },
+        //on_finish: function(trial) {
+            //document.removeEventListener("mousedown", change);
+        //}
+    }
+    
+    const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
+
+    //Call random hemiola
+    var randomHemioleIndex = random(0, songKeys['14'].length -1)
+    var randomHemioleSong = songKeys['14'][randomHemioleIndex]
+     
+    var randomElPesebreIndex = random(0, songKeys['13'].length -1)
+    var randomElPesebreSong = songKeys['13'][randomElPesebreIndex]
+
+    console.log(randomElPesebreSong)
+    console.log(randomHemioleSong)
+        
+    var trialTapping2 = {
+        type: jsPsychAudioButtonResponse,
+        choices: ['Tap here'],
+        stimulus: '../../songs/movementTapAudio/modifiedAudio/' + randomHemioleSong,
+        trial_duration: 10000,
+        response_ends_trial: false,
+        on_start: function(trial) {
+            //document.addEventListener("mousedown", change);
+            console.log(document.querySelector("jspsych-tapping-btn"))
+        },
+        //on_finish: function(trial) {
+            //document.removeEventListener("mousedown", change);
+        //}
+    }
+
+    var trialTapping3 = {
+        type: jsPsychAudioButtonResponse,
+        choices: ['Tap here'],
+        stimulus: '../../songs/movementTapAudio/modifiedAudio/' + randomElPesebreSong,
+        trial_duration: 10000,
+        response_ends_trial: false,
+        //on_start: function(trial) {
+            //document.addEventListener("mousedown", change);
+        //},
+        //on_finish: function(trial) {
+            //document.removeEventListener("mousedown", change);
+        //}
+    }
+
+    var showBPM1 = {
+      type: jsPsychHtmlButtonResponse,
+      prompt: '<p style="font-size:6vw;">End of task 1</p>',
+      choices: [],
+      trial_duration: 3000,
+      stimulus: '',
+    };
+
+    var showBPM2 = {
+      type: jsPsychHtmlButtonResponse,
+      prompt: '<p style="font-size:6vw;">End of task 2</p>',
+      choices: [],
+      trial_duration: 3000,
+      stimulus: '',
+    };
+
+    var showBPM3 = {
+      type: jsPsychHtmlButtonResponse,
+      prompt: '<p style="font-size:6vw;">End of task 3</p>',
+      choices: [],
+      trial_duration: 3000,
+      stimulus: '',
+    };
+
+    jsPsych.run([instruction1, trialTapping1, showBPM1, instruction2, trialTapping2, showBPM2, instruction3, trialTapping3, showBPM3]);
+
+ </script>
+</html>
