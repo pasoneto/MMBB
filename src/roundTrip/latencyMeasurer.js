@@ -97,6 +97,7 @@ class Player extends AudioWorkletProcessor {
       if (latency_ms > 500) {
         latency_ms -= 1000;
       }
+      window.latencyMeasured = latency_ms;
       console.log(latency_ms);
     }
   }
