@@ -57,7 +57,7 @@
 
     function displayLatency() {
       var el = document.getElementById("showLatency");
-      el.innerHTML = audioCtx.outputLatency
+      el.innerHTML = audioCtx.outputLatency * 1000
     }
 
     function fetchLatency() {
