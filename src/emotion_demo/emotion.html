@@ -16,8 +16,7 @@
     <script src="./jspsych/dist/plugin-survey-multi-choice.js"> </script>
     <script src="./jspsych/dist/plugin-initialize-microphone.js"> </script>
     <script src="./jspsych/dist/plugin-html-audio-response.js"> </script>
-    <link href="./jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />
-    <!--<link href="https://unpkg.com/jspsych@7.2.1/css/jspsych.css" rel="stylesheet" type="text/css" />-->
+    <link href="https://unpkg.com/jspsych@7.2.1/css/jspsych.css" rel="stylesheet" type="text/css" /> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
   </head>
@@ -28,6 +27,7 @@
       extensions: [
         {type: jsPsychExtensionAccelerometer }
       ],
+      show_progress_bar: true,
       on_finish: function() {
         jsPsych.data.get().localSave('csv','dataEmoENGPart1.csv');
       }
@@ -61,7 +61,7 @@
 
     const t1_1Resp = {
       type: jsPsychHtmlButtonResponse,
-    	choices: [images[1], images[3]],
+    	choices: [images[1], images[2]],
       stimulus: "Select the right emotion",
     	button_html: '<img src="%choice%" />',
       data: {type: '1',condition: 'angry',correct_response: 0},
@@ -74,7 +74,7 @@
      
     var t1_2Stim = {
         type: jsPsychAudioKeyboardResponse,
-        stimulus: './final_stimuli/106.mp3',
+        stimulus: './final_stimuli/033.mp3',
         prompt: '<p style="font-size:45px;">Listen to the music</p>',
         trial_duration: 15500,
         choices: ["NO_KEYS"],
@@ -82,10 +82,10 @@
 
     const t1_2Resp = {
       type: jsPsychHtmlButtonResponse,
-    	choices: [images[2], images[3]],
+    	choices: [images[0], images[3]],
       stimulus: "Select the right emotion",
     	button_html: '<img src="%choice%" />',
-      data: {type: '2',condition: 'tender',correct_response: 0},
+      data: {type: '2',condition: 'sad',correct_response: 0},
       post_trial_gap: 1000
     };
     
@@ -94,7 +94,7 @@
     }
     var t1_3Stim = {
         type: jsPsychAudioKeyboardResponse,
-        stimulus: './final_stimuli/086.mp3',
+        stimulus: './final_stimuli/023.mp3',
         prompt: '<p style="font-size:45px;">Listen to the music</p>',
         trial_duration: 15500,
         choices: ["NO_KEYS"],
@@ -102,10 +102,10 @@
 
     const t1_3Resp = {
       type: jsPsychHtmlButtonResponse,
-    	choices: [images[0], images[2]],
+    	choices: [images[1], images[3]],
       stimulus: "Select the right emotion",
     	button_html: '<img src="%choice%" />',
-      data: {type: '3',condition: 'sad',correct_response: 0},
+      data: {type: '3',condition: 'happy',correct_response: 0},
       post_trial_gap: 1000
     };
     
@@ -114,7 +114,7 @@
     }
     var t1_4Stim = {
         type: jsPsychAudioKeyboardResponse,
-        stimulus: './final_stimuli/003.mp3',
+        stimulus: './final_stimuli/105.mp3',
         prompt: '<p style="font-size:45px;">Listen to the music</p>',
         trial_duration: 15500,
         choices: ["NO_KEYS"],
@@ -122,10 +122,10 @@
 
     const t1_4Resp = {
       type: jsPsychHtmlButtonResponse,
-    	choices: [images[0], images[1]],
+    	choices: [images[2], images[3]],
       stimulus: "Select the right emotion",
     	button_html: '<img src="%choice%" />',
-      data: {type: '4',condition: 'angry',correct_response: 1},
+      data: {type: '4',condition: 'happy',correct_response: 1},
       post_trial_gap: 1000
     };
     
@@ -135,7 +135,7 @@
 
     var t1_5Stim = {
         type: jsPsychAudioKeyboardResponse,
-        stimulus: './final_stimuli/072.mp3',
+        stimulus: './final_stimuli/106.mp3',
         prompt: '<p style="font-size:45px;">Listen to the music</p>',
         trial_duration: 15500,
         choices: ["NO_KEYS"],
@@ -143,17 +143,16 @@
 
     const t1_5Resp = {
       type: jsPsychHtmlButtonResponse,
-    	choices: images,
+    	choices: [images[0], images[2]],
       stimulus: "Select the right emotion",
     	button_html: '<img src="%choice%" />',
-      data: {type: '5',condition: 'happy',correct_response: 3},
+      data: {type: '5',condition: 'tender',correct_response: 0},
       post_trial_gap: 1000
     };
     
     const t1_5 = {
         timeline: [t1_5Stim, t1_5Resp]
     }
-
     var t1_6Stim = {
         type: jsPsychAudioKeyboardResponse,
         stimulus: './final_stimuli/109.mp3',
@@ -164,22 +163,19 @@
 
     const t1_6Resp = {
       type: jsPsychHtmlButtonResponse,
-    	choices: images,
+    	choices: [images[0], images[1]],
       stimulus: "Select the right emotion",
     	button_html: '<img src="%choice%" />',
-      data: {type: '6',condition: 'sad',correct_response: 0},
+      data: {type: '6',condition: 'sad',correct_response: 1},
       post_trial_gap: 1000
     };
-
+    
     const t1_6 = {
         timeline: [t1_6Stim, t1_6Resp]
     }
 
     const randomTrials2Responses = {
-        timeline: jsPsych.randomization.shuffle([t1_1, t1_2,t1_3,t1_4])
-    }
-    const randomTrialsFullResponses = {
-        timeline: jsPsych.randomization.shuffle([t1_5,t1_6])
+        timeline: jsPsych.randomization.shuffle([t1_1, t1_2,t1_3,t1_4,t1_5,t1_6])
     }
 
     var instruction2 = {
@@ -193,7 +189,7 @@
 
     var t2_1Stim = {
         type: jsPsychAudioKeyboardResponse,
-        stimulus: './final_stimuli/023.mp3',
+        stimulus: './final_stimuli/001.mp3',
         prompt: '<p style="font-size:45px;">Listen to the music</p>',
         trial_duration: 15500,
         choices: ["NO_KEYS"],
@@ -201,20 +197,20 @@
 
     const t2_1Resp = {
       type: jsPsychHtmlButtonResponse,
-    	choices: [images[1], images[3]],
+    	choices: images,
       stimulus: "Select the right emotion",
     	button_html: '<img src="%choice%" />',
-      data: {type: '7',condition: 'happy',correct_response: 1},
+      data: {type: '7',condition: 'happy',correct_response: 3},
       post_trial_gap: 1000
     };
     
     const t2_1 = {
         timeline: [t2_1Stim, t2_1Resp]
     }
-     
+
     var t2_2Stim = {
         type: jsPsychAudioKeyboardResponse,
-        stimulus: './final_stimuli/105.mp3',
+        stimulus: './final_stimuli/003.mp3',
         prompt: '<p style="font-size:45px;">Listen to the music</p>',
         trial_duration: 15500,
         choices: ["NO_KEYS"],
@@ -222,19 +218,20 @@
 
     const t2_2Resp = {
       type: jsPsychHtmlButtonResponse,
-    	choices: [images[2], images[3]],
+    	choices: images,
       stimulus: "Select the right emotion",
-      button_html: '<img src="%choice%" />',
-      data: {type: '8',condition: 'happy',correct_response: 1},
+    	button_html: '<img src="%choice%" />',
+      data: {type: '8',condition: 'sad',correct_response: 0},
       post_trial_gap: 1000
     };
-    
+
     const t2_2 = {
         timeline: [t2_2Stim, t2_2Resp]
     }
+
     var t2_3Stim = {
         type: jsPsychAudioKeyboardResponse,
-        stimulus: './final_stimuli/043.mp3',
+        stimulus: './final_stimuli/081.mp3',
         prompt: '<p style="font-size:45px;">Listen to the music</p>',
         trial_duration: 15500,
         choices: ["NO_KEYS"],
@@ -242,19 +239,20 @@
 
     const t2_3Resp = {
       type: jsPsychHtmlButtonResponse,
-    	choices: [images[0], images[2]],
+    	choices: images,
       stimulus: "Select the right emotion",
     	button_html: '<img src="%choice%" />',
-      data: {type: '9',condition: 'tender',correct_response: 1},
+      data: {type: '9',condition: 'happy',correct_response: 1},
       post_trial_gap: 1000
     };
     
     const t2_3 = {
         timeline: [t2_3Stim, t2_3Resp]
     }
+     
     var t2_4Stim = {
         type: jsPsychAudioKeyboardResponse,
-        stimulus: './final_stimuli/033.mp3',
+        stimulus: './final_stimuli/084.mp3',
         prompt: '<p style="font-size:45px;">Listen to the music</p>',
         trial_duration: 15500,
         choices: ["NO_KEYS"],
@@ -262,41 +260,39 @@
 
     const t2_4Resp = {
       type: jsPsychHtmlButtonResponse,
-    	choices: [images[0], images[1]],
+    	choices: images,
       stimulus: "Select the right emotion",
-    	button_html: '<img src="%choice%" />',
-      data: {type: '10',condition: 'sad',correct_response: 0},
+      button_html: '<img src="%choice%" />',
+      data: {type: '10',condition: 'happy',correct_response: 1},
       post_trial_gap: 1000
     };
     
     const t2_4 = {
         timeline: [t2_4Stim, t2_4Resp]
     }
-
     var t2_5Stim = {
         type: jsPsychAudioKeyboardResponse,
-        stimulus: './final_stimuli/069.mp3',
+        stimulus: './final_stimuli/075.mp3',
         prompt: '<p style="font-size:45px;">Listen to the music</p>',
         trial_duration: 15500,
         choices: ["NO_KEYS"],
     }
-    
+
     const t2_5Resp = {
       type: jsPsychHtmlButtonResponse,
     	choices: images,
       stimulus: "Select the right emotion",
     	button_html: '<img src="%choice%" />',
-      data: {type: '11',condition: 'anger',correct_response: 1},
+      data: {type: '11',condition: 'tender',correct_response: 1},
       post_trial_gap: 1000
     };
-
+    
     const t2_5 = {
         timeline: [t2_5Stim, t2_5Resp]
     }
-
     var t2_6Stim = {
         type: jsPsychAudioKeyboardResponse,
-        stimulus: './final_stimuli/041.mp3',
+        stimulus: './final_stimuli/024.mp3',
         prompt: '<p style="font-size:45px;">Listen to the music</p>',
         trial_duration: 15500,
         choices: ["NO_KEYS"],
@@ -307,22 +303,61 @@
     	choices: images,
       stimulus: "Select the right emotion",
     	button_html: '<img src="%choice%" />',
-      data: {type: '12',condition: 'tender',correct_response: 2},
+      data: {type: '12',condition: 'sad',correct_response: 0},
       post_trial_gap: 1000
     };
-
+    
     const t2_6 = {
         timeline: [t2_6Stim, t2_6Resp]
     }
 
-    const randomTrials2Responses2 = {
-        timeline: jsPsych.randomization.shuffle([t2_1, t2_2,t2_3,t2_4])
-    }
-    const randomTrialsFullResponses2 = {
-        timeline: jsPsych.randomization.shuffle([t2_5,t2_6])
+    var t2_7Stim = {
+        type: jsPsychAudioKeyboardResponse,
+        stimulus: './final_stimuli/042.mp3',
+        prompt: '<p style="font-size:45px;">Listen to the music</p>',
+        trial_duration: 15500,
+        choices: ["NO_KEYS"],
     }
 
-    jsPsych.run([instruction, randomTrials2Responses,randomTrialsFullResponses, instruction2, randomTrials2Responses2,randomTrialsFullResponses2]);
+    const t2_7Resp = {
+      type: jsPsychHtmlButtonResponse,
+    	choices: images,
+      stimulus: "Select the right emotion",
+    	button_html: '<img src="%choice%" />',
+      data: {type: '13',condition: 'tender',correct_response: 1},
+      post_trial_gap: 1000
+    };
+    
+    const t2_7 = {
+        timeline: [t2_7Stim, t2_7Resp]
+    }
+    var t2_8Stim = {
+        type: jsPsychAudioKeyboardResponse,
+        stimulus: './final_stimuli/107.mp3',
+        prompt: '<p style="font-size:45px;">Listen to the music</p>',
+        trial_duration: 15500,
+        choices: ["NO_KEYS"],
+    }
+
+    const t2_8Resp = {
+      type: jsPsychHtmlButtonResponse,
+    	choices: images,
+      stimulus: "Select the right emotion",
+    	button_html: '<img src="%choice%" />',
+      data: {type: '14',condition: 'sad',correct_response: 0},
+      post_trial_gap: 1000
+    };
+    
+    const t2_8 = {
+        timeline: [t2_8Stim, t2_8Resp]
+    }
+
+
+    const randomTrialsFullResponses = {
+        timeline: jsPsych.randomization.shuffle([t2_1, t2_2,t2_3,t2_4,t2_5,t2_6,t2_7,t2_8])
+    }
+    
+    jsPsych.run([instruction, randomTrials2Responses, instruction2, randomTrialsFullResponses]);
 
  </script>
 </html>
