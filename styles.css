@@ -1,0 +1,103 @@
+body{
+  margin: 0;
+}
+#container{
+  margin: 0;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+#title{
+  margin: 0;
+  box-shadow: 0px 1px 8px 1px #888888;
+}
+#chooseInstrument{
+  margin-top: 80px;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+  width: 90vw;
+  height: 800px;
+  font-size:60px
+}
+#start{
+  font-size: 45px;
+  margin-top: 90px;
+  margin-top: 90px;
+  width: 20vw;
+  height: 8vh; 
+}
+#startVideo{
+  display: none;
+  font-size: 45px;
+  margin-top: 90px;
+  width: 20vw;
+  height: 8vh;
+}
+#gif{ 
+  width:100vw;
+}
+#task1{
+  width: 35vw;
+  margin: 20px;
+  border-radius: 20px;
+  box-shadow: 0px 1px 8px 1px #888888;
+  padding: 20px
+}
+#task2{
+  width: 35vw;
+  margin: 20px;
+  border-radius: 20px;
+  box-shadow: 0px 1px 8px 1px #888888;
+  padding: 20px
+}
+#task3{
+  width: 35vw;
+  margin: 20px;
+  border-radius: 20px;
+  box-shadow: 0px 1px 8px 1px #888888;
+  padding: 20px
+}
+#task4{
+  width: 35vw;
+  margin: 20px;
+  border-radius: 20px;
+  box-shadow: 0px 1px 8px 1px #888888;
+  padding: 20px
+}
+#task5{
+  width: 35vw;
+  margin: 20px;
+  border-radius: 20px;
+  box-shadow: 0px 1px 8px 1px #888888;
+  padding: 20px
+}
+#task6{
+  width: 35vw;
+  margin: 20px;
+  border-radius: 20px;
+  box-shadow: 0px 1px 8px 1px #888888;
+  padding: 20px
+}
+#instruction{
+  margin-top: 30px;
+  font-size: 65px;
+}
+#bpmContainer{
+  display: none;
+  width: 90vw;
+  height: 35vh;
+  padding: 20px;
+  font-size: 65px;
+}
+#videoDiv{
+  display: none;
+  font-size: 65px;
+  width: 80vw;
+}
+#source{
+  margin-bottom: 100px;
+}

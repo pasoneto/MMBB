@@ -1,57 +1,107 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>Accelerometer apps</title>
-</head>
-<style>
-body{
-  background-color: #808080
-}
-div {
-  font-size:30px;
-  height: 100vh;
-  width: 100vw;
-  top: 0;
-  left: 0;
-}
-li {
-  margin: 60px;
-}
-a {
-  background-color: lightblue;
-  border-radius: 20px;
-  text-decoration: none;
-  padding: 20px;
-  box-shadow: 0 0 0.2em black;
-}
-a:hover {
-  background-color: red;
-}
-h1 {
- font-size:7vw;
- margin: auto;
- text-shadow: 2px 2px 4px #000000;
- color: white;
- text-shadow: 2px 2px 4px #000000;
-}
-</style>
-<body>
+  <link href="./styles.css" rel="stylesheet" type="text/css" />
 
-  <h1>MMBBattery</h1>
+  <body>
 
-  <div>
-    <ol>
-      <li><a href="./src/batteries/movement.html">Movement</a></li>
-      <li><a href="./src/batteries/tapping.html">Tapping</a></li>
-      <li><a href="./src/batteries/beatProductionJS.html">Beat production</a></li>
-      <li><a href="./src/batteries/bat.html">BAT</a></li>
-      <li><a href="./src/batteries/singing.html">Singing</a></li>
-      <li><a href="./src/batteries/survey.html">Survey</a></li>
-      <li><a href="./src/batteries/emotion_demo/emotionFI.html">Emotion Part 1 test (FI)</a></li>
-      <li><a href="./src/batteries/emotion_demo/emotion.html">Emotion  Part 1 test (ENG)</a></li>
-      <li><a href="./src/batteries/emotion_demo/emotionPart2.html">Emotion Part 2-3 test (ENG)</a></li>
-    </ol>
-  </div>
+    <div id="container">
+      <div id="title">
+        <img id="gif" src="./images/coe.gif" />
+      </div>
+      <div id="instruction">Choose a task</div>
+      <div id="chooseInstrument">
+        <a href="./src/batteries/movement.html"><img id="task1" src="./images/dance.svg" style="height:350px"/></a>
+        <a href="./src/batteries/tapping.html"><img id="task2" src="./images/tapping.svg" style="height:350px"/></a>
+        <a href="./src/batteries/beatProduction.html"><img id="task3" src="./images/beatProduction.svg" style="height:350px"/></a>
+        <a href="./src/batteries/bat.html"><img id="task4" src="./images/alignment.svg" style="height:350px"/></a>
+        <a href="./src/batteries/singing.html"><img id="task5" src="./images/singing.svg" style="height:350px"/></a>
+        <a href="./src/batteries/survey.html"><img id="task6" src="./images/survey.svg" style="height:350px"/></a>
+        <a href=""><p id="start">Information</p></a>
+      </div>
+    </div>
 
-</body>
+    <script>
+      var task1 = document.getElementById("task1");
+      var task2 = document.getElementById("task2");
+      var task3 = document.getElementById("task3");
+      var task4 = document.getElementById("task4");
+      var task5 = document.getElementById("task5");
+      var task6 = document.getElementById("task6");
+
+      task1.onclick = function () {
+        task1.style.boxShadow = "0px 1px 8px 1px #45b6fe";
+        task2.style.boxShadow = "0px 1px 8px 1px #888888";
+        task3.style.boxShadow = "0px 1px 8px 1px #888888";
+        task4.style.boxShadow = "0px 1px 8px 1px #888888";
+        task5.style.boxShadow = "0px 1px 8px 1px #888888";
+        task6.style.boxShadow = "0px 1px 8px 1px #888888";
+      };
+
+      task2.onclick = function () {
+        task1.style.boxShadow = "0px 1px 8px 1px #888888";
+        task2.style.boxShadow = "0px 1px 8px 1px #45b6fe";
+        task3.style.boxShadow = "0px 1px 8px 1px #888888";
+        task4.style.boxShadow = "0px 1px 8px 1px #888888"; 
+        task5.style.boxShadow = "0px 1px 8px 1px #888888";
+        task6.style.boxShadow = "0px 1px 8px 1px #888888";
+      };
+
+      task3.onclick = function () {
+        task1.style.boxShadow = "0px 1px 8px 1px #888888";
+        task2.style.boxShadow = "0px 1px 8px 1px #888888";
+        task3.style.boxShadow = "0px 1px 8px 1px #45b6fe";
+        task4.style.boxShadow = "0px 1px 8px 1px #888888";
+        task5.style.boxShadow = "0px 1px 8px 1px #888888";
+        task6.style.boxShadow = "0px 1px 8px 1px #888888";
+      };
+      
+      task4.onclick = function () {
+        task1.style.boxShadow = "0px 1px 8px 1px #888888";
+        task2.style.boxShadow = "0px 1px 8px 1px #888888";
+        task3.style.boxShadow = "0px 1px 8px 1px #888888";
+        task4.style.boxShadow = "0px 1px 8px 1px #45b6fe";
+        task5.style.boxShadow = "0px 1px 8px 1px #888888";
+        task6.style.boxShadow = "0px 1px 8px 1px #888888";
+      };
+
+      task5.onclick = function () {
+        task1.style.boxShadow = "0px 1px 8px 1px #888888";
+        task2.style.boxShadow = "0px 1px 8px 1px #888888";
+        task3.style.boxShadow = "0px 1px 8px 1px #888888";
+        task4.style.boxShadow = "0px 1px 8px 1px #888888";
+        task5.style.boxShadow = "0px 1px 8px 1px #45b6fe";
+        task6.style.boxShadow = "0px 1px 8px 1px #888888";
+      };
+
+      task6.onclick = function () {
+        task1.style.boxShadow = "0px 1px 8px 1px #888888";
+        task2.style.boxShadow = "0px 1px 8px 1px #888888";
+        task3.style.boxShadow = "0px 1px 8px 1px #888888";
+        task4.style.boxShadow = "0px 1px 8px 1px #888888";
+        task5.style.boxShadow = "0px 1px 8px 1px #888888";
+        task6.style.boxShadow = "0px 1px 8px 1px #45b6fe";
+      };
+
+    </script>
+
+  </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
