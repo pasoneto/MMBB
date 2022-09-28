@@ -17,9 +17,7 @@
     <script src="./jspsych/dist/plugin-initialize-microphone.js"> </script>
     <script src="./jspsych/dist/plugin-html-audio-response.js"> </script>
     <script src="./jspsych/dist/plugin-html-slider-response.js"> </script>
-    <link href="https://unpkg.com/jspsych@7.2.1/css/jspsych.css" rel="stylesheet" type="text/css" />
-
-    
+    <link href="https://unpkg.com/jspsych@7.2.1/css/jspsych.css" rel="stylesheet" type="text/css" /> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
   </head>
@@ -30,6 +28,7 @@
       extensions: [
         {type: jsPsychExtensionAccelerometer }
       ],
+      show_progress_bar: true,
       on_finish: function() {
         jsPsych.data.get().localSave('csv','emotionENGPart2.csv');
       }
@@ -57,7 +56,7 @@
 
     var t2_1Stim = {
         type: jsPsychAudioKeyboardResponse,
-        stimulus: './final_stimuli/092.mp3',
+        stimulus: './final_stimuli/002.mp3',
         prompt: '<p style="font-size:30px;">Listen to the music</p>',
         trial_duration: 15500,
         choices: ["NO_KEYS"],
@@ -65,7 +64,7 @@
 
     var t2_2Stim = {
         type: jsPsychAudioKeyboardResponse,
-        stimulus: './final_stimuli/023.mp3',
+        stimulus: './final_stimuli/005.mp3',
         prompt: '<p style="font-size:30px;">Listen to the music</p>',
         trial_duration: 15500,
         choices: ["NO_KEYS"],
@@ -73,7 +72,7 @@
 
     var t2_3Stim = {
         type: jsPsychAudioKeyboardResponse,
-        stimulus: './final_stimuli/031.mp3',
+        stimulus: './final_stimuli/034.mp3',
         prompt: '<p style="font-size:30px;">Listen to the music</p>',
         trial_duration: 15500,
         choices: ["NO_KEYS"],
@@ -81,14 +80,14 @@
 
     var t2_4Stim = {
         type: jsPsychAudioKeyboardResponse,
-        stimulus: './final_stimuli/042.mp3',
+        stimulus: './final_stimuli/088.mp3',
         prompt: '<p style="font-size:30px;">Listen to the music</p>',
         trial_duration: 15500,
         choices: ["NO_KEYS"],
     }
     var t2_5Stim = {
         type: jsPsychAudioKeyboardResponse,
-        stimulus: './final_stimuli/069.mp3',
+        stimulus: './final_stimuli/071.mp3',
         prompt: '<p style="font-size:30px;">Listen to the music</p>',
         trial_duration: 15500,
         choices: ["NO_KEYS"],
@@ -96,7 +95,7 @@
 
     var t2_6Stim = {
         type: jsPsychAudioKeyboardResponse,
-        stimulus: './final_stimuli/105.mp3',
+        stimulus: './final_stimuli/079.mp3',
         prompt: '<p style="font-size:30px;">Listen to the music</p>',
         trial_duration: 15500,
         choices: ["NO_KEYS"],
@@ -104,7 +103,7 @@
 
     var t2_7Stim = {
         type: jsPsychAudioKeyboardResponse,
-        stimulus: './final_stimuli/033.mp3',
+        stimulus: './final_stimuli/043.mp3',
         prompt: '<p style="font-size:30px;">Listen to the music</p>',
         trial_duration: 15500,
         choices: ["NO_KEYS"],
@@ -112,7 +111,7 @@
 
     var t2_8Stim = {
         type: jsPsychAudioKeyboardResponse,
-        stimulus: './final_stimuli/041.mp3',
+        stimulus: './final_stimuli/044.mp3',
         prompt: '<p style="font-size:30px;">Listen to the music</p>',
         trial_duration: 15500,
         choices: ["NO_KEYS"],
