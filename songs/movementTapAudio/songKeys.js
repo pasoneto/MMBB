@@ -2,7 +2,9 @@ const path = require('path');
 const fs = require('fs');
 var util = require('util');
 
-var directoryPath = "/Users/pdealcan/Documents/github/accelWeb/jsPsychExtension/songs/movementTapAudio/modifiedAudio"
+var directoryPath = "/Users/pdealcan/Documents/github/accelWeb/jsPsychExtension/songs/movementTapAudio/modifiedAudio";
+
+var directoryPath = "/Users/pdealcan/Documents/github/accelWeb/songs/movementTapAudio/modifiedAudio"
 
 var songKeys = {
   "1": [],
