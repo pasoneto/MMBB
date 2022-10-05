@@ -28,7 +28,7 @@
 
     var jsPsych = initJsPsych({
       extensions: [
-        //{type: jsPsychExtensionAccelerometer }
+        {type: jsPsychExtensionAccelerometer }
       ],
       on_finish: function() {
         //jsPsych.data.displayData();
@@ -153,7 +153,7 @@
         trial_duration: 3000,
         choices: ["NO_KEYS"],
         extensions: [
-          //{type: jsPsychExtensionAccelerometer }
+          {type: jsPsychExtensionAccelerometer }
         ],
     }
 
@@ -232,11 +232,14 @@
 
     var familiarityRating = {
         type: jsPsychHtmlSliderResponse,
-        stimulus: "How familiar is the song you've just heard?",
+        stimulus: "How familiar are you with the piece of<br>music that you just heard?",
         require_movement: true,
-        labels: ['Not at all', 'Very familiar'],
+        labels: ['<p style="line-height:18px;font-size:4vw">Never<br>heard it<br>before</p>', 
+                 '<p style="line-height:18px;font-size:4vw">Know this song<br>so well that I can<br>predict what<br>happens next<br>in the song</p>'],
         on_load: function(){
           document.getElementById("jspsych-html-slider-response-next").style.height = "100px";
+          document.getElementById("jspsych-html-slider-response-next").style.marginTop = "100px";
+          //document.getElementById("jspsych-content").style.marginTop = "10px";
         },
         on_finish: function(data){
           var allData = jsPsych.data.get().values();
@@ -247,11 +250,14 @@
 
     var likingRating = {
         type: jsPsychHtmlSliderResponse,
-        stimulus: "How much did you like the song you've just heard?",
+        stimulus: "Please use the slider to rate how much you liked the music that you've just heard",
         require_movement: true,
-        labels: ['Not at all', 'Very much'],
+        labels: ["I did not like it at all", "I liked it a lot"],
         on_load: function(){
           document.getElementById("jspsych-html-slider-response-next").style.height = "100px";
+          //document.getElementById("jspsych-html-slider-response-next").style.marginTop = "100px";
+          //document.getElementById("jspsych-content").style.marginTop = "10px";
+          document.getElementById("jspsych-html-slider-response-stimulus").style.marginBottom = "50px";
         },
         on_finish: function(data){
           var allData = jsPsych.data.get().values();
@@ -291,7 +297,7 @@
         trial_duration: 15000,
         choices: ["NO_KEYS"],
         extensions: [
-          //{type: jsPsychExtensionAccelerometer }
+          {type: jsPsychExtensionAccelerometer }
         ],
     }
     
@@ -308,7 +314,7 @@
         trial_duration: 15000,
         choices: ["NO_KEYS"],
         extensions: [
-          //{type: jsPsychExtensionAccelerometer }
+          {type: jsPsychExtensionAccelerometer }
         ],
     }
 
@@ -324,7 +330,7 @@
         trial_duration: 30000,
         choices: ["NO_KEYS"],
         extensions: [
-          //{type: jsPsychExtensionAccelerometer }
+          {type: jsPsychExtensionAccelerometer }
         ],
     }
 
@@ -335,7 +341,7 @@
         trial_duration: 30000,
         choices: ["NO_KEYS"],
         extensions: [
-          //{type: jsPsychExtensionAccelerometer }
+          {type: jsPsychExtensionAccelerometer }
         ],
         on_start: function(trial) {
             var allData = jsPsych.data.get().values()
