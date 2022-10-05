@@ -24,11 +24,6 @@ body{
   font-size:60px
 }
 #start{
-  font-size: 45px;
-  margin-top: 90px;
-  margin-top: 90px;
-  width: 20vw;
-  height: 8vh; 
 }
 #startVideo{
   display: none;
@@ -40,42 +35,7 @@ body{
 #gif{ 
   width:100vw;
 }
-#task1{
-  width: 35vw;
-  margin: 20px;
-  border-radius: 20px;
-  box-shadow: 0px 1px 8px 1px #888888;
-  padding: 20px
-}
-#task2{
-  width: 35vw;
-  margin: 20px;
-  border-radius: 20px;
-  box-shadow: 0px 1px 8px 1px #888888;
-  padding: 20px
-}
-#task3{
-  width: 35vw;
-  margin: 20px;
-  border-radius: 20px;
-  box-shadow: 0px 1px 8px 1px #888888;
-  padding: 20px
-}
-#task4{
-  width: 35vw;
-  margin: 20px;
-  border-radius: 20px;
-  box-shadow: 0px 1px 8px 1px #888888;
-  padding: 20px
-}
-#task5{
-  width: 35vw;
-  margin: 20px;
-  border-radius: 20px;
-  box-shadow: 0px 1px 8px 1px #888888;
-  padding: 20px
-}
-#task6{
+[id^="task"]{
   width: 35vw;
   margin: 20px;
   border-radius: 20px;
@@ -100,4 +60,13 @@ body{
 }
 #source{
   margin-bottom: 100px;
+}
+#footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: red;
+  color: white;
+  text-align: center;
 }

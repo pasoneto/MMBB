@@ -8,8 +8,8 @@
     <script src="../../jspsych/dist/plugin-html-songselector-response.js"> </script>
     <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-audio-keyboard-response@1.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-slider-response@1.1.0"></script>
     <script src="../../jspsych/dist/plugin-audio-button-response.js"> </script>
-    <script src="../../jspsych/dist/plugin-html-slider-response.js"> </script>
     <script src="../../jspsych/dist/plugin-html-button-response.js"> </script>
     <script src="../../jspsych/dist/plugin-instructions.js"> </script>
     <script src="../../jspsych/dist/plugin-survey-likert.js"> </script>
@@ -28,7 +28,7 @@
 
     var jsPsych = initJsPsych({
       extensions: [
-        {type: jsPsychExtensionAccelerometer }
+        //{type: jsPsychExtensionAccelerometer }
       ],
       on_finish: function() {
         //jsPsych.data.displayData();
@@ -64,14 +64,12 @@
     var songs = [];
     var songCodes = [];
     var albumCovers = [];
-    for (let i = 1; i < 13; i++) {
-      if(i != 3){ //song 3 is defectuous
+    for (let i = 1; i < 7; i++) {
         var s = new Audio();
         s.src = '../../songs/movementTapAudio/vitrineSongs/' + i + '.mp3';
         songs.push(s)
         songCodes.push(i)
         albumCovers.push('../../songs/movementTapAudio/imageAlbums/' + i + '.jpg');
-      }
     }
 
     function PlaySound(song) {
@@ -155,7 +153,7 @@
         trial_duration: 3000,
         choices: ["NO_KEYS"],
         extensions: [
-          {type: jsPsychExtensionAccelerometer }
+          //{type: jsPsychExtensionAccelerometer }
         ],
     }
 
@@ -234,19 +232,32 @@
 
     var familiarityRating = {
         type: jsPsychHtmlSliderResponse,
-        stimulus: '',
-        stimulus: `<div style="width:500px;">
-            <p>Please rate your level of familiarity with this piece of music?</p>
-            <div style="width:240px; float: left;">
-              <p>10 wins, 5 losses, 6 draws</p>
-            </div>
-            <div style="width:240px; float: right;">
-              <p>6 wins, 4 losses, 11 draws</p>
-            </div>
-            </div>`,
+        stimulus: "How familiar is the song you've just heard?",
         require_movement: true,
-        //labels: ["never heard it before", "may have heard it before", "know the song and certain that you have heard it before", "heard it several times before", "know this song so well that<br>I can predict what happens next in the song"],
-        labels: ["0", "1", "2", "3", "4"]
+        labels: ['Not at all', 'Very familiar'],
+        on_load: function(){
+          document.getElementById("jspsych-html-slider-response-next").style.height = "100px";
+        },
+        on_finish: function(data){
+          var allData = jsPsych.data.get().values();
+          var song = allData[allData.length - 2].stimulus;
+          data.song = song;
+        }
+    };
+
+    var likingRating = {
+        type: jsPsychHtmlSliderResponse,
+        stimulus: "How much did you like the song you've just heard?",
+        require_movement: true,
+        labels: ['Not at all', 'Very much'],
+        on_load: function(){
+          document.getElementById("jspsych-html-slider-response-next").style.height = "100px";
+        },
+        on_finish: function(data){
+          var allData = jsPsych.data.get().values();
+          var song = allData[allData.length - 3].stimulus;
+          data.song = song;
+        }
     };
 
     var phonePocket = {
@@ -280,14 +291,14 @@
         trial_duration: 15000,
         choices: ["NO_KEYS"],
         extensions: [
-          {type: jsPsychExtensionAccelerometer }
+          //{type: jsPsychExtensionAccelerometer }
         ],
     }
     
     const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
-    var randomHemiolaIndex = random(0, songKeys['14'].length -1)
+    var randomHemiolaIndex = random(0, songKeys['8'].length -1)
 
-    var randomHemiolaSong = songKeys['14'][randomHemiolaIndex]
+    var randomHemiolaSong = songKeys['8'][randomHemiolaIndex]
     console.log(randomHemiolaSong)
 
     var trialAccelerometer2 = {
@@ -297,12 +308,12 @@
         trial_duration: 15000,
         choices: ["NO_KEYS"],
         extensions: [
-          {type: jsPsychExtensionAccelerometer }
+          //{type: jsPsychExtensionAccelerometer }
         ],
     }
 
-    var randomElPesebreIndex = random(0, songKeys['13'].length -1)
-    var randomElPesebreSong = songKeys['13'][randomElPesebreIndex]
+    var randomElPesebreIndex = random(0, songKeys['7'].length -1)
+    var randomElPesebreSong = songKeys['7'][randomElPesebreIndex]
 
     console.log(randomElPesebreSong)
 
@@ -313,7 +324,7 @@
         trial_duration: 30000,
         choices: ["NO_KEYS"],
         extensions: [
-          {type: jsPsychExtensionAccelerometer }
+          //{type: jsPsychExtensionAccelerometer }
         ],
     }
 
@@ -324,7 +335,7 @@
         trial_duration: 30000,
         choices: ["NO_KEYS"],
         extensions: [
-          {type: jsPsychExtensionAccelerometer }
+          //{type: jsPsychExtensionAccelerometer }
         ],
         on_start: function(trial) {
             var allData = jsPsych.data.get().values()
@@ -337,9 +348,9 @@
         },
     }
 
-
-    //jsPsych.run([familiarityRating])
-    jsPsych.run([frontPage, loadAccel, instruction0, instruction1, phonePocket, countDown, trialAccelerometer1, pickUpPhone, instruction2, phonePocket, countDown, trialAccelerometer2, pickUpPhone,  instruction3, phonePocket, countDown, trialAccelerometer3, pickUpPhone, instruction4, chooseSongs, phonePocket, countDown, trialAccelerometer4, pickUpPhone]);
+    //jsPsych.run([familiarityRating, likingRating])
+    jsPsych.run([frontPage, loadAccel, instruction0, instruction1, phonePocket, countDown, trialAccelerometer1, pickUpPhone, instruction2, phonePocket, countDown, trialAccelerometer2, pickUpPhone, familiarityRating, instruction3, phonePocket, countDown, trialAccelerometer3, pickUpPhone, familiarityRating, instruction4, chooseSongs, phonePocket, countDown, trialAccelerometer4, pickUpPhone, familiarityRating]);
+    //jsPsych.run([chooseSongs, phonePocket, countDown, trialAccelerometer4, familiarityRating, likingRating]);
 
  </script>
 </html>
