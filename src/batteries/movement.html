@@ -8,7 +8,7 @@
     <script src="../../jspsych/dist/plugin-html-songselector-response.js"> </script>
     <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-audio-keyboard-response@1.1.0"></script>
-    <script src="https://unpkg.com/@jspsych/plugin-html-slider-response@1.1.0"></script>
+    <script src="../../jspsych/dist/plugin-html-slider-response.js"></script>
     <script src="../../jspsych/dist/plugin-audio-button-response.js"> </script>
     <script src="../../jspsych/dist/plugin-html-button-response.js"> </script>
     <script src="../../jspsych/dist/plugin-instructions.js"> </script>
@@ -149,7 +149,7 @@
     var loadAccel = {
         type: jsPsychAudioKeyboardResponse,
         stimulus: '../../songs/movementTapAudio/silence.wav',
-        prompt: '<p style="font-size:45px;">Authorize access to accelerometer</p>',
+        prompt: '<p style="font-size:45px;">Accessing accelerometer</p>',
         trial_duration: 3000,
         choices: ["NO_KEYS"],
         extensions: [
@@ -193,7 +193,7 @@
         pages: [
         '<p style="font-size:7vw;">Now you will hear a song.</p>',
         '<p style="font-size:7vw;">Your task is to bounce along with the beat of the song.</p>',
-        '<p style="font-size:7vw;">This is an example of bouncing <br><video id="myVideo" width="100%" controls><source src="../../songs/movementTapAudio/instructionsAudio/bouncing.mp4" type="video/mp4"></video>',
+        '<p style="font-size:7vw;">This is an example of bouncing ' + '<br><video id="myVideo" width="100%" controls><source src="../../songs/movementTapAudio/instructionsAudio/bouncing.mp4" type="video/mp4"></video>',
         '<p style="font-size:7vw;">Try to bounce in a way that feels natural to you</p>',
         '<p style="font-size:7vw;">Also, try to remain in place and to avoid any other movements besides the bouncing motion.</p>',
         '<p style="font-size:6vw;">Click next when you are ready to begin</p>',
@@ -232,14 +232,20 @@
 
     var familiarityRating = {
         type: jsPsychHtmlSliderResponse,
-        stimulus: "How familiar are you with the piece of<br>music that you just heard?",
+          stimulus: "<p style='line-height:18px;font-size:4vw'>How familiar are you with the piece of<br>music that you just heard?</p>",
         require_movement: true,
-        labels: ['<p style="line-height:18px;font-size:4vw">Never<br>heard it<br>before</p>', 
-                 '<p style="line-height:18px;font-size:4vw">Know this song<br>so well that I can<br>predict what<br>happens next<br>in the song</p>'],
+        labels: ['<p style="line-height:18px;font-size:4vw">I Never heard it before</p>', 
+                 '<p style="line-height:18px;font-size:4vw">I Know this song<br>so well that I can<br>predict what<br>happens next<br>in the song</p>'],
         on_load: function(){
           document.getElementById("jspsych-html-slider-response-next").style.height = "100px";
           document.getElementById("jspsych-html-slider-response-next").style.marginTop = "100px";
-          //document.getElementById("jspsych-content").style.marginTop = "10px";
+
+          document.getElementById("label0").style.left = "calc(-50% - -70.5px)"
+          document.getElementById("label0").style.width = "50%"
+
+          document.getElementById("label1").style.left = ""
+          document.getElementById("label1").style.right = "calc(-50% - -70.5px)"
+          document.getElementById("label1").style.width = "50%"
         },
         on_finish: function(data){
           var allData = jsPsych.data.get().values();
@@ -254,9 +260,16 @@
         require_movement: true,
         labels: ["I did not like it at all", "I liked it a lot"],
         on_load: function(){
+
+          document.getElementById("label0").style.left = "calc(-50% - -70.5px)"
+          document.getElementById("label0").style.width = "50%"
+
+          document.getElementById("label1").style.left = ""
+          document.getElementById("label1").style.right = "calc(-50% - -70.5px)"
+          document.getElementById("label1").style.width = "50%"
+
+
           document.getElementById("jspsych-html-slider-response-next").style.height = "100px";
-          //document.getElementById("jspsych-html-slider-response-next").style.marginTop = "100px";
-          //document.getElementById("jspsych-content").style.marginTop = "10px";
           document.getElementById("jspsych-html-slider-response-stimulus").style.marginBottom = "50px";
         },
         on_finish: function(data){

@@ -129,7 +129,7 @@ var jsPsychHtmlSliderResponse = (function (jspsych) {
               var percent_dist_from_center = ((percent_of_range - 50) / 50) * 100;
               var offset = (percent_dist_from_center * half_thumb_width) / 100;
               html +=
-                  '<div style="border: 1px solid transparent; display: inline-block; position: absolute; ' +
+                  '<div id="label' + j + '" style="border: 1px solid transparent; display: inline-block; position: absolute; ' +
                       "left:calc(" +
                       percent_of_range +
                       "% - (" +
@@ -176,8 +176,13 @@ var jsPsychHtmlSliderResponse = (function (jspsych) {
               display_element
                   .querySelector("#jspsych-html-slider-response-response")
                   .addEventListener("input", () => {
-                    var positionSlider = display_element.querySelector("#jspsych-html-slider-response-response").value
-                    document.getElementById("showAge").innerHTML = positionSlider
+                    try{
+                      var positionSlider = display_element.querySelector("#jspsych-html-slider-response-response").value
+                      document.getElementById("showAge").innerHTML = positionSlider
+                    }
+                    catch{
+                      console.log("Not this trial")
+                    }
                   })
           }
           const end_trial = () => {
