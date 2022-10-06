@@ -23,20 +23,22 @@ function playSound(buffer, context, volume){
   return [gainNode, source]
 }
 
+var nLoaded = 0
 //Starts song with given volume
 async function startLoop(url, context, volume){
   
   var buffer = await fetch(url)
     .then(res => res.arrayBuffer())
     .then(arrayBuffer => context.decodeAudioData(arrayBuffer));
-  console.log(buffer) 
   var [gainNode, source] = playSound(buffer, context, volume);
+  console.log(buffer) 
+  window.nLoaded = window.nLoaded + 1;
   return [gainNode, source]
 }
 
 //Initiates all songs at the same time, and beat with a given offset
 async function initiateContext(offset, beatsURL, songBaseURL){
-
+  window.nLoaded = 0;
   let context = null;
   if (context) context.close();
   window.context = new AudioContext();
@@ -50,8 +52,7 @@ async function initiateContext(offset, beatsURL, songBaseURL){
     [window.gainNode4, window.source4] = await startLoop(beatsURL + '/metronome_3.wav', window.context, 0);
     [window.gainNode5, window.source5] = await startLoop(beatsURL + '/metronome_4.wav', window.context, 0);
     [window.gainNode6, window.source6] = await startLoop(beatsURL + '/metronome_5.wav', window.context, 0);
-    [window.gainNode7, window.source7] = await startLoop(beatsURL + '/metronome_6.wav', window.context, 0);
-    [window.gainNode8, window.source8] = await startLoop(beatsURL + '/metronome_7.wav', window.context, 0);
+    [window.gainNode7, window.source7] = await startLoop(beatsURL + '/metronome_6.wav', window.context, 0); [window.gainNode8, window.source8] = await startLoop(beatsURL + '/metronome_7.wav', window.context, 0);
   } else
 
   if(offset == 2){
@@ -130,6 +131,10 @@ async function initiateContext(offset, beatsURL, songBaseURL){
     [window.gainNode7, window.source7] = await startLoop(beatsURL + '/metronome_6.wav', window.context, 0);
     [window.gainNode8, window.source8] = await startLoop(beatsURL + '/metronome_7.wav', window.context, 1);
   }
+
+  var promise = Promise.resolve("All loaded");
+
+  return(promise)
 }
 
 //Shift arrays like escada rolante
@@ -236,7 +241,9 @@ function generateContextTrial(songBaseURL, beatsURL){
     stimulus: 'Loading',
     choices: ['Continue'],
     prompt: "",
-    on_load: function(){
+    on_load: async function(){
+
+      document.querySelector(".jspsych-btn").style.display = "none";
       //Initial offset  
       window.count = randomInt(1, 8);
       
@@ -263,7 +270,11 @@ function generateContextTrial(songBaseURL, beatsURL){
           
       window.context = null;
           
-      initiateContext(window.count, beatsURL, songBaseURL)
+      var allLoaded = await initiateContext(window.count, beatsURL, songBaseURL)
+
+      document.querySelector(".jspsych-btn").style.display = "block";
+      document.querySelector("#jspsych-html-button-response-stimulus").innerHTML = "Loaded";
+
     },
   };
   return(loadNextTrial)
