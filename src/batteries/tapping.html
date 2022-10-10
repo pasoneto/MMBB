@@ -20,6 +20,7 @@
     <script src="../../jspsych/dist/plugin-html-audio-response.js"></script>
     <script src="../../songs/movementTapAudio/songKeysNames.js"></script>
     <link href="../../jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />
+    <link href="./customStyles.css" rel="stylesheet" type="text/css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
   </head>
@@ -100,6 +101,10 @@
         stimulus: '../../songs/movementTapAudio/silence.wav',
         trial_duration: 10000,
         response_ends_trial: false,
+        on_load: function(){
+            var btn = document.querySelector('.jspsych-tapping-btn');
+            btn.classList.add('noFeedback');
+        },
         on_start: function(trial) {
             //document.addEventListener("mousedown", change);
         },

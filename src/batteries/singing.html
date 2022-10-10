@@ -25,9 +25,7 @@
   <script>
 
     var jsPsych = initJsPsych({
-      extensions: [
-        {type: jsPsychExtensionAccelerometer }
-      ],
+      extensions: [],
       on_finish: function() {
         //jsPsych.data.displayData();
         jsPsych.data.get().localSave('csv','mydata.csv');
@@ -66,7 +64,7 @@
 
     var record = {
         type: jsPsychHtmlAudioResponse,
-        audiostimulus: '../standaloneApp/binary_ternary.mp3',
+        audiostimulus: '../../songs/movementTapAudio/silence.wav',
         stimulus: '<p style="font-size:48px;">Sing</p>',
         recording_duration: 5000,
         allow_playback: true,

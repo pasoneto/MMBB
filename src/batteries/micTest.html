@@ -1,0 +1,28 @@
+<html>
+<h1>Latency Demo</h1>
+
+<i><span id=recording></span></i>
+
+<script>
+
+async function start() {
+  document.removeEventListener("keydown", start);
+
+  var audioCtx = new (window.AudioContext || window.webkitAudioContext)({
+    latencyHint: 0,
+  });
+  var micStream = await navigator.mediaDevices.getUserMedia({
+    audio: { latency: 0, echoCancellation: false, noiseSuppression: false, autoGainControl: false }
+  });
+  var micNode = new MediaStreamAudioSourceNode(audioCtx, { mediaStream: micStream });
+  await audioCtx.audioWorklet.addModule('pitchDetect.js');
+  var analyzerNode = new AudioWorkletNode(audioCtx, 'pitchDetect');
+  micNode.connect(analyzerNode)
+  console.log(micNode)
+}
+
+// We can only start recording on user action, so ask them to press a
+// key to start.
+document.addEventListener("keydown", start);
+</script>
+</html>

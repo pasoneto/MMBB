@@ -1,0 +1,48 @@
+.fa.fa-arrow-left{
+  font-size: 50px;
+  color: white;
+}
+.fa.fa-arrow-right{
+  font-size: 50px;
+  color: white;
+}
+.noFeedback{
+  background: none;
+  color: red;
+  outline: none;
+  background-color: white!important;
+}
+.noFeedback:hover{
+  background: none;
+  color: red;
+  outline: none;
+  background-color: white!important;
+}
+#arrowsContainer{
+
+}
+#add{
+  height: 10vh; 
+  margin: 2px;
+  width: 20vw;
+  box-shadow: none;
+	border: none;
+  margin-bottom: 10px;
+  border-radius: 100px;
+  background: #82b3e7;
+}
+#subtract{
+  height: 10vh; 
+  margin: 2px;
+	border: none;
+  width: 20vw;
+  box-shadow: none;
+  margin-bottom: 10px;
+  border-radius: 100px;
+  background: #ff4b38;
+}
+
+.jspsych-btn:hover {
+    background-color: red;
+    border-color: #aaa;
+}

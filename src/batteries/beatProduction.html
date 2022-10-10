@@ -24,6 +24,7 @@
     <script src="../../jspsych/dist/plugin-html-audio-response.js"> </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="../../jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />
+    <link href="./customStyles.css" rel="stylesheet" type="text/css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
   </head>
@@ -78,7 +79,14 @@
 
     var trialBeat = {
       type: jsPsychHtmlButtonResponse,
-      stimulus: '<p style="margin: 0px; height: 30px">Adjust the beat</p><button style="width: 25vw; height: 5vh; margin-bottom: 10px" type="button" id="subtract"><i class="fa fa-arrow-left" aria-hidden="true"></i></button><button type="button" style="width: 25vw;height: 5vh; margin-bottom: 10px" id="add"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>',
+      stimulus: '<div id="arrowsContainer"><p style="margin: 0px; height: 30px; margin-bottom: 10px">Adjust the beat</p>'+
+                  '<button id="subtract">'+
+                    '<i class="fa fa-arrow-left" aria-hidden="true"></i>'+
+                  '</button>'+
+                  '<button type="button" id="add">'+
+                    '<i class="fa fa-arrow-right" aria-hidden="true"></i>'+
+                  '</button>'+
+                '</div>',
       choices: ['Continue'],
       prompt: "",
       on_load: function(){

@@ -232,19 +232,19 @@
 
     var familiarityRating = {
         type: jsPsychHtmlSliderResponse,
-          stimulus: "<p style='line-height:18px;font-size:4vw'>How familiar are you with the piece of<br>music that you just heard?</p>",
+        stimulus: "<p style='line-height:18px;font-size:4vw'>How familiar are you with the piece of<br>music that you just heard?</p>",
         require_movement: true,
         labels: ['<p style="line-height:18px;font-size:4vw">I Never heard it before</p>', 
-                 '<p style="line-height:18px;font-size:4vw">I Know this song<br>so well that I can<br>predict what<br>happens next<br>in the song</p>'],
+                 '<p style="line-height:18px;font-size:4vw">I know this song<br>so well that I can<br>predict what<br>happens next<br>in the song</p>'],
         on_load: function(){
           document.getElementById("jspsych-html-slider-response-next").style.height = "100px";
           document.getElementById("jspsych-html-slider-response-next").style.marginTop = "100px";
 
-          document.getElementById("label0").style.left = "calc(-50% - -70.5px)"
+          document.getElementById("label0").style.left = "calc(-50% - -25%)"
           document.getElementById("label0").style.width = "50%"
 
           document.getElementById("label1").style.left = ""
-          document.getElementById("label1").style.right = "calc(-50% - -70.5px)"
+          document.getElementById("label1").style.right = "calc(-50% - -32%)"
           document.getElementById("label1").style.width = "50%"
         },
         on_finish: function(data){
@@ -256,25 +256,30 @@
 
     var likingRating = {
         type: jsPsychHtmlSliderResponse,
-        stimulus: "Please use the slider to rate how much you liked the music that you've just heard",
+        stimulus: "<p style='line-height:18px;font-size:4vw'>Please use the slider to rate how much<br>you liked the music that you've just heard</p>",
         require_movement: true,
         labels: ["I did not like it at all", "I liked it a lot"],
         on_load: function(){
 
-          document.getElementById("label0").style.left = "calc(-50% - -70.5px)"
-          document.getElementById("label0").style.width = "50%"
-
-          document.getElementById("label1").style.left = ""
-          document.getElementById("label1").style.right = "calc(-50% - -70.5px)"
-          document.getElementById("label1").style.width = "50%"
-
-
-          document.getElementById("jspsych-html-slider-response-next").style.height = "100px";
-          document.getElementById("jspsych-html-slider-response-stimulus").style.marginBottom = "50px";
         },
         on_finish: function(data){
           var allData = jsPsych.data.get().values();
           var song = allData[allData.length - 3].stimulus;
+          data.song = song;
+        }
+    };
+
+    var grooveRating = {
+        type: jsPsychHtmlSliderResponse,
+        stimulus: "<p style='line-height:18px;font-size:4vw'>Please move the slider to rate how much<br>did this piece of music make you want to move</p>",
+        require_movement: true,
+        labels: ["Not at all", "A lot"],
+        on_load: function(){
+          document.getElementById("jspsych-html-slider-response-stimulus").style.marginBottom = "50px";
+        },
+        on_finish: function(data){
+          var allData = jsPsych.data.get().values();
+          var song = allData[allData.length - 4].stimulus;
           data.song = song;
         }
     };
@@ -367,8 +372,8 @@
         },
     }
 
-    //jsPsych.run([familiarityRating, likingRating])
-    jsPsych.run([frontPage, loadAccel, instruction0, instruction1, phonePocket, countDown, trialAccelerometer1, pickUpPhone, instruction2, phonePocket, countDown, trialAccelerometer2, pickUpPhone, familiarityRating, instruction3, phonePocket, countDown, trialAccelerometer3, pickUpPhone, familiarityRating, instruction4, chooseSongs, phonePocket, countDown, trialAccelerometer4, pickUpPhone, familiarityRating]);
+    jsPsych.run([familiarityRating, likingRating, grooveRating])
+    //jsPsych.run([frontPage, loadAccel, instruction0, instruction1, phonePocket, countDown, trialAccelerometer1, pickUpPhone, instruction2, phonePocket, countDown, trialAccelerometer2, pickUpPhone, familiarityRating, likingRating, grooveRating, instruction3, phonePocket, countDown, trialAccelerometer3, pickUpPhone, familiarityRating, likingRating, grooveRating, instruction4, chooseSongs, phonePocket, countDown, trialAccelerometer4, pickUpPhone, familiarityRating, likingRating, grooveRating]);
     //jsPsych.run([chooseSongs, phonePocket, countDown, trialAccelerometer4, familiarityRating, likingRating]);
 
  </script>
