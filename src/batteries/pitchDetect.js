@@ -8,4 +8,4 @@ class PitchDetect extends AudioWorkletProcessor {
   }
 }
 
-registerProcessor('pitchDetect', Player)
+registerProcessor('pitchDetect', PitchDetect)
