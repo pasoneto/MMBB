@@ -5,16 +5,20 @@
 
 <script>
 
+var audioCtx;
+var micStream;
+var micNode;
+
 async function start() {
   document.removeEventListener("keydown", start);
 
-  var audioCtx = new (window.AudioContext || window.webkitAudioContext)({
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)({
     latencyHint: 0,
   });
-  var micStream = await navigator.mediaDevices.getUserMedia({
+  micStream = await navigator.mediaDevices.getUserMedia({
     audio: { latency: 0, echoCancellation: false, noiseSuppression: false, autoGainControl: false }
   });
-  var micNode = new MediaStreamAudioSourceNode(audioCtx, { mediaStream: micStream });
+  micNode = new MediaStreamAudioSourceNode(audioCtx, { mediaStream: micStream });
   await audioCtx.audioWorklet.addModule('pitchDetect.js');
   var analyzerNode = new AudioWorkletNode(audioCtx, 'pitchDetect');
   micNode.connect(analyzerNode)
