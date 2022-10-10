@@ -105,6 +105,7 @@ var jsPsychHtmlAudioResponse = (function (jspsych) {
       }
       setupRecordingEvents(display_element, trial) {
           this.data_available_handler = (e) => {
+              console.log(e)
               if (e.data.size > 0) {
                   this.recorded_data_chunks.push(e.data);
               }

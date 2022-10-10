@@ -4,7 +4,7 @@ class PitchDetect extends AudioWorkletProcessor {
   }
   process (inputs, outputs, parameters) {
     console.log(inputs);
-    console.log(outouts);
+    console.log(outputs);
   }
 }
 

@@ -26,12 +26,12 @@ function playSound(buffer, context, volume){
 var nLoaded = 0
 //Starts song with given volume
 async function startLoop(url, context, volume){
-  
   var buffer = await fetch(url)
     .then(res => res.arrayBuffer())
     .then(arrayBuffer => context.decodeAudioData(arrayBuffer));
   var [gainNode, source] = playSound(buffer, context, volume);
   console.log(buffer) 
+  console.log(url)
   window.nLoaded = window.nLoaded + 1;
   return [gainNode, source]
 }
@@ -52,7 +52,8 @@ async function initiateContext(offset, beatsURL, songBaseURL){
     [window.gainNode4, window.source4] = await startLoop(beatsURL + '/metronome_3.wav', window.context, 0);
     [window.gainNode5, window.source5] = await startLoop(beatsURL + '/metronome_4.wav', window.context, 0);
     [window.gainNode6, window.source6] = await startLoop(beatsURL + '/metronome_5.wav', window.context, 0);
-    [window.gainNode7, window.source7] = await startLoop(beatsURL + '/metronome_6.wav', window.context, 0); [window.gainNode8, window.source8] = await startLoop(beatsURL + '/metronome_7.wav', window.context, 0);
+    [window.gainNode7, window.source7] = await startLoop(beatsURL + '/metronome_6.wav', window.context, 0); 
+    [window.gainNode8, window.source8] = await startLoop(beatsURL + '/metronome_7.wav', window.context, 0);
   } else
 
   if(offset == 2){
