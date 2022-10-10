@@ -1,32 +1,15 @@
+<!DOCTYPE html>
 <html>
-<h1>Latency Demo</h1>
-
-<i><span id=recording></span></i>
-
-<script>
-
-var audioCtx;
-var micStream;
-var micNode;
-
-async function start() {
-  document.removeEventListener("keydown", start);
-
-  audioCtx = new (window.AudioContext || window.webkitAudioContext)({
-    latencyHint: 0,
-  });
-  micStream = await navigator.mediaDevices.getUserMedia({
-    audio: { latency: 0, echoCancellation: false, noiseSuppression: false, autoGainControl: false }
-  });
-  micNode = new MediaStreamAudioSourceNode(audioCtx, { mediaStream: micStream });
-  await audioCtx.audioWorklet.addModule('pitchDetect.js');
-  var analyzerNode = new AudioWorkletNode(audioCtx, 'pitchDetect');
-  micNode.connect(analyzerNode)
-  console.log(micNode)
-}
-
-// We can only start recording on user action, so ask them to press a
-// key to start.
-document.addEventListener("keydown", start);
-</script>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <script src="https://unpkg.com/yinjs@0.1.0/yin.js"></script>
+  </head>
+  <body>
+    <h1>Yin</h1>
+    <h2>Frequency:</h2>
+    <div id="frequency"></div>
+    <script src="./pitchDetect.js"></script>
+  </body>
 </html>
