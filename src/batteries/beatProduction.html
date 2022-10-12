@@ -9,6 +9,7 @@
     <script src="../../jspsych/dist/custom/beatProductionFunctions.js"></script>
     <script src="../../jspsych/dist/plugin-audio-button-response.js"> </script>
     <script src="../../jspsych/dist/plugin-html-button-response.js"> </script>
+    <script src="../../jspsych/dist/plugin-preload.js"> </script>
     <script src="../../jspsych/dist/plugin-html-slider-response.js"> </script>
     <script src="../../jspsych/dist/plugin-html-button-response.js"> </script>
     <script src="../../jspsych/dist/plugin-survey-html-form.js"> </script>
@@ -37,6 +38,40 @@
         //jsPsych.data.get().localSave('csv','mydata.csv');
       },
     });
+
+    var preload = {
+          type: jsPsychPreload,
+          audio: ["../../songs/beatProductionAudio/beatModified/baseSongs/habstrack_clowns/habstrack_clownsModified.mp3",
+                  "../../songs/beatProductionAudio/beatModified/baseSongs/honeySuckle/honeysuckleRoseModified.mp3",
+                  "../../songs/beatProductionAudio/beatModified/baseSongs/lettuce/lettuceModified.mp3",
+
+                  '../../songs/beatProductionAudio/beatModified/habstrackBeats/metronome_0.wav',
+                  '../../songs/beatProductionAudio/beatModified/habstrackBeats/metronome_1.wav',
+                  '../../songs/beatProductionAudio/beatModified/habstrackBeats/metronome_2.wav',
+                  '../../songs/beatProductionAudio/beatModified/habstrackBeats/metronome_3.wav',
+                  '../../songs/beatProductionAudio/beatModified/habstrackBeats/metronome_4.wav',
+                  '../../songs/beatProductionAudio/beatModified/habstrackBeats/metronome_5.wav',
+                  '../../songs/beatProductionAudio/beatModified/habstrackBeats/metronome_6.wav',
+                  '../../songs/beatProductionAudio/beatModified/habstrackBeats/metronome_7.wav',
+
+                  '../../songs/beatProductionAudio/beatModified/habstrackBeats/metronome_0.wav',
+                  '../../songs/beatProductionAudio/beatModified/habstrackBeats/metronome_1.wav',
+                  '../../songs/beatProductionAudio/beatModified/habstrackBeats/metronome_2.wav',
+                  '../../songs/beatProductionAudio/beatModified/habstrackBeats/metronome_3.wav',
+                  '../../songs/beatProductionAudio/beatModified/habstrackBeats/metronome_4.wav',
+                  '../../songs/beatProductionAudio/beatModified/habstrackBeats/metronome_5.wav',
+                  '../../songs/beatProductionAudio/beatModified/habstrackBeats/metronome_6.wav',
+                  '../../songs/beatProductionAudio/beatModified/habstrackBeats/metronome_7.wav',
+
+                  '../../songs/beatProductionAudio/beatModified/lettuceBeats/metronome_0.wav',
+                  '../../songs/beatProductionAudio/beatModified/lettuceBeats/metronome_1.wav',
+                  '../../songs/beatProductionAudio/beatModified/lettuceBeats/metronome_2.wav',
+                  '../../songs/beatProductionAudio/beatModified/lettuceBeats/metronome_3.wav',
+                  '../../songs/beatProductionAudio/beatModified/lettuceBeats/metronome_4.wav',
+                  '../../songs/beatProductionAudio/beatModified/lettuceBeats/metronome_5.wav',
+                  '../../songs/beatProductionAudio/beatModified/lettuceBeats/metronome_6.wav',
+                  '../../songs/beatProductionAudio/beatModified/lettuceBeats/metronome_7.wav']
+    }
 
     var instruction1 = {
         type: jsPsychInstructions,
@@ -109,7 +144,7 @@
       }
     };
 
-    jsPsych.run([instruction1, instruction2, loadTrial1, trialBeat, loadTrial2, trialBeat, loadTrial3, trialBeat]);
+    jsPsych.run([preload, instruction1, instruction2, loadTrial1, trialBeat, loadTrial2, trialBeat, loadTrial3, trialBeat]);
 
  </script>
 </html>
