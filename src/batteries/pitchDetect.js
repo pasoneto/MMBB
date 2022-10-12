@@ -10,6 +10,7 @@ function amplitude(signal){
 }
 
 function successCallback(stream) {
+  try{
     window.AudioContext = window.AudioContext || window.webkitAudioContext
     var audioContext = new AudioContext()
 
@@ -34,6 +35,9 @@ function successCallback(stream) {
     mediaStreamSource.connect(analyser)
 
     requestAnimationFrame(step)
+  } catch(e){
+    alert(e)
+  }
 }
 
 function errorCallback(err) {
