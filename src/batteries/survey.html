@@ -61,6 +61,23 @@
 
     const sorting_stimuli = ['./img/survey/a.001.png', './img/survey/a.002.png']
 
+    var howFeeling = {
+        type: jsPsychHtmlSliderResponse,
+        stimulus: `<div style="width:500px;">
+                    <p style="font-size:3vw;">How do you feel?</p>
+                   </div>`,
+        require_movement: true,
+        labels: ['<p style="font-size:3vw">Really bad</p>', '<p style="font-size:3vw">Excellent</p>']
+    };
+
+    var howFeeling2 = {
+      type: jsPsychHtmlButtonResponse,
+      stimulus: "<p style='font-size:3vw'>How do you feel now compared to your last rating?</p>",
+      choices: ['Worse', 'Same', 'Better'],
+      prompt: ""
+    };
+    
+
     var closeness = {
         type: jsPsychFreeSort,
         stimuli: sorting_stimuli,
@@ -132,11 +149,10 @@
         var allData = jsPsych.data.get().values()
         console.log(allData.length - 2)
         console.log(allData)
-        var startPoint = allData[allData.length - 2]['response']
+        var startPoint = allData[allData.length - 3]['response']
         trial.slider_start = startPoint
         trial.start_separation = startPoint
-      }
-    };
+      } };
 
     var inter = {
         type: jsPsychInstructions,
@@ -169,25 +185,7 @@
         labels: ['<p style="font-size:3vw">bad</p>', '<p style="font-size:3vw">Very much</p>']
     };
 
-    var feeling1 = {
-        type: jsPsychHtmlSliderResponse,
-        stimulus: `<div style="width:500px;">
-            <p style="font-size:3vw;">mood. how feeling??</p>
-            </div>`,
-        require_movement: true,
-        labels: ['<p style="font-size:3vw">Not at all</p>', '<p style="font-size:3vw">A lot</p>']
-    };
-
-    var feeling2 = {
-        type: jsPsychHtmlSliderResponse,
-        stimulus: `<div style="width:500px;">
-            <p style="font-size:3vw;">mood. how feeling??</p>
-            </div>`,
-        require_movement: true,
-        labels: ['<p style="font-size:3vw">Not at all</p>', '<p style="font-size:3vw">A lot</p>']
-    };
-
-    jsPsych.run([participantID, instruction1, closeness1, feeling1, inter, closeness2, feeling2, inter, closeness2, inter, closeness2, trialSurvey, trialLikert, songRating1, songRating2]);
+    jsPsych.run([participantID, instruction1, howFeeling, closeness1, howFeeling2, inter, closeness2, howFeeling2, inter, closeness2, inter, closeness2, trialSurvey, trialLikert, songRating1, songRating2]);
     //jsPsych.run([instruction1, closeness, trialLikert, trialSurvey]);
 
  </script>

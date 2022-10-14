@@ -1,0 +1,11 @@
+,accuracy,loss,timeToTrain,model,dataset,dataFormat,observations,notebookName
+0,0.6537117734133482,0.7788867354393005,360.2985157966614,lstm,endOfApril and midOfApril,"2 time-points, 112 features (1 for each bintype and binNumber, NB features out).",Both datasets ordered by date.,LSTM_model1
+1,0.6636983599501058,0.7811873555183411,355.16562700271606,lstm,endOfApril and midOfApril,"2 time-points, 112 features (1 for each bintype and binNumber, NB features out).",Both datasets ordered by date.,LSTM_model1
+2,0.6790459061967267,0.7946245074272156,355.2577075958252,lstm,endOfApril and midOfApril,"2 time-points, 112 features (1 for each bintype and binNumber, NB features out).",Both datasets ordered by date.,LSTM_model1
+3,0.6627402072102937,0.7782299518585205,358.49001574516296,lstm,endOfApril and midOfApril,"2 time-points, 112 features (1 for each bintype and binNumber, NB features out).",Both datasets ordered by date.,LSTM_model1
+4,0.687506098511795,0.7888229489326477,356.6021091938019,lstm,endOfApril and midOfApril,"2 time-points, 112 features (1 for each bintype and binNumber, NB features out).",Both datasets ordered by date.,LSTM_model1
+5,0.6607242397610669,0.7842712998390198,357.86339139938354,lstm,endOfApril and midOfApril,"2 time-points, 112 features (1 for each bintype and binNumber, NB features out).",Both datasets ordered by date.,LSTM_model1
+6,0.6603096715310129,0.7803863883018494,360.6151375770569,lstm,endOfApril and midOfApril,"2 time-points, 112 features (1 for each bintype and binNumber, NB features out).",Both datasets ordered by date.,LSTM_model1
+7,0.6945004442714975,0.7815597057342529,356.93191170692444,lstm,endOfApril and midOfApril,"2 time-points, 112 features (1 for each bintype and binNumber, NB features out).",Both datasets ordered by date.,LSTM_model1
+8,0.6707024932192849,0.7825923562049866,354.9898750782013,lstm,endOfApril and midOfApril,"2 time-points, 112 features (1 for each bintype and binNumber, NB features out).",Both datasets ordered by date.,LSTM_model1
+9,0.6784251042269865,0.7897619605064392,355.4644422531128,lstm,endOfApril and midOfApril,"2 time-points, 112 features (1 for each bintype and binNumber, NB features out).",Both datasets ordered by date.,LSTM_model1

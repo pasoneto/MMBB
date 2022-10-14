@@ -236,11 +236,11 @@ function fluidBeat(plus, offset){
 }
 
 //Generates object of trial
-function generateContextTrial(songBaseURL, beatsURL){
+function generateContextTrial(songBaseURL, beatsURL, lang){
   var loadNextTrial = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: 'Loading',
-    choices: ['Continue'],
+    stimulus: recurring["6"][lang],
+    choices: buttons["1"][lang],
     prompt: "",
     on_load: async function(){
 
@@ -274,7 +274,7 @@ function generateContextTrial(songBaseURL, beatsURL){
       var allLoaded = await initiateContext(window.count, beatsURL, songBaseURL)
 
       document.querySelector(".jspsych-btn").style.display = "block";
-      document.querySelector("#jspsych-html-button-response-stimulus").innerHTML = "Loaded";
+      document.querySelector("#jspsych-html-button-response-stimulus").innerHTML = "";
 
     },
   };
