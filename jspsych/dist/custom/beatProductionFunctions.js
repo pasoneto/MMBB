@@ -9,7 +9,7 @@ function arrayRotate(arr, count) {
 }
 
 //Loads song with given volume
-function playSound(buffer, context, volume){
+async function playSound(buffer, context, volume){
 
   window.gainNode = context.createGain();
 
@@ -29,7 +29,7 @@ async function startLoop(url, context, volume){
   var buffer = await fetch(url)
     .then(res => res.arrayBuffer())
     .then(arrayBuffer => context.decodeAudioData(arrayBuffer));
-  var [gainNode, source] = playSound(buffer, context, volume);
+  var [gainNode, source] = await playSound(buffer, context, volume);
   console.log(buffer) 
   console.log(url)
   window.nLoaded = window.nLoaded + 1;
@@ -43,99 +43,49 @@ async function initiateContext(offset, beatsURL, songBaseURL){
   if (context) context.close();
   window.context = new AudioContext();
 
-  [window.gainNodeBase, window.sourceBase] = await startLoop(songBaseURL, window.context, 0.5);
+  //Defining which beat will start
+  var volumes = [1, 0, 0, 0, 0, 0, 0, 0]
+  volumes[offset-1] = 1
+  
+  var values = startLoop(songBaseURL, window.context, 0.5);
+  var values1 = startLoop(beatsURL + '/metronome_0.wav', window.context, volumes[0]);
+  var values2 = startLoop(beatsURL + '/metronome_1.wav', window.context, volumes[1]);
+  var values3 = startLoop(beatsURL + '/metronome_2.wav', window.context, volumes[2]);
+  var values4 = startLoop(beatsURL + '/metronome_3.wav', window.context, volumes[3]);
+  var values5 = startLoop(beatsURL + '/metronome_4.wav', window.context, volumes[4]);
+  var values6 = startLoop(beatsURL + '/metronome_5.wav', window.context, volumes[5]);
+  var values7 = startLoop(beatsURL + '/metronome_6.wav', window.context, volumes[6]); 
+  var values8 = startLoop(beatsURL + '/metronome_7.wav', window.context, volumes[7]);
 
-  if(offset == 1){
-    [window.gainNode1, window.source1] = await startLoop(beatsURL + '/metronome_0.wav', window.context, 1);
-    [window.gainNode2, window.source2] = await startLoop(beatsURL + '/metronome_1.wav', window.context, 0);
-    [window.gainNode3, window.source3] = await startLoop(beatsURL + '/metronome_2.wav', window.context, 0);
-    [window.gainNode4, window.source4] = await startLoop(beatsURL + '/metronome_3.wav', window.context, 0);
-    [window.gainNode5, window.source5] = await startLoop(beatsURL + '/metronome_4.wav', window.context, 0);
-    [window.gainNode6, window.source6] = await startLoop(beatsURL + '/metronome_5.wav', window.context, 0);
-    [window.gainNode7, window.source7] = await startLoop(beatsURL + '/metronome_6.wav', window.context, 0); 
-    [window.gainNode8, window.source8] = await startLoop(beatsURL + '/metronome_7.wav', window.context, 0);
-  } else
+  var values = await values
+  var values1 = await values1
+  var values2 = await values2
+  var values3 = await values3
+  var values4 = await values4
+  var values5 = await values5
+  var values6 = await values6
+  var values7 = await values7
+  var values8 = await values8
 
-  if(offset == 2){
-    [window.gainNode1, window.source1] = await startLoop(beatsURL + '/metronome_0.wav', window.context, 0);
-    [window.gainNode2, window.source2] = await startLoop(beatsURL + '/metronome_1.wav', window.context, 1);
-    [window.gainNode3, window.source3] = await startLoop(beatsURL + '/metronome_2.wav', window.context, 0);
-    [window.gainNode4, window.source4] = await startLoop(beatsURL + '/metronome_3.wav', window.context, 0);
-    [window.gainNode5, window.source5] = await startLoop(beatsURL + '/metronome_4.wav', window.context, 0);
-    [window.gainNode6, window.source6] = await startLoop(beatsURL + '/metronome_5.wav', window.context, 0);
-    [window.gainNode7, window.source7] = await startLoop(beatsURL + '/metronome_6.wav', window.context, 0);
-    [window.gainNode8, window.source8] = await startLoop(beatsURL + '/metronome_7.wav', window.context, 0);
-  } else
+  window.gainNodeBase = values[0]
+  window.sourceBase   = values[1]
+  window.gainNode1 = values1[0]
+  window.source1   = values1[1]
+  window.gainNode2 = values2[0]
+  window.source2   = values2[1]
+  window.gainNode3 = values3[0]
+  window.source3   = values3[1]
+  window.gainNode4 = values4[0]
+  window.source4   = values4[1]
+  window.gainNode5 = values5[0]
+  window.source5   = values5[1]
+  window.gainNode6 = values6[0]
+  window.source6   = values6[1]
+  window.gainNode7 = values7[0]
+  window.source7   = values7[1]
+  window.gainNode8 = values8[0]
+  window.source8  = values8[1]
 
-  if(offset == 3){
-    [window.gainNode1, window.source1] = await startLoop(beatsURL + '/metronome_0.wav', window.context, 0);
-    [window.gainNode2, window.source2] = await startLoop(beatsURL + '/metronome_1.wav', window.context, 0);
-    [window.gainNode3, window.source3] = await startLoop(beatsURL + '/metronome_2.wav', window.context, 1);
-    [window.gainNode4, window.source4] = await startLoop(beatsURL + '/metronome_3.wav', window.context, 0);
-    [window.gainNode5, window.source5] = await startLoop(beatsURL + '/metronome_4.wav', window.context, 0);
-    [window.gainNode6, window.source6] = await startLoop(beatsURL + '/metronome_5.wav', window.context, 0);
-    [window.gainNode7, window.source7] = await startLoop(beatsURL + '/metronome_6.wav', window.context, 0);
-    [window.gainNode8, window.source8] = await startLoop(beatsURL + '/metronome_7.wav', window.context, 0);
-  } else
-
-  if(offset == 4){
-    [window.gainNode1, window.source1] = await startLoop(beatsURL + '/metronome_0.wav', window.context, 0);
-    [window.gainNode2, window.source2] = await startLoop(beatsURL + '/metronome_1.wav', window.context, 0);
-    [window.gainNode3, window.source3] = await startLoop(beatsURL + '/metronome_2.wav', window.context, 0);
-    [window.gainNode4, window.source4] = await startLoop(beatsURL + '/metronome_3.wav', window.context, 1);
-    [window.gainNode5, window.source5] = await startLoop(beatsURL + '/metronome_4.wav', window.context, 0);
-    [window.gainNode6, window.source6] = await startLoop(beatsURL + '/metronome_5.wav', window.context, 0);
-    [window.gainNode7, window.source7] = await startLoop(beatsURL + '/metronome_6.wav', window.context, 0);
-    [window.gainNode8, window.source8] = await startLoop(beatsURL + '/metronome_7.wav', window.context, 0);
-  } else
-
-  if(offset == 5){
-    [window.gainNode1, window.source1] = await startLoop(beatsURL + '/metronome_0.wav', window.context, 0);
-    [window.gainNode2, window.source2] = await startLoop(beatsURL + '/metronome_1.wav', window.context, 0);
-    [window.gainNode3, window.source3] = await startLoop(beatsURL + '/metronome_2.wav', window.context, 0);
-    [window.gainNode4, window.source4] = await startLoop(beatsURL + '/metronome_3.wav', window.context, 0);
-    [window.gainNode5, window.source5] = await startLoop(beatsURL + '/metronome_4.wav', window.context, 1);
-    [window.gainNode6, window.source6] = await startLoop(beatsURL + '/metronome_5.wav', window.context, 0);
-    [window.gainNode7, window.source7] = await startLoop(beatsURL + '/metronome_6.wav', window.context, 0);
-    [window.gainNode8, window.source8] = await startLoop(beatsURL + '/metronome_7.wav', window.context, 0);
-  } else
-
-  if(offset == 6){
-    [window.gainNode1, window.source1] = await startLoop(beatsURL + '/metronome_0.wav', window.context, 0);
-    [window.gainNode2, window.source2] = await startLoop(beatsURL + '/metronome_1.wav', window.context, 0);
-    [window.gainNode3, window.source3] = await startLoop(beatsURL + '/metronome_2.wav', window.context, 0);
-    [window.gainNode4, window.source4] = await startLoop(beatsURL + '/metronome_3.wav', window.context, 0);
-    [window.gainNode5, window.source5] = await startLoop(beatsURL + '/metronome_4.wav', window.context, 0);
-    [window.gainNode6, window.source6] = await startLoop(beatsURL + '/metronome_5.wav', window.context, 1);
-    [window.gainNode7, window.source7] = await startLoop(beatsURL + '/metronome_6.wav', window.context, 0);
-    [window.gainNode8, window.source8] = await startLoop(beatsURL + '/metronome_7.wav', window.context, 0);
-  } else
-
-  if(offset == 7){
-    [window.gainNode1, window.source1] = await startLoop(beatsURL + '/metronome_0.wav', window.context, 0);
-    [window.gainNode2, window.source2] = await startLoop(beatsURL + '/metronome_1.wav', window.context, 0);
-    [window.gainNode3, window.source3] = await startLoop(beatsURL + '/metronome_2.wav', window.context, 0);
-    [window.gainNode4, window.source4] = await startLoop(beatsURL + '/metronome_3.wav', window.context, 0);
-    [window.gainNode5, window.source5] = await startLoop(beatsURL + '/metronome_4.wav', window.context, 0);
-    [window.gainNode6, window.source6] = await startLoop(beatsURL + '/metronome_5.wav', window.context, 0);
-    [window.gainNode7, window.source7] = await startLoop(beatsURL + '/metronome_6.wav', window.context, 1);
-    [window.gainNode8, window.source8] = await startLoop(beatsURL + '/metronome_7.wav', window.context, 0);
-  } else
-
-  if(offset == 8){
-    [window.gainNode1, window.source1] = await startLoop(beatsURL + '/metronome_0.wav', window.context, 0);
-    [window.gainNode2, window.source2] = await startLoop(beatsURL + '/metronome_1.wav', window.context, 0);
-    [window.gainNode3, window.source3] = await startLoop(beatsURL + '/metronome_2.wav', window.context, 0);
-    [window.gainNode4, window.source4] = await startLoop(beatsURL + '/metronome_3.wav', window.context, 0);
-    [window.gainNode5, window.source5] = await startLoop(beatsURL + '/metronome_4.wav', window.context, 0);
-    [window.gainNode6, window.source6] = await startLoop(beatsURL + '/metronome_5.wav', window.context, 0);
-    [window.gainNode7, window.source7] = await startLoop(beatsURL + '/metronome_6.wav', window.context, 0);
-    [window.gainNode8, window.source8] = await startLoop(beatsURL + '/metronome_7.wav', window.context, 1);
-  }
-
-  var promise = Promise.resolve("All loaded");
-
-  return(promise)
 }
 
 //Shift arrays like escada rolante
