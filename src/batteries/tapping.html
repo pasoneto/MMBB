@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>MMBB batery</title>
+    <script src="../../jspsych/dist/custom/utils.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../../jspsych/dist/graphFunction.js"> </script>
     <script src="https://unpkg.com/jspsych@7.1.2"></script>
@@ -95,22 +96,29 @@
         show_clickable_nav: true,
     }
 
+    function buttonDown(){
+          document.getElementById("tappingButton").innerHTML = '<p id="customText" style="font-size:15vw; color: white;">--</p>'
+    }
+    function buttonUp(){
+          document.getElementById("tappingButton").innerHTML = '<p id="customText" style="font-size:15vw; color: white;">Tap here</p>'
+    }
+    //Determine if mobile or desktop
+    var mobile = mobileAndTabletCheck() 
+    if(mobile){
+      var eventTypeStart = "ontouchstart"
+      var eventTypeEnd = "ontouchend"
+    } else {
+      var eventTypeStart = "onmousedown"
+      var eventTypeEnd = "onmouseup"
+    }
+
     var trialTapping1 = {
         type: jsPsychAudioButtonResponse,
         choices: ['Tap here'],
         stimulus: '../../songs/movementTapAudio/silence.wav',
-        trial_duration: 1000000,
+        trial_duration: 10000,
+        button_html: '<button type="button" ' + eventTypeStart + '="buttonDown()" ' + eventTypeEnd + '="buttonUp()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">Tap here</p></button>',
         response_ends_trial: false,
-        on_load: function(){
-            var btn = document.querySelector('.jspsych-tapping-btn');
-            btn.classList.add('noFeedback');
-        },
-        on_start: function(trial) {
-            //document.addEventListener("mousedown", change);
-        },
-        //on_finish: function(trial) {
-            //document.removeEventListener("mousedown", change);
-        //}
     }
     
     const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
@@ -130,28 +138,17 @@
         choices: ['Tap here'],
         stimulus: '../../songs/movementTapAudio/modifiedAudio/' + randomHemioleSong,
         trial_duration: 10000,
+        button_html: '<button type="button" ' + eventTypeStart + '="buttonDown()" ' + eventTypeEnd + '="buttonUp()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">Tap here</p></button>',
         response_ends_trial: false,
-        on_start: function(trial) {
-            //document.addEventListener("mousedown", change);
-            console.log(document.querySelector("jspsych-tapping-btn"))
-        },
-        //on_finish: function(trial) {
-            //document.removeEventListener("mousedown", change);
-        //}
     }
-
+    
     var trialTapping3 = {
         type: jsPsychAudioButtonResponse,
         choices: ['Tap here'],
         stimulus: '../../songs/movementTapAudio/modifiedAudio/' + randomElPesebreSong,
         trial_duration: 10000,
+        button_html: '<button type="button" ' + eventTypeStart + '="buttonDown()" ' + eventTypeEnd + '="buttonUp()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">Tap here</p></button>',
         response_ends_trial: false,
-        //on_start: function(trial) {
-            //document.addEventListener("mousedown", change);
-        //},
-        //on_finish: function(trial) {
-            //document.removeEventListener("mousedown", change);
-        //}
     }
 
     var showBPM1 = {
