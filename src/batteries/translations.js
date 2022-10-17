@@ -93,10 +93,10 @@ var tapping = {
 }
         
 var buttons = {
-  "1": {"eng": "Next", 
+  "1": {"eng": "Next",
         "fi": "Seuraava"},
   "2": {"eng": "Previous", 
-        "fi": "Edellinen"},
+        "fi": "Edellinen"}
 }
 
 var recurring = {
@@ -121,10 +121,20 @@ var recurring = {
 var beatProduction = {
   "1": {"eng": "Adjust the beat",
         "fi": "Säätää metronomia"},
-  "3": {"eng": "In this task, you will hear a song and a click", 
+  "3": {"eng": "In this task, you will hear a song and a click",
         "fi": "Tässä tehtävässä kuulet kappaleen ja metronomin"},
   "4": {"eng": "The song and the click may or may not be aligned to each other", 
         "fi": "Kappale ja metronomi ovat tai eivät ole samassa tempossa toistensa kanssa"},
+  "2": {"eng": "Here are some examples:",
+        "fi": ""},
   "5": {"eng": "Your task is to adjust the click until you think it is well aligned to the song", 
         "fi": "Sinun tehtävänäsi on säätää metronomia, kunnes koet sen olevan samassa tempossa kappaleen kanssa"},
+  "6": {"eng": "Click on the right button if you think the beat is dragging behind the song, or the left button if you think it's rushing ahead of the song",
+        "fi": ""},
+  "7": {"eng": "Each trial will have a time-limit, so try to find the best alignment as quickly as you can",
+        "fi": ""},
+  "8": {"eng": "Aligned",
+        "fi": ""},
+  "9": {"eng": "Not aligned",
+        "fi": ""},
 }

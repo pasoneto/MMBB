@@ -2,64 +2,167 @@
 <html>
   <head>
     <title>MMBB batery</title>
+    <meta charset="UTF-8">
+    <script src="./translations.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="../../jspsych/dist/graphFunction.js"> </script>
     <script src="https://unpkg.com/jspsych@7.1.2"></script>
     <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-audio-keyboard-response@1.1.0"></script>
+    <script src="../../jspsych/dist/custom/beatProductionFunctions.js"></script>
     <script src="../../jspsych/dist/plugin-audio-button-response.js"> </script>
     <script src="../../jspsych/dist/plugin-html-button-response.js"> </script>
+    <script src="../../jspsych/dist/plugin-preload.js"> </script>
+    <script src="../../jspsych/dist/plugin-html-slider-response.js"> </script>
+    <script src="../../jspsych/dist/plugin-html-button-response.js"> </script>
+    <script src="../../jspsych/dist/plugin-survey-html-form.js"> </script>
+    <script src="../../jspsych/dist/plugin-image-slider-response.js"> </script>
     <script src="../../jspsych/dist/plugin-instructions.js"> </script>
+    <script src="../../jspsych/dist/plugin-free-sort.js"> </script>
     <script src="../../jspsych/dist/plugin-survey-likert.js"> </script>
     <script src="../../jspsych/dist/plugin-canvas-button-response.js"> </script>
     <script src="../../jspsych/dist/extension-accelerometer.js"> </script>
     <script src="../../jspsych/dist/plugin-html-keyboard-response.js"> </script>
     <script src="../../jspsych/dist/plugin-survey-multi-choice.js"> </script>
+    <script src="../../jspsych/dist/plugin-initialize-microphone.js"> </script>
     <script src="../../jspsych/dist/plugin-html-audio-response.js"> </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="../../jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />
+    <link href="../../jspsych/dist/customStyles.css" rel="stylesheet" type="text/css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
   </head>
   <body></body>
   <script>
 
-    function change() {
-          setTimeout(() => {document.body.style.backgroundColor = "#808080"}, 5);
-          document.body.style.backgroundColor = '#fff';
-    }
-
     var jsPsych = initJsPsych({
-      extensions: [
-        {type: jsPsychExtensionAccelerometer }
-      ],
       on_finish: function() {
-        //jsPsych.data.displayData();
-        jsPsych.data.get().localSave('csv','mydata.csv');
-      }
+        jsPsych.data.displayData();
+        //jsPsych.data.get().localSave('csv','mydata.csv');
+      },
     });
+      
+    var lang = "eng"
+
+    var preload = {
+          type: jsPsychPreload,
+          audio: ["../../songs/beatProductionAudio/beatModified/baseSongs/habstrack_clowns/habstrack_clownsModified.mp3",
+                  "../../songs/beatProductionAudio/beatModified/baseSongs/honeySuckle/honeysuckleRoseModified.mp3",
+                  "../../songs/beatProductionAudio/beatModified/baseSongs/lettuce/lettuceModified.mp3",
+
+                  '../../songs/beatProductionAudio/beatModified/habstrackBeats/metronome_0.wav',
+                  '../../songs/beatProductionAudio/beatModified/habstrackBeats/metronome_1.wav',
+                  '../../songs/beatProductionAudio/beatModified/habstrackBeats/metronome_2.wav',
+                  '../../songs/beatProductionAudio/beatModified/habstrackBeats/metronome_3.wav',
+                  '../../songs/beatProductionAudio/beatModified/habstrackBeats/metronome_4.wav',
+                  '../../songs/beatProductionAudio/beatModified/habstrackBeats/metronome_5.wav',
+                  '../../songs/beatProductionAudio/beatModified/habstrackBeats/metronome_6.wav',
+                  '../../songs/beatProductionAudio/beatModified/habstrackBeats/metronome_7.wav',
+
+                  '../../songs/beatProductionAudio/beatModified/habstrackBeats/metronome_0.wav',
+                  '../../songs/beatProductionAudio/beatModified/habstrackBeats/metronome_1.wav',
+                  '../../songs/beatProductionAudio/beatModified/habstrackBeats/metronome_2.wav',
+                  '../../songs/beatProductionAudio/beatModified/habstrackBeats/metronome_3.wav',
+                  '../../songs/beatProductionAudio/beatModified/habstrackBeats/metronome_4.wav',
+                  '../../songs/beatProductionAudio/beatModified/habstrackBeats/metronome_5.wav',
+                  '../../songs/beatProductionAudio/beatModified/habstrackBeats/metronome_6.wav',
+                  '../../songs/beatProductionAudio/beatModified/habstrackBeats/metronome_7.wav',
+
+                  '../../songs/beatProductionAudio/beatModified/training/metronome_0.wav',
+                  '../../songs/beatProductionAudio/beatModified/training/metronome_1.wav',
+                  '../../songs/beatProductionAudio/beatModified/training/metronome_2.wav',
+                  '../../songs/beatProductionAudio/beatModified/training/metronome_3.wav',
+                  '../../songs/beatProductionAudio/beatModified/training/metronome_4.wav',
+                  '../../songs/beatProductionAudio/beatModified/training/metronome_5.wav',
+                  '../../songs/beatProductionAudio/beatModified/training/metronome_6.wav',
+                  '../../songs/beatProductionAudio/beatModified/training/metronome_7.wav',
+
+                  '../../songs/beatProductionAudio/beatModified/lettuceBeats/metronome_0.wav',
+                  '../../songs/beatProductionAudio/beatModified/lettuceBeats/metronome_1.wav',
+                  '../../songs/beatProductionAudio/beatModified/lettuceBeats/metronome_2.wav',
+                  '../../songs/beatProductionAudio/beatModified/lettuceBeats/metronome_3.wav',
+                  '../../songs/beatProductionAudio/beatModified/lettuceBeats/metronome_4.wav',
+                  '../../songs/beatProductionAudio/beatModified/lettuceBeats/metronome_5.wav',
+                  '../../songs/beatProductionAudio/beatModified/lettuceBeats/metronome_6.wav',
+                  '../../songs/beatProductionAudio/beatModified/lettuceBeats/metronome_7.wav']
+    }
 
     var instruction1 = {
         type: jsPsychInstructions,
         pages: [
-        '<p style="font-size:7vw;">Welcome MMBB battery.</p>',
-        '<p style="font-size:7vw;">Beat Alignment Task</p>',
-        '<p style="font-size:7vw;">When you click start, you will hear a song.</p>',
-        '<p style="font-size:7vw;">Your task is to say if its on or off the beat</p>'
+        '<p style="font-size:7vw;">' + recurring["1"][lang] + '</p>',
         ],
-        button_label_next: "Next",
-        button_label_previous: "Previous",
-        show_clickable_nav: true,
+        button_label_next: buttons["1"][lang],
+        button_label_previous: buttons["2"][lang],
+        show_clickable_nav: true
     }
 
-    var trialBAT = {
-        type: jsPsychAudioButtonResponse,
-        stimulus: '../../songs/movementTapAudio/metronome_clave_hemiola.mp3',
-        choices: ['<p style="font-size: 35px">On</p>', '<p style="font-size: 35px">Off</p>'],
-        trial_duration: 5000,
-        response_ends_trial: true,
+    var instruction2 = {
+        type: jsPsychInstructions,
+        pages: [
+        '<p style="font-size:7vw;">' + beatProduction["3"][lang] + '</p>',
+        '<p style="font-size:7vw;">' + beatProduction["4"][lang] + '</p>',
+        '<p style="font-size:7vw;">' + beatProduction["2"][lang] + '<br><br>' + beatProduction["8"][lang] + '<audio controls><source src="../../songs/beatProductionAudio/beatModified/example/aligned.mp3" type="audio/mp3"></audio><br>' + beatProduction["9"][lang] + '<br><audio controls><source src="../../songs/beatProductionAudio/beatModified/example/notaligned.mp3" type="audio/mp3"></audio></p>',
+        '<p style="font-size:7vw;">' + beatProduction["5"][lang] + '</p>',
+        '<p style="font-size:7vw;">' + recurring["2"][lang] + '</p>',
+        ],
+        button_label_next: buttons["1"][lang],
+        button_label_previous: buttons["2"][lang],
+        show_clickable_nav: true
     }
 
-    jsPsych.run([instruction1, trialBAT]);
+    //Load songs and beats for given trial 
+    var songBaseURL0 = '../../songs/beatProductionAudio/beatModified/baseSongs/training/trainingBaseModified.mp3'
+    var beatsURL0 = '../../songs/beatProductionAudio/beatModified/training'
+    var loadTrial0 = generateContextTrial(songBaseURL0, beatsURL0, lang)
+
+    //Load songs and beats for given trial 
+    var songBaseURL1 = '../../songs/beatProductionAudio/beatModified/baseSongs/habstrack_clowns/habstrack_clownsModified.mp3'
+    var beatsURL1 = '../../songs/beatProductionAudio/beatModified/habstrackBeats'
+    var loadTrial1 = generateContextTrial(songBaseURL1, beatsURL1, lang)
+
+    //Load songs and beats for given trial 
+    var songBaseURL2 = '../../songs/beatProductionAudio/beatModified/baseSongs/honeySuckle/honeysuckleRoseModified.mp3'
+    var beatsURL2 = '../../songs/beatProductionAudio/beatModified/honeysuckleBeats'
+    var loadTrial2 = generateContextTrial(songBaseURL2, beatsURL2, lang)
+
+    //Load songs and beats for given trial 
+    var songBaseURL3 = '../../songs/beatProductionAudio/beatModified/baseSongs/lettuce/lettuceModified.mp3'
+    var beatsURL3 = '../../songs/beatProductionAudio/beatModified/lettuceBeats'
+    var loadTrial3 = generateContextTrial(songBaseURL3, beatsURL3, lang)
+
+    var trialBeat = {
+      type: jsPsychHtmlButtonResponse,
+          stimulus: '<div id="arrowsContainer"><p style="margin: 0px; height: 30px; margin-bottom: 10px">' + beatProduction["1"][lang] + '</p>'+
+                  '<button id="subtract">'+
+                    '<i class="fa fa-arrow-left" aria-hidden="true"></i>'+
+                  '</button>'+
+                  '<button type="button" id="add">'+
+                    '<i class="fa fa-arrow-right" aria-hidden="true"></i>'+
+                  '</button>'+
+                '</div>',
+      choices: ['Continue'],
+      prompt: "",
+      on_load: function(){
+        
+        document.querySelector('#add').onclick = () => fluidBeat(plus = true, offset = window.count)
+        document.querySelector('#subtract').onclick = () => fluidBeat(plus = false, offset = window.count)
+
+        var allSources = [window.source1, window.source2, window.source3, window.source4, window.source5, window.source6, window.source7, window.source8, window.sourceBase]
+        for(i in allSources) {
+          console.log(allSources[i] == null)
+          allSources[i].start(3)
+        }
+      },
+      on_finish: function(data){
+        data.offset = window.count;
+        var allSources = [window.source1, window.source2, window.source3, window.source4, window.source5, window.source6, window.source7, window.source8, window.sourceBase]
+        for(i in allSources) {
+          allSources[i].stop()
+        }
+      }
+    };
+
+    jsPsych.run([preload, instruction1, instruction2, loadTrial0, trialBeat, loadTrial1, trialBeat, loadTrial2, trialBeat, loadTrial3, trialBeat]);
 
  </script>
 </html>
