@@ -44,7 +44,7 @@ async function initiateContext(offset, beatsURL, songBaseURL){
   window.context = new AudioContext();
 
   //Defining which beat will start
-  var volumes = [1, 0, 0, 0, 0, 0, 0, 0]
+  var volumes = [0, 0, 0, 0, 0, 0, 0, 0]
   volumes[offset-1] = 1
   
   var values = startLoop(songBaseURL, window.context, 0.5);
