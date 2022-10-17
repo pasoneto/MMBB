@@ -20,7 +20,7 @@ var jsPsychAudioButtonResponse = (function (jspsych) {
           button_html: {
               type: jspsych.ParameterType.HTML_STRING,
               pretty_name: "Button HTML",
-              default: '<button class="jspsych-tapping-btn" onclick="">%choice%</button>',
+              default: '<button class="jspsych-tapping-btn">%choice%</button>',
               array: true,
           },
           /** Any content here will be displayed below the stimulus. */
@@ -78,6 +78,7 @@ var jsPsychAudioButtonResponse = (function (jspsych) {
    * @author Kristin Diep
    * @see {@link https://www.jspsych.org/plugins/jspsych-audio-button-response/ audio-button-response plugin documentation on jspsych.org}
    */
+
   class AudioButtonResponsePlugin {
       constructor(jsPsych) {
           this.jsPsych = jsPsych;
@@ -197,7 +198,6 @@ var jsPsychAudioButtonResponse = (function (jspsych) {
                   rt = Math.round((endTime - startTime) * 1000);
               }
               response.button = parseInt(choice);
-              console.log(rts)
               rts.push(rt);
               console.log(rts)
               // disable all the buttons after a response
@@ -243,7 +243,12 @@ var jsPsychAudioButtonResponse = (function (jspsych) {
                   if (btn_el) {
                       btn_el.disabled = true;
                   }
-                  btns[i].removeEventListener("click", button_response);
+                  var mobile = mobileAndTabletCheck()
+                  if(mobile){
+                    btns[i].removeEventListener("touchend", button_response);
+                  } else {
+                    btns[i].removeEventListener("mousedown", button_response);
+                  }
               }
           }
           function enable_buttons() {
@@ -253,7 +258,12 @@ var jsPsychAudioButtonResponse = (function (jspsych) {
                   if (btn_el) {
                       btn_el.disabled = false;
                   }
-                  btns[i].addEventListener("click", button_response);
+                  var mobile = mobileAndTabletCheck()
+                  if(mobile){
+                    btns[i].addEventListener('touchstart', button_response);
+                  } else {
+                    btns[i].addEventListener("mousedown", button_response);
+                  }
               }
           }
           return new Promise((resolve) => {

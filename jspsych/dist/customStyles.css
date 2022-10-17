@@ -24,8 +24,6 @@
     outline: none;
     border: none;
 }
-#arrowsContainer{
-}
 #add{
   height: 10vh; 
   margin: 2px;
@@ -46,9 +44,15 @@
   border-radius: 100px;
   background: #ff4b38;
 }
-#add:hover{
-  background: #82b3e7
+#tappingButton{
+  height: 70vh; 
+  width: 80vw;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+	border: none;
+  border-radius: 100px;
+  background: #82b3e7;
 }
-#subtract:hover{
-  background: #82b3e7
+#customText{
+  text-shadow: 2px 2px 4px #000000;
+  color: white;
 }
