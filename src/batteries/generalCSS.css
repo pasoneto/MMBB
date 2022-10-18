@@ -92,6 +92,25 @@ button, #jspsych-html-slider-response-next, .jspsych-btn{
   object-fit: contain;
   width: 15vw;
 }
+/*End of movement task*/
+
+/*Tapping task*/
+#tappingButton{
+  height: 70vh; 
+  text-align: center;
+  width: 80vw;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+	border: none;
+  border-radius: 100px;
+  background: #82b3e7;
+}
+#customText{
+  font-size:15vw; 
+  color: white;
+  text-align: center;
+}
+/*End of tapping task*/
+
 /* For mobile */
 @media only screen and (max-width: 600px) {
   #buttonSongItem{
@@ -102,5 +121,8 @@ button, #jspsych-html-slider-response-next, .jspsych-btn{
   }
   #coverImage {
     width: 80vw;
+  }
+  #jspsych-content{
+    line-height: 1.3em;
   }
 }

@@ -234,7 +234,7 @@
 
     var familiarityRating = {
         type: jsPsychHtmlSliderResponse,
-        stimulus: "How familiar are you with the piece of<br>music that you just heard?",
+        stimulus: "How familiar are you with the piece of music that you just heard?",
         require_movement: true,
         labels: ['I Never heard it before', 
                  'I know this song so well that I can predict what happens next in the song'],
@@ -252,7 +252,7 @@
 
     var likingRating = {
         type: jsPsychHtmlSliderResponse,
-        stimulus: "Please use the slider to rate how much<br>you liked the music that you've just heard",
+        stimulus: "How much did you like the music that you just heard",
         require_movement: true,
         labels: ["I did not like it at all", "I liked it a lot"],
         on_load: function(){
@@ -268,10 +268,12 @@
 
     var grooveRating = {
         type: jsPsychHtmlSliderResponse,
-        stimulus: "Please move the slider to rate how much<br>did this piece of music make you want to move",
+        stimulus: "How much did this piece of music make you want to move",
         require_movement: true,
         labels: ["Not at all", "A lot"],
         on_load: function(){
+          document.getElementById("label0").style = ''
+          document.getElementById("label1").style = ''
         },
         on_finish: function(data){
           var allData = jsPsych.data.get().values();
@@ -368,9 +370,9 @@
         },
     }
 
-    //jsPsych.run([familiarityRating, likingRating, grooveRating])
-    //jsPsych.run([frontPage, loadAccel, instruction0, instruction1, phonePocket, countDown, trialAccelerometer1, pickUpPhone, instruction2, phonePocket, countDown, trialAccelerometer2, pickUpPhone, familiarityRating, likingRating, grooveRating, instruction3, phonePocket, countDown, trialAccelerometer3, pickUpPhone, familiarityRating, likingRating, grooveRating, instruction4, chooseSongs, phonePocket, countDown, trialAccelerometer4, pickUpPhone, familiarityRating, likingRating, grooveRating]);
-    jsPsych.run([chooseSongs, phonePocket, countDown, trialAccelerometer4, familiarityRating, likingRating]);
+    //jsPsych.run([familiarityRating])
+    jsPsych.run([frontPage, loadAccel, instruction0, instruction1, phonePocket, countDown, trialAccelerometer1, pickUpPhone, instruction2, phonePocket, countDown, trialAccelerometer2, pickUpPhone, familiarityRating, likingRating, grooveRating, instruction3, phonePocket, countDown, trialAccelerometer3, pickUpPhone, familiarityRating, likingRating, grooveRating, instruction4, chooseSongs, phonePocket, countDown, trialAccelerometer4, pickUpPhone, familiarityRating, likingRating, grooveRating]);
+    //jsPsych.run([chooseSongs, phonePocket, countDown, trialAccelerometer4, familiarityRating, likingRating]);
 
  </script>
 </html>

@@ -122,7 +122,7 @@ var jsPsychHtmlSliderResponse = (function (jspsych) {
                   '" step="' +
                   trial.step +
                   '" id="jspsych-html-slider-response-response"></input>';
-          html += "<div>";
+          html += "<div id='labelsWrapper'>";
           for (var j = 0; j < trial.labels.length; j++) {
               var label_width_perc = 100 / (trial.labels.length - 1);
               var percent_of_range = j * (100 / (trial.labels.length - 1));

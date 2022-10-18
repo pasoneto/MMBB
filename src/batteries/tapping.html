@@ -20,8 +20,9 @@
     <script src="../../jspsych/dist/plugin-initialize-microphone.js"> </script>
     <script src="../../jspsych/dist/plugin-html-audio-response.js"></script>
     <script src="../../songs/movementTapAudio/songKeysNames.js"></script>
-    <link href="../../jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />
-    <link href="../../jspsych/dist/customStyles.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
+    <link href="./generalCSS.css" rel="stylesheet" type="text/css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
   </head>
@@ -60,12 +61,12 @@
     var instruction1 = {
         type: jsPsychInstructions,
         pages: [
-        '<p style="font-size:6vw;">Welcome MMBB battery</p>',
-        '<p style="font-size:6vw;">Tapping task</p>',
-        '<p style="font-size:6vw;">In this task, we will ask you to tap on a button</p>',
-        '<p style="font-size:6vw;">Tap on the button with your prefered hand, at the speed that is most natural for you</p>',
-        '<p style="font-size:6vw;">Try to maintain the tapping speed as constant as possible until the task ends.</p>',
-        '<p style="font-size:6vw;">Click next when you are ready to begin</p>',
+        'Welcome MMBB battery',
+        'Tapping task',
+        'In this task, we will ask you to tap on a button',
+        'Tap on the button with your prefered hand, at the speed that is most natural for you',
+        'Try to maintain the tapping speed as constant as possible until the task ends.',
+        'Click next when you are ready to begin',
         ],
         button_label_next: "Next",
         button_label_previous: "Previous",
@@ -75,9 +76,9 @@
     var instruction2 = {
         type: jsPsychInstructions,
         pages: [
-        '<p style="font-size:6vw;">In the next task, you will hear a beat</p>',
-        '<p style="font-size:6vw;">Tap in synchrony to the beat</p>',
-        '<p style="font-size:6vw;">Click next when you are ready to begin</p>',
+        'In the next task, you will hear a beat',
+        'Tap in synchrony to the beat',
+        'Click next when you are ready to begin',
         ],
         button_label_next: "Next",
         button_label_previous: "Previous",
@@ -87,9 +88,9 @@
     var instruction3 = {
         type: jsPsychInstructions,
         pages: [
-        '<p style="font-size:6vw;">In the next task you will hear a musical piece</p>',
-        '<p style="font-size:6vw;">Please tap in synchrony to the beat of the music</p>',
-        '<p style="font-size:6vw;">Click next when you are ready to begin</p>',
+        'In the next task you will hear a musical piece',
+        'Please tap in synchrony to the beat of the music',
+        'Click next when you are ready to begin',
         ],
         button_label_next: "Next",
         button_label_previous: "Previous",
@@ -97,10 +98,10 @@
     }
 
     function buttonDown(){
-          document.getElementById("tappingButton").innerHTML = '<p id="customText" style="font-size:15vw; color: white;">--</p>'
+          document.getElementById("tappingButton").innerHTML = '<p id="customText">--</p>'
     }
     function buttonUp(){
-          document.getElementById("tappingButton").innerHTML = '<p id="customText" style="font-size:15vw; color: white;">Tap here</p>'
+          document.getElementById("tappingButton").innerHTML = '<p id="customText">Tap here</p>'
     }
     //Determine if mobile or desktop
     var mobile = mobileAndTabletCheck() 
@@ -153,7 +154,7 @@
 
     var showBPM1 = {
       type: jsPsychHtmlButtonResponse,
-      prompt: '<p style="font-size:6vw;">End of task 1</p>',
+      prompt: 'End of task 1',
       choices: [],
       trial_duration: 3000,
       stimulus: '',
@@ -161,7 +162,7 @@
 
     var showBPM2 = {
       type: jsPsychHtmlButtonResponse,
-      prompt: '<p style="font-size:6vw;">End of task 2</p>',
+      prompt: 'End of task 2',
       choices: [],
       trial_duration: 3000,
       stimulus: '',
@@ -169,7 +170,7 @@
 
     var showBPM3 = {
       type: jsPsychHtmlButtonResponse,
-      prompt: '<p style="font-size:6vw;">End of task 3</p>',
+      prompt: 'End of task 3',
       choices: [],
       trial_duration: 3000,
       stimulus: '',
