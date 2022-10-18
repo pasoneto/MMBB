@@ -189,7 +189,8 @@ function fluidBeat(plus, offset){
 function generateContextTrial(songBaseURL, beatsURL, lang){
   var loadNextTrial = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: recurring["6"][lang],
+    //stimulus: recurring["6"][lang],
+    stimulus: '<img src="../../images/loading.gif">',
     choices: [buttons["1"][lang]],
     prompt: "",
     on_load: async function(){
