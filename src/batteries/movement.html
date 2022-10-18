@@ -20,7 +20,9 @@
     <script src="../../jspsych/dist/plugin-initialize-microphone.js"> </script>
     <script src="../../jspsych/dist/plugin-html-audio-response.js"> </script>
     <script src="../../songs/movementTapAudio/songKeysNames.js"> </script>
-    <link href="../../jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />
+    <!--<link href="../../jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />-->
+    <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
+    <link rel="stylesheet" href="./generalCSS.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   </head>
   <body></body>
@@ -138,7 +140,7 @@
     var frontPage = {
         type: jsPsychInstructions,
         pages: [
-        '<p style="font-size:7vw;">Welcome to the Movement task</p>',
+        'Welcome to the Movement task',
         ],
         button_label_next: "Next",
         button_label_previous: "Previous",
@@ -149,7 +151,7 @@
     var loadAccel = {
         type: jsPsychAudioKeyboardResponse,
         stimulus: '../../songs/movementTapAudio/silence.wav',
-        prompt: '<p style="font-size:45px;">Accessing accelerometer</p>',
+        prompt: 'Accessing accelerometer',
         trial_duration: 3000,
         choices: ["NO_KEYS"],
         extensions: [
@@ -160,28 +162,28 @@
     var instruction0 = {
         type: jsPsychInstructions,
         pages: [
-        '<p style="font-size:7vw;">Movement task</p>',
-        '<p style="font-size:7vw;">In the following tasks, you will be asked to perform body movements in different situations</p>',
-        '<p style="font-size:7vw;">Between each task, you will have a chance to take breaks</p>',
-        '<p style="font-size:7vw;">Your body movements will be recorded using the accelerometers of your phone</p>',
-        '<p style="font-size:7vw;">In order for you to move freely, we ask you to put your phone on your pocket before before each task starts</p>',
-        '<p style="font-size:7vw;">There is no need to lock the screen of your phone</p>',
-        '<p style="font-size:7vw;">Before each task, you will hear a voice countdown indicating that it is about to start</p>',
-        '<p style="font-size:7vw;">There will also another voice indicating that the task ended</p>',
+        'Movement task',
+        'In the following tasks, you will be asked to perform body movements in different situations',
+        'Between each task, you will have a chance to take breaks',
+        'Your body movements will be recorded using the accelerometers of your phone',
+        'In order for you to move freely, we ask you to put your phone on your pocket before before each task starts',
+        'There is no need to lock the screen of your phone',
+        'Before each task, you will hear a voice countdown indicating that it is about to start',
+        'There will also another voice indicating that the task ended',
         ],
         button_label_next: "Next",
         button_label_previous: "Previous",
         show_clickable_nav: true
     }
     
-    //'<p style="font-size:7vw;">Feel free to take breaks between the tasks to drink or have a rest</p>',
+    //'Feel free to take breaks between the tasks to drink or have a rest</p>',
 
     var instruction1 = {
         type: jsPsychInstructions,
         pages: [
-        '<p style="font-size:7vw;">In the first task, you will be asked to walk at a comfortable speed</p>',
-        '<p style="font-size:6vw;">Try to find a space where you can walk at the speed that is most natural for you</p>',
-        '<p style="font-size:6vw;">Click next when you are ready to begin</p>',
+        'In the first task, you will be asked to walk at a comfortable speed',
+        'Try to find a space where you can walk at the speed that is most natural for you',
+        'Click next when you are ready to begin',
         ],
         button_label_next: "Next",
         button_label_previous: "Previous",
@@ -191,11 +193,11 @@
     var instruction2 = {
         type: jsPsychInstructions,
         pages: [
-        '<p style="font-size:7vw;">Now you will hear a song.</p>',
-        '<p style="font-size:7vw;">Your task is to bounce along with the beat of the song.</p>',
-        '<p style="font-size:7vw;">This is an example of bouncing ' + '<br><video id="myVideo" width="100%" controls><source src="../../songs/movementTapAudio/instructionsAudio/bouncing.mp4" type="video/mp4"></video>',
-        '<p style="font-size:7vw;">Try to bounce in a way that feels natural to you</p>',
-        '<p style="font-size:7vw;">Also, try to remain in place and to avoid any other movements besides the bouncing motion.</p>',
+        'Now you will hear a song.</p>',
+        'Your task is to bounce along with the beat of the song.</p>',
+        'This is an example of bouncing ' + '<br><video id="myVideo" width="100%" controls><source src="../../songs/movementTapAudio/instructionsAudio/bouncing.mp4" type="video/mp4"></video>',
+        'Try to bounce in a way that feels natural to you</p>',
+        'Also, try to remain in place and to avoid any other movements besides the bouncing motion.</p>',
         '<p style="font-size:6vw;">Click next when you are ready to begin</p>',
         ],
         button_label_next: "Next",
@@ -206,8 +208,8 @@
     var instruction3 = {
         type: jsPsychInstructions,
         pages: [
-        '<p style="font-size:7vw;">Now you are asked to move to a musical pieces in a way that feels natural to you</p>',
-        '<p style="font-size:7vw;">Feel free to dance to the music if you want to</p>',
+        'Now you are asked to move to a musical pieces in a way that feels natural to you</p>',
+        'Feel free to dance to the music if you want to</p>',
         ],
         button_label_next: "Next",
         button_label_previous: "Previous",
@@ -217,13 +219,13 @@
     var instruction4 = {
         type: jsPsychInstructions,
         pages: [
-        '<p style="font-size:7vw;">Now we will ask you to choose a song that you would dance to</p>',
-        '<p style="font-size:7vw;">Move to the song in way that feels natural to you</p>',
-        '<p style="font-size:7vw;">Feel free to dance to the music if you want to</p>',
-        '<p style="font-size:7vw;">When you click next, you will see many album covers representing a particular song</p>',
-        '<p style="font-size:7vw;">Click on the album cover to hear the song</p>',
-        '<p style="font-size:7vw;">When you have made your choice, scroll down to the bottom of the page and click on the continue button</p>',
-        '<p style="font-size:7vw;">Click next when you are ready to begin</p>',
+        'Now we will ask you to choose a song that you would dance to',
+        'Move to the song in way that feels natural to you',
+        'Feel free to dance to the music if you want to',
+        'When you click next, you will see many album covers representing a particular song',
+        'Click on the album cover to hear the song',
+        'When you have made your choice, scroll down to the bottom of the page and click on the continue button',
+        'Click next when you are ready to begin',
         ],
         button_label_next: "Next",
         button_label_previous: "Previous",
@@ -232,20 +234,14 @@
 
     var familiarityRating = {
         type: jsPsychHtmlSliderResponse,
-        stimulus: "<p style='line-height:18px;font-size:4vw'>How familiar are you with the piece of<br>music that you just heard?</p>",
+        stimulus: "How familiar are you with the piece of<br>music that you just heard?",
         require_movement: true,
-        labels: ['<p style="line-height:18px;font-size:4vw">I Never heard it before</p>', 
-                 '<p style="line-height:18px;font-size:4vw">I know this song<br>so well that I can<br>predict what<br>happens next<br>in the song</p>'],
+        labels: ['I Never heard it before', 
+                 'I know this song so well that I can predict what happens next in the song'],
         on_load: function(){
-          document.getElementById("jspsych-html-slider-response-next").style.height = "100px";
-          document.getElementById("jspsych-html-slider-response-next").style.marginTop = "100px";
-
-          document.getElementById("label0").style.left = "calc(-50% - -25%)"
-          document.getElementById("label0").style.width = "50%"
-
-          document.getElementById("label1").style.left = ""
-          document.getElementById("label1").style.right = "calc(-50% - -32%)"
-          document.getElementById("label1").style.width = "50%"
+          //Reset jsPsych styling
+          document.getElementById("label0").style = ''
+          document.getElementById("label1").style = ''
         },
         on_finish: function(data){
           var allData = jsPsych.data.get().values();
@@ -256,11 +252,12 @@
 
     var likingRating = {
         type: jsPsychHtmlSliderResponse,
-        stimulus: "<p style='line-height:18px;font-size:4vw'>Please use the slider to rate how much<br>you liked the music that you've just heard</p>",
+        stimulus: "Please use the slider to rate how much<br>you liked the music that you've just heard",
         require_movement: true,
         labels: ["I did not like it at all", "I liked it a lot"],
         on_load: function(){
-
+          document.getElementById("label0").style = ''
+          document.getElementById("label1").style = ''
         },
         on_finish: function(data){
           var allData = jsPsych.data.get().values();
@@ -271,11 +268,10 @@
 
     var grooveRating = {
         type: jsPsychHtmlSliderResponse,
-        stimulus: "<p style='line-height:18px;font-size:4vw'>Please move the slider to rate how much<br>did this piece of music make you want to move</p>",
+        stimulus: "Please move the slider to rate how much<br>did this piece of music make you want to move",
         require_movement: true,
         labels: ["Not at all", "A lot"],
         on_load: function(){
-          document.getElementById("jspsych-html-slider-response-stimulus").style.marginBottom = "50px";
         },
         on_finish: function(data){
           var allData = jsPsych.data.get().values();
@@ -287,7 +283,7 @@
     var phonePocket = {
         type: jsPsychAudioKeyboardResponse,
         stimulus: '../../songs/movementTapAudio/instructionsAudio/phonePocket.mp3',
-        prompt: '<p style="font-size:45px;">Please put your phone in your pocket</p>',
+        prompt: 'Please put your phone in your pocket',
         trial_duration: 7000,
         choices: ["NO_KEYS"],
     }
@@ -295,7 +291,7 @@
     var countDown = {
         type: jsPsychAudioKeyboardResponse,
         stimulus: '../../songs/movementTapAudio/instructionsAudio/countdown.mp3',
-        prompt: '<p style="font-size:45px;"></p>',
+        prompt: '',
         trial_duration: 6500,
         choices: ["NO_KEYS"],
     }
@@ -303,7 +299,7 @@
     var pickUpPhone = {
         type: jsPsychAudioKeyboardResponse,
         stimulus: '../../songs/movementTapAudio/instructionsAudio/pickPhone.mp3',
-        prompt: '<p style="font-size:45px;"></p>',
+        prompt: '',
         choices: ["NO_KEYS"],
         trial_duration: 10000,
     }
@@ -311,7 +307,7 @@
     var trialAccelerometer1 = {
         type: jsPsychAudioKeyboardResponse,
         stimulus: '../../songs/movementTapAudio/silence.wav',
-        prompt: '<p style="font-size:45px;">Walk</p>',
+        prompt: 'Walk',
         trial_duration: 15000,
         choices: ["NO_KEYS"],
         extensions: [
@@ -328,7 +324,7 @@
     var trialAccelerometer2 = {
         type: jsPsychAudioKeyboardResponse,
         stimulus: '../../songs/movementTapAudio/modifiedAudio/' + randomHemiolaSong,
-        prompt: '<p style="font-size:45px;">Bounce</p>',
+        prompt: 'Bounce',
         trial_duration: 15000,
         choices: ["NO_KEYS"],
         extensions: [
@@ -344,7 +340,7 @@
     var trialAccelerometer3 = {
         type: jsPsychAudioKeyboardResponse,
         stimulus: '../../songs/movementTapAudio/modifiedAudio/' + randomElPesebreSong,
-        prompt: '<p style="font-size:45px;">Move freely</p>',
+        prompt: 'Move freely',
         trial_duration: 30000,
         choices: ["NO_KEYS"],
         extensions: [
@@ -355,7 +351,7 @@
     var trialAccelerometer4 = {
         type: jsPsychAudioKeyboardResponse,
         stimulus: '',
-        prompt: '<p style="font-size:45px;">Move freely</p>',
+        prompt: 'Move freely',
         trial_duration: 30000,
         choices: ["NO_KEYS"],
         extensions: [
@@ -372,9 +368,9 @@
         },
     }
 
-    jsPsych.run([familiarityRating, likingRating, grooveRating])
+    //jsPsych.run([familiarityRating, likingRating, grooveRating])
     //jsPsych.run([frontPage, loadAccel, instruction0, instruction1, phonePocket, countDown, trialAccelerometer1, pickUpPhone, instruction2, phonePocket, countDown, trialAccelerometer2, pickUpPhone, familiarityRating, likingRating, grooveRating, instruction3, phonePocket, countDown, trialAccelerometer3, pickUpPhone, familiarityRating, likingRating, grooveRating, instruction4, chooseSongs, phonePocket, countDown, trialAccelerometer4, pickUpPhone, familiarityRating, likingRating, grooveRating]);
-    //jsPsych.run([chooseSongs, phonePocket, countDown, trialAccelerometer4, familiarityRating, likingRating]);
+    jsPsych.run([chooseSongs, phonePocket, countDown, trialAccelerometer4, familiarityRating, likingRating]);
 
  </script>
 </html>
