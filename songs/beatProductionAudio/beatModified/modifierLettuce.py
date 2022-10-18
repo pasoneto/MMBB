@@ -28,7 +28,7 @@ def createBeat(segundosSegment, beats, shiftN, beat, name, repetitions):
     for i in range(repetitions):
         bar = bar + mergeBeat
         
-    bar.export(f"./lettuceBeats/{name}_{shiftN}.wav", format="wav")
+    bar.export(f"./lettuceBeats/{name}_{shiftN}.mp3", format="mp3")
 
 beat = AudioSegment.from_wav("./beatUnit.wav")
 
