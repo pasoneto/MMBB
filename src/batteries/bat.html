@@ -16,7 +16,6 @@
     <script src="../../jspsych/dist/plugin-html-button-response.js"> </script>
     <script src="../../jspsych/dist/plugin-survey-html-form.js"> </script>
     <script src="../../jspsych/dist/plugin-image-slider-response.js"> </script>
-    <script src="../../jspsych/dist/plugin-instructions.js"> </script>
     <script src="../../jspsych/dist/plugin-free-sort.js"> </script>
     <script src="../../jspsych/dist/plugin-survey-likert.js"> </script>
     <script src="../../jspsych/dist/plugin-canvas-button-response.js"> </script>
@@ -25,9 +24,12 @@
     <script src="../../jspsych/dist/plugin-survey-multi-choice.js"> </script>
     <script src="../../jspsych/dist/plugin-initialize-microphone.js"> </script>
     <script src="../../jspsych/dist/plugin-html-audio-response.js"> </script>
+    <script src="../../jspsych/dist/plugin-instructions.js"> </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="../../jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />
-    <link href="../../jspsych/dist/customStyles.css" rel="stylesheet" type="text/css" />
+    <!--<link href="../../jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />-->
+    <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
+    <link href="./generalCSS.css" rel="stylesheet" type="text/css" />
+    <!--<link href="../../jspsych/dist/customStyles.css" rel="stylesheet" type="text/css" />-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
   </head>
@@ -46,27 +48,36 @@
     var instruction1 = {
         type: jsPsychInstructions,
         pages: [
-        '<p style="font-size:7vw;">' + recurring["1"][lang] + '</p>',
+        recurring["1"][lang],
         ],
-        button_label_next: buttons["1"][lang],
-        button_label_previous: buttons["2"][lang],
-        show_clickable_nav: true
+        button_label_next: '<i class="fa fa-arrow-right" aria-hidden="true"></i>',
+        button_label_previous: '<i class="fa fa-arrow-left" aria-hidden="true"></i>',
+        show_clickable_nav: true,
+        on_load: function(){
+          var textElement = document.getElementById("jspsych-content")
+          textElement.classList.add("textInstructions");
+        }
+
     }
 
     var instruction2 = {
         type: jsPsychInstructions,
         pages: [
-        '<p style="font-size:7vw;">' + beatProduction["3"][lang] + '</p>',
-        '<p style="font-size:7vw;">' + beatProduction["4"][lang] + '</p>',
-        '<p style="font-size:7vw;">' + beatProduction["2"][lang] + '<br><br>' + beatProduction["8"][lang] + '<audio controls><source src="../../songs/beatProductionAudio/beatModified/example/aligned.mp3" type="audio/mp3"></audio><br>' + beatProduction["9"][lang] + '<br><audio controls><source src="../../songs/beatProductionAudio/beatModified/example/notaligned.mp3" type="audio/mp3"></audio></p>',
-        '<p style="font-size:7vw;">' + beatProduction["5"][lang] + '</p>',
-        '<p style="font-size:7vw;">' + beatProduction["6"][lang] + '</p>',
-        '<p style="font-size:7vw;">' + beatProduction["10"][lang] + '</p>',
-        '<p style="font-size:7vw;">' + recurring["2"][lang] + '</p>',
+        beatProduction["3"][lang],
+        beatProduction["4"][lang],
+        beatProduction["2"][lang] + '<br><br>' + beatProduction["8"][lang] + '<br><br><audio controls><source src="../../songs/beatProductionAudio/beatModified/example/aligned.mp3" type="audio/mp3"></audio><br><br>' + beatProduction["9"][lang] + '<br><br><audio controls><source src="../../songs/beatProductionAudio/beatModified/example/notaligned.mp3" type="audio/mp3"></audio>',
+        beatProduction["5"][lang],
+        beatProduction["6"][lang],
+        beatProduction["10"][lang],
+        recurring["2"][lang],
         ],
         button_label_next: buttons["1"][lang],
         button_label_previous: buttons["2"][lang],
-        show_clickable_nav: true
+        show_clickable_nav: true,
+        on_load: function(){
+          var textElement = document.getElementById("jspsych-content")
+          textElement.classList.add("textInstructions");
+        }
     }
 
     //Load songs and beats for given trial 

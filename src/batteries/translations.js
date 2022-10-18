@@ -137,6 +137,8 @@ var beatProduction = {
         "fi": ""},
   "9": {"eng": "Not aligned",
         "fi": ""},
-  "10": {"eng": "Before we start, let's practice with a bit. Click next and try to adjust the two beats. When you have found the best alignment, click 'continue'",
+  "10": {"eng": "Before we start, let's practice with a bit.",
+        "fi": ""},
+  "11": {"eng": "On the next page, adjust the beat by clicking on the arrows. When you have found the best alignment, click 'continue'",
         "fi": ""}
 }

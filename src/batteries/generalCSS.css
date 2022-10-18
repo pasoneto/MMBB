@@ -1,0 +1,55 @@
+body{
+  background: #78A8F0;
+}
+
+button{
+  box-shadow: none;
+  border: none;
+  border-radius: 100px;
+  background: #bd5a8c;
+  color: #FFF0F0;
+  width: 20vw;
+  height: 10vh; 
+  margin-top: 10px;
+}
+
+.textInstructions{
+  font-size:2em;
+  line-height: 1.3em;
+  text-shadow: 2px 2px 4px #000000;
+  color: #FFF0F0;
+}
+
+/*Beat alignment task*/
+.fa.fa-arrow-left{
+  font-size: 50px;
+  color: white;
+}
+.fa.fa-arrow-right{
+  font-size: 50px;
+  color: white;
+}
+
+#add{
+  height: 10vh; 
+  margin: 2px;
+  margin-top: 10px;
+  width: 20vw;
+  box-shadow: none;
+	border: none;
+  margin-bottom: 10px;
+  border-radius: 100px;
+  background: #82b3e7;
+}
+#subtract{
+  height: 10vh; 
+  margin: 2px;
+  margin-top: 10px;
+	border: none;
+  width: 20vw;
+  box-shadow: none;
+  margin-bottom: 10px;
+  border-radius: 100px;
+  background: #ff4b38;
+}
+/*End of beat alignment task*/

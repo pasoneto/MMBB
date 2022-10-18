@@ -116,7 +116,7 @@ var jsPsychInstructions = (function (jspsych) {
                       nav_html +=
                           "<button id='jspsych-instructions-back' class='jspsych-instructions-btn' style='margin-right: 5px;' " +
                               allowed +
-                              ">&lt; " +
+                              "> " +
                               trial.button_label_previous +
                               "</button>";
                   }
@@ -127,7 +127,7 @@ var jsPsychInstructions = (function (jspsych) {
                       "<button id='jspsych-instructions-next' class='jspsych-instructions-btn'" +
                           "style='margin-left: 5px;'>" +
                           trial.button_label_next +
-                          " &gt;</button></div>";
+                          " </button></div>";
                   html += nav_html;
                   display_element.innerHTML = html;
                   if (current_page != 0 && trial.allow_backward) {
