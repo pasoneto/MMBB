@@ -20,6 +20,7 @@
     <script src="../../jspsych/dist/plugin-initialize-microphone.js"> </script>
     <script src="../../jspsych/dist/plugin-html-audio-response.js"></script>
     <script src="../../songs/movementTapAudio/songKeysNames.js"></script>
+    <script src="../../jspsych/dist/custom/utils.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
     <link href="./generalCSS.css" rel="stylesheet" type="text/css" />
@@ -33,8 +34,9 @@
   <script>
 
     function change() {
-          setTimeout(() => {document.body.style.backgroundColor = "#808080"}, 2);
-          document.body.style.backgroundColor = '#fff';
+          setTimeout(() => {
+          }, 2);
+          document.getElementById("tappingButton").innerHTML = "Tap here"
     }
 
     //Count difference between elements of array
@@ -99,9 +101,12 @@
 
     function buttonDown(){
           document.getElementById("tappingButton").innerHTML = '<p id="customText">--</p>'
+          sleep(50).then((r)=>{
+            document.getElementById("tappingButton").innerHTML = '<p id="customText">Tap here</p>'
+          })
     }
     function buttonUp(){
-          document.getElementById("tappingButton").innerHTML = '<p id="customText">Tap here</p>'
+          //document.getElementById("tappingButton").innerHTML = '<p id="customText">Tap here</p>'
     }
     //Determine if mobile or desktop
     var mobile = mobileAndTabletCheck() 
