@@ -20,6 +20,7 @@
     <script src="../../jspsych/dist/plugin-initialize-microphone.js"> </script>
     <script src="../../jspsych/dist/plugin-html-audio-response.js"> </script>
     <script src="../../songs/movementTapAudio/songKeysNames.js"> </script>
+    <script src="../../jspsych/dist/custom/utils.js"> </script>
     <!--<link href="../../jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />-->
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
     <link rel="stylesheet" href="./generalCSS.css">
@@ -317,9 +318,7 @@
         ],
     }
     
-    const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
     var randomHemiolaIndex = random(0, songKeys['8'].length -1)
-
     var randomHemiolaSong = songKeys['8'][randomHemiolaIndex]
     console.log(randomHemiolaSong)
 

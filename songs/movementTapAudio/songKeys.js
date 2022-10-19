@@ -14,6 +14,7 @@ var songKeys = {
   "7": [], 
   "8": [], 
   "9": [], 
+  "10": [], 
 } 
 
 var files = fs.readdirSync(directoryPath);
