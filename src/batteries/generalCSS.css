@@ -29,6 +29,7 @@ button, #jspsych-html-slider-response-next, .jspsych-btn{
   font-size: 50px;
   color: white;
 }
+
 #add{
   height: 10vh; 
   margin: 2px;
@@ -128,4 +129,8 @@ button, #jspsych-html-slider-response-next, .jspsych-btn{
   #jspsych-content{
     line-height: 1.3em;
   }
+}
+
+#jspsych-instructions-next{
+  background: purple;
 }
