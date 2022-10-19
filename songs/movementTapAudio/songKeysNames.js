@@ -56,11 +56,14 @@ var songKeys = {
         "name__7 - El Pesebre - Afrosound__stretchfactor__1_2125__0_97__0_72932.mp3"
     ],
     "8": [
-        "name__8 - metronome_agogo_hemiola__stretchfactor__0_75188__1_25__1.mp3",
-        "name__8 - metronome_agogo_hemiola__stretchfactor__0_75188__1__1_25.mp3",
-        "name__8 - metronome_agogo_hemiola__stretchfactor__1_25__0_75188__1.mp3",
-        "name__8 - metronome_agogo_hemiola__stretchfactor__1_25__1__0_75188.mp3",
-        "name__8 - metronome_agogo_hemiola__stretchfactor__1__0_75188__1_25.mp3",
-        "name__8 - metronome_agogo_hemiola__stretchfactor__1__1_25__0_75188.mp3"
+        "name__8 - agogo_120_BPM_hemiola_115_BPM.mp3"
+    ],
+    "9": [
+        "name__9 - metronome_const_tempo__stretchfactor__0_75188__1_25__1.mp3",
+        "name__9 - metronome_const_tempo__stretchfactor__0_75188__1__1_25.mp3",
+        "name__9 - metronome_const_tempo__stretchfactor__1_25__0_75188__1.mp3",
+        "name__9 - metronome_const_tempo__stretchfactor__1_25__1__0_75188.mp3",
+        "name__9 - metronome_const_tempo__stretchfactor__1__0_75188__1_25.mp3",
+        "name__9 - metronome_const_tempo__stretchfactor__1__1_25__0_75188.mp3"
     ]
 }

@@ -33,26 +33,6 @@
   </style>
   <script>
 
-    function change() {
-          setTimeout(() => {
-          }, 2);
-          document.getElementById("tappingButton").innerHTML = "Tap here"
-    }
-
-    //Count difference between elements of array
-    function diff(ary) {
-        var newA = [];
-        for (var i = 1; i < ary.length; i++)  newA.push(ary[i] - ary[i - 1])
-        return newA;
-    }
-
-    function bpmEstimator(rts){
-      var arr = diff(rts)
-      var ioi = arr.reduce((a, b) => a + b, 0) / arr.length;
-      var bpm = 60/(ioi/1000)
-      return bpm
-    }
-     
     var jsPsych = initJsPsych({
       on_finish: function() {
         //jsPsych.data.displayData();
@@ -60,14 +40,26 @@
       }
     });
 
-    var instruction1 = {
+    var instruction0 = {
         type: jsPsychInstructions,
         pages: [
-        'Welcome MMBB battery',
+        'Welcome to the MMBB battery',
         'Tapping task',
         'In this task, we will ask you to tap on a button',
         'Tap on the button with your prefered hand, at the speed that is most natural for you',
         'Try to maintain the tapping speed as constant as possible until the task ends.',
+        'Click next when you are ready to begin',
+        ],
+        button_label_next: "Next",
+        button_label_previous: "Previous",
+        show_clickable_nav: true,
+    }
+
+    var instruction1 = {
+        type: jsPsychInstructions,
+        pages: [
+        'In the next task, you will hear a constant metronome',
+        'Tap in synchrony to the metronome',
         'Click next when you are ready to begin',
         ],
         button_label_next: "Next",
@@ -105,9 +97,8 @@
             document.getElementById("tappingButton").innerHTML = '<p id="customText">Tap here</p>'
           })
     }
-    function buttonUp(){
-          //document.getElementById("tappingButton").innerHTML = '<p id="customText">Tap here</p>'
-    }
+
+
     //Determine if mobile or desktop
     var mobile = mobileAndTabletCheck() 
     if(mobile){
@@ -118,17 +109,6 @@
       var eventTypeEnd = "onmouseup"
     }
 
-    var trialTapping1 = {
-        type: jsPsychAudioButtonResponse,
-        choices: ['Tap here'],
-        stimulus: '../../songs/movementTapAudio/silence.wav',
-        trial_duration: 10000,
-        button_html: '<button type="button" ' + eventTypeStart + '="buttonDown()" ' + eventTypeEnd + '="buttonUp()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">Tap here</p></button>',
-        response_ends_trial: false,
-    }
-    
-    const random = (min, max) => Math.floor(Math.random() * (max - min)) + min;
-
     //Call random hemiola
     var randomHemioleIndex = random(0, songKeys['8'].length -1)
     var randomHemioleSong = songKeys['8'][randomHemioleIndex]
@@ -136,15 +116,37 @@
     var randomElPesebreIndex = random(0, songKeys['7'].length -1)
     var randomElPesebreSong = songKeys['7'][randomElPesebreIndex]
 
+    var randomMetronome = random(0, songKeys['9'].length -1)
+    var randomMetronome = songKeys['9'][randomMetronome]
+
     console.log(randomElPesebreSong)
     console.log(randomHemioleSong)
+    console.log(randomMetronome)
+
+    var trialTapping0 = {
+        type: jsPsychAudioButtonResponse,
+        choices: ['Tap here'],
+        stimulus: '../../songs/movementTapAudio/silence.wav',
+        trial_duration: 10000,
+        button_html: '<button type="button" ' + eventTypeStart + '="buttonDown()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">Tap here</p></button>',
+        response_ends_trial: false,
+    }
+
+    var trialTapping1 = {
+        type: jsPsychAudioButtonResponse,
+        choices: ['Tap here'],
+        stimulus: '../../songs/movementTapAudio/modifiedAudio/' + randomMetronome,
+        trial_duration: 10000,
+        button_html: '<button type="button" ' + eventTypeStart + '="buttonDown()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">Tap here</p></button>',
+        response_ends_trial: false,
+    }
         
     var trialTapping2 = {
         type: jsPsychAudioButtonResponse,
         choices: ['Tap here'],
         stimulus: '../../songs/movementTapAudio/modifiedAudio/' + randomHemioleSong,
         trial_duration: 10000,
-        button_html: '<button type="button" ' + eventTypeStart + '="buttonDown()" ' + eventTypeEnd + '="buttonUp()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">Tap here</p></button>',
+        button_html: '<button type="button" ' + eventTypeStart + '="buttonDown()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">Tap here</p></button>',
         response_ends_trial: false,
     }
     
@@ -153,11 +155,11 @@
         choices: ['Tap here'],
         stimulus: '../../songs/movementTapAudio/modifiedAudio/' + randomElPesebreSong,
         trial_duration: 10000,
-        button_html: '<button type="button" ' + eventTypeStart + '="buttonDown()" ' + eventTypeEnd + '="buttonUp()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">Tap here</p></button>',
+        button_html: '<button type="button" ' + eventTypeStart + '="buttonDown()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">Tap here</p></button>',
         response_ends_trial: false,
     }
 
-    var showBPM1 = {
+    var messageEndTask = {
       type: jsPsychHtmlButtonResponse,
       prompt: 'End of task 1',
       choices: [],
@@ -165,23 +167,7 @@
       stimulus: '',
     };
 
-    var showBPM2 = {
-      type: jsPsychHtmlButtonResponse,
-      prompt: 'End of task 2',
-      choices: [],
-      trial_duration: 3000,
-      stimulus: '',
-    };
-
-    var showBPM3 = {
-      type: jsPsychHtmlButtonResponse,
-      prompt: 'End of task 3',
-      choices: [],
-      trial_duration: 3000,
-      stimulus: '',
-    };
-
-    jsPsych.run([instruction1, trialTapping1, showBPM1, instruction2, trialTapping2, showBPM2, instruction3, trialTapping3, showBPM3]);
+    jsPsych.run([instruction0, trialTapping0, messageEndTask, instruction1, trialTapping1, messageEndTask, instruction2, trialTapping2, messageEndTask, instruction3, trialTapping3, messageEndTask]);
 
  </script>
 </html>
