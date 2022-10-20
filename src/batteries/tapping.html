@@ -18,6 +18,7 @@
     <script src="../../jspsych/dist/plugin-html-keyboard-response.js"> </script>
     <script src="../../jspsych/dist/plugin-survey-multi-choice.js"> </script>
     <script src="../../jspsych/dist/plugin-initialize-microphone.js"> </script>
+    <script src="../../jspsych/dist/plugin-preload.js"> </script>
     <script src="../../jspsych/dist/plugin-html-audio-response.js"></script>
     <script src="../../songs/movementTapAudio/songKeysNames.js"></script>
     <script src="../../jspsych/dist/custom/utils.js"></script>
@@ -119,6 +120,13 @@
     var randomMetronome = random(0, songKeys['10'].length -1)
     var randomMetronome = songKeys['9'][randomMetronome]
 
+    var songsToPreload = [randomElPesebreSong, randomHemioleSong, randomMetronome]
+    var songPaths = '../../songs/movementTapAudio/modifiedAudio/'
+    var pathsToPreload = songsToPreload.map(i=>songPaths+i)
+    var preloadSongs = {
+      type: jsPsychPreload,
+      audio: pathsToPreload 
+    }   
     console.log(randomElPesebreSong)
     console.log(randomHemioleSong)
     console.log(randomMetronome)
@@ -167,7 +175,7 @@
       stimulus: '',
     };
 
-    jsPsych.run([instruction0, trialTapping0, messageEndTask, instruction1, trialTapping1, messageEndTask, instruction2, trialTapping2, messageEndTask, instruction3, trialTapping3, messageEndTask]);
+    jsPsych.run([preloadSongs, instruction0, trialTapping0, messageEndTask, instruction1, trialTapping1, messageEndTask, instruction2, trialTapping2, messageEndTask, instruction3, trialTapping3, messageEndTask]);
 
  </script>
 </html>

@@ -93,8 +93,8 @@ button, #jspsych-html-slider-response-next, .jspsych-btn{
   object-fit: contain;
   width: 15vw;
 }
-#loadingLogo{
-  width: 80vw;
+#logoLoading{
+  width: 50vw;
 }
 /*End of movement task*/
 

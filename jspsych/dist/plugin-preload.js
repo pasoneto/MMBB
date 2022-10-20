@@ -164,8 +164,10 @@ var jsPsychPreload = (function (jspsych) {
           }
           if (trial.show_progress_bar) {
               html += `
-            <div id='jspsych-loading-progress-bar-container' style='height: 10px; width: 300px; background-color: #ddd; margin: auto;'>
-              <div id='jspsych-loading-progress-bar' style='height: 10px; width: 0%; background-color: #777;'></div>
+            <div id='jspsych-loading-progress-bar-container'>
+              <div id='jspsych-loading-progress-bar'>
+                <img id="logoLoading" src="../../images/loading.gif">
+              </div>
             </div>`;
           }
           display_element.innerHTML = html;

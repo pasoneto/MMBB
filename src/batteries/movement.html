@@ -19,6 +19,7 @@
     <script src="../../jspsych/dist/plugin-survey-multi-choice.js"> </script>
     <script src="../../jspsych/dist/plugin-initialize-microphone.js"> </script>
     <script src="../../jspsych/dist/plugin-html-audio-response.js"> </script>
+    <script src="../../jspsych/dist/plugin-preload.js"> </script>
     <script src="../../songs/movementTapAudio/songKeysNames.js"> </script>
     <script src="../../jspsych/dist/custom/utils.js"> </script>
     <!--<link href="../../jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />-->
@@ -126,7 +127,8 @@
             btn.style.backgroundColor = "lightgray";
           }
     }
-        
+    
+    var randomChosenSong;
     var chooseSongs = {
       type: jsPsychHtmlSongSelectorResponse,
       stimulus: prompt_songs(songs, songCodes),
@@ -135,6 +137,11 @@
         for(k in songs){
           songs[k].pause()
         }
+        console.log(window.chosenSong)
+        var chosenSongCode = window.chosenSong
+        var randomChosenIndex = random(0, songKeys[chosenSongCode].length -1)
+        window.randomChosenSong = songKeys[chosenSongCode][randomChosenIndex]
+        console.log(window.randomChosenSong)
       },
     };
 
@@ -152,7 +159,7 @@
     var loadAccel = {
         type: jsPsychAudioKeyboardResponse,
         stimulus: '../../songs/movementTapAudio/silence.wav',
-        prompt: 'Accessing accelerometer',
+        prompt: 'Accessing accelerometer<br><img id="logoLoading" src="../../images/loading.gif">',
         trial_duration: 3000,
         choices: ["NO_KEYS"],
         extensions: [
@@ -320,7 +327,12 @@
     
     var randomHemiolaIndex = random(0, songKeys['8'].length -1)
     var randomHemiolaSong = songKeys['8'][randomHemiolaIndex]
+
+    var randomElPesebreIndex = random(0, songKeys['7'].length -1)
+    var randomElPesebreSong = songKeys['7'][randomElPesebreIndex]
+
     console.log(randomHemiolaSong)
+    console.log(randomElPesebreSong)
 
     var trialAccelerometer2 = {
         type: jsPsychAudioKeyboardResponse,
@@ -333,10 +345,19 @@
         ],
     }
 
-    var randomElPesebreIndex = random(0, songKeys['7'].length -1)
-    var randomElPesebreSong = songKeys['7'][randomElPesebreIndex]
+    var songsToPreload = [randomElPesebreSong, randomHemiolaSong]
+    var songPaths = '../../songs/movementTapAudio/modifiedAudio/'
+    var pathsToPreload = songsToPreload.map(i=>songPaths+i)
+    var preloadSongs = {
+      type: jsPsychPreload,
+      audio: pathsToPreload 
+    }   
 
-    console.log(randomElPesebreSong)
+    var preloadChosen = {
+      type: jsPsychPreload,
+      audio: window.randomChosenSong,
+    }   
+
 
     var trialAccelerometer3 = {
         type: jsPsychAudioKeyboardResponse,
@@ -360,17 +381,12 @@
         ],
         on_start: function(trial) {
             var allData = jsPsych.data.get().values()
-            //var chosenS = allData[allData.length - 3].chosen
-            var chosenSongCode = window.chosenSong
-            var randomChosenIndex = random(0, songKeys[chosenSongCode].length -1)
-            var randomChosenSong = songKeys[chosenSongCode][randomChosenIndex]
-            console.log(randomChosenSong)
-            trial.stimulus = '../../songs/movementTapAudio/modifiedAudio/' + randomChosenSong
+            trial.stimulus = '../../songs/movementTapAudio/modifiedAudio/' + window.randomChosenSong
         },
     }
 
     //jsPsych.run([familiarityRating])
-    jsPsych.run([frontPage, loadAccel, instruction0, instruction1, phonePocket, countDown, trialAccelerometer1, pickUpPhone, instruction2, phonePocket, countDown, trialAccelerometer2, pickUpPhone, familiarityRating, likingRating, grooveRating, instruction3, phonePocket, countDown, trialAccelerometer3, pickUpPhone, familiarityRating, likingRating, grooveRating, instruction4, chooseSongs, phonePocket, countDown, trialAccelerometer4, pickUpPhone, familiarityRating, likingRating, grooveRating]);
+    jsPsych.run([preloadSongs, frontPage, loadAccel, instruction0, instruction1, phonePocket, countDown, trialAccelerometer1, pickUpPhone, instruction2, phonePocket, countDown, trialAccelerometer2, pickUpPhone, familiarityRating, likingRating, grooveRating, instruction3, phonePocket, countDown, trialAccelerometer3, pickUpPhone, familiarityRating, likingRating, grooveRating, instruction4, chooseSongs, preloadChosen, phonePocket, countDown, trialAccelerometer4, pickUpPhone, familiarityRating, likingRating, grooveRating]);
     //jsPsych.run([chooseSongs, phonePocket, countDown, trialAccelerometer4, familiarityRating, likingRating]);
 
  </script>
