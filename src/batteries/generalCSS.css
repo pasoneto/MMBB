@@ -1,5 +1,5 @@
 body{
-  background: #78A8F0;
+  background: RGB(146, 168, 209, 0.2)
 }
 button, #jspsych-html-slider-response-next, .jspsych-btn{
   box-shadow: none;
@@ -15,10 +15,10 @@ button, #jspsych-html-slider-response-next, .jspsych-btn{
   box-shadow: 2px 2px 4px #000000;
 }
 #jspsych-content{
+  font-family: Garamond, serif;
   font-size:2em;
   line-height: 1.3em;
-  text-shadow: 2px 2px 4px #000000;
-  color: #FFF0F0;
+  color: black;
 }
 /*Beat alignment task*/
 .fa.fa-arrow-left{
