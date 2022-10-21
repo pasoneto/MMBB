@@ -46,7 +46,7 @@
     var instruction1 = {
         type: jsPsychInstructions,
         pages: [
-        recurring["1"][lang],
+        beatProduction["0"][lang],
         ],
         button_label_next: '<i class="fa fa-arrow-right" aria-hidden="true"></i>',
         button_label_previous: '<i class="fa fa-arrow-left" aria-hidden="true"></i>',
@@ -74,6 +74,27 @@
         show_clickable_nav: true,
         on_load: function(){
         }
+    }
+
+    var instruction3 = {
+        type: jsPsychInstructions,
+        pages: [
+        beatProduction["12"][lang],
+        recurring["2"][lang],
+        ],
+        button_label_next: buttons["1"][lang],
+        button_label_previous: buttons["2"][lang],
+        show_clickable_nav: true,
+    }
+
+    var betweenTrial = {
+        type: jsPsychInstructions,
+        pages: [
+        beatProduction["13"][lang],
+        ],
+        button_label_next: buttons["1"][lang],
+        button_label_previous: buttons["2"][lang],
+        show_clickable_nav: true,
     }
 
     //Load songs and beats for given trial 
@@ -128,7 +149,7 @@
       }
     };
 
-    jsPsych.run([instruction1, instruction2, loadTrial0, trialBeat, loadTrial1, trialBeat, loadTrial2, trialBeat, loadTrial3, trialBeat]);
+    jsPsych.run([instruction1, instruction2, loadTrial0, trialBeat, instruction3, loadTrial1, trialBeat, betweenTrial, loadTrial2, trialBeat, betweenTrial, loadTrial3, trialBeat]);
 
  </script>
 </html>

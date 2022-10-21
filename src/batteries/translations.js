@@ -119,7 +119,9 @@ var recurring = {
 }
 
 var beatProduction = {
-  "1": {"eng": "Adjust the beat",
+  "0": {"eng": "Welcome to the beat alignment task",
+        "fi": ""},
+  "1": {"eng": "Adjust the click",
         "fi": "Säätää metronomia"},
   "3": {"eng": "In this task, you will hear a song and a click",
         "fi": "Tässä tehtävässä kuulet kappaleen ja metronomin"},
@@ -139,6 +141,10 @@ var beatProduction = {
         "fi": ""},
   "10": {"eng": "Let's start with a practice trial",
         "fi": ""},
-  "11": {"eng": "On the next page, adjust the beat by clicking on the arrows. When you have found the best alignment, click 'continue'",
+  "11": {"eng": "On the next page, adjust the click by pressing the arrows. When you have found the best alignment, click 'continue'",
+        "fi": ""},
+  "12": {"eng": "Ok, now we ask you to align the click with a real song",
+        "fi": ""},
+  "13": {"eng": "Very well, click next to try it on another song",
         "fi": ""}
 }

@@ -177,7 +177,7 @@ var jsPsychPreload = (function (jspsych) {
                   var percent_loaded = (loaded / total_n) * 100;
                   var preload_progress_bar = display_element.querySelector("#jspsych-loading-progress-bar");
                   if (preload_progress_bar !== null) {
-                      preload_progress_bar.style.width = percent_loaded + "%";
+                    //preload_progress_bar.style.width = percent_loaded + "%";
                   }
               }
           };
