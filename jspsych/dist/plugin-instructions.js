@@ -112,9 +112,9 @@ var jsPsychInstructions = (function (jspsych) {
               if (trial.show_clickable_nav) {
                   var nav_html = "<div class='jspsych-instructions-nav' style='padding: 10px 0px;'>";
                   if (trial.allow_backward) {
-                      var allowed = current_page > 0 ? "" : "disabled='disabled'";
+                      var allowed = current_page > 0 ? "style='margin-right: 5px;'" : "disabled='disabled' style='display: none'  ";
                       nav_html +=
-                          "<button id='jspsych-instructions-back' class='jspsych-instructions-btn' style='margin-right: 5px;' " +
+                          "<button id='jspsych-instructions-back' class='jspsych-instructions-btn'" +
                               allowed +
                               "> " +
                               trial.button_label_previous +
