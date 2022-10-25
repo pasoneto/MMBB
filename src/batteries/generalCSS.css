@@ -100,12 +100,12 @@ button, #jspsych-html-slider-response-next, .jspsych-btn{
 
 /*Tapping task*/
 #tappingButton{
-  height: 70vh; 
+  height: 50vh; 
   text-align: center;
   width: 80vw;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  box-shadow: 0 8px 5px 0 rgba(0,0,0,0.2), 0 3px 10px 0 rgba(0,0,0,0.19);
 	border: none;
-  border-radius: 100px;
+  border-radius: 100%;
   background: #82b3e7;
 }
 #customText{

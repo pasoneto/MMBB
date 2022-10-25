@@ -191,7 +191,7 @@ function generateContextTrial(songBaseURL, beatsURL, lang){
     type: jsPsychHtmlButtonResponse,
     //stimulus: recurring["6"][lang],
     stimulus: '<img id="logoLoading" src="../../images/loading2.gif">',
-    choices: [buttons["1"][lang]],
+    choices: [buttons[0][lang]],
     prompt: "",
     on_load: async function(){
 

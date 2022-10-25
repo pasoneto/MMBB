@@ -43,35 +43,11 @@
       
     var lang = "eng"
 
-    var instruction1 = {
-        type: jsPsychInstructions,
-        pages: [
-        beatProduction["0"][lang],
-        ],
-        button_label_next: '<i class="fa fa-arrow-right" aria-hidden="true"></i>',
-        button_label_previous: '<i class="fa fa-arrow-left" aria-hidden="true"></i>',
-        show_clickable_nav: true,
-        on_load: function(){
-        }
-
-    }
-
     var instruction2 = {
         type: jsPsychInstructions,
-        pages: [
-        beatProduction["3"][lang],
-        beatProduction["14"][lang] + '<br><br><audio autoplay controls><source src="../../songs/beatProductionAudio/beatModified/training/metronome_0.mp3" type="audio/mp3"></audio>',
-        beatProduction["4"][lang],
-        beatProduction["2"][lang],
-        beatProduction["9"][lang] + '<br><br><audio autoplay controls><source src="../../songs/beatProductionAudio/beatModified/baseSongs/example/notAligned.mp3" type="audio/mp3"></audio>',
-        beatProduction["8"][lang] + '<br><br><audio autoplay controls><source src="../../songs/beatProductionAudio/beatModified/baseSongs/example/aligned.mp3" type="audio/mp3"></audio>',
-        beatProduction["5"][lang],
-        beatProduction["6"][lang],
-        beatProduction["10"][lang],
-        recurring["9"][lang],
-        ],
-        button_label_next: buttons["1"][lang],
-        button_label_previous: buttons["2"][lang],
+        pages: beatProduction[0].map(i=>i[lang]),
+        button_label_next: buttons[0][lang],
+        button_label_previous: buttons[1][lang],
         show_clickable_nav: true,
         on_load: function(){
         }
@@ -79,22 +55,19 @@
 
     var instruction3 = {
         type: jsPsychInstructions,
-        pages: [
-        beatProduction["12"][lang],
-        recurring["2"][lang],
-        ],
-        button_label_next: buttons["1"][lang],
-        button_label_previous: buttons["2"][lang],
+        pages: beatProduction[1].map(i=>i[lang]),
+        button_label_next: buttons[0][lang],
+        button_label_previous: buttons[1][lang],
         show_clickable_nav: true,
     }
 
     var betweenTrial = {
         type: jsPsychInstructions,
         pages: [
-        recurring["9"][lang],
+        recurring[8][lang],
         ],
-        button_label_next: buttons["1"][lang],
-        button_label_previous: buttons["2"][lang],
+        button_label_next: buttons[0][lang],
+        button_label_previous: buttons[1][lang],
         show_clickable_nav: true,
     }
 
@@ -120,7 +93,7 @@
 
     var trialBeat = {
       type: jsPsychHtmlButtonResponse,
-          stimulus: '<div id="arrowsContainer"><p style="margin: 0px; height: 30px; margin-bottom: 10px">' + beatProduction["1"][lang] + '</p>'+
+          stimulus: '<div id="arrowsContainer"><p style="margin: 0px; height: 30px; margin-bottom: 10px">' + beatProduction[2][0][lang] + '</p>'+
                   '<button id="subtract">'+
                     '<i class="fa fa-arrow-left" aria-hidden="true"></i>'+
                   '</button>'+
@@ -150,7 +123,7 @@
       }
     };
 
-    jsPsych.run([instruction1, instruction2, loadTrial0, trialBeat, instruction3, loadTrial1, trialBeat, betweenTrial, loadTrial2, trialBeat, betweenTrial, loadTrial3, trialBeat]);
+    jsPsych.run([instruction2, loadTrial0, trialBeat, instruction3, loadTrial1, trialBeat, betweenTrial, loadTrial2, trialBeat, betweenTrial, loadTrial3, trialBeat]);
 
  </script>
 </html>

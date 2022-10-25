@@ -22,6 +22,7 @@
     <script src="../../jspsych/dist/plugin-html-audio-response.js"></script>
     <script src="../../songs/movementTapAudio/songKeysNames.js"></script>
     <script src="../../jspsych/dist/custom/utils.js"></script>
+    <script src="./translations.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
     <link href="./generalCSS.css" rel="stylesheet" type="text/css" />
@@ -40,17 +41,12 @@
         jsPsych.data.get().localSave('csv','mydata.csv');
       }
     });
+    
+    var lang = 'eng';
 
     var instruction0 = {
         type: jsPsychInstructions,
-        pages: [
-        'Welcome to the MMBB battery',
-        'Tapping task',
-        'In this task, we will ask you to tap on a button',
-        'Tap on the button with your prefered hand, at the speed that is most natural for you',
-        'Try to maintain the tapping speed as constant as possible until the task ends.',
-        'Click next when you are ready to begin',
-        ],
+        pages: tapping[0].map(i=>i[lang]),
         button_label_next: "Next",
         button_label_previous: "Previous",
         show_clickable_nav: true,
@@ -58,11 +54,7 @@
 
     var instruction1 = {
         type: jsPsychInstructions,
-        pages: [
-        'In the next task, you will hear a constant metronome',
-        'Tap in synchrony to the metronome',
-        'Click next when you are ready to begin',
-        ],
+        pages: tapping[1].map(i=>i[lang]),
         button_label_next: "Next",
         button_label_previous: "Previous",
         show_clickable_nav: true,
@@ -70,11 +62,7 @@
 
     var instruction2 = {
         type: jsPsychInstructions,
-        pages: [
-        'In the next task, you will hear a beat',
-        'Tap in synchrony to the beat',
-        'Click next when you are ready to begin',
-        ],
+        pages: tapping[2].map(i=>i[lang]),
         button_label_next: "Next",
         button_label_previous: "Previous",
         show_clickable_nav: true,
@@ -82,11 +70,7 @@
 
     var instruction3 = {
         type: jsPsychInstructions,
-        pages: [
-        'In the next task you will hear a musical piece',
-        'Please tap in synchrony to the beat of the music',
-        'Click next when you are ready to begin',
-        ],
+        pages: tapping[3].map(i=>i[lang]),
         button_label_next: "Next",
         button_label_previous: "Previous",
         show_clickable_nav: true,
@@ -94,7 +78,7 @@
 
     function buttonDown(){
           document.getElementById("tappingButton").innerHTML = '<p id="customText">--</p>'
-          sleep(50).then((r)=>{
+          sleep(10).then((r)=>{
             document.getElementById("tappingButton").innerHTML = '<p id="customText">Tap here</p>'
           })
     }
@@ -136,7 +120,7 @@
         choices: ['Tap here'],
         stimulus: '../../songs/movementTapAudio/silence.wav',
         trial_duration: 10000,
-        button_html: '<button type="button" ' + eventTypeStart + '="buttonDown()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">Tap here</p></button>',
+        button_html: '<button type="button" ' + eventTypeStart + '="buttonDown()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">' + tapping[4][0][lang] + '</p></button>',
         response_ends_trial: false,
     }
 
@@ -145,7 +129,7 @@
         choices: ['Tap here'],
         stimulus: '../../songs/movementTapAudio/modifiedAudio/' + randomMetronome,
         trial_duration: 10000,
-        button_html: '<button type="button" ' + eventTypeStart + '="buttonDown()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">Tap here</p></button>',
+        button_html: '<button type="button" ' + eventTypeStart + '="buttonDown()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">' + tapping[4][0][lang] + '</p></button>',
         response_ends_trial: false,
     }
         
@@ -154,7 +138,7 @@
         choices: ['Tap here'],
         stimulus: '../../songs/movementTapAudio/modifiedAudio/' + randomHemioleSong,
         trial_duration: 10000,
-        button_html: '<button type="button" ' + eventTypeStart + '="buttonDown()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">Tap here</p></button>',
+        button_html: '<button type="button" ' + eventTypeStart + '="buttonDown()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">' + tapping[4][0][lang] + '</p></button>',
         response_ends_trial: false,
     }
     
@@ -163,13 +147,13 @@
         choices: ['Tap here'],
         stimulus: '../../songs/movementTapAudio/modifiedAudio/' + randomElPesebreSong,
         trial_duration: 10000,
-        button_html: '<button type="button" ' + eventTypeStart + '="buttonDown()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">Tap here</p></button>',
+        button_html: '<button type="button" ' + eventTypeStart + '="buttonDown()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">' + tapping[4][0][lang] + '</p></button>',
         response_ends_trial: false,
     }
 
     var messageEndTask = {
       type: jsPsychHtmlButtonResponse,
-      prompt: 'End of task 1',
+      prompt: recurring[3][lang],
       choices: [],
       trial_duration: 3000,
       stimulus: '',
