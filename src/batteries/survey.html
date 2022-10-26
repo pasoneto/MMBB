@@ -38,7 +38,12 @@
         jsPsych.data.get().localSave('csv','mydata.csv');
       }
     });
-
+    
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const diadNumber = urlParams.get('diad')
+    console.log(diadNumber)
+  
     var participantID = {
       type: jsPsychSurveyHtmlForm,
       preamble: '<p style="font-size:7vw">Participant ID</p>',
@@ -49,8 +54,6 @@
     var instruction1 = {
         type: jsPsychInstructions,
         pages: [
-        '<p style="font-size:7vw;">Welcome!</p>',
-        '<p style="font-size:7vw;">Survey</p>',
         '<p style="font-size:7vw;">When you click start, you will see some questions.</p>',
         '<p style="font-size:7vw;">Your task is to answer them.</p>'
         ],
@@ -77,25 +80,11 @@
       prompt: ""
     };
     
-
-    var closeness = {
-        type: jsPsychFreeSort,
-        stimuli: sorting_stimuli,
-        sort_area_shape: "square",
-        scale_factor: 1,
-        stim_width: 375,
-        stim_height: 300,
-        stim_starts_inside: true,
-        sort_area_width: 1000,
-        sort_area_height: 500,
-        prompt: "<p>Click and drag the images below to sort them so that they represent how close you feel to your partner.</p>"
-    };
-
     var trialSurvey = {
       type: jsPsychSurveyMultiChoice,
       questions: [{
-          prompt: '<p style="font-size:7vw;">I am a </p>',
-          options: ['Profesisonal musician', 'Amateur', 'Non musician'], 
+          prompt: '<p style="font-size:7vw;">Implement questionnaire here</p>',
+          options: ['Option 1', 'Option 2', 'Option 3'], 
           required: false
         }]
     };
@@ -108,22 +97,15 @@
       "Strongly Agree"
     ];
 
-    var trialLikert = {
-      type: jsPsychSurveyLikert,
-      questions: [
-        {prompt: "<p style='font-size:3vw;'>I am enjoying this experiment<p>", labels: options},
+    var instructionPreCloseness = {
+      type: jsPsychInstructions,
+      pages: [
+      '<p style="font-size:7vw;">In the next page, use the slider to indicate how close you feel to your pair</p>',
       ],
-      randomize_question_order: true
-    };
-
-    var trialLikert = {
-        type: jsPsychHtmlSliderResponse,
-        stimulus: `<div style="width:500px;">
-            <p style="font-size:3vw;">I am enjoying this experiment</p>
-            </div>`,
-        require_movement: true,
-        labels: ['<p style="font-size:3vw">Not at all</p>', '<p style="font-size:3vw">Very much</p>']
-    };
+      button_label_next: "Next",
+      button_label_previous: "Previous",
+      show_clickable_nav: true
+    }
 
     var closeness1 = {
       type: jsPsychImageSliderResponse,
@@ -149,43 +131,58 @@
         var allData = jsPsych.data.get().values()
         console.log(allData.length - 2)
         console.log(allData)
-        var startPoint = allData[allData.length - 3]['response']
+        var startPoint = allData[allData.length - 4]['response']
         trial.slider_start = startPoint
         trial.start_separation = startPoint
-      } };
+      }
+    };
 
     var inter = {
         type: jsPsychInstructions,
         pages: [
-        '<p style="font-size:7vw;">Next trial</p>',
+        '<p style="font-size:7vw;">Please, hand the ipad back to the experimenter</p>',
         ],
         button_label_next: "Next",
         button_label_previous: "Previous",
         show_clickable_nav: true
     }
 
-    var songRating1 = {
+    var likeSong = {
         type: jsPsychHtmlSliderResponse,
         stimulus: `<div style="width:500px;">
-            <p style="font-size:3vw;">How much do you like song 1?</p>
+            <p style="font-size:3vw;">How much do you like the song that you just heard?</p>
             </div>`,
         require_movement: true,
         labels: ['<p style="font-size:3vw">Not at all</p>', '<p style="font-size:3vw">Very much</p>']
     };
 
-//First one "" how do you feel now. 
-//Next ones better or worst
-//How much did you like the music you were dancing to?
-    var songRating2 = {
+    var familiaritySong = {
         type: jsPsychHtmlSliderResponse,
         stimulus: `<div style="width:500px;">
-            <p style="font-size:3vw;">How much do you like song 2?</p>
+            <p style="font-size:3vw;">How familiar were you with the song that you just heard?</p>
             </div>`,
         require_movement: true,
-        labels: ['<p style="font-size:3vw">bad</p>', '<p style="font-size:3vw">Very much</p>']
+        labels: ['<p style="font-size:3vw">Never heard it before</p>', '<p style="font-size:3vw">Know it very well</p>']
     };
+    
+    //Determining which timeline to run
+    if(diadNumber == 1){
+      var timelineChosen = [participantID, 
+                            howFeeling,  instructionPreCloseness, closeness1, inter,
+                            howFeeling2, instructionPreCloseness, closeness2, inter,
+                            howFeeling2, instructionPreCloseness, closeness2, likeSong, familiaritySong, trialSurvey, howFeeling2, instructionPreCloseness, closeness2, inter,
+                            howFeeling2, instructionPreCloseness, closeness2, likeSong, familiaritySong, inter]
+    }
+    if(diadNumber == 2){
+      var timelineChosen = [participantID, 
+                            howFeeling,  instructionPreCloseness, closeness1, inter,
+                            howFeeling2, instructionPreCloseness, closeness2, likeSong, familiaritySong, inter,
+                            howFeeling2, instructionPreCloseness, closeness2, inter,
+                            howFeeling2, instructionPreCloseness, closeness2, likeSong, familiaritySong, trialSurvey, howFeeling2, instructionPreCloseness, closeness2,
+                            howFeeling2, instructionPreCloseness, closeness2, inter]
+    }
 
-    jsPsych.run([participantID, instruction1, howFeeling, closeness1, howFeeling2, inter, closeness2, howFeeling2, inter, closeness2, inter, closeness2, trialSurvey, trialLikert, songRating1, songRating2]);
+    jsPsych.run(timelineChosen);
     //jsPsych.run([instruction1, closeness, trialLikert, trialSurvey]);
 
  </script>

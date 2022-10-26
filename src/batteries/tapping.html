@@ -95,14 +95,14 @@
     }
 
     //Call random hemiola
-    var randomHemioleIndex = random(0, songKeys['8'].length -1)
-    var randomHemioleSong = songKeys['8'][randomHemioleIndex]
+    var randomHemioleIndex = random(0, songKeys['10'].length -1)
+    var randomHemioleSong = songKeys['10'][randomHemioleIndex]
      
     var randomElPesebreIndex = random(0, songKeys['7'].length -1)
     var randomElPesebreSong = songKeys['7'][randomElPesebreIndex]
 
-    var randomMetronome = random(0, songKeys['10'].length -1)
-    var randomMetronome = songKeys['9'][randomMetronome]
+    var randomMetronome = random(0, songKeys['8'].length -1)
+    var randomMetronome = songKeys['8'][randomMetronome]
 
     var songsToPreload = [randomElPesebreSong, randomHemioleSong, randomMetronome]
     var songPaths = '../../songs/movementTapAudio/modifiedAudio/'
