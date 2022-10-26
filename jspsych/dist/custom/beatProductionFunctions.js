@@ -45,8 +45,8 @@ async function initiateContext(offset, beatsURL, songBaseURL){
 
   //Defining which beat will start
   var volumes = [0, 0, 0, 0, 0, 0, 0, 0]
-  volumes[offset-1] = 1
-  
+  volumes[offset] = 1
+  console.log(volumes) 
   var values = startLoop(songBaseURL, window.context, 0.5);
   var values1 = startLoop(beatsURL + '/metronome_0.mp3', window.context, volumes[0]);
   var values2 = startLoop(beatsURL + '/metronome_1.mp3', window.context, volumes[1]);
@@ -198,7 +198,7 @@ function generateContextTrial(songBaseURL, beatsURL, lang){
       document.querySelector(".jspsych-btn").style.display = "none";
       //Initial offset  
       window.count = randomInt(1, 8);
-      
+      console.log(window.count) 
       //Initiate source audios as global variables
       window.source1 = null
       window.source2 = null
