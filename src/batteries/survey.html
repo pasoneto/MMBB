@@ -41,7 +41,11 @@
     
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const diadNumber = urlParams.get('diad')
+    var diadNumber = urlParams.get('diad')
+    if(diadNumber == null){
+      alert('You did not put the diad number as URL parameter. Automatically assigning diad number 1. To change, add "?diad=2" to the end of the URL')
+      var diadNumber = 1
+    }
     console.log(diadNumber)
   
     var participantID = {
