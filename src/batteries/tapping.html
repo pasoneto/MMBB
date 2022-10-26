@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
     <link href="./generalCSS.css" rel="stylesheet" type="text/css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta charset="UTF-8">
 
   </head>
   <body></body>
@@ -42,7 +43,12 @@
       }
     });
     
-    var lang = 'eng';
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    var lang = urlParams.get('lang')
+    if(lang === null){
+      var lang = "eng"
+    }
 
     var instruction0 = {
         type: jsPsychInstructions,
@@ -79,7 +85,7 @@
     function buttonDown(){
           document.getElementById("tappingButton").innerHTML = '<p id="customText">--</p>'
           sleep(10).then((r)=>{
-            document.getElementById("tappingButton").innerHTML = '<p id="customText">Tap here</p>'
+            document.getElementById("tappingButton").innerHTML = '<p id="customText">' + tapping[4][0][lang] + '</p>'
           })
     }
 

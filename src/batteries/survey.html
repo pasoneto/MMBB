@@ -128,10 +128,10 @@
       max: 490,
       maintain_aspect_ration: true,
       on_start: function(trial) {
-        var allData = jsPsych.data.get().values()
-        console.log(allData.length - 2)
-        console.log(allData)
-        var startPoint = allData[allData.length - 4]['response']
+        var closenessTrials = jsPsych.data.get().filter({stimulus: "../emotion_demo/basic_emoji/v5a1.png"})
+        var closenessTrials = closenessTrials['trials']
+        var startPoint = closenessTrials[closenessTrials.length - 1]['response']
+        console.log(startPoint)
         trial.slider_start = startPoint
         trial.start_separation = startPoint
       }
