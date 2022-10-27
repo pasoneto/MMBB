@@ -41,7 +41,12 @@
       },
     });
       
-    var lang = "eng"
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    var lang = urlParams.get('lang')
+    if(lang === null){
+      var lang = "eng"
+    }
 
     var instruction2 = {
         type: jsPsychInstructions,
