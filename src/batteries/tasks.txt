@@ -1,0 +1,4 @@
+- tapping
+-- Remove feedback button;
+-- Prevent zoom by double click;
+
