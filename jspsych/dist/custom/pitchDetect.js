@@ -22,6 +22,7 @@ function successCallback(stream) {
     var sampleRate = audioContext.sampleRate
     var data = new Float32Array(analyser.fftSize)
 
+    console.log(data)
     document.getElementById("frequency").innerHTML = frequency;
     function step() {
         requestAnimationFrame(step)
