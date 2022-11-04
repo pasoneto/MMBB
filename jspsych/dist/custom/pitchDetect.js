@@ -21,8 +21,6 @@ function successCallback(stream) {
   
     var sampleRate = audioContext.sampleRate
     var data = new Float32Array(analyser.fftSize)
-
-    console.log(data)
     document.getElementById("frequency").innerHTML = frequency;
     function step() {
         requestAnimationFrame(step)
@@ -47,12 +45,8 @@ function errorCallback(err) {
 }
 
 //navigator.getUserMedia({audio: true}, successCallback, errorCallback)
-
-navigator.mediaDevices.getUserMedia( 
-  { "audio": { "mandatory": { "googEchoCancellation": "false", 
-                              "googAutoGainControl":  "false", 
-                              "googNoiseSuppression": "false", 
-                              "googHighpassFilter":   "false"},
-    "optional": []}, 
-  }, successCallback, errorCallback)
+navigator.mediaDevices.getUserMedia( { "audio": { "mandatory": { "googEchoCancellation": "false", "googAutoGainControl":  "false", "googNoiseSuppression": "false", "googHighpassFilter":   "false"}, "optional": []}, })
+  .then((stream)=> {
+    successCallback(stream)
+  })
 
