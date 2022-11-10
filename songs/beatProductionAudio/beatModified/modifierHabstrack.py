@@ -28,13 +28,13 @@ def createBeat(segundosSegment, beats, shiftN, beat, name, repetitions):
     for i in range(repetitions):
         bar = bar + mergeBeat
         
-    bar.export(f"./habstrackBeats/{name}_{shiftN}.mp3", format="mp3")
+    bar.export(f"./{name}_{shiftN}.wav", format="wav")
 
 beat = AudioSegment.from_wav("./beatUnit.wav")
 
 sr = 75 #Sampling rate used to measure nSamples of excerpt
 beats = 4*4 #How many beats happen throughout all of the segment
-frames = 909 #Number of frames within excerpt
+frames = 960 #Number of frames within excerpt
 
 segundosSegment = frames/sr #How many seconds does the whole segment have
 segundosBeat = segundosSegment/beats

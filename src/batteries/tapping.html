@@ -101,8 +101,8 @@
     }
 
     //Call random hemiola
-    var randomHemioleIndex = random(0, songKeys['10'].length -1)
-    var randomHemioleSong = songKeys['10'][randomHemioleIndex]
+    //var randomHemioleIndex = random(0, songKeys['10'].length -1)
+    //var randomHemioleSong = songKeys['10'][randomHemioleIndex]
      
     var randomElPesebreIndex = random(0, songKeys['7'].length -1)
     var randomElPesebreSong = songKeys['7'][randomElPesebreIndex]
@@ -110,7 +110,7 @@
     var randomMetronome = random(0, songKeys['8'].length -1)
     var randomMetronome = songKeys['8'][randomMetronome]
 
-    var songsToPreload = [randomElPesebreSong, randomHemioleSong, randomMetronome]
+    var songsToPreload = [randomElPesebreSong, randomMetronome]
     var songPaths = '../../songs/movementTapAudio/modifiedAudio/'
     var pathsToPreload = songsToPreload.map(i=>songPaths+i)
     var preloadSongs = {
@@ -118,7 +118,7 @@
       audio: pathsToPreload 
     }   
     console.log(randomElPesebreSong)
-    console.log(randomHemioleSong)
+    //console.log(randomHemioleSong)
     console.log(randomMetronome)
 
     var trialTapping0 = {
@@ -138,15 +138,16 @@
         button_html: '<button type="button" ' + eventTypeStart + '="buttonDown()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">' + tapping[4][0][lang] + '</p></button>',
         response_ends_trial: false,
     }
-        
-    var trialTapping2 = {
-        type: jsPsychAudioButtonResponse,
-        choices: ['Tap here'],
-        stimulus: '../../songs/movementTapAudio/modifiedAudio/' + randomHemioleSong,
-        trial_duration: 10000,
-        button_html: '<button type="button" ' + eventTypeStart + '="buttonDown()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">' + tapping[4][0][lang] + '</p></button>',
-        response_ends_trial: false,
-    }
+     
+    //Tapping to rhythm is out
+    //var trialTapping2 = {
+        //type: jsPsychAudioButtonResponse,
+        //choices: ['Tap here'],
+        //stimulus: '../../songs/movementTapAudio/modifiedAudio/' + randomHemioleSong,
+        //trial_duration: 10000,
+        //button_html: '<button type="button" ' + eventTypeStart + '="buttonDown()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">' + tapping[4][0][lang] + '</p></button>',
+        //response_ends_trial: false,
+    //}
     
     var trialTapping3 = {
         type: jsPsychAudioButtonResponse,
@@ -165,7 +166,8 @@
       stimulus: '',
     };
 
-    jsPsych.run([preloadSongs, instruction0, trialTapping0, messageEndTask, instruction1, trialTapping1, messageEndTask, instruction2, trialTapping2, messageEndTask, instruction3, trialTapping3, messageEndTask]);
+    //Removed: instruction2, trialTapping2, messageEndTask
+    jsPsych.run([preloadSongs, instruction0, trialTapping0, messageEndTask, instruction1, trialTapping1, messageEndTask, instruction3, trialTapping3, messageEndTask]);
 
  </script>
 </html>
