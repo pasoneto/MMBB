@@ -1,0 +1,55 @@
+body{
+  margin: 0px;
+}
+#container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+#header{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200vw;
+  height: 15vh;
+}
+img{
+  width: 300px
+}
+#instruction{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 10vh;
+  font-size: 3em
+}
+#choices{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  width: 96vw;
+  height: 80vh;
+  gap: 10px 10px;
+}
+#box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45vw;
+  height: 30%;
+  border-radius: 20px;
+  box-shadow: 0px 1px 8px 1px #888888;
+}
+#footer{
+  display: flex;
+  width: 100vw;
+  height: 2vh;
+  justify-content: center;
+}
+#gif{
+  width:50%;
+}
