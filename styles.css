@@ -1,74 +1,72 @@
 body{
-  margin: 0;
+  margin: 0px;
 }
 #container{
-  margin: 0;
   display: flex;
-  flex-flow: column wrap;
+  flex-direction: column;
   align-items: center;
-  width: 100vw;
-  height: 100vh;
 }
-#title{
-  margin: 0;
-  box-shadow: 0px 1px 8px 1px #888888;
-}
-#chooseInstrument{
-  margin-top: 80px;
+#header{
   display: flex;
-  flex-flow: row wrap;
   align-items: center;
   justify-content: center;
-  width: 90vw;
-  height: 800px;
-  font-size:60px
-}
-#start{
-}
-#startVideo{
-  display: none;
-  font-size: 45px;
-  margin-top: 90px;
-  width: 20vw;
-  height: 8vh;
-}
-#gif{ 
-  width:100vw;
+  width: 100%;
+  margin: 0px;
+  margin-top: 0px;
+  margin-bottom: 25px;
+  box-shadow: 0px 5px 8px 5px #888888;
 }
 [id^="task"]{
-  width: 35vw;
-  margin: 20px;
+  width: 7em;
+  min-width: 7em;
   border-radius: 20px;
   box-shadow: 0px 1px 8px 1px #888888;
-  padding: 20px
+  padding: 20px;
+  text-align: center
 }
 #instruction{
-  margin-top: 30px;
-  font-size: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 10vh;
+  font-size: 2em
 }
-#bpmContainer{
-  display: none;
-  width: 90vw;
-  height: 35vh;
-  padding: 20px;
-  font-size: 65px;
+#choices{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  width: 100vw;
+  gap: 35px 35px;
 }
-#videoDiv{
-  display: none;
-  font-size: 65px;
-  width: 80vw;
+#footer{
+  display: flex;
+  width: 100vw;
+  margin-top: 20px;
+  justify-content: center;
+  background: #002957
 }
-#source{
-  margin-bottom: 100px;
+#gif{
+  width:100%;
 }
-#footer {
-  font-size: 24px;
-  position: fixed;
-  height: 35px;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: #7eb3e7;
-  color: white;
-  text-align: center;
+a:link{
+  text-decoration: none;
 }
+a{
+ color: white;
+}
+@media only screen and (min-width: 600px) {
+  #gif{
+    width:350px;
+    min-width: 0px
+  }
+  [id^="task"]{
+    width: 14em;
+    min-width: 14em;
+  }
+  #header{
+    margin-bottom: 60px;
+  }
+}
+

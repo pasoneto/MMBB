@@ -2,89 +2,26 @@
 <html>
 
   <head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
     <link href="./styles.css" rel="stylesheet" type="text/css"/>
   </head>
 
   <body>
     <div id="container">
-      <div id="title">
+      <div id="header">
         <img id="gif" src="./images/coe.gif" />
       </div>
-      <div id="instruction">choose a task</div>
-      <div id="chooseinstrument">
-        <a href="./src/batteries/movement.html"><img id="task1" src="./images/dance.svg" style="height:350px"/></a>
-        <a href="./src/batteries/tapping.html"><img id="task2" src="./images/tapping.svg" style="height:350px"/></a>
-        <a href="./src/batteries/bat.html"><img id="task3" src="./images/beatproduction.svg" style="height:350px"/></a>
-        <a href="./src/batteries/singing.html"><img id="task5" src="./images/singing.svg" style="height:350px"/></a>
-        <a href="./src/batteries/survey.html"><img id="task6" src="./images/survey.svg" style="height:350px"/></a>
-        <a href="./src/emotion_demo/emotion.html"><img id="task7" src="./images/emotion.svg" style="height:350px"/></a>
+      <div id="choices">
+        <div id="task"><a href="./src/batteries/movement.html">  <img src="./images/dance.svg"/></a>          Movement             </div>
+        <div id="task"><a href="./src/batteries/tapping.html">   <img src="./images/tapping.svg"/></a>        Tapping              </div>
+        <div id="task"><a href="./src/batteries/bat.html">       <img src="./images/beatproduction.svg"/></a> Beat alignment       </div>
+        <div id="task"><a href="./src/batteries/singing.html">   <img src="./images/singing.svg"/></a>        Singing              </div>
+        <div id="task"><a href="./src/batteries/survey.html">    <img src="./images/survey.svg"/></a>        Survey               </div>
+        <div id="task"><a href="./src/emotion_demo/emotion.html"><img src="./images/emotion.svg"/></a>        Emotion              </div>
       </div>
+      <div id="footer"><a href="https://www.jyu.fi/hytk/fi/laitokset/mutku/en/coe-mmbb">MMBB - CoE</a></div>
     </div>
-
-
-    <script>
-      var task1 = document.getelementbyid("task1");
-      var task2 = document.getelementbyid("task2");
-      var task3 = document.getelementbyid("task3");
-      var task5 = document.getelementbyid("task5");
-      var task6 = document.getelementbyid("task6");
-      var task7 = document.getelementbyid("task7");
-
-      task1.onclick = function () {
-        task1.style.boxshadow = "0px 1px 8px 1px #45b6fe";
-        task2.style.boxshadow = "0px 1px 8px 1px #888888";
-        task3.style.boxshadow = "0px 1px 8px 1px #888888";
-        task5.style.boxshadow = "0px 1px 8px 1px #888888";
-        task6.style.boxshadow = "0px 1px 8px 1px #888888";
-        task7.style.boxshadow = "0px 1px 8px 1px #888888";
-      };
-
-      task2.onclick = function () {
-        task1.style.boxshadow = "0px 1px 8px 1px #888888";
-        task2.style.boxshadow = "0px 1px 8px 1px #45b6fe";
-        task3.style.boxshadow = "0px 1px 8px 1px #888888";
-        task5.style.boxshadow = "0px 1px 8px 1px #888888";
-        task6.style.boxshadow = "0px 1px 8px 1px #888888";
-        task7.style.boxshadow = "0px 1px 8px 1px #888888";
-      };
-
-      task3.onclick = function () {
-        task1.style.boxshadow = "0px 1px 8px 1px #888888";
-        task2.style.boxshadow = "0px 1px 8px 1px #888888";
-        task3.style.boxshadow = "0px 1px 8px 1px #45b6fe";
-        task5.style.boxshadow = "0px 1px 8px 1px #888888";
-        task6.style.boxshadow = "0px 1px 8px 1px #888888";
-        task7.style.boxshadow = "0px 1px 8px 1px #888888";
-      };
-      
-      task5.onclick = function () {
-        task1.style.boxshadow = "0px 1px 8px 1px #888888";
-        task2.style.boxshadow = "0px 1px 8px 1px #888888";
-        task3.style.boxshadow = "0px 1px 8px 1px #888888";
-        task5.style.boxshadow = "0px 1px 8px 1px #45b6fe";
-        task6.style.boxshadow = "0px 1px 8px 1px #888888";
-        task7.style.boxshadow = "0px 1px 8px 1px #888888";
-      };
-
-      task6.onclick = function () {
-        task1.style.boxshadow = "0px 1px 8px 1px #888888";
-        task2.style.boxshadow = "0px 1px 8px 1px #888888";
-        task3.style.boxshadow = "0px 1px 8px 1px #888888";
-        task5.style.boxshadow = "0px 1px 8px 1px #888888";
-        task6.style.boxshadow = "0px 1px 8px 1px #45b6fe";
-        task7.style.boxshadow = "0px 1px 8px 1px #888888";
-      };
-
-      task7.onclick = function () {
-        task1.style.boxshadow = "0px 1px 8px 1px #888888";
-        task2.style.boxshadow = "0px 1px 8px 1px #888888";
-        task3.style.boxshadow = "0px 1px 8px 1px #888888";
-        task5.style.boxshadow = "0px 1px 8px 1px #888888";
-        task6.style.boxshadow = "0px 1px 8px 1px #888888";
-        task7.style.boxshadow = "0px 1px 8px 1px #45b6fe";
-      };
-
-    </script>
 
   </body>
 </html>
