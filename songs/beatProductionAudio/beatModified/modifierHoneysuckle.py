@@ -27,7 +27,7 @@ def createBeat(segundosSegment, beats, shiftN, beat, name, repetitions):
     for i in range(repetitions):
         bar = bar + mergeBeat
         
-    bar.export(f"./honeysuckleBeats/{name}_{shiftN}.mp3", format="mp3")
+    bar.export(f"./honeysuckleBeats/{name}_{shiftN}.wav", format="wav")
 
 beat = AudioSegment.from_wav("./beatUnit.wav")
 
@@ -38,7 +38,7 @@ frames = 564 #Number of frames within excerpt
 segundosSegment = frames/sr #How many seconds does the whole segment have
 segundosBeat = segundosSegment/beats
 
-repetitions = beats*6 #How many repetitions for each segment should the output have
+repetitions = beats*12 #How many repetitions for each segment should the output have
 
 #The output of this function will not be exactly the same as the length of the excerpt used as model.
 #Excerpt should then be trimmed to fit perfectly with output of this function

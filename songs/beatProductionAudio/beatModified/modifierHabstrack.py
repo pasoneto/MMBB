@@ -39,7 +39,7 @@ frames = 960 #Number of frames within excerpt
 segundosSegment = frames/sr #How many seconds does the whole segment have
 segundosBeat = segundosSegment/beats
 
-repetitions = beats*4 #How many repetitions for each segment should the output have
+repetitions = beats*7 #How many repetitions for each segment should the output have
 
 #The output of this function will not be exactly the same as the length of the excerpt used as model.
 #Excerpt should then be trimmed to fit perfectly with output of this function
