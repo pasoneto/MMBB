@@ -96,6 +96,21 @@
     var beatsURL3 = '../../songs/beatProductionAudio/beatModified/lettuceBeats'
     var loadTrial3 = generateContextTrial(songBaseURL3, beatsURL3, lang)
 
+    //Load songs and beats for given trial 
+    var songBaseURL4 = '../../songs/beatProductionAudio/beatModified/baseSongs/floorplanNoLie/floorplanNoLieModified.mp3'
+    var beatsURL4 = '../../songs/beatProductionAudio/beatModified/floorplanBeats'
+    var loadTrial4 = generateContextTrial(songBaseURL4, beatsURL4, lang)
+
+    //Load songs and beats for given trial 
+    var songBaseURL5 = '../../songs/beatProductionAudio/beatModified/baseSongs/softSand/softSandModified.mp3'
+    var beatsURL5 = '../../songs/beatProductionAudio/beatModified/softSandBeats'
+    var loadTrial5 = generateContextTrial(songBaseURL5, beatsURL5, lang)
+
+    //Load songs and beats for given trial 
+    var songBaseURL6 = '../../songs/beatProductionAudio/beatModified/baseSongs/dirtyDishes/dirty_dishesModified.mp3'
+    var beatsURL6 = '../../songs/beatProductionAudio/beatModified/dirtyDishesBeats'
+    var loadTrial6 = generateContextTrial(songBaseURL6, beatsURL6, lang)
+
     var trialBeat = {
       type: jsPsychHtmlButtonResponse,
           stimulus: '<div id="arrowsContainer"><p style="margin: 0px; height: 30px; margin-bottom: 10px">' + beatProduction[2][0][lang] + '</p>'+
@@ -128,9 +143,7 @@
       }
     };
     
-
-    //jsPsych.run([loadTrial0, trialBeat]);
-    jsPsych.run([instruction2, loadTrial0, trialBeat, instruction3, loadTrial1, trialBeat, betweenTrial, loadTrial2, trialBeat, betweenTrial, loadTrial3, trialBeat]);
+    jsPsych.run([instruction2, loadTrial0, trialBeat, instruction3, loadTrial1, trialBeat, betweenTrial, loadTrial2, trialBeat, betweenTrial, loadTrial3, trialBeat, betweenTrial, loadTrial4, trialBeat, betweenTrial, loadTrial5, trialBeat, betweenTrial, loadTrial6, trialBeat]);
 
  </script>
 </html>
