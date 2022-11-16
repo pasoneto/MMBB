@@ -28,7 +28,7 @@ var movement = [
   ],
   [{"eng": "In the next task, you will hear a constant beat", 
         "fi": "Seuraavassa tehtävässä kuulet tasaisen sykkeen"},
-  {"eng": "Your task is to bounce along to the beat of the song", 
+  {"eng": "Your task is to bounce along to the beat", 
          "fi": "Tehtävänäsi on liikuttaa kehoasi ponnahdellen ylös ja alas laulun tahidssa"},
   {"eng": 'This is an example of bouncing<br><video id="myVideo" width="100%" autoplay controls><source src="../../songs/movementTapAudio/instructionsAudio/bouncing.mp4" type="video/mp4"></video>',
     "fi": 'Tässä on esimerkki ponnarhtelustaa<br><video id="myVideo" width="100%" autoplay controls><source src="../../songs/movementTapAudio/instructionsAudio/bouncing.mp4" type="video/mp4"></video>'},

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    <script src="https://unpkg.com/jspsych@7.1.2"></script>
+    <script src="../../jspsych/dist/plugin-html-songselector-response.js"> </script>
+    <script src="../../jspsych/dist/plugin-html-slider-response.js"></script>
+    <script src="../../jspsych/dist/plugin-audio-button-response.js"> </script>
+    <script src="../../jspsych/dist/plugin-html-button-response.js"> </script>
+    <script src="../../jspsych/dist/plugin-instructions.js"> </script>
+    <script src="../../jspsych/dist/plugin-survey-likert.js"> </script>
+    <script src="../../jspsych/dist/plugin-canvas-button-response.js"> </script>
+    <script src="../../jspsych/dist/extension-accelerometer.js"> </script>
+    <script src="../../jspsych/dist/plugin-html-keyboard-response.js"> </script>
+    <script src="../../jspsych/dist/plugin-survey-multi-choice.js"> </script>
+    <script src="../../jspsych/dist/plugin-initialize-microphone.js"> </script>
+    <script src="../../jspsych/dist/plugin-audio-keyboard-response.js"> </script>
+    <script src="../../jspsych/dist/plugin-html-audio-response.js"> </script>
+    <script src="../../jspsych/dist/plugin-preload.js"> </script>
+    <script src="../../songs/movementTapAudio/songKeysNames.js"> </script>
+    <script src="../../jspsych/dist/custom/utils.js"> </script>
+    <script src="../../jspsych/dist/plugin-survey-html-form.js"> </script>
+    <script src="../../jspsych/dist/custom/beatProductionFunctions.js"></script>
+    <script src="../../songs/movementTapAudio/songKeysNames.js"></script>
+
+
+    <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
+    <link rel="stylesheet" href="./generalCSS.css">
+
+    <script src="./translations.js"></script>
+    <script src="./generalIntro.js"></script>
+
+    <!--Fetching timelines for each task-->
+    <script src="./movement.js"> </script>
+    <script src="./bat.js"> </script>
+    <script src="./tapping.js"> </script>
+
+  </head>
+
+  <body></body>
+
+  <script>
+
+    var jsPsych = initJsPsych({
+      extensions: [
+        {type: jsPsychExtensionAccelerometer }
+      ],
+      on_finish: function() {
+        //jsPsych.data.displayData();
+        jsPsych.data.get().localSave('csv','mydata.csv');
+      }
+    });
+
+    //var sequenceTasks = [movementTimeline, tappingTimeline, batTimeline]
+    var sequenceTasks = [movementTimeline, batTimeline, tappingTimeline]
+    var sequenceTasks = jsPsych.randomization.shuffle(sequenceTasks);
+
+    jsPsych.run(sequenceTasks[0], sequenceTasks[1], sequenceTasks[2]);
+
+ </script>
+</html>
