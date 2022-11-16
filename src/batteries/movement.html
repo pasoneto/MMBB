@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
     <link rel="stylesheet" href="./generalCSS.css">
     <script src="./translations.js"> </script>
+    <script src="./generalIntro.js"> </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   </head>
   <body></body>
@@ -41,12 +42,6 @@
       }
     });
   
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    var lang = urlParams.get('lang')
-    if(lang === null){
-      var lang = "eng"
-    }
     //first stimulus batch
     // Determining order of presentation of songs to sort.
     var songNames = ["Surround&nbspme&nbspwith&nbspyour&nbsplove&nbsp-&nbspPorter",
@@ -348,9 +343,7 @@
         },
     }
 
-    //jsPsych.run([familiarityRating])
-    jsPsych.run([preloadSongs, frontPage, loadAccel, instruction0, phonePocket, countDown, trialAccelerometer1, pickUpPhone, instruction1, phonePocket, countDown, trialAccelerometer2, pickUpPhone, likingRating, grooveRating, instruction2, phonePocket, countDown, trialAccelerometer3, pickUpPhone, familiarityRating, likingRating, grooveRating, instruction3, chooseSongs, preloadChosen, phonePocket, countDown, trialAccelerometer4, pickUpPhone, familiarityRating, likingRating, grooveRating]);
-    //jsPsych.run([chooseSongs, phonePocket, countDown, trialAccelerometer4, familiarityRating, likingRating]);
+    jsPsych.run([preloadSongs, frontPage, gettingHelp, soundCheck, loadAccel, instruction0, phonePocket, countDown, trialAccelerometer1, pickUpPhone, instruction1, phonePocket, countDown, trialAccelerometer2, pickUpPhone, likingRating, grooveRating, instruction2, phonePocket, countDown, trialAccelerometer3, pickUpPhone, familiarityRating, likingRating, grooveRating, instruction3, chooseSongs, preloadChosen, phonePocket, countDown, trialAccelerometer4, pickUpPhone, familiarityRating, likingRating, grooveRating]);
 
  </script>
 </html>

@@ -12,3 +12,13 @@ function sleep(ms) {
 function random(min, max){
   return(Math.floor(Math.random() * (max - min)) + min);
 }
+
+//Determine if mobile or desktop
+var mobile = mobileAndTabletCheck() 
+if(mobile){
+  var eventTypeStart = "ontouchstart"
+  var eventTypeEnd = "ontouchend"
+} else {
+  var eventTypeStart = "onmousedown"
+  var eventTypeEnd = "onmouseup"
+}

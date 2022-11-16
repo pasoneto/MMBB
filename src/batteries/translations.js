@@ -76,9 +76,7 @@ var movement = [
 ]
         
 var tapping = [
-  [{"eng": "Tapping task", 
-        "fi": "Naputustehtävä"},
-  {"eng": "In this task, we will ask you to tap on a button on the screen using the index finger of your prefered hand", 
+  [{"eng": "In this task, we will ask you to tap on a button on the screen using the index finger of your prefered hand", 
         "fi": "Tässä tehtävässä pyydämme sinua naputtamaan ruudulla näkyvää painiketta paremman kätesi etusormellä"},
   {"eng": "Tap on the button at a speed that feels natural to you", 
         "fi": "Naputa painiketta nopeudella joka tuntuu luontevalta"},
@@ -101,7 +99,9 @@ var tapping = [
   {"eng": "Tap in synchrony to the beat of the music", 
          "fi": "Naputa tahdissa musiikin sykkeen mukana"}],
   [{"eng": "Tap here", 
-         "fi": "Napauta tästä"}]
+    "fi": "Napauta tästä"}],
+  [{"eng": "Tapping task", 
+    "fi": "Naputustehtävä"}]
 ]
         
 var buttons = [
@@ -133,9 +133,7 @@ var recurring = [
 ]
 
 var beatProduction = [
-  [{"eng": "Beat alignment task",
-        "fi": "Tahdin kohdistustehtävä"},
-  {"eng": "In this task, you will hear a song which has a click track on top of it",
+  [{"eng": "In this task, you will hear a song which has a click track on top of it",
         "fi": "Tässä tehtävässä kuulet laulun jonka päällä on kilikkiraita"},
   {"eng": 'The click track sounds like this:' + '<br><br><audio autoplay controls><source src="../../songs/beatProductionAudio/beatModified/training/metronome_0.mp3" type="audio/mp3"></audio>',
        "fi": 'Kilikkiraita kuulostaa tältä: ' + '<br><br><audio autoplay controls><source src="../../songs/beatProductionAudio/beatModified/training/metronome_0.mp3" type="audio/mp3"></audio>'},
@@ -162,5 +160,31 @@ var beatProduction = [
   {"eng": "Next you will hear 6 songs. Align the click track with the beat of the song",
         "fi": "Seuravaaksi kuulet 6 laulua. Säädää kilikkiraita laulun tahtiin"}],
   [{"eng": "Adjust the beat",
-        "fi": "Säädää tahtia"}]
+    "fi": "Säädää tahtia"}],
+  [{"eng": "Beat alignment task",
+        "fi": "Tahdin kohdistustehtävä"}]
+]
+
+var initialInstructions = [
+  [{"eng": "Can you hear this song? If yes, adjust the volume to a comfortable hearing level and click Continue. If not, try changing to a different computer/phone or to a different internet browser.",
+    "fi": ""
+  }],
+  [{"eng": "Yes, I have someone helping me",
+    "fi": "No, I'm doing it myself"
+  }],
+  [{"eng": "Is someone helping you complete this task?",
+    "fi": "No, I'm doing it myself"
+  }]
+]
+
+var initialInstructions = [
+  [{"eng": "Can you hear this song?<br>If yes, adjust the volume to a comfortable hearing level and click Continue.<br><br>If not, try changing to a different computer/phone or to a different internet browser.",
+    "fi": ""},
+   {"eng": "Yes",
+    "fi": "Kyllä"},
+   {"eng": "No",
+    "fi": "Ei"},
+   {"eng": "Is someone helping you complete this task?",
+    "fi": ""},
+  ]
 ]

@@ -23,6 +23,7 @@
     <script src="../../songs/movementTapAudio/songKeysNames.js"></script>
     <script src="../../jspsych/dist/custom/utils.js"></script>
     <script src="./translations.js"></script>
+    <script src="./generalIntro.js"> </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
     <link href="./generalCSS.css" rel="stylesheet" type="text/css" />
@@ -43,11 +44,12 @@
       }
     });
     
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    var lang = urlParams.get('lang')
-    if(lang === null){
-      var lang = "eng"
+    var frontPage = {
+        type: jsPsychInstructions,
+        pages: tapping[5].map(i=>i[lang]),
+        button_label_next: "Next",
+        button_label_previous: "Previous",
+        show_clickable_nav: true,
     }
 
     var instruction0 = {
@@ -90,16 +92,6 @@
     }
 
 
-    //Determine if mobile or desktop
-    var mobile = mobileAndTabletCheck() 
-    if(mobile){
-      var eventTypeStart = "ontouchstart"
-      var eventTypeEnd = "ontouchend"
-    } else {
-      var eventTypeStart = "onmousedown"
-      var eventTypeEnd = "onmouseup"
-    }
-
     //Call random hemiola
     //var randomHemioleIndex = random(0, songKeys['10'].length -1)
     //var randomHemioleSong = songKeys['10'][randomHemioleIndex]
@@ -139,16 +131,6 @@
         response_ends_trial: false,
     }
      
-    //Tapping to rhythm is out
-    //var trialTapping2 = {
-        //type: jsPsychAudioButtonResponse,
-        //choices: ['Tap here'],
-        //stimulus: '../../songs/movementTapAudio/modifiedAudio/' + randomHemioleSong,
-        //trial_duration: 10000,
-        //button_html: '<button type="button" ' + eventTypeStart + '="buttonDown()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">' + tapping[4][0][lang] + '</p></button>',
-        //response_ends_trial: false,
-    //}
-    
     var trialTapping3 = {
         type: jsPsychAudioButtonResponse,
         choices: ['Tap here'],
@@ -167,7 +149,7 @@
     };
 
     //Removed: instruction2, trialTapping2, messageEndTask
-    jsPsych.run([preloadSongs, instruction0, trialTapping0, messageEndTask, instruction1, trialTapping1, messageEndTask, instruction3, trialTapping3, messageEndTask]);
+    jsPsych.run([preloadSongs, frontPage, gettingHelp, soundCheck, instruction0, trialTapping0, messageEndTask, instruction1, trialTapping1, messageEndTask, instruction3, trialTapping3, messageEndTask]);
 
  </script>
 </html>

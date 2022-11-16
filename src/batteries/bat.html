@@ -3,12 +3,10 @@
   <head>
     <title>MMBB batery</title>
     <meta charset="UTF-8">
-    <script src="./translations.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://unpkg.com/jspsych@7.1.2"></script>
     <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-audio-keyboard-response@1.1.0"></script>
-    <script src="../../jspsych/dist/custom/beatProductionFunctions.js"></script>
     <script src="../../jspsych/dist/plugin-audio-button-response.js"> </script>
     <script src="../../jspsych/dist/plugin-html-button-response.js"> </script>
     <script src="../../jspsych/dist/plugin-preload.js"> </script>
@@ -25,6 +23,10 @@
     <script src="../../jspsych/dist/plugin-initialize-microphone.js"> </script>
     <script src="../../jspsych/dist/plugin-html-audio-response.js"> </script>
     <script src="../../jspsych/dist/plugin-instructions.js"> </script>
+    <script src="../../jspsych/dist/custom/beatProductionFunctions.js"></script>
+    <script src="../../jspsych/dist/custom/utils.js"> </script>
+    <script src="./translations.js"></script>
+    <script src="./generalIntro.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
     <link href="./generalCSS.css" rel="stylesheet" type="text/css" />
@@ -40,22 +42,21 @@
         //jsPsych.data.get().localSave('csv','mydata.csv');
       },
     });
-      
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    var lang = urlParams.get('lang')
-    if(lang === null){
-      var lang = "eng"
-    }
 
+    var frontPage = {
+        type: jsPsychInstructions,
+        pages: beatProduction[3].map(i=>i[lang]),
+        button_label_next: buttons[0][lang],
+        button_label_previous: buttons[1][lang],
+        show_clickable_nav: true,
+    }
+      
     var instruction2 = {
         type: jsPsychInstructions,
         pages: beatProduction[0].map(i=>i[lang]),
         button_label_next: buttons[0][lang],
         button_label_previous: buttons[1][lang],
         show_clickable_nav: true,
-        on_load: function(){
-        }
     }
 
     var instruction3 = {
@@ -143,7 +144,7 @@
       }
     };
     
-    jsPsych.run([instruction2, loadTrial0, trialBeat, instruction3, loadTrial1, trialBeat, betweenTrial, loadTrial2, trialBeat, betweenTrial, loadTrial3, trialBeat, betweenTrial, loadTrial4, trialBeat, betweenTrial, loadTrial5, trialBeat, betweenTrial, loadTrial6, trialBeat]);
+    jsPsych.run([frontPage, gettingHelp, soundCheck, instruction2, loadTrial0, trialBeat, instruction3, loadTrial1, trialBeat, betweenTrial, loadTrial2, trialBeat, betweenTrial, loadTrial3, trialBeat, betweenTrial, loadTrial4, trialBeat, betweenTrial, loadTrial5, trialBeat, betweenTrial, loadTrial6, trialBeat]);
 
  </script>
 </html>
