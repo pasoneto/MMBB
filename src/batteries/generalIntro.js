@@ -18,3 +18,15 @@ var gettingHelp = {
   choices: [initialInstructions[0][1][lang], initialInstructions[0][2][lang]],
   prompt: ''
 };
+
+var howDifficult = {
+    type: jsPsychHtmlSliderResponse,
+    stimulus: recurring[9][lang],
+    require_movement: true,
+    labels: [recurring[10][lang], recurring[11][lang]],
+    on_load: function(){
+      document.getElementById("label0").style = ''
+      document.getElementById("label1").style = ''
+    },
+
+};

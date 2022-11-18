@@ -129,7 +129,13 @@ var recurring = [
   {"eng": "Continue",     //New
         "fi": "Jatka"},        //New
   {"eng": "When you are ready to continue, click next", 
-         "fi": "Kun olet valmis jatkamaan, paina Seuraava"},
+      "fi": "Kun olet valmis jatkamaan, paina Seuraava"},
+  {"eng": "How easy were these tasks for you?", 
+   "fi": ""},
+  {"eng": "Very easy", 
+   "fi": ""},
+  {"eng": "Very hard", 
+   "fi": ""},
 ]
 
 var beatProduction = [
