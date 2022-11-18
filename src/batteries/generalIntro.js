@@ -4,6 +4,13 @@ var lang = urlParams.get('lang')
 if(lang === null){
   var lang = "eng"
 }
+var requirements = {
+  type: jsPsychInstructions,
+  pages: recurring[12].map(i=>[i[lang]]), 
+  button_label_next: buttons[0][lang],
+  button_label_previous: buttons[1][lang],
+  show_clickable_nav: true
+};
 
 var soundCheck = {
     type: jsPsychAudioButtonResponse,
@@ -28,5 +35,7 @@ var howDifficult = {
       document.getElementById("label0").style = ''
       document.getElementById("label1").style = ''
     },
-
 };
+
+var generalIntroWrap = [requirements, soundCheck, gettingHelp]
+

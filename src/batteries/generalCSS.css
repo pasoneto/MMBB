@@ -162,14 +162,10 @@ video::-webkit-media-controls-panel {
 
 button:hover,
 button:focus {
-  background-color: #fb8332;
-  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
 }
-
 .button:hover {
   transform: translateY(-1px);
 }
-
 .button:active {
   background-color: #c85000;
   box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;

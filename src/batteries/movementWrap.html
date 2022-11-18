@@ -51,16 +51,23 @@
       ],
       on_finish: function() {
         //jsPsych.data.displayData();
-        jsPsych.data.get().localSave('csv','mydata.csv');
+
+        var finalData = jsPsych.data.get()
+        var measurePerformance = performance.getEntriesByType('resource');
+        finalData['performance'] = measurePerformance
+        finalData.localSave('json', 'mydata.json')
       }
     });
 
     //var sequenceTasks = [movementTimeline, tappingTimeline, batTimeline]
     var sequenceTasks = [movementTimeline, batTimeline, tappingTimeline]
     var sequenceTasks = jsPsych.randomization.shuffle(sequenceTasks);
+    
+    var completeSequence = [generalIntroWrap, sequenceTasks[0], sequenceTasks[1], sequenceTasks[2]]
+    var completeSequence = completeSequence.flat()
 
-    //jsPsych.run([howDifficult]);
-    jsPsych.run(sequenceTasks[0], sequenceTasks[1], sequenceTasks[2]);
+
+    jsPsych.run(completeSequence);
 
  </script>
 </html>

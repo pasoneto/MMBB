@@ -102,4 +102,4 @@ var messageEndTask = {
   stimulus: '',
 };
 
-var tappingTimeline = [preloadSongs, frontPage, soundCheck, gettingHelp, instruction0, trialTapping0, messageEndTask, instruction1, trialTapping1, messageEndTask, instruction3, trialTapping3, messageEndTask];
+var tappingTimeline = [preloadSongs, frontPage, instruction0, trialTapping0, messageEndTask, instruction1, trialTapping1, messageEndTask, instruction3, trialTapping3, messageEndTask];

@@ -103,7 +103,7 @@ var chooseSongs = {
   },
 };
 
-var frontPage = {
+var frontPageMovement = {
     type: jsPsychInstructions,
     pages: [movement[0][0][lang]],
     button_label_next: buttons[0][lang],
@@ -299,4 +299,4 @@ var trialAccelerometer4 = {
     },
 }
 
-var movementTimeline = [preloadSongs, frontPage, gettingHelp, soundCheck, loadAccel, instruction0, phonePocket, countDown, trialAccelerometer1, pickUpPhone, instruction1, phonePocket, countDown, trialAccelerometer2, pickUpPhone, likingRating, grooveRating, instruction2, phonePocket, countDown, trialAccelerometer3, pickUpPhone, familiarityRating, likingRating, grooveRating, instruction3, chooseSongs, preloadChosen, phonePocket, countDown, trialAccelerometer4, pickUpPhone, familiarityRating, likingRating, grooveRating];
+var movementTimeline = [preloadSongs, loadAccel, instruction0, phonePocket, countDown, trialAccelerometer1, pickUpPhone, instruction1, phonePocket, countDown, trialAccelerometer2, pickUpPhone, likingRating, grooveRating, instruction2, phonePocket, countDown, trialAccelerometer3, pickUpPhone, familiarityRating, likingRating, grooveRating, instruction3, chooseSongs, preloadChosen, phonePocket, countDown, trialAccelerometer4, pickUpPhone, familiarityRating, likingRating, grooveRating];

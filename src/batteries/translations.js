@@ -136,6 +136,14 @@ var recurring = [
    "fi": ""},
   {"eng": "Very hard", 
    "fi": ""},
+  [{"eng": "Welcome to MMBB",
+          "fi": "Tervetuloa MMBB-patteriin"},
+  {"eng": "For this task you will need:",
+    "fi": ""},
+  {"eng": "A flat surface where you can lay down your phone",
+    "fi": ""},
+  {"eng": "A pocket or a purse",
+    "fi": ""}]
 ]
 
 var beatProduction = [
