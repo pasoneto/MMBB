@@ -27,6 +27,7 @@ button, #jspsych-html-slider-response-next, .jspsych-btn{
   touch-action: manipulation;
   vertical-align: baseline;
   width: auto;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 #jspsych-content{
   font-family: Garamond, serif;
