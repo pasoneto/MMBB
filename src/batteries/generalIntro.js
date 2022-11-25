@@ -37,5 +37,16 @@ var howDifficult = {
     },
 };
 
+var messageEndTask = {
+  type: jsPsychHtmlButtonResponse,
+  prompt: recurring[3][lang],
+  choices: [],
+  trial_duration: 3000,
+  stimulus: '',
+  on_finish: function(){
+    window.onbeforeunload = function () {}
+  }
+};
+
 var generalIntroWrap = [requirements, soundCheck, gettingHelp]
 

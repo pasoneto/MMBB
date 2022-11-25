@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>MMBB batery</title>
+    <meta charset="UTF-8">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../../jspsych/dist/graphFunction.js"> </script>
     <script src="https://unpkg.com/jspsych@7.1.2"></script>
@@ -15,14 +16,17 @@
     <script src="../../jspsych/dist/plugin-image-slider-response.js"> </script>
     <script src="../../jspsych/dist/plugin-instructions.js"> </script>
     <script src="../../jspsych/dist/plugin-free-sort.js"> </script>
-    <script src="../../jspsych/dist/plugin-survey-likert.js"> </script>
+    <script src="https://unpkg.com/@jspsych/plugin-survey-likert@1.1.2"></script>
     <script src="../../jspsych/dist/plugin-canvas-button-response.js"> </script>
     <script src="../../jspsych/dist/extension-accelerometer.js"> </script>
     <script src="../../jspsych/dist/plugin-html-keyboard-response.js"> </script>
     <script src="../../jspsych/dist/plugin-survey-multi-choice.js"> </script>
     <script src="../../jspsych/dist/plugin-initialize-microphone.js"> </script>
     <script src="../../jspsych/dist/plugin-html-audio-response.js"> </script>
-    <link href="../../jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />
+    <script src="./questionnaires.js"> </script>
+
+    <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
   </head>
@@ -58,8 +62,8 @@
     var instruction1 = {
         type: jsPsychInstructions,
         pages: [
-        '<p style="font-size:7vw;">When you click start, you will see some questions.</p>',
-        '<p style="font-size:7vw;">Your task is to answer them.</p>'
+        'When you click start, you will see some questions.',
+        'Your task is to answer them.'
         ],
         button_label_next: "Next",
         button_label_previous: "Previous",
@@ -71,23 +75,67 @@
     var howFeeling = {
         type: jsPsychHtmlSliderResponse,
         stimulus: `<div style="width:500px;">
-                    <p style="font-size:3vw;">How do you feel?</p>
+                    <p style="font-size:3vw;">How do you feel?
                    </div>`,
         require_movement: true,
-        labels: ['<p style="font-size:3vw">Really bad</p>', '<p style="font-size:3vw">Excellent</p>']
+        labels: ['Really bad', 'Excellent'],
+        data: { previousHowFeeling: 'true' }
     };
 
     var howFeeling2 = {
-      type: jsPsychHtmlButtonResponse,
-      stimulus: "<p style='font-size:3vw'>How do you feel now compared to your last rating?</p>",
-      choices: ['Worse', 'Same', 'Better'],
-      prompt: ""
+        type: jsPsychHtmlSliderResponse,
+        stimulus: `<div style="width:500px;">
+                    <p style="font-size:3vw;">How do you feel?
+                   </div>`,
+        require_movement: true,
+        labels: ['Really bad', 'Excellent'],
+        data: { previousHowFeeling: 'true' },
+        on_start: function(trial) {
+          var howFeelingPrevious = jsPsych.data.get().filter({previousHowFeeling: 'true'})['trials']
+          var howFeelingPrevious = howFeelingPrevious.slice(-1)[0]
+          var howFeelingPrevious = howFeelingPrevious['response']
+          trial.slider_start = howFeelingPrevious
+        }
     };
-    
+
+    var relationshipFriend = {
+        type: jsPsychHtmlSliderResponse,
+        stimulus: `<div style="width:500px;">
+                    Rate your relationship with your pair prior to the experiment.
+                   </div>`,
+        require_movement: true,
+        labels: ['We are best friends', 'We are very good friends', 'We know each other but rarely interact', "We don't know each other at all"],
+    };
+
+    var relationshipStranger = {
+        type: jsPsychHtmlSliderResponse,
+        stimulus: `<div style="width:500px;">
+                    <p style="font-size:3vw;">How do you feel?
+                   </div>`,
+        require_movement: true,
+        labels: ['Really bad', 'Excellent'],
+        data: { previousHowFeeling: 'true' },
+        on_start: function(trial) {
+          var howFeelingPrevious = jsPsych.data.get().filter({previousHowFeeling: 'true'})['trials']
+          var howFeelingPrevious = howFeelingPrevious.slice(-1)[0]
+          var howFeelingPrevious = howFeelingPrevious['response']
+          trial.slider_start = howFeelingPrevious
+        }
+    };
+
+    var howWasPlaylist = {
+        type: jsPsychHtmlSliderResponse,
+        stimulus: `<div style="width:500px;">
+                    How easy was to reach a decision regarding the playlist?
+                   </div>`,
+        require_movement: true,
+        labels: ['Very hard', 'Very easy']
+    };
+
     var trialSurvey = {
       type: jsPsychSurveyMultiChoice,
       questions: [{
-          prompt: '<p style="font-size:7vw;">Implement questionnaire here</p>',
+          prompt: 'Implement questionnaire here',
           options: ['Option 1', 'Option 2', 'Option 3'], 
           required: false
         }]
@@ -104,7 +152,7 @@
     var instructionPreCloseness = {
       type: jsPsychInstructions,
       pages: [
-      '<p style="font-size:7vw;">In the next page, use the slider to indicate how close you feel to your pair</p>',
+      'In the next page, use the slider to indicate how close you feel to your pair',
       ],
       button_label_next: "Next",
       button_label_previous: "Previous",
@@ -144,7 +192,7 @@
     var inter = {
         type: jsPsychInstructions,
         pages: [
-        '<p style="font-size:7vw;">Please, hand the ipad back to the experimenter</p>',
+        'Please, hand the ipad back to the experimenter',
         ],
         button_label_next: "Next",
         button_label_previous: "Previous",
@@ -153,37 +201,35 @@
 
     var likeSong = {
         type: jsPsychHtmlSliderResponse,
-        stimulus: `<div style="width:500px;">
-            <p style="font-size:3vw;">How much do you like the song that you just heard?</p>
-            </div>`,
+        stimulus: "How much do you like the song that you just heard?",
         require_movement: true,
-        labels: ['<p style="font-size:3vw">Not at all</p>', '<p style="font-size:3vw">Very much</p>']
+        labels: ['Not at all', 'Very much']
     };
 
     var familiaritySong = {
         type: jsPsychHtmlSliderResponse,
-        stimulus: `<div style="width:500px;">
-            <p style="font-size:3vw;">How familiar were you with the song that you just heard?</p>
-            </div>`,
+        stimulus: "How familiar were you with the song that you just heard?",
         require_movement: true,
-        labels: ['<p style="font-size:3vw">Never heard it before</p>', '<p style="font-size:3vw">Know it very well</p>']
+        labels: ['Never heard it before', 'Know it very well']
     };
     
     //Determining which timeline to run
-    if(diadNumber == 1){
-      var timelineChosen = [participantID, 
+    if(diadNumber == "a"){ //Pair A
+      var timelineChosen = [participantID,
                             howFeeling,  instructionPreCloseness, closeness1, inter,
-                            howFeeling2, instructionPreCloseness, closeness2, inter,
-                            howFeeling2, instructionPreCloseness, closeness2, likeSong, familiaritySong, trialSurvey, howFeeling2, instructionPreCloseness, closeness2, inter,
-                            howFeeling2, instructionPreCloseness, closeness2, likeSong, familiaritySong, inter]
+                            howWasPlaylist, howFeeling2, instructionPreCloseness, closeness2, inter,
+                            howFeeling2, instructionPreCloseness, closeness2, likeSong, familiaritySong, modelQuestionnaire1, modelQuestionnaire2, modelQuestionnaire3, howFeeling2, instructionPreCloseness, closeness2, inter,
+                            howFeeling2, instructionPreCloseness, closeness2, likeSong, familiaritySong, inter,
+                            relationshipFriend]
     }
-    if(diadNumber == 2){
+    if(diadNumber == "b"){ //Pair B
       var timelineChosen = [participantID, 
                             howFeeling,  instructionPreCloseness, closeness1, inter,
                             howFeeling2, instructionPreCloseness, closeness2, likeSong, familiaritySong, inter,
+                            howFeeling2, instructionPreCloseness, closeness2, inter, howWasPlaylist,
+                            howFeeling2, instructionPreCloseness, closeness2, likeSong, familiaritySong, modelQuestionnaire1, modelQuestionnaire2, modelQuestionnaire3, howFeeling2, instructionPreCloseness, closeness2,
                             howFeeling2, instructionPreCloseness, closeness2, inter,
-                            howFeeling2, instructionPreCloseness, closeness2, likeSong, familiaritySong, trialSurvey, howFeeling2, instructionPreCloseness, closeness2,
-                            howFeeling2, instructionPreCloseness, closeness2, inter]
+                            relationshipFriend]
     }
 
     jsPsych.run(timelineChosen);

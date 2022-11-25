@@ -94,12 +94,5 @@ var trialTapping3 = {
     response_ends_trial: false,
 }
 
-var messageEndTask = {
-  type: jsPsychHtmlButtonResponse,
-  prompt: recurring[3][lang],
-  choices: [],
-  trial_duration: 3000,
-  stimulus: '',
-};
 
-var tappingTimeline = [preloadSongs, frontPage, instruction0, trialTapping0, messageEndTask, instruction1, trialTapping1, messageEndTask, instruction3, trialTapping3, messageEndTask];
+var tappingTimeline = [preloadSongs, frontPage, instruction0, trialTapping0, messageEndTask, instruction1, trialTapping1, messageEndTask, instruction3, trialTapping3];

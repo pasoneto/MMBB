@@ -188,6 +188,22 @@ var likingRating = {
     }
 };
 
+var likingRating2 = {
+    type: jsPsychHtmlSliderResponse,
+    stimulus: movement[8][7][lang],
+    require_movement: true,
+    labels: [movement[8][5][lang], movement[8][6][lang]],
+    on_load: function(){
+      document.getElementById("label0").style = ''
+      document.getElementById("label1").style = ''
+    },
+    on_finish: function(data){
+      var allData = jsPsych.data.get().values();
+      var song = allData[allData.length - 3].stimulus;
+      data.song = song;
+    }
+};
+
 var grooveRating = {
     type: jsPsychHtmlSliderResponse,
     stimulus: movement[8][4][lang],
@@ -298,5 +314,8 @@ var trialAccelerometer4 = {
         trial.stimulus = '../../songs/movementTapAudio/modifiedAudio/' + window.randomChosenSong
     },
 }
+
+
+
 
 var movementTimeline = [preloadSongs, loadAccel, instruction0, phonePocket, countDown, trialAccelerometer1, pickUpPhone, instruction1, phonePocket, countDown, trialAccelerometer2, pickUpPhone, likingRating, grooveRating, instruction2, phonePocket, countDown, trialAccelerometer3, pickUpPhone, familiarityRating, likingRating, grooveRating, instruction3, chooseSongs, preloadChosen, phonePocket, countDown, trialAccelerometer4, pickUpPhone, familiarityRating, likingRating, grooveRating];

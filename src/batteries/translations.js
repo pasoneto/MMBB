@@ -72,6 +72,8 @@ var movement = [
          "fi": "En lainkaan"},
   {"eng": "A lot", 
          "fi": "Paljon"},
+  {"eng": "How much did you like this beat?", 
+         "fi": ""},
   ]
 ]
         
