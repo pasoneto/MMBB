@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MMBB batery</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
+    <link rel="stylesheet" href="./generalCSS.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  </head>
+  <body>
+    
+    <div id="containerSurvey">
+      <div id="Instruction">Choose the study pair</div>
+      <div id="buttonContainerSurvey">
+        <button id="a" onclick="directURL(this.id)">A</button>
+        <button id="b" onclick="directURL(this.id)">B</button>
+        <button id="c" onclick="directURL(this.id)">C</button>
+        <button id="d" onclick="directURL(this.id)">D</button>
+      </div>
+    </div>
+
+  </body>
+
+  <script>
+    directURL = function(id){
+      window.location = "https://pasoneto.github.io/MMBB/src/batteries/survey.html?diad=" + id
+    }
+  </script>
+
+</html>

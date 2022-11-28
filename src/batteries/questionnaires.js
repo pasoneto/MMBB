@@ -53,6 +53,7 @@ var modelQuestionnaire1 = {
 var modelQuestionnaire2 = {
   type: jsPsychSurveyLikert,
   questions: questionnaire2,
+  preamble: "Below are 30 statements with which you may agree or disagree. Using the 1-5 scale below, please indicate how much you agree with each statement.",
   randomize_question_order: false,
   data: {questionnaireType: "CASE"}
 };
@@ -60,6 +61,7 @@ var modelQuestionnaire2 = {
 var modelQuestionnaire3 = {
   type: jsPsychSurveyLikert,
   questions: questionnaire3,
+  preamble: "Below are 3 statements with which you may agree or disagree. Using the 1-5 scale below, please indicate how much you agree with each statement.",
   randomize_question_order: false,
   data: {questionnaireType: "mini-SPIN"}
 };

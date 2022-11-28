@@ -171,3 +171,32 @@ button:focus {
   box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
   transform: translateY(0);
 }
+
+/*Survey friends-strangers*/
+#containerSurvey{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+#instructionSurvey{
+  width: 100vw;
+}
+#buttonContainerSurvey{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 30px
+}
+#a, #b, #c, #d{
+  width: 20%
+}
+#Instruction{
+  font-size: 2em;
+  margin-bottom: 5%
+}
+/*End of survey friends-strangers*/
