@@ -1,9 +1,3 @@
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-var lang = urlParams.get('lang')
-if(lang === null){
-  var lang = "eng"
-}
 var requirements = {
   type: jsPsychInstructions,
   pages: recurring[12].map(i=>[i[lang]]), 

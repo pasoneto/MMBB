@@ -3,8 +3,7 @@
   <head>
     <title>MMBB batery</title>
     <meta charset="UTF-8">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="../../jspsych/dist/graphFunction.js"> </script>
+    <script src="./langFetch.js"></script>
     <script src="https://unpkg.com/jspsych@7.1.2"></script>
     <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-audio-keyboard-response@1.1.0"></script>
@@ -23,9 +22,13 @@
     <script src="../../jspsych/dist/plugin-survey-multi-choice.js"> </script>
     <script src="../../jspsych/dist/plugin-initialize-microphone.js"> </script>
     <script src="../../jspsych/dist/plugin-html-audio-response.js"> </script>
+    <script src="https://unpkg.com/@jspsych/plugin-survey@0.2.0/dist/index.browser.min.js"></script>
+    <script src="./translations.js"> </script>
     <script src="./questionnaires.js"> </script>
+    <script src="./sharedMeasurements.js"> </script>
 
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
+    <link rel="stylesheet" href="https://unpkg.com/@jspsych/plugin-survey@0.2.0/css/survey.css">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
@@ -43,8 +46,6 @@
       }
     });
     
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
     var diadNumber = urlParams.get('diad')
     if(diadNumber == null){
       alert('You did not put the diad number as URL parameter. Automatically assigning diad number 1. To change, add "?diad=2" to the end of the URL')
@@ -242,7 +243,7 @@
       var timelineChosen = [participantID,
                             howFeeling,  instructionPreCloseness, closeness1, inter,
                             howWasPlaylist, howFeeling2, instructionPreCloseness, closeness2, inter,
-                            howFeeling2, instructionPreCloseness, closeness2, likeSong, familiaritySong, modelQuestionnaire1, modelQuestionnaire2, modelQuestionnaire3, howFeeling2, instructionPreCloseness, closeness2, inter,
+                            howFeeling2, instructionPreCloseness, closeness2, likeSong, familiaritySong, modelQuestionnaire1, modelQuestionnaire2, modelQuestionnaire3, sharedMeasurementsTrial, howFeeling2, instructionPreCloseness, closeness2, inter,
                             howFeeling2, instructionPreCloseness, closeness2, likeSong, familiaritySong, inter,
                             relationshipFriend, relationshipFriend2]
     }
@@ -251,7 +252,7 @@
                             howFeeling,  instructionPreCloseness, closeness1, inter,
                             howFeeling2, instructionPreCloseness, closeness2, likeSong, familiaritySong, inter,
                             howFeeling2, instructionPreCloseness, closeness2, inter, howWasPlaylist,
-                            howFeeling2, instructionPreCloseness, closeness2, likeSong, familiaritySong, modelQuestionnaire1, modelQuestionnaire2, modelQuestionnaire3, howFeeling2, instructionPreCloseness, closeness2,
+                            howFeeling2, instructionPreCloseness, closeness2, likeSong, familiaritySong, modelQuestionnaire1, modelQuestionnaire2, modelQuestionnaire3, sharedMeasurementsTrial, howFeeling2, instructionPreCloseness, closeness2,
                             howFeeling2, instructionPreCloseness, closeness2, inter,
                             relationshipFriend, relationshipFriend2]
     }
