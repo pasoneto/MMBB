@@ -278,6 +278,7 @@ var trialAccelerometer2 = {
 var songsToPreload = [randomElPesebreSong, randomMetronomeSong]
 var songPaths = '../../songs/movementTapAudio/modifiedAudio/'
 var pathsToPreload = songsToPreload.map(i=>songPaths+i)
+
 var preloadSongs = {
   type: jsPsychPreload,
   audio: pathsToPreload 

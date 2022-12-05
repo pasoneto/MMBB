@@ -45,9 +45,14 @@
 
   <script>
 
+    //For all browsers except Safari IOS
     window.onbeforeunload = function() {
-        return "If you leave now, data may not be saved";
+      return "If you leave now, data may not be saved";
     }
+
+    //For safari IOS
+    function preventRefresh(event) { event.preventDefault(); }
+    window.addEventListener("onbeforeunload", preventRefresh, false);
 
     var jsPsych = initJsPsych({
       extensions: [
@@ -57,6 +62,7 @@
         //jsPsych.data.displayData();
         var finalData = jsPsych.data.get()
         var measurePerformance = performance.getEntriesByType('resource');
+        finalData['infoUser'] = navigator.userAgent
         finalData['performance'] = measurePerformance
         finalData.localSave('json', 'mydata.json')
       }

@@ -190,6 +190,13 @@ var initialInstructions = [
     "fi": "Ei"},
    {"eng": "Is someone helping you complete this task?",
     "fi": ""},
+  ],
+  [{"eng": "Please, disable the automatic lock of your screen",
+    "fi": ""},
+   {"eng": "On Iphone: <br>Settings > Display & brightness > Auto-lock",
+    "fi": ""},
+   {"eng": "On Android: <br>Settings > Display & brightness > Auto-lock",
+    "fi": ""},
   ]
 ]
 
