@@ -71,7 +71,7 @@ var trialTapping0 = {
     type: jsPsychAudioButtonResponse,
     choices: ['Tap here'],
     stimulus: '../../songs/movementTapAudio/silence.wav',
-    trial_duration: 40000,
+    trial_duration: 60000,
     button_html: '<button type="button" ' + eventTypeStart + '="buttonDown()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">' + tapping[4][0][lang] + '</p></button>',
     response_ends_trial: false,
 }

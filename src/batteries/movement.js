@@ -248,7 +248,7 @@ var trialAccelerometer1 = {
     type: jsPsychAudioKeyboardResponse,
     stimulus: '../../songs/movementTapAudio/silence.wav',
     prompt: '',
-    trial_duration: 63000,
+    trial_duration: 60000,
     choices: ["NO_KEYS"],
     extensions: [
       {type: jsPsychExtensionAccelerometer }
