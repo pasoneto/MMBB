@@ -40,17 +40,17 @@ var jsPsychExtensionAccelerometer = (function () {
                   typeof DeviceMotionEvent.requestPermission === "function"
                 ) {
                   DeviceMotionEvent.requestPermission().then(response => {
-                    if (response == 'granted') {
-                      params = params || {};
-                      this.currentTrialData = [];
-                      this.currentTrialTargets = new Map();
-                      this.currentTrialSelectors = params.targets || [];
-                      this.lastSampleTime = null;
-                      this.eventsToTrack = params.events || ["devicemotion"];
-                      this.domObserver.observe(this.jsPsych.getDisplayElement(), { childList: true });
-                    }
-                  })
+                    alert(response)
+                  });
                 }
+                params = params || {};
+                this.currentTrialData = [];
+                this.currentTrialTargets = new Map();
+                this.currentTrialSelectors = params.targets || [];
+                this.lastSampleTime = null;
+                this.eventsToTrack = params.events || ["devicemotion"];
+                this.domObserver.observe(this.jsPsych.getDisplayElement(), { childList: true });
+
             };
             this.on_load = () => {
                 // set current trial start time
