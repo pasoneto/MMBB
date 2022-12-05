@@ -30,6 +30,16 @@ var gettingHelp = {
   },
 };
 
+var lockScreen = {
+  type: jsPsychHtmlButtonResponse,
+  stimulus: initialInstructions[0][3][lang],
+  choices: [initialInstructions[0][2][lang], initialInstructions[0][1][lang]],
+  prompt: '',
+  on_load: function(){
+    document.getElementById("jspsych-html-button-response-btngroup").getElementsByClassName("jspsych-btn")[1].style.background = "purple"
+  },
+};
+
 var howDifficult = {
     type: jsPsychHtmlSliderResponse,
     stimulus: recurring[9][lang],
