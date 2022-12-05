@@ -11,13 +11,23 @@ var soundCheck = {
     stimulus: '../../songs/movementTapAudio/elPesebre.mp3',
     prompt: initialInstructions[0][0][lang],
     choices: ['Continue'],
+    on_load: function(){
+      document.getElementById("jspsych-content").style.fontSize = '1.3em'
+      document.getElementById("jspsych-audio-button-response-btngroup").style.marginTop = "15px"
+    },
+    on_finish: function(){
+      document.getElementById("jspsych-content").style.fontSize = '2em'
+    }
 }
 
 var gettingHelp = {
   type: jsPsychHtmlButtonResponse,
   stimulus: initialInstructions[0][3][lang],
-  choices: [initialInstructions[0][1][lang], initialInstructions[0][2][lang]],
-  prompt: ''
+  choices: [initialInstructions[0][2][lang], initialInstructions[0][1][lang]],
+  prompt: '',
+  on_load: function(){
+    document.getElementById("jspsych-html-button-response-btngroup").getElementsByClassName("jspsych-btn")[1].style.background = "purple"
+  },
 };
 
 var howDifficult = {

@@ -248,7 +248,7 @@ var trialAccelerometer1 = {
     type: jsPsychAudioKeyboardResponse,
     stimulus: '../../songs/movementTapAudio/silence.wav',
     prompt: '',
-    trial_duration: 15000,
+    trial_duration: 63000,
     choices: ["NO_KEYS"],
     extensions: [
       {type: jsPsychExtensionAccelerometer }
@@ -268,7 +268,7 @@ var trialAccelerometer2 = {
     type: jsPsychAudioKeyboardResponse,
     stimulus: '../../songs/movementTapAudio/modifiedAudio/' + randomMetronomeSong,
     prompt: '',
-    trial_duration: 15000,
+    trial_duration: 63000,
     choices: ["NO_KEYS"],
     extensions: [
       {type: jsPsychExtensionAccelerometer }
@@ -293,7 +293,7 @@ var trialAccelerometer3 = {
     type: jsPsychAudioKeyboardResponse,
     stimulus: '../../songs/movementTapAudio/modifiedAudio/' + randomElPesebreSong,
     prompt: '',
-    trial_duration: 30000,
+    trial_duration: 63000,
     choices: ["NO_KEYS"],
     extensions: [
       {type: jsPsychExtensionAccelerometer }
@@ -304,7 +304,7 @@ var trialAccelerometer4 = {
     type: jsPsychAudioKeyboardResponse,
     stimulus: '',
     prompt: '',
-    trial_duration: 30000,
+    trial_duration: 63000,
     choices: ["NO_KEYS"],
     extensions: [
       {type: jsPsychExtensionAccelerometer }
@@ -314,8 +314,6 @@ var trialAccelerometer4 = {
         trial.stimulus = '../../songs/movementTapAudio/modifiedAudio/' + window.randomChosenSong
     },
 }
-
-
 
 
 var movementTimeline = [preloadSongs, loadAccel, instruction0, phonePocket, countDown, trialAccelerometer1, pickUpPhone, instruction1, phonePocket, countDown, trialAccelerometer2, pickUpPhone, likingRating, grooveRating, instruction2, phonePocket, countDown, trialAccelerometer3, pickUpPhone, familiarityRating, likingRating, grooveRating, instruction3, chooseSongs, preloadChosen, phonePocket, countDown, trialAccelerometer4, pickUpPhone, familiarityRating, likingRating, grooveRating];

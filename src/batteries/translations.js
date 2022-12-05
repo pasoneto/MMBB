@@ -13,11 +13,11 @@ var movement = [
         "fi": "Liikkuaksesi vapaasti, laita puhelin taskuusi ennen jokaista tehtävää"},
   {"eng": "Do not lock the screen of your phone", 
         "fi": "Älä lukiste puhelimesi nayttöä"},
-  {"eng": "Before each task starts, you will hear a voice countdown", 
+  {"eng": "Before each task starts, you will hear a voice countdown<br><img id='tableSVG' src='../../images/voiceSVG.svg'></img>", 
         "fi": "Ennen jokaiset tehtävän alkamista kuulet ääneen lärtölaskennan"},
-  {"eng": "A voice will also tell you  when the task has ended", 
+  {"eng": "A voice will also tell you  when the task has ended<br><img id='tableSVG' src='../../images/stopSVG.svg'></img>", 
          "fi": "Ääni myös kertoo kun tehtävä on loppunut"},
-  {"eng": "For the first task, go to a space where there's room to walk around", 
+  {"eng": "For the first task, go to a space where there's room to walk around<br><img id='tableSVG' src='../../images/walkSVG.svg'></img>", 
          "fi": "Ensimmäistä tehtävää varten siirry tilaan, jossa voit kävellä esteettä"},
   {"eng": "In this task, we ask you to walk at a speed that feels most natural for you", 
          "fi": "Tässä tehtävässä pyydämme sinua kävelemään vauhdilla, joka tuntuu sinusta luontevimmalta"},
@@ -78,7 +78,7 @@ var movement = [
 ]
         
 var tapping = [
-  [{"eng": "In this task, we will ask you to tap on a button on the screen using the index finger of your prefered hand", 
+  [{"eng": "In this task, we will ask you to tap on a button on the screen using the index finger of your prefered hand<br><img id='tableSVG' src='../../images/tappingSVG.svg'></img>", 
         "fi": "Tässä tehtävässä pyydämme sinua naputtamaan ruudulla näkyvää painiketta paremman kätesi etusormellä"},
   {"eng": "Tap on the button at a speed that feels natural to you", 
         "fi": "Naputa painiketta nopeudella joka tuntuu luontevalta"},
@@ -142,12 +142,12 @@ var recurring = [
           "fi": "Tervetuloa MMBB-patteriin"},
   {"eng": "For this task you will need:",
     "fi": ""},
-  {"eng": "A flat surface where you can lay down your phone",
+    {"eng": "A flat surface where you can lay down your phone<br><img id='tableSVG' src='../../images/table.svg'></img>",
     "fi": ""},
-  {"eng": "A pocket or a purse",
+  {"eng": "A pocket or a purse<br><img id='purseSVG' src='../../images/purse.svg'></img>",
     "fi": ""}]
 ]
-
+  
 var beatProduction = [
   [{"eng": "In this task, you will hear a song which has a click track on top of it",
         "fi": "Tässä tehtävässä kuulet laulun jonka päällä on kilikkiraita"},
@@ -182,19 +182,7 @@ var beatProduction = [
 ]
 
 var initialInstructions = [
-  [{"eng": "Can you hear this song? If yes, adjust the volume to a comfortable hearing level and click Continue. If not, try changing to a different computer/phone or to a different internet browser.",
-    "fi": ""
-  }],
-  [{"eng": "Yes, I have someone helping me",
-    "fi": "No, I'm doing it myself"
-  }],
-  [{"eng": "Is someone helping you complete this task?",
-    "fi": "No, I'm doing it myself"
-  }]
-]
-
-var initialInstructions = [
-  [{"eng": "Can you hear this song?<br>If yes, adjust the volume to a comfortable hearing level and click Continue.<br><br>If not, try changing to a different computer/phone or to a different internet browser.",
+  [{"eng": "Can you hear this song?<br>If yes, adjust the volume to a comfortable hearing level and click Continue.<br><img id='tableSVG' src='../../images/soundSVG.svg'><br>If not, try changing to a different computer/phone or to a different internet browser.",
     "fi": ""},
    {"eng": "Yes",
     "fi": "Kyllä"},

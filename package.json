@@ -1,0 +1,23 @@
+{
+  "name": "mmbb",
+  "version": "1.0.0",
+  "description": "MMBB",
+  "main": "bat.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Neto, Pedro",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pasoneto/MMBB.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pasoneto/MMBB/issues"
+  },
+  "homepage": "https://github.com/pasoneto/MMBB#readme",
+  "dependencies": {
+    "firebase": "^9.14.0"
+  }
+}

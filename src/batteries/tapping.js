@@ -71,7 +71,7 @@ var trialTapping0 = {
     type: jsPsychAudioButtonResponse,
     choices: ['Tap here'],
     stimulus: '../../songs/movementTapAudio/silence.wav',
-    trial_duration: 10000,
+    trial_duration: 63000,
     button_html: '<button type="button" ' + eventTypeStart + '="buttonDown()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">' + tapping[4][0][lang] + '</p></button>',
     response_ends_trial: false,
 }
@@ -80,7 +80,7 @@ var trialTapping1 = {
     type: jsPsychAudioButtonResponse,
     choices: ['Tap here'],
     stimulus: '../../songs/movementTapAudio/modifiedAudio/' + randomMetronome,
-    trial_duration: 10000,
+    trial_duration: 140000,
     button_html: '<button type="button" ' + eventTypeStart + '="buttonDown()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">' + tapping[4][0][lang] + '</p></button>',
     response_ends_trial: false,
 }
@@ -89,7 +89,7 @@ var trialTapping3 = {
     type: jsPsychAudioButtonResponse,
     choices: ['Tap here'],
     stimulus: '../../songs/movementTapAudio/modifiedAudio/' + randomElPesebreSong,
-    trial_duration: 10000,
+    trial_duration: 63000,
     button_html: '<button type="button" ' + eventTypeStart + '="buttonDown()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">' + tapping[4][0][lang] + '</p></button>',
     response_ends_trial: false,
 }

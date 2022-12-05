@@ -199,4 +199,14 @@ button:focus {
   font-size: 2em;
   margin-bottom: 5%
 }
+#tableSVG{
+  min-width: 150px;
+  width: 20vw;
+}
+#purseSVG{
+  margin-top: 15px;
+  min-width: 150px;
+  width: 10vw;
+}
+
 /*End of survey friends-strangers*/

@@ -28,9 +28,7 @@
     <script src="../../jspsych/dist/custom/beatProductionFunctions.js"></script>
     <script src="../../songs/movementTapAudio/songKeysNames.js"></script>
 
-
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
-    <link rel="stylesheet" href="./generalCSS.css">
 
     <script src="./translations.js"></script>
     <script src="./generalIntro.js"></script>
@@ -40,6 +38,7 @@
     <script src="./bat.js"> </script>
     <script src="./tapping.js"> </script>
 
+    <link rel="stylesheet" href="./generalCSS.css">
   </head>
 
   <body></body>
@@ -56,7 +55,6 @@
       ],
       on_finish: function() {
         //jsPsych.data.displayData();
-
         var finalData = jsPsych.data.get()
         var measurePerformance = performance.getEntriesByType('resource');
         finalData['performance'] = measurePerformance

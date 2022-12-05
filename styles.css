@@ -11,6 +11,12 @@ body{
   justify-content: center;
   flex: 1;
 }
+#userName{
+  width: 100%;
+  align-text: center;
+  align-self: center;
+  justify-content: center
+}
 #header{
   display: flex;
   align-items: center;
