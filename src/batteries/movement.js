@@ -315,5 +315,4 @@ var trialAccelerometer4 = {
     },
 }
 
-//var movementTimeline = [preloadSongs, loadAccel, instruction0, phonePocket, countDown, trialAccelerometer1, pickUpPhone, instruction1, phonePocket, countDown, trialAccelerometer2, pickUpPhone, likingRating, grooveRating, instruction2, phonePocket, countDown, trialAccelerometer3, pickUpPhone, familiarityRating, likingRating, grooveRating, instruction3, chooseSongs, preloadChosen, phonePocket, countDown, trialAccelerometer4, pickUpPhone, familiarityRating, likingRating, grooveRating];
-var movementTimeline = [preloadSongs, loadAccel, instruction0, trialAccelerometer1];
+var movementTimeline = [preloadSongs, loadAccel, instruction0, phonePocket, countDown, trialAccelerometer1, pickUpPhone, instruction1, phonePocket, countDown, trialAccelerometer2, pickUpPhone, likingRating, grooveRating, instruction2, phonePocket, countDown, trialAccelerometer3, pickUpPhone, familiarityRating, likingRating, grooveRating, instruction3, chooseSongs, preloadChosen, phonePocket, countDown, trialAccelerometer4, pickUpPhone, familiarityRating, likingRating, grooveRating];
