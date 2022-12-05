@@ -40,7 +40,7 @@ var jsPsychExtensionAccelerometer = (function () {
                   typeof DeviceMotionEvent.requestPermission === "function"
                 ) {
                   DeviceMotionEvent.requestPermission().then(response => {
-                    alert(response)
+                    console.log(response)
                   });
                 }
                 params = params || {};
