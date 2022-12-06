@@ -54,7 +54,7 @@ var randomMetronome = songKeys['8'][randomMetronome]
 var songsToPreload = [randomElPesebreSong, randomMetronome]
 var songPaths = '../../songs/movementTapAudio/modifiedAudio/'
 var pathsToPreload = songsToPreload.map(i=>songPaths+i)
-var preloadSongs = {
+var preloadSongs2 = {
   type: jsPsychPreload,
   audio: pathsToPreload 
 }   
@@ -88,4 +88,4 @@ var trialTapping3 = {
     response_ends_trial: false,
 }
 
-var tappingTimeline = [frontPage, preloadSongs, instruction0, trialTapping0, messageEndTask, instruction1, trialTapping1, messageEndTask, instruction3, trialTapping3];
+var tappingTimeline = [frontPage, preloadSongs2, instruction0, trialTapping0, messageEndTask, instruction1, trialTapping1, messageEndTask, instruction3, trialTapping3];

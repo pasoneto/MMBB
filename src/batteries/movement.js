@@ -279,7 +279,7 @@ var songsToPreload = [randomElPesebreSong, randomMetronomeSong]
 var songPaths = '../../songs/movementTapAudio/modifiedAudio/'
 var pathsToPreload = songsToPreload.map(i=>songPaths+i)
 
-var preloadSongs = {
+var preloadSongs1 = {
   type: jsPsychPreload,
   audio: pathsToPreload 
 }   
@@ -316,4 +316,4 @@ var trialAccelerometer4 = {
     },
 }
 
-var movementTimeline = [preloadSongs, loadAccel, instruction0, phonePocket, countDown, trialAccelerometer1, pickUpPhone, instruction1, phonePocket, countDown, trialAccelerometer2, pickUpPhone, likingRating, grooveRating, instruction2, phonePocket, countDown, trialAccelerometer3, pickUpPhone, familiarityRating, likingRating, grooveRating, instruction3, chooseSongs, preloadChosen, phonePocket, countDown, trialAccelerometer4, pickUpPhone, familiarityRating, likingRating, grooveRating];
+var movementTimeline = [preloadSongs1, loadAccel, instruction0, phonePocket, countDown, trialAccelerometer1, pickUpPhone, instruction1, phonePocket, countDown, trialAccelerometer2, pickUpPhone, likingRating, grooveRating, instruction2, phonePocket, countDown, trialAccelerometer3, pickUpPhone, familiarityRating, likingRating, grooveRating, instruction3, chooseSongs, preloadChosen, phonePocket, countDown, trialAccelerometer4, pickUpPhone, familiarityRating, likingRating, grooveRating];
