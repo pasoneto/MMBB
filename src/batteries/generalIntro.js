@@ -1,4 +1,4 @@
-var songTest = '../../songs/movementTapAudio/elPesebre.mp3'
+var songTest = '../../songs/movementTapAudio/modifiedAudio/name__1 - 3-11 Porter - Surround me with your love - Mental Overdrive remix__stretchfactor__1_3__0_78195__1_04.mp3'
 var preloadSongs2 = {
   type: jsPsychPreload,
   audio: songTest 
@@ -63,4 +63,4 @@ var messageEndTask = {
   }
 };
 
-var generalIntroWrap = [preloadSongs2, requirements, soundCheck, gettingHelp]
+var generalIntroWrap = [requirements, preloadSongs2, soundCheck, gettingHelp]
