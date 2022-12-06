@@ -6,6 +6,16 @@ var requirements = {
   show_clickable_nav: true
 };
 
+var gettingHelp = {
+  type: jsPsychHtmlButtonResponse,
+  stimulus: initialInstructions[0][3][lang],
+  choices: [initialInstructions[0][2][lang], initialInstructions[0][1][lang]],
+  prompt: '',
+  on_load: function(){
+    document.getElementById("jspsych-html-button-response-btngroup").getElementsByClassName("jspsych-btn")[1].style.background = "purple"
+  },
+};
+
 var frontPage = {
     type: jsPsychInstructions,
     pages: tapping[5].map(i=>i[lang]),
@@ -14,12 +24,19 @@ var frontPage = {
     show_clickable_nav: true,
 }
 
-var instruction1 = {
+var instruction0 = {
     type: jsPsychInstructions,
-    pages: ["a", "b"],
+    pages: tapping[0].map(i=>i[lang]),
     button_label_next: "Next",
     button_label_previous: "Previous",
     show_clickable_nav: true,
+}
+
+function buttonDown(){
+      document.getElementById("tappingButton").innerHTML = '<p id="customText">--</p>'
+      sleep(10).then((r)=>{
+        document.getElementById("tappingButton").innerHTML = '<p id="customText">' + tapping[4][0][lang] + '</p>'
+      })
 }
 
 var randomElPesebreIndex = random(0, songKeys['7'].length -1)
@@ -36,24 +53,14 @@ var preloadSongs = {
   audio: pathsToPreload 
 }   
 
-var songVerify = {
+var trialTapping1 = {
     type: jsPsychAudioButtonResponse,
     choices: ['Tap here'],
     stimulus: '../../songs/movementTapAudio/modifiedAudio/' + randomMetronome,
     trial_duration: 140000,
-    button_html: 'Can you hear the song?<br>If yes, adjust the volume to a comfortable level<br><button type="button">Continue</button>',
+    button_html: 'Can you hear?<br><button type="button" ' + eventTypeStart + '="buttonDown()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">' + tapping[4][0][lang] + '</p></button>',
     response_ends_trial: false,
 }
- 
-var gettingHelp = {
-  type: jsPsychHtmlButtonResponse,
-  stimulus: initialInstructions[0][3][lang],
-  choices: [initialInstructions[0][2][lang], initialInstructions[0][1][lang]],
-  prompt: '',
-  on_load: function(){
-    document.getElementById("jspsych-html-button-response-btngroup").getElementsByClassName("jspsych-btn")[1].style.background = "purple"
-  },
-};
 
 var lockScreen = {
   type: jsPsychHtmlButtonResponse,
@@ -87,4 +94,4 @@ var messageEndTask = {
   }
 };
 
-var generalIntroWrap = [requirements, gettingHelp, preloadSongs, frontPage, instruction1, songVerify]
+var generalIntroWrap = [requirements, gettingHelp, frontPage, instruction0, preloadSongs, trialTapping1]
