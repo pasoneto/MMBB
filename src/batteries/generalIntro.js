@@ -16,46 +16,6 @@ var gettingHelp = {
   },
 };
 
-var frontPage = {
-    type: jsPsychInstructions,
-    pages: tapping[5].map(i=>i[lang]),
-    button_label_next: "Next",
-    button_label_previous: "Previous",
-    show_clickable_nav: true,
-}
-
-var instruction0 = {
-    type: jsPsychInstructions,
-    pages: tapping[0].map(i=>i[lang]),
-    button_label_next: "Next",
-    button_label_previous: "Previous",
-    show_clickable_nav: true,
-}
-
-var instruction1 = {
-    type: jsPsychInstructions,
-    pages: tapping[1].map(i=>i[lang]),
-    button_label_next: "Next",
-    button_label_previous: "Previous",
-    show_clickable_nav: true,
-}
-
-var instruction2 = {
-    type: jsPsychInstructions,
-    pages: tapping[2].map(i=>i[lang]),
-    button_label_next: "Next",
-    button_label_previous: "Previous",
-    show_clickable_nav: true,
-}
-
-var instruction3 = {
-    type: jsPsychInstructions,
-    pages: tapping[3].map(i=>i[lang]),
-    button_label_next: "Next",
-    button_label_previous: "Previous",
-    show_clickable_nav: true,
-}
-
 function buttonDown(){
       document.getElementById("tappingButton").innerHTML = '<p id="customText">--</p>'
       sleep(10).then((r)=>{
@@ -83,7 +43,7 @@ var trialTapping0 = {
     type: jsPsychAudioButtonResponse,
     choices: ['Tap here'],
     stimulus: '../../songs/movementTapAudio/silence.wav',
-    trial_duration: 60000,
+    trial_duration: 1,
     button_html: '<button type="button" ' + eventTypeStart + '="buttonDown()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">' + tapping[4][0][lang] + '</p></button>',
     response_ends_trial: false,
 }
@@ -129,4 +89,4 @@ var messageEndTask = {
   }
 };
 
-var generalIntroWrap = [requirements, gettingHelp, frontPage, preloadSongs, instruction0, messageEndTask, instruction1, trialTapping1]
+var generalIntroWrap = [preloadSongs, requirements, gettingHelp, trialTapping1, trialTapping0]
