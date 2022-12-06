@@ -53,7 +53,7 @@ var trialTapping1 = {
     choices: ['Tap here'],
     stimulus: '../../songs/movementTapAudio/modifiedAudio/' + randomMetronome,
     trial_duration: 140000,
-    button_html: '<button type="button" ' + eventTypeStart + '="buttonDown()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">' + tapping[4][0][lang] + '</p></button>',
+    button_html: 'Can you hear?<br><button type="button" ' + eventTypeStart + '="buttonDown()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">' + tapping[4][0][lang] + '</p></button>',
     response_ends_trial: false,
 }
 
@@ -89,4 +89,4 @@ var messageEndTask = {
   }
 };
 
-var generalIntroWrap = [preloadSongs, requirements, gettingHelp, trialTapping1, trialTapping0]
+var generalIntroWrap = [preloadSongs, requirements, gettingHelp, trialTapping0, trialTapping1]
