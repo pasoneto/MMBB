@@ -45,11 +45,6 @@ function buttonDown(){
       })
 }
 
-
-//Call random hemiola
-//var randomHemioleIndex = random(0, songKeys['10'].length -1)
-//var randomHemioleSong = songKeys['10'][randomHemioleIndex]
- 
 var randomElPesebreIndex = random(0, songKeys['7'].length -1)
 var randomElPesebreSong = songKeys['7'][randomElPesebreIndex]
 
@@ -64,7 +59,6 @@ var preloadSongs = {
   audio: pathsToPreload 
 }   
 console.log(randomElPesebreSong)
-//console.log(randomHemioleSong)
 console.log(randomMetronome)
 
 var trialTapping0 = {

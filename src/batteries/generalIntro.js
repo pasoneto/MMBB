@@ -2,6 +2,7 @@ var preloadTest = {
     type: jsPsychPreload,
     audio: ['../../songs/movementTapAudio/elPesebre.mp3']
 }
+
 var requirements = {
   type: jsPsychInstructions,
   pages: recurring[12].map(i=>[i[lang]]), 
@@ -12,9 +13,9 @@ var requirements = {
 
 var soundCheck = {
     type: jsPsychAudioButtonResponse,
+    choices: ['Continue'],
     stimulus: '../../songs/movementTapAudio/elPesebre.mp3',
     prompt: initialInstructions[0][0][lang],
-    choices: ['Continue'],
     on_load: function(){
       document.getElementById("jspsych-content").style.fontSize = '1.3em'
       document.getElementById("jspsych-audio-button-response-btngroup").style.marginTop = "15px"
