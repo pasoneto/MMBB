@@ -70,8 +70,8 @@
 
     var sequenceTasks = [movementTimeline, batTimeline, tappingTimeline]
     var sequenceTasks = jsPsych.randomization.shuffle(sequenceTasks);
-    
-    var completeSequence = [trialTapping1, generalIntroWrap, sequenceTasks[0], sequenceTasks[1], sequenceTasks[2], messageEndTask]
+
+    var completeSequence = [preloadSongs, trialTapping1, generalIntroWrap, sequenceTasks[0], sequenceTasks[1], sequenceTasks[2], messageEndTask]
     var completeSequence = completeSequence.flat()
 
     jsPsych.run(completeSequence);
