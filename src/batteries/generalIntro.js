@@ -41,7 +41,7 @@ var songVerify = {
     choices: ['Tap here'],
     stimulus: '../../songs/movementTapAudio/modifiedAudio/' + randomMetronome,
     trial_duration: 140000,
-    button_html: '<button type="button" id="tappingButton">Can you hear the song?<p id="customText" style="font-size:15vw; color: white;">Continue</p></button>',
+    button_html: 'Can you hear the song?<br>If yes, adjust the volume to a comfortable level<br><button type="button">Continue</button>',
     response_ends_trial: false,
 }
  
@@ -87,4 +87,4 @@ var messageEndTask = {
   }
 };
 
-var generalIntroWrap = [requirements, gettingHelp, preloadSongs, instruction1, songVerify]
+var generalIntroWrap = [requirements, gettingHelp, preloadSongs, frontPage, instruction1, songVerify]
