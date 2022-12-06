@@ -1,9 +1,3 @@
-var songTest = '../../songs/movementTapAudio/modifiedAudio/name__1 - 3-11 Porter - Surround me with your love - Mental Overdrive remix__stretchfactor__1_3__0_78195__1_04.mp3'
-var preloadSongs2 = {
-  type: jsPsychPreload,
-  audio: songTest 
-}   
-
 var requirements = {
   type: jsPsychInstructions,
   pages: recurring[12].map(i=>[i[lang]]), 
@@ -12,12 +6,34 @@ var requirements = {
   show_clickable_nav: true
 };
 
-var soundCheck = {
+var a = {
+    type: jsPsychInstructions,
+    pages: ['a', 'b'],
+    button_label_next: "Next",
+    button_label_previous: "Previous",
+    show_clickable_nav: true,
+}
+
+var randomElPesebreIndex = random(0, songKeys['7'].length -1)
+var randomElPesebreSong = songKeys['7'][randomElPesebreIndex]
+
+var randomMetronome = random(0, songKeys['8'].length -1)
+var randomMetronome = songKeys['8'][randomMetronome]
+
+var songsToPreload = [randomElPesebreSong, randomMetronome]
+var songPaths = '../../songs/movementTapAudio/modifiedAudio/'
+var pathsToPreload = songsToPreload.map(i=>songPaths+i)
+var preloadSongs = {
+  type: jsPsychPreload,
+  audio: pathsToPreload 
+}   
+
+var b = {
     type: jsPsychAudioButtonResponse,
     choices: ['Tap here'],
-    stimulus: songTest,
-    trial_duration: 5000,
-    button_html: '<button type="button" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">Continue</p></button>',
+    stimulus: '../../songs/movementTapAudio/modifiedAudio/' + randomMetronome,
+    trial_duration: 10000,
+    button_html: '<button type="button" ' + eventTypeStart + '="buttonDown()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">' + tapping[4][0][lang] + '</p></button>',
     response_ends_trial: true,
 }
 
@@ -63,4 +79,4 @@ var messageEndTask = {
   }
 };
 
-var generalIntroWrap = [requirements, preloadSongs2, soundCheck, gettingHelp]
+var generalIntroWrap = [preloadSongs, a, requirements, gettingHelp, b]
