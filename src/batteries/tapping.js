@@ -88,5 +88,4 @@ var trialTapping3 = {
     response_ends_trial: false,
 }
 
-
-var tappingTimeline = [preloadSongs, frontPage, instruction0, trialTapping0, messageEndTask, instruction1, trialTapping1, messageEndTask, instruction3, trialTapping3];
+var tappingTimeline = [frontPage, preloadSongs, instruction0, trialTapping0, messageEndTask, instruction1, trialTapping1, messageEndTask, instruction3, trialTapping3];
