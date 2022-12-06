@@ -1,3 +1,7 @@
+var preloadTest = {
+    type: jsPsychPreload,
+    audio: ['../../songs/movementTapAudio/elPesebre.mp3']
+}
 var requirements = {
   type: jsPsychInstructions,
   pages: recurring[12].map(i=>[i[lang]]), 
@@ -5,6 +9,27 @@ var requirements = {
   button_label_previous: buttons[1][lang],
   show_clickable_nav: true
 };
+
+var soundCheck = {
+    type: jsPsychAudioButtonResponse,
+    stimulus: '../../songs/movementTapAudio/elPesebre.mp3',
+    prompt: initialInstructions[0][0][lang],
+    choices: ['Continue'],
+    on_load: function(){
+      document.getElementById("jspsych-content").style.fontSize = '1.3em'
+      document.getElementById("jspsych-audio-button-response-btngroup").style.marginTop = "15px"
+    },
+    on_finish: function(){
+      document.getElementById("jspsych-content").style.fontSize = '2em'
+    }
+}
+
+var soundCheck2 = {
+    type: jsPsychAudioButtonResponse,
+    stimulus: '../../songs/movementTapAudio/modifiedAudio/name__1 - 3-11 Porter - Surround me with your love - Mental Overdrive remix__stretchfactor__0_78195__1_04__1_3.mp3',
+    prompt: "Sound check 2<br>Can you hear?",
+    choices: ['Continue'],
+}
 
 var gettingHelp = {
   type: jsPsychHtmlButtonResponse,
@@ -15,47 +40,6 @@ var gettingHelp = {
     document.getElementById("jspsych-html-button-response-btngroup").getElementsByClassName("jspsych-btn")[1].style.background = "purple"
   },
 };
-
-function buttonDown(){
-      document.getElementById("tappingButton").innerHTML = '<p id="customText">--</p>'
-      sleep(10).then((r)=>{
-        document.getElementById("tappingButton").innerHTML = '<p id="customText">' + tapping[4][0][lang] + '</p>'
-      })
-}
-
-var randomElPesebreIndex = random(0, songKeys['7'].length -1)
-var randomElPesebreSong = songKeys['7'][randomElPesebreIndex]
-
-var randomMetronome = random(0, songKeys['8'].length -1)
-var randomMetronome = songKeys['8'][randomMetronome]
-
-var songsToPreload = [randomElPesebreSong, randomMetronome]
-var songPaths = '../../songs/movementTapAudio/modifiedAudio/'
-var pathsToPreload = songsToPreload.map(i=>songPaths+i)
-var preloadSongs0 = {
-  type: jsPsychPreload,
-  audio: pathsToPreload 
-}   
-console.log(randomElPesebreSong)
-console.log(randomMetronome)
-
-var trialTapping0 = {
-    type: jsPsychAudioButtonResponse,
-    choices: ['Tap here'],
-    stimulus: '../../songs/movementTapAudio/silence.wav',
-    trial_duration: 1,
-    button_html: '<button type="button" ' + eventTypeStart + '="buttonDown()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">' + tapping[4][0][lang] + '</p></button>',
-    response_ends_trial: false,
-}
-
-var trialTapping1 = {
-    type: jsPsychAudioButtonResponse,
-    choices: ['Tap here'],
-    stimulus: '../../songs/movementTapAudio/modifiedAudio/' + randomMetronome,
-    trial_duration: 140000,
-    button_html: 'Can you hear?<br><button type="button" ' + eventTypeStart + '="buttonDown()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">' + tapping[4][0][lang] + '</p></button>',
-    response_ends_trial: false,
-}
 
 var lockScreen = {
   type: jsPsychHtmlButtonResponse,
@@ -89,4 +73,4 @@ var messageEndTask = {
   }
 };
 
-var generalIntroWrap = [preloadSongs0, requirements, gettingHelp, trialTapping0, trialTapping1]
+var generalIntroWrap = [preloadTest, requirements, soundCheck, gettingHelp, soundCheck2]
