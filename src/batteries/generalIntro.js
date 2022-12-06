@@ -140,4 +140,4 @@ var messageEndTask = {
   }
 };
 
-var generalIntroWrap = [requirements, gettingHelp, b, frontPage, preloadSongs, instruction1, trialTapping1]
+var generalIntroWrap = [requirements, gettingHelp, frontPage, preloadSongs, instruction1, trialTapping1]
