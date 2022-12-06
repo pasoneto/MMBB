@@ -79,6 +79,15 @@ var preloadSongs = {
 console.log(randomElPesebreSong)
 console.log(randomMetronome)
 
+var trialTapping0 = {
+    type: jsPsychAudioButtonResponse,
+    choices: ['Tap here'],
+    stimulus: '../../songs/movementTapAudio/silence.wav',
+    trial_duration: 60000,
+    button_html: '<button type="button" ' + eventTypeStart + '="buttonDown()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">' + tapping[4][0][lang] + '</p></button>',
+    response_ends_trial: false,
+}
+
 var trialTapping1 = {
     type: jsPsychAudioButtonResponse,
     choices: ['Tap here'],
@@ -87,15 +96,6 @@ var trialTapping1 = {
     button_html: '<button type="button" ' + eventTypeStart + '="buttonDown()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">' + tapping[4][0][lang] + '</p></button>',
     response_ends_trial: false,
 }
- 
-
-
-
-
-
-
-
-
 
 var lockScreen = {
   type: jsPsychHtmlButtonResponse,
@@ -129,4 +129,4 @@ var messageEndTask = {
   }
 };
 
-var generalIntroWrap = [requirements, gettingHelp, frontPage, preloadSongs, instruction0, trialTapping1]
+var generalIntroWrap = [requirements, gettingHelp, frontPage, preloadSongs, instruction0, messageEndTask, instruction1, trialTapping1]
