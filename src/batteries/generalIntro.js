@@ -1,7 +1,8 @@
-var preloadTest = {
-    type: jsPsychPreload,
-    audio: ['../../songs/movementTapAudio/elPesebre.mp3']
-}
+var songTest = '../../songs/movementTapAudio/elPesebre.mp3'
+var preloadSongs2 = {
+  type: jsPsychPreload,
+  audio: songTest 
+}   
 
 var requirements = {
   type: jsPsychInstructions,
@@ -13,16 +14,11 @@ var requirements = {
 
 var soundCheck = {
     type: jsPsychAudioButtonResponse,
-    choices: ['Continue'],
-    stimulus: '../../songs/movementTapAudio/elPesebre.mp3',
-    prompt: initialInstructions[0][0][lang],
-    on_load: function(){
-      document.getElementById("jspsych-content").style.fontSize = '1.3em'
-      document.getElementById("jspsych-audio-button-response-btngroup").style.marginTop = "15px"
-    },
-    on_finish: function(){
-      document.getElementById("jspsych-content").style.fontSize = '2em'
-    }
+    choices: ['Tap here'],
+    stimulus: songTest,
+    trial_duration: 5000,
+    button_html: '<button type="button" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">Continue</p></button>',
+    response_ends_trial: true,
 }
 
 var gettingHelp = {
@@ -67,4 +63,4 @@ var messageEndTask = {
   }
 };
 
-var generalIntroWrap = [preloadTest, requirements, soundCheck, gettingHelp]
+var generalIntroWrap = [preloadSongs2, requirements, soundCheck, gettingHelp]
