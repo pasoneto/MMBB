@@ -147,7 +147,15 @@ var recurring = [
   {"eng": "A pocket or a purse<br><img id='purseSVG' src='../../images/purse.svg'></img>",
     "fi": ""},
   {"eng": "Can you hear this song?<br>If yes, adjust the volume to a comfortable hearing level and click Continue.<br><audio controls><source src='../../songs/movementTapAudio/elPesebre.mp3' type='audio/mp3'></audio><br>If not, try changing to a different computer/phone or to a different internet browser.",
-    "fi": ""}
+    "fi": ""},
+  {"eng": "Please, disable the automatic lock of your screen",
+    "fi": ""},
+  {"eng": "On Iphone: <br>Settings > Display & brightness > Auto-lock > Never",
+    "fi": ""},
+  {"eng": "On Android: <br>Settings > Display > Screen timeout > 30 minutes",
+    "fi": ""},
+  {"eng": "You can turn it back on when the experiment ends",
+    "fi": ""},
   ]
 ]
   
@@ -192,13 +200,6 @@ var initialInstructions = [
    {"eng": "No",
     "fi": "Ei"},
    {"eng": "Is someone helping you complete this task?",
-    "fi": ""},
-  ],
-  [{"eng": "Please, disable the automatic lock of your screen",
-    "fi": ""},
-   {"eng": "On Iphone: <br>Settings > Display & brightness > Auto-lock",
-    "fi": ""},
-   {"eng": "On Android: <br>Settings > Display & brightness > Auto-lock",
     "fi": ""},
   ]
 ]
