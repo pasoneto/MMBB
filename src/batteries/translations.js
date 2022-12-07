@@ -145,7 +145,10 @@ var recurring = [
     {"eng": "A flat surface where you can lay down your phone<br><img id='tableSVG' src='../../images/table.svg'></img>",
     "fi": ""},
   {"eng": "A pocket or a purse<br><img id='purseSVG' src='../../images/purse.svg'></img>",
-    "fi": ""}]
+    "fi": ""},
+  {"eng": "Can you hear this song?<br>If yes, adjust the volume to a comfortable hearing level and click Continue.<br><audio controls><source src='../../songs/movementTapAudio/elPesebre.mp3' type='audio/mp3'></audio><br>If not, try changing to a different computer/phone or to a different internet browser.",
+    "fi": ""}
+  ]
 ]
   
 var beatProduction = [
