@@ -39,6 +39,14 @@
     <script src="./tapping.js"> </script>
 
     <link rel="stylesheet" href="./generalCSS.css">
+
+    <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-app.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-firestore.js"></script>
+
   </head>
 
   <body></body>
@@ -64,7 +72,26 @@
         var measurePerformance = performance.getEntriesByType('resource');
         finalData['infoUser'] = navigator.userAgent
         finalData['performance'] = measurePerformance
-        finalData.localSave('json', 'mydata.json')
+
+        //finalData.localSave('json', 'mydata.json')
+
+        const firebaseConfig = {
+                apiKey: "AIzaSyD7Sxzak9C4RIA23s1FbVvOEvx-CTNnfoI",
+                authDomain: "sequence-e4afd.firebaseapp.com",
+                projectId: "sequence-e4afd",
+                storageBucket: "sequence-e4afd.appspot.com",
+                messagingSenderId: "743153626983",
+                appId: "1:743153626983:web:b89bfbaca62f28495749c2"
+                // measurementId: "G-T2N115QG7L"
+        };
+
+        var app = firebase.initializeApp(firebaseConfig);
+        var db = firebase.firestore();
+        var expcoll = db.collection("riikka")
+        var result_obj = {r : JSON.parse(finalData.json())}
+        expcoll.add(result_obj)
+        alert("Thank you! You can close this window.")
+
       }
     });
 
