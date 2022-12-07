@@ -172,6 +172,22 @@ var familiarityRating = {
     }
 };
 
+var likingBeatRating = {
+    type: jsPsychHtmlSliderResponse,
+    stimulus: movement[8][7][lang],
+    require_movement: true,
+    labels: [movement[8][5][lang], movement[8][6][lang]],
+    on_load: function(){
+      document.getElementById("label0").style = ''
+      document.getElementById("label1").style = ''
+    },
+    on_finish: function(data){
+      var allData = jsPsych.data.get().values();
+      var song = allData[allData.length - 3].stimulus;
+      data.song = song;
+    }
+};
+
 var likingRating = {
     type: jsPsychHtmlSliderResponse,
     stimulus: movement[8][3][lang],
@@ -316,4 +332,4 @@ var trialAccelerometer4 = {
     },
 }
 
-var movementTimeline = [preloadSongs1, loadAccel, instruction0, phonePocket, countDown, trialAccelerometer1, pickUpPhone, instruction1, phonePocket, countDown, trialAccelerometer2, pickUpPhone, likingRating, grooveRating, instruction2, phonePocket, countDown, trialAccelerometer3, pickUpPhone, familiarityRating, likingRating, grooveRating, instruction3, chooseSongs, preloadChosen, phonePocket, countDown, trialAccelerometer4, pickUpPhone, familiarityRating, likingRating, grooveRating];
+var movementTimeline = [preloadSongs1, loadAccel, instruction0, phonePocket, countDown, trialAccelerometer1, pickUpPhone, instruction1, phonePocket, countDown, trialAccelerometer2, pickUpPhone, likingBeatRating, grooveRating, instruction2, phonePocket, countDown, trialAccelerometer3, pickUpPhone, familiarityRating, likingRating, grooveRating, instruction3, chooseSongs, preloadChosen, phonePocket, countDown, trialAccelerometer4, pickUpPhone, familiarityRating, likingRating, grooveRating];
