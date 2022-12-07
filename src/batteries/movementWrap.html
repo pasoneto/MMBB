@@ -70,10 +70,9 @@
         //jsPsych.data.displayData();
         var finalData = jsPsych.data.get()
         var measurePerformance = performance.getEntriesByType('resource');
-        finalData['infoUser'] = navigator.userAgent
-        finalData['performance'] = measurePerformance
+        var userID = urlParams.get('user')
 
-        //finalData.localSave('json', 'mydata.json')
+        finalData['trials'].push({"performance": measurePerformance, "infoUser": navigator.userAgent, 'userID': userID})
 
         const firebaseConfig = {
                 apiKey: "AIzaSyD7Sxzak9C4RIA23s1FbVvOEvx-CTNnfoI",
