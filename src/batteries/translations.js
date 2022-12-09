@@ -239,15 +239,15 @@ var sharedMeasurements = {
   },
   "languageSpeaksSecondary": {
     "fi": "",
-    "eng": "What is your secondary spoken language?"
+    "eng": "What is your secondary spoken language? (If applicable)"
   },
   "height": {
     "fi": "",
-    "eng": "What is your height (cm)"
+    "eng": "What is your height (cm)?"
   },
   "weight": {
     "fi": "",
-    "eng": "What is your weight (Kg)"
+    "eng": "What is your weight (Kg)?"
   },
   "yearsPracticeSinging": {
     "fi": "Kuinka monta vuotta olet harrastanut laulamista?",

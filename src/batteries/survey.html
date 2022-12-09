@@ -88,7 +88,7 @@
         stimulus: `<div style="width:500px;">
                     <p style="font-size:3vw;">How do you feel?
                    </div>`,
-        require_movement: true,
+        require_movement: false,
         labels: ['Extremely bad', 'very bad', 'bad', 'good', 'very good', 'extremely good'],
         data: { previousHowFeeling: 'true' },
         on_start: function(trial) {
@@ -105,7 +105,7 @@
                     Please rate your relationship with the first person you danced and created a playlist with
                    </div>`,
         require_movement: true,
-        labels: ['We are best friends', 'We are very good friends', 'We know each other but rarely interact', "We don't know each other at all"],
+        labels: ["We don't know each other at all", 'We know each other but rarely interact', 'We are very good friends', 'We are best friends'],
     };
 
     var relationshipFriend2 = {
@@ -114,7 +114,7 @@
                       Please rate your relationship with the second person you danced and created a playlist with
                    </div>`,
         require_movement: true,
-        labels: ['We are best friends', 'We are very good friends', 'We know each other but rarely interact', "We don't know each other at all"],
+        labels: ["We don't know each other at all", 'We know each other but rarely interact', 'We are very good friends', 'We are best friends'],
     };
 
 
@@ -163,6 +163,21 @@
       step: 1,
       max: 490,
       maintain_aspect_ration: true,
+      on_load: function(){
+        var a = document.createElement("div");
+        a.setAttribute("id", "promptSlider");
+        a.innerHTML = "Use the slider to indicate how close you feel to your pair"
+        a.style.marginTop = "50px";
+        a.style.textAlign = "center";
+        a.style.justifyContent = "center";
+        document.querySelector(".jspsych-display-element").prepend(a)
+        
+        document.getElementById("jspsych-image-slider-response-stimulus1").style.marginTop = "60px"
+        document.getElementById("jspsych-image-slider-response-stimulus2").style.marginTop = "60px"
+      },
+      on_finish: function(){
+        document.getElementById("promptSlider").remove()
+      }
     };
 
     var closeness2 = {
@@ -174,6 +189,18 @@
       step: 1,
       max: 490,
       maintain_aspect_ration: true,
+      on_load: function(){
+        var a = document.createElement("div");
+        a.setAttribute("id", "promptSlider");
+        a.innerHTML = "Use the slider to indicate how close you feel to your pair"
+        a.style.marginTop = "50px";
+        a.style.textAlign = "center";
+        a.style.justifyContent = "center";
+        document.querySelector(".jspsych-display-element").prepend(a)
+
+        document.getElementById("jspsych-image-slider-response-stimulus1").style.marginTop = "60px"
+        document.getElementById("jspsych-image-slider-response-stimulus2").style.marginTop = "60px"
+      },
       on_start: function(trial) {
         var closenessTrials = jsPsych.data.get().filter({stimulus: "../emotion_demo/basic_emoji/v5a1.png"})
         var closenessTrials = closenessTrials['trials']
@@ -181,12 +208,16 @@
         console.log(startPoint)
         trial.slider_start = startPoint
         trial.start_separation = startPoint
+      },
+      on_finish: function(){
+        document.getElementById("promptSlider").remove()
       }
     };
 
     var inter = {
         type: jsPsychInstructions,
         pages: [
+        'Thank you for your responses,',
         'Please, hand the ipad back to the experimenter',
         ],
         button_label_next: "Next",
@@ -210,6 +241,14 @@
         require_movement: true,
         labels: ['Not at all', 'Very much']
     };
+     
+
+    var grooveRating = {
+        type: jsPsychHtmlSliderResponse,
+        stimulus: "How much did this song make you want to dance?",
+        require_movement: true,
+        labels: ["Not at all", "Very much"],
+    };
 
     var familiaritySong = {
         type: jsPsychHtmlSliderResponse,
@@ -224,36 +263,36 @@
     //Determining which timeline to run
     if(diadNumber == "a"){ //Pair A
       var timelineChosen = [participantID,
-                            howFeeling,  instructionPreCloseness, closeness1, inter,
-                            howWasPlaylist, howFeeling2, instructionPreCloseness, closeness2, inter,
-                            howFeeling2, instructionPreCloseness, closeness2, likeSong, familiaritySong, modelQuestionnaire1, modelQuestionnaire2, modelQuestionnaire3, howFeeling2, instructionPreCloseness, closeness2, inter,
-                            howFeeling2, instructionPreCloseness, closeness2, likeSong, familiaritySong,
+                            howFeeling, closeness1, inter,
+                            howWasPlaylist, howFeeling2,closeness2, inter,
+                            howFeeling2,closeness2, likeSong, grooveRating, familiaritySong, modelQuestionnaire1, modelQuestionnaire2, modelQuestionnaire3, howFeeling2,closeness2, inter,
+                            howFeeling2,closeness2, likeSong, grooveRating, familiaritySong,
                             shortBreak]
     }
     if(diadNumber == "b"){ //Pair B
       var timelineChosen = [participantID, 
-                            howFeeling,  instructionPreCloseness, closeness1, inter,
-                            howFeeling2, instructionPreCloseness, closeness2, likeSong, familiaritySong, inter,
-                            howFeeling2, instructionPreCloseness, closeness2, inter, howWasPlaylist,
-                            howFeeling2, instructionPreCloseness, closeness2, likeSong, familiaritySong, modelQuestionnaire1, modelQuestionnaire2, modelQuestionnaire3, howFeeling2, instructionPreCloseness, closeness2,
-                            howFeeling2, instructionPreCloseness, closeness2,
+                            howFeeling, closeness1, inter,
+                            howFeeling2,closeness2, likeSong, grooveRating, familiaritySong, inter,
+                            howFeeling2,closeness2, howWasPlaylist, inter,
+                            howFeeling2,closeness2, likeSong, grooveRating, familiaritySong, modelQuestionnaire1, modelQuestionnaire2, modelQuestionnaire3, howFeeling2,closeness2,
+                            howFeeling2,closeness2,
                             shortBreak]
     }
     if(diadNumber == "c"){ //Pair c
       var timelineChosen = [participantID,
-                            howFeeling,  instructionPreCloseness, closeness1, inter,
-                            howWasPlaylist, howFeeling2, instructionPreCloseness, closeness2, inter,
-                            howFeeling2, instructionPreCloseness, closeness2, likeSong, familiaritySong, modelQuestionnaire1, modelQuestionnaire2, modelQuestionnaire3, sharedMeasurementsTrial, howFeeling2, instructionPreCloseness, closeness2, inter,
-                            howFeeling2, instructionPreCloseness, closeness2, likeSong, familiaritySong, inter,
+                            howFeeling, closeness1, inter,
+                            howWasPlaylist, howFeeling2,closeness2, inter,
+                            howFeeling2,closeness2, likeSong, grooveRating, familiaritySong, modelQuestionnaire1, modelQuestionnaire2, modelQuestionnaire3, sharedMeasurementsTrial, howFeeling2,closeness2, inter,
+                            howFeeling2,closeness2, likeSong, grooveRating, familiaritySong, inter,
                             relationshipFriend, relationshipFriend2]
     }
     if(diadNumber == "d"){ //Pair d
       var timelineChosen = [participantID, 
-                            howFeeling,  instructionPreCloseness, closeness1, inter,
-                            howFeeling2, instructionPreCloseness, closeness2, likeSong, familiaritySong, inter,
-                            howFeeling2, instructionPreCloseness, closeness2, inter, howWasPlaylist,
-                            howFeeling2, instructionPreCloseness, closeness2, likeSong, familiaritySong, modelQuestionnaire1, modelQuestionnaire2, modelQuestionnaire3, sharedMeasurementsTrial, howFeeling2, instructionPreCloseness, closeness2,
-                            howFeeling2, instructionPreCloseness, closeness2, inter,
+                            howFeeling, closeness1, inter,
+                            howFeeling2,closeness2, likeSong, grooveRating, familiaritySong, inter,
+                            howFeeling2,closeness2, howWasPlaylist, inter,
+                            howFeeling2,closeness2, likeSong, grooveRating, familiaritySong, modelQuestionnaire1, modelQuestionnaire2, modelQuestionnaire3, sharedMeasurementsTrial, howFeeling2,closeness2, inter,
+                            howFeeling2,closeness2, inter,
                             relationshipFriend, relationshipFriend2]
     }
 
