@@ -44,7 +44,7 @@ var jsPsychExtensionAccelerometer = (function () {
                   });
                 }
                 params = params || {};
-                this.currentTrialData = [];
+                this.currentTrialData = [{x: [], y: [], z: [], t: []}];
                 this.currentTrialTargets = new Map();
                 this.currentTrialSelectors = params.targets || [];
                 this.lastSampleTime = null;
@@ -80,7 +80,11 @@ var jsPsychExtensionAccelerometer = (function () {
                 var interval = eventA.interval; //gets interval between samples in ms
 
                 this.lastSampleTime = event_time;
-                this.currentTrialData.push({ x, y, z, t, interval, event: "devicemotion" });
+                
+                this.currentTrialData[0]['x'].push(x);
+                this.currentTrialData[0]['y'].push(y);
+                this.currentTrialData[0]['z'].push(z);
+                this.currentTrialData[0]['t'].push(t);
 
             };
             this.mutationObserverCallback = (mutationsList, observer) => {
