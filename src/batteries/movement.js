@@ -302,9 +302,11 @@ var preloadSongs1 = {
 
 var preloadChosen = {
   type: jsPsychPreload,
-  audio: '../../songs/movementTapAudio/modifiedAudio/' + window.randomChosenSong
+  audio: '',
+  on_start: function(trial) {
+    trial.audio = '../../songs/movementTapAudio/modifiedAudio/' + window.randomChosenSong
+  }
 }   
-
 
 var trialAccelerometer3 = {
     type: jsPsychAudioKeyboardResponse,
