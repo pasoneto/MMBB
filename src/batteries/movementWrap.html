@@ -89,7 +89,6 @@
           var expcoll = db.collection("riikka")
           var result_obj = {r : JSON.parse(finalData.json())}
           expcoll.add(result_obj)
-          alert("Thank you! You can close this window.")
         } catch(e){
           alert(e)
         }
