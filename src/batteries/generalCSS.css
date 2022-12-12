@@ -1,5 +1,6 @@
 body{
-  background: RGB(146, 168, 209, 0.2)
+  background: RGB(146, 168, 209, 0.2);
+  overscroll-behavior-y: contain; /* Disables pull-to-refresh but allows overscroll glow effects. */
 }
 button, #jspsych-html-slider-response-next, .jspsych-btn{
   align-items: center;
