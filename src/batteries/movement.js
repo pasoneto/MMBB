@@ -269,28 +269,6 @@ var trialAccelerometer1 = {
     extensions: [
       {type: jsPsychExtensionAccelerometer }
     ],
-    on_finish: function() {
-      var finalData = jsPsych.data.get()
-      var measurePerformance = performance.getEntriesByType('resource');
-      var userID = urlParams.get('user')
-
-      finalData['trials'].push({"performance": measurePerformance, "infoUser": navigator.userAgent, 'userID': userID})
-
-      const firebaseConfig = {
-              apiKey: "AIzaSyD7Sxzak9C4RIA23s1FbVvOEvx-CTNnfoI",
-              authDomain: "sequence-e4afd.firebaseapp.com",
-              projectId: "sequence-e4afd",
-              storageBucket: "sequence-e4afd.appspot.com",
-              messagingSenderId: "743153626983",
-              appId: "1:743153626983:web:b89bfbaca62f28495749c2"
-              // measurementId: "G-T2N115QG7L"
-      };
-      var app = firebase.initializeApp(firebaseConfig);
-      var db = firebase.firestore();
-      var expcoll = db.collection("riikka")
-      var result_obj = {r : JSON.parse(finalData.json())}
-      expcoll.add(result_obj)
-    }
 }
 
 var randomMetronomeIndex = random(0, songKeys['9'].length -1)
