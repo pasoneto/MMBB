@@ -60,12 +60,8 @@
 
     //Send errors to firebase
     window.addEventListener("error", (event) => {
-          var finalData = jsPsych.data.get()
-          var measurePerformance = performance.getEntriesByType('resource');
           var userID = urlParams.get('user')
-
-          finalData['trials'].push({"errorLog": event, "infoUser": navigator.userAgent, 'userID': userID})
-
+          var data = {"errorLog": event, 'userID': userID}
           const firebaseConfig = {
                   apiKey: "AIzaSyD7Sxzak9C4RIA23s1FbVvOEvx-CTNnfoI",
                   authDomain: "sequence-e4afd.firebaseapp.com",
@@ -73,12 +69,11 @@
                   storageBucket: "sequence-e4afd.appspot.com",
                   messagingSenderId: "743153626983",
                   appId: "1:743153626983:web:b89bfbaca62f28495749c2"
-                  // measurementId: "G-T2N115QG7L"
           };
           var app = firebase.initializeApp(firebaseConfig);
           var db = firebase.firestore();
           var expcoll = db.collection("riikka")
-          var result_obj = {r : JSON.parse(finalData.json())}
+          var result_obj = {r : JSON.parse(data.json())}
           expcoll.add(result_obj)
     });
 
@@ -125,7 +120,8 @@
     var completeSequence = [generalIntroWrap, sequenceTasks[0], sequenceTasks[1], sequenceTasks[2], messageEndTask]
     var completeSequence = completeSequence.flat()
 
-    jsPsych.run(completeSequence);
+    //jsPsych.run(completeSequence);
+    jsPsych.run(batTimeline);
 
  </script>
 </html>
