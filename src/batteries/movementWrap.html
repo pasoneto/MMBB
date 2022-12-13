@@ -3,8 +3,7 @@
   <head>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script src="./langFetch.js"></script>
     <script src="https://unpkg.com/jspsych@7.1.2"></script>
@@ -54,7 +53,8 @@
   <body></body>
 
   <script>
-
+    var persistentData = [];
+    var timelineNode = 0;
     //For all browsers except Safari IOS
     window.onbeforeunload = function() {
       return "If you leave now, data may not be saved";
@@ -88,13 +88,12 @@
         {type: jsPsychExtensionAccelerometer }
       ],
       on_finish: function() {
-
         try{
           var finalData = jsPsych.data.get()
           var measurePerformance = performance.getEntriesByType('resource');
           var userID = urlParams.get('user')
 
-          finalData['trials'].push({"performance": measurePerformance, "infoUser": navigator.userAgent, 'userID': userID})
+          //finalData['trials'].push({"performance": measurePerformance, "infoUser": navigator.userAgent, 'userID': userID})
 
           const firebaseConfig = {
                   apiKey: "AIzaSyD7Sxzak9C4RIA23s1FbVvOEvx-CTNnfoI",
@@ -105,11 +104,17 @@
                   appId: "1:743153626983:web:b89bfbaca62f28495749c2"
                   // measurementId: "G-T2N115QG7L"
           };
-          var app = firebase.initializeApp(firebaseConfig);
-          var db = firebase.firestore();
-          var expcoll = db.collection("riikka")
-          var result_obj = {r : JSON.parse(finalData.json())}
-          expcoll.add(result_obj)
+
+          //var app = firebase.initializeApp(firebaseConfig);
+          //var db = firebase.firestore();
+          //var expcoll = db.collection("riikka")
+          //var result_obj = {r : JSON.parse(finalData.json())}
+          //expcoll.add(result_obj)
+          window.timelineNode = window.timelineNode+1
+          window.persistentData.push(finalData)
+          console.log(finalData)
+          jsPsych.run(timeLines[timelineNode]) 
+
         } catch(e){
           alert(e)
         }
@@ -123,7 +128,10 @@
     var completeSequence = completeSequence.flat()
 
     //jsPsych.run(completeSequence);
-    jsPsych.run(batTimeline);
+    //jsPsych.run(batTimeline);
+    var timeLines = [zero, dois, tres, quatro, cinco, seis]
+
+    jsPsych.run(timeLines[timelineNode])
 
  </script>
 </html>
