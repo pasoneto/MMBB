@@ -58,6 +58,30 @@
       return "If you leave now, data may not be saved";
     }
 
+    //Send errors to firebase
+    addEventListener("error", (event) => {
+          var finalData = jsPsych.data.get()
+          var measurePerformance = performance.getEntriesByType('resource');
+          var userID = urlParams.get('user')
+
+          finalData['trials'].push({"errorLog": event, "infoUser": navigator.userAgent, 'userID': userID})
+
+          const firebaseConfig = {
+                  apiKey: "AIzaSyD7Sxzak9C4RIA23s1FbVvOEvx-CTNnfoI",
+                  authDomain: "sequence-e4afd.firebaseapp.com",
+                  projectId: "sequence-e4afd",
+                  storageBucket: "sequence-e4afd.appspot.com",
+                  messagingSenderId: "743153626983",
+                  appId: "1:743153626983:web:b89bfbaca62f28495749c2"
+                  // measurementId: "G-T2N115QG7L"
+          };
+          var app = firebase.initializeApp(firebaseConfig);
+          var db = firebase.firestore();
+          var expcoll = db.collection("riikka")
+          var result_obj = {r : JSON.parse(finalData.json())}
+          expcoll.add(result_obj)
+    });
+
     //For safari IOS
     function preventRefresh(event) { event.preventDefault(); }
     window.addEventListener("onbeforeunload", preventRefresh, false);
