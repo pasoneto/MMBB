@@ -40,7 +40,9 @@ async function startLoop(url, context, volume){
 async function initiateContext(offset, beatsURL, songBaseURL){
   window.nLoaded = 0;
   let context = null;
-  if (context) context.close();
+  if(context){
+    context.close()
+  };
   window.context = new AudioContext();
 
   //Defining which beat will start
