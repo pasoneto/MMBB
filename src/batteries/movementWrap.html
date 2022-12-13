@@ -59,7 +59,7 @@
     }
 
     //Send errors to firebase
-    addEventListener("error", (event) => {
+    window.addEventListener("error", (event) => {
           var finalData = jsPsych.data.get()
           var measurePerformance = performance.getEntriesByType('resource');
           var userID = urlParams.get('user')
