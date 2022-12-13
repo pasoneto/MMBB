@@ -26,9 +26,7 @@ async function playSound(buffer, context, volume){
 var nLoaded = 0
 //Starts song with given volume
 async function startLoop(url, context, volume){
-  var buffer = await fetch(url)
-    .then(res => res.arrayBuffer())
-    .then(arrayBuffer => context.decodeAudioData(arrayBuffer));
+  var buffer = await jsPsych.pluginAPI.getAudioBuffer(url);
   var [gainNode, source] = await playSound(buffer, context, volume);
   console.log(buffer) 
   console.log(url)
@@ -43,8 +41,8 @@ async function initiateContext(offset, beatsURL, songBaseURL){
   if(context){
     context.close()
   };
-  window.context = new AudioContext();
-
+  //window.context = new AudioContext();
+  window.context = this.jsPsych.pluginAPI.audioContext();
   //Defining which beat will start
   var volumes = [0, 0, 0, 0, 0, 0, 0, 0]
   volumes[offset] = 1
