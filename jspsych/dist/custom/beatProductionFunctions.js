@@ -12,8 +12,8 @@ function arrayRotate(arr, count) {
 async function playSound(buffer, context, volume){
 
   window.gainNode = context.createGain();
-
-  const source = context.createBufferSource();
+  var source = null
+  var source = context.createBufferSource();
   source.buffer = buffer
   source.loop = false;
   source.connect(window.gainNode);
@@ -37,9 +37,8 @@ async function startLoop(url, context, volume){
 //Initiates all songs at the same time, and beat with a given offset
 async function initiateContext(offset, beatsURL, songBaseURL){
   window.nLoaded = 0;
-  let context = null;
-  if(context){
-    context.close()
+  if(window.context){
+    window.context.close()
   };
   //window.context = new AudioContext();
   window.context = this.jsPsych.pluginAPI.audioContext();
