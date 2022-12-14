@@ -5,8 +5,8 @@ var frontPage = {
     button_label_previous: buttons[1][lang],
     show_clickable_nav: true,
     on_start: function(){
-      disalowRefresh.addEventListener("onbeforeunload", preventRefresh, false);
-      window.removeEventListener("beforeunload", beforeUnloadListener, {capture: true});
+      //disalowRefresh.addEventListener("onbeforeunload", preventRefresh, false);
+      //window.removeEventListener("beforeunload", beforeUnloadListener, {capture: true});
     }
 }
   
