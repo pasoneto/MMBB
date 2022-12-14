@@ -99,6 +99,15 @@ var trialBeat = {
   }
 };
 
-//Original
-var batTimeline = [frontPage, instruction2, loadTrial0, trialBeat, instruction3, loadTrial1, trialBeat, betweenTrial, loadTrial2, trialBeat, betweenTrial, loadTrial3, trialBeat, betweenTrial, loadTrial4, trialBeat, betweenTrial, loadTrial5, trialBeat, betweenTrial, loadTrial6, trialBeat];
+var zero = [loadTrial0, trialBeat]
+var one = [loadTrial1, trialBeat]
+var two = [loadTrial2, trialBeat]
+var three = [loadTrial3, trialBeat]
+var four = [loadTrial4, trialBeat]
+var five = [loadTrial5, trialBeat]
+var six = [loadTrial6, trialBeat]
 
+var batTimeline = [zero, one, two, three, four, five, six]
+
+//Original
+//var batTimeline = [frontPage, instruction2, loadTrial0, trialBeat, instruction3, loadTrial1, trialBeat, betweenTrial, loadTrial2, trialBeat, betweenTrial, loadTrial3, trialBeat, betweenTrial, loadTrial4, trialBeat, betweenTrial, loadTrial5, trialBeat, betweenTrial, loadTrial6, trialBeat];

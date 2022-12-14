@@ -59,6 +59,9 @@
     window.onbeforeunload = function() {
       return "If you leave now, data may not be saved";
     }
+    
+    //Which trial to be performed
+    var timelineIndex = urlParams.get('timelineIndex')
 
     //Send errors to firebase
     window.addEventListener("error", (event) => {
@@ -105,11 +108,14 @@
                   appId: "1:743153626983:web:b89bfbaca62f28495749c2"
                   // measurementId: "G-T2N115QG7L"
           };
-          var app = firebase.initializeApp(firebaseConfig);
-          var db = firebase.firestore();
-          var expcoll = db.collection("riikka")
-          var result_obj = {r : JSON.parse(finalData.json())}
-          expcoll.add(result_obj)
+          //var app = firebase.initializeApp(firebaseConfig);
+          //var db = firebase.firestore();
+          //var expcoll = db.collection("riikka")
+          //var result_obj = {r : JSON.parse(finalData.json())}
+          //expcoll.add(result_obj)
+          window.timelineIndex = Number(timelineIndex)+1
+          window.location = "https://pasoneto.github.io/MMBB/src/batteries/movementWrap.html?user=" + userID + "timelineIndex=" + timelineIndex
+          //window.location = "http://[::]:8000/src/batteries/movementWrap.html?timelineIndex=" + timelineIndex
         } catch(e){
           alert(e)
         }
@@ -122,8 +128,10 @@
     var completeSequence = [generalIntroWrap, sequenceTasks[0], sequenceTasks[1], sequenceTasks[2], messageEndTask]
     var completeSequence = completeSequence.flat()
 
+    jsPsych.run(batTimeline[timelineIndex])
+
     //jsPsych.run(completeSequence);
-    jsPsych.run(batTimeline);
+    //jsPsych.run(batTimeline);
 
  </script>
 </html>
