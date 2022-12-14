@@ -100,12 +100,5 @@ var trialBeat = {
 };
 
 //Original
-var zero = [loadTrial0, trialBeat]
-var um = [loadTrial1, trialBeat]
-var dois = [loadTrial2, trialBeat]
-var tres = [loadTrial3, trialBeat]
-var quatro = [loadTrial4, trialBeat]
-var cinco = [loadTrial5, trialBeat]
-var seis = [loadTrial6, trialBeat]
-
 var batTimeline = [frontPage, instruction2, loadTrial0, trialBeat, instruction3, loadTrial1, trialBeat, betweenTrial, loadTrial2, trialBeat, betweenTrial, loadTrial3, trialBeat, betweenTrial, loadTrial4, trialBeat, betweenTrial, loadTrial5, trialBeat, betweenTrial, loadTrial6, trialBeat];
+
