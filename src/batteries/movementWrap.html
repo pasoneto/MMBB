@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script src="./langFetch.js"></script>
+    <script src="./preventRefresh.js"> </script>
+
     <script src="https://unpkg.com/jspsych@7.1.2"></script>
     <script src="../../jspsych/dist/plugin-html-songselector-response.js"> </script>
     <script src="../../jspsych/dist/plugin-html-slider-response.js"></script>
@@ -55,11 +57,6 @@
 
   <script>
 
-    //For all browsers except Safari IOS
-    window.onbeforeunload = function() {
-      return "If you leave now, data may not be saved";
-    }
-    
     //Which trial to be performed
     var timelineIndex = urlParams.get('timelineIndex')
 
@@ -82,9 +79,6 @@
           expcoll.add(result_obj)
     });
 
-    //For safari IOS
-    function preventRefresh(event) { event.preventDefault(); }
-    window.addEventListener("onbeforeunload", preventRefresh, false);
 
     var jsPsych = initJsPsych({
       extensions: [

@@ -4,6 +4,10 @@ var frontPage = {
     button_label_next: buttons[0][lang],
     button_label_previous: buttons[1][lang],
     show_clickable_nav: true,
+    on_start: function(){
+      disalowRefresh.addEventListener("onbeforeunload", preventRefresh, false);
+      window.removeEventListener("beforeunload", beforeUnloadListener, {capture: true});
+    }
 }
   
 var instruction2 = {
@@ -99,15 +103,17 @@ var trialBeat = {
   }
 };
 
-var zero = [loadTrial0, trialBeat]
-var one = [loadTrial1, trialBeat]
-var two = [loadTrial2, trialBeat]
-var three = [loadTrial3, trialBeat]
-var four = [loadTrial4, trialBeat]
-var five = [loadTrial5, trialBeat]
+var frontPageInstructions = [frontPage, instruction2]
+var zero = [loadTrial0, trialBeat, betweenTrial]
+var one = [loadTrial1, trialBeat, betweenTrial]
+var two = [loadTrial2, trialBeat, betweenTrial]
+var three = [loadTrial3, trialBeat, betweenTrial]
+var four = [loadTrial4, trialBeat, betweenTrial]
+var five = [loadTrial5, trialBeat, betweenTrial]
 var six = [loadTrial6, trialBeat]
 
-var batTimeline = [zero, one, two, three, four, five, six]
+//Step by step
+var batTimeline = [frontPageInstructions, zero, one, two, three, four, five, six]
 
 //Original
 //var batTimeline = [frontPage, instruction2, loadTrial0, trialBeat, instruction3, loadTrial1, trialBeat, betweenTrial, loadTrial2, trialBeat, betweenTrial, loadTrial3, trialBeat, betweenTrial, loadTrial4, trialBeat, betweenTrial, loadTrial5, trialBeat, betweenTrial, loadTrial6, trialBeat];
