@@ -124,6 +124,7 @@
 
     var indexTrial = document.cookie.replace('=', '');
     var indexTrial = document.cookie.split(",")
+    indexTrial[2] = indexTrial[2].replace('=', '')
 
     var completeSequence = [sequenceTrials["intro"], sequenceTrials[indexTrial[0]], sequenceTrials[indexTrial[1]], sequenceTrials[indexTrial[2]]]
 
