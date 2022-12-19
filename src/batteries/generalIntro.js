@@ -53,4 +53,4 @@ var messageEndTask = {
   }
 };
 
-var generalIntroWrap = [preloadTest, requirements, gettingHelp]
+var generalIntroWrap = [[preloadTest, requirements, gettingHelp]];

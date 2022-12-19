@@ -49,7 +49,7 @@
     <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-firestore.js"></script>
 
-    <script src="../../jspsych/dist/custom/audioContextMonkeyPatch.js"></script>
+    <script src="../backend/pushDatabase.js"></script>
 
   </head>
 
@@ -67,57 +67,26 @@
       var trialIndex = 0
     }
 
-    //Send errors to firebase
-    window.addEventListener("error", (event) => {
-          var userID = urlParams.get('user')
-          var data = {"errorLog": event, 'userID': userID}
-          const firebaseConfig = {
-                  apiKey: "AIzaSyD7Sxzak9C4RIA23s1FbVvOEvx-CTNnfoI",
-                  authDomain: "sequence-e4afd.firebaseapp.com",
-                  projectId: "sequence-e4afd",
-                  storageBucket: "sequence-e4afd.appspot.com",
-                  messagingSenderId: "743153626983",
-                  appId: "1:743153626983:web:b89bfbaca62f28495749c2"
-          };
-          var app = firebase.initializeApp(firebaseConfig);
-          var db = firebase.firestore();
-          var expcoll = db.collection("riikka")
-          var result_obj = {r : JSON.parse(data.json())}
-          expcoll.add(result_obj)
-    });
-
-
     var jsPsych = initJsPsych({
       extensions: [
         {type: jsPsychExtensionAccelerometer }
       ],
       on_finish: function() {
 
-        try{
-          var finalData = jsPsych.data.get()
-          var measurePerformance = performance.getEntriesByType('resource');
-          var userID = urlParams.get('user')
+        var measurePerformance = performance.getEntriesByType('resource');
+        var userID = urlParams.get('user')
+        var nIndex = urlParams.get('nodeIndex')
+        var tIndex = urlParams.get('tIndex')
 
-          finalData['trials'].push({"performance": measurePerformance, "infoUser": navigator.userAgent, 'userID': userID})
+        jsPsych.data.addProperties({userID: userID, sequenceTrials: document.cookie, nodeIndex: nIndex, tIndex: tIndex});
 
-          const firebaseConfig = {
-                  apiKey: "AIzaSyD7Sxzak9C4RIA23s1FbVvOEvx-CTNnfoI",
-                  authDomain: "sequence-e4afd.firebaseapp.com",
-                  projectId: "sequence-e4afd",
-                  storageBucket: "sequence-e4afd.appspot.com",
-                  messagingSenderId: "743153626983",
-                  appId: "1:743153626983:web:b89bfbaca62f28495749c2"
-                  // measurementId: "G-T2N115QG7L"
-          };
-          //var app = firebase.initializeApp(firebaseConfig);
-          //var db = firebase.firestore();
-          //var expcoll = db.collection("riikka")
-          //var result_obj = {r : JSON.parse(finalData.json())}
-          //expcoll.add(result_obj)
+        var finalData = jsPsych.data.get()
+        finalData['trials'].push({"performance": measurePerformance, "infoUser": navigator.userAgent})
+
+        pushDatabase("riikka", finalData).then(r => {
           var nNodes = completeSequence.length-1
           var nTrials = completeSequence[nodeIndex].length-1
           if(Number(trialIndex) < Number(nTrials)){
-            console.log("first")
             window.trialIndex = Number(trialIndex)+1
             //window.location = "http://[::]:8000/src/batteries/movementWrap.html?user=" + userID + "&trialIndex=" + trialIndex + "&nodeIndex=" + nodeIndex
             window.location = "https://pasoneto.github.io/MMBB/src/batteries/movementWrap.html?user=" + userID + "&trialIndex=" + trialIndex + "&nodeIndex=" + nodeIndex
@@ -133,14 +102,25 @@
               window.location = "https://pasoneto.github.io/MMBB/"
             }
           }
-        } catch(e){
-          alert(e)
-        }
+        })
       }
     });
+    
+    var sequenceTrials = {
+      intro: generalIntroWrap,
+      movement: movementTimeline,
+      bat: batTimeline,
+      tapping: tappingTimeline
+    }
+    var alreadyStored = document.cookie.includes("tapping");
+    
+    if(!alreadyStored){
+      var indexTrial = jsPsych.randomization.shuffle(["movement", "bat", "tapping"]);
+      document.cookie = indexTrial
+    }
 
-    var completeSequence = [[generalIntroWrap], [movementTimeline], batTimeline, [tappingTimeline]]
-    //var completeSequence = jsPsych.randomization.shuffle(completeSequence);
+    indexTrial = document.cookie.split(",")
+    var completeSequence = [sequenceTrials["intro"], sequenceTrials[indexTrial[0]], sequenceTrials[indexTrial[1]], sequenceTrials[indexTrial[2]]]
 
     jsPsych.run(completeSequence[Number(nodeIndex)][trialIndex])
 

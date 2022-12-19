@@ -34,7 +34,7 @@ var movement = [
     "fi": 'Tässä on esimerkki ponnarhtelustaa<br><video id="myVideo" width="100%" autoplay controls><source src="../../songs/movementTapAudio/instructionsAudio/bouncing.mp4" type="video/mp4"></video>'},
   {"eng": "When bouncing, stay in one place and do not perform other body movements", 
          "fi": "Ponnahdellessasi pysy samassa paikassa ja älä tee muita kehon liikkeit"},
-  {"eng": "When you are ready to begin, click next", 
+  {"eng": "When you are ready to begin, click Next", 
     "fi": "Kun olet valmis aloittamaan, paina Seuraava"}
   ],
   [{"eng": "Now you are asked to move to a musical piece in a way that feels natural to you", 
@@ -73,6 +73,8 @@ var movement = [
   {"eng": "A lot", 
          "fi": "Paljon"},
   {"eng": "How much did you like this beat?", 
+         "fi": ""},
+  {"eng": "How much did the beat make you want to move?", 
          "fi": ""},
   ]
 ]
@@ -146,7 +148,7 @@ var recurring = [
     "fi": ""},
   {"eng": "A pocket or a purse<br><img id='purseSVG' src='../../images/purse.svg'></img>",
     "fi": ""},
-  {"eng": "Can you hear this song?<br>If yes, adjust the volume to a comfortable hearing level and click Continue.<br><audio controls><source src='../../songs/movementTapAudio/elPesebre.mp3' type='audio/mp3'></audio><br>If not, try changing to a different computer/phone or to a different internet browser.",
+  {"eng": "Can you hear this song?<br>If yes, adjust the volume to a comfortable hearing level and click Next.<br><audio controls><source src='../../songs/movementTapAudio/elPesebre.mp3' type='audio/mp3'></audio><br>If not, try changing to a different computer/phone or to a different internet browser.",
     "fi": ""},
   {"eng": "Please, disable the automatic lock of your screen",
     "fi": ""},
