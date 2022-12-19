@@ -113,14 +113,17 @@
       tapping: tappingTimeline
     }
 
+    document.cookie = ""
+
     var alreadyStored = document.cookie.includes("tapping");
     if(!alreadyStored){
       var indexTrial = jsPsych.randomization.shuffle(["movement", "bat", "tapping"]);
+      var indexTrial = indexTrial.join(',')
       document.cookie = indexTrial
     }
 
-    indexTrial = document.cookie.replace('=', '');
-    indexTrial = document.cookie.split(",")
+    var indexTrial = document.cookie.replace('=', '');
+    var indexTrial = document.cookie.split(",")
 
     var completeSequence = [sequenceTrials["intro"], sequenceTrials[indexTrial[0]], sequenceTrials[indexTrial[1]], sequenceTrials[indexTrial[2]]]
 
