@@ -112,15 +112,16 @@
       bat: batTimeline,
       tapping: tappingTimeline
     }
+
     var alreadyStored = document.cookie.includes("tapping");
-    
     if(!alreadyStored){
       var indexTrial = jsPsych.randomization.shuffle(["movement", "bat", "tapping"]);
-      document.cookie = indexTrial.replace('=', '');
+      document.cookie = indexTrial
     }
 
+    indexTrial = document.cookie.replace('=', '');
     indexTrial = document.cookie.split(",")
-    indexTrial[2] = indexTrial[2].replace('=', '')
+
     var completeSequence = [sequenceTrials["intro"], sequenceTrials[indexTrial[0]], sequenceTrials[indexTrial[1]], sequenceTrials[indexTrial[2]]]
 
     jsPsych.run(completeSequence[Number(nodeIndex)][trialIndex])
