@@ -1,0 +1,4 @@
+#9th
+#Dont use bluetooth
+#BAT: fix deviation songs by time stretching
+#BAT: avoid starting in counterbeat and headbeat

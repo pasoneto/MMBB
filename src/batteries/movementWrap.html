@@ -76,7 +76,7 @@
         var measurePerformance = performance.getEntriesByType('resource');
         var userID = urlParams.get('user')
         var nIndex = urlParams.get('nodeIndex')
-        var tIndex = urlParams.get('tIndex')
+        var tIndex = urlParams.get('trialIndex')
 
         jsPsych.data.addProperties({userID: userID, sequenceTrials: document.cookie, nodeIndex: nIndex, tIndex: tIndex});
 
@@ -121,7 +121,8 @@
       var indexTrial = indexTrial.join(',')
       document.cookie = indexTrial
     }
-
+    
+    //Fixing artifact created by document.cookie
     var indexTrial = document.cookie.replace('=', '');
     var indexTrial = document.cookie.split(",")
     indexTrial[2] = indexTrial[2].replace('=', '')
