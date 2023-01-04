@@ -71,6 +71,11 @@ var songBaseURL6 = '../../songs/beatProductionAudio/beatModified/baseSongs/dirty
 var beatsURL6 = '../../songs/beatProductionAudio/beatModified/dirtyDishesBeats'
 var loadTrial6 = generateContextTrial(songBaseURL6, beatsURL6, lang)
 
+//Load songs and beats for given trial 
+var songBaseURL7 = '../../songs/beatProductionAudio/beatModified/baseSongs/eclecticElectric/eclecticElectricModified.mp3'
+var beatsURL7 = '../../songs/beatProductionAudio/beatModified/eclecticBeats'
+var loadTrial7 = generateContextTrial(songBaseURL7, beatsURL7, lang)
+
 var trialBeat = {
   type: jsPsychHtmlButtonResponse,
       stimulus: '<div id="arrowsContainer"><p style="margin: 0px; height: 30px; margin-bottom: 10px">' + beatProduction[2][0][lang] + '</p>'+
@@ -110,10 +115,11 @@ var two = [loadTrial2, trialBeat, betweenTrial]
 var three = [loadTrial3, trialBeat, betweenTrial]
 var four = [loadTrial4, trialBeat, betweenTrial]
 var five = [loadTrial5, trialBeat, betweenTrial]
-var six = [loadTrial6, trialBeat]
+var six = [loadTrial6, trialBeat, betweenTrial]
+var seven = [loadTrial7, trialBeat]
 
 //Step by step
-var batTimeline = [frontPageInstructions, zero, one, two, three, four, five, six]
+var batTimeline = [frontPageInstructions, zero, one, two, three, four, five, six, seven]
 
 //Original
 //var batTimeline = [frontPage, instruction2, loadTrial0, trialBeat, instruction3, loadTrial1, trialBeat, betweenTrial, loadTrial2, trialBeat, betweenTrial, loadTrial3, trialBeat, betweenTrial, loadTrial4, trialBeat, betweenTrial, loadTrial5, trialBeat, betweenTrial, loadTrial6, trialBeat];

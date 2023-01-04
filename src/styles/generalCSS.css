@@ -1,0 +1,213 @@
+body{
+  background: RGB(146, 168, 209, 0.2);
+  overscroll-behavior-y: contain; /* Disables pull-to-refresh but allows overscroll glow effects. */
+}
+button, #jspsych-html-slider-response-next, .jspsych-btn{
+  align-items: center;
+  background-clip: padding-box;
+  background-color: #fa6400;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 16px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 0;
+  min-height: 3rem;
+  padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: auto;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+#jspsych-content{
+  font-family: Garamond, serif;
+  font-size:2em;
+  line-height: 1.3em;
+  color: black;
+}
+/*Beat alignment task*/
+.fa.fa-arrow-left{
+  font-size: 50px;
+  color: white;
+}
+.fa.fa-arrow-right{
+  font-size: 50px;
+  color: white;
+}
+
+#add{
+  height: 10vh; 
+  margin: 2px;
+  margin-top: 10px;
+  width: 20vw;
+  box-shadow: none;
+	border: none;
+  margin-bottom: 10px;
+  border-radius: 100px;
+  background: #82b3e7;
+}
+#subtract{
+  height: 10vh; 
+  margin: 2px;
+  margin-top: 10px;
+	border: none;
+  width: 20vw;
+  box-shadow: none;
+  margin-bottom: 10px;
+  border-radius: 100px;
+  background: #ff4b38;
+}
+/*End of beat alignment task*/
+
+/*Movement task jspsych-html-slider-response-next*/
+#sliderCustom{
+  height: 100px;
+  margin-top: 100px;
+  line-height:18px;
+  font-size:4vw;
+}
+#labelsWrapper{
+  display: inline-block;
+  width: 100%;
+  height: 20vh;
+}
+#jspsych-content{
+  width: 100%;
+}
+#label0{
+  line-height: 1.3em;
+  font-size: 0.6em;
+  width: 25%;
+  text-align: left;
+  float: left;
+}
+#label1{
+  line-height: 1.3em;
+  font-size: 0.6em;
+  width: 25%;
+  text-align: right;
+  float: right;
+}
+#buttonSongItem{
+  border-radius: 12px;
+  width: 20vw;
+  background-color: lightgray;
+  height: 10%;
+}
+#coverImage {
+  object-fit: contain;
+  width: 15vw;
+}
+#logoLoading{
+  width: 50vw;
+}
+/*End of movement task*/
+
+/*Tapping task*/
+#tappingButton{
+  height: 50vh; 
+  text-align: center;
+  width: 80vw;
+  box-shadow: 0 8px 5px 0 rgba(0,0,0,0.2), 0 3px 10px 0 rgba(0,0,0,0.19);
+	border: none;
+  border-radius: 100%;
+  background: #82b3e7;
+}
+#customText{
+  font-size:15vw; 
+  color: white;
+  text-align: center;
+}
+/*End of tapping task*/
+
+/* For mobile */
+@media only screen and (max-width: 600px) {
+  #buttonSongItem{
+    border-radius: 12px;
+    width: 90vw;
+    height: 10%;
+    background-color: lightgray;
+  }
+  #coverImage {
+    width: 80vw;
+  }
+  #jspsych-content{
+    line-height: 1.3em;
+  }
+}
+
+#jspsych-instructions-next{
+  background: purple;
+}
+#videoContainer {
+   aspect-ratio: 16/9;
+}
+video::-webkit-media-controls-panel {
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(transparent, transparent) !important;
+  background-color: transparent !important;
+  box-shadow: none !important
+}
+
+button:hover,
+button:focus {
+}
+.button:hover {
+  transform: translateY(-1px);
+}
+.button:active {
+  background-color: #c85000;
+  box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+  transform: translateY(0);
+}
+
+/*Survey friends-strangers*/
+#containerSurvey{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+#instructionSurvey{
+  width: 100vw;
+}
+#buttonContainerSurvey{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 30px
+}
+#a, #b, #c, #d{
+  width: 20%
+}
+#Instruction{
+  font-size: 2em;
+  margin-bottom: 5%
+}
+#tableSVG{
+  min-width: 150px;
+  width: 20vw;
+}
+#purseSVG{
+  margin-top: 15px;
+  min-width: 150px;
+  width: 10vw;
+}
+
+/*End of survey friends-strangers*/

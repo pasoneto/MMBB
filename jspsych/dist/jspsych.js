@@ -952,6 +952,7 @@ var jsPsychModule = (function (exports) {
         }
         preloadImages(images, callback_complete = () => { }, callback_load = (filepath) => { }, callback_error = (error_msg) => { }) {
             // flatten the images array
+            console.log(images)
             images = unique(images.flat());
             var n_loaded = 0;
             if (images.length === 0) {

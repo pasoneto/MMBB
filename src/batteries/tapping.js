@@ -56,7 +56,8 @@ var songPaths = '../../songs/movementTapAudio/modifiedAudio/'
 var pathsToPreload = songsToPreload.map(i=>songPaths+i)
 var preloadSongs2 = {
   type: jsPsychPreload,
-  audio: pathsToPreload 
+  audio: pathsToPreload,
+  auto_preload: false,
 }   
 console.log(randomElPesebreSong)
 console.log(randomMetronome)

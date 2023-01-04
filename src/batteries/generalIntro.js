@@ -1,6 +1,7 @@
 var preloadTest = {
     type: jsPsychPreload,
-    audio: ['../../songs/movementTapAudio/elPesebre.mp3']
+    audio: ['../../songs/movementTapAudio/elPesebre.mp3'],
+    auto_preload: false,
 }
 
 var requirements = {
@@ -53,4 +54,4 @@ var messageEndTask = {
   }
 };
 
-var generalIntroWrap = [[preloadTest, requirements, gettingHelp]];
+var generalIntroWrap = [[requirements, gettingHelp]];

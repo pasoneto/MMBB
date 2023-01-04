@@ -1,4 +1,0 @@
-- tapping
--- Remove feedback button;
--- Prevent zoom by double click;
--- Add question "How difficult was this task" to all batteries/tasks

@@ -23,16 +23,6 @@ var songBPMS = ["Surround&nbspme&nbspwith&nbspyour&nbsplove&nbsp-&nbspPorter",
                  "Ketto&nbsp-&nbspBonobo",
                  "Slow&nbspAcid&nbsp-&nbspCalvin&nbspHarris", 
                  "Temptation&nbsp-&nbspDala"] 
-var songs = [];
-var songCodes = [];
-var albumCovers = [];
-for (let i = 1; i < 7; i++) {
-    var s = new Audio();
-    s.src = '../../songs/movementTapAudio/vitrineSongs/' + i + '.mp3';
-    songs.push(s)
-    songCodes.push(i)
-    albumCovers.push('../../songs/movementTapAudio/imageAlbums/' + i + '.jpg');
-}
 
 function PlaySound(song) {
     if(song.paused){
@@ -61,13 +51,26 @@ function displaySongName(songName){
   document.getElementById("songName").innerHTML = songName
 }
 
-var prompt_songs = function(listSongs, songCodes, lang){
+var listSongs;
+var songCodes;
+var albumCovers;
+var prompt_songs = function(lang){
+      window.listSongs = [];
+      window.songCodes = [];
+      window.albumCovers = [];
+      for (let i = 1; i < 7; i++) {
+          var s = new Audio();
+          s.src = '../../songs/movementTapAudio/vitrineSongs/' + i + '.mp3';
+          listSongs.push(s)
+          songCodes.push(i)
+          albumCovers.push('../../songs/movementTapAudio/imageAlbums/' + i + '.jpg');
+      }
       html = "<div id='songName'>" + movement[7][0][lang] + "</div>"
       for(i in listSongs){
         var songPath = listSongs[i].src
         var songName = songNames[i]
         var songCode = songCodes[i]
-        html += "<audio></audio> <button id='buttonSongItem' name='buttonMusic' onclick=" + "othersStop(songs);PlaySound(songs[" + i + "]);changeColor(this);setNextSong('" + songCode + "');><img id='coverImage' src="+albumCovers[i]+"></button>"
+        html += "<audio></audio> <button id='buttonSongItem' name='buttonMusic' onclick=" + "othersStop(listSongs);PlaySound(listSongs[" + i + "]);changeColor(this);setNextSong('" + songCode + "');><img id='coverImage' src="+albumCovers[i]+"></button>"
       }
       html += "</div>"
       return(html)
@@ -89,11 +92,14 @@ function changeColor(btn) {
 var randomChosenSong;
 var chooseSongs = {
   type: jsPsychHtmlSongSelectorResponse,
-  stimulus: prompt_songs(songs, songCodes, lang),
+  stimulus: '',
   choices: [buttons[0][lang]],
+  on_start: function(trial){
+    trial.stimulus = prompt_songs(lang)
+  },
   on_finish: function(){
-    for(k in songs){
-      songs[k].pause()
+    for(k in window.listSongs){
+      window.listSongs[k].pause()
     }
     console.log(window.chosenSong)
     var chosenSongCode = window.chosenSong
@@ -110,7 +116,6 @@ var frontPageMovement = {
     button_label_previous: buttons[1][lang],
     show_clickable_nav: true
 }
-
 
 var loadAccel = {
     type: jsPsychAudioKeyboardResponse,
@@ -297,7 +302,8 @@ var pathsToPreload = songsToPreload.map(i=>songPaths+i)
 
 var preloadSongs1 = {
   type: jsPsychPreload,
-  audio: pathsToPreload 
+  audio: pathsToPreload,
+  auto_preload: false,
 }   
 
 var preloadChosen = {
@@ -305,7 +311,8 @@ var preloadChosen = {
   audio: '',
   on_start: function(trial) {
     trial.audio = '../../songs/movementTapAudio/modifiedAudio/' + window.randomChosenSong
-  }
+  },
+  auto_preload: false,
 }   
 
 var trialAccelerometer3 = {

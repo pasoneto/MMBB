@@ -1,4 +1,4 @@
-folders=("dirtyDishesBeats" "floorplanBeats" "habstrackBeats" "honeysuckleBeats" "lettuceBeats" "softSandBeats")
+folders=("dirtyDishesBeats" "floorplanBeats" "habstrackBeats" "honeysuckleBeats" "lettuceBeats" "softSandBeats" "eclecticBeats")
 
 for folder in ${folders[@]}; 
   do currentFile=$folder;

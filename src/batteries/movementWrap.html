@@ -6,8 +6,8 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <script src="./langFetch.js"></script>
-    <script src="./preventRefresh.js"> </script>
+    <script src="../utils/langFetch.js"></script>
+    <script src="../utils/preventRefresh.js"> </script>
 
     <script src="https://unpkg.com/jspsych@7.1.2"></script>
     <script src="../../jspsych/dist/plugin-html-songselector-response.js"> </script>
@@ -32,7 +32,7 @@
 
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
 
-    <script src="./translations.js"></script>
+    <script src="../utils/translations.js"></script>
     <script src="./generalIntro.js"></script>
 
     <!--Fetching timelines for each task-->
@@ -40,7 +40,7 @@
     <script src="./bat.js"> </script>
     <script src="./tapping.js"> </script>
 
-    <link rel="stylesheet" href="./generalCSS.css">
+    <link rel="stylesheet" href="../styles/generalCSS.css">
 
     <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-app.js"></script>
 
@@ -123,14 +123,15 @@
     }
     
     //Fixing artifact created by document.cookie
-    var indexTrial = document.cookie.replace('=', '');
-    var indexTrial = document.cookie.split(",")
-    indexTrial[2] = indexTrial[2].replace('=', '')
+    if(document.cookie !== ''){
+      var indexTrial = document.cookie.replace('=', '');
+      var indexTrial = document.cookie.split(",")
+      indexTrial[2] = indexTrial[2].replace('=', '')
+    }
 
     var completeSequence = [sequenceTrials["intro"], sequenceTrials[indexTrial[0]], sequenceTrials[indexTrial[1]], sequenceTrials[indexTrial[2]]]
 
     jsPsych.run(completeSequence[Number(nodeIndex)][trialIndex])
-
 
  </script>
 </html>
