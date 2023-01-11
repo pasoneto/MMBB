@@ -48,8 +48,8 @@ function buttonDown(){
 var randomElPesebreIndex = random(0, songKeys['7'].length -1)
 var randomElPesebreSong = songKeys['7'][randomElPesebreIndex]
 
-var randomMetronome = random(0, songKeys['8'].length -1)
-var randomMetronome = songKeys['8'][randomMetronome]
+var randomMetronome = random(0, songKeys['11'].length -1)
+var randomMetronome = songKeys['11'][randomMetronome]
 
 var songsToPreload = [randomElPesebreSong, randomMetronome]
 var songPaths = '../../songs/movementTapAudio/modifiedAudio/'

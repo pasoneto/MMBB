@@ -116,8 +116,12 @@ button, #jspsych-html-slider-response-next, .jspsych-btn{
 
 /*Tapping task*/
 #tappingButton{
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 50vh; 
   text-align: center;
+  justify-content: center;
   width: 80vw;
   box-shadow: 0 8px 5px 0 rgba(0,0,0,0.2), 0 3px 10px 0 rgba(0,0,0,0.19);
 	border: none;

@@ -84,23 +84,23 @@ var tapping = [
         "fi": "Tässä tehtävässä pyydämme sinua naputtamaan ruudulla näkyvää painiketta paremman kätesi etusormellä"},
   {"eng": "Tap on the button at a speed that feels natural to you", 
         "fi": "Naputa painiketta nopeudella joka tuntuu luontevalta"},
-  {"eng": "Try to keep the speed as constant as possible", 
+  {"eng": "Try to keep the tapping speed as constant as possible", 
         "fi": "Yritä pitää nopeus mahdollisimman tasaisena"}],
   [{"eng": "In the next task, you will hear a constant beat", 
         "fi": "Seuraavassa tehtävässä kuulet tasaisen sykkeen"},
-  {"eng": "Tap in synchrony to the beat", 
+  {"eng": "Your task is to tap in synchrony to the beat", 
     "fi": "Naputa tahdissa sykkeen mukana"},
   {"eng": 'This is an example: <br><video id="myVideo" width="100%" autoplay controls><source src="../../songs/movementTapAudio/exampleTapping/metronome2.mp4" type="video/mp4"></video>', 
     "fi": 'Tässä on esimerkki: <br><video id="myVideo" width="100%" autoplay controls><source src="../../songs/movementTapAudio/exampleTapping/metronome2.mp4" type="video/mp4"></video>'}],
   [{"eng": "In the next task, you will hear a rhythmic pattern", 
         "fi": "Seuraavassa tehtävässä kuulet rytmikuivon"},
-  {"eng": "Tap in synchrony to the beat of the rhythmic pattern", 
+  {"eng": "Your task is to tap in synchrony to the beat of the rhythmic pattern", 
     "fi": "Naputa tahdissa rytmikuivon sykkeen mukana"},
   {"eng": 'This is an example: <br><video id="myVideo" width="100%" autoplay controls><source src="../../songs/movementTapAudio/exampleTapping/hemiole.mp4" type="video/mp4"></video>', 
     "fi": 'Tässä on esimerkki: <br><video id="myVideo" width="100%" autoplay controls><source src="../../songs/movementTapAudio/exampleTapping/hemiole.mp4" type="video/mp4"></video>'}],
   [{"eng": "In the next task you will hear a musical piece", 
          "fi": "Suraavassa tehtävässä kuulet mmusiikkikappaleen"},
-  {"eng": "Tap in synchrony to the beat of the music", 
+  {"eng": "Your task is to tap in synchrony to the beat of the music", 
          "fi": "Naputa tahdissa musiikin sykkeen mukana"}],
   [{"eng": "Tap here", 
     "fi": "Napauta tästä"}],
@@ -120,7 +120,7 @@ var recurring = [
         "fi": "Tervetuloa MMBB-patteriin"},
   {"eng": "Welcome!",
         "fi": "Tervetuloa!"},
-  {"eng": "When you are ready to begin, click next", 
+  {"eng": "When you are ready to begin, click Next", 
          "fi": "Kun olet valmis aloittamaan, paina Seuraava"},
   {"eng": "End of the task", 
          "fi": "Tehtävä on päättynyt"},
@@ -132,7 +132,7 @@ var recurring = [
         "fi": "Ladataan (?)"}, //new
   {"eng": "Continue",     //New
         "fi": "Jatka"},        //New
-  {"eng": "When you are ready to continue, click next", 
+  {"eng": "When you are ready to continue, click Next", 
       "fi": "Kun olet valmis jatkamaan, paina Seuraava"},
   {"eng": "How easy were these tasks for you?", 
    "fi": ""},
@@ -150,13 +150,15 @@ var recurring = [
     "fi": ""},
   {"eng": "Can you hear this song?<br>If yes, adjust the volume to a comfortable hearing level and click Next.<br><audio controls><source src='../../songs/movementTapAudio/elPesebre.mp3' type='audio/mp3'></audio><br>If not, try changing to a different computer/phone or to a different internet browser.",
     "fi": ""},
-  {"eng": "Please, disable the automatic lock of your screen",
+  {"eng": "To ensure the correct functioning of the experiment, it is required that you disable the automatic lock of your phone screen. Tap Next to see instructions for iPhone and Android mobile phones.",
     "fi": ""},
   {"eng": "On Iphone: <br>Settings > Display & brightness > Auto-lock > Never",
     "fi": ""},
   {"eng": "On Android: <br>Settings > Display > Screen timeout > 30 minutes",
     "fi": ""},
-  {"eng": "You can turn it back on when the experiment ends",
+  {"eng": "You can re-enable this setting once the experiment has ended.",
+    "fi": ""},
+  {"eng": "Please, use the phone's loudspeaker, or wired headphones/earplugs. Do not use bluetooth hearing-devices.",
     "fi": ""},
   ]
 ]
@@ -195,13 +197,13 @@ var beatProduction = [
 ]
 
 var initialInstructions = [
-  [{"eng": "Can you hear this song?<br>If yes, adjust the volume to a comfortable hearing level and click Continue.<br><img id='tableSVG' src='../../images/soundSVG.svg'><br>If not, try changing to a different computer/phone or to a different internet browser.",
+  [{"eng": "Press the play button below. Can you hear this song?<br>If so, adjust the volume to a comfortable hearing level and click Continue.<br><img id='tableSVG' src='../../images/soundSVG.svg'><br>If you cannot hear the song, try changing to a different computer/phone or to a different internet browser.",
     "fi": ""},
    {"eng": "Yes",
     "fi": "Kyllä"},
    {"eng": "No",
     "fi": "Ei"},
-   {"eng": "Is someone helping you complete this task?",
+   {"eng": "Is someone helping you to complete this task?",
     "fi": ""},
   ]
 ]
@@ -524,4 +526,3 @@ var sharedMeasurements = {
     "fi": "Joskus koen että minun on vain tanssittava."
   },
 }
-

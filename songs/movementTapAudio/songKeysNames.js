@@ -73,5 +73,13 @@ var songKeys = {
     ],
     "10": [
         "name__10 - agogo_120_BPM_hemiola_115_BPM.mp3"
+    ],
+    "11": [
+        "name__11 - metronome_const_tempo__stretchfactor__0_75188__1_25__1.mp3",
+        "name__11 - metronome_const_tempo__stretchfactor__0_75188__1__1_25.mp3",
+        "name__11 - metronome_const_tempo__stretchfactor__1_25__0_75188__1.mp3",
+        "name__11 - metronome_const_tempo__stretchfactor__1_25__1__0_75188.mp3",
+        "name__11 - metronome_const_tempo__stretchfactor__1__0_75188__1_25.mp3",
+        "name__11 - metronome_const_tempo__stretchfactor__1__1_25__0_75188.mp3"
     ]
 }
