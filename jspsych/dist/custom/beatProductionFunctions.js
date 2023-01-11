@@ -196,6 +196,8 @@ function generateContextTrial(songBaseURL, beatsURL, lang){
       document.querySelector(".jspsych-btn").style.display = "none";
       //Initial offset  
       window.count = randomInt(1, 8);
+      window.initialOffset = window.count; //Initial offset
+
       console.log(window.count) 
       //Initiate source audios as global variables
       window.source1 = null
@@ -226,6 +228,9 @@ function generateContextTrial(songBaseURL, beatsURL, lang){
       document.querySelector("#jspsych-html-button-response-stimulus").innerHTML = "";
 
     },
+    on_finish: function(data){
+      data.batSong = songBaseURL;
+    }
   };
   return(loadNextTrial)
 }

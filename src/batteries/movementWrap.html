@@ -79,9 +79,10 @@
         var tIndex = urlParams.get('trialIndex')
 
         jsPsych.data.addProperties({userID: userID, sequenceTrials: document.cookie, nodeIndex: nIndex, tIndex: tIndex});
-
+        
+        var timeExp = Date.now();
         var finalData = jsPsych.data.get()
-        finalData['trials'].push({"performance": measurePerformance, "infoUser": navigator.userAgent})
+        finalData['trials'].push({"performance": measurePerformance, "infoUser": navigator.userAgent, "timeExp": timeExp})
 
         pushDatabase("riikka", finalData).then(r => {
           var nNodes = completeSequence.length-1

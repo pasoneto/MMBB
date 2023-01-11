@@ -88,7 +88,10 @@ var trialBeat = {
             '</div>',
   choices: ['Continue'],
   prompt: "",
-  on_load: function(){
+  on_start: function(data){
+    data.initialOffset = window.count;
+  },
+  on_load: function(data){
     
     document.querySelector('#add').onclick = () => fluidBeat(plus = true, offset = window.count)
     document.querySelector('#subtract').onclick = () => fluidBeat(plus = false, offset = window.count)
@@ -100,7 +103,10 @@ var trialBeat = {
     }
   },
   on_finish: function(data){
-    data.offset = window.count;
+    var currentSong = jsPsych.data.getLastTimelineData()['trials'][0]["batSong"]
+    data.batSong = currentSong;
+    data.offset = window.count; //Final offset
+    data.initialOffset = window.initialOffset; //Initial offset
     var allSources = [window.source1, window.source2, window.source3, window.source4, window.source5, window.source6, window.source7, window.source8, window.sourceBase]
     for(i in allSources) {
       allSources[i].stop()
