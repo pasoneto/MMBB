@@ -110,8 +110,15 @@ var trialBeat = {
       for(i in allSources) {
         console.log(allSources[i] == null)
         allSources[i].start(3)
-        if(allSources[i].state === 'suspended' && 'ontouchstart' in window){
-          allSources[i].resume();
+        if (allSources[i].state === 'suspended' && 'ontouchstart' in window){
+            var unlock = function(){
+                allSources[i].resume().then(function(){
+                    document.body.removeEventListener('touchstart', unlock);
+                    document.body.removeEventListener('touchend', unlock);
+                });
+            };
+            document.body.addEventListener('touchstart', unlock, false);
+            document.body.addEventListener('touchend', unlock, false);
         }
       }
       document.querySelector(".jspsych-btn").style.display = "block"
