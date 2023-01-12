@@ -1,6 +1,7 @@
 var preloadTest = {
     type: jsPsychPreload,
     audio: ['../../songs/movementTapAudio/elPesebre.mp3'],
+    images: ['../../images/instructions/androidInstructions0.png', '../../images/instructions/androidInstructions1.png', '../../images/instructions/androidInstructions2.png', '../../images/instructions/iosInstruction0.png', '../../images/instructions/iosInstruction1.png', '../../images/instructions/iosInstruction2.png'],
     auto_preload: false,
 }
 
@@ -54,4 +55,4 @@ var messageEndTask = {
   }
 };
 
-var generalIntroWrap = [[requirements, gettingHelp]];
+var generalIntroWrap = [[preloadTest, requirements, gettingHelp]];
