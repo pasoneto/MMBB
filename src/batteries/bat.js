@@ -110,6 +110,9 @@ var trialBeat = {
       for(i in allSources) {
         console.log(allSources[i] == null)
         allSources[i].start(3)
+        if(allSources[i].state === 'suspended' && 'ontouchstart' in window){
+          allSources[i].resume();
+        }
       }
       document.querySelector(".jspsych-btn").style.display = "block"
       document.getElementById("jspsych-html-button-response-stimulus").style.display = "block"
