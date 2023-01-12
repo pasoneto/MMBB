@@ -226,10 +226,12 @@ function generateContextTrial(songBaseURL, beatsURL, lang){
 
       document.querySelector(".jspsych-btn").style.display = "block";
       document.querySelector("#jspsych-html-button-response-stimulus").innerHTML = "";
+      document.querySelector(".jspsych-btn").click()
 
     },
     on_finish: function(data){
       data.batSong = songBaseURL;
+      //document.querySelector(".jspsych-btn").removeEventListener("click", startSounds)
     }
   };
   return(loadNextTrial)

@@ -92,15 +92,30 @@ var trialBeat = {
     data.initialOffset = window.count;
   },
   on_load: function(data){
-    
     document.querySelector('#add').onclick = () => fluidBeat(plus = true, offset = window.count)
     document.querySelector('#subtract').onclick = () => fluidBeat(plus = false, offset = window.count)
+      
+    document.querySelector(".jspsych-btn").style.display = "none"
+    document.getElementById("jspsych-html-button-response-stimulus").style.display = "none"
 
-    var allSources = [window.source1, window.source2, window.source3, window.source4, window.source5, window.source6, window.source7, window.source8, window.sourceBase]
-    for(i in allSources) {
-      console.log(allSources[i] == null)
-      allSources[i].start(3)
+    var startButton = document.createElement("button");
+    startButton.textContent = "Start"
+    startButton.setAttribute('id', 'startButton');  
+    document.getElementById("jspsych-content").appendChild(startButton);
+    document.getElementById("startButton").addEventListener("click", startSounds)
+
+    //Start beats
+    function startSounds(){
+      var allSources = [window.source1, window.source2, window.source3, window.source4, window.source5, window.source6, window.source7, window.source8, window.sourceBase]
+      for(i in allSources) {
+        console.log(allSources[i] == null)
+        allSources[i].start(3)
+      }
+      document.querySelector(".jspsych-btn").style.display = "block"
+      document.getElementById("jspsych-html-button-response-stimulus").style.display = "block"
+      startButton.remove()
     }
+
   },
   on_finish: function(data){
     var currentSong = jsPsych.data.getLastTimelineData()['trials'][0]["batSong"]
