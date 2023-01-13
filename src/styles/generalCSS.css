@@ -151,6 +151,10 @@ button, #jspsych-html-slider-response-next, .jspsych-btn{
   }
 }
 
+#muteButton{
+  width: 80vw
+}
+
 #jspsych-instructions-next{
   background: purple;
 }
@@ -176,6 +180,8 @@ button:focus {
   box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
   transform: translateY(0);
 }
+
+
 
 /*Survey friends-strangers*/
 #containerSurvey{
@@ -220,7 +226,6 @@ button:focus {
 }
 #instructionLock{
   margin-top: 15px;
-  min-width: 150px;
-  width: 80vw;
+  width: 350px;
 }
 /*End of survey friends-strangers*/

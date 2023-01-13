@@ -13,6 +13,16 @@ var requirements = {
   show_clickable_nav: true
 };
 
+var testAudio = {
+  type: jsPsychAudioButtonResponse,
+  stimulus: '../../songs/movementTapAudio/elPesebre.mp3',
+  choices: ['Continue'],
+  prompt: initialInstructions[0][4][lang] + '<img src="../../images/muteButton.png" id="muteButton"></img>',
+  on_load: function(){
+    document.getElementById("jspsych-content").style.fontSize = "25px";
+  }
+};
+
 var gettingHelp = {
   type: jsPsychHtmlButtonResponse,
   stimulus: initialInstructions[0][3][lang],
@@ -55,4 +65,4 @@ var messageEndTask = {
   }
 };
 
-var generalIntroWrap = [[preloadTest, requirements, gettingHelp]];
+var generalIntroWrap = [[preloadTest, requirements, testAudio, gettingHelp]];
