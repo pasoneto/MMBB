@@ -42,37 +42,37 @@ var beatsURL0 = '../../songs/beatProductionAudio/beatModified/training'
 var loadTrial0 = generateContextTrial(songBaseURL0, beatsURL0, lang)
 
 //Load songs and beats for given trial 
-var songBaseURL1 = '../../songs/beatProductionAudio/beatModified/baseSongs/habstrack_clowns/habstrack_clownsModified.mp3'
+var songBaseURL1 = '../../songs/beatProductionAudio/beatModified/baseSongs/habstrack_clowns/habstrack_clownsModifiedLow.mp3'
 var beatsURL1 = '../../songs/beatProductionAudio/beatModified/habstrackBeats'
 var loadTrial1 = generateContextTrial(songBaseURL1, beatsURL1, lang)
 
 //Load songs and beats for given trial 
-var songBaseURL2 = '../../songs/beatProductionAudio/beatModified/baseSongs/honeySuckle/honeysuckleRoseModified.mp3'
+var songBaseURL2 = '../../songs/beatProductionAudio/beatModified/baseSongs/honeySuckle/honeysuckleRoseModifiedLow.mp3'
 var beatsURL2 = '../../songs/beatProductionAudio/beatModified/honeysuckleBeats'
 var loadTrial2 = generateContextTrial(songBaseURL2, beatsURL2, lang)
 
 //Load songs and beats for given trial 
-var songBaseURL3 = '../../songs/beatProductionAudio/beatModified/baseSongs/lettuce/lettuceModified.mp3'
+var songBaseURL3 = '../../songs/beatProductionAudio/beatModified/baseSongs/lettuce/lettuceModifiedLow.mp3'
 var beatsURL3 = '../../songs/beatProductionAudio/beatModified/lettuceBeats'
 var loadTrial3 = generateContextTrial(songBaseURL3, beatsURL3, lang)
 
 //Load songs and beats for given trial 
-var songBaseURL4 = '../../songs/beatProductionAudio/beatModified/baseSongs/floorplanNoLie/floorplanNoLieModified.mp3'
+var songBaseURL4 = '../../songs/beatProductionAudio/beatModified/baseSongs/floorplanNoLie/floorplanNoLieModifiedLow.mp3'
 var beatsURL4 = '../../songs/beatProductionAudio/beatModified/floorplanBeats'
 var loadTrial4 = generateContextTrial(songBaseURL4, beatsURL4, lang)
 
 //Load songs and beats for given trial 
-var songBaseURL5 = '../../songs/beatProductionAudio/beatModified/baseSongs/softSand/softSandModified.mp3'
+var songBaseURL5 = '../../songs/beatProductionAudio/beatModified/baseSongs/softSand/softSandModifiedLow.mp3'
 var beatsURL5 = '../../songs/beatProductionAudio/beatModified/softSandBeats'
 var loadTrial5 = generateContextTrial(songBaseURL5, beatsURL5, lang)
 
 //Load songs and beats for given trial 
-var songBaseURL6 = '../../songs/beatProductionAudio/beatModified/baseSongs/dirtyDishes/dirty_dishesModified.mp3'
+var songBaseURL6 = '../../songs/beatProductionAudio/beatModified/baseSongs/dirtyDishes/dirty_dishesModifiedLow.mp3'
 var beatsURL6 = '../../songs/beatProductionAudio/beatModified/dirtyDishesBeats'
 var loadTrial6 = generateContextTrial(songBaseURL6, beatsURL6, lang)
 
 //Load songs and beats for given trial 
-var songBaseURL7 = '../../songs/beatProductionAudio/beatModified/baseSongs/eclecticElectric/eclecticElectricModified.mp3'
+var songBaseURL7 = '../../songs/beatProductionAudio/beatModified/baseSongs/eclecticElectric/eclecticElectricModifiedLow.mp3'
 var beatsURL7 = '../../songs/beatProductionAudio/beatModified/eclecticBeats'
 var loadTrial7 = generateContextTrial(songBaseURL7, beatsURL7, lang)
 

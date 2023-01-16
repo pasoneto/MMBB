@@ -47,14 +47,14 @@ async function initiateContext(offset, beatsURL, songBaseURL){
   volumes[offset] = 1
   console.log(volumes) 
   var values = startLoop(songBaseURL, window.context, 0.5);
-  var values1 = startLoop(beatsURL + '/metronome_0.mp3', window.context, volumes[0]);
-  var values2 = startLoop(beatsURL + '/metronome_1.mp3', window.context, volumes[1]);
-  var values3 = startLoop(beatsURL + '/metronome_2.mp3', window.context, volumes[2]);
-  var values4 = startLoop(beatsURL + '/metronome_3.mp3', window.context, volumes[3]);
-  var values5 = startLoop(beatsURL + '/metronome_4.mp3', window.context, volumes[4]);
-  var values6 = startLoop(beatsURL + '/metronome_5.mp3', window.context, volumes[5]);
-  var values7 = startLoop(beatsURL + '/metronome_6.mp3', window.context, volumes[6]); 
-  var values8 = startLoop(beatsURL + '/metronome_7.mp3', window.context, volumes[7]);
+  var values1 = startLoop(beatsURL + '/downmetronome_0.mp3', window.context, volumes[0]);
+  var values2 = startLoop(beatsURL + '/downmetronome_1.mp3', window.context, volumes[1]);
+  var values3 = startLoop(beatsURL + '/downmetronome_2.mp3', window.context, volumes[2]);
+  var values4 = startLoop(beatsURL + '/downmetronome_3.mp3', window.context, volumes[3]);
+  var values5 = startLoop(beatsURL + '/downmetronome_4.mp3', window.context, volumes[4]);
+  var values6 = startLoop(beatsURL + '/downmetronome_5.mp3', window.context, volumes[5]);
+  var values7 = startLoop(beatsURL + '/downmetronome_6.mp3', window.context, volumes[6]); 
+  var values8 = startLoop(beatsURL + '/downmetronome_7.mp3', window.context, volumes[7]);
 
   var values = await values
   var values1 = await values1
@@ -194,8 +194,11 @@ function generateContextTrial(songBaseURL, beatsURL, lang){
     on_load: async function(){
 
       document.querySelector(".jspsych-btn").style.display = "none";
+
       //Initial offset  
-      window.count = randomInt(1, 8);
+      var possibleOffsets = [1, 2, 3, 5, 6, 7, 8];
+      window.count = possibleOffsets[Math.floor(Math.random()*possibleOffsets.length)];
+
       window.initialOffset = window.count; //Initial offset
 
       console.log(window.count) 
