@@ -32,7 +32,7 @@ var movement = [
          "fi": "Tehtävänäsi on liikuttaa kehoasi ponnahdellen ylös ja alas laulun tahidssa"},
   {"eng": 'This is an example of bouncing<br><video id="myVideo" width="100%" autoplay controls><source src="../../songs/movementTapAudio/instructionsAudio/bouncing.mp4" type="video/mp4"></video>',
     "fi": 'Tässä on esimerkki ponnarhtelustaa<br><video id="myVideo" width="100%" autoplay controls><source src="../../songs/movementTapAudio/instructionsAudio/bouncing.mp4" type="video/mp4"></video>'},
-  {"eng": "When bouncing, stay in one place and do not perform other body movements", 
+  {"eng": "When bouncing, stay in place and do not perform other body movements", 
          "fi": "Ponnahdellessasi pysy samassa paikassa ja älä tee muita kehon liikkeit"},
   {"eng": "When you are ready to begin, click Next", 
     "fi": "Kun olet valmis aloittamaan, paina Seuraava"}
@@ -55,7 +55,7 @@ var movement = [
   {"eng": "When you have made your selection, scroll down to the bottom and press Continue", 
          "fi": "Kun olet valinnut laulun, rullaa ruudun alaosaan ja paina Jatka"},
   ],
-  [{"eng": "Choose a song below and click nex when you have made your choice",
+  [{"eng": "Choose a song below and click Next when you have made your choice",
     "fi": "Valitse kappale alapuolelta ja paina seuraava, kun olet tehnyt valintasi"}
   ],
   [{"eng": "How familiar was the song to you?", 
@@ -80,7 +80,7 @@ var movement = [
 ]
         
 var tapping = [
-  [{"eng": "In this task, we will ask you to tap on a button on the screen using the index finger of your prefered hand<br><img id='tableSVG' src='../../images/tappingSVG.svg'></img>", 
+  [{"eng": "In this task, we will ask you to place your phone on a table, and tap on a button on the screen using the index finger of your prefered hand<br><img id='tableSVG' src='../../images/tappingSVG.svg'></img>", 
         "fi": "Tässä tehtävässä pyydämme sinua naputtamaan ruudulla näkyvää painiketta paremman kätesi etusormellä"},
   {"eng": "Tap on the button at a speed that feels natural to you", 
         "fi": "Naputa painiketta nopeudella joka tuntuu luontevalta"},
@@ -144,7 +144,7 @@ var recurring = [
           "fi": "Tervetuloa MMBB-patteriin"},
   {"eng": "For this task you will need:",
     "fi": ""},
-    {"eng": "A flat surface where you can lay down your phone<br><img id='tableSVG' src='../../images/table.svg'></img>",
+  {"eng": "A flat surface where you can lay down your phone<br><img id='tableSVG' src='../../images/table.svg'></img>",
     "fi": ""},
   {"eng": "A pocket or a purse<br><img id='purseSVG' src='../../images/purse.svg'></img>",
     "fi": ""},
@@ -169,6 +169,8 @@ var recurring = [
   {"eng": "You can re-enable this setting once the experiment has ended.",
     "fi": ""},
     {"eng": "Please, use the phone's loudspeaker, or wired headphones/earplugs. Do not use bluetooth hearing-devices.<br> <img id='noBluetooth' src='../../images/noBluetooth.svg'></img>",
+    "fi": ""},
+    {"eng": "You can take breaks between each task",
     "fi": ""},
   ]
 ]
