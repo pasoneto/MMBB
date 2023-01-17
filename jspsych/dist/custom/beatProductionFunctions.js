@@ -196,7 +196,7 @@ function generateContextTrial(songBaseURL, beatsURL, lang){
       document.querySelector(".jspsych-btn").style.display = "none";
 
       //Initial offset  
-      var possibleOffsets = [1, 2, 3, 5, 6, 7, 8];
+      var possibleOffsets = [1, 2, 3, 5, 6, 7];
       window.count = possibleOffsets[Math.floor(Math.random()*possibleOffsets.length)];
 
       window.initialOffset = window.count; //Initial offset
