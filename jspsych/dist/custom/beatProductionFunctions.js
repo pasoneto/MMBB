@@ -100,12 +100,17 @@ function shift(plus = false){
   }
 }
 
+//Initializes number of times user clicked on the +/- buttons
+window.nChanges = 0
+
 //Changes volume of given track
 function fluidBeat(plus, offset){
 
   shift(plus) 
   var offset = window.count
- 
+  
+  window.nChanges = window.nChanges + 1
+
   if(offset == 0){
     window.gainNode1.gain.value = 1
     window.gainNode2.gain.value = 0

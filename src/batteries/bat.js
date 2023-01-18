@@ -121,6 +121,7 @@ var trialBeat = {
     var currentSong = jsPsych.data.getLastTimelineData()['trials'][0]["batSong"]
     data.batSong = currentSong;
     data.offset = window.count; //Final offset
+    data.nChanges = window.nChanges; //How many times user changed
     data.initialOffset = window.initialOffset; //Initial offset
     var allSources = [window.source1, window.source2, window.source3, window.source4, window.source5, window.source6, window.source7, window.source8, window.sourceBase]
     for(i in allSources) {
