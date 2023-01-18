@@ -148,7 +148,11 @@ var recurring = [
     "fi": ""},
   {"eng": "A pocket or a purse<br><img id='purseSVG' src='../../images/purse.svg'></img>",
     "fi": ""},
-  {"eng": "To ensure the correct functioning of the experiment, it is required that you disable the automatic lock of your phone screen. Tap Next to see instructions.",
+  {"eng": "Please, use the phone's loudspeaker, or wired headphones/earplugs. Do not use bluetooth hearing-devices.<br> <img id='noBluetooth' src='../../images/noBluetooth.svg'></img>",
+    "fi": ""},
+  {"eng": "You can take breaks between each task",
+    "fi": ""}],
+  [{"eng": "To ensure the correct functioning of the experiment, it is required that you disable the automatic lock of your phone screen. Tap Next to see instructions.",
     "fi": ""},
   {"eng": "On <b>iPhone</b>:",
     "fi": ""},
@@ -157,6 +161,10 @@ var recurring = [
   {"eng": "Display & brightness <br> <img id='instructionLock' src='../../images/instructions/iosInstruction1.png'></img>",
     "fi": ""},
   {"eng": "Auto-lock > Never <br> <img id='instructionLock' src='../../images/instructions/iosInstruction2.png'></img>",
+    "fi": ""},
+  {"eng": "You can re-enable this setting once the experiment has ended.",
+    "fi": ""}],
+  [{"eng": "To ensure the correct functioning of the experiment, it is required that you disable the automatic lock of your phone screen. Tap Next to see instructions.",
     "fi": ""},
   {"eng": "On <b>Android</b>:",
     "fi": ""},
@@ -167,10 +175,6 @@ var recurring = [
   {"eng": "Screen timeout > 30 minutes <br> <img id='instructionLock' src='../../images/instructions/androidInstructions2.png'></img>",
     "fi": ""},
   {"eng": "You can re-enable this setting once the experiment has ended.",
-    "fi": ""},
-    {"eng": "Please, use the phone's loudspeaker, or wired headphones/earplugs. Do not use bluetooth hearing-devices.<br> <img id='noBluetooth' src='../../images/noBluetooth.svg'></img>",
-    "fi": ""},
-    {"eng": "You can take breaks between each task",
     "fi": ""},
   ]
 ]
@@ -209,7 +213,7 @@ var beatProduction = [
 ]
 
 var initialInstructions = [
-  [{"eng": "Press the play button below. Can you hear this song?<br>If so, adjust the volume to a comfortable hearing level and click Continue.<br><img id='tableSVG' src='../../images/soundSVG.svg'><br>If you cannot hear the song, try changing to a different computer/phone or to a different internet browser.",
+  [{"eng": "Can you hear this song?<br>If so, adjust the volume to a comfortable hearing level and click Continue.<br><img id='tableSVG' src='../../images/soundSVG.svg'><br>If you cannot hear the song, try changing to a different computer/phone or to a different internet browser.",
     "fi": ""},
    {"eng": "Yes",
     "fi": "Kyllä"},
@@ -217,7 +221,7 @@ var initialInstructions = [
     "fi": "Ei"},
    {"eng": "Is someone helping you to complete this task?",
     "fi": ""},
-   {"eng": "Can you hear this song?<br>If yes, adjust the volume to a comfortable hearing level and click Next.<br>If you are using an iPhone, disable the 'mute' button on the left side of your phone. <br> If it still doesn't work change to a different phone or to a different internet browser.",
+   {"eng": "Can you hear this song?<br>If yes, adjust the volume to a comfortable hearing level and click Next.<br>Make sure that the 'mute' button on the left side of your phone is disabled. <br> If it still doesn't work change to a different phone or to a different internet browser.",
     "fi": ""},
   ]
 ]

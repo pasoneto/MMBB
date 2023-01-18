@@ -13,7 +13,39 @@ var requirements = {
   show_clickable_nav: true
 };
 
-var testAudio = {
+var lIOS = {
+  type: jsPsychInstructions,
+  pages: recurring[13].map(i=>[i[lang]]), 
+  button_label_next: buttons[0][lang],
+  button_label_previous: buttons[1][lang],
+  show_clickable_nav: true
+};
+
+var lAndroid = {
+  type: jsPsychInstructions,
+  pages: recurring[14].map(i=>[i[lang]]), 
+  button_label_next: buttons[0][lang],
+  button_label_previous: buttons[1][lang],
+  show_clickable_nav: true
+};
+
+var lockIOS = {
+  timeline: [lIOS],
+  conditional_function: function(){
+    var OS = getMobileOperatingSystem()
+    return OS == "iOS"
+  }
+}
+
+var lockAndroid = {
+  timeline: [lAndroid],
+  conditional_function: function(){
+    var OS = getMobileOperatingSystem()
+    return (OS == "Android" || OS == "unknown")
+  }
+}
+
+var tAudioIOS = {
   type: jsPsychAudioButtonResponse,
   stimulus: '../../songs/movementTapAudio/elPesebre.mp3',
   choices: ['Continue'],
@@ -23,17 +55,33 @@ var testAudio = {
   }
 };
 
-var gettingHelp = {
-  type: jsPsychHtmlButtonResponse,
-  stimulus: initialInstructions[0][3][lang],
-  choices: [initialInstructions[0][2][lang], initialInstructions[0][1][lang]],
-  prompt: '',
+var tAudioAndroid = {
+  type: jsPsychAudioButtonResponse,
+  stimulus: '../../songs/movementTapAudio/elPesebre.mp3',
+  choices: ['Continue'],
+  prompt: initialInstructions[0][0][lang],
   on_load: function(){
-    document.getElementById("jspsych-html-button-response-btngroup").getElementsByClassName("jspsych-btn")[1].style.background = "purple"
-  },
+    document.getElementById("jspsych-content").style.fontSize = "25px";
+  }
 };
 
-var lockScreen = {
+var testAudioIOS = {
+  timeline: [tAudioIOS],
+  conditional_function: function(){
+    var OS = getMobileOperatingSystem()
+    return (OS == "iOS" || OS == "unknown")
+  }
+}
+
+var testAudioAndroid = {
+  timeline: [tAudioAndroid],
+  conditional_function: function(){
+    var OS = getMobileOperatingSystem()
+    return OS === "Android"
+  }
+}
+
+var gettingHelp = {
   type: jsPsychHtmlButtonResponse,
   stimulus: initialInstructions[0][3][lang],
   choices: [initialInstructions[0][2][lang], initialInstructions[0][1][lang]],
@@ -65,4 +113,4 @@ var messageEndTask = {
   }
 };
 
-var generalIntroWrap = [[preloadTest, requirements, testAudio, gettingHelp]];
+var generalIntroWrap = [[preloadTest, requirements, lockIOS, lockAndroid, testAudioIOS, testAudioAndroid, gettingHelp]];
