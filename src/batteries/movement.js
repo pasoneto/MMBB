@@ -117,6 +117,22 @@ var frontPageMovement = {
     show_clickable_nav: true
 }
 
+var promptAcc = {
+    type: jsPsychInstructions,
+    pages: [movement[1][1][lang]],
+    button_label_next: buttons[0][lang],
+    button_label_previous: buttons[1][lang],
+    show_clickable_nav: true
+}
+
+var promptAccel = {
+  timeline: [promptAcc],
+  conditional_function: function(){
+    var OS = getMobileOperatingSystem()
+    return OS == "iOS"
+  }
+}
+
 var loadAccel = {
     type: jsPsychAudioKeyboardResponse,
     stimulus: '../../songs/movementTapAudio/silence.wav',
@@ -341,4 +357,4 @@ var trialAccelerometer4 = {
     },
 }
 
-var movementTimeline = [[preloadSongs1, instruction0, loadAccel, phonePocket, countDown, trialAccelerometer1, pickUpPhone, instruction1, phonePocket, countDown, trialAccelerometer2, pickUpPhone, likingBeatRating, grooveRatingBeat, instruction2, phonePocket, countDown, trialAccelerometer3, pickUpPhone, familiarityRating, likingRating, grooveRating, instruction3, chooseSongs, preloadChosen, phonePocket, countDown, trialAccelerometer4, pickUpPhone, familiarityRating, likingRating, grooveRating]];
+var movementTimeline = [[preloadSongs1, instruction0, promptAccel, loadAccel, phonePocket, countDown, trialAccelerometer1, pickUpPhone, instruction1, phonePocket, countDown, trialAccelerometer2, pickUpPhone, likingBeatRating, grooveRatingBeat, instruction2, phonePocket, countDown, trialAccelerometer3, pickUpPhone, familiarityRating, likingRating, grooveRating, instruction3, chooseSongs, preloadChosen, phonePocket, countDown, trialAccelerometer4, pickUpPhone, familiarityRating, likingRating, grooveRating]];

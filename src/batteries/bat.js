@@ -26,16 +26,6 @@ var instruction3 = {
     show_clickable_nav: true,
 }
 
-var betweenTrial = {
-    type: jsPsychInstructions,
-    pages: [
-    recurring[8][lang],
-    ],
-    button_label_next: buttons[0][lang],
-    button_label_previous: buttons[1][lang],
-    show_clickable_nav: true,
-}
-
 //Load songs and beats for given trial 
 var songBaseURL0 = '../../songs/beatProductionAudio/beatModified/baseSongs/training/trainingBaseModified.mp3'
 var beatsURL0 = '../../songs/beatProductionAudio/beatModified/training'
@@ -94,7 +84,7 @@ var trialBeat = {
   on_load: function(data){
     document.querySelector('#add').onclick = () => fluidBeat(plus = true, offset = window.count)
     document.querySelector('#subtract').onclick = () => fluidBeat(plus = false, offset = window.count)
-      
+    
     document.querySelector(".jspsych-btn").style.display = "none"
     document.getElementById("jspsych-html-button-response-stimulus").style.display = "none"
 
@@ -114,8 +104,14 @@ var trialBeat = {
       document.querySelector(".jspsych-btn").style.display = "block"
       document.getElementById("jspsych-html-button-response-stimulus").style.display = "block"
       startButton.remove()
-    }
 
+      //Disable button for a 5 seconds
+      document.querySelector(".jspsych-btn").disabled = true;
+      sleep(6000).then(r => {
+        document.querySelector(".jspsych-btn").disabled = false;
+      })
+
+    }
   },
   on_finish: function(data){
     var currentSong = jsPsych.data.getLastTimelineData()['trials'][0]["batSong"]
@@ -131,13 +127,13 @@ var trialBeat = {
 };
 
 var frontPageInstructions = [frontPage, instruction2]
-var zero = [loadTrial0, trialBeat, betweenTrial]
-var one = [loadTrial1, trialBeat, betweenTrial]
-var two = [loadTrial2, trialBeat, betweenTrial]
-var three = [loadTrial3, trialBeat, betweenTrial]
-var four = [loadTrial4, trialBeat, betweenTrial]
-var five = [loadTrial5, trialBeat, betweenTrial]
-var six = [loadTrial6, trialBeat, betweenTrial]
+var zero = [loadTrial0, trialBeat]
+var one = [loadTrial1, trialBeat]
+var two = [loadTrial2, trialBeat]
+var three = [loadTrial3, trialBeat]
+var four = [loadTrial4, trialBeat]
+var five = [loadTrial5, trialBeat]
+var six = [loadTrial6, trialBeat]
 var seven = [loadTrial7, trialBeat]
 
 //Step by step
