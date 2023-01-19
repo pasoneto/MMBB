@@ -3,8 +3,8 @@ var movement = [
    "fi": "Liiketehtävä"}],
   [{"eng": "Accessing accelerometer", 
     "fi": "Tarkistetaan kiihtyvyysanturia..."},
-    {"eng": "In the next page, you will be asked to allow access to your phone's motion sensors. Please, click on 'Allow'.",
-     "fi": ""}
+   {"eng": "In the next page, you will be asked to allow access to your phone's motion sensors. Please, click on 'Allow'.",
+    "fi": ""}
   ],
   [{"eng": "In the following tasks, we ask you to perform body movements in different situations", 
         "fi": "Seuraavissa tehtävissä pyydämme sinua tekemään kehon liikkeitä eri tilanteissa"},
@@ -78,9 +78,9 @@ var movement = [
   {"eng": "A lot", 
          "fi": "Paljon"},
   {"eng": "How much did you like this beat?", 
-         "fi": ""},
+         "fi": "Kuinka paljon pidit tästä rytmistä?"},
   {"eng": "How much did the beat make you want to move?", 
-         "fi": ""},
+         "fi": "Kuinka paljon rytmi sai sinut haluamaan liikkua?"},
   ]
 ]
         
@@ -140,47 +140,47 @@ var recurring = [
   {"eng": "When you are ready to continue, click Next", 
       "fi": "Kun olet valmis jatkamaan, paina Seuraava"},
   {"eng": "How easy were these tasks for you?", 
-   "fi": ""},
+   "fi": "Kuinka helppoja nämä tehtävät olivat sinulle?"},
   {"eng": "Very easy", 
-   "fi": ""},
+   "fi": "Todella helppoja"}, 
   {"eng": "Very hard", 
-   "fi": ""},
+   "fi": "Todella haastavia"},
   [{"eng": "Welcome to MMBB",
           "fi": "Tervetuloa MMBB-patteriin"},
   {"eng": "For this task you will need:",
-    "fi": ""},
+    "fi": "Tätä tehtävää varten tarvitset:"},
   {"eng": "A flat surface where you can lay down your phone<br><img id='tableSVG' src='../../images/table.svg'></img>",
-    "fi": ""},
+    "fi": "Tasainen pinta, jolle voit laskea puhelimen<br><img id='tableSVG' src='../../images/table.svg'></img>"},
   {"eng": "A pocket or a purse<br><img id='purseSVG' src='../../images/purse.svg'></img>",
-    "fi": ""},
+   "fi": "Taskun tai käsilaukun<br><img id='purseSVG' src='../../images/purse.svg'></img>"},
 {"eng": "Please, either use the wired headphones/earplugs or the phone's loudspeaker. Do not use bluetooth hearing-devices.<br> <img id='noBluetooth' src='../../images/noBluetooth.svg'></img>",
  "fi": ""},
 {"eng": "You can take breaks between each task",
- "fi": ""}],
+ "fi": "Voit pitää tauon jokaisen tehtävän välillä"}],
   [{"eng": "To ensure the correct functioning of the experiment, it is required that you disable the automatic lock of your phone screen. Tap Next to see instructions.",
-    "fi": ""},
+    "fi": "Jotta koe onnistuu, sinun on poistettava puhelimen näytön automaattinen lukitus. Näet ohjeet napauttamalla Seuraava."},
   {"eng": "On <b>iPhone</b>:",
     "fi": ""},
   {"eng": "Settings <br> <img id='instructionLock' src='../../images/instructions/iosInstruction0.png'></img>",
-    "fi": ""},
+   "fi": "Asetukset <br> <img id='instructionLock' src='../../images/instructions/iosInstruction0.png'></img>"},
   {"eng": "Display & brightness <br> <img id='instructionLock' src='../../images/instructions/iosInstruction1.png'></img>",
-    "fi": ""},
+   "fi": "Näyttö & kirkkaus <br> <img id='instructionLock' src='../../images/instructions/iosInstruction1.png'></img>"},
   {"eng": "Auto-lock > Never <br> <img id='instructionLock' src='../../images/instructions/iosInstruction2.png'></img>",
-    "fi": ""},
+    "fi": "Automaattinen lukitus > Ei koskaan <br> <img id='instructionLock' src='../../images/instructions/iosInstruction2.png'></img>"},
   {"eng": "You can re-enable this setting once the experiment has ended.",
-    "fi": ""}],
+   "fi": "Voit ottaa tämän asetuksen uudelleen käyttöön, kun kokeilu on päättynyt."}],
   [{"eng": "To ensure the correct functioning of the experiment, it is required that you disable the automatic lock of your phone screen. Tap Next to see instructions.",
-    "fi": ""},
+    "fi": "Jotta koe onnistuu, sinun on poistettava puhelimen näytön automaattinen lukitus. Näet ohjeet napauttamalla Seuraava."},
   {"eng": "On <b>Android</b>:",
     "fi": ""},
   {"eng": "Settings <br> <img id='instructionLock' src='../../images/instructions/androidInstructions0.png'></img>",
-    "fi": ""},
+    "fi": "Astetukset <br> <img id='instructionLock' src='../../images/instructions/androidInstructions0.png'></img>"},
   {"eng": "Display <br> <img id='instructionLock' src='../../images/instructions/androidInstructions1.png'></img>",
-    "fi": ""},
+   "fi": "Näyttö & kirkkaus <br> <img id='instructionLock' src='../../images/instructions/androidInstructions1.png'></img>"},
   {"eng": "Screen timeout > 30 minutes <br> <img id='instructionLock' src='../../images/instructions/androidInstructions2.png'></img>",
-    "fi": ""},
+   "fi": "Näytön lukitus > 30 minuuttia <br> <img id='instructionLock' src='../../images/instructions/androidInstructions2.png'></img>"},
   {"eng": "You can re-enable this setting once the experiment has ended.",
-    "fi": ""},
+    "fi": "Voit ottaa tämän asetuksen uudelleen käyttöön, kun kokeilu on päättynyt."},
   ]
 ]
   
@@ -202,13 +202,13 @@ var beatProduction = [
   {"eng": "Press the left button if the click is too late or the right button if is too early",
         "fi": "Paina vasenta nappia jos kilikkiraita on myöhässä tai oikeaa nappia jos se on etuajassa"},
   {"eng": "Each trial has a time-limit, so try to find the best alignment as quickly as you can",
-        "fi": ""},
+   "fi": "Jokaisella kokeilulla on aikaraja, joten yritä löytää paras ajoitus mahdollisimman nopeasti"},
   {"eng": "Let's start with a practice trial",
         "fi": "Aloitetaan harjoit telutehtävällä"},
   {"eng": "On the next page, adjust the click by pressing the arrows. When you have found the best alignment, click Continue",
-        "fi": ""}],
+   "fi": "Säädä seuraavalla sivulla napautusta painamalla nuolia. Kun olet löytänyt parhaan ajoituksen, napsauta Jatka"}],
   [{"eng": "Ok, let's continue with the task",
-        "fi": "Selvä, jatketaan varsinaisellä tehtävällä"},
+    "fi": "Selvä, jatketaan varsinaisellä tehtävällä"},
   {"eng": "Next you will hear 6 songs. Align the click track with the beat of the song",
         "fi": "Seuravaaksi kuulet 6 laulua. Säädää kilikkiraita laulun tahtiin"}],
   [{"eng": "Adjust the beat",
@@ -219,61 +219,61 @@ var beatProduction = [
 
 var initialInstructions = [
   [{"eng": "Can you hear this song?<br>If so, adjust the volume to a comfortable hearing level and click Continue.<br><img id='tableSVG' src='../../images/soundSVG.svg'><br>If you cannot hear the song, try changing to a different computer/phone or to a different internet browser.",
-    "fi": ""},
+    "fi": "Kuunletko tämän kappaleen?<br>Jos kuulet, säädä äänenvoimakkuutta miellyttävälle kuulotasolle ja napauta Jatka.<br><img id='tableSVG' src='../../images/soundSVG.svg'> <br>Jos et kuule kappaletta, yritä vaihtaa toiseen tietokoneeseen/puhelimeen tai toiseen internetselaimeen."},
    {"eng": "Yes",
     "fi": "Kyllä"},
    {"eng": "No",
     "fi": "Ei"},
    {"eng": "Is someone helping you to complete this task?",
-    "fi": ""},
+    "fi": "Auttaako joku sinua tämän tehtävän suorittamisessa?"},
    {"eng": "Can you hear this song?<br>If yes, adjust the volume to a comfortable hearing level and click Next.<br>Make sure that the 'mute' button on the left side of your phone is disabled. <br> If it still doesn't work change to a different phone or to a different internet browser.",
-    "fi": ""},
+    "fi": "Kuunteletko tämän kappaleen?<br>Jos kyllä, säädä äänenvoimakkuus miellyttävälle kuulotasolle ja napsauta Seuraava.<br>Jos käytät iPhonea, poista käytöstä puhelimen vasemmalla puolella oleva mykistyspainike. <br> Jos se ei vieläkään toimi, vaihda toiseen puhelimeen tai toiseen Internet-selaimeen."},
   ]
 ]
 
 var sharedMeasurements = {
   "age": {
-    "fi": "",
+    "fi": "Kuinka vanha olet?",
     "eng": "How old are you?"
   },
   "age": {
-    "fi": "",
+    "fi": "Kuinka vanha olet?",
     "eng": "How old are you?"
   },
   "gender": {
-    "fi": "",
+    "fi": "Mikä on sukupuolesi?",
     "eng": "What is your gender?"
   },
   "genderOption1": {
-    "fi": "",
+    "fi": "nainen",
     "eng": "female"
   },
   "genderOption2": {
-    "fi": "",
+    "fi": "mies",
     "eng": "male"
   },
   "genderOption3": {
-    "fi": "",
+    "fi": "joku muu",
     "eng": "other"
   },
   "genderOption4": {
-    "fi": "",
+    "fi": "en halua kertoa",
     "eng": "prefer not to say"
   },
   "languageSpeaksPrimary": {
-    "fi": "",
+    "fi": "Mikä on äidinkielesi?",
     "eng": "What is your primary spoken language?"
   },
   "languageSpeaksSecondary": {
-    "fi": "",
+    "fi": "Mikä on toissijainen puhuttu kielesi? (jos on)",
     "eng": "What is your secondary spoken language? (If applicable)"
   },
   "height": {
-    "fi": "",
+    "fi": "Mikä on pituutesi (cm)?",
     "eng": "What is your height (cm)?"
   },
   "weight": {
-    "fi": "",
+    "fi": "Mikä on painosi (kg)?",
     "eng": "What is your weight (Kg)?"
   },
   "yearsPracticeSinging": {
@@ -321,7 +321,7 @@ var sharedMeasurements = {
     "eng": "How many years of training outside of primary and lower secondary school have you received for singing, playing an instrument, and/or dancing?"
   },
   "howMusical": {
-    "fi": "Kuinka musikaaliseksi koet itsesti? 1 (en lainkaan) – 5 (hyvin)",
+    "fi": "Kuinka musikaaliseksi koet itsesi? 1 (en lainkaan) – 5 (hyvin)",
     "eng": "How musical do you consider yourself? 1 (not at all) – 5 (very)"
   },
   "musicalGenre": {
@@ -354,7 +354,7 @@ var sharedMeasurements = {
   },
   "feelChill": {
       "eng": "I sometimes feel chills when I hear a melody that I like.",
-      "fi": "Toisinaan koen nautinnollisia fyysisiä väristyksiä kuunnellessani melodiaa, josta pidän."
+      "fi": "Toisinaan menen kananlihalle kuunnellessani melodiaa, josta pidän."
   },
   "dontLikeToDance": {
       "eng": "I don’t like to dance, not even with music I like.",
@@ -398,7 +398,7 @@ var sharedMeasurements = {
   },
   "alwaysLooking": {
       "eng": "I’m always looking for new music.",
-      "fi": "Etsin aina uutta musiikkia jota kuunnella tai esittää."
+      "fi": "Etsin aina uutta musiikkia."
   },
   "moneySpend": {
       "eng": "I spend quite a bit of money on music and related items.",

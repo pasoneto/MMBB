@@ -99,7 +99,7 @@ var trialBeat = {
       var allSources = [window.source1, window.source2, window.source3, window.source4, window.source5, window.source6, window.source7, window.source8, window.sourceBase]
       for(i in allSources) {
         console.log(allSources[i] == null)
-        allSources[i].start(3)
+        allSources[i].start(2)
       }
       document.querySelector(".jspsych-btn").style.display = "block"
       document.getElementById("jspsych-html-button-response-stimulus").style.display = "block"
@@ -107,7 +107,7 @@ var trialBeat = {
 
       //Disable button for a 5 seconds
       document.querySelector(".jspsych-btn").disabled = true;
-      sleep(6000).then(r => {
+      sleep(2000).then(r => {
         document.querySelector(".jspsych-btn").disabled = false;
       })
 
