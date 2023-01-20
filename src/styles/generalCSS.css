@@ -220,6 +220,18 @@ button:focus {
   min-width: 150px;
   width: 20vw;
 }
+#ear{
+  min-width: 150px;
+  width: 20vw;
+}
+#dance{
+  min-width: 150px;
+  width: 20vw;
+}
+#dontLock, #increaseVolume, #oneMinute, #music, #break, #pocket{
+  min-width: 150px;
+  width: 20vw;
+}
 #purseSVG{
   margin-top: 15px;
   min-width: 150px;

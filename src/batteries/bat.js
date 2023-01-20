@@ -127,14 +127,14 @@ var trialBeat = {
 };
 
 var frontPageInstructions = [frontPage, instruction2]
-var zero = [loadTrial0, trialBeat]
-var one = [loadTrial1, trialBeat]
-var two = [loadTrial2, trialBeat]
-var three = [loadTrial3, trialBeat]
-var four = [loadTrial4, trialBeat]
-var five = [loadTrial5, trialBeat]
-var six = [loadTrial6, trialBeat]
-var seven = [loadTrial7, trialBeat]
+var zero = [loadTrial0, trialBeat, howDifficult]
+var one = [loadTrial1, trialBeat, howDifficult]
+var two = [loadTrial2, trialBeat, howDifficult]
+var three = [loadTrial3, trialBeat, howDifficult]
+var four = [loadTrial4, trialBeat, howDifficult]
+var five = [loadTrial5, trialBeat, howDifficult]
+var six = [loadTrial6, trialBeat, howDifficult]
+var seven = [loadTrial7, trialBeat, howDifficult]
 
 //Step by step
 var batTimeline = [frontPageInstructions, zero, one, two, three, four, five, six, seven]
