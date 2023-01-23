@@ -358,4 +358,3 @@ var trialAccelerometer4 = {
 }
 
 var movementTimeline = [[preloadSongs1, instruction0, promptAccel, loadAccel, phonePocket, countDown, trialAccelerometer1, pickUpPhone, howDifficult, instruction1, phonePocket, countDown, trialAccelerometer2, pickUpPhone, howDifficult, likingBeatRating, grooveRatingBeat, instruction2, phonePocket, countDown, trialAccelerometer3, pickUpPhone, howDifficult, familiarityRating, likingRating, grooveRating, instruction3, chooseSongs, preloadChosen, phonePocket, countDown, trialAccelerometer4, pickUpPhone, howDifficult, familiarityRating, likingRating, grooveRating]];
-var movementTimeline = [[instruction0, instruction1, instruction2]]
