@@ -85,7 +85,7 @@ var movement = [
 ]
         
 var tapping = [
-  [{"eng": "In this task, we will ask you to place your phone on a table, and tap on a button on the screen using the index finger of your prefered hand<br><img id='tableSVG' src='../../images/tappingSVG.svg'></img>", 
+  [{"eng": "In this task, we will ask you to place your phone on a table, and tap on a button on the screen using the index finger of your preferred hand<br><img id='tableSVG' src='../../images/tappingSVG.svg'></img>", 
         "fi": "Tässä tehtävässä pyydämme sinua naputtamaan ruudulla näkyvää painiketta paremman kätesi etusormellä"},
   {"eng": "Tap on the button at a speed that feels natural to you", 
         "fi": "Naputa painiketta nopeudella joka tuntuu luontevalta"},

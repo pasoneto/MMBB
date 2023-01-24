@@ -30,6 +30,14 @@ button, #jspsych-html-slider-response-next, .jspsych-btn{
   width: auto;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
+
+/*Removes highlight from button*/
+.jspsych-audio-button-response-button{
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
 .jspsych-btn:disabled, button[disabled]{
   background-color: #fa6400;
   border: 1px solid transparent;
