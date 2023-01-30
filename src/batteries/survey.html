@@ -76,21 +76,21 @@
 
     var howFeeling = {
         type: jsPsychHtmlSliderResponse,
-        stimulus: `<div style="width:500px;">
+        stimulus: `<div>
                     <p style="font-size:3vw;">How do you feel?
                    </div>`,
         require_movement: true,
-        labels: ['Extremely bad', 'Very bad', 'Bad', 'Good', 'Very good', 'Extremely good'],
+        labels: ['Extremely<br>bad', 'very<br>bad', 'bad', 'good', 'very<br>good', 'extremely<br>good'],
         data: { previousHowFeeling: 'true' }
     };
 
     var howFeeling2 = {
         type: jsPsychHtmlSliderResponse,
-        stimulus: `<div style="width:500px;">
+        stimulus: `<div>
                     <p style="font-size:3vw;">How do you feel?
                    </div>`,
         require_movement: false,
-        labels: ['Extremely bad', 'very bad', 'bad', 'good', 'very good', 'extremely good'],
+        labels: ['Extremely<br>bad', 'very<br>bad', 'bad', 'good', 'very<br>good', 'extremely<br>good'],
         data: { previousHowFeeling: 'true' },
         on_start: function(trial) {
           var howFeelingPrevious = jsPsych.data.get().filter({previousHowFeeling: 'true'})['trials']
@@ -121,8 +121,8 @@
 
     var howWasPlaylist = {
         type: jsPsychHtmlSliderResponse,
-        stimulus: `<div style="width:500px;">
-                    How easy was to reach a decision regarding the playlist?
+        stimulus: `<div>
+                    How easy was to reach a decision regarding the playlist?<br><br>
                    </div>`,
         require_movement: true,
         labels: ['Very hard', 'Very easy']
@@ -162,13 +162,14 @@
       min: 0,
       slider_start: 0,
       step: 1,
-      max: 432,
+      max: 439,
       maintain_aspect_ration: true,
       on_load: function(){
         var a = document.createElement("div");
         a.setAttribute("id", "promptSlider");
         a.innerHTML = "Use the slider to indicate how close you feel to your pair"
         a.style.marginTop = "50px";
+        a.style.fontSize = "30px";
         a.style.textAlign = "center";
         a.style.justifyContent = "center";
         document.querySelector(".jspsych-display-element").prepend(a)
@@ -188,13 +189,14 @@
       min: 0,
       slider_start: 500,
       step: 1,
-      max: 438,
+      max: 439,
       maintain_aspect_ration: true,
       on_load: function(){
         var a = document.createElement("div");
         a.setAttribute("id", "promptSlider");
         a.innerHTML = "Use the slider to indicate how close you feel to your pair"
         a.style.marginTop = "50px";
+        a.style.fontSize = "30px";
         a.style.textAlign = "center";
         a.style.justifyContent = "center";
         document.querySelector(".jspsych-display-element").prepend(a)
@@ -218,8 +220,8 @@
     var inter = {
         type: jsPsychInstructions,
         pages: [
-        'Thank you for your responses,',
-        'Please, hand the ipad back to the experimenter',
+        'Thank you for your responses,<br><br>',
+        'Please, hand the ipad back to the experimenter<br><br>',
         ],
         button_label_next: "Next",
         button_label_previous: "Previous",
@@ -229,7 +231,7 @@
     var shortBreak = {
         type: jsPsychInstructions,
         pages: [
-        'Now we are having a short break. Please, hand the ipad to the experimenter.',
+          'Now we are having a short break. Please, hand the ipad to the experimenter.<br><br>',
         ],
         button_label_next: "Next",
         button_label_previous: "Previous",
@@ -239,24 +241,23 @@
     //This repeats for each song (7 tracks)
     var likeSong = {
         type: jsPsychHtmlSliderResponse,
-        stimulus: "How much do you like the song that you just heard?",
+        stimulus: "How much do you like the song that you just heard?<br><br>",
         require_movement: true,
         labels: ['Not at all', 'Very much']
     };
-     
 
     var grooveRating = {
         type: jsPsychHtmlSliderResponse,
-        stimulus: "How much did this song make you want to dance?",
+        stimulus: "How much did this song make you want to dance?<br><br>",
         require_movement: true,
         labels: ["Not at all", "Very much"],
     };
 
     var familiaritySong = {
         type: jsPsychHtmlSliderResponse,
-        stimulus: "How familiar were you with the song that you just heard?",
+        stimulus: "How familiar were you with the song that you just heard?<br><br>",
         require_movement: true,
-        labels: ['Never heard it before', 'Know it very well']
+        labels: ['Never heard<br>it before', 'Know it<br>very well']
     };
 
  //- Please rate your relationship with the first person you danced and created a playlist with

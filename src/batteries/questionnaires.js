@@ -45,7 +45,7 @@ for(k in questions3){
 var modelQuestionnaire1 = {
   type: jsPsychSurveyLikert,
   questions: questionnaire1,
-  preamble: "Seuraavassa on joitain persoonallisuuteen liittyviä väittämiä. Arvioi miten hyvin nämä väittämät sopivat itseesi, ja vastaa ympyröimällä oikea vastausvaihtoehto.<br><br>1 = vahvasti eri mieltä, 2 = melko eri mieltä, 3 = ei samaa eikä eri mieltä, 4 = melko samaa mieltä, 5 = vahvasti samaa mieltä",
+  preamble: "<p>Seuraavassa on joitain persoonallisuuteen liittyviä väittämiä. Arvioi miten hyvin nämä väittämät sopivat itseesi, ja vastaa ympyröimällä oikea vastausvaihtoehto.<br><br>1 = vahvasti eri mieltä, 2 = melko eri mieltä, 3 = ei samaa eikä eri mieltä, 4 = melko samaa mieltä, 5 = vahvasti samaa mieltä</p>",
   randomize_question_order: false,
   data: {questionnaireType: "BFI-44"}
 };
