@@ -22,7 +22,7 @@
     <script src="../../jspsych/dist/plugin-survey-multi-choice.js"> </script>
     <script src="../../jspsych/dist/plugin-initialize-microphone.js"> </script>
     <script src="../../jspsych/dist/plugin-html-audio-response.js"> </script>
-    <script src="https://unpkg.com/@jspsych/plugin-survey@0.2.0/dist/index.browser.min.js"></script>
+    <script src="../../jspsych/dist/plugin-survey.js"></script>
     <script src="../utils/translations.js"> </script>
     <script src="./questionnaires.js"> </script>
     <script src="./sharedMeasurements.js"> </script>
@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
     <link rel="stylesheet" href="https://unpkg.com/@jspsych/plugin-survey@0.2.0/css/survey.css">
 
+    <link rel="stylesheet" href="../styles/surveyStyles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
   </head>
@@ -161,7 +162,7 @@
       min: 0,
       slider_start: 0,
       step: 1,
-      max: 490,
+      max: 412,
       maintain_aspect_ration: true,
       on_load: function(){
         var a = document.createElement("div");
@@ -187,7 +188,7 @@
       min: 0,
       slider_start: 500,
       step: 1,
-      max: 490,
+      max: 412,
       maintain_aspect_ration: true,
       on_load: function(){
         var a = document.createElement("div");
@@ -298,7 +299,6 @@
     }
 
     jsPsych.run(timelineChosen);
-    //jsPsych.run([instruction1, closeness, trialLikert, trialSurvey]);
 
  </script>
 </html>

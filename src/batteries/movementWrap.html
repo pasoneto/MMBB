@@ -77,12 +77,17 @@
       on_finish: function() {
 
         var measurePerformance = performance.getEntriesByType('resource');
+
         var userID = urlParams.get('user')
+        if(userID == null){
+          var userID = jsPsych.randomization.randomID(10)
+        }
+
         var nIndex = urlParams.get('nodeIndex')
         var tIndex = urlParams.get('trialIndex')
 
-        jsPsych.data.addProperties({userID: userID, sequenceTrials: document.cookie, nodeIndex: nIndex, tIndex: tIndex});
-        
+        jsPsych.data.addProperties({userID: userID, sequenceTrials: document.cookie, nodeIndex: nIndex, tIndex: tIndex});        
+
         var timeExp = Date.now();
         var finalData = jsPsych.data.get()
         finalData['trials'].push({"performance": measurePerformance, "infoUser": navigator.userAgent, "timeExp": timeExp})
