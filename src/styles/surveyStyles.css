@@ -1,3 +1,8 @@
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
 /*Survey friends-strangers*/
 #containerSurvey{
   display: flex;
@@ -60,3 +65,30 @@
   width: 350px;
 }
 /*End of survey friends-strangers*/
+
+/*Slider styles*/
+.jspsych-slider{
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.jspsych-slider:hover{
+  opacity: 1;
+}
+
+.jspsych-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background: #04AA6D;
+  cursor: pointer;
+}
