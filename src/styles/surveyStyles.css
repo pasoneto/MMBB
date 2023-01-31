@@ -2,6 +2,8 @@ html, body {
   max-width: 100%;
   overflow-x: hidden;
   overflow-y: hidden;
+  background: rgba(221, 246, 255, 1.00);
+  color: #095267;
 }
 /*Survey friends-strangers*/
 #containerSurvey{
@@ -98,7 +100,7 @@ html, body {
   appearance: none;
   width: 25px;
   height: 25px;
-  background: #04AA6D;
+  background-color: #095267;
   cursor: pointer;
 }
 
@@ -140,12 +142,12 @@ div[id^="label"] {
 button, #jspsych-html-slider-response-next, .jspsych-btn{
   align-items: center;
   background-clip: padding-box;
-  background-color: #fa6400;
+  background-color: #095267;
   border: 1px solid transparent;
   border-radius: .25rem;
   box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
   box-sizing: border-box;
-  color: #fff;
+  color: #ffffff;
   cursor: pointer;
   display: inline-flex;
   font-size: 16px;
