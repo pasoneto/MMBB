@@ -237,28 +237,43 @@
         button_label_previous: "Previous",
         show_clickable_nav: true
     }
-    
+
     //This repeats for each song (7 tracks)
-    var likeSong = {
-        type: jsPsychHtmlSliderResponse,
-        stimulus: "How much do you like the song that you just heard?<br><br>",
-        require_movement: true,
-        labels: ['Not at all', 'Very much']
-    };
+    function generateSongQuestions(nTrial){
+      var likeSong = {
+          type: jsPsychHtmlSliderResponse,
+          stimulus: "How much do you like <b>song " + nTrial + "</b>?<br><br>",
+          require_movement: true,
+          labels: ['Not at all', 'Very much']
+      };
 
-    var grooveRating = {
-        type: jsPsychHtmlSliderResponse,
-        stimulus: "How much did this song make you want to dance?<br><br>",
-        require_movement: true,
-        labels: ["Not at all", "Very much"],
-    };
+      var grooveRating = {
+          type: jsPsychHtmlSliderResponse,
+          stimulus: "How much did <b>song " + nTrial + "</b> make you want to dance?<br><br>",
+          require_movement: true,
+          labels: ["Not at all", "Very much"],
+      };
 
-    var familiaritySong = {
-        type: jsPsychHtmlSliderResponse,
-        stimulus: "How familiar were you with the song that you just heard?<br><br>",
-        require_movement: true,
-        labels: ['Never heard<br>it before', 'Know it<br>very well']
-    };
+      var wantContinueDancing = {
+          type: jsPsychHtmlSliderResponse,
+          stimulus: "How much did you want to continue dancing to <b>song" + nTrial + "</b>?<br><br>",
+          require_movement: true,
+          labels: ["Not at all", "Very much"],
+      };
+
+      var familiaritySong = {
+          type: jsPsychHtmlSliderResponse,
+          stimulus: "How familiar were you with <b>song " + nTrial + "</b>?<br><br>",
+          require_movement: true,
+          labels: ['Never heard<br>it before', 'Know it<br>very well']
+      };
+
+      return [likeSong, grooveRating, wantContinueDancing, familiaritySong]
+    }
+
+    var questionsAboutSongs = {
+      timeline: [1, 2, 3, 4, 5, 6, 7].map(i => generateSongQuestions(i)).flat()
+    }
 
  //- Please rate your relationship with the first person you danced and created a playlist with
  //- Please rate your relationship with the second person you danced and created a playlist with   
@@ -268,38 +283,39 @@
       var timelineChosen = [participantID,
                             howFeeling, closeness1, inter,
                             howWasPlaylist, howFeeling2,closeness2, inter,
-                            howFeeling2,closeness2, likeSong, grooveRating, familiaritySong, modelQuestionnaire1, modelQuestionnaire2, modelQuestionnaire3, howFeeling2,closeness2, inter,
-                            howFeeling2,closeness2, likeSong, grooveRating, familiaritySong,
+                            howFeeling2, closeness2, questionsAboutSongs, modelQuestionnaire1, modelQuestionnaire2, modelQuestionnaire3, howFeeling2,closeness2, inter,
+                            howFeeling2, closeness2, questionsAboutSongs,
                             shortBreak]
     }
     if(diadNumber == "b"){ //Pair B
       var timelineChosen = [participantID, 
                             howFeeling, closeness1, inter,
-                            howFeeling2,closeness2, likeSong, grooveRating, familiaritySong, inter,
-                            howFeeling2,closeness2, howWasPlaylist, inter,
-                            howFeeling2,closeness2, likeSong, grooveRating, familiaritySong, modelQuestionnaire1, modelQuestionnaire2, modelQuestionnaire3, howFeeling2,closeness2,
-                            howFeeling2,closeness2,
+                            howFeeling2, closeness2, questionsAboutSongs, inter,
+                            howFeeling2, closeness2, howWasPlaylist, inter,
+                            howFeeling2, closeness2, questionsAboutSongs, modelQuestionnaire1, modelQuestionnaire2, modelQuestionnaire3, howFeeling2,closeness2,
+                            howFeeling2, closeness2,
                             shortBreak]
     }
     if(diadNumber == "c"){ //Pair c
       var timelineChosen = [participantID,
                             howFeeling, closeness1, inter,
                             howWasPlaylist, howFeeling2,closeness2, inter,
-                            howFeeling2,closeness2, likeSong, grooveRating, familiaritySong, modelQuestionnaire1, modelQuestionnaire2, modelQuestionnaire3, sharedMeasurementsTrial, howFeeling2,closeness2, inter,
-                            howFeeling2,closeness2, likeSong, grooveRating, familiaritySong, inter,
+                            howFeeling2, closeness2, questionsAboutSongs, modelQuestionnaire1, modelQuestionnaire2, modelQuestionnaire3, sharedMeasurementsTrial, howFeeling2,closeness2, inter,
+                            howFeeling2, closeness2, questionsAboutSongs, inter,
                             relationshipFriend, relationshipFriend2]
     }
     if(diadNumber == "d"){ //Pair d
       var timelineChosen = [participantID, 
                             howFeeling, closeness1, inter,
-                            howFeeling2,closeness2, likeSong, grooveRating, familiaritySong, inter,
-                            howFeeling2,closeness2, howWasPlaylist, inter,
-                            howFeeling2,closeness2, likeSong, grooveRating, familiaritySong, modelQuestionnaire1, modelQuestionnaire2, modelQuestionnaire3, sharedMeasurementsTrial, howFeeling2,closeness2, inter,
-                            howFeeling2,closeness2, inter,
+                            howFeeling2, closeness2, questionsAboutSongs, inter,
+                            howFeeling2, closeness2, howWasPlaylist, inter,
+                            howFeeling2, closeness2, questionsAboutSongs, modelQuestionnaire1, modelQuestionnaire2, modelQuestionnaire3, sharedMeasurementsTrial, howFeeling2,closeness2, inter,
+                            howFeeling2, closeness2, inter,
                             relationshipFriend, relationshipFriend2]
     }
-
+    
     jsPsych.run(timelineChosen);
+    //jsPsych.run([modelQuestionnaire1]);
 
  </script>
 </html>
