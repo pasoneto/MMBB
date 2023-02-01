@@ -190,6 +190,7 @@ var jsPsychAudioButtonResponse = (function (jspsych) {
               on_load();
           };
           var rts = []
+          var rtsAudio = []
           // function to handle responses by the subject
           function after_response(choice) {
               // measure rt
@@ -201,7 +202,9 @@ var jsPsychAudioButtonResponse = (function (jspsych) {
               }
               response.button = parseInt(choice);
               rts.push(rt);
+              rtsAudio.push(context.currentTime);
               console.log(rts)
+              console.log(context.currentTime)
               // disable all the buttons after a response
               //disable_buttons();
               if (trial.response_ends_trial) {
@@ -225,6 +228,7 @@ var jsPsychAudioButtonResponse = (function (jspsych) {
               // gather the data to store for the trial
               var trial_data = {
                   rt: rts,
+                  rtAudio: rtsAudio,
                   stimulus: trial.stimulus,
                   response: response.button,
               };
