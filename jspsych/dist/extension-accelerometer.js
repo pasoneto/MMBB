@@ -77,6 +77,10 @@ var jsPsychExtensionAccelerometer = (function () {
                 var y = eventA.acceleration.y;
                 var z = eventA.acceleration.z;
 
+                var rotationAlpha = eventA.rotationRate.alpha;
+                var rotationBeta = eventA.rotationRate.beta;
+                var rotationGama = eventA.rotationRate.gamma;
+
                 var interval = eventA.interval; //gets interval between samples in ms
 
                 this.lastSampleTime = event_time;
@@ -84,6 +88,20 @@ var jsPsychExtensionAccelerometer = (function () {
                 this.currentTrialData[0]['x'].push(x);
                 this.currentTrialData[0]['y'].push(y);
                 this.currentTrialData[0]['z'].push(z);
+
+                //alpha
+                //The rate at which the device is rotating about its Z axis; that is, being twisted about a line perpendicular to the screen.
+
+                //beta
+                //The rate at which the device is rotating about its X axis; that is, front to back.
+
+                //gamma
+                //The rate at which the device is rotating about its Y axis; that is, side to side.
+
+                this.currentTrialData[0]['alpha'].push(rotationAlpha);
+                this.currentTrialData[0]['beta'].push(rotationBeta);
+                this.currentTrialData[0]['gama'].push(rotationGama);
+
                 this.currentTrialData[0]['t'].push(t);
 
             };
