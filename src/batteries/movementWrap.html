@@ -60,6 +60,9 @@
 
   <script>
 
+    //Time begin experiment
+    var timeBegin = Date.now();
+
     //Which trial to be performed
     var nodeIndex = urlParams.get('nodeIndex')
     if(nodeIndex == undefined){
@@ -86,11 +89,12 @@
         var nIndex = urlParams.get('nodeIndex')
         var tIndex = urlParams.get('trialIndex')
 
-        jsPsych.data.addProperties({userID: userID, sequenceTrials: document.cookie, nodeIndex: nIndex, tIndex: tIndex});        
+        var timeEnd = Date.now();
+        
+        jsPsych.data.addProperties({userID: userID, timeEnd: timeEnd, timeBegin: timeBegin, sequenceTrials: document.cookie, nodeIndex: nIndex, tIndex: tIndex});
 
-        var timeExp = Date.now();
         var finalData = jsPsych.data.get()
-        finalData['trials'].push({"performance": measurePerformance, "infoUser": navigator.userAgent, "timeExp": timeExp})
+        finalData['trials'].push({"performance": measurePerformance, "infoUser": navigator.userAgent})
 
         pushDatabase("riikka", finalData).then(r => {
           var nNodes = completeSequence.length-1
