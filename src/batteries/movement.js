@@ -359,9 +359,9 @@ var trialAccelerometer4 = {
 
 //Step by step
 var movementOne   = [preloadSongs1, instruction0, promptAccel, loadAccel]
-var movementTwo   = [phonePocket, countDown, trialAccelerometer1, pickUpPhone, howDifficult]
-var movementThree = [instruction1, phonePocket, countDown, trialAccelerometer2, pickUpPhone, howDifficult, likingBeatRating, grooveRating]
-var movementFour  = [instruction2, phonePocket, countDown, trialAccelerometer3, pickUpPhone, howDifficult, familiarityRating, likingRating, grooveRating]
+var movementTwo   = [preloadSongs1, phonePocket, countDown, trialAccelerometer1, pickUpPhone, howDifficult]
+var movementThree = [preloadSongs1, instruction1, phonePocket, countDown, trialAccelerometer2, pickUpPhone, howDifficult, likingBeatRating, grooveRating]
+var movementFour  = [preloadSongs1, instruction2, phonePocket, countDown, trialAccelerometer3, pickUpPhone, howDifficult, familiarityRating, likingRating, grooveRating]
 var movementFive  = [instruction3, chooseSongs, preloadChosen, phonePocket, countDown, trialAccelerometer4, pickUpPhone, howDifficult, familiarityRating, likingRating, grooveRating]
 
 var movementTimeline = [movementOne, movementTwo, movementThree, movementFour, movementFive];
