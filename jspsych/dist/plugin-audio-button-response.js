@@ -95,6 +95,13 @@ var jsPsychAudioButtonResponse = (function (jspsych) {
           };
           // record webaudio context start time
           var startTime;
+
+          var baseLatencyEnd;
+          var outputLatencyEnd;
+
+          var baseLatencyBegin;
+          var outputLatencyBegin;
+
           // load audio file
           this.jsPsych.pluginAPI
               .getAudioBuffer(trial.stimulus)
@@ -174,9 +181,13 @@ var jsPsychAudioButtonResponse = (function (jspsych) {
               // start time
               startTime = performance.now();
               // start audio
+
               if (context !== null) {
                   startTime = context.currentTime;
                   this.audio.start(startTime);
+
+                  baseLatencyBegin = context.baseLatency;
+                  outputLatencyBegin = context.outputLatency;
               }
               else {
                   this.audio.play();
@@ -189,8 +200,8 @@ var jsPsychAudioButtonResponse = (function (jspsych) {
               }
               on_load();
           };
-          var rts = []
-          var rtsAudio = []
+          var rts = [];
+          var rtsAudio = [];
           // function to handle responses by the subject
           function after_response(choice) {
               // measure rt
@@ -204,7 +215,6 @@ var jsPsychAudioButtonResponse = (function (jspsych) {
               rts.push(rt);
               rtsAudio.push(context.currentTime);
               console.log(rts)
-              console.log(context.currentTime)
               // disable all the buttons after a response
               //disable_buttons();
               if (trial.response_ends_trial) {
@@ -226,12 +236,22 @@ var jsPsychAudioButtonResponse = (function (jspsych) {
               this.audio.removeEventListener("ended", end_trial);
               this.audio.removeEventListener("ended", enable_buttons);
               // gather the data to store for the trial
+              
+              //Get the latency of the audio in the end of the experiment
+              baseLatencyEnd = context.baseLatency;
+              outputLatencyEnd = context.outputLatency;
+
               var trial_data = {
                   rt: rts,
                   rtAudio: rtsAudio,
+                  baseLatencyBegin: baseLatencyBegin,
+                  baseLatencyEnd: baseLatencyEnd,
+                  outputLatencyBegin: outputLatencyBegin,
+                  outputLatencyEnd: outputLatencyEnd,
                   stimulus: trial.stimulus,
                   response: response.button,
               };
+
               // clear the display
               display_element.innerHTML = "";
               // move on to the next trial

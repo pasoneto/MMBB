@@ -70,12 +70,15 @@ var jsPsychExtensionAccelerometer = (function () {
                 };
             };
             this.accelEventHandler = (eventA) => {
+
                 const event_time = performance.now();
                 const t = Math.round(event_time - this.currentTrialStartTime);
 
                 var x = eventA.acceleration.x;
                 var y = eventA.acceleration.y;
                 var z = eventA.acceleration.z;
+
+                var audioPlayed = window.context.currentTime - window.startTime
 
                 //var rotationAlpha = eventA.rotationRate.alpha;
                 //var rotationBeta = eventA.rotationRate.beta;
@@ -89,6 +92,8 @@ var jsPsychExtensionAccelerometer = (function () {
                 this.currentTrialData[0]['y'].push(y);
                 this.currentTrialData[0]['z'].push(z);
 
+                this.currentTrialData[0]['timeAudio'].push(audioPlayed);
+              
                 //alpha
                 //The rate at which the device is rotating about its Z axis; that is, being twisted about a line perpendicular to the screen.
 

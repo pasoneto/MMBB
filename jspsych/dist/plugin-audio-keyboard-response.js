@@ -64,14 +64,14 @@ var jsPsychAudioKeyboardResponse = (function (jspsych) {
           // hold the .resolve() function from the Promise that ends the trial
           let trial_complete;
           // setup stimulus
-          var context = this.jsPsych.pluginAPI.audioContext();
+          window.context = this.jsPsych.pluginAPI.audioContext();
           // store response
           var response = {
               rt: null,
               key: null,
           };
           // record webaudio context start time
-          var startTime;
+          window.startTime;
           // load audio file
           this.jsPsych.pluginAPI
               .getAudioBuffer(trial.stimulus)
@@ -102,7 +102,7 @@ var jsPsychAudioKeyboardResponse = (function (jspsych) {
               }
               // start audio
               if (context !== null) {
-                  startTime = context.currentTime;
+                  window.startTime = context.currentTime;
                   this.audio.start(startTime);
               }
               else {
@@ -144,6 +144,7 @@ var jsPsychAudioKeyboardResponse = (function (jspsych) {
                   rt: response.rt,
                   stimulus: trial.stimulus,
                   response: response.key,
+                  contextStartTime: startTime,
               };
               // clear the display
               display_element.innerHTML = "";
