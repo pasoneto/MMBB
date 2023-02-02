@@ -140,7 +140,7 @@ var loadAccel = {
     trial_duration: 3000,
     choices: ["NO_KEYS"],
     extensions: [
-      //{type: jsPsychExtensionAccelerometer }
+      {type: jsPsychExtensionAccelerometer }
     ],
 }
 
@@ -288,7 +288,7 @@ var trialAccelerometer1 = {
     trial_duration: 60000,
     choices: ["NO_KEYS"],
     extensions: [
-      //{type: jsPsychExtensionAccelerometer }
+      {type: jsPsychExtensionAccelerometer }
     ],
 }
 
