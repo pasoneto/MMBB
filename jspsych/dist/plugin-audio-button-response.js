@@ -213,8 +213,9 @@ var jsPsychAudioButtonResponse = (function (jspsych) {
               }
               response.button = parseInt(choice);
               rts.push(rt);
-              rtsAudio.push(context.currentTime);
+              rtsAudio.push(context.currentTime - startTime);
               console.log(rts)
+              console.log(rtsAudio)
               // disable all the buttons after a response
               //disable_buttons();
               if (trial.response_ends_trial) {

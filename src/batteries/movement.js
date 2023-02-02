@@ -357,4 +357,21 @@ var trialAccelerometer4 = {
     },
 }
 
-var movementTimeline = [[preloadSongs1, instruction0, promptAccel, loadAccel, phonePocket, countDown, trialAccelerometer1, pickUpPhone, howDifficult, instruction1, phonePocket, countDown, trialAccelerometer2, pickUpPhone, howDifficult, likingBeatRating, grooveRatingBeat, instruction2, phonePocket, countDown, trialAccelerometer3, pickUpPhone, howDifficult, familiarityRating, likingRating, grooveRating, instruction3, chooseSongs, preloadChosen, phonePocket, countDown, trialAccelerometer4, pickUpPhone, howDifficult, familiarityRating, likingRating, grooveRating]];
+//Original
+//var movementTimeline = [[preloadSongs1, instruction0, promptAccel, loadAccel, phonePocket, countDown, trialAccelerometer1, pickUpPhone, howDifficult, instruction1, phonePocket, countDown, trialAccelerometer2, pickUpPhone, howDifficult, likingBeatRating, grooveRatingBeat, instruction2, phonePocket, countDown, trialAccelerometer3, pickUpPhone, howDifficult, familiarityRating, likingRating, grooveRating, instruction3, chooseSongs, preloadChosen, phonePocket, countDown, trialAccelerometer4, pickUpPhone, howDifficult, familiarityRating, likingRating, grooveRating]];
+
+//Step by step
+var firstMovement = [instruction0, promptAccel, loadAccel, phonePocket, countDown, trialAccelerometer1, pickUpPhone, howDifficult]
+var secondMovement = [preloadSongs1, instruction1, phonePocket, countDown, trialAccelerometer2, pickUpPhone, howDifficult, likingBeatRating, grooveRatingBeat]
+var thirdMovement = [preloadSongs1, instruction2, phonePocket, countDown, trialAccelerometer3, pickUpPhone, howDifficult, familiarityRating, likingRating, grooveRating]
+var fourthMovement = [instruction3, chooseSongs, preloadChosen, phonePocket, countDown, trialAccelerometer4, pickUpPhone, howDifficult, familiarityRating, likingRating, grooveRating]
+
+var movementTimeline = [firstMovement, secondMovement, thirdMovement, fourthMovement];
+
+
+
+
+
+
+
+
