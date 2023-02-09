@@ -1,7 +1,7 @@
 var preloadTest = {
     type: jsPsychPreload,
     audio: ['../../songs/movementTapAudio/elPesebre.mp3'],
-    images: ['../../images/instructions/androidInstructions0.png', '../../images/instructions/androidInstructions1.png', '../../images/instructions/androidInstructions2.png', '../../images/instructions/iosInstruction0.png', '../../images/instructions/iosInstruction1.png', '../../images/instructions/iosInstruction2.png'],
+    images: ['../../images/instructions/androidInstructions0.png', '../../images/instructions/androidInstructions1.png', '../../images/instructions/androidInstructions2.png', '../../images/instructions/iosInstruction0.png', '../../images/instructions/iosInstruction1.png', '../../images/instructions/iosInstruction2.png', '../../images/purse.svg', '../../images/noBluetooth.svg', '../../images/instructions/iosInstruction0.png', '../../images/instructions/iosInstruction1.png', '../../images/instructions/iosInstruction2.png', '../../images/muteButton.png'],
     auto_preload: false,
 }
 
@@ -45,23 +45,24 @@ var lockAndroid = {
   }
 }
 
+var context; //Defining global context to get RT from modified audio-button response
 var tAudioIOS = {
   type: jsPsychAudioButtonResponse,
   stimulus: '../../songs/movementTapAudio/elPesebre.mp3',
-  choices: ['Continue'],
+  choices: [recurring[7][lang]],
   prompt: initialInstructions[0][4][lang] + '<img src="../../images/muteButton.png" id="muteButton"></img>',
   on_load: function(){
-    document.getElementById("jspsych-content").style.fontSize = "25px";
+    document.getElementById("jspsych-content").style.fontSize = "20px";
   }
 };
 
 var tAudioAndroid = {
   type: jsPsychAudioButtonResponse,
   stimulus: '../../songs/movementTapAudio/elPesebre.mp3',
-  choices: ['Continue'],
+  choices: [recurring[7][lang]],
   prompt: initialInstructions[0][0][lang],
   on_load: function(){
-    document.getElementById("jspsych-content").style.fontSize = "25px";
+    document.getElementById("jspsych-content").style.fontSize = "20px";
   }
 };
 
@@ -94,7 +95,7 @@ var gettingHelp = {
 var howDifficult = {
     type: jsPsychHtmlSliderResponse,
     stimulus: recurring[9][lang],
-    require_movement: true,
+    require_movement: false,
     labels: [recurring[10][lang], recurring[11][lang]],
     on_load: function(){
       document.getElementById("label0").style = ''

@@ -64,7 +64,7 @@ console.log(randomMetronome)
 
 var trialTapping0 = {
     type: jsPsychAudioButtonResponse,
-    choices: ['Tap here'],
+    choices: [tapping[4][0][lang]],
     stimulus: '../../songs/movementTapAudio/silence.wav',
     trial_duration: 60000,
     button_html: '<button type="button" ' + eventTypeStart + '="buttonDown()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">' + tapping[4][0][lang] + '</p></button>',
@@ -73,7 +73,7 @@ var trialTapping0 = {
 
 var trialTapping1 = {
     type: jsPsychAudioButtonResponse,
-    choices: ['Tap here'],
+    choices: [tapping[4][0][lang]],
     stimulus: '../../songs/movementTapAudio/modifiedAudio/' + randomMetronome,
     trial_duration: 63000,
     button_html: '<button type="button" ' + eventTypeStart + '="buttonDown()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">' + tapping[4][0][lang] + '</p></button>',
@@ -82,7 +82,7 @@ var trialTapping1 = {
  
 var trialTapping3 = {
     type: jsPsychAudioButtonResponse,
-    choices: ['Tap here'],
+    choices: [tapping[4][0][lang]],
     stimulus: '../../songs/movementTapAudio/modifiedAudio/' + randomElPesebreSong,
     trial_duration: 63000,
     button_html: '<button type="button" ' + eventTypeStart + '="buttonDown()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">' + tapping[4][0][lang] + '</p></button>',

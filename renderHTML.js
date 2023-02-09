@@ -1,1 +1,21 @@
-var mainPage = '<div id="choices"><div id="task"><a href="./src/batteries/movementWrap.html"><img src="./images/dance.svg"/></a>Movement</div><div id="task"><a href="./src/batteries/singing.html"><img src="./images/singing.svg"/></a>Singing</div><div id="task"><a href="./src/emotion_demo/emotionPart1_2.html"><img src="./images/emotion.svg"/></a>Emotion</div><div id="task"><a href="./src/batteries/survey.html"><img src="./images/survey.svg"/></a>Survey</div></div>'
+function signOut(){
+  firebase.auth().signOut().then(() => {
+    // Sign-out successful.
+    window.location.href = './'
+  }).catch((error) => {
+    console.log(error) 
+  });
+}
+
+firebase.auth().onAuthStateChanged(user => {
+  if(user){
+    document.getElementById("userName").innerHTML = "Hello, " + user.displayName
+    var userIDFirebase = user.uid
+    document.getElementById("linkToMovement").href = './src/batteries/movementWrap.html?lang=' + lang + '&user=' + userIDFirebase
+    //document.getElementById("linkToSurvey").href = './src/batteries/movementWrap.html?lang=' + lang
+    //document.getElementById("linkToEmotion").href = './src/batteries/movementWrap.html?lang=' + lang
+    //document.getElementById("linkToSinging").href = './src/batteries/movementWrap.html?lang=' + lang
+  } else {
+    window.location.href = './'
+  }
+})

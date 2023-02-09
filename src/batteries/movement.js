@@ -179,7 +179,7 @@ var instruction3 = {
 var familiarityRating = {
     type: jsPsychHtmlSliderResponse,
     stimulus: movement[8][0][lang],
-    require_movement: true,
+    require_movement: false,
     labels: [movement[8][1][lang], movement[8][2][lang]],
     on_load: function(){
       //Reset jsPsych styling
@@ -196,7 +196,7 @@ var familiarityRating = {
 var likingBeatRating = {
     type: jsPsychHtmlSliderResponse,
     stimulus: movement[8][7][lang],
-    require_movement: true,
+    require_movement: false,
     labels: [movement[8][5][lang], movement[8][6][lang]],
     on_load: function(){
       document.getElementById("label0").style = ''
@@ -212,7 +212,7 @@ var likingBeatRating = {
 var likingRating = {
     type: jsPsychHtmlSliderResponse,
     stimulus: movement[8][3][lang],
-    require_movement: true,
+    require_movement: false,
     labels: [movement[8][5][lang], movement[8][6][lang]],
     on_load: function(){
       document.getElementById("label0").style = ''
@@ -228,7 +228,7 @@ var likingRating = {
 var grooveRatingBeat = {
     type: jsPsychHtmlSliderResponse,
     stimulus: movement[8][8][lang],
-    require_movement: true,
+    require_movement: false,
     labels: [movement[8][5][lang], movement[8][6][lang]],
     on_load: function(){
       document.getElementById("label0").style = ''
@@ -244,7 +244,7 @@ var grooveRatingBeat = {
 var grooveRating = {
     type: jsPsychHtmlSliderResponse,
     stimulus: movement[8][4][lang],
-    require_movement: true,
+    require_movement: false,
     labels: [movement[8][5][lang], movement[8][6][lang]],
     on_load: function(){
       document.getElementById("label0").style = ''

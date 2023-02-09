@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>MMBB - login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+    <script src="https://www.gstatic.com/firebasejs/9.13.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.13.0/firebase-auth-compat.js"></script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js"></script>
+    <link href="./styles.css" rel="stylesheet" type="text/css"/>
+    <script src="https://www.gstatic.com/firebasejs/ui/6.0.2/firebase-ui-auth.js"></script>
+
+  </head>
+
+  <body>
+    <div id="header">
+      <span id="buttonOpen" onclick="openNav()">&#9776;</span>
+      <img id="gif" src="./images/coe.gif" />
+    </div>
+
+    <div id="mySidenav" class="sidenav">
+      <div id="header">
+        <img id="gifSideNav" src="./images/coe.gif" />
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      </div>
+      <div id="userName"></div>
+      <div id="langs">
+        <a id="langEng" href="/chooseBattery.html?lang=eng">English</a>
+        <a id="langFi" href="/chooseBattery.html?lang=fi">Finnish</a>
+      </div>
+      <button id="logoutBtn" onclick="signOut()">Logout</button>
+    </div>
+
+    <div id="container">
+      <div id="choicesEng">
+        <div id="task"><a id="linkToMovement" href=""><img src="./images/dance.svg"/></a><div id="movementTaskIcon"></div></div>
+        <div id="task" disabled><a id="linkToSinging" onclick='alert("Under construction. Come back later.")'><img src="./images/singing.svg"/></a><div id="singingTaskIcon"></div></div>
+        <div id="task" disabled><a id="linkToEmotion" onclick='alert("Under construction. Come back later.")'><img src="./images/emotion.svg"/></a><div id="emotionTaskIcon"></div></div>
+        <div id="task" disabled><a id="linkToSurvey" onclick='alert("Under construction. Come back later.")'><img src="./images/survey.svg"/></a><div id="surveyTaskIcon"></div></div>
+      </div>
+    </div>
+
+    <div id="footer"
+      <a href="https://www.jyu.fi/hytk/fi/laitokset/mutku/en/coe-mmbb">MMBB - CoE</a>
+    </div>
+
+  </body>
+
+  <script src="./src/utils/langFetch.js"></script>
+  <script src="./src/utils/translations.js"></script>
+  <script src="./backend/firebaseSetUp.js"></script>
+  <script src="./renderHTML.js"></script>
+
+  <script>
+
+    document.getElementById("movementTaskIcon").innerHTML = tasksIcons['movement'][lang]
+    document.getElementById("singingTaskIcon").innerHTML = tasksIcons['singing'][lang]
+    document.getElementById("emotionTaskIcon").innerHTML = tasksIcons['emotion'][lang]
+    document.getElementById("surveyTaskIcon").innerHTML = tasksIcons['survey'][lang]
+
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "100%";
+    }
+
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+    }
+
+
+  </script>
+
+</html>

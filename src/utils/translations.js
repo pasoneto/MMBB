@@ -4,7 +4,7 @@ var movement = [
   [{"eng": "Accessing accelerometer", 
     "fi": "Tarkistetaan kiihtyvyysanturia..."},
    {"eng": "In the next page, you will be asked to allow access to your phone's motion sensors. Please, click on 'Allow'.",
-    "fi": ""}
+    "fi": "Seuraavalla sivulla sinua pyydetään hyväksymään puhelimesi liiketunnistimien käyttö. Klikkaa 'Hyväksy'."}
   ],
   [{"eng": "In the following tasks, we ask you to perform body movements in different situations<br><img id='dance' src='../../images/dance.svg'></img>", 
         "fi": "Seuraavissa tehtävissä pyydämme sinua tekemään kehon liikkeitä eri tilanteissa"},
@@ -15,7 +15,7 @@ var movement = [
   {"eng": "To move freely, put the phone on your pocket before each task starts<br><img id='pocket' src='../../images/pocket.svg'></img>", 
         "fi": "Liikkuaksesi vapaasti, laita puhelin taskuusi ennen jokaista tehtävää<br><img id='pocket' src='../../images/pocket.svg'></img>"},
   {"eng": "If you are not wearing headphones or earplugs, you may want to increase the volume of your phone before you put it in your pocket<br><img id='increaseVolume' src='../../images/increaseVolume.svg'></img>",
-    "fi": ""},
+    "fi": "Jos sinulla ei ole kuulokkeita, voit lisätä puhelimesi äänenvoimakkuutta ennen kuin laitat sen taskuusi"},
   {"eng": "Do not lock the screen of your phone<br><img id='dontLock' src='../../images/dontLock.svg'></img>", 
         "fi": "Älä lukiste puhelimesi nayttöä<br><img id='dontLock' src='../../images/dontLock.svg'></img>"},
   {"eng": "Before each task starts, you will hear a voice countdown<br><img id='tableSVG' src='../../images/voiceSVG.svg'></img>", 
@@ -25,7 +25,7 @@ var movement = [
   {"eng": "For the first task, go to a space where there's room to walk around<br><img id='tableSVG' src='../../images/walkSVG.svg'></img>", 
          "fi": "Ensimmäistä tehtävää varten siirry tilaan, jossa voit kävellä esteettä"},
   {"eng": "We will ask you to walk for 1 minute, at a speed that feels most natural for you<br><img id='oneMinute' src='../../images/oneMinute.svg'></img>", 
-         "fi": ""},
+         "fi": "Kävele minuutin ajan nopeudella joka tuntuu sinulle luonnollisimmalta."},
   {"eng": "When you are ready to begin, click Next", 
          "fi": "Kun olet valmis aloittamaan, paina Seuraava"}],
   [{"eng": "Put your phone in your pocket<br><img id='pocket' src='../../images/pocket.svg'></img>", 
@@ -134,13 +134,13 @@ var recurring = [
   {"eng": "End of task 3", 
         "fi": "Tehtävä 3 on päättynyt"},
   {"eng": "Loading",      //New
-        "fi": "Ladataan (?)"}, //new
+        "fi": "Ladataan"}, //new
   {"eng": "Continue",     //New
         "fi": "Jatka"},        //New
   {"eng": "When you are ready to continue, click Next", 
       "fi": "Kun olet valmis jatkamaan, paina Seuraava"},
   {"eng": "How easy was this task for you?", 
-   "fi": ""},
+   "fi": "kuinka helppoa tämä tehtävä oli sinulle?"},
   {"eng": "Very easy", 
    "fi": "Todella helppoja"}, 
   {"eng": "Very hard", 
@@ -153,10 +153,10 @@ var recurring = [
     "fi": "Tasainen pinta, jolle voit laskea puhelimen<br><img id='tableSVG' src='../../images/table.svg'></img>"},
   {"eng": "A pocket or a purse<br><img id='purseSVG' src='../../images/purse.svg'></img>",
    "fi": "Taskun tai käsilaukun<br><img id='purseSVG' src='../../images/purse.svg'></img>"},
-{"eng": "Please, either use the wired headphones/earplugs or the phone's loudspeaker. Do not use bluetooth hearing-devices.<br> <img id='noBluetooth' src='../../images/noBluetooth.svg'></img>",
- "fi": ""},
-{"eng": "You can take breaks between each task",
- "fi": "Voit pitää tauon jokaisen tehtävän välillä"}],
+  {"eng": "Please, either use the wired headphones/earplugs or the phone's loudspeaker. Do not use bluetooth hearing-devices.<br> <img id='noBluetooth' src='../../images/noBluetooth.svg'></img>",
+   "fi": "Käytä joko langallisia kuulokkeita tai puhelimen kaiutinta. Älä käytä Bluetooth-laitteita."},
+  {"eng": "You can take breaks between each task",
+   "fi": "Voit pitää tauon jokaisen tehtävän välillä"}],
   [{"eng": "To ensure the correct functioning of the experiment, it is required that you disable the automatic lock of your phone screen. Tap Next to see instructions.",
     "fi": "Jotta koe onnistuu, sinun on poistettava puhelimen näytön automaattinen lukitus. Näet ohjeet napauttamalla Seuraava."},
   {"eng": "On <b>iPhone</b>:",
@@ -548,4 +548,30 @@ var sharedMeasurements = {
     "eng": "Sometimes I feel like I just have to dance.",
     "fi": "Joskus koen että minun on vain tanssittava."
   },
+}
+
+var tasksIcons = {
+  "movement": {
+    "eng": "Movement",
+    "fi": "Liike"
+  },
+  "singing": {
+    "eng": "Singing",
+    "fi": "Laulaminen"
+  },
+  "survey": {
+    "eng": "Survey",
+    "fi": "Kysely"
+  },
+  "emotion": {
+    "eng": "Emotion",
+    "fi": "Tunteet"
+  }
+}
+
+var initialPage = {
+  "greetings": {
+    "eng": "Hello",
+    "fi": "Tervetuloa"
+  }
 }
