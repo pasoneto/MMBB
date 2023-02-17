@@ -8,8 +8,7 @@
     <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-audio-keyboard-response@1.1.0"></script>
     <script src="../../jspsych/dist/plugin-audio-button-response.js"> </script>
-    <script src="../../jspsych/dist/plugin-html-button-response.js"> </script>
-    <script src="../../jspsych/dist/plugin-html-slider-response.js"> </script>
+    <script src="../../jspsych/dist/plugin-html-slider-response-multiple.js"> </script>
     <script src="../../jspsych/dist/plugin-html-button-response.js"> </script>
     <script src="../../jspsych/dist/plugin-survey-html-form.js"> </script>
     <script src="../../jspsych/dist/plugin-image-slider-response.js"> </script>
@@ -76,11 +75,11 @@
 
     var howFeeling = {
         type: jsPsychHtmlSliderResponse,
-        stimulus: `<div>
+        stimulus: [`<div>
                     <p style="font-size:3vw;">How do you feel?
-                   </div>`,
+                   </div>`],
         require_movement: true,
-        labels: ['Extremely<br>bad', 'very<br>bad', 'bad', 'good', 'very<br>good', 'extremely<br>good'],
+        labels: [['Extremely<br>bad', 'very<br>bad', 'bad', 'good', 'very<br>good', 'extremely<br>good']],
         data: { previousHowFeeling: 'true' },
         on_load: function(){
           document.querySelector(".jspsych-html-slider-response-container").style.width = "80%"
@@ -89,11 +88,11 @@
 
     var howFeeling2 = {
         type: jsPsychHtmlSliderResponse,
-        stimulus: `<div>
+        stimulus: [`<div>
                     <p style="font-size:3vw;">How do you feel?
-                   </div>`,
+                   </div>`],
         require_movement: false,
-        labels: ['Extremely<br>bad', 'very<br>bad', 'bad', 'good', 'very<br>good', 'extremely<br>good'],
+        labels: [['Extremely<br>bad', 'very<br>bad', 'bad', 'good', 'very<br>good', 'extremely<br>good']],
         data: { previousHowFeeling: 'true' },
         on_start: function(trial) {
           var howFeelingPrevious = jsPsych.data.get().filter({previousHowFeeling: 'true'})['trials']
@@ -108,11 +107,11 @@
 
     var relationshipFriend = {
         type: jsPsychHtmlSliderResponse,
-        stimulus: `<div>
+        stimulus: [`<div>
                     Please rate your relationship with the first person you danced and created a playlist with
-                   </div>`,
+                   </div>`],
         require_movement: true,
-        labels: ["We don't know each other at all", 'We know each other but rarely interact', 'We are very good friends', 'We are best friends'],
+        labels: [["We don't know each other at all", 'We know each other but rarely interact', 'We are very good friends', 'We are best friends']],
         on_load: function(){
           document.querySelector(".jspsych-html-slider-response-container").style.width = "80%"
         }
@@ -120,11 +119,11 @@
 
     var relationshipFriend2 = {
         type: jsPsychHtmlSliderResponse,
-        stimulus: `<div>
+        stimulus: [`<div>
                       Please rate your relationship with the second person you danced and created a playlist with
-                   </div>`,
+                   </div>`],
         require_movement: true,
-        labels: ["We don't know each other at all", 'We know each other but rarely interact', 'We are very good friends', 'We are best friends'],
+        labels: [["We don't know each other at all", 'We know each other but rarely interact', 'We are very good friends', 'We are best friends']],
         on_load: function(){
           document.querySelector(".jspsych-html-slider-response-container").style.width = "80%"
         }
@@ -133,11 +132,11 @@
 
     var howWasPlaylist = {
         type: jsPsychHtmlSliderResponse,
-        stimulus: `<div>
+        stimulus: [`<div>
                     How easy was to reach a decision regarding the playlist?<br><br>
-                   </div>`,
+                   </div>`],
         require_movement: true,
-        labels: ['Very hard', 'Very easy'],
+        labels: [['Very hard', 'Very easy']],
         on_load: function(){
           document.querySelector(".jspsych-html-slider-response-container").style.width = "80%"
         }
@@ -261,47 +260,25 @@
 
     //This repeats for each song (7 tracks)
     function generateSongQuestions(nTrial){
-      var likeSong = {
+      var songQuestions = {
           type: jsPsychHtmlSliderResponse,
-          stimulus: "How much do you like <b>song " + nTrial + "</b>?<br><br>",
+          stimulus: ["How much do you like <b>song " + nTrial + "</b>?<br><br>",
+                     "How much did <b>song " + nTrial + "</b> make you want to dance?<br><br>",
+                     "How much did you want to continue dancing to <b>song" + nTrial + "</b>?<br><br>",
+                     "How familiar were you with <b>song " + nTrial + "</b>?<br><br>"
+          ],
+          nSliders: 4,
           require_movement: true,
-          labels: ['Not at all', 'Very much'],
+          labels: [['Not at all', 'Very much'], ["Not at all", "Very much"], ["Not at all", "Very much"], ['Never heard<br>it before', 'Know it<br>very well']],
           on_load: function(){
-            document.querySelector(".jspsych-html-slider-response-container").style.width = "80%"
+            var slidersContainers = document.querySelectorAll(".jspsych-html-slider-response-container")
+            slidersContainers.forEach(i => {
+              i.style.width = "80%"
+            })
           }
       };
 
-      var grooveRating = {
-          type: jsPsychHtmlSliderResponse,
-          stimulus: "How much did <b>song " + nTrial + "</b> make you want to dance?<br><br>",
-          require_movement: true,
-          labels: ["Not at all", "Very much"],
-          on_load: function(){
-            document.querySelector(".jspsych-html-slider-response-container").style.width = "80%"
-          }
-      };
-
-      var wantContinueDancing = {
-          type: jsPsychHtmlSliderResponse,
-          stimulus: "How much did you want to continue dancing to <b>song" + nTrial + "</b>?<br><br>",
-          require_movement: true,
-          labels: ["Not at all", "Very much"],
-          on_load: function(){
-            document.querySelector(".jspsych-html-slider-response-container").style.width = "80%"
-          }
-      };
-
-      var familiaritySong = {
-          type: jsPsychHtmlSliderResponse,
-          stimulus: "How familiar were you with <b>song " + nTrial + "</b>?<br><br>",
-          require_movement: true,
-          labels: ['Never heard<br>it before', 'Know it<br>very well'],
-          on_load: function(){
-            document.querySelector(".jspsych-html-slider-response-container").style.width = "80%"
-          }
-      };
-
-      return [likeSong, grooveRating, wantContinueDancing, familiaritySong]
+      return songQuestions;
     }
 
     var questionsAboutSongs = {
