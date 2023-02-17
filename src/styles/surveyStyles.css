@@ -1,6 +1,8 @@
 body{
   background: RGB(146, 168, 209, 0.2);
   overscroll-behavior-y: contain; /* Disables pull-to-refresh but allows overscroll glow effects. */
+  max-width: 100%;
+  overflow-x: hidden;
 }
 button, #jspsych-html-slider-response-next, .jspsych-btn{
   align-items: center;
@@ -85,12 +87,6 @@ button, #jspsych-html-slider-response-next, .jspsych-btn{
 /*End of beat alignment task*/
 
 /*Movement task jspsych-html-slider-response-next*/
-#sliderCustom{
-  height: 100px;
-  margin-top: 100px;
-  line-height:18px;
-  font-size:4vw;
-}
 #labelsWrapper{
   display: inline-block;
   width: 100%;
@@ -99,19 +95,12 @@ button, #jspsych-html-slider-response-next, .jspsych-btn{
 #jspsych-content{
   width: 100%;
 }
-#label0{
+div[id^="label"] {
   line-height: 1.3em;
-  font-size: 0.6em;
+  font-size: 0.8em;
   width: 25%;
   text-align: left;
   float: left;
-}
-#label1{
-  line-height: 1.3em;
-  font-size: 0.6em;
-  width: 25%;
-  text-align: right;
-  float: right;
 }
 #buttonSongItem{
   border-radius: 12px;
@@ -195,8 +184,6 @@ button:focus {
   transform: translateY(0);
 }
 
-
-
 /*Survey friends-strangers*/
 #containerSurvey{
   display: flex;
@@ -208,5 +195,48 @@ button:focus {
 }
 #instructionSurvey{
   width: 100vw;
+}
+#sliderCustom{
+  height: 100px;
+  margin-top: 100px;
+  line-height:18px;
+  font-size:4vw;
+}
+.jspsych-html-slider-response-container{
+  width: 80%
+}
+/*Styling slider*/
+.jspsych-slider{
+  -webkit-appearance: none;
+  width: 100%;
+  height: 50px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+.jspsych-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 50px;
+  height: 50px;
+  background: #04AA6D;
+  cursor: pointer;
+  margin-top: -22px;
+}
+.jspsych-slider::-moz-range-thumb {
+  width: 50px;
+  height: 50px;
+  background: #04AA6D;
+  cursor: pointer;
+}
+.jspsych-slider::-ms-thumb {
+  height: 20px;
+  width: 15px;
+  border-radius: 5px;
+  background: #ffffff;
+  cursor: pointer;
+  margin-top: -5px;
 }
 /*End of survey friends-strangers*/

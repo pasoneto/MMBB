@@ -81,7 +81,10 @@
                    </div>`,
         require_movement: true,
         labels: ['Extremely<br>bad', 'very<br>bad', 'bad', 'good', 'very<br>good', 'extremely<br>good'],
-        data: { previousHowFeeling: 'true' }
+        data: { previousHowFeeling: 'true' },
+        on_load: function(){
+          document.querySelector(".jspsych-html-slider-response-container").style.width = "80%"
+        }
     };
 
     var howFeeling2 = {
@@ -97,6 +100,9 @@
           var howFeelingPrevious = howFeelingPrevious.slice(-1)[0]
           var howFeelingPrevious = howFeelingPrevious['response']
           trial.slider_start = howFeelingPrevious
+        },
+        on_load: function(){
+          document.querySelector(".jspsych-html-slider-response-container").style.width = "80%"
         }
     };
 
@@ -107,6 +113,9 @@
                    </div>`,
         require_movement: true,
         labels: ["We don't know each other at all", 'We know each other but rarely interact', 'We are very good friends', 'We are best friends'],
+        on_load: function(){
+          document.querySelector(".jspsych-html-slider-response-container").style.width = "80%"
+        }
     };
 
     var relationshipFriend2 = {
@@ -116,6 +125,9 @@
                    </div>`,
         require_movement: true,
         labels: ["We don't know each other at all", 'We know each other but rarely interact', 'We are very good friends', 'We are best friends'],
+        on_load: function(){
+          document.querySelector(".jspsych-html-slider-response-container").style.width = "80%"
+        }
     };
 
 
@@ -125,7 +137,10 @@
                     How easy was to reach a decision regarding the playlist?<br><br>
                    </div>`,
         require_movement: true,
-        labels: ['Very hard', 'Very easy']
+        labels: ['Very hard', 'Very easy'],
+        on_load: function(){
+          document.querySelector(".jspsych-html-slider-response-container").style.width = "80%"
+        }
     };
 
     var trialSurvey = {
@@ -148,7 +163,7 @@
     var instructionPreCloseness = {
       type: jsPsychInstructions,
       pages: [
-      'In the next page, use the slider to indicate how close you feel to your pair',
+      'In the next page, use the slider to indicate how close you feel to your partner',
       ],
       button_label_next: "Next",
       button_label_previous: "Previous",
@@ -167,7 +182,7 @@
       on_load: function(){
         var a = document.createElement("div");
         a.setAttribute("id", "promptSlider");
-        a.innerHTML = "Use the slider to indicate how close you feel to your pair"
+        a.innerHTML = "Use the slider to indicate how close you feel to your partner"
         a.style.marginTop = "50px";
         a.style.fontSize = "30px";
         a.style.textAlign = "center";
@@ -176,6 +191,9 @@
         
         document.getElementById("jspsych-image-slider-response-stimulus1").style.marginTop = "60px"
         document.getElementById("jspsych-image-slider-response-stimulus2").style.marginTop = "60px"
+
+        document.querySelector(".jspsych-image-slider-response-container").style.width = "80%"
+
       },
       on_finish: function(){
         document.getElementById("promptSlider").remove()
@@ -194,7 +212,7 @@
       on_load: function(){
         var a = document.createElement("div");
         a.setAttribute("id", "promptSlider");
-        a.innerHTML = "Use the slider to indicate how close you feel to your pair"
+        a.innerHTML = "Use the slider to indicate how close you feel to your partner"
         a.style.marginTop = "50px";
         a.style.fontSize = "30px";
         a.style.textAlign = "center";
@@ -203,6 +221,9 @@
 
         document.getElementById("jspsych-image-slider-response-stimulus1").style.marginTop = "60px"
         document.getElementById("jspsych-image-slider-response-stimulus2").style.marginTop = "60px"
+
+        document.querySelector(".jspsych-image-slider-response-container").style.width = "80%"
+
       },
       on_start: function(trial) {
         var closenessTrials = jsPsych.data.get().filter({stimulus: "../emotion_demo/basic_emoji/v5a1.png"})
@@ -244,7 +265,10 @@
           type: jsPsychHtmlSliderResponse,
           stimulus: "How much do you like <b>song " + nTrial + "</b>?<br><br>",
           require_movement: true,
-          labels: ['Not at all', 'Very much']
+          labels: ['Not at all', 'Very much'],
+          on_load: function(){
+            document.querySelector(".jspsych-html-slider-response-container").style.width = "80%"
+          }
       };
 
       var grooveRating = {
@@ -252,6 +276,9 @@
           stimulus: "How much did <b>song " + nTrial + "</b> make you want to dance?<br><br>",
           require_movement: true,
           labels: ["Not at all", "Very much"],
+          on_load: function(){
+            document.querySelector(".jspsych-html-slider-response-container").style.width = "80%"
+          }
       };
 
       var wantContinueDancing = {
@@ -259,13 +286,19 @@
           stimulus: "How much did you want to continue dancing to <b>song" + nTrial + "</b>?<br><br>",
           require_movement: true,
           labels: ["Not at all", "Very much"],
+          on_load: function(){
+            document.querySelector(".jspsych-html-slider-response-container").style.width = "80%"
+          }
       };
 
       var familiaritySong = {
           type: jsPsychHtmlSliderResponse,
           stimulus: "How familiar were you with <b>song " + nTrial + "</b>?<br><br>",
           require_movement: true,
-          labels: ['Never heard<br>it before', 'Know it<br>very well']
+          labels: ['Never heard<br>it before', 'Know it<br>very well'],
+          on_load: function(){
+            document.querySelector(".jspsych-html-slider-response-container").style.width = "80%"
+          }
       };
 
       return [likeSong, grooveRating, wantContinueDancing, familiaritySong]
@@ -275,8 +308,8 @@
       timeline: [1, 2, 3, 4, 5, 6, 7].map(i => generateSongQuestions(i)).flat()
     }
 
- //- Please rate your relationship with the first person you danced and created a playlist with
- //- Please rate your relationship with the second person you danced and created a playlist with   
+   //- Please rate your relationship with the first person you danced and created a playlist with
+   //- Please rate your relationship with the second person you danced and created a playlist with   
 
     //Determining which timeline to run
     if(diadNumber == "a"){ //Pair A

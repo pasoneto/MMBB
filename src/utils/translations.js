@@ -57,8 +57,8 @@ var movement = [
          "fi": "Voit valita laulun 6 vaihtoehdosta"},
   {"eng": "Click on the album cover to hear an excerpt of the song", 
          "fi": "Klikkaa albumin kuvaa kuullaksesi näytteen laulusta"},
-  {"eng": "When you have made your selection, scroll down to the bottom and press Continue", 
-         "fi": "Kun olet valinnut laulun, rullaa ruudun alaosaan ja paina Jatka"},
+  {"eng": "When you have made your selection, scroll down to the bottom and press Next", 
+         "fi": "Kun olet valinnut laulun, rullaa ruudun alaosaan ja paina Seuraava"},
   ],
   [{"eng": "Choose a song below and click Next when you have made your choice",
     "fi": "Valitse kappale alapuolelta ja paina seuraava, kun olet tehnyt valintasi"}

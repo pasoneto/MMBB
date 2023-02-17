@@ -1,0 +1,18 @@
+- Scale slider to always same size;
+- Emojis just touch, don't overlap;
+- Put transparent circles instead of emojis for closeness;
+- Disallow screen draw left right
+- Reset closeness between each track, put labels in extremes and middle of scale (Extremely distant to Extremely Close)
+
+- Thank you for your responses and hand the ipad back to the experimenter. Instead of hand back your ipad, just leave the ipad on the table and call the experimenter.
+- How easy playlist? Use the same categories as mood and closeness.
+- Familiarity: group ratings by song on same page 
+
+- How much did you like the song: Extremely disliked, disliked a lot, disliked, liked, liked a lot, extremely liked
+- How much did song 1 make you want to dance: leave it as it is (2 points)
+- Familiarity song: How familiar are you with the musical style of song X. (not at all - very much)
+- Add one question: Have you heard song 1 before. (Yes, No, IDK).
+
+- Last question about friendship not only in the last position (pairs C and D), but also after pairs A and B.
+
+- Remove First questionnaire
