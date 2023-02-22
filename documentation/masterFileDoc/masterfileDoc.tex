@@ -1,0 +1,91 @@
+\documentclass[12pt]{article}
+\usepackage{geometry}
+\usepackage{tabulary}
+\geometry{a4paper,margin=1.5cm,bottom=.75cm}
+
+\usepackage[table]{xcolor}
+
+\usepackage{array}
+\newcolumntype{L}{>{\centering\arraybackslash}m{3cm}}
+
+\usepackage{fontawesome5}
+\usepackage{ragged2e}
+\usepackage{parskip}
+
+\usepackage{booktabs,makecell,xltabular}
+
+\usepackage[T1]{fontenc}
+\usepackage[lf,default]{FiraSans}
+\usepackage{zi4}
+
+\usepackage{regexpatch}
+\usepackage[os=mac]{menukeys}
+\renewmenumacro{\keys}[+]{shadowedroundedkeys}
+\renewmenumacro{\menu}[>]{angularmenus}
+\xpatchcmd*{\SPACE}{2em}{1em}{}{}
+
+\renewcommand{\tabularxcolumn}[1]{m{#1}}
+\renewcommand{\arraystretch}{1.4}
+\arrayrulecolor{gray!60!white}
+
+\makeatletter
+\renewcommand{\maketitle}{{\centering\sffamily{\LARGE\bfseries\@title}\par\vskip\baselineskip{\large\@date}\par}\vskip\baselineskip}
+% nifty commands by Paul Gaborit from http://tex.stackexchange.com/a/236891/226
+\def\setmenukeyswin{\def\tw@mk@os{win}}
+\def\setmenukeysmac{\def\tw@mk@os{mac}}
+\makeatother
+
+\usepackage{hyperref}
+\urlstyle{same}
+
+\title{\textit{MasterFile} Description}
+\author{Pedro A. S. O. Neto}
+\date{Created 21 Feb, 2023}
+
+\begin{document}
+
+\maketitle
+
+\emph{General description of the \textit{MasterFile}.} 
+
+%\emph{Os níveis descritivos estão indicados ao final de cada descrição. T (trial), P (participante), F (Fixação)}
+
+\bigskip
+
+\section{Movement - accelerometer} 
+
+\begin{center}
+\begin{tabular}{|c|L|L|}
+    \hline
+    \textbf{Name} & \multicolumn{1}{m{10cm}|}{\textbf{Description}} \\
+    \hline 
+    
+    t & \multicolumn{1}{m{10cm}|}{Time (ms) passed since the beginning of the trial until the moment at which the accelerometer measurement is taken. Javascript method: every time the \textit{devicemotion} event is triggered, \textit{performance.now()} is called and subtracted from the variable \textit{currentTrialStartTime}, declared as performance.now() at the beginning of each trial.}\\
+    \hline
+    
+    timeAudio & \multicolumn{1}{m{10cm}|}{Time (s) of the song at which the accelerometer measurement occured, measured with \href{https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API}{audioContext}. Javascript method: every time the \textit{devicemotion} event is triggered, \href{https://developer.mozilla.org/en-US/docs/Web/API/BaseAudioContext/currentTime}{context.currentTime} is called and subtracted from the time at which the context was created (also measured with \textit{context.currentTime}). Accuracy is automatically reduced by the browser. Use $t$ (above) as accurate measurement of time. }\\
+    \hline
+
+    condition & \multicolumn{1}{m{10cm}|}{Condição do experimento. Pode ser RJA, IJA, ou BL\_ (Baseline). \textit{(T)}.}    \\
+    \hline
+    
+    tea & \multicolumn{1}{m{10cm}|}{Diagnóstico. true indica TEA, false indica TD. \textit{(P)}.}    \\
+    \hline
+
+    
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|c|L|L|}
+    \hline
+    \textbf{Nome} & \multicolumn{1}{m{10cm}|}{\textbf{Descrição}} \\
+    \hline 
+
+    proportionFixation & \multicolumn{1}{m{10cm}|}{Proporção $\%$ que a fixação representa em relação à fixação total (totalFixation). A soma das proporções ao londo de cada trial, para cada participante, é sempre igual a 1. \textit{(F)}.}    \\
+    \hline
+
+\end{tabular}
+\end{center}
+
+\end{document}
