@@ -11,6 +11,7 @@
     <script src="../utils/langFetch.js"></script>
     <script src="../utils/preventRefresh.js"> </script>
     <script src="../utils/identifyOS.js"> </script>
+    <script src="../utils/manageCookies.js"> </script>
 
     <script src="https://unpkg.com/jspsych@7.1.2"></script>
     <script src="../../jspsych/dist/plugin-html-songselector-response.js"> </script>
@@ -93,7 +94,7 @@
 
         var timeEnd = Date.now();
         
-        jsPsych.data.addProperties({userID: userID, timeEnd: timeEnd, timeBegin: timeBegin, sequenceTrials: document.cookie, nodeIndex: nIndex, tIndex: tIndex});
+        jsPsych.data.addProperties({userID: userID, timeEnd: timeEnd, timeBegin: timeBegin, sequenceTrials: getCookie('sequenceTrial'), nodeIndex: nIndex, tIndex: tIndex});
 
         var finalData = jsPsych.data.get()
         finalData['trials'].push({"performance": measurePerformance, "infoUser": navigator.userAgent})
@@ -135,21 +136,23 @@
 
     document.cookie = ""
 
-    var alreadyStored = document.cookie.includes("tapping");
-    if(!alreadyStored){
+    var alreadyStored = getCookie("sequenceTrial");
+    if (alreadyStored == "") {
+      console.log(alreadyStored)
       var indexTrial = jsPsych.randomization.shuffle(["movement", "bat", "tapping"]);
       var indexTrial = indexTrial.join(',')
-      document.cookie = indexTrial
+      document.cookie = "sequenceTrial=" + indexTrial
     }
     
     //Fixing artifact created by document.cookie
-    if(document.cookie !== ''){
-      var indexTrial = document.cookie.replace('=', '');
-      var indexTrial = document.cookie.split(",")
+    if(alreadyStored !== ''){
+      var indexTrial = getCookie('sequenceTrial')
+      var indexTrial = indexTrial.replace('=', '');
+      var indexTrial = indexTrial.split(",")
       indexTrial[2] = indexTrial[2].replace('=', '')
     }
 
-    var completeSequence = [sequenceTrials["intro"], sequenceTrials[indexTrial[0]], sequenceTrials[indexTrial[1]], sequenceTrials[indexTrial[2]]]
+    var completeSequence = [sequenceTrials["intro"], sequenceTrials[indexTrial[0]], sequenceTrials[indexTrial[1]], sequenceTrials[indexTrial[2]], [[messageFinishSub]]]
 
     jsPsych.run(completeSequence[Number(nodeIndex)][trialIndex])
 

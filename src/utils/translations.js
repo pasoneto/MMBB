@@ -83,7 +83,12 @@ var movement = [
          "fi": "Kuinka paljon rytmi sai sinut haluamaan liikkua?"},
   ]
 ]
-        
+
+var endTask = [
+  {"eng": "Task ended", 
+   "fi": "Task ended"},
+]
+
 var tapping = [
   [{"eng": "In this task, we will ask you to place your phone on a table, and tap on a button on the screen using the index finger of your preferred hand<br><img id='tableSVG' src='../../images/tappingSVG.svg'></img>", 
         "fi": "Tässä tehtävässä pyydämme sinua naputtamaan ruudulla näkyvää painiketta paremman kätesi etusormellä"},

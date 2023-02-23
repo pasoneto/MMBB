@@ -114,4 +114,16 @@ var messageEndTask = {
   }
 };
 
+var messageFinishSub = {
+  type: jsPsychHtmlButtonResponse,
+  prompt: endTask[0][lang],
+  choices: [],
+  trial_duration: 20000,
+  stimulus: '',
+  on_finish: function(){
+    window.onbeforeunload = function () {}
+    document.cookie = "Movement=done"
+  }
+};
+
 var generalIntroWrap = [[preloadTest, requirements, lockIOS, lockAndroid, testAudioIOS, testAudioAndroid, gettingHelp]];
