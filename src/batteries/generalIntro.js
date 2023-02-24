@@ -118,11 +118,10 @@ var messageFinishSub = {
   type: jsPsychHtmlButtonResponse,
   prompt: endTask[0][lang],
   choices: [],
-  trial_duration: 20000,
+  trial_duration: 3000,
   stimulus: '',
-  on_finish: function(){
-    window.onbeforeunload = function () {}
-    document.cookie = "Movement=done"
+  on_start: function(){
+    document.cookie = "Movement=done; path=/"
   }
 };
 
