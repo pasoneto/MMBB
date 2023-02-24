@@ -43,14 +43,21 @@
       on_finish: function() {
         //jsPsych.data.displayData();
         jsPsych.data.addProperties({diad: diadNumber});
+        jsPsych.data.addProperties({participantNumberUrl: participantNumberUrl});
         jsPsych.data.get().localSave('csv','mydata.csv');
       }
     });
     
     var diadNumber = urlParams.get('diad')
+    var participantNumberUrl = urlParams.get('participantNumber')
+
     if(diadNumber == null){
       alert('You did not put the diad number as URL parameter. Automatically assigning diad number 1. To change, add "?diad=2" to the end of the URL')
       var diadNumber = 1
+    }
+    if(participantNumberUrl == null){
+      alert('You did not put the pair number as URL parameter. Automatically assigning diad number 1. To change, add "?pair=none" to the end of the URL')
+      var participantNumber = "none"
     }
     console.log(diadNumber)
   
