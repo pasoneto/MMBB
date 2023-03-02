@@ -187,9 +187,9 @@ var familiarityRating = {
       document.getElementById("label1").style = ''
     },
     on_finish: function(data){
-      var allData = jsPsych.data.get().values();
-      var song = allData[allData.length - 2].stimulus;
-      data.song = song;
+      var last2 = jsPsych.data.get().last(4);
+      var songBeingRated = last2['trials'][0].stimulus
+      data.song = songBeingRated
     }
 };
 
@@ -203,9 +203,9 @@ var likingBeatRating = {
       document.getElementById("label1").style = ''
     },
     on_finish: function(data){
-      var allData = jsPsych.data.get().values();
-      var song = allData[allData.length - 3].stimulus;
-      data.song = song;
+      var last2 = jsPsych.data.get().last(4);
+      var songBeingRated = last2['trials'][0].stimulus
+      data.song = songBeingRated
     }
 };
 
@@ -219,9 +219,9 @@ var likingRating = {
       document.getElementById("label1").style = ''
     },
     on_finish: function(data){
-      var allData = jsPsych.data.get().values();
-      var song = allData[allData.length - 3].stimulus;
-      data.song = song;
+      var last2 = jsPsych.data.get().last(5);
+      var songBeingRated = last2['trials'][0].stimulus
+      data.song = songBeingRated
     }
 };
 
@@ -235,9 +235,9 @@ var grooveRatingBeat = {
       document.getElementById("label1").style = ''
     },
     on_finish: function(data){
-      var allData = jsPsych.data.get().values();
-      var song = allData[allData.length - 4].stimulus;
-      data.song = song;
+      var last2 = jsPsych.data.get().last(5);
+      var songBeingRated = last2['trials'][0].stimulus
+      data.song = songBeingRated
     }
 };
 
@@ -251,9 +251,25 @@ var grooveRating = {
       document.getElementById("label1").style = ''
     },
     on_finish: function(data){
-      var allData = jsPsych.data.get().values();
-      var song = allData[allData.length - 4].stimulus;
-      data.song = song;
+      var last2 = jsPsych.data.get().last(6);
+      var songBeingRated = last2['trials'][0].stimulus
+      data.song = songBeingRated
+    }
+};
+
+var howDifficultMovement = {
+    type: jsPsychHtmlSliderResponse,
+    stimulus: recurring[9][lang],
+    require_movement: false,
+    labels: [recurring[10][lang], recurring[11][lang]],
+    on_load: function(){
+      document.getElementById("label0").style = ''
+      document.getElementById("label1").style = ''
+    },
+    on_finish: function(data){
+      var last2 = jsPsych.data.get().last(3);
+      var songBeingRated = last2['trials'][0].stimulus
+      data.song = songBeingRated
     }
 };
 
@@ -357,21 +373,14 @@ var trialAccelerometer4 = {
     },
 }
 
+
 //Original
-//var movementTimeline = [[preloadSongs1, instruction0, promptAccel, loadAccel, phonePocket, countDown, trialAccelerometer1, pickUpPhone, howDifficult, instruction1, phonePocket, countDown, trialAccelerometer2, pickUpPhone, howDifficult, likingBeatRating, grooveRatingBeat, instruction2, phonePocket, countDown, trialAccelerometer3, pickUpPhone, howDifficult, familiarityRating, likingRating, grooveRating, instruction3, chooseSongs, preloadChosen, phonePocket, countDown, trialAccelerometer4, pickUpPhone, howDifficult, familiarityRating, likingRating, grooveRating]];
+//var movementTimeline = [[preloadSongs1, instruction0, promptAccel, loadAccel, phonePocket, countDown, trialAccelerometer1, pickUpPhone, howDifficultMovement, instruction1, phonePocket, countDown, trialAccelerometer2, pickUpPhone, howDifficultMovement, likingBeatRating, grooveRatingBeat, instruction2, phonePocket, countDown, trialAccelerometer3, pickUpPhone, howDifficultMovement, familiarityRating, likingRating, grooveRating, instruction3, chooseSongs, preloadChosen, phonePocket, countDown, trialAccelerometer4, pickUpPhone, howDifficultMovement, familiarityRating, likingRating, grooveRating]];
 
 //Step by step
-var firstMovement = [instruction0, promptAccel, loadAccel, phonePocket, countDown, trialAccelerometer1, pickUpPhone, howDifficult]
-var secondMovement = [preloadSongs1, instruction1, phonePocket, countDown, trialAccelerometer2, pickUpPhone, howDifficult, likingBeatRating, grooveRatingBeat]
-var thirdMovement = [preloadSongs1, instruction2, phonePocket, countDown, trialAccelerometer3, pickUpPhone, howDifficult, familiarityRating, likingRating, grooveRating]
-var fourthMovement = [instruction3, chooseSongs, preloadChosen, phonePocket, countDown, trialAccelerometer4, pickUpPhone, howDifficult, familiarityRating, likingRating, grooveRating]
+var firstMovement = [instruction0, promptAccel, loadAccel, phonePocket, countDown, trialAccelerometer1, pickUpPhone, howDifficultMovement]
+var secondMovement = [preloadSongs1, instruction1, phonePocket, countDown, trialAccelerometer2, pickUpPhone, howDifficultMovement, likingBeatRating, grooveRatingBeat]
+var thirdMovement = [preloadSongs1, instruction2, phonePocket, countDown, trialAccelerometer3, pickUpPhone, howDifficultMovement, familiarityRating, likingRating, grooveRating]
+var fourthMovement = [instruction3, chooseSongs, preloadChosen, phonePocket, countDown, trialAccelerometer4, pickUpPhone, howDifficultMovement, familiarityRating, likingRating, grooveRating]
 
 var movementTimeline = [firstMovement, secondMovement, thirdMovement, fourthMovement];
-
-
-
-
-
-
-
-

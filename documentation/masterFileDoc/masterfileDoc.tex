@@ -48,11 +48,64 @@
 
 \emph{General description of the \textit{MasterFile}.} 
 
-%\emph{Os níveis descritivos estão indicados ao final de cada descrição. T (trial), P (participante), F (Fixação)}
+
+\emph{Tasks means BAT, TAP, or Movement}
+\emph{Indexing starts at 1, unless specified.}
+
+%Task: unify names of columns between tasks
 
 \bigskip
 
-\section{Movement - accelerometer} 
+\section{Common data} 
+
+\emph{Data that is common to all tasks and trials}
+\newline
+
+\begin{center}
+\begin{tabular}{|c|L|L|}
+    \hline
+    \textbf{Name} & \multicolumn{1}{m{10cm}|}{\textbf{Description}} \\
+    \hline 
+    
+    userID & \multicolumn{1}{m{10cm}|}{Unique user identifyer}\\
+    \hline
+
+    sequenceTrials & \multicolumn{1}{m{10cm}|}{Order in which tasks (bat, tap, and movement) were presented to the participant.}\\
+    \hline
+
+    nodeIndex & \multicolumn{1}{m{10cm}|}{Index of current task within sequenceTrials (see above). If sequenceTrials == tap,bat,movement, and nodeIndex == 1, the current task is \textit{tap}.}\\
+    \hline
+
+    nodeName & \multicolumn{1}{m{10cm}|}{Name of current task. Always equal to sequenceTrial, at the index of nodeIndex. Redundant information, only for sannity checking.}\\
+    \hline
+
+    outputLatencyBegin & \multicolumn{1}{m{10cm}|}{Time (s) between the browser passing an audio buffer out of an audio graph over to the host system's audio subsystem to play, and the time at which the first sample in the buffer is actually processed by the audio output device. Measured in the beginning of the trial. \href{https://developer.mozilla.org/en-US/docs/Web/API/AudioContext/outputLatency}{Web documentation}}\\
+    \hline
+
+    outputLatencyEnd & \multicolumn{1}{m{10cm}|}{Time (s) between the browser passing an audio buffer out of an audio graph over to the host system's audio subsystem to play, and the time at which the first sample in the buffer is actually processed by the audio output device. Measured in the end of the trial. \href{https://www.w3.org/TR/webaudio/#dom-audiocontext-getoutputtimestamp}{Web documentation}}\\
+    \hline
+
+    baseLatencyBegin & \multicolumn{1}{m{10cm}|}{Time (s) of processing latency incurred by the AudioContext passing the audio from the AudioDestinationNode to the audio subsystem. It does not include any additional latency that might be caused by any other processing between the output of the AudioDestinationNode and the audio hardware. Measured in the beginning of the trial. \href{https://www.w3.org/TR/webaudio/#dom-audiocontext-getoutputtimestamp}{Web Audio API official documentation}.}\\
+    \hline
+
+    baseLatencyEnd & \multicolumn{1}{m{10cm}|}{Time (s) of processing latency incurred by the AudioContext passing the audio from the AudioDestinationNode to the audio subsystem. It does not include any additional latency that might be caused by any other processing between the output of the AudioDestinationNode and the audio hardware. Measured in the end of the trial. \href{https://www.w3.org/TR/webaudio/#dom-audiocontext-getoutputtimestamp}{Web Audio API official documentation}.}\\
+    \hline
+    
+    timeBegin & \multicolumn{1}{m{10cm}|}{Time (unix) at which participant started the current trial. Only for tapping task, timestamp indicates when the first trial is started.}\\
+    \hline
+
+    timeEnd & \multicolumn{1}{m{10cm}|}{Time (unix) at which participant finished the current trial. Only for tapping task, timestamp indicates when the last trial is finished.}\\
+    \hline
+
+    stimulus & \multicolumn{1}{m{10cm}|}{Song presented to participant in the current trial. ATENCAO: Mofidy BAT task from batSong to stimulus}\\
+    \hline
+    
+\end{tabular}
+\end{center}
+
+
+\section{Task-specific data} 
+\subsection{Accelerometer} 
 
 \begin{center}
 \begin{tabular}{|c|L|L|}
@@ -63,27 +116,53 @@
     t & \multicolumn{1}{m{10cm}|}{Time (ms) passed since the beginning of the trial until the moment at which the accelerometer measurement is taken. Javascript method: every time the \textit{devicemotion} event is triggered, \textit{performance.now()} is called and subtracted from the variable \textit{currentTrialStartTime}, declared as performance.now() at the beginning of each trial.}\\
     \hline
     
-    timeAudio & \multicolumn{1}{m{10cm}|}{Time (s) of the song at which the accelerometer measurement occured, measured with \href{https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API}{audioContext}. Javascript method: every time the \textit{devicemotion} event is triggered, \href{https://developer.mozilla.org/en-US/docs/Web/API/BaseAudioContext/currentTime}{context.currentTime} is called and subtracted from the time at which the context was created (also measured with \textit{context.currentTime}). Accuracy is automatically reduced by the browser. Use $t$ (above) as accurate measurement of time. }\\
+    timeAudio & \multicolumn{1}{m{10cm}|}{Time (s) of the song at which the accelerometer measurement occured, measured with \href{https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API}{audioContext}. Javascript method: every time the \textit{devicemotion} event is triggered, \href{https://developer.mozilla.org/en-US/docs/Web/API/BaseAudioContext/currentTime}{context.currentTime} is called and subtracted from the time at which the context was created (also measured with \textit{context.currentTime}). Accuracy is automatically reduced by the browser. Use $t$ (above) as accurate measurement of time. Difference between the first $t$ and the first \textit{timeAudio} for a given track indicates when, in relation to the audio, the accelerometer started to record movement.}\\
     \hline
 
-    condition & \multicolumn{1}{m{10cm}|}{Condição do experimento. Pode ser RJA, IJA, ou BL\_ (Baseline). \textit{(T)}.}    \\
-    \hline
-    
-    tea & \multicolumn{1}{m{10cm}|}{Diagnóstico. true indica TEA, false indica TD. \textit{(P)}.}    \\
+    x, y, z & \multicolumn{1}{m{10cm}|}{Amount of acceleration (m/s²). The acceleration value does not include the effect of the gravity force. We cannot know which axis corresponds to horizontal and vertical planes, because it depends on the position of the phone. \href{https://w3c.github.io/deviceorientation/#devicemotion}{Official documentation of devicemotion event}.}\\
     \hline
 
-    
+    alpha, beta, gamma & \multicolumn{1}{m{10cm}|}{Rotation rate (degrees per second) at alpha, beta, and gamma planes. \href{https://w3c.github.io/deviceorientation/#devicemotion}{Official documentation of devicemotion event}.}\\
+    \hline
+
 \end{tabular}
 \end{center}
+
+
+\subsection{BAT} 
 
 \begin{center}
 \begin{tabular}{|c|L|L|}
     \hline
-    \textbf{Nome} & \multicolumn{1}{m{10cm}|}{\textbf{Descrição}} \\
+    \textbf{Name} & \multicolumn{1}{m{10cm}|}{\textbf{Description}} \\
     \hline 
-
-    proportionFixation & \multicolumn{1}{m{10cm}|}{Proporção $\%$ que a fixação representa em relação à fixação total (totalFixation). A soma das proporções ao londo de cada trial, para cada participante, é sempre igual a 1. \textit{(F)}.}    \\
+    
+    initialOffset & \multicolumn{1}{m{10cm}|}{Initial offset between the song's beat and the underlying metronome. Offsets can be between 1 and 7, with the exception of 4. Each unit of offset translates to a quarter-note.}\\
     \hline
+
+    offset & \multicolumn{1}{m{10cm}|}{Final offset chosen by the participant.}\\
+    \hline
+
+    nChanges & \multicolumn{1}{m{10cm}|}{Number of adjustments to the metronome offset made by participants from the beginning to the end of the trial. If nChanges == 0, offset is equal to initialOffset.}\\
+    \hline
+
+\end{tabular}
+\end{center}
+
+\subsection{TAP} 
+
+\begin{center}
+\begin{tabular}{|c|L|L|}
+    \hline
+    \textbf{Name} & \multicolumn{1}{m{10cm}|}{\textbf{Description}} \\
+    \hline 
+    
+    rt & \multicolumn{1}{m{10cm}|}{List of timestamps (ms) corresponsing to the time that has passed between the beginning of the trial (performance.now()), and the moment that a click/tap occured (performance.now()).}\\
+    \hline
+
+    rtAudio & \multicolumn{1}{m{10cm}|}{List of timestamps (s) corresponding to the time of the song at which the tap occured. Measured with \href{https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API}{audioContext}. Javascript method: every time the \textit{click} event is triggered, \href{https://developer.mozilla.org/en-US/docs/Web/API/BaseAudioContext/currentTime}{context.currentTime} is called and subtracted from the time at which the context was created (also measured with \textit{context.currentTime}).}\\
+    \hline
+
 
 \end{tabular}
 \end{center}
