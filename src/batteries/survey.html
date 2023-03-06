@@ -42,37 +42,28 @@
       ],
       on_finish: function() {
         //jsPsych.data.displayData();
-        jsPsych.data.addProperties({diad: diadNumber});
+        jsPsych.data.addProperties({group: groupNumber});
         jsPsych.data.addProperties({participantNumberUrl: participantNumberUrl});
         jsPsych.data.get().localSave('csv','mydata.csv');
       }
     });
     
-    var diadNumber = urlParams.get('diad')
+    var groupNumber = urlParams.get('group')
     var participantNumberUrl = urlParams.get('participantNumber')
 
-    if(diadNumber == null){
-      alert('You did not put the diad number as URL parameter. Automatically assigning diad number 1. To change, add "?diad=2" to the end of the URL')
-      var diadNumber = 1
+    if(groupNumber == null){
+      alert('You did not put the group number as URL parameter!')
     }
     if(participantNumberUrl == null){
-      alert('You did not put the pair number as URL parameter. Automatically assigning diad number 1. To change, add "?pair=none" to the end of the URL')
-      var participantNumber = "none"
+      alert('You did not put the pair number as URL parameter!')
     }
-    console.log(diadNumber)
+    console.log("Group: " + groupNumber)
   
     var sessionNumber = {
       type: jsPsychSurveyHtmlForm,
       preamble: '<p style="font-size:7vw">Session number</p>',
       html: '<p><input type="text" id="test-resp-box" name="response" size="10" /></p>',
       autofocus: 'test-resp-box'
-    };
-
-    var participantNumber = {
-      type: jsPsychHtmlButtonResponse,
-      stimulus: 'Participant number:',
-      choices: ['1', '2', '3', '4'],
-      prompt: ""
     };
 
     var instruction1 = {
@@ -340,47 +331,66 @@
       timeline: [1, 2, 3, 4, 5, 6, 7].map(i => generateSongQuestions(i)).flat()
     }
 
-   //- Please rate your relationship with the first person you danced and created a playlist with
-   //- Please rate your relationship with the second person you danced and created a playlist with   
+    //- Please rate your relationship with the first person you danced and created a playlist with
+    //- Please rate your relationship with the second person you danced and created a playlist with   
+    var evenOdd = groupNumber % 2
 
-    //Determining which timeline to run
-    if(diadNumber == "a"){ //Pair A
-      var timelineChosen = [sessionNumber, participantNumber,
-                            howFeeling, closeness1, inter,
-                            howWasPlaylist, howFeeling, closeness1, inter,
-                            howFeeling, closeness1, questionsAboutSongs, modelQuestionnaire2, modelQuestionnaire3, howFeeling2,closeness1, inter,
-                            howFeeling, closeness1, questionsAboutSongs, relationshipFriend2,
-                            shortBreak]
-    }
-    if(diadNumber == "b"){ //Pair B
-      var timelineChosen = [sessionNumber, participantNumber,
-                            howFeeling, closeness1, inter,
-                            howFeeling, closeness1, questionsAboutSongs, inter,
-                            howFeeling, closeness1, howWasPlaylist, inter,
-                            howFeeling, closeness1, questionsAboutSongs, modelQuestionnaire2, modelQuestionnaire3, howFeeling2,closeness1,
-                            howFeeling, closeness1, relationshipFriend2,
-                            shortBreak]
-    }
-    if(diadNumber == "c"){ //Pair c
-      var timelineChosen = [participantID,
-                            howFeeling, closeness1, inter,
-                            howWasPlaylist, howFeeling,closeness1, inter,
-                            howFeeling, closeness1, questionsAboutSongs, modelQuestionnaire2, modelQuestionnaire3, sharedMeasurementsTrial, howFeeling2,closeness1, inter,
-                            howFeeling, closeness1, questionsAboutSongs, inter,
-                            relationshipFriend, relationshipFriend2]
-    }
-    if(diadNumber == "d"){ //Pair d
-      var timelineChosen = [participantID, 
-                            howFeeling, closeness1, inter,
-                            howFeeling, closeness1, questionsAboutSongs, inter,
-                            howFeeling, closeness1, howWasPlaylist, inter,
-                            howFeeling, closeness1, questionsAboutSongs, modelQuestionnaire2, modelQuestionnaire3, sharedMeasurementsTrial, howFeeling2,closeness1, inter,
-                            howFeeling, closeness1, inter,
-                            relationshipFriend, relationshipFriend2]
-    }
+    var A = [howFeeling, closeness1, inter,
+             howWasPlaylist, howFeeling, closeness1, inter,
+             howFeeling, closeness1, questionsAboutSongs, modelQuestionnaire2, modelQuestionnaire3, howFeeling2,closeness1, inter,
+             howFeeling, closeness1, questionsAboutSongs, relationshipFriend2,
+             shortBreak]
+
+    var B = [howFeeling, closeness1, inter,
+             howFeeling, closeness1, questionsAboutSongs, inter,
+             howFeeling, closeness1, howWasPlaylist, inter,
+             howFeeling, closeness1, questionsAboutSongs, modelQuestionnaire2, modelQuestionnaire3, howFeeling2,closeness1,
+             howFeeling, closeness1, relationshipFriend2,
+             shortBreak]
+
+    var C = [howFeeling, closeness1, inter,
+             howWasPlaylist, howFeeling,closeness1, inter,
+             howFeeling, closeness1, questionsAboutSongs, modelQuestionnaire2, modelQuestionnaire3, sharedMeasurementsTrial, howFeeling2,closeness1, inter,
+             howFeeling, closeness1, questionsAboutSongs, inter,
+             relationshipFriend, relationshipFriend2]
+
+    var D = [howFeeling, closeness1, inter,
+             howFeeling, closeness1, questionsAboutSongs, inter,
+             howFeeling, closeness1, howWasPlaylist, inter,
+             howFeeling, closeness1, questionsAboutSongs, modelQuestionnaire2, modelQuestionnaire3, sharedMeasurementsTrial, howFeeling2,closeness1, inter,
+             howFeeling, closeness1, inter,
+             relationshipFriend, relationshipFriend2]
     
-    jsPsych.run(timelineChosen);
-    //jsPsych.run([modelQuestionnaire1]);
+    if(evenOdd == 1){
+      console.log("Strangers - Friends")
+      console.log("P1: A->C")
+      console.log("P2: A->D")
+      console.log("P3: B->C")
+      console.log("P4: B->D")
+      var participant1 = [...A, ...C]
+      var participant2 = [...A, ...D]
+      var participant3 = [...B, ...C]
+      var participant4 = [...B, ...D]
+    } else {
+      console.log("Friends - Strangers")
+      console.log("P1: C->A")
+      console.log("P2: D->A")
+      console.log("P3: C->B")
+      console.log("P4: D->B")
+      var participant1 = [...C, ...A]
+      var participant2 = [...D, ...A]
+      var participant3 = [...C, ...B]
+      var participant4 = [...D, ...B]
+    }
+
+    var participantsObject = {
+      "1": participant1,
+      "2": participant2,
+      "3": participant3,
+      "4": participant4
+    }
+
+    jsPsych.run(participantsObject[participantNumberUrl]);
 
  </script>
 </html>

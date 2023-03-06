@@ -72,6 +72,13 @@ var jsPsychAudioKeyboardResponse = (function (jspsych) {
           };
           // record webaudio context start time
           window.startTime;
+
+          var baseLatencyEnd;
+          var outputLatencyEnd;
+
+          var baseLatencyBegin;
+          var outputLatencyBegin;
+
           // load audio file
           this.jsPsych.pluginAPI
               .getAudioBuffer(trial.stimulus)
@@ -104,6 +111,10 @@ var jsPsychAudioKeyboardResponse = (function (jspsych) {
               if (context !== null) {
                   window.startTime = context.currentTime;
                   this.audio.start(startTime);
+
+                  baseLatencyBegin = context.baseLatency;
+                  outputLatencyBegin = context.outputLatency;
+
               }
               else {
                   this.audio.play();
@@ -139,9 +150,18 @@ var jsPsychAudioKeyboardResponse = (function (jspsych) {
               this.audio.removeEventListener("ended", setup_keyboard_listener);
               // kill keyboard listeners
               this.jsPsych.pluginAPI.cancelAllKeyboardResponses();
+
+              //Get the latency of the audio in the end of the experiment
+              baseLatencyEnd = context.baseLatency;
+              outputLatencyEnd = context.outputLatency;
+
               // gather the data to store for the trial
               var trial_data = {
                   rt: response.rt,
+                  baseLatencyBegin: baseLatencyBegin,
+                  baseLatencyEnd: baseLatencyEnd,
+                  outputLatencyBegin: outputLatencyBegin,
+                  outputLatencyEnd: outputLatencyEnd,
                   stimulus: trial.stimulus,
                   response: response.key,
                   contextStartTime: startTime,
