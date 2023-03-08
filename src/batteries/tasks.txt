@@ -1,3 +1,7 @@
+#In the auth phase, ask basic demographic questions
+
+#Emotion: add adjust volume trial (el Pesebre)
+
 Merge 2 timelines in one session
 
 if(group1){
