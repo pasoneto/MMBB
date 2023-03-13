@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.9.20)  27 FEB 2023 18:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.9.20)  6 MAR 2023 23:16
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -696,272 +696,292 @@ LaTeX Font Info:    Font shape `T1/FiraSans-LF/m/it' in size <12> not available
 (Font)              Font shape `T1/FiraSans-LF/regular/it' tried instead on input line 49.
 LaTeX Font Info:    Font shape `T1/FiraSans-LF/regular/it' will be
 (Font)              scaled to size 12.0pt on input line 49.
+<schema.png, id=59, 771.88374pt x 570.13pt>
+File: schema.png Graphic file (type png)
+<use schema.png>
+Package pdftex.def Info: schema.png  used on input line 54.
+(pdftex.def)             Requested size: 512.14963pt x 378.28784pt.
+ [1
+
+{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./schema.png>]
 LaTeX Font Info:    Font shape `T1/FiraSans-LF/m/n' in size <17.28> not available
-(Font)              Font shape `T1/FiraSans-LF/regular/n' tried instead on input line 59.
+(Font)              Font shape `T1/FiraSans-LF/regular/n' tried instead on input line 60.
 LaTeX Font Info:    Font shape `T1/FiraSans-LF/regular/n' will be
-(Font)              scaled to size 17.28pt on input line 59.
+(Font)              scaled to size 17.28pt on input line 60.
 LaTeX Font Info:    Font shape `T1/FiraSans-LF/b/n' in size <17.28> not available
-(Font)              Font shape `T1/FiraSans-LF/bold/n' tried instead on input line 59.
+(Font)              Font shape `T1/FiraSans-LF/bold/n' tried instead on input line 60.
 LaTeX Font Info:    Font shape `T1/FiraSans-LF/bold/n' will be
-(Font)              scaled to size 17.28pt on input line 59.
+(Font)              scaled to size 17.28pt on input line 60.
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--63
 
- []
+./masterfileDoc.tex:64: LaTeX Error: There's no line here to end.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.64 \newline
+             
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
 
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 65.
+(Font)              <12> on input line 67.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 65.
+(Font)              <8> on input line 67.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 65.
+(Font)              <6> on input line 67.
 LaTeX Font Info:    Font shape `T1/FiraSans-LF/b/n' in size <12> not available
-(Font)              Font shape `T1/FiraSans-LF/bold/n' tried instead on input line 67.
+(Font)              Font shape `T1/FiraSans-LF/bold/n' tried instead on input line 69.
 LaTeX Font Info:    Font shape `T1/FiraSans-LF/bold/n' will be
-(Font)              scaled to size 12.0pt on input line 67.
+(Font)              scaled to size 12.0pt on input line 69.
 
-Underfull \hbox (badness 1975) in paragraph at lines 76--76
+Underfull \hbox (badness 1975) in paragraph at lines 78--78
 []|\T1/FiraSans-LF/regular/n/12 Index of cur-rent task within se-quence-Tri-als (see
  []
 
-./masterfileDoc.tex:85: Illegal parameter number in definition of \@sharp.
+./masterfileDoc.tex:96: Illegal parameter number in definition of \@sharp.
 <to be read again> 
                    d
-l.85 ...xt-getoutputtimestamp}{Web documentation}}
+l.96 ...xt-getoutputtimestamp}{Web documentation}}
                                                   \\
 You meant to type ## instead of #, right?
 Or maybe a } was forgotten somewhere earlier, and things
 are all screwed up? I'm going to assume that you meant ##.
 
-./masterfileDoc.tex:85: Illegal parameter number in definition of \Hy@tempa.
+./masterfileDoc.tex:96: Illegal parameter number in definition of \Hy@tempa.
 <to be read again> 
                    d
-l.85 ...xt-getoutputtimestamp}{Web documentation}}
+l.96 ...xt-getoutputtimestamp}{Web documentation}}
                                                   \\
 You meant to type ## instead of #, right?
 Or maybe a } was forgotten somewhere earlier, and things
 are all screwed up? I'm going to assume that you meant ##.
 
-./masterfileDoc.tex:85: Illegal parameter number in definition of \Hy@tempa.
+./masterfileDoc.tex:96: Illegal parameter number in definition of \Hy@tempa.
 <to be read again> 
                    d
-l.85 ...xt-getoutputtimestamp}{Web documentation}}
+l.96 ...xt-getoutputtimestamp}{Web documentation}}
                                                   \\
 You meant to type ## instead of #, right?
 Or maybe a } was forgotten somewhere earlier, and things
 are all screwed up? I'm going to assume that you meant ##.
 
-./masterfileDoc.tex:85: Illegal parameter number in definition of \Hy@tempa.
+./masterfileDoc.tex:96: Illegal parameter number in definition of \Hy@tempa.
 <to be read again> 
                    d
-l.85 ...xt-getoutputtimestamp}{Web documentation}}
+l.96 ...xt-getoutputtimestamp}{Web documentation}}
                                                   \\
 You meant to type ## instead of #, right?
 Or maybe a } was forgotten somewhere earlier, and things
 are all screwed up? I'm going to assume that you meant ##.
 
-./masterfileDoc.tex:88: Illegal parameter number in definition of \@sharp.
+./masterfileDoc.tex:106: Illegal parameter number in definition of \@sharp.
 <to be read again> 
                    d
-l.88 ...p}{Web Audio API official documentation}.}
+l.106 ...}{Web Audio API official documentation}.}
                                                   \\
 You meant to type ## instead of #, right?
 Or maybe a } was forgotten somewhere earlier, and things
 are all screwed up? I'm going to assume that you meant ##.
 
-./masterfileDoc.tex:88: Illegal parameter number in definition of \Hy@tempa.
+./masterfileDoc.tex:106: Illegal parameter number in definition of \Hy@tempa.
 <to be read again> 
                    d
-l.88 ...p}{Web Audio API official documentation}.}
+l.106 ...}{Web Audio API official documentation}.}
                                                   \\
 You meant to type ## instead of #, right?
 Or maybe a } was forgotten somewhere earlier, and things
 are all screwed up? I'm going to assume that you meant ##.
 
-./masterfileDoc.tex:88: Illegal parameter number in definition of \Hy@tempa.
+./masterfileDoc.tex:106: Illegal parameter number in definition of \Hy@tempa.
 <to be read again> 
                    d
-l.88 ...p}{Web Audio API official documentation}.}
+l.106 ...}{Web Audio API official documentation}.}
                                                   \\
 You meant to type ## instead of #, right?
 Or maybe a } was forgotten somewhere earlier, and things
 are all screwed up? I'm going to assume that you meant ##.
 
-./masterfileDoc.tex:88: Illegal parameter number in definition of \Hy@tempa.
+./masterfileDoc.tex:106: Illegal parameter number in definition of \Hy@tempa.
 <to be read again> 
                    d
-l.88 ...p}{Web Audio API official documentation}.}
+l.106 ...}{Web Audio API official documentation}.}
                                                   \\
 You meant to type ## instead of #, right?
 Or maybe a } was forgotten somewhere earlier, and things
 are all screwed up? I'm going to assume that you meant ##.
 
-./masterfileDoc.tex:91: Illegal parameter number in definition of \@sharp.
+./masterfileDoc.tex:109: Illegal parameter number in definition of \@sharp.
 <to be read again> 
                    d
-l.91 ...p}{Web Audio API official documentation}.}
+l.109 ...}{Web Audio API official documentation}.}
                                                   \\
 You meant to type ## instead of #, right?
 Or maybe a } was forgotten somewhere earlier, and things
 are all screwed up? I'm going to assume that you meant ##.
 
-./masterfileDoc.tex:91: Illegal parameter number in definition of \Hy@tempa.
+./masterfileDoc.tex:109: Illegal parameter number in definition of \Hy@tempa.
 <to be read again> 
                    d
-l.91 ...p}{Web Audio API official documentation}.}
+l.109 ...}{Web Audio API official documentation}.}
                                                   \\
 You meant to type ## instead of #, right?
 Or maybe a } was forgotten somewhere earlier, and things
 are all screwed up? I'm going to assume that you meant ##.
 
-./masterfileDoc.tex:91: Illegal parameter number in definition of \Hy@tempa.
+./masterfileDoc.tex:109: Illegal parameter number in definition of \Hy@tempa.
 <to be read again> 
                    d
-l.91 ...p}{Web Audio API official documentation}.}
+l.109 ...}{Web Audio API official documentation}.}
                                                   \\
 You meant to type ## instead of #, right?
 Or maybe a } was forgotten somewhere earlier, and things
 are all screwed up? I'm going to assume that you meant ##.
 
-./masterfileDoc.tex:91: Illegal parameter number in definition of \Hy@tempa.
+./masterfileDoc.tex:109: Illegal parameter number in definition of \Hy@tempa.
 <to be read again> 
                    d
-l.91 ...p}{Web Audio API official documentation}.}
-                                                  \\
-You meant to type ## instead of #, right?
-Or maybe a } was forgotten somewhere earlier, and things
-are all screwed up? I'm going to assume that you meant ##.
-
-[1
-
-{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Font shape `T1/FiraSans-LF/b/n' in size <14.4> not available
-(Font)              Font shape `T1/FiraSans-LF/bold/n' tried instead on input line 108.
-LaTeX Font Info:    Font shape `T1/FiraSans-LF/bold/n' will be
-(Font)              scaled to size 14.4pt on input line 108.
-
-Underfull \hbox (badness 2005) in paragraph at lines 119--119
-\T1/FiraSans-LF/regular/n/12 Javascript method: ev-ery time the \T1/FiraSans-LF/regular/it/12 de-vice-mo-tion
- []
-
-
-Underfull \hbox (badness 1043) in paragraph at lines 119--119
-\T1/FiraSans-LF/regular/n/12 cre-ated (also mea-sured with \T1/FiraSans-LF/regular/it/12 con-text.currentTime\T1/FiraSans-LF/regular/n/12 ).
- []
-
-./masterfileDoc.tex:122: Illegal parameter number in definition of \@sharp.
-<to be read again> 
-                   d
-l.122 ...al documentation of devicemotion event}.}
-                                                  \\
-You meant to type ## instead of #, right?
-Or maybe a } was forgotten somewhere earlier, and things
-are all screwed up? I'm going to assume that you meant ##.
-
-LaTeX Font Info:    Trying to load font information for TS1+FiraSans-LF on input line 122.
-(/usr/local/texlive/2021/texmf-dist/tex/latex/fira/TS1FiraSans-LF.fd
-File: TS1FiraSans-LF.fd 2019/10/10 (autoinst) Font definitions for TS1/FiraSans-LF.
-)
-LaTeX Font Info:    Font shape `TS1/FiraSans-LF/m/n' in size <12> not available
-(Font)              Font shape `TS1/FiraSans-LF/regular/n' tried instead on input line 122.
-LaTeX Font Info:    Font shape `TS1/FiraSans-LF/regular/n' will be
-(Font)              scaled to size 12.0pt on input line 122.
-
-./masterfileDoc.tex:122: Illegal parameter number in definition of \Hy@tempa.
-<to be read again> 
-                   d
-l.122 ...al documentation of devicemotion event}.}
-                                                  \\
-You meant to type ## instead of #, right?
-Or maybe a } was forgotten somewhere earlier, and things
-are all screwed up? I'm going to assume that you meant ##.
-
-./masterfileDoc.tex:122: Illegal parameter number in definition of \Hy@tempa.
-<to be read again> 
-                   d
-l.122 ...al documentation of devicemotion event}.}
-                                                  \\
-You meant to type ## instead of #, right?
-Or maybe a } was forgotten somewhere earlier, and things
-are all screwed up? I'm going to assume that you meant ##.
-
-./masterfileDoc.tex:122: Illegal parameter number in definition of \Hy@tempa.
-<to be read again> 
-                   d
-l.122 ...al documentation of devicemotion event}.}
-                                                  \\
-You meant to type ## instead of #, right?
-Or maybe a } was forgotten somewhere earlier, and things
-are all screwed up? I'm going to assume that you meant ##.
-
-
-Underfull \hbox (badness 1122) in paragraph at lines 122--122
-[]|\T1/FiraSans-LF/regular/n/12 Amount of ac-cel-er-a-tion (m/s\TS1/FiraSans-LF/regular/n/12 ²\T1/FiraSans-LF/regular/n/12 ). The ac-cel-er-a-tion
- []
-
-./masterfileDoc.tex:125: Illegal parameter number in definition of \@sharp.
-<to be read again> 
-                   d
-l.125 ...al documentation of devicemotion event}.}
-                                                  \\
-You meant to type ## instead of #, right?
-Or maybe a } was forgotten somewhere earlier, and things
-are all screwed up? I'm going to assume that you meant ##.
-
-./masterfileDoc.tex:125: Illegal parameter number in definition of \Hy@tempa.
-<to be read again> 
-                   d
-l.125 ...al documentation of devicemotion event}.}
-                                                  \\
-You meant to type ## instead of #, right?
-Or maybe a } was forgotten somewhere earlier, and things
-are all screwed up? I'm going to assume that you meant ##.
-
-./masterfileDoc.tex:125: Illegal parameter number in definition of \Hy@tempa.
-<to be read again> 
-                   d
-l.125 ...al documentation of devicemotion event}.}
-                                                  \\
-You meant to type ## instead of #, right?
-Or maybe a } was forgotten somewhere earlier, and things
-are all screwed up? I'm going to assume that you meant ##.
-
-./masterfileDoc.tex:125: Illegal parameter number in definition of \Hy@tempa.
-<to be read again> 
-                   d
-l.125 ...al documentation of devicemotion event}.}
+l.109 ...}{Web Audio API official documentation}.}
                                                   \\
 You meant to type ## instead of #, right?
 Or maybe a } was forgotten somewhere earlier, and things
 are all screwed up? I'm going to assume that you meant ##.
 
 [2]
-Underfull \hbox (badness 1038) in paragraph at lines 146--146
+LaTeX Font Info:    Font shape `T1/FiraSans-LF/b/n' in size <14.4> not available
+(Font)              Font shape `T1/FiraSans-LF/bold/n' tried instead on input line 117.
+LaTeX Font Info:    Font shape `T1/FiraSans-LF/bold/n' will be
+(Font)              scaled to size 14.4pt on input line 117.
+
+Underfull \hbox (badness 2005) in paragraph at lines 130--130
+\T1/FiraSans-LF/regular/n/12 Javascript method: ev-ery time the \T1/FiraSans-LF/regular/it/12 de-vice-mo-tion
+ []
+
+
+Underfull \hbox (badness 1043) in paragraph at lines 130--130
+\T1/FiraSans-LF/regular/n/12 cre-ated (also mea-sured with \T1/FiraSans-LF/regular/it/12 con-text.currentTime\T1/FiraSans-LF/regular/n/12 ).
+ []
+
+./masterfileDoc.tex:133: Illegal parameter number in definition of \@sharp.
+<to be read again> 
+                   d
+l.133 ...al documentation of devicemotion event}.}
+                                                  \\
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+LaTeX Font Info:    Trying to load font information for TS1+FiraSans-LF on input line 133.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/fira/TS1FiraSans-LF.fd
+File: TS1FiraSans-LF.fd 2019/10/10 (autoinst) Font definitions for TS1/FiraSans-LF.
+)
+LaTeX Font Info:    Font shape `TS1/FiraSans-LF/m/n' in size <12> not available
+(Font)              Font shape `TS1/FiraSans-LF/regular/n' tried instead on input line 133.
+LaTeX Font Info:    Font shape `TS1/FiraSans-LF/regular/n' will be
+(Font)              scaled to size 12.0pt on input line 133.
+
+./masterfileDoc.tex:133: Illegal parameter number in definition of \Hy@tempa.
+<to be read again> 
+                   d
+l.133 ...al documentation of devicemotion event}.}
+                                                  \\
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+./masterfileDoc.tex:133: Illegal parameter number in definition of \Hy@tempa.
+<to be read again> 
+                   d
+l.133 ...al documentation of devicemotion event}.}
+                                                  \\
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+./masterfileDoc.tex:133: Illegal parameter number in definition of \Hy@tempa.
+<to be read again> 
+                   d
+l.133 ...al documentation of devicemotion event}.}
+                                                  \\
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+
+Underfull \hbox (badness 1122) in paragraph at lines 133--133
+[]|\T1/FiraSans-LF/regular/n/12 Amount of ac-cel-er-a-tion (m/s\TS1/FiraSans-LF/regular/n/12 ²\T1/FiraSans-LF/regular/n/12 ). The ac-cel-er-a-tion
+ []
+
+./masterfileDoc.tex:136: Illegal parameter number in definition of \@sharp.
+<to be read again> 
+                   d
+l.136 ...al documentation of devicemotion event}.}
+                                                  \\
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+./masterfileDoc.tex:136: Illegal parameter number in definition of \Hy@tempa.
+<to be read again> 
+                   d
+l.136 ...al documentation of devicemotion event}.}
+                                                  \\
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+./masterfileDoc.tex:136: Illegal parameter number in definition of \Hy@tempa.
+<to be read again> 
+                   d
+l.136 ...al documentation of devicemotion event}.}
+                                                  \\
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+./masterfileDoc.tex:136: Illegal parameter number in definition of \Hy@tempa.
+<to be read again> 
+                   d
+l.136 ...al documentation of devicemotion event}.}
+                                                  \\
+You meant to type ## instead of #, right?
+Or maybe a } was forgotten somewhere earlier, and things
+are all screwed up? I'm going to assume that you meant ##.
+
+[3]
+Underfull \hbox (badness 1038) in paragraph at lines 185--185
 []|\T1/FiraSans-LF/regular/n/12 Number of ad-just-ments to the metronome off-set
  []
 
 
-Underfull \hbox (badness 3482) in paragraph at lines 160--160
+Underfull \hbox (badness 3482) in paragraph at lines 204--204
 \T1/FiraSans-LF/regular/n/12 that has passed be-tween the be-gin-ning of the
  []
 
-[3] [4] (./masterfileDoc.aux)
+
+Underfull \hbox (badness 3482) in paragraph at lines 221--221
+\T1/FiraSans-LF/regular/n/12 that has passed be-tween the be-gin-ning of the
+ []
+
+[4] (./masterfileDoc.aux)
 Package rerunfilecheck Info: File `masterfileDoc.out' has not changed.
-(rerunfilecheck)             Checksum: C1A29A1F092FB631B78BB41489EF2155;503.
+(rerunfilecheck)             Checksum: 465847D941E7ED57B4B1F6722C7AB9CE;747.
  ) 
 Here is how much of TeX's memory you used:
- 25928 strings out of 478994
- 491468 string characters out of 5858184
- 777103 words of memory out of 5000000
- 42921 multiletter control sequences out of 15000+600000
+ 25941 strings out of 478994
+ 491630 string characters out of 5858184
+ 773103 words of memory out of 5000000
+ 42929 multiletter control sequences out of 15000+600000
  558536 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 128i,10n,130p,831b,402s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 128i,10n,130p,831b,396s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/fira/fir_d67aat.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/fira/fir_tz2nek.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/fira/FiraSans-Bold.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/fira/FiraSans-BoldItalic.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/fira/FiraSans-Italic.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/fira/FiraSans-Regular.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb>
-Output written on masterfileDoc.pdf (4 pages, 186035 bytes).
+Output written on masterfileDoc.pdf (4 pages, 279202 bytes).
 PDF statistics:
- 113 PDF objects out of 1000 (max. 8388607)
- 85 compressed objects within 1 object stream
- 10 named destinations out of 1000 (max. 500000)
- 149 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 128 PDF objects out of 1000 (max. 8388607)
+ 98 compressed objects within 1 object stream
+ 13 named destinations out of 1000 (max. 500000)
+ 170 words of extra memory for PDF output out of 10000 (max. 10000000)
 
