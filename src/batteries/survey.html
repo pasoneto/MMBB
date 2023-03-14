@@ -12,6 +12,7 @@
     <script src="../../jspsych/dist/plugin-html-button-response.js"> </script>
     <script src="../../jspsych/dist/plugin-survey-html-form.js"> </script>
     <script src="../../jspsych/dist/plugin-image-slider-response.js"> </script>
+    <script src="../../jspsych/dist/plugin-image-button-response.js"> </script>
     <script src="../../jspsych/dist/plugin-instructions.js"> </script>
     <script src="../../jspsych/dist/plugin-free-sort.js"> </script>
     <script src="https://unpkg.com/@jspsych/plugin-survey-likert@1.1.2"></script>
@@ -47,7 +48,7 @@
         jsPsych.data.get().localSave('csv','mydata.csv');
       }
     });
-    
+
     var groupNumber = urlParams.get('group')
     var participantNumberUrl = urlParams.get('participantNumber')
 
@@ -114,10 +115,10 @@
     var relationshipFriend = {
         type: jsPsychHtmlSliderResponse,
         stimulus: [`<div>
-                    Please rate your relationship with the first person you danced and created a playlist with
+                     Prior to the experiment, how well did you know the first person you danced and created a playlist with?
                    </div>`],
         require_movement: false,
-        labels: [["We don't know each other at all", 'We know each other but rarely interact', 'We are very good friends', 'We are best friends']],
+        labels: [["We didn't know each other at all", 'We knew each other but rarely interacted', 'We were very good friends', 'We were best friends']],
         on_load: function(){
           document.querySelector(".jspsych-html-slider-response-container").style.width = "80%"
         }
@@ -126,15 +127,14 @@
     var relationshipFriend2 = {
         type: jsPsychHtmlSliderResponse,
         stimulus: [`<div>
-                      Please rate your relationship with the second person you danced and created a playlist with
+                     Prior to the experiment, how well did you know the second person you danced and created a playlist with?
                    </div>`],
         require_movement: false,
-        labels: [["We don't know each other at all", 'We know each other but rarely interact', 'We are very good friends', 'We are best friends']],
+        labels: [["We didn't know each other at all", 'We knew each other but rarely interacted', 'We were very good friends', 'We were best friends']],
         on_load: function(){
           document.querySelector(".jspsych-html-slider-response-container").style.width = "80%"
         }
     };
-
 
     var howWasPlaylist = {
         type: jsPsychHtmlSliderResponse,
@@ -235,11 +235,28 @@
       }
     };
 
+    var linkToMMBB = {
+      type: jsPsychImageButtonResponse,
+      stimulus: '../../images/qrCodeLink.png',
+      choices: ['Continue'],
+      prompt: "<p>Use the camera of your phone to access this link</p>"
+    };
+
     var inter = {
         type: jsPsychInstructions,
         pages: [
         'Thank you for your responses,<br><br>',
         'You can put the iPad down and call the experimenter<br><br>',
+        ],
+        button_label_next: "Next",
+        button_label_previous: "Previous",
+        show_clickable_nav: true
+    }
+
+    var changePairs = {
+        type: jsPsychInstructions,
+        pages: [
+        'Change pair!<br>',
         ],
         button_label_next: "Next",
         button_label_previous: "Previous",
@@ -338,49 +355,47 @@
     var A = [howFeeling, closeness1, inter,
              howWasPlaylist, howFeeling, closeness1, inter,
              howFeeling, closeness1, questionsAboutSongs, modelQuestionnaire2, modelQuestionnaire3, howFeeling2,closeness1, inter,
-             howFeeling, closeness1, questionsAboutSongs, relationshipFriend2,
-             shortBreak]
+             howFeeling, closeness1, questionsAboutSongs, relationshipFriend2]
 
     var B = [howFeeling, closeness1, inter,
              howFeeling, closeness1, questionsAboutSongs, inter,
              howFeeling, closeness1, howWasPlaylist, inter,
              howFeeling, closeness1, questionsAboutSongs, modelQuestionnaire2, modelQuestionnaire3, howFeeling2,closeness1,
-             howFeeling, closeness1, relationshipFriend2,
-             shortBreak]
+             howFeeling, closeness1, relationshipFriend2]
 
     var C = [howFeeling, closeness1, inter,
              howWasPlaylist, howFeeling,closeness1, inter,
-             howFeeling, closeness1, questionsAboutSongs, modelQuestionnaire2, modelQuestionnaire3, sharedMeasurementsTrial, howFeeling2,closeness1, inter,
+             howFeeling, closeness1, questionsAboutSongs, linkToMMBB, howFeeling2,closeness1, inter,
              howFeeling, closeness1, questionsAboutSongs, inter,
              relationshipFriend, relationshipFriend2]
 
     var D = [howFeeling, closeness1, inter,
              howFeeling, closeness1, questionsAboutSongs, inter,
              howFeeling, closeness1, howWasPlaylist, inter,
-             howFeeling, closeness1, questionsAboutSongs, modelQuestionnaire2, modelQuestionnaire3, sharedMeasurementsTrial, howFeeling2,closeness1, inter,
+             howFeeling, closeness1, questionsAboutSongs, linkToMMBB, howFeeling2,closeness1, inter,
              howFeeling, closeness1, inter,
              relationshipFriend, relationshipFriend2]
     
     if(evenOdd == 1){
-      console.log("Strangers - Friends")
+      console.log("Friends - Strangers")
       console.log("P1: A->C")
       console.log("P2: A->D")
       console.log("P3: B->C")
       console.log("P4: B->D")
-      var participant1 = [...A, ...C]
-      var participant2 = [...A, ...D]
-      var participant3 = [...B, ...C]
-      var participant4 = [...B, ...D]
+      var participant1 = [...A, ...[changePairs], ...C]
+      var participant2 = [...A, ...[changePairs], ...D]
+      var participant3 = [...B, ...[changePairs], ...C]
+      var participant4 = [...B, ...[changePairs], ...D]
     } else {
-      console.log("Friends - Strangers")
+      console.log("Strangers - Friends")
       console.log("P1: C->A")
       console.log("P2: D->A")
       console.log("P3: C->B")
       console.log("P4: D->B")
-      var participant1 = [...C, ...A]
-      var participant2 = [...D, ...A]
-      var participant3 = [...C, ...B]
-      var participant4 = [...D, ...B]
+      var participant1 = [...C, ...[changePairs], ...A]
+      var participant2 = [...D, ...[changePairs], ...A]
+      var participant3 = [...C, ...[changePairs], ...B]
+      var participant4 = [...D, ...[changePairs], ...B]
     }
 
     var participantsObject = {
@@ -389,7 +404,7 @@
       "3": participant3,
       "4": participant4
     }
-
+    console.log(participantsObject[participantNumberUrl])
     jsPsych.run(participantsObject[participantNumberUrl]);
 
  </script>

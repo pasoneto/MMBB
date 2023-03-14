@@ -2,31 +2,15 @@
 
 #Emotion: add adjust volume trial (el Pesebre)
 
-Merge 2 timelines in one session
+#Rephrase how well did you know each other before coming to the experiment. DONE
+#Send translation text 
 
-if(group1){
-  p1 -> A->C
-  p2 -> A->D
-  p3 -> B->C
-  p4 -> B->D
-}
-if(group2){
-  p1 -> C->A
-  p2 -> D->A
-  p3 -> C->B
-  p4 -> D->B
-}
-
-#Rephrase how well did you know each other before coming to the experiment.
-#Send translation text
-
-#Remove the second questionnaire
-
-#Add QR code to go to MMBB (in the second questionnaire slot).
+#Remove the second questionnaire DONE
 
 Group indicates if individual starts as friend or as stranger. 
 Odds = friend, even = stranger
 
-
-
+#Add to the changePair trial: which participantNumber should this person be matched with
+#Add sharedMeasurements timeline (with MMBB)
+#Translate shared measurements
 
