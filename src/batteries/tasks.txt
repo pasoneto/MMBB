@@ -10,7 +10,8 @@
 Group indicates if individual starts as friend or as stranger. 
 Odds = friend, even = stranger
 
-#Add to the changePair trial: which participantNumber should this person be matched with
-#Add sharedMeasurements timeline (with MMBB)
-#Translate shared measurements
-
+#Add to the changePair trial: which participantNumber should this person be matched with.
+#Add sharedMeasurements timeline (with MMBB).
+#Translate shared measurements.
+#Name each file with participantNumber and groupNumber.
+#Collect unix time

@@ -63,23 +63,43 @@ var loadTrial6 = generateContextTrial(songBaseURL6, beatsURL6, lang)
 
 var trialBeat = {
   type: jsPsychHtmlButtonResponse,
-      stimulus: '<div id="arrowsContainer"><p style="margin: 0px; height: 30px; margin-bottom: 10px">' + beatProduction[2][0][lang] + '</p>'+
-              '<button id="subtract">'+
-                '<i class="fa fa-arrow-left" aria-hidden="true"></i>'+
-              '</button>'+
-              '<button type="button" id="add">'+
-                '<i class="fa fa-arrow-right" aria-hidden="true"></i>'+
-              '</button>'+
+  //stimulus: '<div id="arrowsContainer"><p style="margin: 0px; height: 30px; margin-bottom: 10px">' + beatProduction[2][0][lang] + '</p>'+
+  //'<button id="subtract">'+
+  //'<i class="fa fa-arrow-left" aria-hidden="true"></i>'+
+  //'</button>'+
+  //'<button type="button" id="add">'+
+  //'<i class="fa fa-arrow-right" aria-hidden="true"></i>'+
+  //'</button>'+
+  //'</div>',
+  stimulus: '<p style="margin: 0px; height: 30px; margin-bottom: 10px">' + beatProduction[2][0][lang] + '</p>'+
+            '<div id="buttonBatContainer">'+
+              '<button id="bat0">1</button>' +
+              '<button id="bat1">2</button>' +
+              '<button id="bat2">3</button>' +
+              '<button id="bat3">4</button>' +
+              '<button id="bat4">5</button>' +
+              '<button id="bat5">6</button>' +
+              '<button id="bat6">7</button>' +
+              '<button id="bat7">8</button>' +
             '</div>',
   choices: ['Continue'],
   prompt: "",
   on_start: function(data){
-    data.initialOffset = window.count;
+    data.initialOffset = window.initialOffset;
   },
   on_load: function(data){
-    document.querySelector('#add').onclick = () => fluidBeat(plus = true, offset = window.count)
-    document.querySelector('#subtract').onclick = () => fluidBeat(plus = false, offset = window.count)
+
+    document.querySelector('#bat0').onclick = () => fluidBeat(offset = window.initOffsets[0], 0)
+    document.querySelector('#bat1').onclick = () => fluidBeat(offset = window.initOffsets[1], 1)
+    document.querySelector('#bat2').onclick = () => fluidBeat(offset = window.initOffsets[2], 2)
+    document.querySelector('#bat3').onclick = () => fluidBeat(offset = window.initOffsets[3], 3)
+    document.querySelector('#bat4').onclick = () => fluidBeat(offset = window.initOffsets[4], 4)
+    document.querySelector('#bat5').onclick = () => fluidBeat(offset = window.initOffsets[5], 5)
+    document.querySelector('#bat6').onclick = () => fluidBeat(offset = window.initOffsets[6], 6)
+    document.querySelector('#bat7').onclick = () => fluidBeat(offset = window.initOffsets[7], 7)
     
+    document.getElementById("bat0").style.background = "blue"
+
     document.querySelector(".jspsych-btn").style.display = "none"
     document.getElementById("jspsych-html-button-response-stimulus").style.display = "none"
 

@@ -60,6 +60,16 @@ button, #jspsych-html-slider-response-next, .jspsych-btn{
   color: white;
 }
 
+/*BAT styles*/
+#buttonBatContainer{
+  display: flex-wrap;
+}
+button[id^="bat"] {
+  background: lightblue;
+  width: 48%;
+  margin: 2px;
+  box-shadow: 0 3px 2px 0 rgba(0,0,0,0.2)
+}
 #add{
   height: 10vh; 
   margin: 2px;
@@ -82,7 +92,7 @@ button, #jspsych-html-slider-response-next, .jspsych-btn{
   border-radius: 100px;
   background: #ff4b38;
 }
-/*End of beat alignment task*/
+/*End of BAT styles*/
 
 /*Movement task jspsych-html-slider-response-next*/
 #sliderCustom{

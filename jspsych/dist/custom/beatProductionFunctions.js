@@ -92,6 +92,13 @@ Number.prototype.mod = function (n) {
   return ((this % n) + n) % n;
 };
 
+const rotateArray = function(nums, k) {
+  for (let i = 0; i < k; i++) {
+      nums.unshift(nums.pop());
+  }
+  return nums;
+}
+
 function shift(plus = false){
   if(plus == true){
     window.count = (window.count+1).mod(8)
@@ -104,12 +111,16 @@ function shift(plus = false){
 window.nChanges = 0
 
 //Changes volume of given track
-function fluidBeat(plus, offset){
-
-  shift(plus) 
-  var offset = window.count
+function fluidBeat(offset, currentButton){
   
-  window.nChanges = window.nChanges + 1
+  console.log(offset)
+  window.nChanges = window.nChanges + 1 //Counts how many times user clicked on buttons
+  
+  document.querySelectorAll("button[id^='bat']").forEach(i => {
+    i.style.background = "lightblue"
+  })
+  
+  document.getElementById("bat" + currentButton).style.background = "blue"
 
   if(offset == 0){
     window.gainNode1.gain.value = 1
@@ -201,12 +212,17 @@ function generateContextTrial(songBaseURL, beatsURL, lang){
       document.querySelector(".jspsych-btn").style.display = "none";
 
       //Initial offset  
-      var possibleOffsets = [1, 2, 3, 5, 6, 7];
-      window.count = possibleOffsets[Math.floor(Math.random()*possibleOffsets.length)];
+      var possibleOffsetsInit = [1, 2, 3, 5, 6, 7];
+      var allOffsets = [0, 1, 2, 3, 4, 5, 6, 7];
 
+      window.count = possibleOffsetsInit[Math.floor(Math.random()*possibleOffsetsInit.length)];
       window.initialOffset = window.count; //Initial offset
 
-      console.log(window.count) 
+      window.initOffsets = rotateArray(allOffsets, window.initialOffset)
+
+      console.log(count)
+      console.log(initOffsets)
+
       //Initiate source audios as global variables
       window.source1 = null
       window.source2 = null
