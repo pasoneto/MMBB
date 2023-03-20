@@ -70,7 +70,8 @@ var prompt_songs = function(lang){
         var songPath = listSongs[i].src
         var songName = songNames[i]
         var songCode = songCodes[i]
-        html += "<audio></audio> <button id='buttonSongItem' name='buttonMusic' onclick=" + "othersStop(listSongs);PlaySound(listSongs[" + i + "]);changeColor(this);setNextSong('" + songCode + "');><img id='coverImage' src="+albumCovers[i]+"></button>"
+        var sNumber = Number(i) + 1 
+        html += "<audio></audio> <button id='buttonSongItem' name='buttonMusic' onclick=" + "othersStop(listSongs);PlaySound(listSongs[" + i + "]);changeColor(this);setNextSong('" + songCode + "');> Song " + sNumber + "</button>"
       }
       html += "</div>"
       return(html)

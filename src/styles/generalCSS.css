@@ -228,8 +228,9 @@ button[id^="bat"] {
 @media only screen and (max-width: 600px) {
   #buttonSongItem{
     border-radius: 12px;
-    width: 90vw;
+    width: 45vw;
     height: 10%;
+    color: black;
     background-color: lightgray;
   }
   #coverImage {
