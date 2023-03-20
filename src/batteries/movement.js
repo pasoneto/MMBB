@@ -373,14 +373,25 @@ var trialAccelerometer4 = {
     },
 }
 
+var phoneInPocket = {
+  type: jsPsychSurveyMultiChoice,
+  questions: [
+    {
+      prompt: movement[9][0][lang], 
+      name: 'phoneInPocket', 
+      options: [movement[9][1][lang], movement[9][2][lang], movement[9][3][lang], movement[9][4][lang]], 
+      required: true
+    }, 
+  ],
+};
 
 //Original
 //var movementTimeline = [[preloadSongs1, instruction0, promptAccel, loadAccel, phonePocket, countDown, trialAccelerometer1, pickUpPhone, howDifficultMovement, instruction1, phonePocket, countDown, trialAccelerometer2, pickUpPhone, howDifficultMovement, likingBeatRating, grooveRatingBeat, instruction2, phonePocket, countDown, trialAccelerometer3, pickUpPhone, howDifficultMovement, familiarityRating, likingRating, grooveRating, instruction3, chooseSongs, preloadChosen, phonePocket, countDown, trialAccelerometer4, pickUpPhone, howDifficultMovement, familiarityRating, likingRating, grooveRating]];
 
 //Step by step
-var firstMovement = [instruction0, promptAccel, loadAccel, phonePocket, countDown, trialAccelerometer1, pickUpPhone, howDifficultMovement]
-var secondMovement = [preloadSongs1, instruction1, phonePocket, countDown, trialAccelerometer2, pickUpPhone, howDifficultMovement, likingBeatRating, grooveRatingBeat]
-var thirdMovement = [preloadSongs1, instruction2, phonePocket, countDown, trialAccelerometer3, pickUpPhone, howDifficultMovement, familiarityRating, likingRating, grooveRating]
-var fourthMovement = [instruction3, chooseSongs, preloadChosen, phonePocket, countDown, trialAccelerometer4, pickUpPhone, howDifficultMovement, familiarityRating, likingRating, grooveRating]
+var firstMovement = [instruction0, promptAccel, loadAccel, phonePocket, countDown, trialAccelerometer1, pickUpPhone, howDifficultMovement, phoneInPocket]
+var secondMovement = [preloadSongs1, instruction1, phonePocket, countDown, trialAccelerometer2, pickUpPhone, howDifficultMovement, likingBeatRating, grooveRatingBeat, phoneInPocket]
+var thirdMovement = [preloadSongs1, instruction2, phonePocket, countDown, trialAccelerometer3, pickUpPhone, howDifficultMovement, familiarityRating, likingRating, grooveRating, phoneInPocket]
+var fourthMovement = [instruction3, chooseSongs, preloadChosen, phonePocket, countDown, trialAccelerometer4, pickUpPhone, howDifficultMovement, familiarityRating, likingRating, grooveRating, phoneInPocket]
 
 var movementTimeline = [firstMovement, secondMovement, thirdMovement, fourthMovement];

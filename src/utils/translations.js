@@ -12,8 +12,8 @@ var movement = [
         "fi": "Voit pitää tauon tehtävien välillä<br><img id='break' src='../../images/break.svg'></img>"},
   {"eng": "Your body movements will be automatically recorded using the accelerometers of your phone", 
         "fi": "Kehon liikkeesi tallennetaan automaattisesti puhelimesi kiiht yvyysant ureiden avulla"},
-  {"eng": "To move freely, put the phone on your pocket before each task starts<br><img id='pocket' src='../../images/pocket.svg'></img>", 
-        "fi": "Liikkuaksesi vapaasti, laita puhelin taskuusi ennen jokaista tehtävää<br><img id='pocket' src='../../images/pocket.svg'></img>"},
+  {"eng": "To move freely, you will be asked to put the phone on your pocket, with the screen facing away from your body: <br><img id='phonePocket' src='../../images/phonePocket2.jpeg'></img>", 
+        "fi": "<br><img id='phonePocket' src='../../images/phonePocket2.jpeg'></img>"},
   {"eng": "If you are not wearing headphones or earplugs, you may want to increase the volume of your phone before you put it in your pocket<br><img id='increaseVolume' src='../../images/increaseVolume.svg'></img>",
     "fi": "Jos sinulla ei ole kuulokkeita, voit lisätä puhelimesi äänenvoimakkuutta ennen kuin laitat sen taskuusi"},
   {"eng": "Do not lock the screen of your phone<br><img id='dontLock' src='../../images/dontLock.svg'></img>", 
@@ -81,6 +81,17 @@ var movement = [
          "fi": "Kuinka paljon pidit tästä rytmistä?"},
   {"eng": "How much did the beat make you want to move?", 
          "fi": "Kuinka paljon rytmi sai sinut haluamaan liikkua?"},
+  ],
+  [{"eng": "Where did you leave your phone during the tasks?",
+    "fi": ""},
+   {"eng": "Pocket",
+    "fi": ""},
+   {"eng": "Purse",
+    "fi": ""},
+   {"eng": "Hand",
+    "fi": ""},
+   {"eng": "Other",
+    "fi": ""},
   ]
 ]
 
@@ -186,6 +197,11 @@ var recurring = [
    "fi": "Näytön lukitus > 30 minuuttia <br> <img id='instructionLock' src='../../images/instructions/androidInstructions2.png'></img>"},
   {"eng": "You can re-enable this setting once the experiment has ended.",
     "fi": "Voit ottaa tämän asetuksen uudelleen käyttöön, kun kokeilu on päättynyt."},
+  ],
+  [{"eng": "Not at all",
+    "fi": "En lainkaan"},
+   {"eng": "Very much",
+    "fi": ""},
   ]
 ]
   
@@ -202,24 +218,27 @@ var beatProduction = [
     "fi": 'Eri tahdissa: <br><br><audio autoplay controls><source src="../../songs/beatProductionAudio/beatModified/baseSongs/example/notAligned.mp3" type="audio/mp3"></audio>'},
   {"eng": 'Aligned: <br><br><audio autoplay controls><source src="../../songs/beatProductionAudio/beatModified/baseSongs/example/aligned.mp3" type="audio/mp3"></audio>',
         "fi": 'Samassa tahdissa: <br><br><audio autoplay controls><source src="../../songs/beatProductionAudio/beatModified/baseSongs/example/aligned.mp3" type="audio/mp3"></audio>'},
-  {"eng": "Your task is to adjust the click track until it sounds that it is aligned with the song", 
-        "fi": "Terhävä si on säätää kilikkiraita kunnes se on kuulostaa korvaasi olevan samassa tahdissa laulun kanssa"},
-  {"eng": "Press the left button if the click is too late or the right button if is too early<br><img id='music' src='../../images/exampleBAT.png'></img>",
-        "fi": "Paina vasenta nappia jos kilikkiraita on myöhässä tai oikeaa nappia jos se on etuajassa<br><img id='music' src='../../images/exampleBAT.png'></img>"},
-  {"eng": "Each trial has a time-limit, so try to find the best alignment as quickly as you can",
-   "fi": "Jokaisella kokeilulla on aikaraja, joten yritä löytää paras ajoitus mahdollisimman nopeasti"},
+  {"eng": "Your task is to find the best alignment between the click and the song", 
+        "fi": ""},
+  {"eng": "Each button will align the song and the click in a certain way<br><img id='music' src='../../images/exampleBAT.png'></img>",
+        "fi": "<br><img id='music' src='../../images/exampleBAT.png'></img>"},
   {"eng": "Let's start with a practice trial",
         "fi": "Aloitetaan harjoit telutehtävällä"},
-  {"eng": "On the next page, adjust the click by pressing the arrows. When you have found the best alignment, click Continue",
-   "fi": "Säädä seuraavalla sivulla napautusta painamalla nuolia. Kun olet löytänyt parhaan ajoituksen, napsauta Jatka"}],
+  {"eng": "Your task is to click on each button until you find the best aligment between the song and the click. Once you find it, click Continue",
+   "fi": ""},
+  {"eng": "Each trial has a time-limit, so try to find the best alignment as quickly as you can",
+   "fi": "Jokaisella kokeilulla on aikaraja, joten yritä löytää paras ajoitus mahdollisimman nopeasti"}],
   [{"eng": "Ok, let's continue with the task",
     "fi": "Selvä, jatketaan varsinaisellä tehtävällä"},
   {"eng": "Next you will hear 6 songs. Align the click track with the beat of the song",
         "fi": "Seuravaaksi kuulet 6 laulua. Säädää kilikkiraita laulun tahtiin"}],
-  [{"eng": "Adjust the beat",
-    "fi": "Säädää tahtia"}],
+  [{"eng": "Adjust the beat<br>",
+    "fi": "Säädää tahtia<br>"}],
   [{"eng": "Beat alignment task",
-        "fi": "Tahdin kohdistustehtävä"}]
+    "fi": "Tahdin kohdistustehtävä"}],
+  [{"eng": "How satisfied were you with the alignment that you found between this song and the click?",
+    "fi": ""}
+  ]
 ]
 
 var initialInstructions = [

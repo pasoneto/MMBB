@@ -115,6 +115,7 @@ function fluidBeat(offset, currentButton){
   
   console.log(offset)
   window.nChanges = window.nChanges + 1 //Counts how many times user clicked on buttons
+  window.count = offset //Setting current aligment as global variable
   
   document.querySelectorAll("button[id^='bat']").forEach(i => {
     i.style.background = "lightblue"

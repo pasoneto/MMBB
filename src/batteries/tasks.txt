@@ -2,10 +2,7 @@
 
 #Emotion: add adjust volume trial (el Pesebre)
 
-#Rephrase how well did you know each other before coming to the experiment. DONE
 #Send translation text 
-
-#Remove the second questionnaire DONE
 
 Group indicates if individual starts as friend or as stranger. 
 Odds = friend, even = stranger

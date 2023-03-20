@@ -61,6 +61,18 @@ var songBaseURL6 = '../../songs/beatProductionAudio/beatModified/baseSongs/eclec
 var beatsURL6 = '../../songs/beatProductionAudio/beatModified/eclecticBeats'
 var loadTrial6 = generateContextTrial(songBaseURL6, beatsURL6, lang)
 
+//How satisfied with the final alignment found for beat.
+var howSatisfiedBeat = {
+    type: jsPsychHtmlSliderResponse,
+    stimulus: beatProduction[4][0][lang],
+    require_movement: false,
+    labels: [recurring[15][0][lang], recurring[15][1][lang]],
+    on_load: function(){
+      document.getElementById("label0").style = ''
+      document.getElementById("label1").style = ''
+    },
+};
+
 var trialBeat = {
   type: jsPsychHtmlButtonResponse,
   //stimulus: '<div id="arrowsContainer"><p style="margin: 0px; height: 30px; margin-bottom: 10px">' + beatProduction[2][0][lang] + '</p>'+
@@ -72,15 +84,15 @@ var trialBeat = {
   //'</button>'+
   //'</div>',
   stimulus: '<p style="margin: 0px; height: 30px; margin-bottom: 10px">' + beatProduction[2][0][lang] + '</p>'+
-            '<div id="buttonBatContainer">'+
-              '<button id="bat0">1</button>' +
-              '<button id="bat1">2</button>' +
-              '<button id="bat2">3</button>' +
-              '<button id="bat3">4</button>' +
-              '<button id="bat4">5</button>' +
-              '<button id="bat5">6</button>' +
-              '<button id="bat6">7</button>' +
-              '<button id="bat7">8</button>' +
+            '<div class="circle">'+
+              '<button class= "circle deg-4" id="bat0"></button>' +
+              '<button class= "circle deg-5" id="bat1"></button>' +
+              '<button class= "circle deg-6" id="bat2"></button>' +
+              '<button class= "circle deg-7" id="bat3"></button>' +
+              '<button class= "circle deg-0" id="bat4"></button>' +
+              '<button class= "circle deg-1" id="bat5"></button>' +
+              '<button class= "circle deg-2" id="bat6"></button>' +
+              '<button class= "circle deg-3" id="bat7"></button>' +
             '</div>',
   choices: ['Continue'],
   prompt: "",
@@ -118,6 +130,9 @@ var trialBeat = {
       }
       document.querySelector(".jspsych-btn").style.display = "block"
       document.getElementById("jspsych-html-button-response-stimulus").style.display = "block"
+      
+      //Adjust style of circle
+      document.getElementById("jspsych-html-button-response-btngroup").style.marginTop = "500px"
       startButton.remove()
 
       //Disable button for a 5 seconds
@@ -134,7 +149,7 @@ var trialBeat = {
     data.offset = window.count; //Final offset
     data.nChanges = window.nChanges; //How many times user changed
     data.initialOffset = window.initialOffset; //Initial offset
-    var allSources = [window.source1, window.source2, window.source3, window.source4, window.source5, window.source6, window.source7, window.source8, window.sourceBase]
+    var allSources = [window.source1, window.source2, window.source3, window.source4, window.source5, window.source6, window.source7, window.source8, window.sourceBase] //Stopping all songs
     for(i in allSources) {
       allSources[i].stop()
     }
@@ -142,13 +157,13 @@ var trialBeat = {
 };
 
 var frontPageInstructions = [frontPage, instruction2]
-var zero = [loadTrial0, trialBeat, howDifficult]
-var one = [loadTrial1, trialBeat, howDifficult]
-var two = [loadTrial2, trialBeat, howDifficult]
-var three = [loadTrial3, trialBeat, howDifficult]
-var four = [loadTrial4, trialBeat, howDifficult]
-var five = [loadTrial5, trialBeat, howDifficult]
-var six = [loadTrial6, trialBeat, howDifficult]
+var zero = [loadTrial0, trialBeat, howSatisfiedBeat, howDifficult]
+var one = [loadTrial1, trialBeat, howSatisfiedBeat, howDifficult]
+var two = [loadTrial2, trialBeat, howSatisfiedBeat, howDifficult]
+var three = [loadTrial3, trialBeat, howSatisfiedBeat, howDifficult]
+var four = [loadTrial4, trialBeat, howSatisfiedBeat, howDifficult]
+var five = [loadTrial5, trialBeat, howSatisfiedBeat, howDifficult]
+var six = [loadTrial6, trialBeat, howSatisfiedBeat, howDifficult]
 
 //Step by step
 var batTimeline = [frontPageInstructions, zero, one, two, three, four, five, six]

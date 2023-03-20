@@ -2,7 +2,7 @@ body{
   background: RGB(146, 168, 209, 0.2);
   overscroll-behavior-y: contain; /* Disables pull-to-refresh but allows overscroll glow effects. */
 }
-button, #jspsych-html-slider-response-next, .jspsych-btn{
+button, #jspsych-html-slider-response-next, .jspsych-btn, #jspsych-survey-multi-choice-next{
   align-items: center;
   background-clip: padding-box;
   background-color: #fa6400;
@@ -50,6 +50,7 @@ button, #jspsych-html-slider-response-next, .jspsych-btn{
   line-height: 1.3em;
   color: black;
 }
+
 /*Beat alignment task*/
 .fa.fa-arrow-left{
   font-size: 50px;
@@ -59,16 +60,53 @@ button, #jspsych-html-slider-response-next, .jspsych-btn{
   font-size: 50px;
   color: white;
 }
-
-/*BAT styles*/
-#buttonBatContainer{
-  display: flex-wrap;
+.circle {
+   display:block;
+   position:absolute;
+   background:red;
+   text-align:center;
+   border-radius:51%;
+   left: 43%;
+   margin-top: 110px
 }
+.deg-0 {
+   transform:translate(151px)
+}
+.deg-1 {
+   transform:rotate(46deg) translate(151px) rotate(-46deg);
+}
+
+.deg-2 {
+   transform:rotate(91deg) translate(151px) rotate(-91deg);
+}
+
+.deg-3 {
+   transform:rotate(136deg) translate(151px) rotate(-136deg);
+}
+
+.deg-4 {
+   transform:rotate(181deg) translate(151px) rotate(-181deg);
+}
+
+.deg-5 {
+   transform:rotate(226deg) translate(151px) rotate(-226deg);
+}
+
+.deg-6 {
+   transform:rotate(271deg) translate(151px) rotate(-271deg);
+}
+
+.deg-7 {
+   transform:rotate(316deg) translate(151px) rotate(-316deg);
+}
+
 button[id^="bat"] {
   background: lightblue;
-  width: 48%;
-  margin: 2px;
-  box-shadow: 0 3px 2px 0 rgba(0,0,0,0.2)
+	border: 1.5px solid rgb(0, 0, 255);
+	background-image: lightblue;
+	box-shadow: 0 -0.25rem 0.5rem blue inset,
+							0 0.75rem 0.5rem rgba(255,255,255, 0.4) inset,
+							0 0.25rem 0.5rem 0 blue inset;
 }
 #add{
   height: 10vh; 
@@ -136,6 +174,9 @@ button[id^="bat"] {
 #logoLoading{
   width: 50vw;
 }
+#jspsych-survey-multi-choice-form{
+  margin-left: 5%
+}
 /*End of movement task*/
 
 /*Tapping task*/
@@ -156,6 +197,30 @@ button[id^="bat"] {
   font-size:15vw; 
   color: white;
   text-align: center;
+}
+.jspsych-display-element{
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+  -webkit-transition : border 1000ms ease-out; 
+  -moz-transition : border 1000ms ease-out;
+  -o-transition : border 1000ms ease-out;
+}
+#recordingText{
+  animation: fadeIn 2000ms;
+  font-size: 16px;
+  color: red;
+}
+@keyframes pulse{
+	0%{
+		box-shadow: 0px 0px 5px 0px rgba(173,0,0,.3);
+	}
+	65%{
+		box-shadow: 0px 0px 5px 13px rgba(173,0,0,.3);
+	}
+	90%{
+		box-shadow: 0px 0px 5px 13px rgba(173,0,0,0);
+	}
 }
 /*End of tapping task*/
 
@@ -235,6 +300,9 @@ button:focus {
 #dontLock, #increaseVolume, #oneMinute, #music, #break, #pocket{
   min-width: 150px;
   width: 20vw;
+}
+#phonePocket{
+  width: 85vw
 }
 #purseSVG{
   margin-top: 15px;
