@@ -26,6 +26,7 @@
     <script src="../utils/translations.js"> </script>
     <script src="./questionnaires.js"> </script>
     <script src="./sharedMeasurements.js"> </script>
+    <script src="../../jspsych/dist/custom/utils.js"></script>
 
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
     <link rel="stylesheet" href="https://unpkg.com/@jspsych/plugin-survey@0.2.0/css/survey.css">
@@ -253,12 +254,17 @@
     var inter = {
         type: jsPsychInstructions,
         pages: [
-        'Thank you for your responses,<br><br>',
-        'You can put the iPad down and call the experimenter<br><br>',
+        'Thank you for your responses,<br><br>You can put the iPad down and call the experimenter',
         ],
         button_label_next: "Next",
         button_label_previous: "Previous",
-        show_clickable_nav: true
+        show_clickable_nav: true,
+        on_load: function(){
+          document.getElementById("jspsych-instructions-next").style.display = "none"
+          sleep(60000).then(r => {
+            document.getElementById("jspsych-instructions-next").style.display = ""
+          })
+        }
     }
 
     var changePairs = {
