@@ -170,7 +170,7 @@ var recurring = [
     "fi": "Tasainen pinta, jolle voit laskea puhelimen<br><img id='tableSVG' src='../../images/table.svg'></img>"},
   {"eng": "A pocket or a purse<br><img id='pocket' src='../../images/pocket.svg'></img>",
    "fi": "Taskun tai käsilaukun<br><img id='pocket' src='../../images/pocket.svg'></img>"},
-  {"eng": "Please, either use the wired headphones/earplugs or the phone's loudspeaker. Do not use bluetooth hearing-devices.<br> <img id='noBluetooth' src='../../images/noBluetooth.svg'></img>",
+  {"eng": "Please, use either wired headphones/earplugs or the phone's loudspeaker. Do not use bluetooth hearing-devices.<br> <img id='noBluetooth' src='../../images/noBluetooth.svg'></img>",
    "fi": "Käytä joko langallisia kuulokkeita tai puhelimen kaiutinta. Älä käytä Bluetooth-laitteita."},
   {"eng": "You can take breaks between each task",
    "fi": "Voit pitää tauon jokaisen tehtävän välillä"}],

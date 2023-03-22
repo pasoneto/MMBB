@@ -199,7 +199,7 @@ var knowThisSong = {
   questions: [
     {
       prompt: movement[8][9][lang], 
-      name: 'phoneInPocket', 
+      name: 'knowThisSongQuestion', 
       options: [initialInstructions[0][1][lang], initialInstructions[0][2][lang], initialInstructions[0][5][lang]],
       required: true
     }, 
@@ -209,6 +209,7 @@ var knowThisSong = {
     var songBeingRated = last2['trials'][0].stimulus
     data.song = songBeingRated
     console.log(songBeingRated)
+    data.stimulus = "knowThisSong"
   }
 };
 //movement[8][9][lang]
@@ -409,6 +410,7 @@ var phoneInPocket1 = {
     var songBeingRated = last2['trials'][0].stimulus
     data.song = songBeingRated
     console.log(songBeingRated)
+    data.stimulus = "whereKeptPhone"
   }
 };
 
@@ -427,6 +429,7 @@ var phoneInPocket2 = {
     var songBeingRated = last2['trials'][0].stimulus
     data.song = songBeingRated
     console.log(songBeingRated)
+    data.stimulus = "whereKeptPhone"
   }
 };
 
@@ -445,6 +448,7 @@ var phoneInPocket3 = {
     var songBeingRated = last2['trials'][0].stimulus
     data.song = songBeingRated
     console.log(songBeingRated)
+    data.stimulus = "whereKeptPhone"
   }
 };
 

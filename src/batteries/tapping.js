@@ -66,7 +66,7 @@ var trialTapping0 = {
     button_html: '<button type="button" ' + eventTypeStart + '="buttonDown()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">' + tapping[4][0][lang] + '</p></button>',
     response_ends_trial: false,
     on_load: function(){
-      document.querySelector(".jspsych-display-element").style.border = "rgba(255, 0, 0, 0.4)"
+      document.querySelector(".jspsych-display-element").style.border = "red"
       document.querySelector(".jspsych-display-element").style.borderStyle = "solid"
       document.querySelector(".jspsych-display-element").style.borderWidth = "3px"
     },
@@ -89,6 +89,11 @@ var trialTapping1 = {
       document.querySelector(".jspsych-display-element").style.border = "red"
       document.querySelector(".jspsych-display-element").style.borderStyle = "solid"
       document.querySelector(".jspsych-display-element").style.borderWidth = "5px"
+    },
+    on_finish: function(){
+      document.querySelector(".jspsych-display-element").style.border = "none"
+      document.querySelector(".jspsych-display-element").style.borderStyle = "none"
+      document.querySelector(".jspsych-display-element").style.borderWidth = "none"
     }
 }
  
@@ -104,6 +109,11 @@ var trialTapping3 = {
       document.querySelector(".jspsych-display-element").style.border = "red"
       document.querySelector(".jspsych-display-element").style.borderStyle = "solid"
       document.querySelector(".jspsych-display-element").style.borderWidth = "5px"
+    },
+    on_finish: function(){
+      document.querySelector(".jspsych-display-element").style.border = "none"
+      document.querySelector(".jspsych-display-element").style.borderStyle = "none"
+      document.querySelector(".jspsych-display-element").style.borderWidth = "none"
     }
 }
 
