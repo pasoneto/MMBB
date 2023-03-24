@@ -128,6 +128,8 @@ var jsPsychEmotionAudioButtonResponse = (function (jspsych) {
               else {
                   this.audio = buffer;
                   this.audio.currentTime = 0;
+                  console.log(context)
+                  console.log(this.audio)
               }
               setupTrial();
 

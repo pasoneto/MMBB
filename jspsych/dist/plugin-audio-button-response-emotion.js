@@ -174,11 +174,9 @@ var jsPsychAudioButtonResponse = (function (jspsych) {
               if (context !== null) {
                   startTime = context.currentTime;
                   this.audio.start(startTime);
-                  console.log("Starting audio")
               }
               else {
                   this.audio.play();
-                  console.log("Starting audio")
               }
               // end trial if time limit is set
               if (trial.trial_duration !== null) {
