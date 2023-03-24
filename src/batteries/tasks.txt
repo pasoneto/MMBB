@@ -1,10 +1,15 @@
+#Implement terms of service and privacy statements.
+
 #Friends-strangers: Thank you for your responses. Call the experimenter. Hide "next" button for 1-2 minutes.
 
 #In the auth phase, ask basic demographic questions
 
-#Emotion: add adjust volume trial (el Pesebre)
-
-#Send translation text 
+#Emotion: 
+- add adjust volume trial (el Pesebre); 
+- Implement translations (translations in the sheet)
+- Add questions from the sheet; 
+- Add a final question about how was the task;
+- https://jyu-my.sharepoint.com/:x:/r/personal/maarhart_jyu_fi/_layouts/15/Doc.aspx?sourcedoc=%7B36BC85D6-9DA8-46CF-8D32-29F6957185DF%7D&file=Text%20in%20emotion%20subbattery.xlsx&_DSL=1&action=default&mobileredirect=true
 
 Group indicates if individual starts as friend or as stranger. 
 Odds = friend, even = stranger

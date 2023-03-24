@@ -221,11 +221,11 @@ var beatProduction = [
         "fi": 'Samassa tahdissa: <br><br><audio autoplay controls><source src="../../songs/beatProductionAudio/beatModified/baseSongs/example/aligned.mp3" type="audio/mp3"></audio>'},
   {"eng": "Your task is to find the best alignment between the click and the song", 
         "fi": ""},
-  {"eng": "Each button will align the song and the click in a certain way<br><img id='music' src='../../images/exampleBAT.png'></img>",
+  {"eng": "By clicking these buttons, you will be able to align the song and the click in a few different ways:<br><img id='music' src='../../images/exampleBAT.png'></img>",
         "fi": "<br><img id='music' src='../../images/exampleBAT.png'></img>"},
   {"eng": "Let's start with a practice trial",
         "fi": "Aloitetaan harjoit telutehtävällä"},
-  {"eng": "Your task is to click on each button until you find the best aligment between the song and the click. Once you find it, click Continue",
+  {"eng": "Your task is to click through the buttons until you find the best aligment between the song and the click. Once you find it, click Continue",
    "fi": ""},
   {"eng": "Each trial has a time-limit, so try to find the best alignment as quickly as you can",
    "fi": "Jokaisella kokeilulla on aikaraja, joten yritä löytää paras ajoitus mahdollisimman nopeasti"}],
@@ -600,5 +600,147 @@ var initialPage = {
   "greetings": {
     "eng": "Hello",
     "fi": "Tervetuloa"
+  }
+}
+
+var emotionTranslations = {
+  "openStatement": {
+    "eng": "Music and Emotion Survey",
+    "fi": "Kysely musiikista ja tunteista"
+  },
+  "angry": {
+    "eng": "Angry",
+    "fi": "Viha"
+  },
+  "happy": {
+    "eng": "Happy",
+    "fi": "Ilo"
+  },
+  "sad": {
+    "eng": "Sad",
+    "fi": "Suru"
+  },
+  "tender": {
+    "eng": "Tender",
+    "fi": "Hellyys"
+  },
+  "instructions1": [{
+    "eng": "Instructions",
+    "fi": "Ohjeet"
+    },{
+      "eng": "Next, you will listen to clips of music. Please choose the emotion that the music expresses the most.",
+      "fi": "Seuraavaksi kuulet musiikkia. Valitse tunnetila, jota musiikki ilmaisee mielestäsi parhaiten."
+    },{
+      "eng": "Practice",
+      "fi": "Harjoitus"
+    },{
+      "eng": "You can practice once to get familiar with the task. Before starting, please adjust the volume to a comfortable level.",
+      "fi": "Voit nyt harjoitella, ennen kuin aloitat varsinaisen kyselyn. Voit myös säätää samalla äänenvoimakkuuden itselle sopivaksi."
+  }],
+  "instructions2": [{
+    "eng": "Thank you for your response! The practice is over, you can start the task by clicking Next",
+    "fi": "Kiitos vastauksista! Harjoitus on nyt ohi, ja voit aloittaa tehtävän painamalla Seuraava"
+  }],
+  "whichEmotion": {
+    "eng": "Which of these two emotions the music expresses the most?",
+    "fi": "Mitä tunnetilaa musiikki ilmaisee parhaiten?"
+  },
+  "listen": {
+    "eng": "Listen...",
+    "fi": "Kuuntele…"
+  },
+  "opening2": {
+    "eng": "Music and Emotion Part 2",
+    "fi": "Musiikki ja tunteet Osa 2"
+  },
+  "instructions3": [{
+      "eng": "Instructions",
+      "fi": "Ohjeet"
+    },{
+      "eng": "Next, listen to the clips of music and rate what they express in terms of mood, energy, and strength of emotions. You can start the task by clicking \"Next",
+      "fi": "Seuraavaksi kuulet musiikkia. Arvioi, mitä eri kappaleet ilmaisevat tunnetilan, energisyyden ja tunteiden voimakkuuden suhteen. Voit aloittaa tehtävän painamalla \"Seuraava"
+    },{
+      "eng": "Please rate what the music expresses",
+      "fi": "Arvioi, mitä musiikki ilmaisee"
+    }],
+  "mood": {
+    "eng": "Mood",
+    "fi": "Tunnelita"
+  },
+  "energy": {
+    "eng": "Energy",
+    "fi": "Energisyys"
+  },
+  "howStrongEmotion": {
+    "eng": "How strong are the emotions expressed by the music?",
+    "fi": "Kuinka voimakkaasti musiikki ilmaisee tunteita?"
+  },
+  "howMuchLike": {
+    "eng": "How much did you like/dislike the music?",
+    "fi": "Kuinka paljon pidit/et pitänyt musiikista?"
+  },
+  "howFamiliar": {
+    "eng": "How familiar did the music sound to you?",
+    "fi": "Kuinka tutulta musiikki kuulosti?"
+  },
+  "veryNegative": {
+    "eng": "Very negative",
+    "fi": "Todella negatiivinen"
+  },
+  "neutral": {
+    "eng": "Neutral",
+    "fi": "Neutraali"
+  },
+  "veryPositive": {
+    "eng": "Very positive",
+    "fi": "Todella positiivinen"
+  },
+  "veryLowEnergy": {
+    "eng": "Very low energy",
+    "fi": "Ei lankaan energinen"
+  },
+  "veryHighEnergy": {
+    "eng": "Very high energy",
+    "fi": "Todella vahvasti energinen"
+  },
+  "notAtAll": {
+    "eng": "Not at all",
+    "fi": "Ei lainkaan"
+  },
+  "veryStrong": {
+    "eng": "Very strong",
+    "fi": "Todella voimakkaita"
+  },
+  "stronglyDisliked": {
+    "eng": "Strongly disliked",
+    "fi": "En pidä lainkaan"
+  },
+  "neutral": {
+    "eng": "Neutral",
+    "fi": "Neutraali"
+  },
+  "choose": {
+    "eng": "Choose",
+    "fi": "Valitse"
+  },
+  "stronglyLiked": {
+    "eng": "Strongly liked",
+    "fi": "Pidän paljon"
+  },
+  "veryUnfamiliar": {
+    "eng": "Very unfamiliar",
+    "fi": "Ei lainkaan tuttu"
+  },
+  "veryFamiliar": {
+    "eng": "Very familiar",
+    "fi": "Todella tuttu"
+  },
+  "thankYouRepeat": {
+    "eng": "Thank you for your responses! The task will now be repeated.",
+    "fi": "Kiitos vastauksista! Nyt tehtävä toistuu uudelleen."
+  },
+  "thankYouEnd": {
+    "eng": "The task is now complete! Thank you for your participation",
+    "fi": "Tehtävä on nyt valmis! Kiitos osallistumisesta."
   }
 }

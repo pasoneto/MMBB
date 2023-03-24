@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script src="../utils/langFetch.js"></script>
+    <script src="../utils/translations.js"></script>
     <script src="../utils/preventRefresh.js"> </script>
     <script src="../utils/identifyOS.js"> </script>
     <script src="../utils/manageCookies.js"> </script>
@@ -44,10 +45,10 @@
 
     //PART1
     var images = [
-      { img: "../../images/emotion/v1a5.png",  type: 'Anger'},
-      { img: "../../images/emotion/v5a5.png",  type: 'Happy'},
-      { img: "../../images/emotion/v1a1.png",  type: 'Sad'},
-      { img: "../../images/emotion/v5a1.png",  type: 'Tender'}
+      { img: "../../images/emotion/v1a5.png",  type: emotionTranslations['angry'][lang]},
+      { img: "../../images/emotion/v5a5.png",  type: emotionTranslations['happy'][lang]},
+      { img: "../../images/emotion/v1a1.png",  type: emotionTranslations['sad'][lang]},
+      { img: "../../images/emotion/v5a1.png",  type: emotionTranslations['tender'][lang]}
     ];
     
     var preload = {
@@ -84,17 +85,15 @@
     //trials 
     var welcomePart1 = {
       type: jsPsychInstructions,
-      pages: ['Music and Emotion Survey'],
-      button_label_next: "Next",
-      button_label_previous: "Previous",
+      pages: [emotionTranslations['openStatement'][lang]],
+      button_label_next: buttons[0][lang],
+      button_label_previous: buttons[1][lang],
       allow_backward: false,
       show_clickable_nav: true
     }
     var instructionsPart1 = {
       type: jsPsychInstructions,
-      pages: ['In this section, you will listen to short music'+
-      'tracks and asked to choose the emotion it mostly represents. The emotions in question are <strong>happy, sad, tender, </strong> and <strong>angry.</strong> Listen to the music track first and then make your choice.',
-      'You will now be presented with a trial to get familiar with the task. Your response will not be used in the analysis. <br>Please also adjust the volume to a comfortable level.'],
+      pages: emotionTranslations['instructions1'].map(i => i[lang]),
       button_label_next: "Next",
       button_label_previous: "Previous",
       allow_backward: true,
@@ -102,7 +101,7 @@
     }
     var test_ending = {
       type: jsPsychInstructions,
-      pages: ['Thank you for your response!<br><br>The trial is over, you can start the task by clicking "Next"'],
+      pages: emotionTranslations['instructions2'].map(i => i[lang]),
       button_label_next: "Next",
       show_clickable_nav: true,
       allow_backward: false,
@@ -126,6 +125,7 @@
       choices: [images[0]['img'], images[3]['img']],
       button_html: '<img src="%choice%" style="width: 150px" />',
       update_choices: '',
+      update_text_after_timeout: emotionTranslations['choose'][lang],
       response_allowed_while_playing: false,
       response_ends_trial: true,
       update_onset: 10000,
@@ -145,8 +145,8 @@
           trial_track = '0' + trial_track
         }
         trial1.stimulus = '../../songs/emotionAudio/trimmed_mp3/' + trial_track + '.mp3'
-        trial1.question = 'Which of these two emotions does the music better represent?'
-        trial1.prompt = 'Listen to the music...'
+        trial1.question = emotionTranslations["whichEmotion"][lang]
+        trial1.prompt = emotionTranslations["listen"][lang]
         trial1.data.difficulty = current_trial['Distance']
         trial1.data.correct_emotion = emotions[current_trial['Label1']-1]
         trial1.data.wrong_emotion = emotions[current_trial['Label2']-1]
@@ -241,9 +241,7 @@
     }
     var instructionsPart2 = {
       type: jsPsychInstructions,
-      pages: ['Instructions'+'<br>In this section, you will listen to a short music'+
-      ' track and asked to rate the emotional content of the music. These ratings refer to the mood, energy and intensity of emotions expressed by the music'+
-      '<br>You can start the survey by clicking "Next"'],
+      pages: emotionTranslations['instructions3'].map(i => i[lang]),
       button_label_next: "Next",
       button_label_previous: "Previous",
       allow_backward: true,

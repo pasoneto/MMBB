@@ -66,43 +66,45 @@ button, #jspsych-html-slider-response-next, .jspsych-btn, #jspsych-survey-multi-
    background:red;
    text-align:center;
    border-radius:51%;
-   left: 43%;
+   left: 39%;
    margin-top: 110px
 }
 .deg-0 {
-   transform:translate(151px)
+   transform:translate(110px)
 }
 .deg-1 {
-   transform:rotate(46deg) translate(151px) rotate(-46deg);
+   transform:rotate(46deg) translate(110px) rotate(-46deg);
 }
 
 .deg-2 {
-   transform:rotate(91deg) translate(151px) rotate(-91deg);
+   transform:rotate(91deg) translate(110px) rotate(-91deg);
 }
 
 .deg-3 {
-   transform:rotate(136deg) translate(151px) rotate(-136deg);
+   transform:rotate(136deg) translate(110px) rotate(-136deg);
 }
 
 .deg-4 {
-   transform:rotate(181deg) translate(151px) rotate(-181deg);
+   transform:rotate(181deg) translate(110px) rotate(-181deg);
 }
 
 .deg-5 {
-   transform:rotate(226deg) translate(151px) rotate(-226deg);
+   transform:rotate(226deg) translate(110px) rotate(-226deg);
 }
 
 .deg-6 {
-   transform:rotate(271deg) translate(151px) rotate(-271deg);
+   transform:rotate(271deg) translate(110px) rotate(-271deg);
 }
 
 .deg-7 {
-   transform:rotate(316deg) translate(151px) rotate(-316deg);
+   transform:rotate(316deg) translate(110px) rotate(-316deg);
 }
 
 button[id^="bat"] {
   background: lightblue;
 	border: 1.5px solid rgb(0, 0, 255);
+  width: 80px;
+  height: 80px;
 	background-image: lightblue;
 	box-shadow: 0 -0.25rem 0.5rem blue inset,
 							0 0.75rem 0.5rem rgba(255,255,255, 0.4) inset,
