@@ -268,22 +268,24 @@ var jsPsychEmotionAudioButtonResponse = (function (jspsych) {
           }
           function disable_buttons() {
               var btns = document.querySelectorAll(".jspsych-audio-button-response-button");
+              var touchEvent = 'ontouchstart' in window ? 'touchstart' : 'click';
               for (var i = 0; i < btns.length; i++) {
                   var btn_el = btns[i].querySelector("button");
                   if (btn_el) {
                       btn_el.disabled = true;
                   }
-                  btns[i].removeEventListener("click", button_response);
+                  btns[i].removeEventListener(touchEvent, button_response);
               }
           }
           function enable_buttons() {
               var btns = document.querySelectorAll(".jspsych-audio-button-response-button");
+              var touchEvent = 'ontouchstart' in window ? 'touchstart' : 'click';
               for (var i = 0; i < btns.length; i++) {
                   var btn_el = btns[i].querySelector("button");
                   if (btn_el) {
                       btn_el.disabled = false;
                   }
-                  btns[i].addEventListener("click", button_response);
+                  btns[i].addEventListener(touchEvent, button_response);
               }
           }
           return new Promise((resolve) => {

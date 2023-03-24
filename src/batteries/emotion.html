@@ -94,15 +94,15 @@
     var instructionsPart1 = {
       type: jsPsychInstructions,
       pages: emotionTranslations['instructions1'].map(i => i[lang]),
-      button_label_next: "Next",
-      button_label_previous: "Previous",
+      button_label_next: buttons[0][lang],
+      button_label_previous: buttons[1][lang],
       allow_backward: true,
       show_clickable_nav: true
     }
     var test_ending = {
       type: jsPsychInstructions,
       pages: emotionTranslations['instructions2'].map(i => i[lang]),
-      button_label_next: "Next",
+      button_label_next: buttons[0][lang],
       show_clickable_nav: true,
       allow_backward: false,
       on_start: function(test_ending){
@@ -123,7 +123,7 @@
       type: jsPsychEmotionAudioButtonResponse,
       stimulus: '../../songs/emotionAudio/trimmed_mp3/001.mp3',
       choices: [images[0]['img'], images[3]['img']],
-      button_html: '<img src="%choice%" style="width: 150px" />',
+      button_html: '<img src="%choice%" style="width: 110px" />',
       update_choices: '',
       update_text_after_timeout: emotionTranslations['choose'][lang],
       response_allowed_while_playing: false,
@@ -132,6 +132,15 @@
       prompt: 'init',
       question: 'init',
       data: {},
+      on_load: function(){
+        document.querySelectorAll(".jspsych-audio-button-response-button").forEach(
+          function(i) {
+            i.style.fontSize = '16px'
+          }
+        )
+        document.getElementById("jspsych-audio-button-response-btngroup").style.marginBottom = '60px'
+        document.getElementById("id_prompt").style.fontSize = '18px'
+      },
       on_start: function(trial1){ 
         current_emotion = emotions[emotion_order[epoch]-1]
         candidate_trial = trials[String(current_level)][String(emotion_order[epoch])]
@@ -181,7 +190,7 @@
     var feedback = {
       type: jsPsychInstructions,
       pages: [],
-      button_label_next: "Next",
+      button_label_next: buttons[0][lang],
       show_clickable_nav: true,
       on_start: function(feedback){
         if(correct_response){
@@ -212,7 +221,7 @@
     var task_repeat = {
       type: jsPsychInstructions,
       pages: ['Thank you for your responses! <br>The emotion game will now be repeated.'],
-      button_label_next: "Next",
+      button_label_next: buttons[0][lang],
       show_clickable_nav: true,
       on_start: function(data){
         epoch = 0
@@ -234,16 +243,16 @@
     var welcomePart2 = {
       type: jsPsychInstructions,
       pages: ['Music and Emotion Part 2'],
-      button_label_next: "Next",
-      button_label_previous: "Previous",
+      button_label_next: buttons[0][lang],
+      button_label_previous: buttons[1][lang],
       allow_backward: false,
       show_clickable_nav: true
     }
     var instructionsPart2 = {
       type: jsPsychInstructions,
       pages: emotionTranslations['instructions3'].map(i => i[lang]),
-      button_label_next: "Next",
-      button_label_previous: "Previous",
+      button_label_next: buttons[0][lang],
+      button_label_previous: buttons[1][lang],
       allow_backward: true,
       show_clickable_nav: true
     }
@@ -290,7 +299,7 @@
     var the_end = {
         type: jsPsychInstructions,
         pages: ['The task is now complete! Thank you for your participation'],
-        button_label_next: "Next",
+        button_label_next: buttons[0][lang],
         show_clickable_nav: true,
       }  
 
