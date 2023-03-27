@@ -9,24 +9,30 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <script src="../utils/langFetch.js"></script>
-    <script src="../utils/translations.js"></script>
-    <script src="../utils/preventRefresh.js"> </script>
-    <script src="../utils/identifyOS.js"> </script>
-    <script src="../utils/manageCookies.js"> </script>
-
     <script src="https://unpkg.com/jspsych@7.1.2"></script>
 
-    <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
-
-    <link rel="stylesheet" href="../styles/generalCSS.css">
-
     <script src="../../jspsych/dist/plugin-preload.js"> </script>
+    <script src="../../jspsych/dist/plugin-audio-button-response.js"></script>
+    <script src="../../jspsych/dist/plugin-html-button-response.js"></script>
+    <script src="../../jspsych/dist/plugin-html-slider-response.js"></script>
     <script src="../../jspsych/dist/plugin-instructions.js"></script>
     <script src="../../jspsych/dist/plugin-audio-keyboard-response.js"></script>
     <script src="../../jspsych/dist/plugin-instructions-timedout.js"></script>
     <script src="../../jspsych/dist/plugin-html-multi-slider-response.js"></script>
     <script src="../../jspsych/dist/plugin-emotion-audio-button-response.js"> </script>
+
+    <script src="../utils/langFetch.js"></script>
+    <script src="../utils/translations.js"></script>
+    <script src="./generalIntro.js"></script>
+    <script src="../utils/preventRefresh.js"> </script>
+    <script src="../utils/identifyOS.js"> </script>
+    <script src="../utils/manageCookies.js"> </script>
+
+
+    <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
+
+    <link rel="stylesheet" href="../styles/generalCSS.css">
+
 
 
   </head>
@@ -304,7 +310,7 @@
         show_clickable_nav: true,
       }  
 
-    jsPsych.run([welcomePart1,instructionsPart1, preload,test ,part1_trials, task_repeat,part1_trials]);//welcomePart2, instructionsPart2, part2_trials,the_end]);
+    jsPsych.run([welcomePart1, generalIntroEmotion, instructionsPart1, preload,test ,part1_trials, task_repeat,part1_trials].flat(1000))
 
 
  </script>

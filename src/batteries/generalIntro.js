@@ -125,4 +125,5 @@ var messageFinishSub = {
   }
 };
 
+var generalIntroEmotion = [[preloadTest, testAudioIOS, testAudioAndroid, gettingHelp]];
 var generalIntroWrap = [[preloadTest, requirements, lockIOS, lockAndroid, testAudioIOS, testAudioAndroid, gettingHelp]];
