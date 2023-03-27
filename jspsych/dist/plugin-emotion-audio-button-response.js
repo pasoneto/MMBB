@@ -269,25 +269,33 @@ var jsPsychEmotionAudioButtonResponse = (function (jspsych) {
               after_response(choice);
           }
           function disable_buttons() {
-              var btns = document.querySelectorAll(".jspsych-audio-button-response-button");
-              var touchEvent = 'ontouchstart' in window ? 'touchstart' : 'click';
+              var btns = document.querySelectorAll(".jspsych-audio-button-response-button");
               for (var i = 0; i < btns.length; i++) {
                   var btn_el = btns[i].querySelector("button");
                   if (btn_el) {
                       btn_el.disabled = true;
                   }
-                  btns[i].removeEventListener(touchEvent, button_response);
+                  var mobile = mobileAndTabletCheck()
+                  if(mobile){
+                    btns[i].removeEventListener("touchend", button_response);
+                  } else {
+                    btns[i].removeEventListener("mousedown", button_response);
+                  }
               }
           }
           function enable_buttons() {
-              var btns = document.querySelectorAll(".jspsych-audio-button-response-button");
-              var touchEvent = 'ontouchstart' in window ? 'touchstart' : 'click';
+              var btns = document.querySelectorAll(".jspsych-audio-button-response-button");
               for (var i = 0; i < btns.length; i++) {
                   var btn_el = btns[i].querySelector("button");
                   if (btn_el) {
                       btn_el.disabled = false;
                   }
-                  btns[i].addEventListener(touchEvent, button_response);
+                  var mobile = mobileAndTabletCheck()
+                  if(mobile){
+                    btns[i].addEventListener('touchstart', button_response);
+                  } else {
+                    btns[i].addEventListener("mousedown", button_response);
+                  }
               }
           }
           return new Promise((resolve) => {
