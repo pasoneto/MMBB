@@ -229,7 +229,7 @@
 
     var task_repeat = {
       type: jsPsychInstructions,
-      pages: ['Thank you for your responses! <br>The emotion game will now be repeated.'],
+      pages: [emotionTranslations['thankYouRepeat'][lang]],
       button_label_next: buttons[0][lang],
       show_clickable_nav: true,
       on_start: function(data){
@@ -307,7 +307,7 @@
     
     var the_end = {
         type: jsPsychInstructions,
-        pages: ['The task is now complete! Thank you for your participation'],
+        pages: [emotionTranslations['thankYouEnd'][lang]],
         button_label_next: buttons[0][lang],
         show_clickable_nav: true,
       }  
