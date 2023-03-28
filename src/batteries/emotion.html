@@ -305,14 +305,18 @@
         repetitions: N_part2
       }
     
-    var the_end = {
-        type: jsPsychInstructions,
-        pages: [emotionTranslations['thankYouEnd'][lang]],
-        button_label_next: buttons[0][lang],
-        show_clickable_nav: true,
-      }  
+    var messageFinishEmotion = {
+      type: jsPsychHtmlButtonResponse,
+      prompt: emotionTranslations['thankYouEnd'][lang],
+      choices: [],
+      trial_duration: 2000,
+      stimulus: '',
+      on_start: function(){
+        document.cookie = "Emotion=done; path=/"
+      }
+    };
 
-    jsPsych.run([welcomePart1, generalIntroEmotion, instructionsPart1, preload,test ,part1_trials, task_repeat,part1_trials].flat(1000))
+    jsPsych.run([welcomePart1, generalIntroEmotion, instructionsPart1, preload,test ,part1_trials, task_repeat, part1_trials, messageFinishEmotion].flat(1000))
 
 
  </script>

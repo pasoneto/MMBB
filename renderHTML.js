@@ -23,7 +23,6 @@ firebase.auth().onAuthStateChanged(user => {
       window.location = './src/batteries/movementWrap.html?lang=' + lang + '&user=' + userIDFirebase
     }
     document.getElementById("linkToEmotion").onclick = function(){
-      document.cookie = "Emotion=done"
       window.location = './src/batteries/emotion.html?lang=' + lang + '&user=' + userIDFirebase
     }
     //document.getElementById("linkToSurvey").href = './src/batteries/movementWrap.html?lang=' + lang
