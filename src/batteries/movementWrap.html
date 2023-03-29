@@ -154,7 +154,14 @@
 
     var completeSequence = [sequenceTrials["intro"], sequenceTrials[indexTrial[0]], sequenceTrials[indexTrial[1]], sequenceTrials[indexTrial[2]], [[messageFinishSub]]]
 
-    jsPsych.run(completeSequence[Number(nodeIndex)][trialIndex])
+    var procedureEmotionFinal = {
+        timeline: completeSequence[Number(nodeIndex)][trialIndex],
+        on_timeline_start: function() {
+          console.log('This timeline has started');
+        }
+    }
+
+    jsPsych.run([procedureEmotionFinal])
 
  </script>
 </html>
