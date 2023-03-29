@@ -68,7 +68,7 @@ var movement = [
   {"eng": "Not at all", 
          "fi": ""},
   {"eng": "Very much", 
-         "fi": "Tunnen laulun todella hyvin"},
+         "fi": ""},
   {"eng": "How much did you like the song", 
          "fi": "Kuinka paljon pidit laulusta"},
   {"eng": "How much did the song make you want to move", 
@@ -642,7 +642,7 @@ var emotionTranslations = {
     "fi": "Kiitos vastauksista! Harjoitus on nyt ohi, ja voit aloittaa tehtävän painamalla Seuraava"
   }],
   "whichEmotion": {
-    "eng": "Which of these two emotions the music expresses the most?",
+    "eng": "Which of these two emotions does the music express the most?",
     "fi": "Mitä tunnetilaa musiikki ilmaisee parhaiten?"
   },
   "listen": {
@@ -675,7 +675,7 @@ var emotionTranslations = {
     "eng": "How strong are the emotions expressed by the music?",
     "fi": "Kuinka voimakkaasti musiikki ilmaisee tunteita?"
   },
-  "howMuchLike": {
+  "howMuchLie": {
     "eng": "How much did you like/dislike the music?",
     "fi": "Kuinka paljon pidit/et pitänyt musiikista?"
   },
@@ -742,5 +742,39 @@ var emotionTranslations = {
   "thankYouEnd": {
     "eng": "The task is now complete! Thank you for your participation",
     "fi": "Tehtävä on nyt valmis! Kiitos osallistumisesta."
-  }
+  },
+  "howOld": {
+    "eng": "How old are you?",
+    "fi": "Kuinka vanha olet?"
+  },
+  "gender": {
+    "eng": "What is your gender?",
+    "fi": "Mikä on sukupuolesi?"
+  },
+  "feedbackAsk": {
+    "eng": "Do you have any feedback to give us about this task?",
+    "fi": ""
+  },
+  "feedbackPlaceHolder": {
+    "eng": "Was there any difficulty that you would like to report?",
+    "fi": ""
+  },
+  "genderOptions": [
+    {
+      "fi": "nainen",
+      "eng": "female"
+    },
+    {
+      "fi": "mies",
+      "eng": "male"
+    },
+    {
+      "fi": "joku muu",
+      "eng": "other"
+    },
+    {
+      "fi": "en halua kertoa",
+      "eng": "prefer not to say"
+    },
+  ],
 }

@@ -22,6 +22,8 @@
     <script src="../../jspsych/dist/plugin-instructions-timedout.js"></script>
     <script src="../../jspsych/dist/plugin-html-multi-slider-response.js"></script>
     <script src="../../jspsych/dist/plugin-emotion-audio-button-response.js"> </script>
+    <script src="../../jspsych/dist/plugin-survey.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/@jspsych/plugin-survey@0.2.1/css/survey.css">
 
     <script src="../utils/langFetch.js"></script>
     <script src="../utils/translations.js"></script>
@@ -90,6 +92,7 @@
     for (let i=0;i<N;i++) {
       excerpt_order.push(jsPsych.randomization.sampleWithoutReplacement([0,1],2))
     }
+
     //trials 
     var welcomePart1 = {
       type: jsPsychInstructions,
@@ -257,6 +260,7 @@
       allow_backward: false,
       show_clickable_nav: true
     }
+
     var instructionsPart2 = {
       type: jsPsychInstructions,
       pages: emotionTranslations['instructions3'].map(i => i[lang]),
@@ -267,43 +271,43 @@
     }
 
     var part2_audio = {
-        type: jsPsychAudioKeyboardResponse,
-        stimulus: '../../songs/emotionAudio/trimmed_mp3/001.mp3',
-        prompt: 'Listen to the music',
-        trial_duration: stim_dur,
-        choices: ["NO_KEYS"],
-        on_start: function(part2_audio){
-          part2_audio.stimulus = './../../songs/emotionAudio/trimmed_part2_mp3/' + part2_excerpt_order[epochPart2] + '.mp3'
-        }
+      type: jsPsychAudioKeyboardResponse,
+      stimulus: '../../songs/emotionAudio/trimmed_mp3/001.mp3',
+      prompt: 'Listen to the music',
+      trial_duration: stim_dur,
+      choices: ["NO_KEYS"],
+      on_start: function(part2_audio){
+        part2_audio.stimulus = './../../songs/emotionAudio/trimmed_part2_mp3/' + part2_excerpt_order[epochPart2] + '.mp3'
+      }
     }
 
     var part2_emotion_scales = {
-    type: jsPsychHtmlMultiSliderResponse,
-    stimulus: ['Mood', 'Energy', 'How strong are the emotions expressed by the music?'],
-    nSliders: 3,
-    require_movement: true,
-    slider_width: 250,
-    labels: [['Negative', 'Neutral','Positive'],['Low Energy', 'High Energy'],['Low intensity', 'High intensity']],
-    prompt: 'Please rate the emotional content of the music'
+      type: jsPsychHtmlMultiSliderResponse,
+      stimulus: ['Mood', 'Energy', 'How strong are the emotions expressed by the music?'],
+      nSliders: 3,
+      require_movement: true,
+      slider_width: 250,
+      labels: [['Negative', 'Neutral','Positive'],['Low Energy', 'High Energy'],['Low intensity', 'High intensity']],
+      prompt: 'Please rate the emotional content of the music'
     };
     
     var part2_other_scales = {
-    type: jsPsychHtmlMultiSliderResponse,
-    stimulus: ['How much did you like/dislike the music?','How familiar did the music sound to you?'],
-    nSliders: 2,
-    require_movement: true,
-    slider_width: 250,
-    labels: [['Strongly dislike','Neutral','Strongly like'],['Very unfamiliar','Very familiar']],
-    on_finish: function(part2_other_scales){
-      epochPart2 = epochPart2+1
-      jsPsych.setProgressBar((epoch+epochPart2)/(N+N_part2))
-    }
+      type: jsPsychHtmlMultiSliderResponse,
+      stimulus: ['How much did you like/dislike the music?','How familiar did the music sound to you?'],
+      nSliders: 2,
+      require_movement: true,
+      slider_width: 250,
+      labels: [['Strongly dislike','Neutral','Strongly like'],['Very unfamiliar','Very familiar']],
+      on_finish: function(part2_other_scales){
+        epochPart2 = epochPart2+1
+        jsPsych.setProgressBar((epoch+epochPart2)/(N+N_part2))
+      }
     };
 
     var part2_trials = {
         timeline: [part2_audio,part2_emotion_scales,part2_other_scales],
         repetitions: N_part2
-      }
+    }
     
     var messageFinishEmotion = {
       type: jsPsychHtmlButtonResponse,
@@ -316,7 +320,62 @@
       }
     };
 
-    jsPsych.run([welcomePart1, generalIntroEmotion, instructionsPart1, preload,test ,part1_trials, task_repeat, part1_trials, messageFinishEmotion].flat(1000))
+    var qAge = {
+      type: 'text',
+      prompt: emotionTranslations['howOld'][lang],
+      placeholder: '',
+      name: 'age', 
+      textbox_columns: 5,
+      textbox_rows: 1,
+      required: true,
+    }
+
+    var qGender = {
+      type: 'multi-choice',
+      prompt: emotionTranslations['gender'][lang], 
+      options: emotionTranslations['genderOptions'].map(i => i[lang]),
+      name: 'gender', 
+      required: true
+    }
+
+    var qFeedback = {
+      type: 'text',
+      prompt: emotionTranslations['feedbackAsk'][lang],
+      placeholder: emotionTranslations['feedbackPlaceHolder'][lang],
+      name: 'age', 
+      textbox_columns: 30,
+      textbox_rows: 7,
+      required: false,
+    }
+
+    var qNormalHearing = {
+      type: 'text',
+      prompt: emotionTranslations['feedbackAsk'][lang],
+      placeholder: emotionTranslations['feedbackPlaceHolder'][lang],
+      name: 'age', 
+      textbox_columns: 30,
+      textbox_rows: 7,
+      required: false,
+    }
+
+    var demographics = {
+      type: jsPsychSurvey,
+      pages: [[qAge], [qGender], [qFeedback]],
+      title: '',
+      button_label_next: buttons[0][lang],
+      button_label_back: buttons[1][lang],
+      button_label_finish: buttons[0][lang],
+      show_question_numbers: 'onPage',
+      on_load: function(){
+        document.querySelector(".sv_next_btn").style.background = "#fa6400";
+        document.querySelector(".sv_prev_btn").style.background = "purple";
+        document.querySelector(".sv_next_btn").style.color = "#fff";
+        document.querySelector(".sv_prev_btn").style.color = "#fff";
+        document.querySelector(".sv_complete_btn").style.background = "#fa6400";
+      }
+    };
+
+    jsPsych.run([welcomePart1, generalIntroEmotion, instructionsPart1, preload, test, part1_trials, task_repeat, part1_trials, messageFinishEmotion, demographics].flat(1000))
 
 
  </script>
