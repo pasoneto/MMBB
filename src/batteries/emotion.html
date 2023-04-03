@@ -67,16 +67,16 @@
 
         var url = 'https://cortex.jatos.org/jatos/api/v1/studies/101/assets/.'
 
-        fetch(url, {
-            method: 'POST',
-            headers: {
-                'accept': '*/*',
-                'Authorization': 'Bearer jap_IRhnhKMAbYdFMSSn4R8aUhugbmaDFfJd977e5',
-            },
-            body: formData
-        }).then(r => {console.log(r)})
+        //fetch(url, {
+            //method: 'POST',
+            //headers: {
+                //'accept': '*/*',
+                //'Authorization': 'Bearer jap_IRhnhKMAbYdFMSSn4R8aUhugbmaDFfJd977e5',
+            //},
+            //body: formData
+        //}).then(r => {console.log(r)})
 
-        //jsPsych.data.get().localSave('csv','dataEmotion.csv');
+        jsPsych.data.get().localSave('csv','dataEmotion.csv');
 
     }});
 
@@ -413,8 +413,8 @@
         }
     }
 
-    //jsPsych.run([procedureEmotionFinal])
-    jsPsych.run([welcomePart1])
+    jsPsych.run([procedureEmotionFinal])
+    //jsPsych.run([welcomePart1])
     
 
  </script>
