@@ -94,7 +94,7 @@
 
         var timeEnd = Date.now();
         
-        jsPsych.data.addProperties({userID: userID, timeEnd: timeEnd, timeBegin: timeBegin, sequenceTrials: getCookie('sequenceTrial'), nodeIndex: nIndex, tIndex: tIndex});
+        jsPsych.data.addProperties({userID: userID, lang: lang, timeEnd: timeEnd, timeBegin: timeBegin, sequenceTrials: getCookie('sequenceTrial'), nodeIndex: nIndex, tIndex: tIndex});
 
         var finalData = jsPsych.data.get()
         finalData['trials'].push({"performance": measurePerformance, "infoUser": navigator.userAgent})

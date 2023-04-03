@@ -64,11 +64,11 @@ var movement = [
     "fi": "Valitse kappale alapuolelta ja paina seuraava, kun olet tehnyt valintasi"}
   ],
   [{"eng": "How familiar are you with this music style?", 
-         "fi": ""},
+    "fi": "Kuinka tuttu tämä musiikkityyli on sinulle?"},
   {"eng": "Not at all", 
-         "fi": ""},
+         "fi": "Ei ollenkaan"},
   {"eng": "Very much", 
-         "fi": ""},
+         "fi": "Erittäin"},
   {"eng": "How much did you like the song", 
          "fi": "Kuinka paljon pidit laulusta"},
   {"eng": "How much did the song make you want to move", 
@@ -82,17 +82,17 @@ var movement = [
   {"eng": "How much did the beat make you want to move?", 
          "fi": "Kuinka paljon rytmi sai sinut haluamaan liikkua?"},
   {"eng": "Have you heard this song before?", 
-         "fi": ""}],
+         "fi": "Oletko kuullut tämän kappaleen aiemmin?"}],
   [{"eng": "Where did you leave your phone during the tasks?",
-    "fi": ""},
+    "fi": "Minne jätit puhelimesi tehtävien ajaksi?"},
    {"eng": "Pocket",
-    "fi": ""},
+    "fi": "Tasku"},
    {"eng": "Purse",
-    "fi": ""},
+    "fi": "Laukku"},
    {"eng": "Hand",
-    "fi": ""},
+    "fi": "Käsi"},
    {"eng": "Other",
-    "fi": ""},
+    "fi": "Muu"},
   ]
 ]
 
@@ -165,7 +165,7 @@ var recurring = [
   [{"eng": "Welcome to MMBB",
           "fi": "Tervetuloa MMBB-patteriin"},
   {"eng": "For this task you will need the following items:",
-    "fi": ""},
+    "fi": "Tätä tehtävää varten tarvitset seuraavat esineet:"},
   {"eng": "A flat surface where you can lay down your phone<br><img id='tableSVG' src='../../images/table.svg'></img>",
     "fi": "Tasainen pinta, jolle voit laskea puhelimen<br><img id='tableSVG' src='../../images/table.svg'></img>"},
   {"eng": "A pocket or a purse<br><img id='pocket' src='../../images/pocket.svg'></img>",
@@ -202,7 +202,7 @@ var recurring = [
   [{"eng": "Not at all",
     "fi": "En lainkaan"},
    {"eng": "Very much",
-    "fi": ""},
+    "fi": "Erittäin"},
   ]
 ]
   
@@ -220,13 +220,13 @@ var beatProduction = [
   {"eng": 'Aligned: <br><br><audio autoplay controls><source src="../../songs/beatProductionAudio/beatModified/baseSongs/example/aligned.mp3" type="audio/mp3"></audio>',
         "fi": 'Samassa tahdissa: <br><br><audio autoplay controls><source src="../../songs/beatProductionAudio/beatModified/baseSongs/example/aligned.mp3" type="audio/mp3"></audio>'},
   {"eng": "Your task is to find the best alignment between the click and the song", 
-        "fi": ""},
+        "fi": "Tehtäväsi on löytää paras kohdistus metronomin iskun ja kappaleen väliltä"},
   {"eng": "By clicking these buttons, you will be able to align the song and the click in a few different ways:<br><img id='music' src='../../images/exampleBAT.png'></img>",
         "fi": "<br><img id='music' src='../../images/exampleBAT.png'></img>"},
   {"eng": "Let's start with a practice trial",
         "fi": "Aloitetaan harjoit telutehtävällä"},
   {"eng": "Your task is to click through the buttons until you find the best aligment between the song and the click. Once you find it, click Continue",
-   "fi": ""},
+   "fi": "Tehtäväsi on koskettaa ja kokeilla eri painikkeita, kunnes löydät parhaan kohdistuksen kappaleen ja metronomin iskun väliltä. Kun löydät sen, paina Jatka"},
   {"eng": "Each trial has a time-limit, so try to find the best alignment as quickly as you can",
    "fi": "Jokaisella kokeilulla on aikaraja, joten yritä löytää paras ajoitus mahdollisimman nopeasti"}],
   [{"eng": "Ok, let's continue with the task",
@@ -238,7 +238,7 @@ var beatProduction = [
   [{"eng": "Beat alignment task",
     "fi": "Tahdin kohdistustehtävä"}],
   [{"eng": "How satisfied were you with the alignment that you found between this song and the click?",
-    "fi": ""}
+    "fi": "Kuinka tyytyväinen olit tämän kappaleen ja metronomin iskun väliseen linjaukseen?"}
   ]
 ]
 
@@ -254,7 +254,7 @@ var initialInstructions = [
    {"eng": "Can you hear this song?<br>If yes, adjust the volume to a comfortable hearing level and click Next.<br>Make sure that the 'mute' button on the left side of your phone is disabled. <br> If it still doesn't work change to a different phone or to a different internet browser.",
     "fi": "Kuunteletko tämän kappaleen?<br>Jos kyllä, säädä äänenvoimakkuus miellyttävälle kuulotasolle ja napsauta Seuraava.<br>Jos käytät iPhonea, poista käytöstä puhelimen vasemmalla puolella oleva mykistyspainike. <br> Jos se ei vieläkään toimi, vaihda toiseen puhelimeen tai toiseen Internet-selaimeen."},
    {"eng": "I don't know",
-    "fi": ""}
+    "fi": "En tiedä"}
   ]
 ]
 
@@ -624,15 +624,10 @@ var emotionTranslations = {
     "eng": "Tender",
     "fi": "Hellyys"
   },
-  "instructions1": [{
-    "eng": "Instructions",
-    "fi": "Ohjeet"
-    },{
+  "instructions1": [
+    {
       "eng": "Next, you will listen to clips of music. Please choose the emotion that the music expresses the most.",
       "fi": "Seuraavaksi kuulet musiikkia. Valitse tunnetila, jota musiikki ilmaisee mielestäsi parhaiten."
-    },{
-      "eng": "Practice",
-      "fi": "Harjoitus"
     },{
       "eng": "You can practice once to get familiar with the task. Before starting, please adjust the volume to a comfortable level.",
       "fi": "Voit nyt harjoitella, ennen kuin aloitat varsinaisen kyselyn. Voit myös säätää samalla äänenvoimakkuuden itselle sopivaksi."
@@ -654,9 +649,6 @@ var emotionTranslations = {
     "fi": "Musiikki ja tunteet Osa 2"
   },
   "instructions3": [{
-      "eng": "Instructions",
-      "fi": "Ohjeet"
-    },{
       "eng": "Next, listen to the clips of music and rate what they express in terms of mood, energy, and strength of emotions. You can start the task by clicking \"Next",
       "fi": "Seuraavaksi kuulet musiikkia. Arvioi, mitä eri kappaleet ilmaisevat tunnetilan, energisyyden ja tunteiden voimakkuuden suhteen. Voit aloittaa tehtävän painamalla \"Seuraava"
     },{
@@ -753,11 +745,11 @@ var emotionTranslations = {
   },
   "feedbackAsk": {
     "eng": "Do you have any feedback to give us about this task?",
-    "fi": ""
+    "fi": "Onko sinulla antaa meille palautetta tästä tehtävästä?"
   },
   "feedbackPlaceHolder": {
     "eng": "Was there any difficulty that you would like to report?",
-    "fi": ""
+    "fi": "Löysitkö ongelmia, joista haluaisit ilmoittaa meille?"
   },
   "genderOptions": [
     {

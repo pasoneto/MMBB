@@ -36,3 +36,36 @@
    "fi": ""}
   {"eng": "I don't know",
    "fi": ""}
+
+
+
+
+
+ {“eng”: “Not at all”,
+     “fi”: “Ei ollenkaan.“},
+ {“eng”: “Very much”,
+     “fi”: “Erittäin”},
+ {“eng”: “Have you heard this song before?“,
+     “fi”: “Oletko kuullut tämän kappaleen aiemmin?“},
+ {“eng”: “Where did you leave your phone during the tasks?“,
+  “fi”: “Minne jätit puhelimesi tehtävien ajaksi?“},
+ {“eng”: “Pocket”,
+  “fi”: “Tasku”},
+ {“eng”: “Purse”,
+  “fi”: “Laukku”},
+ {“eng”: “Hand”,
+  “fi”: “Käsi”},
+ {“eng”: “Other”,
+  “fi”: “Muu”},
+ {“eng”: “For this task you will need the following items:“,
+  “fi”: “Tätä tehtävää varten tarvitset seuraavat esineet:“},
+ {“eng”: “Very much”,
+  “fi”: “Erittäin”},
+ {“eng”: “Your task is to find the best alignment between the click and the song”,
+  “fi”: “Tehtäväsi on löytää paras kohdistus metronomin iskun ja kappaleen väliltä“},
+ {“eng”: “Your task is to click through the buttons until you find the best aligment between the song and the click. Once you find it, click Continue”,
+  “fi”: “Tehtäväsi on koskettaa ja kokeilla eri painikkeita, kunnes löydät parhaan kohdistuksen kappaleen ja metronomin iskun väliltä. Kun löydät sen, paina Jatka”},
+ {“eng”: “How satisfied were you with the alignment that you found between this song and the click?“,
+  “fi”: “Kuinka tyytyväinen olit tämän kappaleen ja metronomin iskun väliseen linjaukseen?“}
+ {“eng”: “I don’t know”,
+  “fi”: “En tiedä“}
