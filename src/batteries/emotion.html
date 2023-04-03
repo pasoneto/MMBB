@@ -161,14 +161,11 @@
         if (!excerpts_played.includes(level_trials[i]['Name'])){
           candidate_trial.push(level_trials[i])
         }}
-        if (candidate_trial.length < 0){
-          console.log('Candidates more than 0')
+        if (candidate_trial.length > 0){
           console.log(candidate_trial)  
           current_trial = jsPsych.randomization.sampleWithoutReplacement(candidate_trial,1)[0]
         }
         else {
-          candidate_trial = []
-          console.log('Candidates less than 0')
           level_trials = trials[String(current_level)]
           console.log(level_trials)
           for (let i=1;i<5;i++) {
@@ -181,7 +178,6 @@
             current_trial = jsPsych.randomization.sampleWithoutReplacement(candidate_trial,1)[0]
           } 
           else {
-            console.log('Timeline to be stopped')
             jsPsych.endCurrentTimeline();
           }}
         excerpts_played[epoch] = current_trial['Name']
