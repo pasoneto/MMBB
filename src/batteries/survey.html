@@ -41,9 +41,6 @@
   <script>
 
     var jsPsych = initJsPsych({
-      extensions: [
-        {type: jsPsychExtensionAccelerometer }
-      ],
       on_finish: function() {
         //jsPsych.data.displayData();
         jsPsych.data.addProperties({group: groupNumber});

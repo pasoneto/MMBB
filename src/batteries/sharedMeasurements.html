@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://unpkg.com/jspsych@7.1.2"></script>
+
+    <script src="../../jspsych/dist/custom/utils.js"> </script>
+
+    <script src="../../jspsych/dist/plugin-preload.js"> </script>
+    <script src="../../jspsych/dist/plugin-audio-button-response.js"></script>
+    <script src="../../jspsych/dist/plugin-html-button-response.js"></script>
+    <script src="../../jspsych/dist/plugin-html-slider-response.js"></script>
+    <script src="../../jspsych/dist/plugin-instructions.js"></script>
+    <script src="../../jspsych/dist/plugin-audio-keyboard-response.js"></script>
+    <script src="../../jspsych/dist/plugin-instructions-timedout.js"></script>
+    <script src="../../jspsych/dist/plugin-html-multi-slider-response.js"></script>
+    <script src="../../jspsych/dist/plugin-survey.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/@jspsych/plugin-survey@0.2.1/css/survey.css">
+
+    <script src="../utils/langFetch.js"></script>
+    <script src="../utils/chooseLanguageTrial.js"></script>
+    <script src="../utils/translations.js"></script>
+    <script src="./generalIntro.js"></script>
+
+    <script src="./sharedMeasurements.js"> </script>
+
+    <script src="../utils/preventRefresh.js"> </script>
+    <script src="../utils/identifyOS.js"> </script>
+    <script src="../utils/manageCookies.js"> </script>
+
+    <script src="../../backend/setupLogFile.js"></script>
+    <script src="../../backend/pushDatabase.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
+
+    <link rel="stylesheet" href="../styles/generalCSS.css">
+
+  </head>
+
+  <script>
+  
+    var jsPsych = initJsPsych({
+      show_progress_bar: true,
+        auto_update_progress_bar: false,
+        on_finish: function() {
+
+          var userID = urlParams.get('user')
+          if(userID == null){
+            var userID = jsPsych.randomization.randomID(10)
+          }
+
+          jsPsych.data.addProperties({userID: userID, lang: lang});
+
+          var dFinal = jsPsych.data.get()
+          
+          pushJATOS(dFinal, userID, "sharedMeasurements").then(r => {
+            modifyLog(userID, "sharedM").then(a => { //Modify log. Done shared measurements
+              allowRefresh();
+              window.location.href = '../../chooseBattery.html?lang=' + lang + '&user=' + userID
+            })
+          })
+
+    }});
+
+    jsPsych.run([sharedMeasurementsTrial, messageFinishSharedMeasures])
+    
+
+ </script>
+
+</html>

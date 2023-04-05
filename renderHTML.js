@@ -7,7 +7,7 @@ function signOut(){
   });
 }
 
-var allTasksLinks = ["Emotion", "Singing", "Survey", "Movement"]
+var allTasksLinks = ["Emotion", "Singing", "SharedMeasures", "Movement"]
 allTasksLinks.map(i => {
   if(getCookie(i) == "done"){
     document.getElementById("task" + i).style.background = "lightgreen";

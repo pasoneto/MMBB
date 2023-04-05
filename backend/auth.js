@@ -1,21 +1,39 @@
 // FirebaseUI config.
 var uiConfig = {
   callbacks: {
-    signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+    signInSuccessWithAuthResult: async function(authResult, redirectUrl) {
       var userName = firebase.auth().currentUser.displayName
-      var authToken = firebase.auth().currentUser.uid
-      firebase.auth().currentUser.getIdToken().then(r => {
-        window.location.assign("./chooseBattery.html")
-      })
+      var userID = firebase.auth().currentUser.uid
+
+      //firebase.auth().currentUser.getIdToken()
+
+      //Will throw error if this is first logIn, because there is no logFile yet
+      try{ 
+        var userLog = await getFromJATOS(userID + "_logFile.txt")
+      } catch(e){
+        setupLog(userID) //Setting up logFile
+        var userLog = { userID: userID }
+      }
+
+      var lang = 'eng'
+
+      var didSharedMeasurements = await userLog['sharedM']
+
+      if(didSharedMeasurements == undefined){
+        window.location.assign('./src/batteries/sharedMeasurements.html?lang=' + lang + '&user=' + userID)
+      } else {
+        window.location.assign('../../chooseBattery.html?lang=' + lang + '&user=' + userID)
+      }
+
       return false;
     },
   },
-  signInSuccessUrl: './chooseBattery.html',
+  //signInSuccessUrl: './chooseBattery.html',
   signInOptions: [
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
     firebase.auth.EmailAuthProvider.PROVIDER_ID,
   ],
-  tosUrl: './chooseBattery.html',
+  //tosUrl: './chooseBattery.html',
   privacyPolicyUrl: function() {
     window.location.assign('./');
   }

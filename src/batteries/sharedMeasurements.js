@@ -2,10 +2,10 @@ var languages = ["Suomi", "العربية", "Bahasa Indonesia", "Bahasa Melayu",
 var likertValues = [ {value: 1}, {value: 2}, {value: 3}, {value: 4}, {value: 5} ]
 var genderOptions = ['genderOption1', 'genderOption2', 'genderOption3', 'genderOption4']
 
-function generateLikertObject(prompt, likertValues, min, max, required){
+function generateLikertObject(prompt, likertValues, min, max, required, scale){
       var rObj = {
         type: 'likert',
-        prompt: sharedMeasurements[prompt][lang],
+        prompt: sharedMeasurements[prompt][lang] + scale,
         likert_scale_min_label: min,
         likert_scale_max_label: max,
         likert_scale_values: likertValues,
@@ -54,19 +54,19 @@ var custom0 = [generateTextObject('weight', false, 5, 1), generateMultiChoiceObj
 
 var custom1 = ['yearsPracticeSinging', 'yearsPracticeInstrument', 'yearsPracticeDance', 'yearsTraining'].map(i => generateTextObject(i, false, 5, 1))
 
-var listQuestions2 = ['oftenPracticeSingingActive', 'oftenPracticeSingingCurrently'].map(i => generateLikertObject(i, likertValues, "0 (never)", "5 (daily)", true))
-var listQuestions3 = ['oftenPracticedInstrumentActive', 'oftenPracticeInstrumentCurrently'].map(i => generateLikertObject(i, likertValues, "0 (never)", "5 (daily)", true))
-var listQuestions4 = ['oftenPracticedDanceActive', 'oftenPracticeDanceCurrently', 'oftenListenMusic'].map(i => generateLikertObject(i, likertValues, "0 (never)", "5 (daily)", true))
+var listQuestions2 = ['oftenPracticeSingingActive', 'oftenPracticeSingingCurrently'].map(i => generateLikertObject(i, likertValues, "", "", true, " 1 (not at all) - 5 (very)."))
+var listQuestions3 = ['oftenPracticedInstrumentActive', 'oftenPracticeInstrumentCurrently'].map(i => generateLikertObject(i, likertValues, "", "", true, " 1 (never) - 5 (daily)."))
+var listQuestions4 = ['oftenPracticedDanceActive', 'oftenPracticeDanceCurrently', 'oftenListenMusic'].map(i => generateLikertObject(i, likertValues, "", "", true, "1 (never) - 5 (daily)."))
 
 listQuestions2.unshift(custom1[0])
 listQuestions3.unshift(custom1[1])
 listQuestions4.unshift(custom1[2])
 listQuestions4.push(custom1[3])
-listQuestions4.push(generateLikertObject("howMusical", likertValues, "0 (not at all)", "5 (very)", true))
+listQuestions4.push(generateLikertObject("howMusical", likertValues, "", "", true, "1 (not at all) - 5 (very)"))
 
-var listQuestions5 = ['musicalGenre', 'whichSongArtistsPrefer', 'leastPreferedGenre', 'leastPreferedArtists'].map(i => generateTextObject(i, true))
-var listQuestions6 = ['likeMusicEmotion', 'getEmotion', 'becomeTearful', 'feelChill', 'dontLikeToDance', 'makesMeDance', 'humming', 'cantStopTapping', 'keepCompany', 'calmsRelaxes', 'chillOut', 'comfortsMe', 'hardlyListen', 'informMyself', 'alwaysLooking', 'moneySpend', 'shareConnection', 'bondOtherPeople', 'singWithOthers', 'connectedPerformers'].map(i => generateLikertObject(i, likertValues, "Completely disagree", "Completely agree", true))
-var listQuestions7 = ['backgroundAtmosphere', 'busyBackground', 'afterRough', 'exhaustedListen', 'magnificentExperience', 'feellWholeBody', 'forgetWorries', 'stressfulThoughts', 'reallyAngry', 'angrySomeone', 'hardExperiences', 'distressedClarify', 'feelsBadComforts', 'feelSadComfort', 'ableJudge', 'spotMistakes', 'recognizingFamiliar', 'canTellOff', 'canTellOutTune', 'noIdeaTune', 'usuallyJoin', 'singFromMemory', 'ableToHitRightNote', 'notAbleHarmony', 'singingPublic', 'singItMyself', 'easyControlMovement', 'easyLearnImitate', 'danceYes', 'embarrassingDance', 'whenDanceBetter', 'feelHaveToDance'].map(i => generateLikertObject(i, likertValues, "0 (Completely disagree)", "5 (Completely agree)", true))
+var listQuestions5 = ['musicalGenre', 'whichSongArtistsPrefer', 'leastPreferedGenre', 'leastPreferedArtists'].map(i => generateTextObject(i, true, 5))
+var listQuestions6 = ['likeMusicEmotion', 'getEmotion', 'becomeTearful', 'feelChill', 'dontLikeToDance', 'makesMeDance', 'humming', 'cantStopTapping', 'keepCompany', 'calmsRelaxes', 'chillOut', 'comfortsMe', 'hardlyListen', 'informMyself', 'alwaysLooking', 'moneySpend', 'shareConnection', 'bondOtherPeople', 'singWithOthers', 'connectedPerformers'].map(i => generateLikertObject(i, likertValues, "", "", true, "1 (Completely disagree) - 5 (Completely agree)"))
+var listQuestions7 = ['backgroundAtmosphere', 'busyBackground', 'afterRough', 'exhaustedListen', 'magnificentExperience', 'feellWholeBody', 'forgetWorries', 'stressfulThoughts', 'reallyAngry', 'angrySomeone', 'hardExperiences', 'distressedClarify', 'feelsBadComforts', 'feelSadComfort', 'ableJudge', 'spotMistakes', 'recognizingFamiliar', 'canTellOff', 'canTellOutTune', 'noIdeaTune', 'usuallyJoin', 'singFromMemory', 'ableToHitRightNote', 'notAbleHarmony', 'singingPublic', 'singItMyself', 'easyControlMovement', 'easyLearnImitate', 'danceYes', 'embarrassingDance', 'whenDanceBetter', 'feelHaveToDance'].map(i => generateLikertObject(i, likertValues, "", "",  true, "1 (Completely disagree) - 5 (Completely agree)"))
 
 var sharedMeasurementsTrial = {
   type: jsPsychSurvey,
@@ -75,6 +75,24 @@ var sharedMeasurementsTrial = {
   button_label_next: 'Continue',
   button_label_back: 'Previous',
   button_label_finish: 'Continue',
-  show_question_numbers: 'onPage'
+  show_question_numbers: 'onPage',
+  on_load: function(){
+    document.querySelector(".sv_header").style.marginBottom = "-50px"
+    document.querySelector(".sv_next_btn").style.background = "#fa6400";
+    document.querySelector(".sv_prev_btn").style.background = "purple";
+    document.querySelector(".sv_next_btn").style.color = "#fff";
+    document.querySelector(".sv_prev_btn").style.color = "#fff";
+    document.querySelector(".sv_complete_btn").style.background = "#fa6400";
+  }
 };
 
+var messageFinishSharedMeasures = {
+  type: jsPsychHtmlButtonResponse,
+  prompt: emotionTranslations['thankYouEnd'][lang],
+  choices: [],
+  trial_duration: 2000,
+  stimulus: '',
+  on_start: function(){
+    document.cookie = "SharedMeasures=done; path=/"
+  }
+};
