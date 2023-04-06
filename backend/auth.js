@@ -22,18 +22,18 @@ var uiConfig = {
       if(didSharedMeasurements == undefined){
         window.location.assign('./src/batteries/sharedMeasurements.html?lang=' + lang + '&user=' + userID)
       } else {
-        window.location.assign('../../chooseBattery.html?lang=' + lang + '&user=' + userID)
+        window.location.assign('../pages/chooseBattery.html?lang=' + lang + '&user=' + userID)
       }
 
       return false;
     },
   },
-  //signInSuccessUrl: './chooseBattery.html',
+  //signInSuccessUrl: '../pages/chooseBattery.html',
   signInOptions: [
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
     firebase.auth.EmailAuthProvider.PROVIDER_ID,
   ],
-  //tosUrl: './chooseBattery.html',
+  //tosUrl: '../pages/chooseBattery.html',
   privacyPolicyUrl: function() {
     window.location.assign('./');
   }

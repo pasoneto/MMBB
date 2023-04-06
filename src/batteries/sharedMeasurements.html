@@ -45,6 +45,8 @@
 
   <script>
   
+    var timeBegin = Date.now();
+
     var jsPsych = initJsPsych({
       show_progress_bar: true,
         auto_update_progress_bar: false,
@@ -55,14 +57,16 @@
             var userID = jsPsych.randomization.randomID(10)
           }
 
-          jsPsych.data.addProperties({userID: userID, lang: lang});
+          var timeEnd = Date.now();
+
+          jsPsych.data.addProperties({userID: userID, lang: lang, timeEnd: timeEnd, timeBegin: timeBegin});
 
           var dFinal = jsPsych.data.get()
           
-          pushJATOS(dFinal, userID, "sharedMeasurements").then(r => {
+          pushJATOS(dFinal, userID, "sharedMeasurements" + "_" + timeEnd).then(r => {
             modifyLog(userID, "sharedM").then(a => { //Modify log. Done shared measurements
               allowRefresh();
-              window.location.href = '../../chooseBattery.html?lang=' + lang + '&user=' + userID
+              window.location.href = '../../pages/chooseBattery.html?lang=' + lang + '&user=' + userID
             })
           })
 

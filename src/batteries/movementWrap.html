@@ -55,6 +55,7 @@
 
     <script src="https://www.gstatic.com/firebasejs/ui/6.0.2/firebase-ui-auth.js"></script>
 
+    <script src="../../backend/setupLogFile.js"></script>
     <script src="../../backend/pushDatabase.js"></script>
 
   </head>
@@ -99,8 +100,7 @@
         var finalData = jsPsych.data.get()
         finalData['trials'].push({"performance": measurePerformance, "infoUser": navigator.userAgent})
 
-
-        pushJATOS(finalData, userID, "movement" + "_" + nIndex + "_" + tIndex).then(r => {
+        pushJATOS(finalData, userID, "movement" + "_" + nIndex + "_" + tIndex + "_" + timeEnd).then(r => {
           var nNodes = completeSequence.length-1
           var nTrials = completeSequence[nodeIndex].length-1
           if(Number(trialIndex) < Number(nTrials)){
@@ -121,7 +121,7 @@
             } else { //If end of experiment. Redirect to homepage
               allowRefresh();
               modifyLog(userID, "movement").then(a => { //Modify log. Done movement
-                window.location = "https://pasoneto.github.io/MMBB/"
+                window.location.href = '../../pages/chooseBattery.html?lang=' + lang + '&user=' + userID
               })
             }
           }
