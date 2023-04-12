@@ -22,7 +22,7 @@ var uiConfig = {
       if(didSharedMeasurements == undefined){
         window.location.assign('./src/batteries/sharedMeasurements.html?lang=' + lang + '&user=' + userID)
       } else {
-        window.location.assign('../pages/chooseBattery.html?lang=' + lang + '&user=' + userID)
+        window.location.assign('./pages/chooseBattery.html?lang=' + lang + '&user=' + userID)
       }
 
       return false;
