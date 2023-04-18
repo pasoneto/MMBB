@@ -11,6 +11,7 @@ var uiConfig = {
       try{ 
         var userLog = await getFromJATOS(userID + "_logFile.txt")
       } catch(e){
+        console.log("User has no log file. Creating...")
         setupLog(userID) //Setting up logFile
         var userLog = { userID: userID }
       }

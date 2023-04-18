@@ -1,8 +1,8 @@
 #Implement terms of service and privacy statements.
 
-#Friends-strangers: Thank you for your responses. Call the experimenter. Hide "next" button for 1-2 minutes.
+#Friends-strangers: Thank you for your responses. Call the experimenter. 
 
-#In the auth phase, ask basic demographic questions
+#Implement function that directs participant to a given sub-battery in the end of a given sub-battery.
 
 #Emotion: 
 - add adjust volume trial (el Pesebre); 
@@ -19,3 +19,6 @@ Odds = friend, even = stranger
 #Translate shared measurements.
 #Name each file with participantNumber and groupNumber.
 #Collect unix time
+#Translate whole survey.html
+
+

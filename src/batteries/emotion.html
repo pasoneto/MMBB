@@ -32,6 +32,9 @@
     <script src="../utils/identifyOS.js"> </script>
     <script src="../utils/manageCookies.js"> </script>
 
+    <script src="../../backend/setupLogFile.js"></script>
+    <script src="../../backend/pushDatabase.js"></script>
+
 
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
 
@@ -51,34 +54,19 @@
         on_finish: function() {
 
         var userID = urlParams.get('user')
-        if(userID == null){
-          var userID = jsPsych.randomization.randomID(10)
-        }
+        var timeEnd = Date.now();
 
         jsPsych.data.addProperties({userID: userID, lang: lang});
         var dFinal = jsPsych.data.get()
 
-        var dataString = JSON.stringify(dFinal)
+        pushJATOS(dFinal, userID, "emotion" + timeEnd).then(r => {
+          modifyLog(userID, "emotion").then(a => { //Modify log. Done emotion
+            allowRefresh();
+            window.location.href = 'https://pasoneto.github.io/MMBB/pages/chooseBattery.html?lang=' + lang + '&user=' + userID
+          })
+        })
 
-        var api_key = "jap_IRhnhKMAbYdFMSSn4R8aUhugbmaDFfJd977e5"
-        var study_uuid = "8baf2255-8021-4280-b679-4abfdbc6ae67"
-
-        var blob = new Blob([dataString],{type:"text/plain"});
-        var formData = new FormData()
-        formData.append("studyAssetsFile", blob, "tasks.txt"); 
-
-        var url = 'https://cortex.jatos.org/jatos/api/v1/studies/101/assets/.'
-
-        //fetch(url, {
-            //method: 'POST',
-            //headers: {
-                //'accept': '*/*',
-                //'Authorization': 'Bearer jap_IRhnhKMAbYdFMSSn4R8aUhugbmaDFfJd977e5',
-            //},
-            //body: formData
-        //}).then(r => {console.log(r)})
-
-        jsPsych.data.get().localSave('csv','dataEmotion.csv');
+        //jsPsych.data.get().localSave('csv','dataEmotion.csv');
 
     }});
 
@@ -416,7 +404,6 @@
     }
 
     jsPsych.run([procedureEmotionFinal])
-    //jsPsych.run([welcomePart1])
     
 
  </script>

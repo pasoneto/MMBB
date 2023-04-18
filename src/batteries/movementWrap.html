@@ -86,9 +86,6 @@
         var measurePerformance = performance.getEntriesByType('resource');
 
         var userID = urlParams.get('user')
-        if(userID == null){
-          var userID = jsPsych.randomization.randomID(10)
-        }
 
         var nIndex = urlParams.get('nodeIndex')
         var tIndex = urlParams.get('trialIndex')
@@ -156,14 +153,14 @@
 
     var completeSequence = [sequenceTrials["intro"], sequenceTrials[indexTrial[0]], sequenceTrials[indexTrial[1]], sequenceTrials[indexTrial[2]], [[messageFinishSub]]]
 
-    var procedureEmotionFinal = {
+    var procedureMovementFinal = {
         timeline: completeSequence[Number(nodeIndex)][trialIndex],
         on_timeline_start: function() {
           console.log('This timeline has started');
         }
     }
 
-    jsPsych.run([procedureEmotionFinal])
+    jsPsych.run([procedureMovementFinal])
 
  </script>
 </html>
