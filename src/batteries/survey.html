@@ -245,7 +245,7 @@
       type: jsPsychImageButtonResponse,
       stimulus: '../../images/qrCodeLink.png',
       choices: ['Continue'],
-      prompt: "<p>Use the camera of your phone to access this link</p>"
+      prompt: "<p>Use the camera of your phone to access a questionnaire. <br> After that, you can close the ipad. <br>Click condinue when you have finished with your phone.</p>"
     };
 
     var inter = {
@@ -258,7 +258,7 @@
         show_clickable_nav: true,
         on_load: function(){
           document.getElementById("jspsych-instructions-next").style.display = "none"
-          sleep(30000).then(r => {
+          sleep(30).then(r => {
             document.getElementById("jspsych-instructions-next").style.display = ""
           })
         }
@@ -267,7 +267,7 @@
     var changePairs = {
         type: jsPsychInstructions,
         pages: [
-        'Change pair!<br>',
+        'Time to change pair!<br> Please call the experimenter.',
         ],
         button_label_next: "Next",
         button_label_previous: "Previous",
@@ -362,7 +362,7 @@
     var feedbackSpace = {
       type: jsPsychSurveyHtmlForm,
       preamble: '<p style="font-size:7vw">Have any feedback?</p>',
-      html: '<p><input type="text" id="test-resp-box" name="response" size="10" /></p>',
+      html: '<p><input type="text" id="test-resp-box" name="response" size="100" /></p>',
       autofocus: 'test-resp-box'
     };
 
@@ -384,15 +384,13 @@
     var C = [howFeeling, closeness1, inter,
              howWasPlaylist, howFeeling,closeness1, inter,
              howFeeling, closeness1, questionsAboutSongs, linkToMMBB, howFeeling,closeness1, inter,
-             howFeeling, closeness1, questionsAboutSongs, inter,
-             relationshipFriend, relationshipFriend2, feedbackSpace]
+             howFeeling, closeness1, questionsAboutSongs, relationshipFriend, feedbackSpace]
 
     var D = [howFeeling, closeness1, inter,
              howFeeling, closeness1, questionsAboutSongs, inter,
              howFeeling, closeness1, howWasPlaylist, inter,
              howFeeling, closeness1, questionsAboutSongs, linkToMMBB, howFeeling,closeness1, inter,
-             howFeeling, closeness1, inter,
-             relationshipFriend, relationshipFriend2, feedbackSpace]
+             howFeeling, closeness1, relationshipFriend, feedbackSpace]
     
     if(evenOdd == 1){ //Odd
       console.log("Friends - Strangers")
@@ -410,10 +408,10 @@
       console.log("P2: C->A")
       console.log("P3: D->B")
       console.log("P4: C->B")
-      var participant1 = [...D, ...[changePairs], ...A]
-      var participant2 = [...C, ...[changePairs], ...A]
-      var participant3 = [...D, ...[changePairs], ...B]
-      var participant4 = [...C, ...[changePairs], ...B]
+      var participant1 = [...D, ...[changePairs], ...B]
+      var participant2 = [...C, ...[changePairs], ...B]
+      var participant3 = [...D, ...[changePairs], ...A]
+      var participant4 = [...C, ...[changePairs], ...A]
     }
 
     var participantsObject = {

@@ -11,20 +11,36 @@
   <body>
     
     <div id="containerSurvey">
-      <div id="Instruction">Choose the study pair</div>
+      <div id="Instruction">Choose participant number</div>
       <div id="buttonContainerSurvey">
-        <button id="1" onclick="directURL(this.id)">1</button>
-        <button id="2" onclick="directURL(this.id)">2</button>
-        <button id="3" onclick="directURL(this.id)">3</button>
-        <button id="4" onclick="directURL(this.id)">4</button>
+        <button id="1" onclick="setParticipant(1)">1</button>
+        <button id="2" onclick="setParticipant(2)">2</button>
+        <button id="3" onclick="setParticipant(3)">3</button>
+        <button id="4" onclick="setParticipant(4)">4</button>
       </div>
+      <div id="Instruction">Choose group number</div>
+        <input oninput="setGroup()" id="groupSlider" type="range" min="1" max="100" value="1">
+        <div id="groupNumberDisplay">1</div>
     </div>
 
   </body>
 
   <script>
-    directURL = function(id){
-      window.location = "https://pasoneto.github.io/MMBB/src/batteries/survey.html?group=" + id
+    setParticipant = function(number){
+      window.participant = number
+      this.style.background = "purple"
+    }
+    setGroup = function(){
+      window.groupNumber = document.getElementById("groupSlider").value;
+      console.log(window.groupNumber)
+      document.getElementById("groupNumberDisplay").innerHTML = window.groupNumber
+    }
+    directURL = function(){
+      if(window.group == undefined || window.participant == undefined){
+        alert("Choose participant and group")
+      } else {
+        window.location = "https://pasoneto.github.io/MMBB/src/batteries/survey.html?group=" + window.groupNumber + "&participant=" + window.participant
+      }
     }
   </script>
 
