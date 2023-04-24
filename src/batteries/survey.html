@@ -3,6 +3,7 @@
   <head>
     <title>MMBB batery</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
     <script src="../utils/langFetch.js"></script>
     <script src="https://unpkg.com/jspsych@7.1.2"></script>
     <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.0"></script>
@@ -258,7 +259,7 @@
         show_clickable_nav: true,
         on_load: function(){
           document.getElementById("jspsych-instructions-next").style.display = "none"
-          sleep(30).then(r => {
+          sleep(30000).then(r => {
             document.getElementById("jspsych-instructions-next").style.display = ""
           })
         }
