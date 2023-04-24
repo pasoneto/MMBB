@@ -239,4 +239,15 @@ button:focus {
   cursor: pointer;
   margin-top: -5px;
 }
+  /*Front survey styles*/
+  #groupSlider{
+    width: 50%;
+  }
+  #Instruction{
+    margin-top: 10%
+  }
+  #goStudy{
+    margin-top: 10%
+  }
+  /*End of Front survey styles*/
 /*End of survey friends-strangers*/
