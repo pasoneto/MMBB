@@ -21,14 +21,22 @@
       <div id="Instruction">Choose group number</div>
         <input oninput="setGroup()" id="groupSlider" type="range" min="1" max="100" value="1">
         <div id="groupNumberDisplay">1</div>
+        <button id="goStudy" onclick="directURL()">Go to study</button>
     </div>
 
   </body>
 
   <script>
     setParticipant = function(number){
+      pts = [1, 2, 3, 4]
       window.participant = number
-      this.style.background = "purple"
+      for(k in pts){
+        if(pts[k] !== number){
+          document.getElementById(pts[k]).style.background = "#fa6400"
+        } else {
+          document.getElementById(pts[k]).style.background = "purple"
+        }
+      }
     }
     setGroup = function(){
       window.groupNumber = document.getElementById("groupSlider").value;
@@ -36,10 +44,10 @@
       document.getElementById("groupNumberDisplay").innerHTML = window.groupNumber
     }
     directURL = function(){
-      if(window.group == undefined || window.participant == undefined){
+      if(window.groupNumber == undefined || window.participant == undefined){
         alert("Choose participant and group")
       } else {
-        window.location = "https://pasoneto.github.io/MMBB/src/batteries/survey.html?group=" + window.groupNumber + "&participant=" + window.participant
+        window.location = "https://pasoneto.github.io/MMBB/src/batteries/survey.html?group=" + window.groupNumber + "&participantNumber=" + window.participant
       }
     }
   </script>

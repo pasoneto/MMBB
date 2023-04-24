@@ -366,30 +366,38 @@
       autofocus: 'test-resp-box'
     };
 
+    var endTask = {
+        type: jsPsychInstructions,
+        pages: ['This is the end of the experiment<br>Thank you for your participation!'],
+        button_label_next: "Next",
+        button_label_previous: "Previous",
+        show_clickable_nav: true,
+    }
+
     //- Please rate your relationship with the first person you danced and created a playlist with
     //- Please rate your relationship with the second person you danced and created a playlist with   
     var evenOdd = groupNumber % 2
 
     var A = [howFeeling, closeness1, inter,
              howWasPlaylist, howFeeling, closeness1, inter,
-             howFeeling, closeness1, questionsAboutSongs, modelQuestionnaire2, modelQuestionnaire3, howFeeling,closeness1, inter,
+             howFeeling, closeness1, questionsAboutSongs, inter, howFeeling,closeness1, modelQuestionnaire2, modelQuestionnaire3, inter,
              howFeeling, closeness1, questionsAboutSongs, relationshipFriend2, feedbackSpace]
 
     var B = [howFeeling, closeness1, inter,
              howFeeling, closeness1, questionsAboutSongs, inter,
              howFeeling, closeness1, howWasPlaylist, inter,
-             howFeeling, closeness1, questionsAboutSongs, modelQuestionnaire2, modelQuestionnaire3, howFeeling,closeness1,
+             howFeeling, closeness1, questionsAboutSongs, inter, howFeeling, closeness1, modelQuestionnaire2, modelQuestionnaire3, inter,
              howFeeling, closeness1, relationshipFriend2, feedbackSpace]
 
     var C = [howFeeling, closeness1, inter,
              howWasPlaylist, howFeeling,closeness1, inter,
-             howFeeling, closeness1, questionsAboutSongs, linkToMMBB, howFeeling,closeness1, inter,
+             howFeeling, closeness1, questionsAboutSongs, linkToMMBB, howFeeling, closeness1, inter,
              howFeeling, closeness1, questionsAboutSongs, relationshipFriend, feedbackSpace]
 
     var D = [howFeeling, closeness1, inter,
              howFeeling, closeness1, questionsAboutSongs, inter,
              howFeeling, closeness1, howWasPlaylist, inter,
-             howFeeling, closeness1, questionsAboutSongs, linkToMMBB, howFeeling,closeness1, inter,
+             howFeeling, closeness1, questionsAboutSongs, linkToMMBB, howFeeling, closeness1, inter,
              howFeeling, closeness1, relationshipFriend, feedbackSpace]
     
     if(evenOdd == 1){ //Odd
@@ -398,20 +406,20 @@
       console.log("P2: A->D")
       console.log("P3: B->C")
       console.log("P4: B->D")
-      var participant1 = [...A, ...[changePairs], ...C]
-      var participant2 = [...A, ...[changePairs], ...D]
-      var participant3 = [...B, ...[changePairs], ...C]
-      var participant4 = [...B, ...[changePairs], ...D]
+      var participant1 = [...A, ...[changePairs], ...C, ...[endTask]]
+      var participant2 = [...A, ...[changePairs], ...D, ...[endTask]]
+      var participant3 = [...B, ...[changePairs], ...C, ...[endTask]]
+      var participant4 = [...B, ...[changePairs], ...D, ...[endTask]]
     } else {
       console.log("Strangers - Friends")
-      console.log("P1: D->A")
-      console.log("P2: C->A")
-      console.log("P3: D->B")
-      console.log("P4: C->B")
-      var participant1 = [...D, ...[changePairs], ...B]
-      var participant2 = [...C, ...[changePairs], ...B]
-      var participant3 = [...D, ...[changePairs], ...A]
-      var participant4 = [...C, ...[changePairs], ...A]
+      console.log("P1: D->B")
+      console.log("P2: C->B")
+      console.log("P3: D->A")
+      console.log("P4: C->A")
+      var participant1 = [...D, ...[changePairs], ...B, ...[endTask]]
+      var participant2 = [...C, ...[changePairs], ...B, ...[endTask]]
+      var participant3 = [...D, ...[changePairs], ...A, ...[endTask]]
+      var participant4 = [...C, ...[changePairs], ...A, ...[endTask]]
     }
 
     var participantsObject = {
