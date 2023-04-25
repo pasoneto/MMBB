@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MMBB battery</title>
+	  <script src="jatos.js"></script>
+    <script src="./utils/translations.js"></script>
+    <script src="./jspsych/dist/graphFunction.js"> </script>
+    <script src="./jspsych/dist/jspsych.js"></script>
+    <script src="./jspsych/dist/plugin-html-button-response.js"></script>
+    <script src="./jspsych/dist/plugin-audio-keyboard-response.js"></script>
+    <script src="./jspsych/dist/plugin-audio-button-response.js"> </script>
+    <script src="./jspsych/dist/plugin-instructions.js"> </script>
+    <script src="./jspsych/dist/plugin-preload.js"> </script>
+    <script src="./jspsych/dist/plugin-survey-likert.js"> </script>
+    <script src="./jspsych/dist/plugin-canvas-button-response.js"> </script>
+    <script src="./jspsych/dist/extension-accelerometer.js"> </script>
+    <script src="./jspsych/dist/plugin-html-keyboard-response.js"> </script>
+    <script src="./jspsych/dist/plugin-survey-multi-choice.js"> </script>
+    <script src="./jspsych/dist/plugin-initialize-microphone.js"> </script>
+    <script src="./jspsych/dist/plugin-html-audio-response.js"> </script>
+    <script src="./jspsych/dist/plugin-html-slider-response.js"> </script>
+    <link href="https://unpkg.com/jspsych@7.2.1/css/jspsych.css" rel="stylesheet" type="text/css" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	  <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script src="./utils/studyLinks.js"> </script>
+    <script src="./src/batteries/generalIntro.js"></script>
+    <link rel="stylesheet" href="./src/styles/generalCSS.css">
+
+  </head>
+  <body></body>
+  <script>
+
+
+ 	jatos.onLoad(() => {
+
+    var timeBegin = Date.now();
+    var lang = jatos.urlQueryParameters.lang
+    if(lang == undefined){
+      var lang = "eng"
+    }
+    var userID = jatos.urlQueryParameters.user
+
+    var jsPsych = initJsPsych({
+      show_progress_bar: true,
+      override_safe_mode: true,
+      on_finish: function() {
+        jsPsych.data.addProperties({userID: userID, lang: lang, timeEnd: timeEnd, timeBegin: timeBegin});
+        
+        var finalData = jsPsych.data.get()
+
+        var timeEnd = Date.now();
+
+        var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang
+        jatos.endStudyAndRedirect(urlRedirect, finalData)
+
+      }
+    });
+
+    var preload = {
+      type: jsPsychPreload,
+      audio: './songs/mbemaShort/beep1sec.wav',
+    }
+
+    var pre_beep = {
+        type: jsPsychAudioKeyboardResponse,
+        stimulus: './songs/mbemaShort/beep1sec.wav',
+        prompt: mbema[1].map(i=>i[lang]),
+        trial_duration: 1000,
+        choices: ["NO_KEYS"],
+    }
+
+    var instruction0 = {
+        type: jsPsychInstructions,
+        pages: mbema[0].map(i=>i[lang]),
+        button_label_next: buttonsMBEMA[0][lang],
+        button_label_previous: buttonsMBEMA[1][lang],
+        show_clickable_nav: true,
+        on_load: function(){
+        }
+    }
+
+    var instruction1 = {
+        type: jsPsychInstructions,
+        pages: mbema[4].map(i=>i[lang]),
+        button_label_next: buttonsMBEMA[0][lang],
+        button_label_previous: buttonsMBEMA[1][lang],
+        show_clickable_nav: true,
+        on_load: function(){
+        }
+    }
+    var instruction2 = {
+        type: jsPsychInstructions,
+        pages: mbema[5].map(i=>i[lang]),
+        button_label_next: buttonsMBEMA[0][lang],
+        button_label_previous: buttonsMBEMA[1][lang],
+        show_clickable_nav: true,
+        on_load: function(){
+        }
+    }
+
+    var instruction_start_actual = {
+        type: jsPsychInstructions,
+        pages: mbema[7].map(i=>i[lang]),
+        button_label_next: buttonsMBEMA[0][lang],
+        button_label_previous: buttonsMBEMA[1][lang],
+        show_clickable_nav: true,
+        on_load: function(){
+        }
+    }
+    
+    var images = [
+      { img: "./images/imagesMBEMA/same.svg",  type: buttonsMBEMA[2][lang]},
+      { img: "./images/imagesMBEMA/different.svg",  type: buttonsMBEMA[3][lang]},
+      { img: "./images/imagesMBEMA/familiar.svg",  type: buttonsMBEMA[4][lang]},
+      { img: "./images/imagesMBEMA/novel.svg",  type: buttonsMBEMA[5][lang]}
+    ];
+
+    var sameDiffResp = {
+      type: jsPsychHtmlButtonResponse,
+      choices: [images[0].img, images[1].img],
+      stimulus: mbema[2].map(i=>i[lang]),
+      button_html: ['<img src="%choice%" style="height:15vh;margin-right:5vw;"/>','<img src="%choice%" style="height:15vh;margin-left:5vw;"/>'],
+      post_trial_gap: 1000
+    };
+    
+    var melodyYesNoResp = {
+      type: jsPsychHtmlButtonResponse,
+      choices: [images[2], images[3]],
+      stimulus: mbema[6].map(i=>i[lang]),
+      button_html: ['<img src="%choice%" style="height:15vh;margin-right:5vw;"/>','<img src="%choice%" style="height:15vh;margin-left:5vw;"/>'],
+      post_trial_gap: 1000
+    };	
+
+    var practiceWrongRepeat = {
+      type: jsPsychHtmlButtonResponse,
+      choices: [buttonsMBEMA[4][lang], buttonsMBEMA[5][lang]],
+      stimulus: mbema[3].map(i=>i[lang]),
+      post_trial_gap: 1000,
+      on_load: function(){
+        document.querySelector(".jspsych-btn").style.background = "purple"
+      }
+    };
+
+    var pt1_practice1 = {
+        type: jsPsychAudioKeyboardResponse,
+        stimulus: './songs/mbemaShort/1. Melody/Melody - Example 1.wav',
+        prompt: mbema[1].map(i=>i[lang]),
+        trial_ends_after_audio: true,
+        choices: ["NO_KEYS"],
+        post_trial_gap: 4000
+    };
+    
+    var p1p1_feedback = {
+      timeline: [practiceWrongRepeat],
+        conditional_function: function(){
+          var data = jsPsych.data.get().last(1).values()[0];
+          //if(jsPsych.pluginAPI.compareKeys(data.response, 1)){
+      if(data.response==1){
+        console.log('p1p1 feedback, comparison true => branch false/skip, data.response = ' + data.response + ' vs. ' + 1);
+            return false;
+          } else {
+        console.log('p1p1 feedback, comparison false => branch true/execute conditional, data.response = ' + data.response + ' vs. ' + 1);
+            return true;
+          }
+        }	  
+      };
+
+    var p1p1_repeat = {
+      timeline: [pre_beep, pt1_practice1,sameDiffResp],
+        conditional_function: function(){
+          var data = jsPsych.data.get().last(1).values()[0]; // single data point: only correct response
+          var last_data = jsPsych.data.get().last(2).values(); // two last values: (wrong) response + question about repetition
+          if(last_data[0].response==1 || last_data[1].response==1 || (last_data[0].response===null && data.response == 1)){
+            console.log('p1p1 repeat, comparison true => branch false/skip, data.response = ' + data.response + ' last_data[0].response = ' + last_data[0].response + ' last_data[1].response = ' + last_data[0].response);
+            return false;
+          } else {
+            console.log('p1p1 repeat, comparison false => branch true/execute conditional, data.response = ' + data.response + ' last_data[0].response = ' + last_data[0].response + ' last_data[1].response = ' + last_data[0].response);
+            return true;
+          }
+        }
+    };
+
+    var pt1_practice2 = {
+        type: jsPsychAudioKeyboardResponse,
+        stimulus: './songs/mbemaShort/1. Melody/Melody - Example 2.wav',
+        prompt: mbema[1].map(i=>i[lang]),
+        trial_ends_after_audio: true,
+        choices: ["NO_KEYS"],
+        post_trial_gap: 4000
+    };
+    
+    var p1p2_feedback = {
+      timeline: [practiceWrongRepeat],
+        conditional_function: function(){
+          var data = jsPsych.data.get().last(1).values()[0];
+      if(data.response==0){
+          //if(jsPsych.pluginAPI.compareKeys(data.response, 0)){
+            return false;
+          } else {
+            return true;
+          }
+        }	  
+    };
+
+    var p1p2_repeat = {
+      timeline: [pre_beep, pt1_practice2,sameDiffResp],
+        conditional_function: function(){
+          var data = jsPsych.data.get().last(1).values()[0]; // single data point: only correct response
+          var last_data = jsPsych.data.get().last(2).values(); // two last values: (wrong) response + question about repetition
+          if(last_data[0].response==0 || last_data[1].response==1 || (last_data[0].response===null && data.response == 0)){
+            console.log('p1p2 repeat, comparison true => branch false/skip, data.response = ' + data.response + ' last_data[0].response = ' + last_data[0].response + ' last_data[1].response = ' + last_data[0].response);
+            return false;
+          } else {
+            console.log('p1p2 repeat, comparison false => branch true/execute conditional, data.response = ' + data.response + ' last_data[0].response = ' + last_data[0].response + ' last_data[1].response = ' + last_data[0].response);
+            return true;
+          }
+        }	  
+    };	
+    
+      var p1t1 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/1. Melody/Melody - 1.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p1t2 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/1. Melody/Melody - 2.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p1t3 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/1. Melody/Melody - 3.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p1t4 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/1. Melody/Melody - 4.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p1t5 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/1. Melody/Melody - 5.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p1t6 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/1. Melody/Melody - 6.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p1t7 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/1. Melody/Melody - 7.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p1t8 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/1. Melody/Melody - 8.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p1t9 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/1. Melody/Melody - 9.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p1t10 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/1. Melody/Melody - 10.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p1t11 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/1. Melody/Melody - 11.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p1t12 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/1. Melody/Melody - 12.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p1t13 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/1. Melody/Melody - 13.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p1t14 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/1. Melody/Melody - 14.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p1t15 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/1. Melody/Melody - 15.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p1t16 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/1. Melody/Melody - 16.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p1t17 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/1. Melody/Melody - 17.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p1t18 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/1. Melody/Melody - 18.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p1t19 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/1. Melody/Melody - 19.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p1t20 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/1. Melody/Melody - 20.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+       
+      var p1= {
+          timeline: [pre_beep, pt1_practice1, sameDiffResp, p1p1_feedback, p1p1_repeat, 
+                 pre_beep, pt1_practice2, sameDiffResp, p1p2_feedback, p1p2_repeat,
+             instruction_start_actual,
+             pre_beep, p1t1, sameDiffResp,
+             pre_beep, p1t2, sameDiffResp,
+             pre_beep, p1t3, sameDiffResp,
+             pre_beep, p1t4, sameDiffResp,
+             pre_beep, p1t5, sameDiffResp,
+             pre_beep, p1t6, sameDiffResp,
+             pre_beep, p1t7, sameDiffResp,
+             pre_beep, p1t8, sameDiffResp,
+             pre_beep, p1t9, sameDiffResp,
+             pre_beep, p1t10, sameDiffResp,
+             pre_beep, p1t11, sameDiffResp,
+             pre_beep, p1t12, sameDiffResp,
+             pre_beep, p1t13, sameDiffResp,
+             pre_beep, p1t14, sameDiffResp,
+             pre_beep, p1t15, sameDiffResp,
+             pre_beep, p1t16, sameDiffResp,
+             pre_beep, p1t17, sameDiffResp,
+             pre_beep, p1t18, sameDiffResp,
+             pre_beep, p1t19, sameDiffResp,
+             pre_beep, p1t20, sameDiffResp,
+             ]
+      };
+    
+      var pt2_practice1 = {
+          type: jsPsychAudioKeyboardResponse,
+          stimulus: './songs/mbemaShort/2. Rhythm/Rhythm - Example 1.wav',
+          prompt: mbema[1].map(i=>i[lang]),
+          trial_ends_after_audio: true,
+          choices: ["NO_KEYS"],
+          post_trial_gap: 4000
+      };
+    
+    var p2p1_feedback = {
+      timeline: [practiceWrongRepeat],
+        conditional_function: function(){
+          var data = jsPsych.data.get().last(1).values()[0];
+          //if(jsPsych.pluginAPI.compareKeys(data.response, 1)){
+      if(data.response==1){
+        console.log('p2p1 feedback, comparison true => branch false/skip, data.response = ' + data.response + ' vs. ' + 1);
+            return false;
+          } else {
+        console.log('p2p1 feedback, comparison false => branch true/execute conditional, data.response = ' + data.response + ' vs. ' + 1);
+            return true;
+          }
+        }	  
+      };
+
+    var p2p1_repeat = {
+      timeline: [pre_beep, pt2_practice1,sameDiffResp],
+        conditional_function: function(){
+          var data = jsPsych.data.get().last(1).values()[0]; // single data point: only correct response
+          var last_data = jsPsych.data.get().last(2).values(); // two last values: (wrong) response + question about repetition
+          //var data_repeat = jsPsych.data.get().last(1).values()[0];
+      if(last_data[0].response==1 || last_data[1].response==1 || (last_data[0].response===null && data.response == 1)){
+          //if(jsPsych.pluginAPI.compareKeys(data.response, 1)){
+        console.log('p2p1 repeat, comparison true => branch false/skip, data.response = ' + data.response + ' last_data[0].response = ' + last_data[0].response + ' last_data[1].response = ' + last_data[0].response);
+            return false;
+          } else {
+        console.log('p2p1 repeat, comparison false => branch true/execute conditional, data.response = ' + data.response + ' last_data[0].response = ' + last_data[0].response + ' last_data[1].response = ' + last_data[0].response);
+            return true;
+          }
+        }	  
+      };
+
+      var pt2_practice2 = {
+          type: jsPsychAudioKeyboardResponse,
+          stimulus: './songs/mbemaShort/2. Rhythm/Rhythm - Example 2.wav',
+          prompt: mbema[1].map(i=>i[lang]),
+          trial_ends_after_audio: true,
+          choices: ["NO_KEYS"],
+          post_trial_gap: 4000
+      };
+    
+    var p2p2_feedback = {
+      timeline: [practiceWrongRepeat],
+        conditional_function: function(){
+          var data = jsPsych.data.get().last(1).values()[0];
+      if(data.response==0){
+          //if(jsPsych.pluginAPI.compareKeys(data.response, 0)){
+            return false;
+          } else {
+            return true;
+          }
+        }	  
+      };
+
+    var p2p2_repeat = {
+      timeline: [pre_beep, pt2_practice2,sameDiffResp],
+        conditional_function: function(){
+          var data = jsPsych.data.get().last(1).values()[0]; // single data point: only correct response
+          var last_data = jsPsych.data.get().last(2).values(); // two last values: (wrong) response + question about repetition
+      if(last_data[0].response==0 || last_data[1].response==1 || (last_data[0].response===null && data.response == 0)){
+          //if(jsPsych.pluginAPI.compareKeys(data.response, 1)){
+        console.log('p2p2 repeat, comparison true => branch false/skip, data.response = ' + data.response + ' last_data[0].response = ' + last_data[0].response + ' last_data[1].response = ' + last_data[0].response);
+            return false;
+          } else {
+        console.log('p2p2 repeat, comparison false => branch true/execute conditional, data.response = ' + data.response + ' last_data[0].response = ' + last_data[0].response + ' last_data[1].response = ' + last_data[0].response);
+            return true;
+          }
+        }	  
+      };		
+      
+      var p2t1 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/2. Rhythm/Rhythm - 1.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p2t2 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/2. Rhythm/Rhythm - 2.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p2t3 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/2. Rhythm/Rhythm - 3.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p2t4 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/2. Rhythm/Rhythm - 4.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p2t5 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/2. Rhythm/Rhythm - 5.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p2t6 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/2. Rhythm/Rhythm - 6.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p2t7 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/2. Rhythm/Rhythm - 7.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p2t8 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/2. Rhythm/Rhythm - 8.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p2t9 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/2. Rhythm/Rhythm - 9.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p2t10 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/2. Rhythm/Rhythm - 10.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p2t11 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/2. Rhythm/Rhythm - 11.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p2t12 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/2. Rhythm/Rhythm - 12.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p2t13 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/2. Rhythm/Rhythm - 13.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p2t14 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/2. Rhythm/Rhythm - 14.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p2t15 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/2. Rhythm/Rhythm - 15.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p2t16 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/2. Rhythm/Rhythm - 16.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p2t17 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/2. Rhythm/Rhythm - 17.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p2t18 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/2. Rhythm/Rhythm - 18.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p2t19 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/2. Rhythm/Rhythm - 19.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p2t20 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/2. Rhythm/Rhythm - 20.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+       
+      var p2= {
+          timeline: [pre_beep, pt2_practice1, sameDiffResp, p2p1_feedback, p2p1_repeat, 
+                 pre_beep, pt2_practice2, sameDiffResp, p2p2_feedback, p2p2_repeat,
+             instruction_start_actual,
+             pre_beep, p2t1, sameDiffResp,
+             pre_beep, p2t2, sameDiffResp,
+             pre_beep, p2t3, sameDiffResp,
+             pre_beep, p2t4, sameDiffResp,
+             pre_beep, p2t5, sameDiffResp,
+             pre_beep, p2t6, sameDiffResp,
+             pre_beep, p2t7, sameDiffResp,
+             pre_beep, p2t8, sameDiffResp,
+             pre_beep, p2t9, sameDiffResp,
+             pre_beep, p2t10, sameDiffResp,
+             pre_beep, p2t11, sameDiffResp,
+             pre_beep, p2t12, sameDiffResp,
+             pre_beep, p2t13, sameDiffResp,
+             pre_beep, p2t14, sameDiffResp,
+             pre_beep, p2t15, sameDiffResp,
+             pre_beep, p2t16, sameDiffResp,
+             pre_beep, p2t17, sameDiffResp,
+             pre_beep, p2t18, sameDiffResp,
+             pre_beep, p2t19, sameDiffResp,
+             pre_beep, p2t20, sameDiffResp,
+             ]
+      };
+
+      var pt3_practice1 = {
+          type: jsPsychAudioKeyboardResponse,
+          stimulus: './songs/mbemaShort/3. Memory/Memory - Example 1.wav',
+          prompt: mbema[1].map(i=>i[lang]),
+          trial_ends_after_audio: true,
+          choices: ["NO_KEYS"],
+          post_trial_gap: 4000
+      };
+    
+    var p3p1_feedback = {
+      timeline: [practiceWrongRepeat],
+        conditional_function: function(){
+          var data = jsPsych.data.get().last(1).values()[0];
+          //if(jsPsych.pluginAPI.compareKeys(data.response, 1)){
+      if(data.response==1){
+        console.log('p3p1 feedback, comparison true => branch false/skip, data.response = ' + data.response + ' vs. ' + 1);
+            return false;
+          } else {
+        console.log('p3p1 feedback, comparison false => branch true/execute conditional, data.response = ' + data.response + ' vs. ' + 1);
+            return true;
+          }
+        }	  
+      };
+
+    var p3p1_repeat = {
+      timeline: [pre_beep, pt3_practice1,melodyYesNoResp],
+        conditional_function: function(){
+          var data = jsPsych.data.get().last(1).values()[0]; // single data point: only correct response
+          var last_data = jsPsych.data.get().last(2).values(); // two last values: (wrong) response + question about repetition
+          //var data_repeat = jsPsych.data.get().last(1).values()[0];
+      if(last_data[0].response==1 || last_data[1].response==1 || (last_data[0].response===null && data.response == 1)){
+          //if(jsPsych.pluginAPI.compareKeys(data.response, 1)){
+        console.log('p3p1 repeat, comparison true => branch false/skip, data.response = ' + data.response + ' last_data[0].response = ' + last_data[0].response + ' last_data[1].response = ' + last_data[0].response);
+            return false;
+          } else {
+        console.log('p3p1 repeat, comparison false => branch true/execute conditional, data.response = ' + data.response + ' last_data[0].response = ' + last_data[0].response + ' last_data[1].response = ' + last_data[0].response);
+            return true;
+          }
+        }	  
+      };
+
+      var pt3_practice2 = {
+          type: jsPsychAudioKeyboardResponse,
+          stimulus: './songs/mbemaShort/3. Memory/Memory - Example 2.wav',
+          prompt: mbema[1].map(i=>i[lang]),
+          trial_ends_after_audio: true,
+          choices: ["NO_KEYS"],
+          post_trial_gap: 4000
+      };
+    
+    var p3p2_feedback = {
+      timeline: [practiceWrongRepeat],
+        conditional_function: function(){
+          var data = jsPsych.data.get().last(1).values()[0];
+      if(data.response==0){
+          //if(jsPsych.pluginAPI.compareKeys(data.response, 0)){
+            return false;
+          } else {
+            return true;
+          }
+        }	  
+      };
+
+    var p3p2_repeat = {
+      timeline: [pre_beep, pt3_practice2,melodyYesNoResp],
+        conditional_function: function(){
+          var data = jsPsych.data.get().last(1).values()[0]; // single data point: only correct response
+          var last_data = jsPsych.data.get().last(2).values(); // two last values: (wrong) response + question about repetition
+      if(last_data[0].response==0 || last_data[1].response==1 || (last_data[0].response===null && data.response == 0)){
+          //if(jsPsych.pluginAPI.compareKeys(data.response, 1)){
+        console.log('p3p2 repeat, comparison true => branch false/skip, data.response = ' + data.response + ' last_data[0].response = ' + last_data[0].response + ' last_data[1].response = ' + last_data[0].response);
+            return false;
+          } else {
+        console.log('p3p2 repeat, comparison false => branch true/execute conditional, data.response = ' + data.response + ' last_data[0].response = ' + last_data[0].response + ' last_data[1].response = ' + last_data[0].response);
+            return true;
+          }
+        }	  
+      };		
+      
+      var p3t1 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/3. Memory/Memory - 1.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p3t2 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/3. Memory/Memory - 2.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p3t3 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/3. Memory/Memory - 3.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p3t4 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/3. Memory/Memory - 4.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p3t5 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/3. Memory/Memory - 5.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p3t6 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/3. Memory/Memory - 6.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p3t7 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/3. Memory/Memory - 7.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p3t8 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/3. Memory/Memory - 8.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p3t9 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/3. Memory/Memory - 9.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p3t10 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/3. Memory/Memory - 10.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p3t11 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/3. Memory/Memory - 11.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p3t12 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/3. Memory/Memory - 12.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p3t13 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/3. Memory/Memory - 13.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p3t14 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/3. Memory/Memory - 14.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p3t15 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/3. Memory/Memory - 15.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p3t16 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/3. Memory/Memory - 16.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p3t17 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/3. Memory/Memory - 17.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p3t18 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/3. Memory/Memory - 18.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p3t19 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/3. Memory/Memory - 19.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+      var p3t20 = {type: jsPsychAudioKeyboardResponse, stimulus: './songs/mbemaShort/3. Memory/Memory - 20.wav', prompt: mbema[1].map(i=>i[lang]), trial_ends_after_audio: true, choices: ["NO_KEYS"], post_trial_gap: 500 };	
+       
+      var p3= {
+          timeline: [pre_beep, pt3_practice1, melodyYesNoResp, p3p1_feedback, p3p1_repeat, 
+                 pre_beep, pt3_practice2, melodyYesNoResp, p3p2_feedback, p3p2_repeat,
+             instruction_start_actual,
+             pre_beep, p3t1, melodyYesNoResp,
+             pre_beep, p3t2, melodyYesNoResp,
+             pre_beep, p3t3, melodyYesNoResp,
+             pre_beep, p3t4, melodyYesNoResp,
+             pre_beep, p3t5, melodyYesNoResp,
+             pre_beep, p3t6, melodyYesNoResp,
+             pre_beep, p3t7, melodyYesNoResp,
+             pre_beep, p3t8, melodyYesNoResp,
+             pre_beep, p3t9, melodyYesNoResp,
+             pre_beep, p3t10, melodyYesNoResp,
+             pre_beep, p3t11, melodyYesNoResp,
+             pre_beep, p3t12, melodyYesNoResp,
+             pre_beep, p3t13, melodyYesNoResp,
+             pre_beep, p3t14, melodyYesNoResp,
+             pre_beep, p3t15, melodyYesNoResp,
+             pre_beep, p3t16, melodyYesNoResp,
+             pre_beep, p3t17, melodyYesNoResp,
+             pre_beep, p3t18, melodyYesNoResp,
+             pre_beep, p3t19, melodyYesNoResp,
+             pre_beep, p3t20, melodyYesNoResp,
+             ]
+      };
+
+      var messageFinishMBEMA = {
+        type: jsPsychHtmlButtonResponse,
+        prompt: emotionTranslations['thankYouEnd'][lang],
+        choices: [],
+        trial_duration: 2000,
+        stimulus: '',
+        on_start: function(){
+          var cookieExpires = (new Date(Date.now()+ 86400*1000)).toUTCString();
+          document.cookie = "MBEMA=done;" + " expires=" + cookieExpires + "; path=/"
+        }
+      };
+
+      jsPsych.run([instruction0, p1, instruction1, p2, instruction2, p3, messageFinishMBEMA]);
+      //jsPsych.run([messageFinishMBEMA]);
+	});
+
+ </script>
+</html>

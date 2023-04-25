@@ -7,7 +7,9 @@ var pathUtils = '/assets/utils/'
 var pathAuth = '/assets/backend/'
 var pathStyles = '/assets/src/styles/'
 
-async function pushFileJATOS(string, fileName){
+//'content-type': 'multipart/form-data'
+
+async function pushFileJATOS(string, fileName, fileType = ""){
   var api_key = "jap_F3uymbK1YIMdqgdkcyzgWNN6kmbRSTo6b9a37"
   var study_uuid = "8baf2255-8021-4280-b679-4abfdbc6ae67"
 
@@ -72,6 +74,11 @@ fs.readFile("../../utils/studyLinks.js", 'utf8', (err, data) => {
   console.log("Success, pushed " + "studyLinks.js")
 });
 
+fs.readFile("../../utils/translations.js", 'utf8', (err, data) => {
+  pushFileJATOS(data, pathUtils + "translations.js" , 28)
+  console.log("Success, pushed " + "translations.js")
+});
+
 fs.readdir("../styles/", (err, files) => {
   files.forEach(file => {
     fs.readFile("../styles/" + file, 'utf8', (err, data) => {
@@ -81,7 +88,14 @@ fs.readdir("../styles/", (err, files) => {
   });
 });
 
+//different.svg familiar.svg  novel.svg     same.svg
+//fs.readFile('../../images/imagesMBEMA/different.svg', (err, file) => {
+  //console.log(file)
+//})
+
 fs.readFile("../../backend/auth.js", 'utf8', (err, data) => {
   pushFileJATOS(data, pathAuth + "auth.js" , 28)
   console.log("Success, pushed " + "auth.js")
 });
+
+

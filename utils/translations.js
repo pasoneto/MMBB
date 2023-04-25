@@ -593,6 +593,10 @@ var tasksIcons = {
   "emotion": {
     "eng": "Emotion",
     "fi": "Tunteet"
+  },
+  "MBEMA": {
+    "eng": "MBEMA",
+    "fi": "MTMM"
   }
 }
 
@@ -668,8 +672,8 @@ var emotionTranslations = {
     "fi": "Energisyys"
   },
   "howStrongEmotion": {
-    "eng": "How strong are the emotions expressed by the music?",
-    "fi": "Kuinka voimakkaasti musiikki ilmaisee tunteita?"
+    "eng": "How strong are the emotions<br>expressed by the music?",
+    "fi": "Kuinka voimakkaasti musiikki<br>ilmaisee tunteita?"
   },
   "howMuchLike": {
     "eng": "How much did you like/dislike the music?",
@@ -712,8 +716,8 @@ var emotionTranslations = {
     "fi": "Todella vahvasti energinen"
   },
   "rateEmotionalContent": {
-    "eng": "Please rate the emotional content of the music",
-    "fi": "",
+    "eng": "Please rate the emotional<br>content of the music",
+    "fi": "Arvioi musiikin<br>herättämiä tunteita.",
   },
   "notAtAll": {
     "eng": "Not at all",
@@ -790,3 +794,57 @@ var emotionTranslations = {
     },
   ],
 }
+
+var buttonsMBEMA = [
+  {"eng": "Next",
+   "fi": "Seuraava"},
+  {"eng": "Previous", 
+   "fi": "Edellinen"},
+  {"eng": "Same", 
+   "fi": "Sama"},
+  {"eng": "Different", 
+   "fi": "Eri"},
+  {"eng": "Yes", 
+   "fi": "Kyllä"},
+  {"eng": "No", 
+   "fi": "Ei"}   
+]
+
+var mbema = [
+  [{"eng": "Montreal Battery of Evaluation of Musical Abilities",
+    "fi": "Montrealin tutkimuspatteristo musiikillisuuden määrittämiseen"},
+   {"eng": "Here, your musical abilities are quickly tested",
+    "fi": "Tässä osiossa testataan musiikillisuuttasi"},
+   {"eng": "You will hear a warning signal followed by two successive melodies that are to be compared.",
+    "fi": "Tässä tehtävässä kuulet peräkkäisiä melodiapätkiä joita vertailet"},
+   {"eng": 'These two melodies are separated by a very short silence.',
+    "fi": 'Näitä melodioita erottaa lyhyt hiljaisuus.'},
+   {"eng": 'You have to decide whether these two melodies sound the same or different.',
+    "fi": 'Näitä melodioita erottaa lyhyt hiljaisuus.'},
+   {"eng": 'If you think that these two melodies are the same, just press SAME.  If you think that these two melodies are different, just press DIFFERENT',
+    "fi": 'Tehtäväsi on päättää ovatko melodiat samoja vai erilaisia. Jos mielestäsi melodiat ovat samoja, valitse nappi SAMA. Jos mielestäsi melodiat ovat erilaisia, valitse ERI'},
+   {"eng": 'First, we will have a couple of practice melodies',
+    "fi": 'Nyt alkuun tulee pari harjoitusmelodiaa'}],
+  [{"eng": "Listen",
+    "fi": "Kuuntele"}],
+  [{"eng": "Choose",
+    "fi": "Valitse"}],
+  [{"eng": "Wrong, do you wish to repeat the stimuli?",
+    "fi": "Väärin, haluatko että esimerkki toistetaan?"}],
+  [{"eng": "Next portion. Again, you will hear a warning signal followed by two successive melodies that are to be compared.",
+    "fi": "Seuraava vaihe. Tässäkin tehtävässä kuulet peräkkäisiä melodiapätkiä joita vertailet"},
+  {"eng": 'These two melodies are separated by a very short silence. You have to decide whether these two melodies sound the same or different. If you think that these two melodies are the same, just press SAME.  If you think that these two melodies are different, just press DIFFERENT',
+    "fi": 'Näitä melodioita erottaa lyhyt hiljaisuus. Tehtäväsi on päättää ovatko melodiat samoja vai erilaisia. Jos mielestäsi melodiat ovat samoja, valitse nappi SAMA. Jos mielestäsi melodiat ovat erilaisia, valitse ERI'},
+  {"eng": 'First, we will have a couple of practice melodies',
+   "fi": 'Nyt alkuun tulee pari harjoitusmelodiaa'}],		
+  [{"eng": "You have heard many melodies several times with me.  Can you tell which ones have already been presented to you and which ones are completely novel?",
+    "fi": "Saatat olla kuullut joitain melodioita monta kertaa. Voitko kertoa mitkä on esitetty aiemmin sinulle ja mitkä ovat kokonaan uusia?"},
+  {"eng": 'When you have the feeling that you have heard the melody before, just say YES and say NO otherwise.',
+   "fi": 'Jos sinusta tuntuu, että olet kuullut melodian aikaisemmin, valitse KYLLÄ, ja muussa tapauksessa EI'},
+  {"eng": 'First, we will have a couple of practice melodies',
+   "fi": 'Nyt alkuun tulee pari harjoitusmelodiaa'}],		
+  [{"eng": "Have you heard the melody before?",
+    "fi": "Oletko kuullut melodian aikaisemmin?"}],
+  [{"eng": "Now, we will continue with the actual task. Listen carefully!",
+    "fi": "Nyt jatketaan varsinaisella tehtävällä. Kuuntele tarkasti!"}],
+]	

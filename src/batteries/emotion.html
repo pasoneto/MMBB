@@ -53,6 +53,7 @@
           jsPsych.data.addProperties({userID: userID, lang: lang});
           var finalData = jsPsych.data.get()
           
+          allowRefresh();
           var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang
           jatos.endStudyAndRedirect(urlRedirect, finalData)
 
@@ -311,7 +312,7 @@
         slider_width: 250,
         labels: [[emotionTranslations["negative"][lang], emotionTranslations["neutral"][lang], emotionTranslations["positive"][lang]], 
                  [emotionTranslations["veryLowEnergy"][lang], emotionTranslations["veryHighEnergy"][lang]],
-                 [emotionTranslations["veryLowIntensity"][lang], emotionTranslations["veryHighIntensity"][lang]]],
+                 [emotionTranslations["notAtAll"][lang], emotionTranslations["veryStrong"][lang]]],
         prompt: "<p margin-bottom: 5%>" + emotionTranslations["rateEmotionalContent"][lang] + "</p>",
         on_load: function(){
           document.getElementById("jspsych-html-slider-response-wrapper").style.margin = ""
@@ -330,7 +331,7 @@
         require_movement: true,
         slider_width: 250,
         labels: [[emotionTranslations["stronglyDisliked"][lang], emotionTranslations["neutral"][lang], emotionTranslations["stronglyLiked"][lang]],
-                 [emotionTranslations["veryUnfamiliar"][lang], emotionTranslations["veryUnfamiliar"][lang]]],
+                 [emotionTranslations["veryUnfamiliar"][lang], emotionTranslations["veryFamiliar"][lang]]],
         on_finish: function(part2_other_scales){
           epochPart2 = epochPart2+1
           jsPsych.setProgressBar((epoch+epochPart2)/(N+N_part2))
@@ -417,8 +418,8 @@
 
       var procedureEmotionFinal = {
           //timeline: [welcomePart1, generalIntroEmotion, instructionsPart1, preload, test, part1_trials, task_repeat, part1_trials, messageFinishEmotion, demographics].flat(1000),
-          timeline: [welcomePart1, generalIntroEmotion, instructionsPart1, preload, test, part1_trials, welcomePart2, instructionsPart2, part2_trials, messageFinishEmotion].flat(1000),
           timeline: [welcomePart2, instructionsPart2, part2_trials, messageFinishEmotion].flat(1000),
+          //timeline: [welcomePart1, generalIntroEmotion, instructionsPart1, preload, test, part1_trials, welcomePart2, instructionsPart2, part2_trials, messageFinishEmotion].flat(1000),
           on_timeline_start: function() {
             console.log('This timeline has started');
           }

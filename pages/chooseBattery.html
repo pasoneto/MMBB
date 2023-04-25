@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>MMBB - login</title>
+    <title>MMBB - Choose battery</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
     <script src="https://www.gstatic.com/firebasejs/9.13.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.13.0/firebase-auth-compat.js"></script>
@@ -40,9 +40,10 @@
     <div id="container">
       <div id="choicesEng">
         <div id="taskMovement"><div id="linkToMovement" href=""><img src="./images/dance.svg"/></div><div id="movementTaskIcon"></div></div>
-        <div id="taskSinging" disabled><div id="linkToSinging" onclick='alert("Under construction. Come back later.")'><img src="./images/singing.svg"/></div><div id="singingTaskIcon"></div></div>
-        <div id="taskEmotion" disabled><div id="linkToEmotion"><img src="./images/emotion.svg"/></div><div id="emotionTaskIcon"></div></div>
-        <div id="taskSharedMeasures" disabled><div id="linkToSurvey"><img src="./images/survey.svg"/></div><div id="surveyTaskIcon"></div></div>
+        <div id="taskSinging"><div id="linkToSinging" onclick='alert("Under construction. Come back later.")'><img src="./images/singing.svg"/></div><div id="singingTaskIcon"></div></div>
+        <div id="taskEmotion"><div id="linkToEmotion"><img src="./images/emotion.svg"/></div><div id="emotionTaskIcon"></div></div>
+        <div id="taskSharedMeasures"><div id="linkToSurvey"><img src="./images/survey.svg"/></div><div id="surveyTaskIcon"></div></div>
+        <div id="taskMBEMA"><div id="linkToMBEMA"><img src="./images/mbemaLogo.svg"/></div><div id="mbemaTaskIcon"></div></div>
       </div>
     </div>
 
@@ -69,7 +70,7 @@
     }
 
     //Check which tasks have been done
-    var allTasksLinks = ["Emotion", "Singing", "SharedMeasures", "Movement"]
+    var allTasksLinks = ["Emotion", "Singing", "SharedMeasures", "Movement", "MBEMA"]
     allTasksLinks.map(i => {
       if(getCookie(i) == "done"){
         document.getElementById("task" + i).style.background = "lightgreen";
@@ -92,6 +93,7 @@
       document.getElementById("singingTaskIcon").innerHTML = tasksIcons['singing'][lang]
       document.getElementById("emotionTaskIcon").innerHTML = tasksIcons['emotion'][lang]
       document.getElementById("surveyTaskIcon").innerHTML = tasksIcons['survey'][lang]
+      document.getElementById("mbemaTaskIcon").innerHTML = tasksIcons['MBEMA'][lang]
 
 
       document.getElementById("langEng").onclick = function(){
@@ -119,8 +121,10 @@
             var sharedDirect = studyLinks['sharedLink'] + '?lang=' + lang + '&user=' + userIDFirebase
             jatos.endStudyAndRedirect(sharedDirect)
           }
-          //document.getElementById("linkToSurvey").href = './src/batteries/movementWrap.html?lang=' + lang
-          //document.getElementById("linkToSinging").href = './src/batteries/movementWrap.html?lang=' + lang
+          document.getElementById("taskMBEMA").onclick = function(){
+            var mbemaDirect = studyLinks['mbema'] + '?lang=' + lang + '&user=' + userIDFirebase
+            jatos.endStudyAndRedirect(mbemaDirect)
+          }
         } else {
           jatos.endStudyAndRedirect(studyLinks["frontPageLink"])
         }

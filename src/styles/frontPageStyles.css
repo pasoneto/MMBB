@@ -26,10 +26,13 @@ body{
 }
 #langs{
   flex-grow: 0.8; 
+  margin-bottom: 15px;
 }
 #langFi, #langEng {
   color: blue;
   font-size: 20px;
+  background: none;
+  border: none;
   text-decoration: underline;
 }
 #logoutBtn{
@@ -79,7 +82,7 @@ body{
   color: white;
 }
 #gif{
-  width:100%;
+  width:80vw;
 }
 #gifSideNav{
   width:70%;

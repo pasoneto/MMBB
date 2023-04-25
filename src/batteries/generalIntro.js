@@ -1,4 +1,5 @@
 function generateGeneralIntroWrap(lang, subBattery){
+
   var preloadTest = {
       type: jsPsychPreload,
       audio: ['./songs/movementTapAudio/elPesebre.mp3'],
@@ -119,7 +120,7 @@ function generateGeneralIntroWrap(lang, subBattery){
   var generalIntroWrap = [[preloadTest, requirements, lockIOS, lockAndroid, testAudioIOS, testAudioAndroid, gettingHelp]];
   
   if(subBattery == "emotion"){
-    return(generalIntroWrap)
+    return(generalIntroEmotion)
   } else {
     return(generalIntroWrap)
   }
