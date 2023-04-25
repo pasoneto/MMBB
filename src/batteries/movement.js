@@ -60,10 +60,10 @@ var prompt_songs = function(lang){
       window.albumCovers = [];
       for (let i = 1; i < 7; i++) {
           var s = new Audio();
-          s.src = '../../songs/movementTapAudio/vitrineSongs/' + i + '.mp3';
+          s.src = './songs/movementTapAudio/vitrineSongs/' + i + '.mp3';
           listSongs.push(s)
           songCodes.push(i)
-          albumCovers.push('../../songs/movementTapAudio/imageAlbums/' + i + '.jpg');
+          albumCovers.push('./songs/movementTapAudio/imageAlbums/' + i + '.jpg');
       }
       html = "<div id='songName'>" + movement[7][0][lang] + "</div>"
       for(i in listSongs){
@@ -90,375 +90,381 @@ function changeColor(btn) {
       }
 }
 
-var randomChosenSong;
-var chooseSongs = {
-  type: jsPsychHtmlSongSelectorResponse,
-  stimulus: '',
-  choices: [buttons[0][lang]],
-  on_start: function(trial){
-    trial.stimulus = prompt_songs(lang)
-  },
-  on_finish: function(){
-    for(k in window.listSongs){
-      window.listSongs[k].pause()
-    }
-    console.log(window.chosenSong)
-    var chosenSongCode = window.chosenSong
-    var randomChosenIndex = random(0, songKeys[chosenSongCode].length -1)
-    window.randomChosenSong = songKeys[chosenSongCode][randomChosenIndex]
-    console.log(window.randomChosenSong)
-  },
-};
+function generateMovementTimeline(lang){
 
-var frontPageMovement = {
-    type: jsPsychInstructions,
-    pages: [movement[0][0][lang]],
-    button_label_next: buttons[0][lang],
-    button_label_previous: buttons[1][lang],
-    show_clickable_nav: true
-}
+  var randomChosenSong;
+  var chooseSongs = {
+    type: jsPsychHtmlSongSelectorResponse,
+    stimulus: '',
+    choices: [buttons[0][lang]],
+    on_start: function(trial){
+      trial.stimulus = prompt_songs(lang)
+    },
+    on_finish: function(){
+      for(k in window.listSongs){
+        window.listSongs[k].pause()
+      }
+      console.log(window.chosenSong)
+      var chosenSongCode = window.chosenSong
+      var randomChosenIndex = random(0, songKeys[chosenSongCode].length -1)
+      window.randomChosenSong = songKeys[chosenSongCode][randomChosenIndex]
+      console.log(window.randomChosenSong)
+    },
+  };
 
-var promptAcc = {
-    type: jsPsychInstructions,
-    pages: [movement[1][1][lang]],
-    button_label_next: buttons[0][lang],
-    button_label_previous: buttons[1][lang],
-    show_clickable_nav: true
-}
-
-var promptAccel = {
-  timeline: [promptAcc],
-  conditional_function: function(){
-    var OS = getMobileOperatingSystem()
-    return OS == "iOS"
+  var frontPageMovement = {
+      type: jsPsychInstructions,
+      pages: [movement[0][0][lang]],
+      button_label_next: buttons[0][lang],
+      button_label_previous: buttons[1][lang],
+      show_clickable_nav: true
   }
-}
 
-var loadAccel = {
-    type: jsPsychAudioKeyboardResponse,
-    stimulus: '../../songs/movementTapAudio/silence.wav',
-    prompt: movement[1][0][lang] + '<br><img id="logoLoading" src="../../images/loading2.gif">',
-    trial_duration: 3000,
-    choices: ["NO_KEYS"],
-    extensions: [
-      {type: jsPsychExtensionAccelerometer }
+  var promptAcc = {
+      type: jsPsychInstructions,
+      pages: [movement[1][1][lang]],
+      button_label_next: buttons[0][lang],
+      button_label_previous: buttons[1][lang],
+      show_clickable_nav: true
+  }
+
+  var promptAccel = {
+    timeline: [promptAcc],
+    conditional_function: function(){
+      var OS = getMobileOperatingSystem()
+      return OS == "iOS"
+    }
+  }
+
+  var loadAccel = {
+      type: jsPsychAudioKeyboardResponse,
+      stimulus: './songs/movementTapAudio/silence.wav',
+      prompt: movement[1][0][lang] + '<br><img id="logoLoading" src="./images/loading2.gif">',
+      trial_duration: 3000,
+      choices: ["NO_KEYS"],
+      extensions: [
+        {type: jsPsychExtensionAccelerometer }
+      ],
+  }
+
+  var instruction0 = {
+      type: jsPsychInstructions,
+      pages: movement[2].map(i=> i[lang]),
+      button_label_next: buttons[0][lang],
+      button_label_previous: buttons[1][lang],
+      show_clickable_nav: true
+  }
+
+  var instruction1 = {
+      type: jsPsychInstructions,
+      pages: movement[4].map(i=> i[lang]),
+      button_label_next: buttons[0][lang],
+      button_label_previous: buttons[1][lang],
+      show_clickable_nav: true
+  }
+
+  var instruction2 = {
+      type: jsPsychInstructions,
+      pages: movement[5].map(i=> i[lang]),
+      button_label_next: buttons[0][lang],
+      button_label_previous: buttons[1][lang],
+      show_clickable_nav: true
+  }
+
+  var instruction3 = {
+      type: jsPsychInstructions,
+      pages: movement[6].map(i=>i[lang]),
+      button_label_next: buttons[0][lang],
+      button_label_previous: buttons[1][lang],
+      show_clickable_nav: true
+  }
+
+  var familiarityRating = {
+      type: jsPsychHtmlSliderResponse,
+      stimulus: movement[8][0][lang],
+      require_movement: false,
+      labels: [movement[8][1][lang], movement[8][2][lang]],
+      on_load: function(){
+        //Reset jsPsych styling
+        document.getElementById("label0").style = ''
+        document.getElementById("label1").style = ''
+      },
+      on_finish: function(data){
+        var last2 = jsPsych.data.get().last(4);
+        var songBeingRated = last2['trials'][0].stimulus
+        data.song = songBeingRated
+      }
+  };
+
+  var knowThisSong = {
+    type: jsPsychSurveyMultiChoice,
+    questions: [
+      {
+        prompt: movement[8][9][lang], 
+        name: 'knowThisSongQuestion', 
+        options: [initialInstructions[0][1][lang], initialInstructions[0][2][lang], initialInstructions[0][5][lang]],
+        required: true
+      }, 
     ],
-}
-
-var instruction0 = {
-    type: jsPsychInstructions,
-    pages: movement[2].map(i=> i[lang]),
-    button_label_next: buttons[0][lang],
-    button_label_previous: buttons[1][lang],
-    show_clickable_nav: true
-}
-
-var instruction1 = {
-    type: jsPsychInstructions,
-    pages: movement[4].map(i=> i[lang]),
-    button_label_next: buttons[0][lang],
-    button_label_previous: buttons[1][lang],
-    show_clickable_nav: true
-}
-
-var instruction2 = {
-    type: jsPsychInstructions,
-    pages: movement[5].map(i=> i[lang]),
-    button_label_next: buttons[0][lang],
-    button_label_previous: buttons[1][lang],
-    show_clickable_nav: true
-}
-
-var instruction3 = {
-    type: jsPsychInstructions,
-    pages: movement[6].map(i=>i[lang]),
-    button_label_next: buttons[0][lang],
-    button_label_previous: buttons[1][lang],
-    show_clickable_nav: true
-}
-
-var familiarityRating = {
-    type: jsPsychHtmlSliderResponse,
-    stimulus: movement[8][0][lang],
-    require_movement: false,
-    labels: [movement[8][1][lang], movement[8][2][lang]],
-    on_load: function(){
-      //Reset jsPsych styling
-      document.getElementById("label0").style = ''
-      document.getElementById("label1").style = ''
-    },
     on_finish: function(data){
-      var last2 = jsPsych.data.get().last(4);
+      var last2 = jsPsych.data.get().last(7);
       var songBeingRated = last2['trials'][0].stimulus
       data.song = songBeingRated
+      console.log(songBeingRated)
+      data.stimulus = "knowThisSong"
     }
-};
+  };
+  //movement[8][9][lang]
 
-var knowThisSong = {
-  type: jsPsychSurveyMultiChoice,
-  questions: [
-    {
-      prompt: movement[8][9][lang], 
-      name: 'knowThisSongQuestion', 
-      options: [initialInstructions[0][1][lang], initialInstructions[0][2][lang], initialInstructions[0][5][lang]],
-      required: true
-    }, 
-  ],
-  on_finish: function(data){
-    var last2 = jsPsych.data.get().last(7);
-    var songBeingRated = last2['trials'][0].stimulus
-    data.song = songBeingRated
-    console.log(songBeingRated)
-    data.stimulus = "knowThisSong"
+  var likingBeatRating = {
+      type: jsPsychHtmlSliderResponse,
+      stimulus: movement[8][7][lang],
+      require_movement: false,
+      labels: [movement[8][5][lang], movement[8][6][lang]],
+      on_load: function(){
+        document.getElementById("label0").style = ''
+        document.getElementById("label1").style = ''
+      },
+      on_finish: function(data){
+        var last2 = jsPsych.data.get().last(4);
+        var songBeingRated = last2['trials'][0].stimulus
+        data.song = songBeingRated
+      }
+  };
+
+  var likingRating = {
+      type: jsPsychHtmlSliderResponse,
+      stimulus: movement[8][3][lang],
+      require_movement: false,
+      labels: [movement[8][5][lang], movement[8][6][lang]],
+      on_load: function(){
+        document.getElementById("label0").style = ''
+        document.getElementById("label1").style = ''
+      },
+      on_finish: function(data){
+        var last2 = jsPsych.data.get().last(5);
+        var songBeingRated = last2['trials'][0].stimulus
+        data.song = songBeingRated
+      }
+  };
+
+  var grooveRatingBeat = {
+      type: jsPsychHtmlSliderResponse,
+      stimulus: movement[8][8][lang],
+      require_movement: false,
+      labels: [movement[8][5][lang], movement[8][6][lang]],
+      on_load: function(){
+        document.getElementById("label0").style = ''
+        document.getElementById("label1").style = ''
+      },
+      on_finish: function(data){
+        var last2 = jsPsych.data.get().last(5);
+        var songBeingRated = last2['trials'][0].stimulus
+        data.song = songBeingRated
+      }
+  };
+
+  var grooveRating = {
+      type: jsPsychHtmlSliderResponse,
+      stimulus: movement[8][4][lang],
+      require_movement: false,
+      labels: [movement[8][5][lang], movement[8][6][lang]],
+      on_load: function(){
+        document.getElementById("label0").style = ''
+        document.getElementById("label1").style = ''
+      },
+      on_finish: function(data){
+        var last2 = jsPsych.data.get().last(6);
+        var songBeingRated = last2['trials'][0].stimulus
+        data.song = songBeingRated
+      }
+  };
+
+  var howDifficultMovement = {
+      type: jsPsychHtmlSliderResponse,
+      stimulus: recurring[9][lang],
+      require_movement: false,
+      labels: [recurring[10][lang], recurring[11][lang]],
+      on_load: function(){
+        document.getElementById("label0").style = ''
+        document.getElementById("label1").style = ''
+      },
+      on_finish: function(data){
+        var last2 = jsPsych.data.get().last(3);
+        var songBeingRated = last2['trials'][0].stimulus
+        data.song = songBeingRated
+      }
+  };
+
+  var phonePocket = {
+      type: jsPsychAudioKeyboardResponse,
+      stimulus: './songs/movementTapAudio/instructionsAudio/phonePocket.mp3',
+      prompt: movement[3].map(i=>i[lang]),
+      trial_duration: 7000,
+      choices: ["NO_KEYS"],
   }
-};
-//movement[8][9][lang]
 
-var likingBeatRating = {
-    type: jsPsychHtmlSliderResponse,
-    stimulus: movement[8][7][lang],
-    require_movement: false,
-    labels: [movement[8][5][lang], movement[8][6][lang]],
-    on_load: function(){
-      document.getElementById("label0").style = ''
-      document.getElementById("label1").style = ''
+  var countDown = {
+      type: jsPsychAudioKeyboardResponse,
+      stimulus: './songs/movementTapAudio/instructionsAudio/countdown.mp3',
+      prompt: "<img id='tableSVG' src='./images/voiceSVG.svg'></img>",
+      trial_duration: 6500,
+      choices: ["NO_KEYS"],
+  }
+
+  var pickUpPhone = {
+      type: jsPsychAudioKeyboardResponse,
+      stimulus: './songs/movementTapAudio/instructionsAudio/pickPhone.mp3',
+      prompt: "<img id='tableSVG' src='./images/voiceSVG.svg'></img>",
+      choices: ["NO_KEYS"],
+      trial_duration: 10000,
+  }
+
+  var trialAccelerometer1 = {
+      type: jsPsychAudioKeyboardResponse,
+      stimulus: './songs/movementTapAudio/silence.wav',
+      prompt: "<img id='pocket' src='./images/pocket.svg'></img>",
+      trial_duration: 30000,
+      choices: ["NO_KEYS"],
+      extensions: [
+        {type: jsPsychExtensionAccelerometer }
+      ],
+  }
+
+  var randomMetronomeIndex = random(0, songKeys['9'].length -1)
+  var randomMetronomeSong = songKeys['9'][randomMetronomeIndex]
+
+  var randomElPesebreIndex = random(0, songKeys['7'].length -1)
+  var randomElPesebreSong = songKeys['7'][randomElPesebreIndex]
+
+  console.log(randomMetronomeSong)
+  console.log(randomElPesebreSong)
+
+  var trialAccelerometer2 = {
+      type: jsPsychAudioKeyboardResponse,
+      stimulus: './songs/movementTapAudio/modifiedAudio/' + randomMetronomeSong,
+      prompt: "<img id='pocket' src='./images/pocket.svg'></img>",
+      trial_duration: 63000,
+      choices: ["NO_KEYS"],
+      extensions: [
+        {type: jsPsychExtensionAccelerometer }
+      ],
+  }
+
+  var songsToPreload = [randomElPesebreSong, randomMetronomeSong]
+  var songPaths = './songs/movementTapAudio/modifiedAudio/'
+  var pathsToPreload = songsToPreload.map(i=>songPaths+i)
+
+  var preloadSongs1 = {
+    type: jsPsychPreload,
+    audio: pathsToPreload,
+    auto_preload: false,
+  }   
+
+  var preloadChosen = {
+    type: jsPsychPreload,
+    audio: '',
+    on_start: function(trial) {
+      trial.audio = './songs/movementTapAudio/modifiedAudio/' + window.randomChosenSong
     },
+    auto_preload: false,
+  }   
+
+  var trialAccelerometer3 = {
+      type: jsPsychAudioKeyboardResponse,
+      stimulus: './songs/movementTapAudio/modifiedAudio/' + randomElPesebreSong,
+      prompt: "<img id='pocket' src='./images/pocket.svg'></img>",
+      trial_duration: 63000,
+      choices: ["NO_KEYS"],
+      extensions: [
+        {type: jsPsychExtensionAccelerometer }
+      ],
+  }
+
+  var trialAccelerometer4 = {
+      type: jsPsychAudioKeyboardResponse,
+      stimulus: '',
+      prompt: "<img id='pocket' src='./images/pocket.svg'></img>",
+      trial_duration: 63000,
+      choices: ["NO_KEYS"],
+      extensions: [
+        {type: jsPsychExtensionAccelerometer }
+      ],
+      on_start: function(trial) {
+          var allData = jsPsych.data.get().values()
+          trial.stimulus = './songs/movementTapAudio/modifiedAudio/' + window.randomChosenSong
+      },
+  }
+
+  //Three different phoneInPocket objects because they all fetch from the song that is being rated at a different position, depending on the timeline
+  var phoneInPocket1 = {
+    type: jsPsychSurveyMultiChoice,
+    questions: [
+      {
+        prompt: movement[9][0][lang], 
+        name: 'phoneInPocket', 
+        options: [movement[9][1][lang], movement[9][2][lang], movement[9][3][lang], movement[9][4][lang]], 
+        required: true
+      }, 
+    ],
     on_finish: function(data){
       var last2 = jsPsych.data.get().last(4);
       var songBeingRated = last2['trials'][0].stimulus
       data.song = songBeingRated
+      console.log(songBeingRated)
+      data.stimulus = "whereKeptPhone"
     }
-};
+  };
 
-var likingRating = {
-    type: jsPsychHtmlSliderResponse,
-    stimulus: movement[8][3][lang],
-    require_movement: false,
-    labels: [movement[8][5][lang], movement[8][6][lang]],
-    on_load: function(){
-      document.getElementById("label0").style = ''
-      document.getElementById("label1").style = ''
-    },
-    on_finish: function(data){
-      var last2 = jsPsych.data.get().last(5);
-      var songBeingRated = last2['trials'][0].stimulus
-      data.song = songBeingRated
-    }
-};
-
-var grooveRatingBeat = {
-    type: jsPsychHtmlSliderResponse,
-    stimulus: movement[8][8][lang],
-    require_movement: false,
-    labels: [movement[8][5][lang], movement[8][6][lang]],
-    on_load: function(){
-      document.getElementById("label0").style = ''
-      document.getElementById("label1").style = ''
-    },
-    on_finish: function(data){
-      var last2 = jsPsych.data.get().last(5);
-      var songBeingRated = last2['trials'][0].stimulus
-      data.song = songBeingRated
-    }
-};
-
-var grooveRating = {
-    type: jsPsychHtmlSliderResponse,
-    stimulus: movement[8][4][lang],
-    require_movement: false,
-    labels: [movement[8][5][lang], movement[8][6][lang]],
-    on_load: function(){
-      document.getElementById("label0").style = ''
-      document.getElementById("label1").style = ''
-    },
+  var phoneInPocket2 = {
+    type: jsPsychSurveyMultiChoice,
+    questions: [
+      {
+        prompt: movement[9][0][lang], 
+        name: 'phoneInPocket', 
+        options: [movement[9][1][lang], movement[9][2][lang], movement[9][3][lang], movement[9][4][lang]], 
+        required: true
+      }, 
+    ],
     on_finish: function(data){
       var last2 = jsPsych.data.get().last(6);
       var songBeingRated = last2['trials'][0].stimulus
       data.song = songBeingRated
+      console.log(songBeingRated)
+      data.stimulus = "whereKeptPhone"
     }
-};
+  };
 
-var howDifficultMovement = {
-    type: jsPsychHtmlSliderResponse,
-    stimulus: recurring[9][lang],
-    require_movement: false,
-    labels: [recurring[10][lang], recurring[11][lang]],
-    on_load: function(){
-      document.getElementById("label0").style = ''
-      document.getElementById("label1").style = ''
-    },
+  var phoneInPocket3 = {
+    type: jsPsychSurveyMultiChoice,
+    questions: [
+      {
+        prompt: movement[9][0][lang], 
+        name: 'phoneInPocket', 
+        options: [movement[9][1][lang], movement[9][2][lang], movement[9][3][lang], movement[9][4][lang]], 
+        required: true
+      }, 
+    ],
     on_finish: function(data){
-      var last2 = jsPsych.data.get().last(3);
+      var last2 = jsPsych.data.get().last(8);
       var songBeingRated = last2['trials'][0].stimulus
       data.song = songBeingRated
+      console.log(songBeingRated)
+      data.stimulus = "whereKeptPhone"
     }
-};
+  };
 
-var phonePocket = {
-    type: jsPsychAudioKeyboardResponse,
-    stimulus: '../../songs/movementTapAudio/instructionsAudio/phonePocket.mp3',
-    prompt: movement[3].map(i=>i[lang]),
-    trial_duration: 7000,
-    choices: ["NO_KEYS"],
+  //Original
+  //var movementTimeline = [[preloadSongs1, instruction0, promptAccel, loadAccel, phonePocket, countDown, trialAccelerometer1, pickUpPhone, howDifficultMovement, instruction1, phonePocket, countDown, trialAccelerometer2, pickUpPhone, howDifficultMovement, likingBeatRating, grooveRatingBeat, instruction2, phonePocket, countDown, trialAccelerometer3, pickUpPhone, howDifficultMovement, familiarityRating, likingRating, grooveRating, instruction3, chooseSongs, preloadChosen, phonePocket, countDown, trialAccelerometer4, pickUpPhone, howDifficultMovement, familiarityRating, likingRating, grooveRating]];
+
+  //Step by step
+  var firstMovement = [instruction0, promptAccel, loadAccel, phonePocket, countDown, trialAccelerometer1, pickUpPhone, howDifficultMovement, phoneInPocket1] //4
+  var secondMovement = [preloadSongs1, instruction1, phonePocket, countDown, trialAccelerometer2, pickUpPhone, howDifficultMovement, likingBeatRating, grooveRatingBeat, phoneInPocket2] //6
+  var thirdMovement = [preloadSongs1, instruction2, phonePocket, countDown, trialAccelerometer3, pickUpPhone, howDifficultMovement, familiarityRating, likingRating, grooveRating, knowThisSong, phoneInPocket3] //8
+  var fourthMovement = [instruction3, chooseSongs, preloadChosen, phonePocket, countDown, trialAccelerometer4, pickUpPhone, howDifficultMovement, familiarityRating, likingRating, grooveRating, knowThisSong, phoneInPocket3] //8
+
+  var movementTimeline = [firstMovement, secondMovement, thirdMovement, fourthMovement];
+
+  return(movementTimeline)
 }
 
-var countDown = {
-    type: jsPsychAudioKeyboardResponse,
-    stimulus: '../../songs/movementTapAudio/instructionsAudio/countdown.mp3',
-    prompt: "<img id='tableSVG' src='../../images/voiceSVG.svg'></img>",
-    trial_duration: 6500,
-    choices: ["NO_KEYS"],
-}
-
-var pickUpPhone = {
-    type: jsPsychAudioKeyboardResponse,
-    stimulus: '../../songs/movementTapAudio/instructionsAudio/pickPhone.mp3',
-    prompt: "<img id='tableSVG' src='../../images/voiceSVG.svg'></img>",
-    choices: ["NO_KEYS"],
-    trial_duration: 10000,
-}
-
-var trialAccelerometer1 = {
-    type: jsPsychAudioKeyboardResponse,
-    stimulus: '../../songs/movementTapAudio/silence.wav',
-    prompt: "<img id='pocket' src='../../images/pocket.svg'></img>",
-    trial_duration: 30000,
-    choices: ["NO_KEYS"],
-    extensions: [
-      {type: jsPsychExtensionAccelerometer }
-    ],
-}
-
-var randomMetronomeIndex = random(0, songKeys['9'].length -1)
-var randomMetronomeSong = songKeys['9'][randomMetronomeIndex]
-
-var randomElPesebreIndex = random(0, songKeys['7'].length -1)
-var randomElPesebreSong = songKeys['7'][randomElPesebreIndex]
-
-console.log(randomMetronomeSong)
-console.log(randomElPesebreSong)
-
-var trialAccelerometer2 = {
-    type: jsPsychAudioKeyboardResponse,
-    stimulus: '../../songs/movementTapAudio/modifiedAudio/' + randomMetronomeSong,
-    prompt: "<img id='pocket' src='../../images/pocket.svg'></img>",
-    trial_duration: 63000,
-    choices: ["NO_KEYS"],
-    extensions: [
-      {type: jsPsychExtensionAccelerometer }
-    ],
-}
-
-var songsToPreload = [randomElPesebreSong, randomMetronomeSong]
-var songPaths = '../../songs/movementTapAudio/modifiedAudio/'
-var pathsToPreload = songsToPreload.map(i=>songPaths+i)
-
-var preloadSongs1 = {
-  type: jsPsychPreload,
-  audio: pathsToPreload,
-  auto_preload: false,
-}   
-
-var preloadChosen = {
-  type: jsPsychPreload,
-  audio: '',
-  on_start: function(trial) {
-    trial.audio = '../../songs/movementTapAudio/modifiedAudio/' + window.randomChosenSong
-  },
-  auto_preload: false,
-}   
-
-var trialAccelerometer3 = {
-    type: jsPsychAudioKeyboardResponse,
-    stimulus: '../../songs/movementTapAudio/modifiedAudio/' + randomElPesebreSong,
-    prompt: "<img id='pocket' src='../../images/pocket.svg'></img>",
-    trial_duration: 63000,
-    choices: ["NO_KEYS"],
-    extensions: [
-      {type: jsPsychExtensionAccelerometer }
-    ],
-}
-
-var trialAccelerometer4 = {
-    type: jsPsychAudioKeyboardResponse,
-    stimulus: '',
-    prompt: "<img id='pocket' src='../../images/pocket.svg'></img>",
-    trial_duration: 63000,
-    choices: ["NO_KEYS"],
-    extensions: [
-      {type: jsPsychExtensionAccelerometer }
-    ],
-    on_start: function(trial) {
-        var allData = jsPsych.data.get().values()
-        trial.stimulus = '../../songs/movementTapAudio/modifiedAudio/' + window.randomChosenSong
-    },
-}
-
-//Three different phoneInPocket objects because they all fetch from the song that is being rated at a different position, depending on the timeline
-var phoneInPocket1 = {
-  type: jsPsychSurveyMultiChoice,
-  questions: [
-    {
-      prompt: movement[9][0][lang], 
-      name: 'phoneInPocket', 
-      options: [movement[9][1][lang], movement[9][2][lang], movement[9][3][lang], movement[9][4][lang]], 
-      required: true
-    }, 
-  ],
-  on_finish: function(data){
-    var last2 = jsPsych.data.get().last(4);
-    var songBeingRated = last2['trials'][0].stimulus
-    data.song = songBeingRated
-    console.log(songBeingRated)
-    data.stimulus = "whereKeptPhone"
-  }
-};
-
-var phoneInPocket2 = {
-  type: jsPsychSurveyMultiChoice,
-  questions: [
-    {
-      prompt: movement[9][0][lang], 
-      name: 'phoneInPocket', 
-      options: [movement[9][1][lang], movement[9][2][lang], movement[9][3][lang], movement[9][4][lang]], 
-      required: true
-    }, 
-  ],
-  on_finish: function(data){
-    var last2 = jsPsych.data.get().last(6);
-    var songBeingRated = last2['trials'][0].stimulus
-    data.song = songBeingRated
-    console.log(songBeingRated)
-    data.stimulus = "whereKeptPhone"
-  }
-};
-
-var phoneInPocket3 = {
-  type: jsPsychSurveyMultiChoice,
-  questions: [
-    {
-      prompt: movement[9][0][lang], 
-      name: 'phoneInPocket', 
-      options: [movement[9][1][lang], movement[9][2][lang], movement[9][3][lang], movement[9][4][lang]], 
-      required: true
-    }, 
-  ],
-  on_finish: function(data){
-    var last2 = jsPsych.data.get().last(8);
-    var songBeingRated = last2['trials'][0].stimulus
-    data.song = songBeingRated
-    console.log(songBeingRated)
-    data.stimulus = "whereKeptPhone"
-  }
-};
-
-//Original
-//var movementTimeline = [[preloadSongs1, instruction0, promptAccel, loadAccel, phonePocket, countDown, trialAccelerometer1, pickUpPhone, howDifficultMovement, instruction1, phonePocket, countDown, trialAccelerometer2, pickUpPhone, howDifficultMovement, likingBeatRating, grooveRatingBeat, instruction2, phonePocket, countDown, trialAccelerometer3, pickUpPhone, howDifficultMovement, familiarityRating, likingRating, grooveRating, instruction3, chooseSongs, preloadChosen, phonePocket, countDown, trialAccelerometer4, pickUpPhone, howDifficultMovement, familiarityRating, likingRating, grooveRating]];
-
-//Step by step
-var firstMovement = [instruction0, promptAccel, loadAccel, phonePocket, countDown, trialAccelerometer1, pickUpPhone, howDifficultMovement, phoneInPocket1] //4
-var secondMovement = [preloadSongs1, instruction1, phonePocket, countDown, trialAccelerometer2, pickUpPhone, howDifficultMovement, likingBeatRating, grooveRatingBeat, phoneInPocket2] //6
-var thirdMovement = [preloadSongs1, instruction2, phonePocket, countDown, trialAccelerometer3, pickUpPhone, howDifficultMovement, familiarityRating, likingRating, grooveRating, knowThisSong, phoneInPocket3] //8
-var fourthMovement = [instruction3, chooseSongs, preloadChosen, phonePocket, countDown, trialAccelerometer4, pickUpPhone, howDifficultMovement, familiarityRating, likingRating, grooveRating, knowThisSong, phoneInPocket3] //8
-
-var movementTimeline = [firstMovement, secondMovement, thirdMovement, fourthMovement];

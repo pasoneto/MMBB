@@ -18,13 +18,17 @@ var uiConfig = {
 
       var lang = 'eng'
 
-      var didSharedMeasurements = await userLog['sharedM']
+      //var didSharedMeasurements = await userLog['sharedM']
 
-      if(didSharedMeasurements == undefined){
-        window.location.assign('./src/batteries/sharedMeasurements.html?lang=' + lang + '&user=' + userID)
-      } else {
-        window.location.assign('./pages/chooseBattery.html?lang=' + lang + '&user=' + userID)
-      }
+      //if(didSharedMeasurements == undefined){
+        //Change with link to sharedMeasurements
+        //var urlRedirect = './src/batteries/sharedMeasurements.html' + '?lang=' + lang + '&user=' + userID
+        //jatos.endStudyAndRedirect(urlRedirect)
+        //} else {
+      var urlRedirect = studyLinks["chooseBatteryLink"] + '?lang=' + lang + '&user=' + userID
+      console.log(urlRedirect)
+      //jatos.endStudyAndRedirect(urlRedirect)
+          //}
 
       return false;
     },

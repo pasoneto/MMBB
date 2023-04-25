@@ -205,7 +205,7 @@ function fluidBeat(offset, currentButton){
 function generateContextTrial(songBaseURL, beatsURL, lang){
   var loadNextTrial = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: '<img id="logoLoading" src="../../images/loading2.gif"><br>Loading...',
+    stimulus: '<img id="logoLoading" src="./images/loading2.gif"><br>Loading...',
     choices: [buttons[0][lang]],
     prompt: "",
     on_load: async function(){

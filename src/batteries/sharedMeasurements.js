@@ -1,3 +1,11 @@
+var frontPageShared = {
+    type: jsPsychInstructions,
+    pages: ["Welcome!<br>This is a questionnaire about your music habits"],
+    button_label_next: buttons[0][lang],
+    button_label_previous: buttons[1][lang],
+    show_clickable_nav: true
+}
+
 var languages = ["Suomi", "العربية", "Bahasa Indonesia", "Bahasa Melayu", "Български", "Català", "Cebuano", "Čeština", "Dansk", "Deutsch", "Eesti", "Ελληνικά", "English", "Español", "Esperanto", "Euskara", "فارسی", "Français", "Galego", "한국어", "Հայերեն", "हिन्दी", "Hrvatski", "Italiano", "עברית", "Қазақша", "Latina", "Lietuvių", "Magyar", "Minangkabau", "Nederlands", "日本語", "Norsk bokmål", "Norsk nynorsk", "Oʻzbekcha/ўзбекча", "Polski", "Português", "Română", "Русский", "Simple English", "Slovenčina", "Slovenščina", "Српски / srpski", "Srpskohrvatski / српскохрватски", "Svenska", "Tiếng Việt", "Türkçe", "Українська", "Volapük", "Winaray", "中文", "Muu"]
 var likertValues = [ {value: 1}, {value: 2}, {value: 3}, {value: 4}, {value: 5} ]
 var genderOptions = ['genderOption1', 'genderOption2', 'genderOption3', 'genderOption4']
@@ -86,6 +94,20 @@ var sharedMeasurementsTrial = {
   }
 };
 
+//Friends strangers question
+var isFriendsStrangers = {
+  type: jsPsychSurveyMultiChoice,
+  questions: [
+    {
+      prompt: "If you're part of the Music and Dance study, tell us your participant number", 
+      name: 'FruitDislike', 
+      options: ['1', '2', '3', '4'], 
+      required: true,
+      horizontal: true
+    }
+  ],
+};
+
 var messageFinishSharedMeasures = {
   type: jsPsychHtmlButtonResponse,
   prompt: emotionTranslations['thankYouEnd'][lang],
@@ -93,6 +115,7 @@ var messageFinishSharedMeasures = {
   trial_duration: 2000,
   stimulus: '',
   on_start: function(){
-    document.cookie = "SharedMeasures=done; path=/"
+    var cookieExpires = (new Date(Date.now()+ 86400*1000)).toUTCString();
+    document.cookie = "SharedMeasures=done;" + " expires=" + cookieExpires + "; path=/"
   }
 };

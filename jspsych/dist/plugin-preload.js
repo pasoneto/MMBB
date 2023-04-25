@@ -166,7 +166,7 @@ var jsPsychPreload = (function (jspsych) {
               html += `
             <div id='jspsych-loading-progress-bar-container'>
               <div id='jspsych-loading-progress-bar'>
-                <img id="logoLoading" src="../../images/loading2.gif">
+                <img id="logoLoading" src="./images/loading2.gif">
               </div>
             </div>`;
           }

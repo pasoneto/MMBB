@@ -4,433 +4,441 @@
     <title>MMBB batery</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width" />
-    <script src="../utils/langFetch.js"></script>
+
+    <script src="jatos.js"></script>
+
+    <script src="./utils/langFetch.js"></script>
+    <script src="./utils/preventRefresh.js"> </script>
+    <script src="./utils/identifyOS.js"> </script>
+    <script src="./utils/manageCookies.js"> </script>
+    <script src="./utils/studyLinks.js"> </script>
+
     <script src="https://unpkg.com/jspsych@7.1.2"></script>
     <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.0"></script>
     <script src="https://unpkg.com/@jspsych/plugin-audio-keyboard-response@1.1.0"></script>
-    <script src="../../jspsych/dist/plugin-audio-button-response.js"> </script>
-    <script src="../../jspsych/dist/plugin-html-slider-response-multiple.js"> </script>
-    <script src="../../jspsych/dist/plugin-html-button-response.js"> </script>
-    <script src="../../jspsych/dist/plugin-survey-html-form.js"> </script>
-    <script src="../../jspsych/dist/plugin-image-slider-response.js"> </script>
-    <script src="../../jspsych/dist/plugin-image-button-response.js"> </script>
-    <script src="../../jspsych/dist/plugin-instructions.js"> </script>
-    <script src="../../jspsych/dist/plugin-free-sort.js"> </script>
+    <script src="./jspsych/dist/plugin-audio-button-response.js"> </script>
+    <script src="./jspsych/dist/plugin-html-slider-response-multiple.js"> </script>
+    <script src="./jspsych/dist/plugin-html-button-response.js"> </script>
+    <script src="./jspsych/dist/plugin-survey-html-form.js"> </script>
+    <script src="./jspsych/dist/plugin-image-slider-response.js"> </script>
+    <script src="./jspsych/dist/plugin-image-button-response.js"> </script>
+    <script src="./jspsych/dist/plugin-instructions.js"> </script>
+    <script src="./jspsych/dist/plugin-free-sort.js"> </script>
     <script src="https://unpkg.com/@jspsych/plugin-survey-likert@1.1.2"></script>
-    <script src="../../jspsych/dist/plugin-canvas-button-response.js"> </script>
-    <script src="../../jspsych/dist/extension-accelerometer.js"> </script>
-    <script src="../../jspsych/dist/plugin-html-keyboard-response.js"> </script>
-    <script src="../../jspsych/dist/plugin-survey-multi-choice.js"> </script>
-    <script src="../../jspsych/dist/plugin-initialize-microphone.js"> </script>
-    <script src="../../jspsych/dist/plugin-html-audio-response.js"> </script>
-    <script src="../../jspsych/dist/plugin-survey.js"></script>
-    <script src="../utils/translations.js"> </script>
-    <script src="./questionnaires.js"> </script>
-    <script src="./sharedMeasurements.js"> </script>
-    <script src="../../jspsych/dist/custom/utils.js"></script>
+    <script src="./jspsych/dist/plugin-canvas-button-response.js"> </script>
+    <script src="./jspsych/dist/extension-accelerometer.js"> </script>
+    <script src="./jspsych/dist/plugin-html-keyboard-response.js"> </script>
+    <script src="./jspsych/dist/plugin-survey-multi-choice.js"> </script>
+    <script src="./jspsych/dist/plugin-initialize-microphone.js"> </script>
+    <script src="./jspsych/dist/plugin-html-audio-response.js"> </script>
+    <script src="./jspsych/dist/plugin-survey.js"></script>
+    <script src="./utils/translations.js"></script>
+
+    <script src="./src/batteries/questionnaires.js"> </script>
+    <script src="./src/batteries/sharedMeasurements.js"> </script>
+    <script src="./jspsych/dist/custom/utils.js"></script>
+
+    <script src="./utils/preventRefresh.js"></script>
 
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
     <link rel="stylesheet" href="https://unpkg.com/@jspsych/plugin-survey@0.2.0/css/survey.css">
 
-    <link rel="stylesheet" href="../styles/surveyStyles.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="./src/styles/surveyStyles.css">
 
-    <script src="../../backend/pushDatabase.js"></script>
+    <script src="./backend/pushDatabase.js"></script>
 
   </head>
   <body></body>
   <script>
 
-    var jsPsych = initJsPsych({
-      on_finish: function() {
-        //jsPsych.data.displayData();
-        jsPsych.data.addProperties({group: groupNumber});
-        jsPsych.data.addProperties({participantNumberUrl: participantNumberUrl});
+    jatos.onLoad(() => {
 
-        var finalData = jsPsych.data.addProperties({participantNumberUrl: participantNumberUrl});
+      var jsPsych = initJsPsych({
+        on_finish: function() {
+          //jsPsych.data.displayData();
+          jsPsych.data.addProperties({group: groupNumber});
+          jsPsych.data.addProperties({participantNumberUrl: participantNumberUrl});
 
-        pushDatabase("ipadFriendsStrangers", finalData).then(r => {
-          jsPsych.data.get().localSave('csv','mydata.csv');
-        })
+          var finalData = jsPsych.data.addProperties({participantNumberUrl: participantNumberUrl});
 
-      }
-    });
-
-    var groupNumber = urlParams.get('group')
-    var participantNumberUrl = urlParams.get('participantNumber')
-
-    if(groupNumber == null){
-      alert('You did not put the group number as URL parameter!')
-    }
-    if(participantNumberUrl == null){
-      alert('You did not put the pair number as URL parameter!')
-    }
-    console.log("Group: " + groupNumber)
-  
-    var sessionNumber = {
-      type: jsPsychSurveyHtmlForm,
-      preamble: '<p style="font-size:7vw">Session number</p>',
-      html: '<p><input type="text" id="test-resp-box" name="response" size="10" /></p>',
-      autofocus: 'test-resp-box'
-    };
-
-    var instruction1 = {
-        type: jsPsychInstructions,
-        pages: [
-        'When you click start, you will see some questions.',
-        'Your task is to answer them.'
-        ],
-        button_label_next: "Next",
-        button_label_previous: "Previous",
-        show_clickable_nav: true
-    }
-
-    const sorting_stimuli = ['./img/survey/a.001.png', './img/survey/a.002.png']
-
-    var howFeeling = {
-        type: jsPsychHtmlSliderResponse,
-        stimulus: [`<div>
-                    <p style="font-size:3vw;">How do you feel?
-                   </div>`],
-        require_movement: false,
-        labels: [['Extremely<br>bad', 'Very<br>bad', 'Bad', 'Good', 'Very<br>good', 'Extremely<br>good']],
-        data: { previousHowFeeling: 'true' },
-        on_load: function(){
-          document.querySelector(".jspsych-html-slider-response-container").style.width = "80%"
-        }
-    };
-
-    var howFeeling2 = {
-        type: jsPsychHtmlSliderResponse,
-        stimulus: [`<div>
-                    <p style="font-size:3vw;">How do you feel?
-                   </div>`],
-        require_movement: false,
-        labels: [['Extremely<br>bad', 'very<br>bad', 'bad', 'good', 'very<br>good', 'extremely<br>good']],
-        data: { previousHowFeeling: 'true' },
-        on_start: function(trial) {
-          var howFeelingPrevious = jsPsych.data.get().filter({previousHowFeeling: 'true'})['trials']
-          var howFeelingPrevious = howFeelingPrevious.slice(-1)[0]
-          var howFeelingPrevious = howFeelingPrevious['response']
-          trial.slider_start = howFeelingPrevious
-        },
-        on_load: function(){
-          document.querySelector(".jspsych-html-slider-response-container").style.width = "80%"
-        }
-    };
-
-    var relationshipFriend = {
-        type: jsPsychHtmlSliderResponse,
-        stimulus: [`<div>
-                     Prior to the experiment, how well did you know the first person you danced and created a playlist with?
-                   </div>`],
-        require_movement: false,
-        labels: [["We didn't know each other at all", 'We knew each other but rarely interacted', 'We were very good friends', 'We were best friends']],
-        on_load: function(){
-          document.querySelector(".jspsych-html-slider-response-container").style.width = "80%"
-        }
-    };
-
-    var relationshipFriend2 = {
-        type: jsPsychHtmlSliderResponse,
-        stimulus: [`<div>
-                     Prior to the experiment, how well did you know the second person you danced and created a playlist with?
-                   </div>`],
-        require_movement: false,
-        labels: [["We didn't know each other at all", 'We knew each other but rarely interacted', 'We were very good friends', 'We were best friends']],
-        on_load: function(){
-          document.querySelector(".jspsych-html-slider-response-container").style.width = "80%"
-        }
-    };
-
-    var howWasPlaylist = {
-        type: jsPsychHtmlSliderResponse,
-        stimulus: [`<div>
-                    How easy was to reach a decision regarding the playlist?<br><br>
-                   </div>`],
-        require_movement: false,
-        labels: [['Extremely hard', 'Very hard', 'Hard', 'Easy', 'Very Easy', 'Extremely easy']],
-        on_load: function(){
-          document.querySelector(".jspsych-html-slider-response-container").style.width = "80%"
-        }
-    };
-
-    var options = [
-      "Strongly Disagree", 
-      "Disagree", 
-      "Neutral", 
-      "Agree", 
-      "Strongly Agree"
-    ];
-
-    var instructionPreCloseness = {
-      type: jsPsychInstructions,
-      pages: [
-      'In the next page, use the slider to indicate how close you feel to your partner',
-      ],
-      button_label_next: "Next",
-      button_label_previous: "Previous",
-      show_clickable_nav: true
-    }
-
-    var closeness1 = {
-      type: jsPsychImageSliderResponse,
-      stimulus: ['../../images/transparentCircle.png', '../../images/transparentCircle.png'],
-      stimulus_width: 200,
-      labels: ["Extremely distant", "Distant", "A little distant", "A little close", "Close", "Extremely close"],
-      min: 0,
-      slider_start: 0,
-      step: 1,
-      max: 360,
-      maintain_aspect_ration: true,
-      on_load: function(){
-        var a = document.createElement("div");
-        a.setAttribute("id", "promptSlider");
-        a.innerHTML = "Use the slider to indicate how close you feel to your partner"
-        a.style.marginTop = "50px";
-        a.style.fontSize = "30px";
-        a.style.textAlign = "center";
-        a.style.justifyContent = "center";
-        document.querySelector(".jspsych-display-element").prepend(a)
-        
-        document.getElementById("jspsych-image-slider-response-stimulus1").style.marginTop = "60px"
-        document.getElementById("jspsych-image-slider-response-stimulus2").style.marginTop = "60px"
-
-        document.querySelector(".jspsych-image-slider-response-container").style.width = "80%"
-
-      },
-      on_finish: function(){
-        document.getElementById("promptSlider").remove()
-      }
-    };
-
-    var closeness2 = {
-      type: jsPsychImageSliderResponse,
-      stimulus: ['../../images/transparentCircle.png', '../../images/transparentCircle.png'],
-      stimulus_width: 200,
-      min: 0,
-      slider_start: 500,
-      step: 1,
-      max: 360,
-      maintain_aspect_ration: true,
-      on_load: function(){
-        var a = document.createElement("div");
-        a.setAttribute("id", "promptSlider");
-        a.innerHTML = "Use the slider to indicate how close you feel to your partner"
-        a.style.marginTop = "50px";
-        a.style.fontSize = "30px";
-        a.style.textAlign = "center";
-        a.style.justifyContent = "center";
-        document.querySelector(".jspsych-display-element").prepend(a)
-
-        document.getElementById("jspsych-image-slider-response-stimulus1").style.marginTop = "60px"
-        document.getElementById("jspsych-image-slider-response-stimulus2").style.marginTop = "60px"
-
-        document.querySelector(".jspsych-image-slider-response-container").style.width = "80%"
-
-      },
-      on_start: function(trial) {
-        var closenessTrials = jsPsych.data.get().filter({stimulus: "../emotion_demo/basic_emoji/v5a1.png"})
-        var closenessTrials = closenessTrials['trials']
-        var startPoint = closenessTrials[closenessTrials.length - 1]['response']
-        console.log(startPoint)
-        trial.slider_start = startPoint
-        trial.start_separation = startPoint
-      },
-      on_finish: function(){
-        document.getElementById("promptSlider").remove()
-      }
-    };
-
-    var linkToMMBB = {
-      type: jsPsychImageButtonResponse,
-      stimulus: '../../images/qrCodeLink.png',
-      choices: ['Continue'],
-      prompt: "<p>Use the camera of your phone to access a questionnaire. <br> After that, you can close the ipad. <br>Click condinue when you have finished with your phone.</p>"
-    };
-
-    var inter = {
-        type: jsPsychInstructions,
-        pages: [
-        'Thank you for your responses,<br><br>You can put the iPad down and call the experimenter',
-        ],
-        button_label_next: "Next",
-        button_label_previous: "Previous",
-        show_clickable_nav: true,
-        on_load: function(){
-          document.getElementById("jspsych-instructions-next").style.display = "none"
-          sleep(30000).then(r => {
-            document.getElementById("jspsych-instructions-next").style.display = ""
+          pushDatabase("ipadFriendsStrangers", finalData).then(r => {
+            jsPsych.data.get().localSave('csv','mydata.csv');
           })
+
         }
-    }
+      });
 
-    var changePairs = {
-        type: jsPsychInstructions,
-        pages: [
-        'Time to change pair!<br> Please call the experimenter.',
-        ],
-        button_label_next: "Next",
-        button_label_previous: "Previous",
-        show_clickable_nav: true
-    }
+      var groupNumber = jatos.urlQueryParameters.group
+      var participantNumberUrl = jatos.urlQueryParameters.group
+      var participantNumberUrl = jatos.urlQueryParameters.participantNumber
 
-    var shortBreak = {
-        type: jsPsychInstructions,
-        pages: [
-          'Now we are having a short break. Leave the iPad down and call the experimenter.<br><br>',
-        ],
-        button_label_next: "Next",
-        button_label_previous: "Previous",
-        show_clickable_nav: true
-    }
-    var haveYouHeardBefore;
-    //This repeats for each song (7 tracks)
-    function generateSongQuestions(nTrial){
-      var songQuestions = {
-          type: jsPsychHtmlSliderResponse,
-          stimulus: ["<br><br>How much do you like it?<br><br>",
-                     "<br><br>How much did it make you want to dance?<br><br>",
-                     "<br><br>How much did you want to continue dancing to it?<br><br>",
-                     "<br><br>How familiar were you with this music style?<br><br>"
-          ],
-          nSliders: 4,
-          require_movement: false,
-          labels: [['Extremely<br>disliked it', 'Disliked it<br>a lot', 'Disliked<br>it', 'Liked<br>it', 'Like it<br>a lot', 'Extremely<br>liked it'],
-                   ["Not at all", "Very much"], 
-                   ["Not at all", "Very much"], 
-                   ['Not at all', 'Very much']],
-          on_load: function(){
-            var slidersContainers = document.querySelectorAll(".jspsych-html-slider-response-container")
-            slidersContainers.forEach(i => {
-              i.style.width = "80%"
-            })
-            var container = document.getElementById("jspsych-html-slider-response-wrapper")
-            var songTitle = document.createElement("div")
-            songTitle.innerHTML = '<b>Song ' + nTrial + '</b><br><br>'
-            container.insertBefore(songTitle, container.firstChild);
+      window.onbeforeunload = preventRefresh0
 
-            var knowSongDiv = document.createElement("div")
-            var buttonTexts = ["Yes", "No", "I don't know"]
-            buttonTexts.map(i => {
-              var buttonDiv = document.createElement("button")
-              buttonDiv.setAttribute('id', 'buttonHaveYouHeard')
-              buttonDiv.style.width = "20%";
-              buttonDiv.style.height = "30px";
-              buttonDiv.onclick = function(){
-                window.haveYouHeardBefore = this.innerHTML;
-                document.querySelectorAll("#buttonHaveYouHeard").forEach(i => {
-                  i.style.background = "#fa6400";
-                })
-                this.style.background = "purple";
-              }
-              buttonDiv.innerHTML = i;
-              knowSongDiv.appendChild(buttonDiv);
-            });
-
-            var titleKnowSong = document.createElement("div")
-            titleKnowSong.innerHTML = 'Have you heard this song before?<br><br>';
-            container.append(titleKnowSong);
-            container.append(knowSongDiv);
-
-
-            //Create local progress bar
-
-            var progressBar = document.createElement("progress")
-            var progressBarText = document.createElement("div")
-            progressBarText.innerHTML = Math.round(((nTrial-1)/7)*100) + "%"
-
-            progressBar.setAttribute('id', 'progressSongRatings')
-            progressBar.setAttribute('max', "7")
-            progressBar.setAttribute('value', nTrial-1)
-
-            container.insertBefore(progressBarText, container.firstChild);
-            container.insertBefore(progressBar, container.firstChild);
-
-          },
-          on_finish: function(data){
-            data.heardSongBefore = window.haveYouHeardBefore;
-          }
-
-      };
-      return songQuestions;
-    }
-
-    var questionsAboutSongs = {
-      timeline: [1, 2, 3, 4, 5, 6, 7].map(i => generateSongQuestions(i)).flat()
-    }
-
-    var feedbackSpace = {
-      type: jsPsychSurveyHtmlForm,
-      preamble: '<p style="font-size:7vw">Have any feedback?</p>',
-      html: '<p><input type="text" id="test-resp-box" name="response" size="100" /></p>',
-      autofocus: 'test-resp-box'
-    };
-
-    var endTask = {
-        type: jsPsychInstructions,
-        pages: ['This is the end of the experiment<br>Thank you for your participation!'],
-        button_label_next: "Next",
-        button_label_previous: "Previous",
-        show_clickable_nav: true,
-    }
-
-    //- Please rate your relationship with the first person you danced and created a playlist with
-    //- Please rate your relationship with the second person you danced and created a playlist with   
-    var evenOdd = groupNumber % 2
-
-    var A = [howFeeling, closeness1, inter,
-             howWasPlaylist, howFeeling, closeness1, inter,
-             howFeeling, closeness1, questionsAboutSongs, inter, howFeeling,closeness1, modelQuestionnaire2, modelQuestionnaire3, inter,
-             howFeeling, closeness1, questionsAboutSongs, relationshipFriend2, feedbackSpace]
-
-    var B = [howFeeling, closeness1, inter,
-             howFeeling, closeness1, questionsAboutSongs, inter,
-             howFeeling, closeness1, howWasPlaylist, inter,
-             howFeeling, closeness1, questionsAboutSongs, inter, howFeeling, closeness1, modelQuestionnaire2, modelQuestionnaire3, inter,
-             howFeeling, closeness1, relationshipFriend2, feedbackSpace]
-
-    var C = [howFeeling, closeness1, inter,
-             howWasPlaylist, howFeeling,closeness1, inter,
-             howFeeling, closeness1, questionsAboutSongs, linkToMMBB, howFeeling, closeness1, inter,
-             howFeeling, closeness1, questionsAboutSongs, relationshipFriend, feedbackSpace]
-
-    var D = [howFeeling, closeness1, inter,
-             howFeeling, closeness1, questionsAboutSongs, inter,
-             howFeeling, closeness1, howWasPlaylist, inter,
-             howFeeling, closeness1, questionsAboutSongs, linkToMMBB, howFeeling, closeness1, inter,
-             howFeeling, closeness1, relationshipFriend, feedbackSpace]
+      if(groupNumber == null){
+        alert('You did not put the group number as URL parameter!')
+      }
+      if(participantNumberUrl == null){
+        alert('You did not put the pair number as URL parameter!')
+      }
+      console.log("Group: " + groupNumber)
     
-    if(evenOdd == 1){ //Odd
-      console.log("Friends - Strangers")
-      console.log("P1: A->C")
-      console.log("P2: A->D")
-      console.log("P3: B->C")
-      console.log("P4: B->D")
-      var participant1 = [...A, ...[changePairs], ...C, ...[endTask]]
-      var participant2 = [...A, ...[changePairs], ...D, ...[endTask]]
-      var participant3 = [...B, ...[changePairs], ...C, ...[endTask]]
-      var participant4 = [...B, ...[changePairs], ...D, ...[endTask]]
-    } else {
-      console.log("Strangers - Friends")
-      console.log("P1: D->B")
-      console.log("P2: C->B")
-      console.log("P3: D->A")
-      console.log("P4: C->A")
-      var participant1 = [...D, ...[changePairs], ...B, ...[endTask]]
-      var participant2 = [...C, ...[changePairs], ...B, ...[endTask]]
-      var participant3 = [...D, ...[changePairs], ...A, ...[endTask]]
-      var participant4 = [...C, ...[changePairs], ...A, ...[endTask]]
-    }
+      var sessionNumber = {
+        type: jsPsychSurveyHtmlForm,
+        preamble: '<p style="font-size:7vw">Session number</p>',
+        html: '<p><input type="text" id="test-resp-box" name="response" size="10" /></p>',
+        autofocus: 'test-resp-box'
+      };
 
-    var participantsObject = {
-      "1": participant1,
-      "2": participant2,
-      "3": participant3,
-      "4": participant4
-    }
-    console.log(participantsObject[participantNumberUrl])
-    jsPsych.run(participantsObject[participantNumberUrl]);
+      var instruction1 = {
+          type: jsPsychInstructions,
+          pages: [
+          'When you click start, you will see some questions.',
+          'Your task is to answer them.'
+          ],
+          button_label_next: "Next",
+          button_label_previous: "Previous",
+          show_clickable_nav: true
+      }
+
+      const sorting_stimuli = ['./img/survey/a.001.png', './img/survey/a.002.png']
+
+      var howFeeling = {
+          type: jsPsychHtmlSliderResponse,
+          stimulus: [`<div>
+                      <p style="font-size:3vw;">How do you feel?
+                     </div>`],
+          require_movement: false,
+          labels: [['Extremely<br>bad', 'Very<br>bad', 'Bad', 'Good', 'Very<br>good', 'Extremely<br>good']],
+          data: { previousHowFeeling: 'true' },
+          on_load: function(){
+            document.querySelector(".jspsych-html-slider-response-container").style.width = "80%"
+          }
+      };
+
+      var howFeeling2 = {
+          type: jsPsychHtmlSliderResponse,
+          stimulus: [`<div>
+                      <p style="font-size:3vw;">How do you feel?
+                     </div>`],
+          require_movement: false,
+          labels: [['Extremely<br>bad', 'very<br>bad', 'bad', 'good', 'very<br>good', 'extremely<br>good']],
+          data: { previousHowFeeling: 'true' },
+          on_start: function(trial) {
+            var howFeelingPrevious = jsPsych.data.get().filter({previousHowFeeling: 'true'})['trials']
+            var howFeelingPrevious = howFeelingPrevious.slice(-1)[0]
+            var howFeelingPrevious = howFeelingPrevious['response']
+            trial.slider_start = howFeelingPrevious
+          },
+          on_load: function(){
+            document.querySelector(".jspsych-html-slider-response-container").style.width = "80%"
+          }
+      };
+
+      var relationshipFriend = {
+          type: jsPsychHtmlSliderResponse,
+          stimulus: [`<div>
+                       Prior to the experiment, how well did you know the person you just danced and created a playlist with?
+                     </div>`],
+          require_movement: false,
+          labels: [["We didn't know each other at all", 'We knew each other but rarely interacted', 'We were very good friends', 'We were best friends']],
+          on_load: function(){
+            document.querySelector(".jspsych-html-slider-response-container").style.width = "80%"
+          }
+      };
+
+      var howWasPlaylist = {
+          type: jsPsychHtmlSliderResponse,
+          stimulus: [`<div>
+                      How easy was to reach a decision regarding the playlist?<br><br>
+                     </div>`],
+          require_movement: false,
+          labels: [['Extremely hard', 'Very hard', 'Hard', 'Easy', 'Very Easy', 'Extremely easy']],
+          on_load: function(){
+            document.querySelector(".jspsych-html-slider-response-container").style.width = "80%"
+          }
+      };
+
+      var options = [
+        "Strongly Disagree", 
+        "Disagree", 
+        "Neutral", 
+        "Agree", 
+        "Strongly Agree"
+      ];
+
+      var instructionPreCloseness = {
+        type: jsPsychInstructions,
+        pages: [
+        'In the next page, use the slider to indicate how close you feel to your partner',
+        ],
+        button_label_next: "Next",
+        button_label_previous: "Previous",
+        show_clickable_nav: true
+      }
+
+      var closeness1 = {
+        type: jsPsychImageSliderResponse,
+        stimulus: ['./images/transparentCircle.png', './images/transparentCircle.png'],
+        stimulus_width: 200,
+        labels: ["Extremely distant", "Distant", "A little distant", "A little close", "Close", "Extremely close"],
+        min: 0,
+        slider_start: 0,
+        step: 1,
+        max: 360,
+        maintain_aspect_ration: true,
+        on_load: function(){
+          var a = document.createElement("div");
+          a.setAttribute("id", "promptSlider");
+          a.innerHTML = "Use the slider to indicate how close you feel to your partner"
+          a.style.marginTop = "50px";
+          a.style.fontSize = "30px";
+          a.style.textAlign = "center";
+          a.style.justifyContent = "center";
+          document.querySelector(".jspsych-display-element").prepend(a)
+          
+          document.getElementById("jspsych-image-slider-response-stimulus1").style.marginTop = "60px"
+          document.getElementById("jspsych-image-slider-response-stimulus2").style.marginTop = "60px"
+
+          document.querySelector(".jspsych-image-slider-response-container").style.width = "80%"
+
+        },
+        on_finish: function(){
+          document.getElementById("promptSlider").remove()
+        }
+      };
+
+      var closeness2 = {
+        type: jsPsychImageSliderResponse,
+        stimulus: ['./images/transparentCircle.png', './images/transparentCircle.png'],
+        stimulus_width: 200,
+        min: 0,
+        slider_start: 500,
+        step: 1,
+        max: 360,
+        maintain_aspect_ration: true,
+        on_load: function(){
+          var a = document.createElement("div");
+          a.setAttribute("id", "promptSlider");
+          a.innerHTML = "Use the slider to indicate how close you feel to your partner"
+          a.style.marginTop = "50px";
+          a.style.fontSize = "30px";
+          a.style.textAlign = "center";
+          a.style.justifyContent = "center";
+          document.querySelector(".jspsych-display-element").prepend(a)
+
+          document.getElementById("jspsych-image-slider-response-stimulus1").style.marginTop = "60px"
+          document.getElementById("jspsych-image-slider-response-stimulus2").style.marginTop = "60px"
+
+          document.querySelector(".jspsych-image-slider-response-container").style.width = "80%"
+
+        },
+        on_start: function(trial) {
+          var closenessTrials = jsPsych.data.get().filter({stimulus: "../emotion_demo/basic_emoji/v5a1.png"})
+          var closenessTrials = closenessTrials['trials']
+          var startPoint = closenessTrials[closenessTrials.length - 1]['response']
+          console.log(startPoint)
+          trial.slider_start = startPoint
+          trial.start_separation = startPoint
+        },
+        on_finish: function(){
+          document.getElementById("promptSlider").remove()
+        }
+      };
+
+      var linkToMMBB = {
+        type: jsPsychImageButtonResponse,
+        stimulus: './images/qrCodeLink.png',
+        choices: ['Continue'],
+        prompt: "<p>Use the camera of your phone to access a questionnaire. <br> After that, you can close the ipad. <br>Click condinue when you have finished with your phone.</p>"
+      };
+
+      var inter = {
+          type: jsPsychInstructions,
+          pages: [
+          'Thank you for your responses,<br><br>You can put the iPad down and call the experimenter',
+          ],
+          button_label_next: "Next",
+          button_label_previous: "Previous",
+          show_clickable_nav: true,
+          on_load: function(){
+            document.getElementById("jspsych-instructions-next").style.display = "none"
+            sleep(30000).then(r => {
+              document.getElementById("jspsych-instructions-next").style.display = ""
+            })
+          }
+      }
+
+      var changePairs = {
+          type: jsPsychInstructions,
+          pages: [
+          'Time to change pair!<br> Please call the experimenter.',
+          ],
+          button_label_next: "Next",
+          button_label_previous: "Previous",
+          show_clickable_nav: true
+      }
+
+      var shortBreak = {
+          type: jsPsychInstructions,
+          pages: [
+            'Now we are having a short break. Leave the iPad down and call the experimenter.<br><br>',
+          ],
+          button_label_next: "Next",
+          button_label_previous: "Previous",
+          show_clickable_nav: true
+      }
+      var haveYouHeardBefore;
+      //This repeats for each song (7 tracks)
+      function generateSongQuestions(nTrial){
+        var songQuestions = {
+            type: jsPsychHtmlSliderResponse,
+            stimulus: ["<br><br>How much do you like it?<br><br>",
+                       "<br><br>How much did it make you want to dance?<br><br>",
+                       "<br><br>How much did you want to continue dancing to it?<br><br>",
+                       "<br><br>How familiar were you with this music style?<br><br>"
+            ],
+            nSliders: 4,
+            require_movement: false,
+            labels: [['Extremely<br>disliked it', 'Disliked it<br>a lot', 'Disliked<br>it', 'Liked<br>it', 'Like it<br>a lot', 'Extremely<br>liked it'],
+                     ["Not at all", "Very much"], 
+                     ["Not at all", "Very much"], 
+                     ['Not at all', 'Very much']],
+            on_load: function(){
+              var slidersContainers = document.querySelectorAll(".jspsych-html-slider-response-container")
+              slidersContainers.forEach(i => {
+                i.style.width = "80%"
+              })
+              var container = document.getElementById("jspsych-html-slider-response-wrapper")
+              var songTitle = document.createElement("div")
+              songTitle.innerHTML = '<b>Song ' + nTrial + '</b><br><br>'
+              container.insertBefore(songTitle, container.firstChild);
+
+              var knowSongDiv = document.createElement("div")
+              var buttonTexts = ["Yes", "No", "I don't know"]
+              buttonTexts.map(i => {
+                var buttonDiv = document.createElement("button")
+                buttonDiv.setAttribute('id', 'buttonHaveYouHeard')
+                buttonDiv.style.width = "20%";
+                buttonDiv.style.height = "30px";
+                buttonDiv.onclick = function(){
+                  window.haveYouHeardBefore = this.innerHTML;
+                  document.querySelectorAll("#buttonHaveYouHeard").forEach(i => {
+                    i.style.background = "#fa6400";
+                  })
+                  this.style.background = "purple";
+                }
+                buttonDiv.innerHTML = i;
+                knowSongDiv.appendChild(buttonDiv);
+              });
+
+              var titleKnowSong = document.createElement("div")
+              titleKnowSong.innerHTML = 'Have you heard this song before?<br><br>';
+              container.append(titleKnowSong);
+              container.append(knowSongDiv);
+
+
+              //Create local progress bar
+
+              var progressBar = document.createElement("progress")
+              var progressBarText = document.createElement("div")
+              progressBarText.innerHTML = Math.round(((nTrial-1)/7)*100) + "%"
+
+              progressBar.setAttribute('id', 'progressSongRatings')
+              progressBar.setAttribute('max', "7")
+              progressBar.setAttribute('value', nTrial-1)
+
+              container.insertBefore(progressBarText, container.firstChild);
+              container.insertBefore(progressBar, container.firstChild);
+
+            },
+            on_finish: function(data){
+              data.heardSongBefore = window.haveYouHeardBefore;
+            }
+
+        };
+        return songQuestions;
+      }
+
+      var questionsAboutSongs = {
+        timeline: [1, 2, 3, 4, 5, 6, 7].map(i => generateSongQuestions(i)).flat()
+      }
+
+      var feedbackSpace = {
+        type: jsPsychSurveyHtmlForm,
+        preamble: '<p style="font-size:7vw">Have any feedback?</p>',
+        html: '<p><input type="text" id="test-resp-box" name="response" size="100" /></p>',
+        autofocus: 'test-resp-box'
+      };
+
+      var endTask = {
+          type: jsPsychInstructions,
+          pages: ['This is the end of the experiment<br>Thank you for your participation!'],
+          button_label_next: "Next",
+          button_label_previous: "Previous",
+          show_clickable_nav: true,
+      }
+
+      //- Please rate your relationship with the first person you danced and created a playlist with
+      //- Please rate your relationship with the second person you danced and created a playlist with   
+      var evenOdd = groupNumber % 2
+
+      var A = [howFeeling, closeness1, inter,
+               howWasPlaylist, howFeeling, closeness1, inter,
+               howFeeling, closeness1, questionsAboutSongs, inter, 
+               howFeeling, closeness1, modelQuestionnaire2, modelQuestionnaire3, inter,
+               howFeeling, closeness1, questionsAboutSongs, relationshipFriend, feedbackSpace]
+
+      var B = [howFeeling, closeness1, inter,
+               howFeeling, closeness1, questionsAboutSongs, inter,
+               howFeeling, closeness1, howWasPlaylist, inter,
+               howFeeling, closeness1, questionsAboutSongs, inter, 
+               howFeeling, closeness1, modelQuestionnaire2, modelQuestionnaire3,
+               howFeeling, closeness1, relationshipFriend, feedbackSpace]
+
+      var C = [howFeeling, closeness1, inter,
+               howWasPlaylist, howFeeling,closeness1, inter,
+               howFeeling, closeness1, questionsAboutSongs, linkToMMBB, howFeeling, closeness1, inter,
+               howFeeling, closeness1, questionsAboutSongs, relationshipFriend, feedbackSpace]
+
+      var D = [howFeeling, closeness1, inter,
+               howFeeling, closeness1, questionsAboutSongs, inter,
+               howFeeling, closeness1, howWasPlaylist, inter,
+               howFeeling, closeness1, questionsAboutSongs, linkToMMBB, howFeeling, closeness1, inter,
+               howFeeling, closeness1, relationshipFriend, feedbackSpace]
+      
+      if(evenOdd == 1){ //Odd
+        console.log("Friends - Strangers")
+        console.log("P1: A->C")
+        console.log("P2: A->D")
+        console.log("P3: B->C")
+        console.log("P4: B->D")
+        var participant1 = [...A, ...[changePairs], ...C, ...[endTask]]
+        var participant2 = [...A, ...[changePairs], ...D, ...[endTask]]
+        var participant3 = [...B, ...[changePairs], ...C, ...[endTask]]
+        var participant4 = [...B, ...[changePairs], ...D, ...[endTask]]
+      } else {
+        console.log("Strangers - Friends")
+        console.log("P1: D->B")
+        console.log("P2: C->B")
+        console.log("P3: D->A")
+        console.log("P4: C->A")
+        var participant1 = [...D, ...[changePairs], ...B, ...[endTask]]
+        var participant2 = [...C, ...[changePairs], ...B, ...[endTask]]
+        var participant3 = [...D, ...[changePairs], ...A, ...[endTask]]
+        var participant4 = [...C, ...[changePairs], ...A, ...[endTask]]
+      }
+
+      var participantsObject = {
+        "1": participant1,
+        "2": participant2,
+        "3": participant3,
+        "4": participant4
+      }
+
+      console.log(participantsObject[participantNumberUrl])
+      jsPsych.run(participantsObject[participantNumberUrl]);
+
+    })
 
  </script>
 </html>

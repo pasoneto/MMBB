@@ -8,43 +8,46 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <script src="../utils/langFetch.js"></script>
-    <script src="../utils/preventRefresh.js"> </script>
-    <script src="../utils/identifyOS.js"> </script>
-    <script src="../utils/manageCookies.js"> </script>
+    <script src="jatos.js"></script>
+
+    <script src="./utils/langFetch.js"></script>
+    <script src="./utils/preventRefresh.js"> </script>
+    <script src="./utils/identifyOS.js"> </script>
+    <script src="./utils/manageCookies.js"> </script>
+    <script src="./utils/studyLinks.js"> </script>
 
     <script src="https://unpkg.com/jspsych@7.1.2"></script>
-    <script src="../../jspsych/dist/plugin-html-songselector-response.js"> </script>
-    <script src="../../jspsych/dist/plugin-html-slider-response.js"></script>
-    <script src="../../jspsych/dist/plugin-audio-button-response.js"> </script>
-    <script src="../../jspsych/dist/plugin-html-button-response.js"> </script>
-    <script src="../../jspsych/dist/plugin-instructions.js"> </script>
-    <script src="../../jspsych/dist/plugin-survey-likert.js"> </script>
-    <script src="../../jspsych/dist/plugin-canvas-button-response.js"> </script>
-    <script src="../../jspsych/dist/extension-accelerometer.js"> </script>
-    <script src="../../jspsych/dist/plugin-html-keyboard-response.js"> </script>
-    <script src="../../jspsych/dist/plugin-survey-multi-choice.js"> </script>
-    <script src="../../jspsych/dist/plugin-initialize-microphone.js"> </script>
-    <script src="../../jspsych/dist/plugin-audio-keyboard-response.js"> </script>
-    <script src="../../jspsych/dist/plugin-html-audio-response.js"> </script>
-    <script src="../../jspsych/dist/plugin-preload.js"> </script>
-    <script src="../../songs/movementTapAudio/songKeysNames.js"> </script>
-    <script src="../../jspsych/dist/custom/utils.js"> </script>
-    <script src="../../jspsych/dist/plugin-survey-html-form.js"> </script>
-    <script src="../../jspsych/dist/custom/beatProductionFunctions.js"></script>
-    <script src="../../songs/movementTapAudio/songKeysNames.js"></script>
+    <script src="./jspsych/dist/plugin-html-songselector-response.js"> </script>
+    <script src="./jspsych/dist/plugin-html-slider-response.js"></script>
+    <script src="./jspsych/dist/plugin-audio-button-response.js"> </script>
+    <script src="./jspsych/dist/plugin-html-button-response.js"> </script>
+    <script src="./jspsych/dist/plugin-instructions.js"> </script>
+    <script src="./jspsych/dist/plugin-survey-likert.js"> </script>
+    <script src="./jspsych/dist/plugin-canvas-button-response.js"> </script>
+    <script src="./jspsych/dist/extension-accelerometer.js"> </script>
+    <script src="./jspsych/dist/plugin-html-keyboard-response.js"> </script>
+    <script src="./jspsych/dist/plugin-survey-multi-choice.js"> </script>
+    <script src="./jspsych/dist/plugin-initialize-microphone.js"> </script>
+    <script src="./jspsych/dist/plugin-audio-keyboard-response.js"> </script>
+    <script src="./jspsych/dist/plugin-html-audio-response.js"> </script>
+    <script src="./jspsych/dist/plugin-preload.js"> </script>
+    <script src="./songs/movementTapAudio/songKeysNames.js"> </script>
+    <script src="./jspsych/dist/custom/utils.js"> </script>
+    <script src="./jspsych/dist/plugin-survey-html-form.js"> </script>
+    <script src="./jspsych/dist/custom/beatProductionFunctions.js"></script>
+    <script src="./songs/movementTapAudio/songKeysNames.js"></script>
 
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
 
-    <script src="../utils/translations.js"></script>
-    <script src="./generalIntro.js"></script>
+    <script src="./utils/translations.js"></script>
 
     <!--Fetching timelines for each task-->
-    <script src="./movement.js"> </script>
-    <script src="./bat.js"> </script>
-    <script src="./tapping.js"> </script>
+    <script src="./src/batteries/generalIntro.js"></script>
+    <script src="./src/batteries/movement.js"> </script>
+    <script src="./src/batteries/bat.js"> </script>
+    <script src="./src/batteries/tapping.js"> </script>
 
-    <link rel="stylesheet" href="../styles/generalCSS.css">
+    <link rel="stylesheet" href="./src/styles/generalCSS.css">
 
     <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-app.js"></script>
 
@@ -55,8 +58,8 @@
 
     <script src="https://www.gstatic.com/firebasejs/ui/6.0.2/firebase-ui-auth.js"></script>
 
-    <script src="../../backend/setupLogFile.js"></script>
-    <script src="../../backend/pushDatabase.js"></script>
+    <script src="./backend/setupLogFile.js"></script>
+    <script src="./backend/pushDatabase.js"></script>
 
   </head>
 
@@ -67,16 +70,6 @@
     //Time begin experiment
     var timeBegin = Date.now();
 
-    //Which trial to be performed
-    var nodeIndex = urlParams.get('nodeIndex')
-    if(nodeIndex == undefined){
-      var nodeIndex = 0
-    }
-    var trialIndex = urlParams.get('trialIndex')
-      if(trialIndex == undefined){
-      var trialIndex = 0
-    }
-
     var jsPsych = initJsPsych({
       extensions: [
         {type: jsPsychExtensionAccelerometer }
@@ -85,82 +78,137 @@
 
         var measurePerformance = performance.getEntriesByType('resource');
 
-        var userID = urlParams.get('user')
+        var userID = jatos.urlQueryParameters.user
+        //var userID = urlParams.get('user')
 
-        var nIndex = urlParams.get('nodeIndex')
-        var tIndex = urlParams.get('trialIndex')
+        var nodeIndex = jatos.urlQueryParameters.nodeIndex
+        //var nodeIndex = urlParams.get('nodeIndex')
+        if(nodeIndex == undefined){
+          var nodeIndex = 0
+        }
+
+        //var trialIndex = urlParams.get('trialIndex')
+        var trialIndex = jatos.urlQueryParameters.trialIndex
+        if(trialIndex == undefined){
+          var trialIndex = 0
+        }
 
         var timeEnd = Date.now();
         
-        jsPsych.data.addProperties({userID: userID, lang: lang, timeEnd: timeEnd, timeBegin: timeBegin, sequenceTrials: getCookie('sequenceTrial'), nodeIndex: nIndex, tIndex: tIndex});
+        var lang = jatos.urlQueryParameters.lang
+        if(lang == undefined){
+          var lang = "eng"
+        }
+
+        jsPsych.data.addProperties({userID: userID, lang: lang, timeEnd: timeEnd, timeBegin: timeBegin, sequenceTrials: getCookie('sequenceTrial'), nodeIndex: nodeIndex, tIndex: trialIndex});
 
         var finalData = jsPsych.data.get()
         finalData['trials'].push({"performance": measurePerformance, "infoUser": navigator.userAgent})
 
-        pushJATOS(finalData, userID, "movement" + "_" + nIndex + "_" + tIndex + "_" + timeEnd).then(r => {
-          var nNodes = completeSequence.length-1
-          var nTrials = completeSequence[nodeIndex].length-1
-          if(Number(trialIndex) < Number(nTrials)){
-            window.trialIndex = Number(trialIndex)+1
+        var urlBase = ""
 
-            allowRefresh();
-            //window.location = "http://[::]:8000/src/batteries/movementWrap.html?user=" + userID + "&trialIndex=" + trialIndex + "&nodeIndex=" + nodeIndex
-            window.location = "https://pasoneto.github.io/MMBB/src/batteries/movementWrap.html?user=" + userID + "&trialIndex=" + trialIndex + "&nodeIndex=" + nodeIndex
-          } else {
-            //If there's another node, go to the next one
-            if(Number(window.nodeIndex) < nNodes){
-              window.trialIndex = Number(0)
-              window.nodeIndex = Number(window.nodeIndex)+1
+        allowRefresh();
 
-              allowRefresh();
-              //window.location = "http://[::]:8000/src/batteries/movementWrap.html?user=" + userID + "&trialIndex=" + trialIndex + "&nodeIndex=" + nodeIndex
-              window.location = "https://pasoneto.github.io/MMBB/src/batteries/movementWrap.html?user=" + userID + "&trialIndex=" + trialIndex + "&nodeIndex=" + nodeIndex
-            } else { //If end of experiment. Redirect to homepage
-              allowRefresh();
-              modifyLog(userID, "movement").then(a => { //Modify log. Done movement
-                window.location.href = '../../pages/chooseBattery.html?lang=' + lang + '&user=' + userID
-              })
-            }
+        var nNodes = completeSequence.length-1
+        var nTrials = completeSequence[Number(nodeIndex)].length-1
+
+        if(Number(trialIndex) < Number(nTrials)){
+          trialIndex = Number(trialIndex)+1
+
+          var urlRedirect = studyLinks['movementLink'] + "?user=" + userID + "&trialIndex=" + trialIndex + "&nodeIndex=" + nodeIndex + "&lang=" + lang
+          
+          console.log("Next trial")
+          console.log(urlRedirect)
+          jatos.endStudyAndRedirect(urlRedirect, finalData)
+        } else {
+          //If there's another node, go to the next one
+
+          if(nodeIndex < nNodes){
+            trialIndex = Number(0)
+            nodeIndex = Number(nodeIndex)+1
+
+            var urlRedirect = studyLinks['movementLink'] + "?user=" + userID + "&trialIndex=" + trialIndex + "&nodeIndex=" + nodeIndex + "&lang=" + lang
+
+            console.log("Next node")
+            console.log(urlRedirect)
+            jatos.endStudyAndRedirect(urlRedirect, finalData)
+
+          } else { //If end of experiment. Redirect to homepage
+            //modifyLog(userID, "movement").then(a => { //Modify log. Done movement
+              var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang
+              jatos.endStudyAndRedirect(urlRedirect, finalData)
+            //})
           }
-        })
+        }
       }
     });
     
-    var sequenceTrials = {
-      intro: generalIntroWrap,
-      movement: movementTimeline,
-      bat: batTimeline,
-      tapping: tappingTimeline
-    }
+    jatos.onLoad(() => {
 
-    document.cookie = ""
+      var lang = jatos.urlQueryParameters.lang
+      var sequenceTrials = {
+        intro: generateGeneralIntroWrap(lang, "general"),
+        movement: generateMovementTimeline(lang),
+        bat: generateBatTimeline(lang),
+        tapping: generateTappingTimeline(lang)
+      }
 
-    var alreadyStored = getCookie("sequenceTrial");
-    if (alreadyStored == "") {
-      console.log(alreadyStored)
-      var indexTrial = jsPsych.randomization.shuffle(["movement", "bat", "tapping"]);
-      var indexTrial = indexTrial.join(',')
-      document.cookie = "sequenceTrial=" + indexTrial
-    }
-    
-    //Fixing artifact created by document.cookie
-    if(alreadyStored !== ''){
-      var indexTrial = getCookie('sequenceTrial')
-      var indexTrial = indexTrial.replace('=', '');
-      var indexTrial = indexTrial.split(",")
-      indexTrial[2] = indexTrial[2].replace('=', '')
-    }
+      //Storing cookies for the sequence of trials
+      var alreadyStored = getCookie("sequenceTrial");
+      if (alreadyStored == "") {
+        console.log(alreadyStored)
+        var indexTrial = jsPsych.randomization.shuffle(["movement", "bat", "tapping"]);
+        var indexTrial = indexTrial.join(',')
 
-    var completeSequence = [sequenceTrials["intro"], sequenceTrials[indexTrial[0]], sequenceTrials[indexTrial[1]], sequenceTrials[indexTrial[2]], [[messageFinishSub]]]
+        var cookieExpires = (new Date(Date.now()+ 86400*1000)).toUTCString();
+        document.cookie = "sequenceTrial=" + indexTrial + ";" + "expires=" + cookieExpires + ";path=/"
+      }
+      
+      var alreadyStored = getCookie("sequenceTrial");
 
-    var procedureMovementFinal = {
-        timeline: completeSequence[Number(nodeIndex)][trialIndex],
-        on_timeline_start: function() {
-          console.log('This timeline has started');
+      if(alreadyStored !== ''){ //Fixing artifact created by document.cookie
+        var indexTrial = getCookie('sequenceTrial')
+        var indexTrial = indexTrial.replace('=', '');
+        var indexTrial = indexTrial.split(",")
+        indexTrial[2] = indexTrial[2].replace('=', '')
+      }
+      //Enf of Storing cookies for the sequence of trials
+
+      var messageFinishSub = {
+        type: jsPsychHtmlButtonResponse,
+        prompt: endTask[0][lang],
+        choices: [],
+        trial_duration: 3000,
+        stimulus: '',
+        on_start: function(){
+          var cookieExpires = (new Date(Date.now()+ 86400*1000)).toUTCString();
+          document.cookie = "Movement=done;" + " expires=" + cookieExpires + "; path=/"
         }
-    }
+      };
 
-    jsPsych.run([procedureMovementFinal])
+      window.completeSequence = [sequenceTrials["intro"], sequenceTrials[indexTrial[0]], sequenceTrials[indexTrial[1]], sequenceTrials[indexTrial[2]], [[messageFinishSub]]]
+
+      var nodeIndex = jatos.urlQueryParameters.nodeIndex //Which trial to be performed
+      if(nodeIndex == undefined){ 
+        var nodeIndex = 0
+      }
+
+      var trialIndex = jatos.urlQueryParameters.trialIndex
+      if(trialIndex == undefined){
+        var trialIndex = 0
+      }
+
+      var procedureMovementFinal = {
+          timeline: completeSequence[Number(nodeIndex)][trialIndex],
+          on_timeline_start: function() {
+            console.log('This timeline has started');
+            console.log(jatos.urlQueryParameters.nodeIndex)
+            console.log(jatos.urlQueryParameters.trialIndex)
+          }
+      }
+
+      jsPsych.run([procedureMovementFinal])
+    });
 
  </script>
 </html>
