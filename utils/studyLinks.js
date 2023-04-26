@@ -14,8 +14,9 @@ var studyLinks = {
   frontPageLink: "https://mmbb.ltdk.helsinki.fi/publix/2zUqwTbq1lS",
   chooseBatteryLink: "https://mmbb.ltdk.helsinki.fi/publix/OiiiHHgL2qk",
   emotionLink: "https://mmbb.ltdk.helsinki.fi/publix/YK3bdjI0tbl",
-  movementLink: "https://mmbb.ltdk.helsinki.fi/publix/bUQ32qyfJny",
+  movementLink: "https://mmbb.ltdk.helsinki.fi/publix/oLzabocUoB1",
   sharedLink: "https://mmbb.ltdk.helsinki.fi/publix/GVTvw1u3Dmj",
   surveyFriendsStrangers: "https://mmbb.ltdk.helsinki.fi/publix/yt4TjOrEuqU",
-  mbema: "https://mmbb.ltdk.helsinki.fi/publix/qlSE99GGiv7"
+  mbema: "https://mmbb.ltdk.helsinki.fi/publix/jC0EZeucWGE"
 }
+//http://127.0.0.1:9000/publix/6eM2vdecivJ?lang=eng&nodeIndex=2&tIndex=0

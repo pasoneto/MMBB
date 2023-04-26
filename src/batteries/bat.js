@@ -69,6 +69,7 @@ function generateBatTimeline(lang){
       require_movement: false,
       labels: [recurring[15][0][lang], recurring[15][1][lang]],
       on_load: function(){
+        document.getElementById("jspsych-content").style.fontSize = "5vh";
         document.getElementById("label0").style = ''
         document.getElementById("label1").style = ''
       },
@@ -124,6 +125,8 @@ function generateBatTimeline(lang){
 
       //Start beats
       function startSounds(){
+        document.getElementById("jspsych-content").style.marginTop = "0px";
+
         var allSources = [window.source1, window.source2, window.source3, window.source4, window.source5, window.source6, window.source7, window.source8, window.sourceBase]
         for(i in allSources) {
           console.log(allSources[i] == null)
@@ -133,7 +136,7 @@ function generateBatTimeline(lang){
         document.getElementById("jspsych-html-button-response-stimulus").style.display = "block"
         
         //Adjust style of circle
-        document.getElementById("jspsych-html-button-response-btngroup").style.marginTop = "500px"
+        document.getElementById("jspsych-html-button-response-btngroup").style.marginTop = "460px"
         startButton.remove()
 
         //Disable button for a 5 seconds

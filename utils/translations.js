@@ -672,8 +672,8 @@ var emotionTranslations = {
     "fi": "Energisyys"
   },
   "howStrongEmotion": {
-    "eng": "How strong are the emotions<br>expressed by the music?",
-    "fi": "Kuinka voimakkaasti musiikki<br>ilmaisee tunteita?"
+    "eng": "How strong are the emotions expressed by the music?",
+    "fi": "Kuinka voimakkaasti musiikki ilmaisee tunteita?"
   },
   "howMuchLike": {
     "eng": "How much did you like/dislike the music?",

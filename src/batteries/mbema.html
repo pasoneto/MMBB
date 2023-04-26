@@ -42,7 +42,7 @@
     var userID = jatos.urlQueryParameters.user
 
     var jsPsych = initJsPsych({
-      show_progress_bar: true,
+      show_progress_bar: false,
       override_safe_mode: true,
       on_finish: function() {
         jsPsych.data.addProperties({userID: userID, lang: lang, timeEnd: timeEnd, timeBegin: timeBegin});
@@ -120,15 +120,17 @@
       type: jsPsychHtmlButtonResponse,
       choices: [images[0].img, images[1].img],
       stimulus: mbema[2].map(i=>i[lang]),
-      button_html: ['<img src="%choice%" style="height:15vh;margin-right:5vw;"/>','<img src="%choice%" style="height:15vh;margin-left:5vw;"/>'],
+      button_html: ['<img src="%choice%" style="height:15vh"/><p id="labelMBEMALeft">' + images[0].type + '</p>',
+                    '<img src="%choice%" style="height:15vh"/><p id="labelMBEMARight">' + images[1].type + '</p>'],
       post_trial_gap: 1000
     };
     
     var melodyYesNoResp = {
       type: jsPsychHtmlButtonResponse,
-      choices: [images[2], images[3]],
+      choices: [images[2].img, images[3].img],
       stimulus: mbema[6].map(i=>i[lang]),
-      button_html: ['<img src="%choice%" style="height:15vh;margin-right:5vw;"/>','<img src="%choice%" style="height:15vh;margin-left:5vw;"/>'],
+      button_html: ['<img src="%choice%" style="height:15vh"/><p id="labelMBEMALeft">' + images[2].type + '</p>',
+                    '<img src="%choice%" style="height:15vh"/><p id="labelMBEMARight">' + images[3].type + '</p>'],
       post_trial_gap: 1000
     };	
 
@@ -533,7 +535,7 @@
       };
 
       jsPsych.run([instruction0, p1, instruction1, p2, instruction2, p3, messageFinishMBEMA]);
-      //jsPsych.run([messageFinishMBEMA]);
+      //jsPsych.run([p3]);
 	});
 
  </script>
