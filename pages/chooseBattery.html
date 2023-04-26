@@ -68,41 +68,59 @@
       document.getElementById("mySidenav").style.width = "0";
     }
 
+    var queryStringIndex = window.location.search;
+    var urlParamsIndex = new URLSearchParams(queryStringIndex);
+
+    var movementDone = urlParamsIndex.get('Movement')
+    var emotionDone = urlParamsIndex.get('Emotion')
+    var mbemaDone = urlParamsIndex.get('MBEMA')
+    var singingDone = urlParamsIndex.get('Singing')
+    var sharedDone = urlParamsIndex.get('SharedMeasures')
+
+    var allTasksNames = ["Movement", "Emotion", "MBEMA", "Singing", "SharedMeasures"]
+    var allTasksDone = [movementDone, emotionDone, mbemaDone, singingDone, sharedDone]
+    for(b in allTasksNames){
+      if(allTasksDone[b] == "done"){
+        console.log("Done " + allTasksDone[b] + "storing cookie")
+        var cookieExpires = (new Date(Date.now()+ 86400*10000)).toUTCString();
+        document.cookie = allTasksNames[b] + "=" + allTasksDone[b] + ";" + "expires=" + cookieExpires
+      }
+    }
+
     //Check which tasks have been done
-    var allTasksLinks = ["Emotion", "Singing", "SharedMeasures", "Movement", "MBEMA"]
-    allTasksLinks.map(i => {
+    allTasksNames.map(i => {
       if(getCookie(i) == "done"){
         document.getElementById("task" + i).style.background = "lightgreen";
       }
     })
 
-      var queryStringIndex = window.location.search;
-      var urlParamsIndex = new URLSearchParams(queryStringIndex);
+    var queryStringIndex = window.location.search;
+    var urlParamsIndex = new URLSearchParams(queryStringIndex);
 
-      var lang = urlParamsIndex.get('lang')
+    var lang = urlParamsIndex.get('lang')
 
-      if(lang == undefined){
-        var lang = 'eng'
-      }
+    if(lang == undefined){
+      var lang = 'eng'
+    }
 
-      function changeLangURL(lang){
-        var urlRedirect = studyLinks['chooseBatteryLink'] + "?lang=" + lang
-        location.href = urlRedirect
-      }
+    function changeLangURL(lang){
+      var urlRedirect = studyLinks['chooseBatteryLink'] + "?lang=" + lang
+      location.href = urlRedirect
+    }
 
-      document.getElementById("movementTaskIcon").innerHTML = tasksIcons['movement'][lang]
-      document.getElementById("singingTaskIcon").innerHTML = tasksIcons['singing'][lang]
-      document.getElementById("emotionTaskIcon").innerHTML = tasksIcons['emotion'][lang]
-      document.getElementById("surveyTaskIcon").innerHTML = tasksIcons['survey'][lang]
-      document.getElementById("mbemaTaskIcon").innerHTML = tasksIcons['MBEMA'][lang]
+    document.getElementById("movementTaskIcon").innerHTML = tasksIcons['movement'][lang]
+    document.getElementById("singingTaskIcon").innerHTML = tasksIcons['singing'][lang]
+    document.getElementById("emotionTaskIcon").innerHTML = tasksIcons['emotion'][lang]
+    document.getElementById("surveyTaskIcon").innerHTML = tasksIcons['survey'][lang]
+    document.getElementById("mbemaTaskIcon").innerHTML = tasksIcons['MBEMA'][lang]
 
 
-      document.getElementById("langEng").onclick = function(){
-        changeLangURL("eng")
-      }
-      document.getElementById("langFi").onclick = function(){
-        changeLangURL("fi")
-      }
+    document.getElementById("langEng").onclick = function(){
+      changeLangURL("eng")
+    }
+    document.getElementById("langFi").onclick = function(){
+      changeLangURL("fi")
+    }
 
 
     //Watch if user logged in
