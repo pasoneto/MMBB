@@ -614,7 +614,7 @@ var emotionTranslations = {
   },
   "musicEmotionPart2": {
     "eng": "Music and Emotion part 2",
-    "fi": ""
+    "fi": "Musiikki ja tunteet Osa 2"
   },
   "angry": {
     "eng": "Angry",
