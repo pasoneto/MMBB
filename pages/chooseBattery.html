@@ -7,26 +7,25 @@
     <script src="https://www.gstatic.com/firebasejs/9.13.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.13.0/firebase-auth-compat.js"></script>
     <script type="module" src="https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js"></script>
-    <link href="./src/styles/frontPageStyles.css" rel="stylesheet" type="text/css"/>
+    <link href="../src/styles/frontPageStyles.css" rel="stylesheet" type="text/css"/>
     <script src="https://www.gstatic.com/firebasejs/ui/6.0.2/firebase-ui-auth.js"></script>
-    <script src="./utils/manageCookies.js"></script>
-    <script src="./utils/studyLinks.js"></script>
+    <script src="../utils/manageCookies.js"></script>
+    <script src="../utils/studyLinks.js"></script>
 
-    <script src="./backend/pushDatabase.js"></script>
-    <script src="./backend/setupLogFile.js"></script>
+    <script src="../backend/pushDatabase.js"></script>
+    <script src="../backend/setupLogFile.js"></script>
 
-    <script src="jatos.js"></script>
   </head>
 
   <body>
     <div id="header">
       <span id="buttonOpen" onclick="openNav()">&#9776;</span>
-      <img id="gif" src="./images/coe.gif" />
+      <img id="gif" src="../images/coe.gif" />
     </div>
 
     <div id="mySidenav" class="sidenav">
       <div id="header">
-        <img id="gifSideNav" src="./images/coe.gif" />
+        <img id="gifSideNav" src="../images/coe.gif" />
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
       </div>
       <div id="userName"></div>
@@ -39,11 +38,11 @@
     </div>
     <div id="container">
       <div id="choicesEng">
-        <div id="taskMovement"><div id="linkToMovement" href=""><img src="./images/dance.svg"/></div><div id="movementTaskIcon"></div></div>
-        <div id="taskSinging"><div id="linkToSinging"><img src="./images/singing.svg"/></div><div id="singingTaskIcon"></div></div>
-        <div id="taskEmotion"><div id="linkToEmotion"><img src="./images/emotion.svg"/></div><div id="emotionTaskIcon"></div></div>
-        <div id="taskSharedMeasures"><div id="linkToSurvey"><img src="./images/survey.svg"/></div><div id="surveyTaskIcon"></div></div>
-        <div id="taskMBEMA"><div id="linkToMBEMA"><img src="./images/mbemaLogo.svg"/></div><div id="mbemaTaskIcon"></div></div>
+        <div id="taskMovement"><div id="linkToMovement" href=""><img src="../images/dance.svg"/></div><div id="movementTaskIcon"></div></div>
+        <div id="taskSinging"><div id="linkToSinging"><img src="../images/singing.svg"/></div><div id="singingTaskIcon"></div></div>
+        <div id="taskEmotion"><div id="linkToEmotion"><img src="../images/emotion.svg"/></div><div id="emotionTaskIcon"></div></div>
+        <div id="taskSharedMeasures"><div id="linkToSurvey"><img src="../images/survey.svg"/></div><div id="surveyTaskIcon"></div></div>
+        <div id="taskMBEMA"><div id="linkToMBEMA"><img src="../images/mbemaLogo.svg"/></div><div id="mbemaTaskIcon"></div></div>
       </div>
     </div>
 
@@ -53,11 +52,11 @@
 
   </body>
 
-  <script src="./utils/langFetch.js"></script>
-  <script src="./utils/translations.js"></script>
-  <script src="./utils/manageCookies.js"></script>
-  <script src="./backend/firebaseSetUp.js"></script>
-  <script src="./backend/firebaseLoginLogout.js"></script>
+  <script src="../utils/langFetch.js"></script>
+  <script src="../utils/translations.js"></script>
+  <script src="../utils/manageCookies.js"></script>
+  <script src="../backend/firebaseSetUp.js"></script>
+  <script src="../backend/firebaseLoginLogout.js"></script>
 
   <script>
 
@@ -77,16 +76,18 @@
       }
     })
 
-    jatos.onLoad(() => {
+      var queryStringIndex = window.location.search;
+      var urlParamsIndex = new URLSearchParams(queryStringIndex);
 
-      var lang = jatos.urlQueryParameters.lang
+      var lang = urlParamsIndex.get('lang')
+
       if(lang == undefined){
         var lang = 'eng'
       }
 
       function changeLangURL(lang){
         var urlRedirect = studyLinks['chooseBatteryLink'] + "?lang=" + lang
-        jatos.endStudyAndRedirect(urlRedirect)
+        location.href = urlRedirect
       }
 
       document.getElementById("movementTaskIcon").innerHTML = tasksIcons['movement'][lang]
@@ -104,37 +105,36 @@
       }
 
 
-      //Watch if user logged in
-      firebase.auth().onAuthStateChanged(user => {
-        if(user){ //If user logged in, stay in choose battery, else go to auth
-          document.getElementById("userName").innerHTML = "Hello, " + user.displayName
-          var userIDFirebase = user.uid
-          document.getElementById("linkToMovement").onclick = function(){
-            var movementRedirect = studyLinks['movementLink'] + '?lang=' + lang + '&user=' + userIDFirebase
-            jatos.endStudyAndRedirect(movementRedirect)
-          }
-          document.getElementById("linkToEmotion").onclick = function(){
-            var emotionRedirect = studyLinks['emotionLink'] + '?lang=' + lang + '&user=' + userIDFirebase
-            jatos.endStudyAndRedirect(emotionRedirect)
-          }
-          document.getElementById("taskSharedMeasures").onclick = function(){
-            var sharedDirect = studyLinks['sharedLink'] + '?lang=' + lang + '&user=' + userIDFirebase
-            jatos.endStudyAndRedirect(sharedDirect)
-          }
-          document.getElementById("taskMBEMA").onclick = function(){
-            var mbemaDirect = studyLinks['mbema'] + '?lang=' + lang + '&user=' + userIDFirebase
-            jatos.endStudyAndRedirect(mbemaDirect)
-          }
-          document.getElementById("taskSinging").onclick = function(){
-            var singingDirect = studyLinks['singingLink'] + '?lang=' + lang + '&user=' + userIDFirebase
-            jatos.endStudyAndRedirect(singingDirect)
-          }
-        } else {
-          jatos.endStudyAndRedirect(studyLinks["frontPageLink"])
+    //Watch if user logged in
+    firebase.auth().onAuthStateChanged(user => {
+      if(user){ //If user logged in, stay in choose battery, else go to auth
+        document.getElementById("userName").innerHTML = "Hello, " + user.displayName
+        var userIDFirebase = user.uid
+        document.getElementById("linkToMovement").onclick = function(){
+          var movementRedirect = studyLinks['movementLink'] + '?lang=' + lang + '&user=' + userIDFirebase
+          location.href = movementRedirect
         }
-      })
-
+        document.getElementById("linkToEmotion").onclick = function(){
+          var emotionRedirect = studyLinks['emotionLink'] + '?lang=' + lang + '&user=' + userIDFirebase
+          location.href = emotionRedirect
+        }
+        document.getElementById("taskSharedMeasures").onclick = function(){
+          var sharedDirect = studyLinks['sharedLink'] + '?lang=' + lang + '&user=' + userIDFirebase
+          location.href = sharedDirect
+        }
+        document.getElementById("taskMBEMA").onclick = function(){
+          var mbemaDirect = studyLinks['mbema'] + '?lang=' + lang + '&user=' + userIDFirebase
+          location.href = mbemaDirect
+        }
+        document.getElementById("taskSinging").onclick = function(){
+          var singingDirect = studyLinks['singingLink'] + '?lang=' + lang + '&user=' + userIDFirebase
+          location.href = singingDirect
+        }
+      } else {
+        location.href = studyLinks["frontPageLink"]
+      }
     })
+
 
 
   </script>

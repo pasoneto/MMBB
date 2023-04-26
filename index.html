@@ -10,7 +10,7 @@
     <link href="./src/styles/frontPageStyles.css" rel="stylesheet" type="text/css"/>
     <script src="https://www.gstatic.com/firebasejs/ui/6.0.2/firebase-ui-auth.js"></script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.2/firebase-ui-auth.css" />
-    <script src="jatos.js"></script>
+    <!--<script src="jatos.js"></script>-->
 
   </head>
 
@@ -36,18 +36,21 @@
 
   <script>  
 
-    jatos.onLoad(() => {
-      firebase.auth().onAuthStateChanged(user => {
-        if(user){ //If user logged in, stay in choose battery, else go to auth
-          var userID = user.uid
-          var lang = jatos.urlQueryParameters.lang
-          if(lang == undefined){
-            var lang = "eng"
-          }
-          var urlRedirect = studyLinks["chooseBatteryLink"] + '?lang=' + lang + '&user=' + userID
-          jatos.endStudyAndRedirect(urlRedirect)
+    firebase.auth().onAuthStateChanged(user => {
+      if(user){ //If user logged in, stay in choose battery, else go to auth
+        var queryStringIndex = window.location.search;
+        var urlParamsIndex = new URLSearchParams(queryStringIndex);
+
+        var userID = user.uid
+        var lang = urlParamsIndex.get('lang')
+
+        if(lang == undefined){
+          var lang = "eng"
         }
-      })
+        var urlRedirect = studyLinks["chooseBatteryLink"] + '?lang=' + lang + '&user=' + userID
+        //jatos.endStudyAndRedirect(urlRedirect)
+        location.href = urlRedirect
+      }
     })
 
   </script>
