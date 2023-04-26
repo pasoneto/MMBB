@@ -6,7 +6,8 @@ var studyLinks = {
   movementLink: "http://127.0.0.1:9000/publix/6eM2vdecivJ",
   sharedLink: "http://127.0.0.1:9000/publix/8LTSo8mJQVH",
   surveyFriendsStrangers: "http://127.0.0.1:9000/publix/Bqr87WDplaZ",
-  mbema: "http://127.0.0.1:9000/publix/QIqWTYK6CrE"
+  mbema: "http://127.0.0.1:9000/publix/QIqWTYK6CrE",
+  singingLink: ""
 }
 
 //Server
@@ -17,6 +18,7 @@ var studyLinks = {
   movementLink: "https://mmbb.ltdk.helsinki.fi/publix/oLzabocUoB1",
   sharedLink: "https://mmbb.ltdk.helsinki.fi/publix/GVTvw1u3Dmj",
   surveyFriendsStrangers: "https://mmbb.ltdk.helsinki.fi/publix/yt4TjOrEuqU",
-  mbema: "https://mmbb.ltdk.helsinki.fi/publix/jC0EZeucWGE"
+  mbema: "https://mmbb.ltdk.helsinki.fi/publix/jC0EZeucWGE",
+  singingLink: "https://mmbb.ltdk.helsinki.fi/publix/gZhYjyTfRs8"
 }
 //http://127.0.0.1:9000/publix/6eM2vdecivJ?lang=eng&nodeIndex=2&tIndex=0

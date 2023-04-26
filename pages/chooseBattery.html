@@ -40,7 +40,7 @@
     <div id="container">
       <div id="choicesEng">
         <div id="taskMovement"><div id="linkToMovement" href=""><img src="./images/dance.svg"/></div><div id="movementTaskIcon"></div></div>
-        <div id="taskSinging"><div id="linkToSinging" onclick='alert("Under construction. Come back later.")'><img src="./images/singing.svg"/></div><div id="singingTaskIcon"></div></div>
+        <div id="taskSinging"><div id="linkToSinging"><img src="./images/singing.svg"/></div><div id="singingTaskIcon"></div></div>
         <div id="taskEmotion"><div id="linkToEmotion"><img src="./images/emotion.svg"/></div><div id="emotionTaskIcon"></div></div>
         <div id="taskSharedMeasures"><div id="linkToSurvey"><img src="./images/survey.svg"/></div><div id="surveyTaskIcon"></div></div>
         <div id="taskMBEMA"><div id="linkToMBEMA"><img src="./images/mbemaLogo.svg"/></div><div id="mbemaTaskIcon"></div></div>
@@ -124,6 +124,10 @@
           document.getElementById("taskMBEMA").onclick = function(){
             var mbemaDirect = studyLinks['mbema'] + '?lang=' + lang + '&user=' + userIDFirebase
             jatos.endStudyAndRedirect(mbemaDirect)
+          }
+          document.getElementById("taskSinging").onclick = function(){
+            var singingDirect = studyLinks['singingLink'] + '?lang=' + lang + '&user=' + userIDFirebase
+            jatos.endStudyAndRedirect(singingDirect)
           }
         } else {
           jatos.endStudyAndRedirect(studyLinks["frontPageLink"])
