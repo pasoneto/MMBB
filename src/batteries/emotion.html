@@ -54,7 +54,7 @@
           var finalData = jsPsych.data.get()
           
           allowRefresh();
-          var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang
+          var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&Emotion=done"
           jatos.endStudyAndRedirect(urlRedirect, finalData)
 
     }});

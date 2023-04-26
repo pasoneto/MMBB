@@ -135,7 +135,7 @@
 
           } else { //If end of experiment. Redirect to homepage
             //modifyLog(userID, "movement").then(a => { //Modify log. Done movement
-              var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang
+              var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&Movement=done"
               jatos.endStudyAndRedirect(urlRedirect, finalData)
             //})
           }
@@ -181,8 +181,6 @@
         trial_duration: 3000,
         stimulus: '',
         on_start: function(){
-          var cookieExpires = (new Date(Date.now()+ 86400*1000)).toUTCString();
-          document.cookie = "Movement=done;" + " expires=" + cookieExpires + "; path=/"
         }
       };
 

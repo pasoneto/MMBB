@@ -81,7 +81,7 @@
     var allTasksDone = [movementDone, emotionDone, mbemaDone, singingDone, sharedDone]
     for(b in allTasksNames){
       if(allTasksDone[b] == "done"){
-        console.log("Done " + allTasksDone[b] + "storing cookie")
+        console.log("Done " + allTasksNames[b] + ". Storing cookie..")
         var cookieExpires = (new Date(Date.now()+ 86400*10000)).toUTCString();
         document.cookie = allTasksNames[b] + "=" + allTasksDone[b] + ";" + "expires=" + cookieExpires
       }
