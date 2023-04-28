@@ -188,6 +188,8 @@ function generateMovementTimeline(lang){
         //Reset jsPsych styling
         document.getElementById("label0").style = ''
         document.getElementById("label1").style = ''
+        document.getElementById("jspsych-content").style.marginTop = "0"
+        document.getElementById("jspsych-html-slider-response-wrapper").style.margin = "50px 0px";
       },
       on_finish: function(data){
         var last2 = jsPsych.data.get().last(4);
@@ -212,6 +214,9 @@ function generateMovementTimeline(lang){
       data.song = songBeingRated
       console.log(songBeingRated)
       data.stimulus = "knowThisSong"
+    },
+    on_load: function(){
+      document.getElementById("jspsych-survey-multi-choice-0").style.marginTop = "0em"
     }
   };
   //movement[8][9][lang]
@@ -224,6 +229,8 @@ function generateMovementTimeline(lang){
       on_load: function(){
         document.getElementById("label0").style = ''
         document.getElementById("label1").style = ''
+        document.getElementById("jspsych-content").style.marginTop = "0"
+        document.getElementById("jspsych-html-slider-response-wrapper").style.margin = "50px 0px";
       },
       on_finish: function(data){
         var last2 = jsPsych.data.get().last(4);
@@ -240,6 +247,8 @@ function generateMovementTimeline(lang){
       on_load: function(){
         document.getElementById("label0").style = ''
         document.getElementById("label1").style = ''
+        document.getElementById("jspsych-content").style.marginTop = "0"
+        document.getElementById("jspsych-html-slider-response-wrapper").style.margin = "50px 0px";
       },
       on_finish: function(data){
         var last2 = jsPsych.data.get().last(5);
@@ -256,6 +265,8 @@ function generateMovementTimeline(lang){
       on_load: function(){
         document.getElementById("label0").style = ''
         document.getElementById("label1").style = ''
+        document.getElementById("jspsych-content").style.marginTop = "0"
+        document.getElementById("jspsych-html-slider-response-wrapper").style.margin = "50px 0px";
       },
       on_finish: function(data){
         var last2 = jsPsych.data.get().last(5);
@@ -272,6 +283,8 @@ function generateMovementTimeline(lang){
       on_load: function(){
         document.getElementById("label0").style = ''
         document.getElementById("label1").style = ''
+        document.getElementById("jspsych-content").style.marginTop = "0"
+        document.getElementById("jspsych-html-slider-response-wrapper").style.margin = "50px 0px";
       },
       on_finish: function(data){
         var last2 = jsPsych.data.get().last(6);
@@ -288,6 +301,8 @@ function generateMovementTimeline(lang){
       on_load: function(){
         document.getElementById("label0").style = ''
         document.getElementById("label1").style = ''
+        document.getElementById("jspsych-content").style.marginTop = "0"
+        document.getElementById("jspsych-html-slider-response-wrapper").style.margin = "50px 0px";
       },
       on_finish: function(data){
         var last2 = jsPsych.data.get().last(3);
@@ -413,6 +428,9 @@ function generateMovementTimeline(lang){
       data.song = songBeingRated
       console.log(songBeingRated)
       data.stimulus = "whereKeptPhone"
+    },
+    on_load: function(){
+      document.getElementById("jspsych-survey-multi-choice-0").style.marginTop = "0em"
     }
   };
 
@@ -432,6 +450,9 @@ function generateMovementTimeline(lang){
       data.song = songBeingRated
       console.log(songBeingRated)
       data.stimulus = "whereKeptPhone"
+    },
+    on_load: function(){
+      document.getElementById("jspsych-survey-multi-choice-0").style.marginTop = "0em"
     }
   };
 
@@ -451,6 +472,9 @@ function generateMovementTimeline(lang){
       data.song = songBeingRated
       console.log(songBeingRated)
       data.stimulus = "whereKeptPhone"
+    },
+    on_load: function(){
+      document.getElementById("jspsych-survey-multi-choice-0").style.marginTop = "0em"
     }
   };
 

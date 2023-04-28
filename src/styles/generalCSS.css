@@ -139,6 +139,10 @@ button[id^="bat"] {
   border-radius: 100px;
   background: #ff4b38;
 }
+#jspsych-survey-multi-choice-question{
+  margin-top: 0em;
+  margin-bottom: 0em;
+}
 /*End of BAT styles*/
 
 /*Movement task jspsych-html-slider-response-next*/
