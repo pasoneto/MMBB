@@ -38,7 +38,6 @@
     <script src="./utils/manageCookies.js"> </script>
 
     <script src="./backend/setupLogFile.js"></script>
-    <script src="./backend/pushDatabase.js"></script>
 
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
 
@@ -74,8 +73,8 @@
     }});
 
     jatos.onLoad(() => {
-
-      jsPsych.run([frontPageShared, sharedMeasurementsTrial, isFriendsStrangers, messageFinishSharedMeasures])
+      //isFriendsStrangers
+      jsPsych.run([frontPageShared, sharedMeasurementsTrial, messageFinishSharedMeasures])
 
     })
     
