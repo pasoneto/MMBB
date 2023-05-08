@@ -147,9 +147,17 @@ function generateMovementTimeline(lang){
       ],
   }
 
-  var instruction0 = {
+  var instruction0a = {
       type: jsPsychInstructions,
-      pages: movement[2].map(i=> i[lang]),
+      pages: movement[2][0].map(i=> i[lang]),
+      button_label_next: buttons[0][lang],
+      button_label_previous: buttons[1][lang],
+      show_clickable_nav: true
+  }
+
+  var instruction0b = {
+      type: jsPsychInstructions,
+      pages: movement[2][1].map(i=> i[lang]),
       button_label_next: buttons[0][lang],
       button_label_previous: buttons[1][lang],
       show_clickable_nav: true
@@ -180,22 +188,17 @@ function generateMovementTimeline(lang){
   }
 
   var familiarityRating = {
-      type: jsPsychHtmlSliderResponse,
-      stimulus: movement[8][0][lang],
-      require_movement: false,
-      labels: [movement[8][1][lang], movement[8][2][lang]],
-      on_load: function(){
-        //Reset jsPsych styling
-        document.getElementById("label0").style = ''
-        document.getElementById("label1").style = ''
-        document.getElementById("jspsych-content").style.marginTop = "0"
-        document.getElementById("jspsych-html-slider-response-wrapper").style.margin = "50px 0px";
-      },
-      on_finish: function(data){
-        var last2 = jsPsych.data.get().last(4);
-        var songBeingRated = last2['trials'][0].stimulus
-        data.song = songBeingRated
-      }
+    type: jsPsychSurveyLikert,
+    questions: [{
+      prompt: movement[8][0][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + movement[8][1][lang] + "</div><div id='rightLabel'>" + movement[8][2][lang] + "</div></div>",  
+      labels: [1, 2, 3, 4, 5].map(i => "<div id='labelLikert'>" + i + "</div>"),
+    }],
+    randomize_question_order: false,
+    on_finish: function(data){
+      var last2 = jsPsych.data.get().last(4);
+      var songBeingRated = last2['trials'][0].stimulus
+      data.song = songBeingRated
+    }
   };
 
   var knowThisSong = {
@@ -219,96 +222,75 @@ function generateMovementTimeline(lang){
       document.getElementById("jspsych-survey-multi-choice-0").style.marginTop = "0em"
     }
   };
-  //movement[8][9][lang]
 
   var likingBeatRating = {
-      type: jsPsychHtmlSliderResponse,
-      stimulus: movement[8][7][lang],
-      require_movement: false,
-      labels: [movement[8][5][lang], movement[8][6][lang]],
-      on_load: function(){
-        document.getElementById("label0").style = ''
-        document.getElementById("label1").style = ''
-        document.getElementById("jspsych-content").style.marginTop = "0"
-        document.getElementById("jspsych-html-slider-response-wrapper").style.margin = "50px 0px";
-      },
-      on_finish: function(data){
-        var last2 = jsPsych.data.get().last(4);
-        var songBeingRated = last2['trials'][0].stimulus
-        data.song = songBeingRated
-      }
+    type: jsPsychSurveyLikert,
+    questions: [{
+      prompt: movement[8][7][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + movement[8][5][lang] + "</div><div id='rightLabel'>" + movement[8][6][lang] + "</div></div>",  
+      labels: [1, 2, 3, 4, 5].map(i => "<div id='labelLikert'>" + i + "</div>"),
+    }],
+    randomize_question_order: false,
+    on_finish: function(data){
+      var last2 = jsPsych.data.get().last(4);
+      var songBeingRated = last2['trials'][0].stimulus
+      data.song = songBeingRated
+    }
   };
 
   var likingRating = {
-      type: jsPsychHtmlSliderResponse,
-      stimulus: movement[8][3][lang],
-      require_movement: false,
-      labels: [movement[8][5][lang], movement[8][6][lang]],
-      on_load: function(){
-        document.getElementById("label0").style = ''
-        document.getElementById("label1").style = ''
-        document.getElementById("jspsych-content").style.marginTop = "0"
-        document.getElementById("jspsych-html-slider-response-wrapper").style.margin = "50px 0px";
-      },
-      on_finish: function(data){
-        var last2 = jsPsych.data.get().last(5);
-        var songBeingRated = last2['trials'][0].stimulus
-        data.song = songBeingRated
-      }
+    type: jsPsychSurveyLikert,
+    questions: [{
+      prompt: movement[8][3][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + movement[8][5][lang] + "</div><div id='rightLabel'>" + movement[8][6][lang] + "</div></div>",  
+      labels: [1, 2, 3, 4, 5].map(i => "<div id='labelLikert'>" + i + "</div>"),
+    }],
+    randomize_question_order: false,
+    on_finish: function(data){
+      var last2 = jsPsych.data.get().last(5);
+      var songBeingRated = last2['trials'][0].stimulus
+      data.song = songBeingRated
+    },
   };
 
   var grooveRatingBeat = {
-      type: jsPsychHtmlSliderResponse,
-      stimulus: movement[8][8][lang],
-      require_movement: false,
-      labels: [movement[8][5][lang], movement[8][6][lang]],
-      on_load: function(){
-        document.getElementById("label0").style = ''
-        document.getElementById("label1").style = ''
-        document.getElementById("jspsych-content").style.marginTop = "0"
-        document.getElementById("jspsych-html-slider-response-wrapper").style.margin = "50px 0px";
-      },
-      on_finish: function(data){
-        var last2 = jsPsych.data.get().last(5);
-        var songBeingRated = last2['trials'][0].stimulus
-        data.song = songBeingRated
-      }
+    type: jsPsychSurveyLikert,
+    questions: [{
+      prompt: movement[8][8][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + movement[8][5][lang] + "</div><div id='rightLabel'>" + movement[8][6][lang] + "</div></div>",  
+      labels: [1, 2, 3, 4, 5].map(i => "<div id='labelLikert'>" + i + "</div>"),
+    }],
+    randomize_question_order: false,
+    on_finish: function(data){
+      var last2 = jsPsych.data.get().last(5);
+      var songBeingRated = last2['trials'][0].stimulus
+      data.song = songBeingRated
+    }
   };
 
   var grooveRating = {
-      type: jsPsychHtmlSliderResponse,
-      stimulus: movement[8][4][lang],
-      require_movement: false,
-      labels: [movement[8][5][lang], movement[8][6][lang]],
-      on_load: function(){
-        document.getElementById("label0").style = ''
-        document.getElementById("label1").style = ''
-        document.getElementById("jspsych-content").style.marginTop = "0"
-        document.getElementById("jspsych-html-slider-response-wrapper").style.margin = "50px 0px";
-      },
-      on_finish: function(data){
-        var last2 = jsPsych.data.get().last(6);
-        var songBeingRated = last2['trials'][0].stimulus
-        data.song = songBeingRated
-      }
+    type: jsPsychSurveyLikert,
+    questions: [{
+      prompt: movement[8][5][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + movement[8][5][lang] + "</div><div id='rightLabel'>" + movement[8][6][lang] + "</div></div>",  
+      labels: [1, 2, 3, 4, 5].map(i => "<div id='labelLikert'>" + i + "</div>"),
+    }],
+    randomize_question_order: false,
+    on_finish: function(data){
+      var last2 = jsPsych.data.get().last(6);
+      var songBeingRated = last2['trials'][0].stimulus
+      data.song = songBeingRated
+    }
   };
 
   var howDifficultMovement = {
-      type: jsPsychHtmlSliderResponse,
-      stimulus: recurring[9][lang],
-      require_movement: false,
-      labels: [recurring[10][lang], recurring[11][lang]],
-      on_load: function(){
-        document.getElementById("label0").style = ''
-        document.getElementById("label1").style = ''
-        document.getElementById("jspsych-content").style.marginTop = "0"
-        document.getElementById("jspsych-html-slider-response-wrapper").style.margin = "50px 0px";
-      },
-      on_finish: function(data){
-        var last2 = jsPsych.data.get().last(3);
-        var songBeingRated = last2['trials'][0].stimulus
-        data.song = songBeingRated
-      }
+    type: jsPsychSurveyLikert,
+    questions: [{
+      prompt: recurring[9][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + recurring[10][lang] + "</div><div id='rightLabel'>" + recurring[11][lang] + "</div></div>",  
+      labels: [1, 2, 3, 4, 5].map(i => "<div id='labelLikert'>" + i + "</div>"),
+    }],
+    randomize_question_order: false,
+    on_finish: function(data){
+      var last2 = jsPsych.data.get().last(3);
+      var songBeingRated = last2['trials'][0].stimulus
+      data.song = songBeingRated
+    }
   };
 
   var phonePocket = {
@@ -411,16 +393,10 @@ function generateMovementTimeline(lang){
       },
   }
 
-  //Three different phoneInPocket objects because they all fetch from the song that is being rated at a different position, depending on the timeline
   var phoneInPocket1 = {
-    type: jsPsychSurveyMultiChoice,
+    type: jsPsychSurveyText,
     questions: [
-      {
-        prompt: movement[9][0][lang], 
-        name: 'phoneInPocket', 
-        options: [movement[9][1][lang], movement[9][2][lang], movement[9][3][lang], movement[9][4][lang]], 
-        required: true
-      }, 
+      {prompt: movement[9][0][lang]},
     ],
     on_finish: function(data){
       var last2 = jsPsych.data.get().last(4);
@@ -428,21 +404,13 @@ function generateMovementTimeline(lang){
       data.song = songBeingRated
       console.log(songBeingRated)
       data.stimulus = "whereKeptPhone"
-    },
-    on_load: function(){
-      document.getElementById("jspsych-survey-multi-choice-0").style.marginTop = "0em"
     }
-  };
+  }
 
   var phoneInPocket2 = {
-    type: jsPsychSurveyMultiChoice,
+    type: jsPsychSurveyText,
     questions: [
-      {
-        prompt: movement[9][0][lang], 
-        name: 'phoneInPocket', 
-        options: [movement[9][1][lang], movement[9][2][lang], movement[9][3][lang], movement[9][4][lang]], 
-        required: true
-      }, 
+      {prompt: movement[9][0][lang]},
     ],
     on_finish: function(data){
       var last2 = jsPsych.data.get().last(6);
@@ -450,21 +418,13 @@ function generateMovementTimeline(lang){
       data.song = songBeingRated
       console.log(songBeingRated)
       data.stimulus = "whereKeptPhone"
-    },
-    on_load: function(){
-      document.getElementById("jspsych-survey-multi-choice-0").style.marginTop = "0em"
     }
-  };
+  }
 
   var phoneInPocket3 = {
-    type: jsPsychSurveyMultiChoice,
+    type: jsPsychSurveyText,
     questions: [
-      {
-        prompt: movement[9][0][lang], 
-        name: 'phoneInPocket', 
-        options: [movement[9][1][lang], movement[9][2][lang], movement[9][3][lang], movement[9][4][lang]], 
-        required: true
-      }, 
+      {prompt: movement[9][0][lang]},
     ],
     on_finish: function(data){
       var last2 = jsPsych.data.get().last(8);
@@ -472,17 +432,15 @@ function generateMovementTimeline(lang){
       data.song = songBeingRated
       console.log(songBeingRated)
       data.stimulus = "whereKeptPhone"
-    },
-    on_load: function(){
-      document.getElementById("jspsych-survey-multi-choice-0").style.marginTop = "0em"
     }
-  };
+  }
+
 
   //Original
   //var movementTimeline = [[preloadSongs1, instruction0, promptAccel, loadAccel, phonePocket, countDown, trialAccelerometer1, pickUpPhone, howDifficultMovement, instruction1, phonePocket, countDown, trialAccelerometer2, pickUpPhone, howDifficultMovement, likingBeatRating, grooveRatingBeat, instruction2, phonePocket, countDown, trialAccelerometer3, pickUpPhone, howDifficultMovement, familiarityRating, likingRating, grooveRating, instruction3, chooseSongs, preloadChosen, phonePocket, countDown, trialAccelerometer4, pickUpPhone, howDifficultMovement, familiarityRating, likingRating, grooveRating]];
 
   //Step by step
-  var firstMovement = [instruction0, promptAccel, loadAccel, phonePocket, countDown, trialAccelerometer1, pickUpPhone, howDifficultMovement, phoneInPocket1] //4
+  var firstMovement = [instruction0a, promptAccel, loadAccel, instruction0b, phonePocket, countDown, trialAccelerometer1, pickUpPhone, howDifficultMovement, phoneInPocket1] //4
   var secondMovement = [preloadSongs1, instruction1, phonePocket, countDown, trialAccelerometer2, pickUpPhone, howDifficultMovement, likingBeatRating, grooveRatingBeat, phoneInPocket2] //6
   var thirdMovement = [preloadSongs1, instruction2, phonePocket, countDown, trialAccelerometer3, pickUpPhone, howDifficultMovement, familiarityRating, likingRating, grooveRating, knowThisSong, phoneInPocket3] //8
   var fourthMovement = [instruction3, chooseSongs, preloadChosen, phonePocket, countDown, trialAccelerometer4, pickUpPhone, howDifficultMovement, familiarityRating, likingRating, grooveRating, knowThisSong, phoneInPocket3] //8

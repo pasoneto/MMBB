@@ -7,7 +7,15 @@ function generateGeneralIntroWrap(lang, subBattery){
       auto_preload: false,
   }
 
-  var requirements = {
+  var requirementsRhythm = {
+    type: jsPsychInstructions,
+    pages: recurring[16].map(i=>[i[lang]]), 
+    button_label_next: buttons[0][lang],
+    button_label_previous: buttons[1][lang],
+    show_clickable_nav: true
+  };
+
+  var requirementsMovement = {
     type: jsPsychInstructions,
     pages: recurring[12].map(i=>[i[lang]]), 
     button_label_next: buttons[0][lang],
@@ -95,14 +103,17 @@ function generateGeneralIntroWrap(lang, subBattery){
   };
 
   var howDifficult = {
-      type: jsPsychHtmlSliderResponse,
-      stimulus: recurring[9][lang],
-      require_movement: false,
-      labels: [recurring[10][lang], recurring[11][lang]],
-      on_load: function(){
-        document.getElementById("label0").style = ''
-        document.getElementById("label1").style = ''
-      },
+    type: jsPsychSurveyLikert,
+    questions: [{
+      prompt: recurring[9][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + recurring[10][lang] + "</div><div id='rightLabel'>" + recurring[11][lang] + "</div></div>",  
+      labels: [1, 2, 3, 4, 5].map(i => "<div id='labelLikert'>" + i + "</div>"),
+    }],
+    randomize_question_order: false,
+    on_finish: function(data){
+      var last2 = jsPsych.data.get().last(3);
+      var songBeingRated = last2['trials'][0].stimulus
+      data.song = songBeingRated
+    }
   };
 
   var messageEndTask = {
@@ -117,11 +128,16 @@ function generateGeneralIntroWrap(lang, subBattery){
   };
 
   var generalIntroEmotion = [[preloadTest, testAudioIOS, testAudioAndroid, gettingHelp]];
-  var generalIntroWrap = [[preloadTest, requirements, lockIOS, lockAndroid, testAudioIOS, testAudioAndroid, gettingHelp]];
+  var generalIntroWrapRhythm = [[preloadTest, requirementsRhythm, lockIOS, lockAndroid, testAudioIOS, testAudioAndroid, gettingHelp]];
+  var generalIntroWrapMovement = [[preloadTest, requirementsMovement, lockIOS, lockAndroid, testAudioIOS, testAudioAndroid, gettingHelp]];
   
   if(subBattery == "emotion"){
     return(generalIntroEmotion)
-  } else {
-    return(generalIntroWrap)
+  } 
+  if(subBattery == "rhythm"){
+    return(generalIntroWrapRhythm)
+  }
+  else {
+    return(generalIntroWrapMovement)
   }
 }

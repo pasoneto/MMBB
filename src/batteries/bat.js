@@ -64,15 +64,12 @@ function generateBatTimeline(lang){
 
   //How satisfied with the final alignment found for beat.
   var howSatisfiedBeat = {
-      type: jsPsychHtmlSliderResponse,
-      stimulus: beatProduction[4][0][lang],
-      require_movement: false,
-      labels: [recurring[15][0][lang], recurring[15][1][lang]],
-      on_load: function(){
-        document.getElementById("jspsych-content").style.fontSize = "5vh";
-        document.getElementById("label0").style = ''
-        document.getElementById("label1").style = ''
-      },
+    type: jsPsychSurveyLikert,
+    questions: [{
+      prompt: beatProduction[4][0][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + recurring[15][0][lang] + "</div><div id='rightLabel'>" + recurring[15][1][lang] + "</div></div>",  
+      labels: [1, 2, 3, 4, 5].map(i => "<div id='labelLikert'>" + i + "</div>"),
+    }],
+    randomize_question_order: false,
   };
 
   var trialBeat = {
@@ -125,7 +122,6 @@ function generateBatTimeline(lang){
 
       //Start beats
       function startSounds(){
-        document.getElementById("jspsych-content").style.marginTop = "0px";
 
         var allSources = [window.source1, window.source2, window.source3, window.source4, window.source5, window.source6, window.source7, window.source8, window.sourceBase]
         for(i in allSources) {
@@ -161,14 +157,12 @@ function generateBatTimeline(lang){
   };
 
   var howDifficult = {
-      type: jsPsychHtmlSliderResponse,
-      stimulus: recurring[9][lang],
-      require_movement: false,
-      labels: [recurring[10][lang], recurring[11][lang]],
-      on_load: function(){
-        document.getElementById("label0").style = ''
-        document.getElementById("label1").style = ''
-      },
+    type: jsPsychSurveyLikert,
+    questions: [{
+      prompt: recurring[9][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + recurring[10][lang] + "</div><div id='rightLabel'>" + recurring[11][lang] + "</div></div>",  
+      labels: [1, 2, 3, 4, 5].map(i => "<div id='labelLikert'>" + i + "</div>"),
+    }],
+    randomize_question_order: false,
   };
 
   var frontPageInstructions = [frontPage, instruction2]

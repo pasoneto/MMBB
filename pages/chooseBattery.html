@@ -41,6 +41,7 @@
         <div id="taskMovement"><div id="linkToMovement" href=""><img src="../images/dance.svg"/></div><div id="movementTaskIcon"></div></div>
         <div id="taskSinging"><div id="linkToSinging"><img src="../images/singing.svg"/></div><div id="singingTaskIcon"></div></div>
         <div id="taskEmotion"><div id="linkToEmotion"><img src="../images/emotion.svg"/></div><div id="emotionTaskIcon"></div></div>
+        <div id="taskRhythm"><div id="linkToRhythm"><img src="../images/rhythm.svg"/></div><div id="rhythmTaskIcon"></div></div>
         <div id="taskSharedMeasures"><div id="linkToSurvey"><img src="../images/survey.svg"/></div><div id="surveyTaskIcon"></div></div>
         <div id="taskMBEMA"><div id="linkToMBEMA"><img src="../images/mbemaLogo.svg"/></div><div id="mbemaTaskIcon"></div></div>
       </div>
@@ -76,9 +77,10 @@
     var mbemaDone = urlParamsIndex.get('MBEMA')
     var singingDone = urlParamsIndex.get('Singing')
     var sharedDone = urlParamsIndex.get('SharedMeasures')
+    var rhythmDone = urlParamsIndex.get('Rhythm')
 
-    var allTasksNames = ["Movement", "Emotion", "MBEMA", "Singing", "SharedMeasures"]
-    var allTasksDone = [movementDone, emotionDone, mbemaDone, singingDone, sharedDone]
+    var allTasksNames = ["Movement", "Emotion", "MBEMA", "Singing", "SharedMeasures", "Rhythm"]
+    var allTasksDone = [movementDone, emotionDone, mbemaDone, singingDone, sharedDone, rhythmDone]
     for(b in allTasksNames){
       if(allTasksDone[b] == "done"){
         console.log("Done " + allTasksNames[b] + ". Storing cookie..")
@@ -113,6 +115,7 @@
     document.getElementById("emotionTaskIcon").innerHTML = tasksIcons['emotion'][lang]
     document.getElementById("surveyTaskIcon").innerHTML = tasksIcons['survey'][lang]
     document.getElementById("mbemaTaskIcon").innerHTML = tasksIcons['MBEMA'][lang]
+    document.getElementById("rhythmTaskIcon").innerHTML = tasksIcons['rhythm'][lang]
 
 
     document.getElementById("langEng").onclick = function(){
@@ -147,6 +150,10 @@
         document.getElementById("taskSinging").onclick = function(){
           var singingDirect = studyLinks['singingLink'] + '?lang=' + lang + '&user=' + userIDFirebase
           location.href = singingDirect
+        }
+        document.getElementById("taskRhythm").onclick = function(){
+          var rhythmDirect = studyLinks['rhythmLink'] + '?lang=' + lang + '&user=' + userIDFirebase
+          location.href = rhythmDirect
         }
       } else {
         location.href = studyLinks["frontPageLink"]

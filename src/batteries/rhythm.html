@@ -44,7 +44,8 @@
 
     <!--Fetching timelines for each task-->
     <script src="./src/batteries/generalIntro.js"></script>
-    <script src="./src/batteries/movement.js"> </script>
+    <script src="./src/batteries/bat.js"> </script>
+    <script src="./src/batteries/tapping.js"> </script>
 
     <link rel="stylesheet" href="./src/styles/generalCSS.css">
 
@@ -113,7 +114,7 @@
         if(Number(trialIndex) < Number(nTrials)){
           trialIndex = Number(trialIndex)+1
 
-          var urlRedirect = studyLinks['movementLink'] + "?user=" + userID + "&trialIndex=" + trialIndex + "&nodeIndex=" + nodeIndex + "&lang=" + lang
+          var urlRedirect = studyLinks['rhythmLink'] + "?user=" + userID + "&trialIndex=" + trialIndex + "&nodeIndex=" + nodeIndex + "&lang=" + lang
           
           console.log("Next trial")
           console.log(urlRedirect)
@@ -125,17 +126,15 @@
             trialIndex = Number(0)
             nodeIndex = Number(nodeIndex)+1
 
-            var urlRedirect = studyLinks['movementLink'] + "?user=" + userID + "&trialIndex=" + trialIndex + "&nodeIndex=" + nodeIndex + "&lang=" + lang
+            var urlRedirect = studyLinks['rhythmLink'] + "?user=" + userID + "&trialIndex=" + trialIndex + "&nodeIndex=" + nodeIndex + "&lang=" + lang
 
             console.log("Next node")
             console.log(urlRedirect)
             jatos.endStudyAndRedirect(urlRedirect, finalData)
 
           } else { //If end of experiment. Redirect to homepage
-            //modifyLog(userID, "movement").then(a => { //Modify log. Done movement
               var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&Movement=done"
               jatos.endStudyAndRedirect(urlRedirect, finalData)
-            //})
           }
         }
       }
@@ -145,9 +144,31 @@
 
       var lang = jatos.urlQueryParameters.lang
       var sequenceTrials = {
-        intro: generateGeneralIntroWrap(lang, "general"),
-        movement: generateMovementTimeline(lang)
+        intro: generateGeneralIntroWrap(lang, "rhythm"),
+        bat: generateBatTimeline(lang),
+        tapping: generateTappingTimeline(lang)
       }
+
+      //Storing cookies for the sequence of trials
+      var alreadyStored = getCookie("sequenceTrial");
+      if (alreadyStored == "") {
+        console.log(alreadyStored)
+        var indexTrial = jsPsych.randomization.shuffle(["bat", "tapping"]);
+        var indexTrial = indexTrial.join(',')
+
+        var cookieExpires = (new Date(Date.now()+ 86400*1000)).toUTCString();
+        document.cookie = "sequenceTrial=" + indexTrial + ";" + "expires=" + cookieExpires + ";path=/"
+      }
+      
+      var alreadyStored = getCookie("sequenceTrial");
+
+      if(alreadyStored !== ''){ //Fixing artifact created by document.cookie
+        var indexTrial = getCookie('sequenceTrial')
+        var indexTrial = indexTrial.replace('=', '');
+        var indexTrial = indexTrial.split(",")
+        indexTrial[1] = indexTrial[1].replace('=', '')
+      }
+      //Enf of Storing cookies for the sequence of trials
 
       var messageFinishSub = {
         type: jsPsychHtmlButtonResponse,
@@ -159,7 +180,7 @@
         }
       };
 
-      window.completeSequence = [sequenceTrials["intro"], sequenceTrials["movement"], [[messageFinishSub]]]
+      window.completeSequence = [sequenceTrials["intro"], sequenceTrials[indexTrial[0]], sequenceTrials[indexTrial[1]], [[messageFinishSub]]]
 
       var nodeIndex = jatos.urlQueryParameters.nodeIndex //Which trial to be performed
       if(nodeIndex == undefined){ 

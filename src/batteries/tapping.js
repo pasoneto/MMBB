@@ -119,14 +119,12 @@ function generateTappingTimeline(lang){
   }
 
   var howDifficult = {
-      type: jsPsychHtmlSliderResponse,
-      stimulus: recurring[9][lang],
-      require_movement: false,
-      labels: [recurring[10][lang], recurring[11][lang]],
-      on_load: function(){
-        document.getElementById("label0").style = ''
-        document.getElementById("label1").style = ''
-      },
+    type: jsPsychSurveyLikert,
+    questions: [{
+      prompt: recurring[9][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + recurring[10][lang] + "</div><div id='rightLabel'>" + recurring[11][lang] + "</div></div>",  
+      labels: [1, 2, 3, 4, 5].map(i => "<div id='labelLikert'>" + i + "</div>"),
+    }],
+    randomize_question_order: false,
   };
 
   var messageEndTask = {
