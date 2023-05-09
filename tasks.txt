@@ -1,3 +1,1 @@
-- Shorten main batteries;
-- Make sliders categorical 5/7 points;
 - Weight and size: move to movement battery
