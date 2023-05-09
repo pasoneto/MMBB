@@ -51,8 +51,13 @@ button, #jspsych-html-slider-response-next, .jspsych-btn, #jspsych-survey-multi-
   color: #fff;
 }
 #jspsych-content{
+  display: flex;
+  flex-flow: column wrap;
+  height: 85vh;
+  align-items: center;
+  justify-content: center;
   font-family: Garamond, serif;
-  font-size: 6vh;
+  font-size: 5vh;
   line-height: 1.3em;
   color: black;
   max-height: inherit;
@@ -74,7 +79,7 @@ button, #jspsych-html-slider-response-next, .jspsych-btn, #jspsych-survey-multi-
    text-align:center;
    border-radius:51%;
    left: 39%;
-   margin-top: 110px
+   margin-top: 50%
 }
 .deg-0 {
    transform:translate(110px)
@@ -261,6 +266,31 @@ button[id^="bat"] {
 #jspsych-instructions-next{
   background: purple;
 }
+.jspsych-instructions-nav{
+    margin-top: auto;
+    margin-bottom: 5%;
+}
+
+/*Text survey styles*/
+
+#jspsych-survey-text-form{
+  display: flex;
+  flex-flow: column wrap;
+  height: 100%;
+  align-items: center;
+  justify-content: center
+}
+#jspsych-survey-text-0{
+  margin: auto;
+}
+#jspsych-survey-text-next{
+  width: 50%
+}
+/*End of text survey styles*/
+
+#textInInstruction{
+  margin-top: auto
+}
 #videoContainer {
    aspect-ratio: 16/9;
 }
@@ -311,9 +341,10 @@ button:focus {
   min-width: 150px;
   width: 20vw;
 }
-#dontLock, #increaseVolume, #oneMinute, #music, #break, #pocket{
+#dontLock, #increaseVolume, #oneMinute, #music, #break, #pocket, #dance, #tableSVG, #ear{
   min-width: 150px;
   width: 20vw;
+  margin-top: auto
 }
 #phonePocket{
   width: 85vw
@@ -394,6 +425,9 @@ button:focus {
   display: flex;
   width: 100%;
   justify-content: center
+}
+#jspsych-survey-likert-form{
+  width: 100%
 }
 #labelLikert{
   color: black

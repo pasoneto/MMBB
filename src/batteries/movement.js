@@ -299,6 +299,10 @@ function generateMovementTimeline(lang){
       prompt: movement[3].map(i=>i[lang]),
       trial_duration: 7000,
       choices: ["NO_KEYS"],
+      on_load: function(){
+        document.getElementById("pocket").style.marginTop = 0
+      }
+
   }
 
   var countDown = {
@@ -307,6 +311,10 @@ function generateMovementTimeline(lang){
       prompt: "<img id='tableSVG' src='./images/voiceSVG.svg'></img>",
       trial_duration: 6500,
       choices: ["NO_KEYS"],
+      on_load: function(){
+        document.getElementById("tableSVG").style.marginTop = 0
+      }
+
   }
 
   var pickUpPhone = {
@@ -315,6 +323,9 @@ function generateMovementTimeline(lang){
       prompt: "<img id='tableSVG' src='./images/voiceSVG.svg'></img>",
       choices: ["NO_KEYS"],
       trial_duration: 10000,
+      on_load: function(){
+        document.getElementById("tableSVG").style.marginTop = 0
+      }
   }
 
   var trialAccelerometer1 = {
@@ -326,6 +337,10 @@ function generateMovementTimeline(lang){
       extensions: [
         {type: jsPsychExtensionAccelerometer }
       ],
+      on_load: function(){
+        document.getElementById("pocket").style.marginTop = 0
+      }
+
   }
 
   var randomMetronomeIndex = random(0, songKeys['9'].length -1)
@@ -346,6 +361,9 @@ function generateMovementTimeline(lang){
       extensions: [
         {type: jsPsychExtensionAccelerometer }
       ],
+      on_load: function(){
+        document.getElementById("pocket").style.marginTop = 0
+      }
   }
 
   var songsToPreload = [randomElPesebreSong, randomMetronomeSong]
@@ -391,12 +409,16 @@ function generateMovementTimeline(lang){
           var allData = jsPsych.data.get().values()
           trial.stimulus = './songs/movementTapAudio/modifiedAudio/' + window.randomChosenSong
       },
+      on_load: function(){
+        document.getElementById("pocket").style.marginTop = 0
+      }
+
   }
 
   var phoneInPocket1 = {
     type: jsPsychSurveyText,
     questions: [
-      {prompt: movement[9][0][lang]},
+      {prompt: movement[9][0][lang], columns: 30}
     ],
     on_finish: function(data){
       var last2 = jsPsych.data.get().last(4);
@@ -410,7 +432,7 @@ function generateMovementTimeline(lang){
   var phoneInPocket2 = {
     type: jsPsychSurveyText,
     questions: [
-      {prompt: movement[9][0][lang]},
+      {prompt: movement[9][0][lang], columns: 30},
     ],
     on_finish: function(data){
       var last2 = jsPsych.data.get().last(6);
@@ -424,7 +446,7 @@ function generateMovementTimeline(lang){
   var phoneInPocket3 = {
     type: jsPsychSurveyText,
     questions: [
-      {prompt: movement[9][0][lang]},
+      {prompt: movement[9][0][lang], columns: 30},
     ],
     on_finish: function(data){
       var last2 = jsPsych.data.get().last(8);

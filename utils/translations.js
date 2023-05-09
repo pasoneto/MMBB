@@ -12,8 +12,11 @@ var movement = [
         "fi": "Kehon liikkeesi tallennetaan automaattisesti puhelimesi kiiht yvyysant ureiden avulla"}],
   [{"eng": "To move freely, you will be asked to put the phone on your pocket, with the screen facing away from your body: <br><img id='phonePocket' src='./images/phonePocket2.jpeg'></img>", 
         "fi": "<br><img id='phonePocket' src='./images/phonePocket2.jpeg'></img>"},
-  {"eng": "If you are not wearing headphones or earplugs, you may want to increase the volume of your phone before you put it in your pocket<br><img id='increaseVolume' src='./images/increaseVolume.svg'></img>",
-    "fi": "Jos sinulla ei ole kuulokkeita, voit lisätä puhelimesi äänenvoimakkuutta ennen kuin laitat sen taskuusi"},
+  {"eng": "If you are not wearing headphones or earplugs,",
+    "fi": "Jos sinulla ei ole kuulokkeita,"},
+  {"eng": "you may want to increase the volume of your phone before you put it in your pocket<br><img id='increaseVolume' src='./images/increaseVolume.svg'></img>",
+   "fi":  "voit lisätä puhelimesi äänenvoimakkuutta ennen kuin laitat sen taskuusi<br><img id='increaseVolume' src='./images/increaseVolume.svg'></img>"
+  },
   {"eng": "Do not lock the screen of your phone<br><img id='dontLock' src='./images/dontLock.svg'></img>", 
         "fi": "Älä lukiste puhelimesi nayttöä<br><img id='dontLock' src='./images/dontLock.svg'></img>"},
   {"eng": "Before each task starts, you will hear a voice countdown<br><img id='tableSVG' src='./images/voiceSVG.svg'></img>", 

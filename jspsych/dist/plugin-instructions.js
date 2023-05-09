@@ -97,6 +97,8 @@ var jsPsychInstructions = (function (jspsych) {
           }
           function show_current_page() {
               var html = trial.pages[current_page];
+              html = "<div id='textInInstruction'>" + html + "</div>"
+              console.log(html)
               var pagenum_display = "";
               if (trial.show_page_number) {
                   pagenum_display =

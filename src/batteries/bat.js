@@ -132,7 +132,7 @@ function generateBatTimeline(lang){
         document.getElementById("jspsych-html-button-response-stimulus").style.display = "block"
         
         //Adjust style of circle
-        document.getElementById("jspsych-html-button-response-btngroup").style.marginTop = "460px"
+        document.getElementById("jspsych-html-button-response-btngroup").style.marginTop = "auto"
         startButton.remove()
 
         //Disable button for a 5 seconds

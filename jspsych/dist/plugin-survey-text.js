@@ -132,7 +132,7 @@ var jsPsychSurveyText = (function (jspsych) {
               html +=
                   '<div id="jspsych-survey-text-' +
                       question_index +
-                      '" class="jspsych-survey-text-question" style="margin: 2em 0em; margin-bottom: 0px">';
+                      '" class="jspsych-survey-text-question">';
               html += '<div class="jspsych-survey-text">' + question.prompt + "</div>";
               var autofocus = i == 0 ? "autofocus" : "";
               var req = question.required ? "required" : "";
