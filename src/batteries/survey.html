@@ -18,6 +18,7 @@
     <script src="https://unpkg.com/@jspsych/plugin-audio-keyboard-response@1.1.0"></script>
     <script src="./jspsych/dist/plugin-audio-button-response.js"> </script>
     <script src="./jspsych/dist/plugin-html-slider-response-multiple.js"> </script>
+    <script src="./jspsych/dist/plugin-fullscreen.js"> </script>
     <script src="./jspsych/dist/plugin-html-button-response.js"> </script>
     <script src="./jspsych/dist/plugin-survey-html-form.js"> </script>
     <script src="./jspsych/dist/plugin-image-slider-response.js"> </script>
@@ -81,6 +82,11 @@
         alert('You did not put the pair number as URL parameter!')
       }
       console.log("Group: " + groupNumber)
+
+      var enterFullscreen = {
+        type: jsPsychFullscreen,
+        fullscreen_mode: true
+      }
     
       var sessionNumber = {
         type: jsPsychSurveyHtmlForm,
@@ -382,25 +388,25 @@
       //- Please rate your relationship with the second person you danced and created a playlist with   
       var evenOdd = groupNumber % 2
 
-      var A = [howFeeling, closeness1, inter,
+      var A = [enterFullscreen, howFeeling, closeness1, inter,
                howWasPlaylist, howFeeling, closeness1, inter,
                howFeeling, closeness1, questionsAboutSongs, inter, 
                howFeeling, closeness1, modelQuestionnaire2, modelQuestionnaire3, inter,
                howFeeling, closeness1, questionsAboutSongs, relationshipFriend, feedbackSpace]
 
-      var B = [howFeeling, closeness1, inter,
+      var B = [enterFullscreen, howFeeling, closeness1, inter,
                howFeeling, closeness1, questionsAboutSongs, inter,
                howFeeling, closeness1, howWasPlaylist, inter,
                howFeeling, closeness1, questionsAboutSongs, inter, 
                howFeeling, closeness1, modelQuestionnaire2, modelQuestionnaire3,
                howFeeling, closeness1, relationshipFriend, feedbackSpace]
 
-      var C = [howFeeling, closeness1, inter,
+      var C = [enterFullscreen, howFeeling, closeness1, inter,
                howWasPlaylist, howFeeling,closeness1, inter,
                howFeeling, closeness1, questionsAboutSongs, linkToMMBB, howFeeling, closeness1, inter,
                howFeeling, closeness1, questionsAboutSongs, relationshipFriend, feedbackSpace]
 
-      var D = [howFeeling, closeness1, inter,
+      var D = [enterFullscreen, howFeeling, closeness1, inter,
                howFeeling, closeness1, questionsAboutSongs, inter,
                howFeeling, closeness1, howWasPlaylist, inter,
                howFeeling, closeness1, questionsAboutSongs, linkToMMBB, howFeeling, closeness1, inter,

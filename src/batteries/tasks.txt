@@ -1,9 +1,5 @@
 #Implement terms of service and privacy statements.
 
-#Friends-strangers: Thank you for your responses. Call the experimenter. Hide "next" button for 1-2 minutes.
-
-#In the auth phase, ask basic demographic questions
-
 #Emotion: 
 - add adjust volume trial (el Pesebre); 
 - Implement translations (translations in the sheet)
