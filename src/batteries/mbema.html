@@ -20,6 +20,7 @@
     <script src="./jspsych/dist/plugin-html-audio-response.js"> </script>
     <script src="./jspsych/dist/plugin-html-slider-response.js"> </script>
     <link href="./jspsych/dist/jspsych-full.css" rel="stylesheet" type="text/css" /> 
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 	  <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -40,8 +41,7 @@
 	  margin-bottom: 2vw;
     }
 
-/* make jspsych-instructions-btn identical to jspsych-btn  */
-.jspsych-instructions-btn {
+/* make jspsych-instructions-btn identical to jspsych-btn  */ .jspsych-instructions-btn {
   display: inline-block;
   padding: 6px 12px;
   margin: 0px;
@@ -99,7 +99,7 @@
 
     var jsPsych = initJsPsych({
       show_progress_bar: true,
-	  message_progress_bar: recurring[17][lang],
+	    message_progress_bar: recurring["completionProgress"][lang],
       override_safe_mode: true,
       on_finish: function() {
         jsPsych.data.addProperties({userID: userID, lang: lang, timeEnd: timeEnd, timeBegin: timeBegin});
@@ -642,7 +642,7 @@
 		require_movement: false,
 		slider_width: '80vw',
 		labels: [mbema[8][1][lang],mbema[8][2][lang]],
-		button_label:buttons[0][lang],
+		button_label:buttons["continue"][lang],
 	};
 
 	var p2_feedback = {
@@ -651,7 +651,7 @@
 		require_movement: false,
 		slider_width: '80vw',
 		labels: [mbema[8][1][lang],mbema[8][2][lang]],
-		button_label:buttons[0][lang],
+		button_label:buttons["continue"][lang],
 	};
 
 	var p3_feedback = {
@@ -660,7 +660,7 @@
 		require_movement: false,
 		slider_width: '80vw',
 		labels: [mbema[8][1][lang],mbema[8][2][lang]],
-		button_label:buttons[0][lang],
+		button_label:buttons["continue"][lang],
 	};
 
       var messageFinishMBEMA = {

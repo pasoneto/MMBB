@@ -200,6 +200,10 @@
           timeline: completeSequence[Number(nodeIndex)][trialIndex],
           on_timeline_start: function() {
             var nodeIndex = jatos.urlQueryParameters.nodeIndex
+            if(nodeIndex == undefined){
+              var nodeIndex = 0
+            }
+
             var trialIndex = jatos.urlQueryParameters.trialIndex
 
             if(nodeIndex === 0){
