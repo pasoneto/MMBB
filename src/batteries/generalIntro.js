@@ -9,33 +9,33 @@ function generateGeneralIntroWrap(lang, subBattery){
 
   var requirementsRhythm = {
     type: jsPsychInstructions,
-    pages: recurring[16].map(i=>[i[lang]]), 
-    button_label_next: buttons[0][lang],
-    button_label_previous: buttons[1][lang],
+    pages: [1, 3, 4, 17].map(i => recurring["instruction" + i][lang]), 
+    button_label_next: buttons["next"][lang],
+    button_label_previous: buttons["previous"][lang],
     show_clickable_nav: true
   };
 
   var requirementsMovement = {
     type: jsPsychInstructions,
-    pages: recurring[12].map(i=>[i[lang]]), 
-    button_label_next: buttons[0][lang],
-    button_label_previous: buttons[1][lang],
+    pages: [1, 2, 4].map(i => recurring["instruction" + i][lang]), 
+    button_label_next: buttons["next"][lang],
+    button_label_previous: buttons["previous"][lang],
     show_clickable_nav: true
   };
 
   var lIOS = {
     type: jsPsychInstructions,
-    pages: recurring[13].map(i=>[i[lang]]), 
-    button_label_next: buttons[0][lang],
-    button_label_previous: buttons[1][lang],
+    pages: [5, 6, 7, 8, 9, 10].map(i=> recurring["instruction" + i][lang]), 
+    button_label_next: buttons["next"][lang],
+    button_label_previous: buttons["previous"][lang],
     show_clickable_nav: true
   };
 
   var lAndroid = {
     type: jsPsychInstructions,
-    pages: recurring[14].map(i=>[i[lang]]), 
-    button_label_next: buttons[0][lang],
-    button_label_previous: buttons[1][lang],
+    pages: [5, 12, 13, 14, 15, 16].map(i=> recurring["instruction" + i][lang]), 
+    button_label_next: buttons["next"][lang],
+    button_label_previous: buttons["previous"][lang],
     show_clickable_nav: true
   };
 
@@ -59,7 +59,7 @@ function generateGeneralIntroWrap(lang, subBattery){
   var tAudioIOS = {
     type: jsPsychAudioButtonResponse,
     stimulus: './songs/movementTapAudio/elPesebre.mp3',
-    choices: [recurring[7][lang]],
+    choices: [buttons["continue"][lang]],
     prompt: initialInstructions[0][4][lang] + '<img src="./images/muteButton.png" id="muteButton"></img>',
     on_load: function(){
       document.getElementById("jspsych-content").style.fontSize = "20px";
@@ -69,7 +69,7 @@ function generateGeneralIntroWrap(lang, subBattery){
   var tAudioAndroid = {
     type: jsPsychAudioButtonResponse,
     stimulus: './songs/movementTapAudio/elPesebre.mp3',
-    choices: [recurring[7][lang]],
+    choices: [buttons["continue"][lang]],
     prompt: initialInstructions[0][0][lang],
     on_load: function(){
       document.getElementById("jspsych-content").style.fontSize = "20px";
@@ -105,7 +105,7 @@ function generateGeneralIntroWrap(lang, subBattery){
   var howDifficult = {
     type: jsPsychSurveyLikert,
     questions: [{
-      prompt: recurring[9][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + recurring[10][lang] + "</div><div id='rightLabel'>" + recurring[11][lang] + "</div></div>",  
+      prompt: recurring["howEasy"][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + recurring["veryHard"][lang] + "</div><div id='rightLabel'>" + recurring["veryEasy"][lang] + "</div></div>",
       labels: [1, 2, 3, 4, 5].map(i => "<div id='labelLikert'>" + i + "</div>"),
     }],
     randomize_question_order: false,
@@ -118,7 +118,7 @@ function generateGeneralIntroWrap(lang, subBattery){
 
   var messageEndTask = {
     type: jsPsychHtmlButtonResponse,
-    prompt: recurring[3][lang],
+    prompt: recurring["endTask1"][lang],
     choices: [],
     trial_duration: 3000,
     stimulus: '',

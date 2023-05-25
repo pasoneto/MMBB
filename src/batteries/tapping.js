@@ -1,7 +1,7 @@
 function generateTappingTimeline(lang){
   var frontPage = {
       type: jsPsychInstructions,
-      pages: tapping[5].map(i=>i[lang]),
+      pages: [tapping["openPage"][lang]],
       button_label_next: "Next",
       button_label_previous: "Previous",
       show_clickable_nav: true,
@@ -9,7 +9,7 @@ function generateTappingTimeline(lang){
 
   var instruction0 = {
       type: jsPsychInstructions,
-      pages: tapping[0].map(i=>i[lang]),
+      pages: [1, 2, 3].map(i=> tapping["instruction" + i][lang]),
       button_label_next: "Next",
       button_label_previous: "Previous",
       show_clickable_nav: true,
@@ -17,7 +17,7 @@ function generateTappingTimeline(lang){
 
   var instruction1 = {
       type: jsPsychInstructions,
-      pages: tapping[1].map(i=>i[lang]),
+      pages: [4, 5, 6].map(i=> tapping["instruction" + i][lang]),
       button_label_next: "Next",
       button_label_previous: "Previous",
       show_clickable_nav: true,
@@ -25,7 +25,7 @@ function generateTappingTimeline(lang){
 
   var instruction2 = {
       type: jsPsychInstructions,
-      pages: tapping[2].map(i=>i[lang]),
+      pages: [7, 8, 9].map(i=> tapping["instruction" + i][lang]),
       button_label_next: "Next",
       button_label_previous: "Previous",
       show_clickable_nav: true,
@@ -34,6 +34,7 @@ function generateTappingTimeline(lang){
   var instruction3 = {
       type: jsPsychInstructions,
       pages: tapping[3].map(i=>i[lang]),
+      pages: [10, 11, 12].map(i=> tapping["instruction" + i][lang]),
       button_label_next: "Next",
       button_label_previous: "Previous",
       show_clickable_nav: true,
@@ -60,11 +61,11 @@ function generateTappingTimeline(lang){
 
   var trialTapping0 = {
       type: jsPsychAudioButtonResponse,
-      choices: [tapping[4][0][lang]],
+      choices: [tapping["tapHere"][lang]],
       stimulus: './songs/movementTapAudio/silence.wav',
-      prompt: '<div id="recordingText">Recording taps...</div>',
+      prompt: '<div id="recordingText">' + tapping["recording"][lang] + '</div>',
       trial_duration: 30000,
-      button_html: '<button type="button" ' + eventTypeStart + '="buttonDown()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">' + tapping[4][0][lang] + '</p></button>',
+      button_html: '<button type="button" ' + eventTypeStart + '="buttonDown()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">' + tapping["tapHere"][lang] + '</p></button>',
       response_ends_trial: false,
       on_load: function(){
         document.querySelector(".jspsych-display-element").style.border = "red"
@@ -80,8 +81,8 @@ function generateTappingTimeline(lang){
 
   var trialTapping1 = {
       type: jsPsychAudioButtonResponse,
-      choices: [tapping[4][0][lang]],
-      prompt: '<div id="recordingText">Recording taps...</div>',
+      choices: [tapping["tapHere"][lang]],
+      prompt: '<div id="recordingText">' + tapping["recording"][lang] + '</div>',
       stimulus: './songs/movementTapAudio/modifiedAudio/' + randomMetronome,
       trial_duration: 63000,
       button_html: '<button type="button" ' + eventTypeStart + '="buttonDown()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">' + tapping[4][0][lang] + '</p></button>',
@@ -101,10 +102,10 @@ function generateTappingTimeline(lang){
   var trialTapping3 = {
       type: jsPsychAudioButtonResponse,
       choices: [tapping[4][0][lang]],
-      prompt: '<div id="recordingText">Recording taps...</div>',
+      prompt: '<div id="recordingText">' + tapping["recording"][lang] + '</div>',
       stimulus: './songs/movementTapAudio/modifiedAudio/' + randomElPesebreSong,
       trial_duration: 63000,
-      button_html: '<button type="button" ' + eventTypeStart + '="buttonDown()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">' + tapping[4][0][lang] + '</p></button>',
+      button_html: '<button type="button" ' + eventTypeStart + '="buttonDown()" id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">' + tapping["tapHere"][lang] + '</p></button>',
       response_ends_trial: false,
       on_load: function(){
         document.querySelector(".jspsych-display-element").style.border = "red"
@@ -121,7 +122,7 @@ function generateTappingTimeline(lang){
   var howDifficult = {
     type: jsPsychSurveyLikert,
     questions: [{
-      prompt: recurring[9][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + recurring[10][lang] + "</div><div id='rightLabel'>" + recurring[11][lang] + "</div></div>",  
+      prompt: recurring["howEasy"][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + recurring["veryEasy"][lang] + "</div><div id='rightLabel'>" + recurring["veryHard"][lang] + "</div></div>",  
       labels: [1, 2, 3, 4, 5].map(i => "<div id='labelLikert'>" + i + "</div>"),
     }],
     randomize_question_order: false,
@@ -129,7 +130,7 @@ function generateTappingTimeline(lang){
 
   var messageEndTask = {
     type: jsPsychHtmlButtonResponse,
-    prompt: recurring[3][lang],
+    prompt: recurring["endTask1"][lang],
     choices: [],
     trial_duration: 3000,
     stimulus: '',

@@ -270,7 +270,6 @@ button[id^="bat"] {
     margin-top: auto;
     margin-bottom: 5%;
 }
-
 /*Text survey styles*/
 
 #jspsych-survey-text-form{
@@ -429,10 +428,14 @@ button:focus {
 #jspsych-survey-likert-form{
   width: 100%
 }
+#likertPrompt{
+  font-size: 5vh
+}
 #labelLikert{
   color: black
 }
 #leftLabel{
+  font-size: 3vh;
   width: 50%;
   text-align: left;
   padding: 0;
@@ -440,6 +443,7 @@ button:focus {
   margin-top: 25px
 }
 #rightLabel{
+  font-size: 3vh;
   width: 50%;
   text-align: right;
   padding: 0;

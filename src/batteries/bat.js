@@ -1,7 +1,7 @@
 function generateBatTimeline(lang){
   var frontPage = {
       type: jsPsychInstructions,
-      pages: beatProduction[3].map(i=>i[lang]),
+      pages: [beatProduction["openPage"][lang]],
       button_label_next: buttons[0][lang],
       button_label_previous: buttons[1][lang],
       show_clickable_nav: true,
@@ -13,7 +13,7 @@ function generateBatTimeline(lang){
     
   var instruction2 = {
       type: jsPsychInstructions,
-      pages: beatProduction[0].map(i=>i[lang]),
+      pages: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(i=> beatProduction["instruction" + i][lang]),
       button_label_next: buttons[0][lang],
       button_label_previous: buttons[1][lang],
       show_clickable_nav: true,
@@ -21,7 +21,7 @@ function generateBatTimeline(lang){
 
   var instruction3 = {
       type: jsPsychInstructions,
-      pages: beatProduction[1].map(i=>i[lang]),
+      pages: [11, 12].map(i=> beatProduction["instruction" + i][lang]),
       button_label_next: buttons[0][lang],
       button_label_previous: buttons[1][lang],
       show_clickable_nav: true,
@@ -66,7 +66,7 @@ function generateBatTimeline(lang){
   var howSatisfiedBeat = {
     type: jsPsychSurveyLikert,
     questions: [{
-      prompt: beatProduction[4][0][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + recurring[15][0][lang] + "</div><div id='rightLabel'>" + recurring[15][1][lang] + "</div></div>",  
+      prompt: beatProduction["howSatisfied"][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + recurring["notAtAll"][lang] + "</div><div id='rightLabel'>" + recurring["veryMuch"][lang] + "</div></div>",  
       labels: [1, 2, 3, 4, 5].map(i => "<div id='labelLikert'>" + i + "</div>"),
     }],
     randomize_question_order: false,
@@ -74,15 +74,7 @@ function generateBatTimeline(lang){
 
   var trialBeat = {
     type: jsPsychHtmlButtonResponse,
-    //stimulus: '<div id="arrowsContainer"><p style="margin: 0px; height: 30px; margin-bottom: 10px">' + beatProduction[2][0][lang] + '</p>'+
-    //'<button id="subtract">'+
-    //'<i class="fa fa-arrow-left" aria-hidden="true"></i>'+
-    //'</button>'+
-    //'<button type="button" id="add">'+
-    //'<i class="fa fa-arrow-right" aria-hidden="true"></i>'+
-    //'</button>'+
-    //'</div>',
-    stimulus: '<p style="margin: 0px; height: 30px; margin-bottom: 10px">' + beatProduction[2][0][lang] + '</p>'+
+    stimulus: '<p style="margin: 0px; height: 30px; margin-bottom: 10px">' + beatProduction["adjustBeat"][lang] + '</p>'+
               '<div class="circle">'+
                 '<button class= "circle deg-4" id="bat0"></button>' +
                 '<button class= "circle deg-5" id="bat1"></button>' +
@@ -93,7 +85,7 @@ function generateBatTimeline(lang){
                 '<button class= "circle deg-2" id="bat6"></button>' +
                 '<button class= "circle deg-3" id="bat7"></button>' +
               '</div>',
-    choices: ['Continue'],
+    choices: [buttons["continue"][lang]],
     prompt: "",
     on_start: function(data){
       data.initialOffset = window.initialOffset;
@@ -159,7 +151,7 @@ function generateBatTimeline(lang){
   var howDifficult = {
     type: jsPsychSurveyLikert,
     questions: [{
-      prompt: recurring[9][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + recurring[10][lang] + "</div><div id='rightLabel'>" + recurring[11][lang] + "</div></div>",  
+      prompt: recurring["howEasy"][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + recurring["veryEasy"][lang] + "</div><div id='rightLabel'>" + recurring["veryHard"][lang] + "</div></div>",  
       labels: [1, 2, 3, 4, 5].map(i => "<div id='labelLikert'>" + i + "</div>"),
     }],
     randomize_question_order: false,

@@ -128,7 +128,7 @@ var jsPsychSurveyLikert = (function (jspsych) {
           for (var i = 0; i < trial.questions.length; i++) {
               var question = trial.questions[question_order[i]];
               // add question
-              html += '<label class="jspsych-survey-likert-statement">' + question.prompt + "</label>";
+              html += '<label class="jspsych-survey-likert-statement"> <div id="likertPrompt">' + question.prompt + "</div></label>";
               // add options
               var width = 100 / question.labels.length;
               var options_string = '<ul class="jspsych-survey-likert-opts" data-name="' +

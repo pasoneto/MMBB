@@ -6,6 +6,7 @@ var pathChooseBattery = '/assets/pages/'
 var pathUtils = '/assets/utils/'
 var pathAuth = '/assets/backend/'
 var pathStyles = '/assets/src/styles/'
+var pathPlugins = '/assets/jspsych/dist/'
 
 //'content-type': 'multipart/form-data'
 
@@ -58,6 +59,16 @@ fs.readdir("./", (err, files) => {
     });
   });
 });
+
+//Fetching plugins
+fs.readdir("../../jspsych/dist", (err, files) => {
+  files.forEach(i => {
+    fs.readFile("../../jspsych/dist/" + i, 'utf8', (err, data) => {
+      console.log(i)
+      pushFileJATOS(data, pathPlugins + i)
+    })
+  })
+})
 
 fs.readFile("../../index.html", 'utf8', (err, data) => {
   pushFileJATOS(data, pathIndex + "index.html" , 28)

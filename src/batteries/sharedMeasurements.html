@@ -26,7 +26,6 @@
     <script src="./jspsych/dist/plugin-survey.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/@jspsych/plugin-survey@0.2.1/css/survey.css">
 
-    <script src="./utils/langFetch.js"></script>
     <script src="./utils/translations.js"></script>
     <script src="./utils/studyLinks.js"></script>
     <script src="./src/batteries/generalIntro.js"></script>
@@ -36,8 +35,6 @@
     <script src="./utils/preventRefresh.js"> </script>
     <script src="./utils/identifyOS.js"> </script>
     <script src="./utils/manageCookies.js"> </script>
-
-    <script src="./backend/setupLogFile.js"></script>
 
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
 
@@ -51,7 +48,7 @@
 
     var jsPsych = initJsPsych({
       show_progress_bar: true,
-        auto_update_progress_bar: false,
+        auto_update_progress_bar: true,
         on_finish: function() {
 
           var lang = jatos.urlQueryParameters.lang
@@ -63,8 +60,6 @@
 
           var dFinal = jsPsych.data.get()
           
-          //modifyLog(userID, "sharedM").then(a => { //Modify log. Done shared measurements
-
           allowRefresh();
 
           var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&SharedMeasures=done"
@@ -73,12 +68,12 @@
     }});
 
     jatos.onLoad(() => {
-      //isFriendsStrangers
-      jsPsych.run([frontPageShared, sharedMeasurementsTrial, messageFinishSharedMeasures])
-
+      var lang = jatos.urlQueryParameters.lang
+      var short = jatos.urlQueryParameters.short
+      var timelineSharedMeasurements = generateSharedMeasurementsTimeline(lang, short)
+      jsPsych.run(timelineSharedMeasurements)
     })
     
 
  </script>
-
 </html>

@@ -65,7 +65,7 @@ var prompt_songs = function(lang){
           songCodes.push(i)
           albumCovers.push('./songs/movementTapAudio/imageAlbums/' + i + '.jpg');
       }
-      html = "<div id='songName'>" + movement[7][0][lang] + "</div>"
+      html = "<div id='songName'>" + movement["instruction21"][lang] + "</div>"
       for(i in listSongs){
         var songPath = listSongs[i].src
         var songName = songNames[i]
@@ -96,7 +96,7 @@ function generateMovementTimeline(lang){
   var chooseSongs = {
     type: jsPsychHtmlSongSelectorResponse,
     stimulus: '',
-    choices: [buttons[0][lang]],
+    choices: [buttons["next"][lang]],
     on_start: function(trial){
       trial.stimulus = prompt_songs(lang)
     },
@@ -114,17 +114,17 @@ function generateMovementTimeline(lang){
 
   var frontPageMovement = {
       type: jsPsychInstructions,
-      pages: [movement[0][0][lang]],
-      button_label_next: buttons[0][lang],
-      button_label_previous: buttons[1][lang],
+      pages: [movement['movementOpen'][lang]],
+      button_label_next: buttons["next"][lang],
+      button_label_previous: buttons["previous"][lang],
       show_clickable_nav: true
   }
 
   var promptAcc = {
       type: jsPsychInstructions,
-      pages: [movement[1][1][lang]],
-      button_label_next: buttons[0][lang],
-      button_label_previous: buttons[1][lang],
+      pages: [movement["instruction1"][lang]],
+      button_label_next: buttons["next"][lang],
+      button_label_previous: buttons["previous"][lang],
       show_clickable_nav: true
   }
 
@@ -139,7 +139,7 @@ function generateMovementTimeline(lang){
   var loadAccel = {
       type: jsPsychAudioKeyboardResponse,
       stimulus: './songs/movementTapAudio/silence.wav',
-      prompt: movement[1][0][lang] + '<br><img id="logoLoading" src="./images/loading2.gif">',
+      prompt: movement["accessAcelerometer"][lang] + '<br><img id="logoLoading" src="./images/loading2.gif">',
       trial_duration: 3000,
       choices: ["NO_KEYS"],
       extensions: [
@@ -149,48 +149,48 @@ function generateMovementTimeline(lang){
 
   var instruction0a = {
       type: jsPsychInstructions,
-      pages: movement[2][0].map(i=> i[lang]),
-      button_label_next: buttons[0][lang],
-      button_label_previous: buttons[1][lang],
+      pages: ['instruction2', 'instruction3'].map(i => movement[i][lang]),
+      button_label_next: buttons["next"][lang],
+      button_label_previous: buttons["previous"][lang],
       show_clickable_nav: true
   }
 
   var instruction0b = {
       type: jsPsychInstructions,
-      pages: movement[2][1].map(i=> i[lang]),
-      button_label_next: buttons[0][lang],
-      button_label_previous: buttons[1][lang],
+      pages: [4, 5, 6, 7, 8, 9, 10, 11, 12].map(i => movement["instruction" + i][lang]),
+      button_label_next: buttons["next"][lang],
+      button_label_previous: buttons["previous"][lang],
       show_clickable_nav: true
   }
 
   var instruction1 = {
       type: jsPsychInstructions,
-      pages: movement[4].map(i=> i[lang]),
-      button_label_next: buttons[0][lang],
-      button_label_previous: buttons[1][lang],
+      pages: [14, 15, 16, 17, 18].map(i => movement["instruction" + i][lang]),
+      button_label_next: buttons["next"][lang],
+      button_label_previous: buttons["previous"][lang],
       show_clickable_nav: true
   }
 
   var instruction2 = {
       type: jsPsychInstructions,
-      pages: movement[5].map(i=> i[lang]),
-      button_label_next: buttons[0][lang],
-      button_label_previous: buttons[1][lang],
+      pages: [19, 20].map(i => movement["instruction" + i][lang]),
+      button_label_next: buttons["next"][lang],
+      button_label_previous: buttons["previous"][lang],
       show_clickable_nav: true
   }
 
   var instruction3 = {
       type: jsPsychInstructions,
-      pages: movement[6].map(i=>i[lang]),
-      button_label_next: buttons[0][lang],
-      button_label_previous: buttons[1][lang],
+      pages: [21, 22, 23, 24, 25, 26].map(i => movement["instruction" + i][lang]),
+      button_label_next: buttons["next"][lang],
+      button_label_previous: buttons["previous"][lang],
       show_clickable_nav: true
   }
 
   var familiarityRating = {
     type: jsPsychSurveyLikert,
     questions: [{
-      prompt: movement[8][0][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + movement[8][1][lang] + "</div><div id='rightLabel'>" + movement[8][2][lang] + "</div></div>",  
+      prompt: movement["howFamiliar"][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + movement["notAtAll"][lang] + "</div><div id='rightLabel'>" + movement["veryMuch"][lang] + "</div></div>",  
       labels: [1, 2, 3, 4, 5].map(i => "<div id='labelLikert'>" + i + "</div>"),
     }],
     randomize_question_order: false,
@@ -205,7 +205,7 @@ function generateMovementTimeline(lang){
     type: jsPsychSurveyMultiChoice,
     questions: [
       {
-        prompt: movement[8][9][lang], 
+        prompt: movement["haveYouHeardThisSong"][lang], 
         name: 'knowThisSongQuestion', 
         options: [initialInstructions[0][1][lang], initialInstructions[0][2][lang], initialInstructions[0][5][lang]],
         required: true
@@ -226,7 +226,7 @@ function generateMovementTimeline(lang){
   var likingBeatRating = {
     type: jsPsychSurveyLikert,
     questions: [{
-      prompt: movement[8][7][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + movement[8][5][lang] + "</div><div id='rightLabel'>" + movement[8][6][lang] + "</div></div>",  
+      prompt: movement["howMuchLikeBeat"][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + movement["notAtAll"][lang] + "</div><div id='rightLabel'>" + movement["veryMuch"][lang] + "</div></div>",  
       labels: [1, 2, 3, 4, 5].map(i => "<div id='labelLikert'>" + i + "</div>"),
     }],
     randomize_question_order: false,
@@ -240,7 +240,7 @@ function generateMovementTimeline(lang){
   var likingRating = {
     type: jsPsychSurveyLikert,
     questions: [{
-      prompt: movement[8][3][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + movement[8][5][lang] + "</div><div id='rightLabel'>" + movement[8][6][lang] + "</div></div>",  
+      prompt: movement["howMuchLikeSong"][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + movement["notAtAll"][lang] + "</div><div id='rightLabel'>" + movement["veryMuch"][lang] + "</div></div>",  
       labels: [1, 2, 3, 4, 5].map(i => "<div id='labelLikert'>" + i + "</div>"),
     }],
     randomize_question_order: false,
@@ -254,7 +254,7 @@ function generateMovementTimeline(lang){
   var grooveRatingBeat = {
     type: jsPsychSurveyLikert,
     questions: [{
-      prompt: movement[8][8][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + movement[8][5][lang] + "</div><div id='rightLabel'>" + movement[8][6][lang] + "</div></div>",  
+      prompt: movement["howMuchMoveSong"][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + movement["notAtAll"][lang] + "</div><div id='rightLabel'>" + movement["veryMuch"][lang] + "</div></div>",  
       labels: [1, 2, 3, 4, 5].map(i => "<div id='labelLikert'>" + i + "</div>"),
     }],
     randomize_question_order: false,
@@ -268,7 +268,7 @@ function generateMovementTimeline(lang){
   var grooveRating = {
     type: jsPsychSurveyLikert,
     questions: [{
-      prompt: movement[8][5][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + movement[8][5][lang] + "</div><div id='rightLabel'>" + movement[8][6][lang] + "</div></div>",  
+      prompt: movement["howMuchMoveSong"][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + movement["notAtAll"][lang] + "</div><div id='rightLabel'>" + movement["veryMuch"][lang] + "</div></div>",  
       labels: [1, 2, 3, 4, 5].map(i => "<div id='labelLikert'>" + i + "</div>"),
     }],
     randomize_question_order: false,
@@ -282,7 +282,7 @@ function generateMovementTimeline(lang){
   var howDifficultMovement = {
     type: jsPsychSurveyLikert,
     questions: [{
-      prompt: recurring[9][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + recurring[10][lang] + "</div><div id='rightLabel'>" + recurring[11][lang] + "</div></div>",  
+      prompt: recurring["howEasy"][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + recurring["veryEasy"][lang] + "</div><div id='rightLabel'>" + recurring["veryHard"][lang] + "</div></div>",  
       labels: [1, 2, 3, 4, 5].map(i => "<div id='labelLikert'>" + i + "</div>"),
     }],
     randomize_question_order: false,
@@ -296,7 +296,7 @@ function generateMovementTimeline(lang){
   var phonePocket = {
       type: jsPsychAudioKeyboardResponse,
       stimulus: './songs/movementTapAudio/instructionsAudio/phonePocket.mp3',
-      prompt: movement[3].map(i=>i[lang]),
+      prompt: [movement["instruction13"][lang]],
       trial_duration: 7000,
       choices: ["NO_KEYS"],
       on_load: function(){
@@ -418,7 +418,7 @@ function generateMovementTimeline(lang){
   var phoneInPocket1 = {
     type: jsPsychSurveyText,
     questions: [
-      {prompt: movement[9][0][lang], columns: 30}
+      {prompt: movement["wherePhone"][lang], columns: 30}
     ],
     on_finish: function(data){
       var last2 = jsPsych.data.get().last(4);
@@ -432,7 +432,7 @@ function generateMovementTimeline(lang){
   var phoneInPocket2 = {
     type: jsPsychSurveyText,
     questions: [
-      {prompt: movement[9][0][lang], columns: 30},
+      {prompt: movement["wherePhone"][lang], columns: 30},
     ],
     on_finish: function(data){
       var last2 = jsPsych.data.get().last(6);
@@ -446,7 +446,7 @@ function generateMovementTimeline(lang){
   var phoneInPocket3 = {
     type: jsPsychSurveyText,
     questions: [
-      {prompt: movement[9][0][lang], columns: 30},
+      {prompt: movement["wherePhone"][lang], columns: 30},
     ],
     on_finish: function(data){
       var last2 = jsPsych.data.get().last(8);

@@ -1,121 +1,383 @@
-var frontPageShared = {
-    type: jsPsychInstructions,
-    pages: ["Welcome!<br>This is a questionnaire about your music habits"],
-    button_label_next: buttons[0][lang],
-    button_label_previous: buttons[1][lang],
-    show_clickable_nav: true
-}
-
-var languages = ["Suomi", "العربية", "Bahasa Indonesia", "Bahasa Melayu", "Български", "Català", "Cebuano", "Čeština", "Dansk", "Deutsch", "Eesti", "Ελληνικά", "English", "Español", "Esperanto", "Euskara", "فارسی", "Français", "Galego", "한국어", "Հայերեն", "हिन्दी", "Hrvatski", "Italiano", "עברית", "Қазақша", "Latina", "Lietuvių", "Magyar", "Minangkabau", "Nederlands", "日本語", "Norsk bokmål", "Norsk nynorsk", "Oʻzbekcha/ўзбекча", "Polski", "Português", "Română", "Русский", "Simple English", "Slovenčina", "Slovenščina", "Српски / srpski", "Srpskohrvatski / српскохрватски", "Svenska", "Tiếng Việt", "Türkçe", "Українська", "Volapük", "Winaray", "中文", "Muu"]
-var likertValues = [ {value: 1}, {value: 2}, {value: 3}, {value: 4}, {value: 5} ]
-var genderOptions = ['genderOption1', 'genderOption2', 'genderOption3', 'genderOption4']
-
-function generateLikertObject(prompt, likertValues, min, max, required, scale){
-      var rObj = {
-        type: 'likert',
-        prompt: sharedMeasurements[prompt][lang] + scale,
-        likert_scale_min_label: min,
-        likert_scale_max_label: max,
-        likert_scale_values: likertValues,
-        required: required,
-      }
-  return(rObj)
-}
-
-function generateTextObject(prompt, required, columns, rows){
-      var rObj = {
-        type: 'text',
-        prompt: sharedMeasurements[prompt][lang],
-        placeholder: '',
-        name: prompt, 
-        textbox_columns: columns,
-        textbox_rows: rows,
-        required: required,
-      }
-  return(rObj)
-}
-
-function generateDropdownObject(prompt, options, required){
-      var rObj = {
-        type: 'drop-down',
-        prompt: sharedMeasurements[prompt][lang], 
-        options: options,
-        name: prompt, 
-        required: required,
-      }
-  return(rObj)
-}
-
-function generateMultiChoiceObject(prompt, options, required){
-      var rObj = {
-        type: 'multi-choice',
-        prompt: sharedMeasurements[prompt][lang], 
-        options: options.map(i=>sharedMeasurements[i][lang]),
-        name: prompt, 
-        required: required
-      }
-  return(rObj)
-}
-
-var listQuestions1 = ['age', 'height'].map(i => generateTextObject(i, true, 5, 1))
-var custom0 = [generateTextObject('weight', false, 5, 1), generateMultiChoiceObject('gender', genderOptions, true), generateDropdownObject('languageSpeaksPrimary', languages, true), generateDropdownObject('languageSpeaksSecondary', languages, false)]
-
-var custom1 = ['yearsPracticeSinging', 'yearsPracticeInstrument', 'yearsPracticeDance', 'yearsTraining'].map(i => generateTextObject(i, false, 5, 1))
-
-var listQuestions2 = ['oftenPracticeSingingActive', 'oftenPracticeSingingCurrently'].map(i => generateLikertObject(i, likertValues, "", "", true, " 1 (not at all) - 5 (very)."))
-var listQuestions3 = ['oftenPracticedInstrumentActive', 'oftenPracticeInstrumentCurrently'].map(i => generateLikertObject(i, likertValues, "", "", true, " 1 (never) - 5 (daily)."))
-var listQuestions4 = ['oftenPracticedDanceActive', 'oftenPracticeDanceCurrently', 'oftenListenMusic'].map(i => generateLikertObject(i, likertValues, "", "", true, "1 (never) - 5 (daily)."))
-
-listQuestions2.unshift(custom1[0])
-listQuestions3.unshift(custom1[1])
-listQuestions4.unshift(custom1[2])
-listQuestions4.push(custom1[3])
-listQuestions4.push(generateLikertObject("howMusical", likertValues, "", "", true, "1 (not at all) - 5 (very)"))
-
-var listQuestions5 = ['musicalGenre', 'whichSongArtistsPrefer', 'leastPreferedGenre', 'leastPreferedArtists'].map(i => generateTextObject(i, true, 5))
-var listQuestions6 = ['likeMusicEmotion', 'getEmotion', 'becomeTearful', 'feelChill', 'dontLikeToDance', 'makesMeDance', 'humming', 'cantStopTapping', 'keepCompany', 'calmsRelaxes', 'chillOut', 'comfortsMe', 'hardlyListen', 'informMyself', 'alwaysLooking', 'moneySpend', 'shareConnection', 'bondOtherPeople', 'singWithOthers', 'connectedPerformers'].map(i => generateLikertObject(i, likertValues, "", "", true, "1 (Completely disagree) - 5 (Completely agree)"))
-var listQuestions7 = ['backgroundAtmosphere', 'busyBackground', 'afterRough', 'exhaustedListen', 'magnificentExperience', 'feellWholeBody', 'forgetWorries', 'stressfulThoughts', 'reallyAngry', 'angrySomeone', 'hardExperiences', 'distressedClarify', 'feelsBadComforts', 'feelSadComfort', 'ableJudge', 'spotMistakes', 'recognizingFamiliar', 'canTellOff', 'canTellOutTune', 'noIdeaTune', 'usuallyJoin', 'singFromMemory', 'ableToHitRightNote', 'notAbleHarmony', 'singingPublic', 'singItMyself', 'easyControlMovement', 'easyLearnImitate', 'danceYes', 'embarrassingDance', 'whenDanceBetter', 'feelHaveToDance'].map(i => generateLikertObject(i, likertValues, "", "",  true, "1 (Completely disagree) - 5 (Completely agree)"))
-
-var sharedMeasurementsTrial = {
-  type: jsPsychSurvey,
-  pages: [listQuestions1, custom0, listQuestions2, listQuestions3, listQuestions4, listQuestions5, listQuestions6, listQuestions7],
-  title: 'Please, answer the following questions',
-  button_label_next: 'Continue',
-  button_label_back: 'Previous',
-  button_label_finish: 'Continue',
-  show_question_numbers: 'onPage',
-  on_load: function(){
-    document.querySelector(".sv_header").style.marginBottom = "-50px"
-    document.querySelector(".sv_next_btn").style.background = "#fa6400";
-    document.querySelector(".sv_prev_btn").style.background = "purple";
-    document.querySelector(".sv_next_btn").style.color = "#fff";
-    document.querySelector(".sv_prev_btn").style.color = "#fff";
-    document.querySelector(".sv_complete_btn").style.background = "#fa6400";
+function generateSharedMeasurementsTimeline(lang, short){
+  var frontPageShared = {
+      type: jsPsychInstructions,
+      pages: [sharedMeasurementsTransitions['surveyMMBB'][lang]],
+      button_label_next: buttons["next"][lang],
+      button_label_previous: buttons["previous"][lang],
+      show_clickable_nav: true
   }
-};
 
-//Friends strangers question
-var isFriendsStrangers = {
-  type: jsPsychSurveyMultiChoice,
-  questions: [
-    {
-      prompt: "If you're part of the Music and Dance study, tell us your participant number", 
-      name: 'FruitDislike', 
-      options: ['1', '2', '3', '4'], 
-      required: true,
-      horizontal: true
+  var between1 = {
+      type: jsPsychInstructions,
+      pages: [sharedMeasurementsTransitions['personalBackground'][lang]],
+      button_label_next: buttons["next"][lang],
+      button_label_previous: buttons["previous"][lang],
+      show_clickable_nav: true
+  }
+
+  var between2 = {
+      type: jsPsychInstructions,
+      pages: [sharedMeasurementsTransitions['musicalBackground'][lang]],
+      button_label_next: buttons["next"][lang],
+      button_label_previous: buttons["previous"][lang],
+      show_clickable_nav: true
+  }
+
+  var between3 = {
+      type: jsPsychInstructions,
+      pages: [sharedMeasurementsTransitions['musicalPreference'][lang]],
+      button_label_next: buttons["next"][lang],
+      button_label_previous: buttons["previous"][lang],
+      show_clickable_nav: true
+  }
+
+  var between4 = {
+      type: jsPsychInstructions,
+      pages: [sharedMeasurementsTransitions['musicalExperiences'][lang]],
+      button_label_next: buttons["next"][lang],
+      button_label_previous: buttons["previous"][lang],
+      show_clickable_nav: true
+  }
+
+  var between5 = {
+      type: jsPsychInstructions,
+      pages: [sharedMeasurementsTransitions['perception'][lang]],
+      button_label_next: buttons["next"][lang],
+      button_label_previous: buttons["previous"][lang],
+      show_clickable_nav: true
+  }
+
+  var between6 = {
+      type: jsPsychInstructions,
+      pages: [sharedMeasurementsTransitions['singing'][lang]],
+      button_label_next: buttons["next"][lang],
+      button_label_previous: buttons["previous"][lang],
+      show_clickable_nav: true
+  }
+
+  var between7 = {
+      type: jsPsychInstructions,
+      pages: [sharedMeasurementsTransitions['dancing'][lang]],
+      button_label_next: buttons["next"][lang],
+      button_label_previous: buttons["previous"][lang],
+      show_clickable_nav: true
+  }
+
+  var languages = ["Suomi", "العربية", "Bahasa Indonesia", "Bahasa Melayu", "Български", "Català", "Cebuano", "Čeština", "Dansk", "Deutsch", "Eesti", "Ελληνικά", "English", "Español", "Esperanto", "Euskara", "فارسی", "Français", "Galego", "한국어", "Հայերեն", "हिन्दी", "Hrvatski", "Italiano", "עברית", "Қазақша", "Latina", "Lietuvių", "Magyar", "Minangkabau", "Nederlands", "日本語", "Norsk bokmål", "Norsk nynorsk", "Oʻzbekcha/ўзбекча", "Polski", "Português", "Română", "Русский", "Simple English", "Slovenčina", "Slovenščina", "Српски / srpski", "Srpskohrvatski / српскохрватски", "Svenska", "Tiếng Việt", "Türkçe", "Українська", "Volapük", "Winaray", "中文", "Muu"]
+  var likertValues = [ {value: 1}, {value: 2}, {value: 3}, {value: 4}, {value: 5} ]
+  var genderOptions = ['genderOption1', 'genderOption2', 'genderOption3', 'genderOption4']
+
+  function generateLikertObject(prompt, likertValues, min, max, required, scale){
+        var rObj = {
+          type: 'likert',
+          prompt: sharedMeasurements[prompt][lang] + scale,
+          likert_scale_min_label: min,
+          likert_scale_max_label: max,
+          likert_scale_values: likertValues,
+          required: required,
+        }
+    return(rObj)
+  }
+
+  function generateTextObject(prompt, required, columns, rows){
+        var rObj = {
+          type: 'text',
+          prompt: prompt,
+          placeholder: '',
+          name: prompt, 
+          textbox_columns: columns,
+          textbox_rows: rows,
+          required: required,
+        }
+    return(rObj)
+  }
+
+  function generateDropdownObject(prompt, options, required){
+        var rObj = {
+          type: 'drop-down',
+          prompt: prompt, 
+          options: options,
+          name: prompt, 
+          required: required,
+        }
+    return(rObj)
+  }
+
+  function generateMultiChoiceObject(prompt, options, required){
+        var rObj = {
+          type: 'multi-choice',
+          prompt: sharedMeasurements[prompt][lang], 
+          options: options.map(i=>sharedMeasurements[i][lang]),
+          name: prompt, 
+          required: required
+        }
+    return(rObj)
+  }
+
+  function generateManyDropDowns(i, prompt){
+    var musicalBackgroundSurveySeed = {
+      type: jsPsychSurvey,
+      pages: [[i]],
+      title: prompt,
+      button_label_next: 'Continue',
+      button_label_back: 'Previous',
+      button_label_finish: 'Continue',
+      on_load: () => {changeStyle()}
     }
-  ],
-};
-
-var messageFinishSharedMeasures = {
-  type: jsPsychHtmlButtonResponse,
-  prompt: emotionTranslations['thankYouEnd'][lang],
-  choices: [],
-  trial_duration: 2000,
-  stimulus: '',
-  on_start: function(){
-    var cookieExpires = (new Date(Date.now()+ 86400*1000)).toUTCString();
-    document.cookie = "SharedMeasures=done;" + " expires=" + cookieExpires + "; path=/"
+    return(musicalBackgroundSurveySeed)
   }
-};
+
+  function changeStyle(){
+      document.querySelector(".sv_body").style.background = "#e9edf5";
+      document.querySelector(".sv_header").style.background = "#e9edf5";
+      document.querySelector(".sv_header").style.marginBottom = "-50px";
+      document.querySelector(".sv_next_btn").style.background = "#fa6400";
+      document.querySelector(".sv_prev_btn").style.background = "purple";
+      document.querySelector(".sv_next_btn").style.color = "#fff";
+      document.querySelector(".sv_prev_btn").style.color = "#fff";
+      document.querySelector(".sv_complete_btn").style.background = "#fa6400";
+  }
+
+  //Personal background
+  var yearBirth = {
+    type: jsPsychSurvey,
+    pages: [["yearOfBirth"].map(i => generateTextObject(personalBackground[i][lang], true, 5, 1))],
+    title: personalBackground['pleaseAnswer'][lang],
+    button_label_next: 'Continue',
+    button_label_back: 'Previous',
+    button_label_finish: 'Continue',
+    on_load: () => {changeStyle()}
+  };
+
+  var genderSurvey = {
+    type: jsPsychSurvey,
+    pages: [[generateDropdownObject(personalBackground["gender"][lang], ["female", "male", "ratherNotSay", "other"].map(i => personalBackground[i][lang]), true)]],
+    title: personalBackground['pleaseAnswer'][lang],
+    button_label_next: 'Continue',
+    button_label_back: 'Previous',
+    button_label_finish: 'Continue',
+    on_load: () => {changeStyle()}
+  };
+
+  var otherGenderTrial = {
+    type: jsPsychSurvey,
+    pages: [["gender"].map(i => generateTextObject(personalBackground[i][lang], true, 5, 1))],
+    title: personalBackground['pleaseAnswer'][lang],
+    button_label_next: 'Continue',
+    button_label_back: 'Previous',
+    button_label_finish: 'Continue',
+    on_load: () => {changeStyle()}
+  }
+
+  var otherGender = {
+      timeline: [otherGenderTrial],
+      conditional_function: function(){
+          var typeQuestion = Object.keys(jsPsych.data.getLastTrialData(1)['trials'][0].response)[0]
+          var otherWhich = jsPsych.data.getLastTrialData(1)['trials'][0].response[typeQuestion]
+          var showNode = otherWhich == 'Other, what:' || otherWhich == "Muu, mikä:"
+          if(showNode){
+              return true;
+          } else {
+              return false;
+          }
+      }
+  }
+
+  var educationSurvey = {
+    type: jsPsychSurvey,
+    pages: [[generateDropdownObject(personalBackground["education"][lang], ["primarySchool", "comprehensiveSchool", "secondaryEducation", "vocationalTraining", "bachelors", "masters", "doctoral", "other"].map(i => personalBackground[i][lang]), true)]],
+    title: personalBackground['pleaseAnswer'][lang],
+    button_label_next: 'Continue',
+    button_label_back: 'Previous',
+    button_label_finish: 'Continue',
+    on_load: () => {changeStyle()}
+  };
+
+
+  var otherEducationTrial = {
+    type: jsPsychSurvey,
+    pages: [["education"].map(i => generateTextObject(personalBackground[i][lang], true, 5, 1))],
+    title: personalBackground['pleaseAnswer'][lang],
+    button_label_next: 'Continue',
+    button_label_back: 'Previous',
+    button_label_finish: 'Continue',
+    on_load: () => {changeStyle()}
+  }
+
+  var otherEducation = {
+      timeline: [otherEducationTrial],
+      conditional_function: function(){
+          var typeQuestion = Object.keys(jsPsych.data.getLastTrialData(1)['trials'][0].response)[0]
+          var otherWhich = jsPsych.data.getLastTrialData(1)['trials'][0].response[typeQuestion]
+          var showNode = otherWhich == 'Other, what:' || otherWhich == "Muu, mikä:"
+          if(showNode){
+              return true;
+          } else {
+              return false;
+          }
+      }
+  }
+
+  var educationSurvey = {
+    type: jsPsychSurvey,
+    pages: [[generateDropdownObject(personalBackground["education"][lang], ["primarySchool", "comprehensiveSchool", "secondaryEducation", "vocationalTraining", "bachelors", "masters", "doctoral", "other"].map(i => personalBackground[i][lang]), true)]],
+    title: personalBackground['pleaseAnswer'][lang],
+    button_label_next: 'Continue',
+    button_label_back: 'Previous',
+    button_label_finish: 'Continue',
+    on_load: () => {changeStyle()}
+  };
+
+  //Musical background
+  var yesNoMusical = ["notAtAlMusical", "notThatMusical", "aBitMusical", "quiteMusical", "veryMusical"].map(i => musicalBackground[i][lang])
+  var neverTen = ["never", "oneTwoYears", "threeFiveYears", "sixNineYears", "tenMoreYears"].map(i => musicalBackground[i][lang])
+  var neverDaily = ["never", "veryRarely", "monthly", "weekly", "daily"].map(i => musicalBackground[i][lang])
+
+  var promptsMusical = ['howLongSing', 'howOftenSingBefore', 'howOftenSingNow', 'howMuchTuitionSing', 'howLongInstrumentHobby', 'howOftenPlayHobby', 'howOftenPlayNow', 'howMuchTuitionInstrument', 'howLongDanceHobby', 'howLongDanceHobyBefore', 'howOftenDanceNow', 'howMuchTuitionDance', 'howOftenListenMusicNow', 'howMusical']
+  var optionsMusical = [neverTen, neverDaily, neverDaily, neverDaily, neverTen, neverDaily, neverDaily, neverTen, neverTen, neverTen, neverDaily, neverTen, neverDaily, yesNoMusical]
+
+  var questionsMusical = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map(i => generateDropdownObject(musicalBackground[promptsMusical[i]][lang], optionsMusical[i], true))
+  var musicalBackgroundSurvey = questionsMusical.map(i => generateManyDropDowns(i, "Please, answer the following questions"))
+
+  //STOMP
+  var optionsLikeDislike = ["dislikeStrongly", "dislikeModerately", "dislkikeAlittle", "neutral", "likeALittle", "likeModerately", "likeStrongly"].map(i => musicalPreferences[i][lang])
+  var genrePreferences = ["blues", "jazz", "classical", "folk", "rock", "alternative", "heavyMetal", "country", "religious", "pop", "rap", "soul", "electronic"]
+  var genreObjects = genrePreferences.map(i => generateDropdownObject(musicalPreferences[i][lang], optionsLikeDislike, true))
+
+  var stompTrials = genreObjects.map(i => generateManyDropDowns(i, musicalPreferences["howMuchLikeGenre"][lang]))
+
+  //Barcelona
+  var promptBarcelona = barcelonaReward['question'][lang]
+  var optionsBarcelona = ['completelyDisagree', 'somewhatDisagree', 'neitherDisagreeAgree', 'somewhatAgree', 'completelyAgree'].map(i => barcelonaReward[i][lang])
+  var questionsBarcelonaLong = ['shareMusic', 'freeNoListen', 'listenEmotion', 'musicCompany', 'dontLikeDance', 'musicMakesMeBond', 'informMyself', 'getEmotional', 'musicCalms', 'musicMakesMeDanceOften', 'lookingNewMusic', 'canBecomeTearful', 'likeToSing', 'musicHelpsChill', 'hummingAlong', 'concertConnected', 'spendQuite', 'sometimesFeelChills', 'musicComforts', 'whenIHearTune'].map(i => barcelonaReward[i][lang])
+
+  var barcelonaObjectsLong = questionsBarcelonaLong.map(i => generateDropdownObject(i, optionsBarcelona, true))
+  var barcelonaTrialsLong = barcelonaObjectsLong.map(i => generateManyDropDowns(i, promptBarcelona))
+
+  var questionsBarcelonaShort = ['shareMusic', 'musicMakesMeDanceOften', 'lookingNewMusic', 'musicHelpsChill', 'sometimesFeelChills'].map(i => barcelonaReward[i][lang])
+
+  var barcelonaObjectsShort = questionsBarcelonaShort.map(i => generateDropdownObject(i, optionsBarcelona, true))
+  var barcelonaTrialsShort = barcelonaObjectsShort.map(i => generateManyDropDowns(i, promptBarcelona))
+
+  //BMMR
+  var bmmrPrompt = bmmr['prompt'][lang]
+  var optionsBMMR = ['completelyDisagree', 'somewhatDisagree', 'neitherDisagreeAgree', 'somewhatAgree', 'completelyAgree'].map(i => bmmr[i][lang])
+  var bmmrQuestionsLong = ['tiredOut', 'musicHelps', 'listenMusic', 'backgroundAtmosphere', 'listenPerk', 'reallyAngry', 'feelFantastic', 'forgetWorries', 'magnificentExperiences', 'whenBusy', 'musicHelped', 'feelingSadComforts', 'everythingSad', 'whenStressful'].map(i => bmmr[i][lang])
+  var bmmrQuestionsShort = ['backgroundAtmosphere', 'listenPerk', 'forgetWorries', 'magnificentExperiences', 'musicHelped', 'feelingSadComforts', 'everythingSad'].map(i => bmmr[i][lang])
+
+  var bmmrObjectsShort = bmmrQuestionsShort.map(i => generateDropdownObject(i, optionsBMMR, true))
+  var bmmrTrialsShort = bmmrObjectsShort.map(i => generateManyDropDowns(i, bmmrPrompt))
+
+  var bmmrObjectsLong = bmmrQuestionsLong.map(i => generateDropdownObject(i, optionsBMMR, true))
+  var bmmrTrialsLong = bmmrObjectsLong.map(i => generateManyDropDowns(i, bmmrPrompt))
+
+  //Goldsmiths
+  //Perception
+  var optionsGoldsmith = ['completelyDisagree', 'somewhatDisagree', 'neitherDisagreeAgree', 'somewhatAgree', 'completelyAgree'].map(i => goldsmithPerception[i][lang])
+  var goldsmithPerceptionPrompt = goldsmithPerception['prompt'][lang]
+  var goldsmithPerceptionQuestionsLong = ["easyControlMovement", "ifAskDance", "whenDance", "easyLearn", "wannaDance"].map(i => goldsmithPerception[i][lang])
+  var goldsmithPerceptionQuestionsShort = ["easyControlMovement", "ifAskDance", "whenDance"].map(i => goldsmithPerception[i][lang])
+
+  var goldsmithPerceptionObjectsShort = goldsmithPerceptionQuestionsShort.map(i => generateDropdownObject(i, optionsGoldsmith, true))
+  var goldsmithPerceptionTrialsShort = goldsmithPerceptionObjectsShort.map(i => generateManyDropDowns(i, goldsmithPerceptionPrompt))
+
+  var goldsmithPerceptionObjectsLong = goldsmithPerceptionQuestionsLong.map(i => generateDropdownObject(i, optionsGoldsmith, true))
+  var goldsmithPerceptionTrialsLong = goldsmithPerceptionObjectsLong.map(i => generateManyDropDowns(i, goldsmithPerceptionPrompt))
+
+  //Singing
+  var goldsmithSingingPrompt = goldsmithSinging['prompt'][lang]
+  var goldsmithSingingQuestionsLong = ["songDontKnow", "ableHit", "likeSinging", "canSing", "afterHearing"].map(i => goldsmithSinging[i][lang])
+  var goldsmithSingingQuestionsShort = ["songDontKnow", "ableHit", "likeSinging"].map(i => goldsmithSinging[i][lang])
+
+  var goldsmithSingingObjectsLong = goldsmithSingingQuestionsLong.map(i => generateDropdownObject(i, optionsGoldsmith, true))
+  var goldsmithSingingTrialsLong = goldsmithSingingObjectsLong.map(i => generateManyDropDowns(i, goldsmithSingingPrompt))
+
+  var goldsmithSingingObjectsShort = goldsmithSingingQuestionsShort.map(i => generateDropdownObject(i, optionsGoldsmith, true))
+  var goldsmithSingingTrialsShort = goldsmithSingingObjectsShort.map(i => generateManyDropDowns(i, goldsmithSingingPrompt))
+
+  //Goldsmith dancing
+  var goldsmithDancingPrompt = goldsmithDancing['prompt'][lang]
+  var goldsmithDancingQuestionsLong = ["easyControl", "ifSomeone", "whenDance", "iFind", "greatTrack"].map(i => goldsmithDancing[i][lang])
+  var goldsmithDancingQuestionsShort = ["easyControl", "ifSomeone", "whenDance"].map(i => goldsmithDancing[i][lang])
+
+  var goldsmithDancingObjectsLong = goldsmithDancingQuestionsLong.map(i => generateDropdownObject(i, optionsGoldsmith, true))
+  var goldsmithDancingTrialsLong = goldsmithDancingObjectsLong.map(i => generateManyDropDowns(i, goldsmithDancingPrompt))
+
+  var goldsmithDancingObjectsShort = goldsmithDancingQuestionsShort.map(i => generateDropdownObject(i, optionsGoldsmith, true))
+  var goldsmithDancingTrialsShort = goldsmithDancingObjectsShort.map(i => generateManyDropDowns(i, goldsmithDancingPrompt))
+
+  //Friends strangers question
+  var isFriendsStrangers = {
+    type: jsPsychSurveyMultiChoice,
+    questions: [
+      {
+        prompt: "If you're part of the Music and Dance study, tell us your participant number", 
+        name: 'FruitDislike', 
+        options: ['1', '2', '3', '4'], 
+        required: true,
+        horizontal: true
+      }
+    ],
+  };
+
+  var messageFinishSharedMeasures = {
+    type: jsPsychHtmlButtonResponse,
+    prompt: emotionTranslations['thankYouEnd'][lang],
+    choices: [],
+    trial_duration: 2000,
+    stimulus: '',
+    on_start: function(){
+      var cookieExpires = (new Date(Date.now()+ 86400*1000)).toUTCString();
+      document.cookie = "SharedMeasures=done;" + " expires=" + cookieExpires + "; path=/"
+    }
+  };
+
+  var timelineShort = [frontPageShared, 
+                       between1,
+                       yearBirth,
+                       genderSurvey,
+                       otherGender,
+                       educationSurvey, 
+                       otherEducation, 
+                       between2,
+                       musicalBackgroundSurvey,
+                       between3,
+                       stompTrials,
+                       between4,
+                       barcelonaTrialsShort,
+                       bmmrTrialsShort,
+                       between5,
+                       goldsmithPerceptionTrialsShort,
+                       between6,
+                       goldsmithSingingTrialsShort,
+                       between7,
+                       goldsmithDancingTrialsShort,
+                       messageFinishSharedMeasures].flat(100)
+
+  var timelineLong = [frontPageShared, 
+                      between1,
+                      yearBirth,
+                      genderSurvey,
+                      otherGender,
+                      educationSurvey, 
+                      otherEducation, 
+                      between2,
+                      musicalBackgroundSurvey,
+                      between3,
+                      stompTrials,
+                      between4,
+                      barcelonaTrialsLong,
+                      bmmrTrialsLong,
+                      between5,
+                      goldsmithPerceptionTrialsLong,
+                      between6,
+                      goldsmithSingingTrialsLong,
+                      between7,
+                      goldsmithDancingTrialsLong,
+                      messageFinishSharedMeasures].flat(100)
+  if(short){
+    return(timelineShort)
+  } else{
+    return(timelineLong)
+  }
+}

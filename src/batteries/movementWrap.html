@@ -64,10 +64,12 @@
   <body></body>
 
   <script>
-
+    
+    var trialOverallIndex = 0
+      
     //Time begin experiment
     var timeBegin = Date.now();
-
+    
     var entirePage = document.documentElement;
 
     /* View in fullscreen */
@@ -91,20 +93,26 @@
       extensions: [
         {type: jsPsychExtensionAccelerometer }
       ],
+      show_progress_bar: true,
+      auto_update_progress_bar: false,
+      on_trial_start: function(data) {
+        window.trialOverallIndex = trialOverallIndex + 1
+        console.log(window.trialOverallIndex)
+
+        var totalTrials = completeSequence.flat(1000).length
+        jsPsych.setProgressBar(trialOverallIndex/totalTrials) 
+      },
       on_finish: function() {
 
         var measurePerformance = performance.getEntriesByType('resource');
 
         var userID = jatos.urlQueryParameters.user
-        //var userID = urlParams.get('user')
 
         var nodeIndex = jatos.urlQueryParameters.nodeIndex
-        //var nodeIndex = urlParams.get('nodeIndex')
         if(nodeIndex == undefined){
           var nodeIndex = 0
         }
 
-        //var trialIndex = urlParams.get('trialIndex')
         var trialIndex = jatos.urlQueryParameters.trialIndex
         if(trialIndex == undefined){
           var trialIndex = 0
@@ -151,10 +159,8 @@
             jatos.endStudyAndRedirect(urlRedirect, finalData)
 
           } else { //If end of experiment. Redirect to homepage
-            //modifyLog(userID, "movement").then(a => { //Modify log. Done movement
               var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&Movement=done"
               jatos.endStudyAndRedirect(urlRedirect, finalData)
-            //})
           }
         }
       }
@@ -193,9 +199,18 @@
       var procedureMovementFinal = {
           timeline: completeSequence[Number(nodeIndex)][trialIndex],
           on_timeline_start: function() {
-            console.log('This timeline has started');
-            console.log(jatos.urlQueryParameters.nodeIndex)
-            console.log(jatos.urlQueryParameters.trialIndex)
+            var nodeIndex = jatos.urlQueryParameters.nodeIndex
+            var trialIndex = jatos.urlQueryParameters.trialIndex
+
+            if(nodeIndex === 0){
+              window.trialOverallIndex = trialOverallIndex + 1
+            } else {
+              var nCompletedNodes = completeSequence.slice(0, Number(nodeIndex)).flat(1000).length
+              var nCompletedTrials = completeSequence[Number(nodeIndex)].slice(0, trialIndex).flat(1000).length
+              var totalTrials = nCompletedNodes + nCompletedTrials
+
+              window.trialOverallIndex = totalTrials
+            }
           }
       }
 

@@ -1,1 +1,6 @@
 - Weight and size: move to movement battery
+
+#Friends-strangers:
+
+Implement questionnaires for friends strangers
+https://jyu-my.sharepoint.com/:x:/g/personal/maarhart_jyu_fi/EVOc-nBuAUJHm4X2U3HPjGgBVw2rWoge47n5PCWtFcb86g?e=9bCRHE
