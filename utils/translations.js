@@ -1,232 +1,251 @@
-var movement = {
-  "movementOpen": {"eng": "Movement task",
-                    "fi":  "Liiketehtävä"},
-  "accessAcelerometer": {"eng": "Accessing accelerometer",
-        "fi":  "Tarkistetaan kiihtyvyysanturia..."},
-  "instruction1": {"eng": "In the next page, you will be asked to allow access to your phone's motion sensors. Please, click on 'Allow'.",
-        "fi":  "Seuraavalla sivulla sinua pyydetään hyväksymään puhelimesi liiketunnistimien käyttö. Klikkaa 'Hyväksy'."},
-  "instruction2": {"eng": "In the following tasks, we ask you to perform body movements in different situations<br><img id='dance' src='./images/dance.svg'></img>",
-        "fi":  "Seuraavissa tehtävissä pyydämme sinua tekemään kehon liikkeitä eri tilanteissa"},
-  "instruction3": {"eng": "Your body movements will be automatically recorded using the accelerometers of your phone",
-        "fi":  "Kehon liikkeesi tallennetaan automaattisesti puhelimesi kiiht yvyysant ureiden avulla"},
-  "instruction4": {"eng": "To move freely, you will be asked to put the phone on your pocket, with the screen facing away from your body: <br><img id='phonePocket' src='./images/phonePocket2.jpeg'></img>",
-        "fi":  "<br><img id='phonePocket' src='./images/phonePocket2.jpeg'></img>"},
-  "instruction5": {"eng": "If you are not wearing headphones or earplugs,",
-        "fi":  "Jos sinulla ei ole kuulokkeita,"},
-  "instruction6": {"eng": "you may want to increase the volume of your phone before you put it in your pocket<br><img id='increaseVolume' src='./images/increaseVolume.svg'></img>",
-        "fi":  "voit lisätä puhelimesi äänenvoimakkuutta ennen kuin laitat sen taskuusi<br><img id='increaseVolume' src='./images/increaseVolume.svg'></img>"},
-  "instruction7": {"eng": "Do not lock the screen of your phone<br><img id='dontLock' src='./images/dontLock.svg'></img>",
-        "fi":  "Älä lukiste puhelimesi nayttöä<br><img id='dontLock' src='./images/dontLock.svg'></img>"},
-  "instruction8": {"eng": "Before each task starts, you will hear a voice countdown<br><img id='tableSVG' src='./images/voiceSVG.svg'></img>",
-        "fi":  "Ennen jokaiset tehtävän alkamista kuulet ääneen lärtölaskennan"},
-  "instruction9": {"eng": "A voice will also tell you  when the task has ended<br><img id='tableSVG' src='./images/stopSVG.svg'></img>",
-        "fi":  "Ääni myös kertoo kun tehtävä on loppunut<br><img id='tableSVG' src='./images/stopSVG.svg'></img>"},
-  "instruction10": {"eng": "For the first task, go to a space where there's room to walk around<br><img id='tableSVG' src='./images/walkSVG.svg'></img>",
-        "fi":  "Ensimmäistä tehtävää varten siirry tilaan, jossa voit kävellä esteettä"},
-  "instruction11": {"eng": "We will ask you to walk for 30 seconds, at a speed that feels most natural for you",
-        "fi":  "Kävele kaksi minuuttia ajan nopeudella joka tuntuu sinulle luonnollisimmalta."},
-  "instruction12": {"eng": "When you are ready to begin, click Next",
-        "fi":  "Kun olet valmis aloittamaan, paina Seuraava"},
-  "instruction13": {"eng": "Put your phone in your pocket<br><img id='pocket' src='./images/pocket.svg'></img>",
-        "fi":  "Laita nyt puhelin taskuusi<br><img id='pocket' src='./images/pocket.svg'></img>"},
-  "instruction14": {"eng": "In the next task, you will hear a constant beat<br><img id='ear' src='./images/ear.svg'></img>",
-        "fi":  "Seuraavassa tehtävässä kuulet tasaisen sykkeen<br><img id='ear' src='./images/ear.svg'></img>"},
-  "instruction15": {"eng": "Your task is to bounce along to the beat",
-        "fi":  "Tehtävänäsi on liikuttaa kehoasi ponnahdellen ylös ja alas laulun tahidssa"},
-  "instruction16": {"eng": 'This is an example of bouncing<br><video id="myVideo" width="100%" controls><source src="./songs/movementTapAudio/instructionsAudio/bouncing.mp4" type="video/mp4"></video>',
-        "fi":  'Tässä on esimerkki ponnarhtelustaa<br><video id="myVideo" width="100%" controls><source src="./songs/movementTapAudio/instructionsAudio/bouncing.mp4" type="video/mp4"></video>'},
-  "instruction17": {"eng": "When bouncing, stay in place and do not perform other body movements",
-        "fi":  "Ponnahdellessasi pysy samassa paikassa ja älä tee muita kehon liikkeit"},
-  "instruction18": {"eng": "When you are ready to begin, click Next",
-        "fi":  "Kun olet valmis aloittamaan, paina Seuraava"},
-  "instruction19": {"eng": "Now you are asked to move to a musical piece in a way that feels natural to you<br><img id='dance' src='./images/dance.svg'></img>",
-        "fi":  "Nyt sinua pyydetään liikkumaan itsellesi luonnollisella tavalla eri kappaleisiin<br><img id='dance' src='./images/dance.svg'></img>"},
-  "instruction20": {"eng": "Feel free to dance to the music if you want to",
-        "fi":  "Jos haluat niin voit tanssia vapaasti laulun mukana"},
-  "instruction21": {"eng": "Next we ask you to choose a song that you would like to dance to",
-        "fi":  "Seuravaaksi, pyydämme sinua valitsemaan laulun, jonka tahtiin haluat liikkua"},
-  "instruction22": {"eng": "Move to the song in a way that feels natural to you<br><img id='dance' src='./images/dance.svg'></img>",
-        "fi":  "Liiku kappaleen tahdissa tavalla, joka tuntuu luonnolliselta sinulle<br><img id='dance' src='./images/dance.svg'></img>"},
-  "instruction23": {"eng": "Feel free to dance to the music if you want to<br><img id='dance' src='./images/dance.svg'></img>",
-        "fi":  "Tanssi musiikin tahdissa, jos siltä tuntuu<br><img id='dance' src='./images/dance.svg'></img>"},
-  "instruction24": {"eng": "You can choose among 6 song alternatives",
-        "fi":  "Voit valita laulun 6 vaihtoehdosta"},
-  "instruction25": {"eng": "Press the buttons to hear an excerpt of the song",
-        "fi":  "Klikkaa painiketta kuvaa kuullaksesi näytteen laulusta"},
-  "instruction26": {"eng": "When you have made your selection, scroll down to the bottom and press Next",
-        "fi":  "Kun olet valinnut laulun, rullaa ruudun alaosaan ja paina Seuraava"},
-  "Instruction27": {"eng": "Choose a song below and click Next when you have made your choice",
-        "fi":  "Valitse kappale alapuolelta ja paina seuraava, kun olet tehnyt valintasi"},
-  "howFamiliar": {"eng": "How familiar are you with this music style?",
-        "fi":  "Kuinka tuttu tämä musiikkityyli on sinulle?"},
-  "notAtAll": {"eng": "Not at all",
-        "fi":  "Ei ollenkaan"},
-  "veryMuch": {"eng": "Very much",
-        "fi":  "Erittäin"},
-  "howMuchLikeSong": {"eng": "How much did you like the song",
-        "fi":  "Kuinka paljon pidit laulusta"},
-  "howMuchMoveSong": {"eng": "How much did the song make you want to move",
-        "fi":  "Kuinka paljon laulu sai sinut haluamaan liikkua"},
-  "aLot": {"eng": "A lot",
-        "fi":  "Paljon"},
-  "howMuchLikeBeat": {"eng": "How much did you like this beat?",
-        "fi":  "Kuinka paljon pidit tästä rytmistä?"},
-  "howMuchMoveBeat": {"eng": "How much did the beat make you want to move?",
-        "fi":  "Kuinka paljon rytmi sai sinut haluamaan liikkua?"},
-  "haveYouHeardThisSong": {"eng": "Have you heard this song before?",
-        "fi":  "Oletko kuullut tämän kappaleen aiemmin?"},
-  "wherePhone": {"eng": "Where did you leave your phone during the tasks?",
-        "fi":  "Minne jätit puhelimesi tehtävien ajaksi?"},
-  "pocket": {"eng": "Pocket",
-        "fi":  "Tasku"},
-  "purse": {"eng": "Purse",
-        "fi": "Laukku"},
-  "hand": {"eng": "Hand",
-        "fi": "Käsi"},
-  "other": {"eng": "Other",
-    "fi": "Muu"}
-}
+var movement = [
+  [{"eng": "Movement task", 
+   "fi": "Liiketehtävä"}],
+  [{"eng": "Accessing accelerometer", 
+    "fi": "Tarkistetaan kiihtyvyysanturia..."},
+   {"eng": "In the next page, you will be asked to allow access to your phone's motion sensors. Please, click on 'Allow'.",
+    "fi": "Seuraavalla sivulla sinua pyydetään hyväksymään puhelimesi liiketunnistimien käyttö. Klikkaa 'Hyväksy'."}
+  ],
+  [[{"eng": "In the following tasks, we ask you to perform body movements in different situations<br><img id='dance' src='./images/dance.svg'></img>", 
+        "fi": "Seuraavissa tehtävissä pyydämme sinua tekemään kehon liikkeitä eri tilanteissa"},
+  {"eng": "Your body movements will be automatically recorded using the accelerometers of your phone", 
+        "fi": "Kehon liikkeesi tallennetaan automaattisesti puhelimesi kiiht yvyysant ureiden avulla"}],
+  [{"eng": "To move freely, you will be asked to put the phone on your pocket, with the screen facing away from your body: <br><img id='phonePocket' src='./images/phonePocket2.jpeg'></img>", 
+        "fi": "<br><img id='phonePocket' src='./images/phonePocket2.jpeg'></img>"},
+  {"eng": "If you are not wearing headphones or earplugs,",
+    "fi": "Jos sinulla ei ole kuulokkeita,"},
+  {"eng": "you may want to increase the volume of your phone before you put it in your pocket<br><img id='increaseVolume' src='./images/increaseVolume.svg'></img>",
+   "fi":  "voit lisätä puhelimesi äänenvoimakkuutta ennen kuin laitat sen taskuusi<br><img id='increaseVolume' src='./images/increaseVolume.svg'></img>"
+  },
+  {"eng": "Do not lock the screen of your phone<br><img id='dontLock' src='./images/dontLock.svg'></img>", 
+        "fi": "Älä lukiste puhelimesi nayttöä<br><img id='dontLock' src='./images/dontLock.svg'></img>"},
+  {"eng": "Before each task starts, you will hear a voice countdown<br><img id='tableSVG' src='./images/voiceSVG.svg'></img>", 
+        "fi": "Ennen jokaiset tehtävän alkamista kuulet ääneen lärtölaskennan"},
+  {"eng": "A voice will also tell you  when the task has ended<br><img id='tableSVG' src='./images/stopSVG.svg'></img>", 
+         "fi": "Ääni myös kertoo kun tehtävä on loppunut<br><img id='tableSVG' src='./images/stopSVG.svg'></img>"},
+  {"eng": "For the first task, go to a space where there's room to walk around<br><img id='tableSVG' src='./images/walkSVG.svg'></img>", 
+         "fi": "Ensimmäistä tehtävää varten siirry tilaan, jossa voit kävellä esteettä"},
+  {"eng": "We will ask you to walk for 30 seconds, at a speed that feels most natural for you", 
+         "fi": "Kävele kaksi minuuttia ajan nopeudella joka tuntuu sinulle luonnollisimmalta."},
+  {"eng": "When you are ready to begin, click Next", 
+         "fi": "Kun olet valmis aloittamaan, paina Seuraava"}]],
+  [{"eng": "Put your phone in your pocket<br><img id='pocket' src='./images/pocket.svg'></img>", 
+    "fi": "Laita nyt puhelin taskuusi<br><img id='pocket' src='./images/pocket.svg'></img>"},
+  ],
+  [{"eng": "In the next task, you will hear a constant beat<br><img id='ear' src='./images/ear.svg'></img>", 
+        "fi": "Seuraavassa tehtävässä kuulet tasaisen sykkeen<br><img id='ear' src='./images/ear.svg'></img>"},
+  {"eng": "Your task is to bounce along to the beat", 
+         "fi": "Tehtävänäsi on liikuttaa kehoasi ponnahdellen ylös ja alas laulun tahidssa"},
+  {"eng": 'This is an example of bouncing<br><video id="myVideo" width="100%" controls><source src="./songs/movementTapAudio/instructionsAudio/bouncing.mp4" type="video/mp4"></video>',
+    "fi": 'Tässä on esimerkki ponnarhtelustaa<br><video id="myVideo" width="100%" controls><source src="./songs/movementTapAudio/instructionsAudio/bouncing.mp4" type="video/mp4"></video>'},
+  {"eng": "When bouncing, stay in place and do not perform other body movements", 
+         "fi": "Ponnahdellessasi pysy samassa paikassa ja älä tee muita kehon liikkeit"},
+  {"eng": "When you are ready to begin, click Next", 
+    "fi": "Kun olet valmis aloittamaan, paina Seuraava"}
+  ],
+  [{"eng": "Now you are asked to move to a musical piece in a way that feels natural to you<br><img id='dance' src='./images/dance.svg'></img>", 
+         "fi": "Nyt sinua pyydetään liikkumaan itsellesi luonnollisella tavalla eri kappaleisiin<br><img id='dance' src='./images/dance.svg'></img>"},
+  {"eng": "Feel free to dance to the music if you want to", 
+         "fi": "Jos haluat niin voit tanssia vapaasti laulun mukana"},
+  ],
+  [{"eng": "Next we we ask you to choose a song that you would like to dance to", 
+         "fi": "Seuravaaksi, pyydämme sinua valitsemaan laulun, jonka tahtiin haluat liikkua"},
+  {"eng": "Move to the song in a way that feels natural to you<br><img id='dance' src='./images/dance.svg'></img>", 
+         "fi": "Liiku kappaleen tahdissa tavalla, joka tuntuu luonnolliselta sinulle<br><img id='dance' src='./images/dance.svg'></img>"},
+  {"eng": "Feel free to dance to the music if you want to<br><img id='dance' src='./images/dance.svg'></img>", 
+         "fi": "Tanssi musiikin tahdissa, jos siltä tuntuu<br><img id='dance' src='./images/dance.svg'></img>"},
+  {"eng": "You can choose among 6 song alternatives", 
+         "fi": "Voit valita laulun 6 vaihtoehdosta"},
+  {"eng": "Press the buttons to hear an excerpt of the song", 
+         "fi": "Klikkaa painiketta kuvaa kuullaksesi näytteen laulusta"},
+  {"eng": "When you have made your selection, scroll down to the bottom and press Next", 
+         "fi": "Kun olet valinnut laulun, rullaa ruudun alaosaan ja paina Seuraava"},
+  ],
+  [{"eng": "Choose a song below and click Next when you have made your choice",
+    "fi": "Valitse kappale alapuolelta ja paina seuraava, kun olet tehnyt valintasi"}
+  ],
+  [{"eng": "How familiar are you with this music style?", 
+    "fi": "Kuinka tuttu tämä musiikkityyli on sinulle?"},
+  {"eng": "Not at all", 
+         "fi": "Ei ollenkaan"},
+  {"eng": "Very much", 
+         "fi": "Erittäin"},
+  {"eng": "How much did you like the song", 
+         "fi": "Kuinka paljon pidit laulusta"},
+  {"eng": "How much did the song make you want to move", 
+         "fi": "Kuinka paljon laulu sai sinut haluamaan liikkua"},
+  {"eng": "Not at all", 
+         "fi": "En lainkaan"},
+  {"eng": "A lot", 
+         "fi": "Paljon"},
+  {"eng": "How much did you like this beat?", 
+         "fi": "Kuinka paljon pidit tästä rytmistä?"},
+  {"eng": "How much did the beat make you want to move?", 
+         "fi": "Kuinka paljon rytmi sai sinut haluamaan liikkua?"},
+  {"eng": "Have you heard this song before?", 
+         "fi": "Oletko kuullut tämän kappaleen aiemmin?"}],
+  [{"eng": "Where did you leave your phone during the tasks?",
+    "fi": "Minne jätit puhelimesi tehtävien ajaksi?"},
+   {"eng": "Pocket",
+    "fi": "Tasku"},
+   {"eng": "Purse",
+    "fi": "Laukku"},
+   {"eng": "Hand",
+    "fi": "Käsi"},
+   {"eng": "Other",
+    "fi": "Muu"},
+  ]
+]
 
 var endTask = [
   {"eng": "Task ended", 
    "fi": "Task ended"},
 ]
 
-var tapping = {
-  "instruction1": {"eng": "In this task, we will ask you to place your phone on a table, and tap on a button on the screen using the index finger of your preferred hand<br><img id='tableSVG' src='./images/tappingSVG.svg'></img>",
-                   "fi": "Tässä tehtävässä pyydämme sinua naputtamaan ruudulla näkyvää painiketta paremman kätesi etusormellä"},
-  "instruction2": {"eng": "Tap on the button at a speed that feels natural to you", 
-                   "fi": "Naputa painiketta nopeudella joka tuntuu luontevalta"},
-  "instruction3": {"eng": "Try to keep the tapping speed as constant as possible", 
-                   "fi": "Yritä pitää nopeus mahdollisimman tasaisena"},
-  "instruction4": {"eng": "In the next task, you will hear a constant beat<br><img id='ear' src='./images/ear.svg'></img>", 
-                   "fi": "Seuraavassa tehtävässä kuulet tasaisen sykkeen"},
-  "instruction5": {"eng": "Your task is to tap in synchrony to the beat", 
-                   "fi": "Naputa tahdissa sykkeen mukana"},
-  "instruction6": {"eng": 'This is an example: <br><video id="myVideo" width="100%" controls><source src="./songs/movementTapAudio/exampleTapping/metronome2.mp4" type="video/mp4"></video>', 
-                   "fi": 'Tässä on esimerkki: <br><video id="myVideo" width="100%" controls><source src="./songs/movementTapAudio/exampleTapping/metronome2.mp4" type="video/mp4"></video>'},
-  "instruction7": {"eng": "In the next task, you will hear a rhythmic pattern<br><img id='tableSVG' src='./images/table.svg'></img>", 
-                   "fi": "Seuraavassa tehtävässä kuulet rytmikuivon<br><img id='tableSVG' src='./images/table.svg'></img>"},
-  "instruction8": {"eng": "Your task is to tap in synchrony to the beat of the rhythmic pattern<br><img id='tableSVG' src='./images/tappingSVG.svg'></img>", 
-                   "fi": "Naputa tahdissa rytmikuivon sykkeen mukana<br><img id='tableSVG' src='./images/tappingSVG.svg'></img>"},
-  "instruction9": {"eng": 'This is an example: <br><video id="myVideo" width="100%" controls><source src="./songs/movementTapAudio/exampleTapping/hemiole.mp4" type="video/mp4"></video>', 
-                   "fi": 'Tässä on esimerkki: <br><video id="myVideo" width="100%" controls><source src="./songs/movementTapAudio/exampleTapping/hemiole.mp4" type="video/mp4"></video>'},
-  "instruction10": {"eng": "In the next task you will hear a musical piece<br><img id='ear' src='./images/ear.svg'></img>", 
-                    "fi": "Suraavassa tehtävässä kuulet mmusiikkikappaleen<br><img id='ear' src='./images/ear.svg'></img>"},
-  "instruction11": {"eng": "Your task is to tap in synchrony to the beat of the music", 
-                    "fi": "Naputa tahdissa musiikin sykkeen mukana"},
-  "tapHere": {"eng": "Tap here", 
-              "fi": "Napauta tästä"},
-  "recording": {"eng": "Recording taps...",
-                "fi": ""},
-  "openPage": {"eng": "Tapping task", 
-    "fi": "Naputustehtävä"}
-}
+var tapping = [
+  [{"eng": "In this task, we will ask you to place your phone on a table, and tap on a button on the screen using the index finger of your preferred hand<br><img id='tableSVG' src='./images/tappingSVG.svg'></img>", 
+        "fi": "Tässä tehtävässä pyydämme sinua naputtamaan ruudulla näkyvää painiketta paremman kätesi etusormellä"},
+  {"eng": "Tap on the button at a speed that feels natural to you", 
+        "fi": "Naputa painiketta nopeudella joka tuntuu luontevalta"},
+  {"eng": "Try to keep the tapping speed as constant as possible", 
+        "fi": "Yritä pitää nopeus mahdollisimman tasaisena"}],
+  [{"eng": "In the next task, you will hear a constant beat<br><img id='ear' src='./images/ear.svg'></img>", 
+        "fi": "Seuraavassa tehtävässä kuulet tasaisen sykkeen"},
+  {"eng": "Your task is to tap in synchrony to the beat", 
+    "fi": "Naputa tahdissa sykkeen mukana"},
+  {"eng": 'This is an example: <br><video id="myVideo" width="100%" controls><source src="./songs/movementTapAudio/exampleTapping/metronome2.mp4" type="video/mp4"></video>', 
+    "fi": 'Tässä on esimerkki: <br><video id="myVideo" width="100%" controls><source src="./songs/movementTapAudio/exampleTapping/metronome2.mp4" type="video/mp4"></video>'}],
+  [{"eng": "In the next task, you will hear a rhythmic pattern<br><img id='tableSVG' src='./images/table.svg'></img>", 
+    "fi": "Seuraavassa tehtävässä kuulet rytmikuivon<br><img id='tableSVG' src='./images/table.svg'></img>"},
+  {"eng": "Your task is to tap in synchrony to the beat of the rhythmic pattern<br><img id='tableSVG' src='./images/tappingSVG.svg'></img>", 
+    "fi": "Naputa tahdissa rytmikuivon sykkeen mukana<br><img id='tableSVG' src='./images/tappingSVG.svg'></img>"},
+  {"eng": 'This is an example: <br><video id="myVideo" width="100%" controls><source src="./songs/movementTapAudio/exampleTapping/hemiole.mp4" type="video/mp4"></video>', 
+    "fi": 'Tässä on esimerkki: <br><video id="myVideo" width="100%" controls><source src="./songs/movementTapAudio/exampleTapping/hemiole.mp4" type="video/mp4"></video>'}],
+  [{"eng": "In the next task you will hear a musical piece<br><img id='ear' src='./images/ear.svg'></img>", 
+         "fi": "Suraavassa tehtävässä kuulet mmusiikkikappaleen<br><img id='ear' src='./images/ear.svg'></img>"},
+  {"eng": "Your task is to tap in synchrony to the beat of the music", 
+         "fi": "Naputa tahdissa musiikin sykkeen mukana"}],
+  [{"eng": "Tap here", 
+    "fi": "Napauta tästä"}],
+  [{"eng": "Tapping task", 
+    "fi": "Naputustehtävä"}]
+]
         
-var buttons = {
-  "next": {"eng": "Next",
-           "fi": "Seuraava"},
-  "previous": { "eng": "Previous", 
-                "fi": "Edellinen"},
-  "continue": {"eng": "Continue",
-               "fi": "Jatka"},
-}
+var buttons = [
+  {"eng": "Next",
+   "fi": "Seuraava"},
+  {"eng": "Previous", 
+   "fi": "Edellinen"}
+]
 
-var recurring = {
-  "openPage": {"eng": "Welcome MMBB battery",
-               "fi": "Tervetuloa MMBB-patteriin"},
-  "welcome": {"eng": "Welcome!",
-              "fi": "Tervetuloa!"},
-  "readyNext": {"eng": "When you are ready to begin, click Next", 
-                "fi": "Kun olet valmis aloittamaan, paina Seuraava"},
-  "endTask1": {"eng": "End of the task", 
-               "fi": "Tehtävä on päättynyt"},
-  "endTask2": {"eng": "End of task 2", 
-               "fi": "Tehtävä 2 on päättynyt"},
-  "endTask3": {"eng": "End of task 3", 
-               "fi": "Tehtävä 3 on päättynyt"},
-  "loading":  {"eng": "Loading",
-               "fi": "Ladataan"},
-  "readyNext2": {"eng": "When you are ready to continue, click Next", 
-                 "fi": "Kun olet valmis jatkamaan, paina Seuraava"},
-  "howEasy": {"eng": "How easy was this task for you?", 
-              "fi": "kuinka helppoa tämä tehtävä oli sinulle?"},
-  "veryEasy": {"eng": "Very easy", 
-               "fi": "Todella helppoja"}, 
-  "veryHard": {"eng": "Very hard", 
-               "fi": "Todella haastavia"},
-  "instruction1": {"eng": "For this task you will need the following items:",
-                   "fi": "Tätä tehtävää varten tarvitset seuraavat esineet:"},
-  "instruction2": {"eng": "A pocket or a purse<br><img id='pocket' src='./images/pocket.svg'></img>",
-                   "fi": "Taskun tai käsilaukun<br><img id='pocket' src='./images/pocket.svg'></img>"},
-  "instruction3": {"eng": "A flat surface where you can lay down your phone<br><img id='tableSVG' src='./images/table.svg'></img>",
-                   "fi": "Tasainen pinta, jolle voit laskea puhelimen<br><img id='tableSVG' src='./images/table.svg'></img>"},
-  "instruction4": {"eng": "Please, use either wired headphones/earplugs or the phone's loudspeaker. Do not use bluetooth hearing-devices.<br> <img id='noBluetooth' src='./images/noBluetooth.svg'></img>",
-                   "fi": "Käytä joko langallisia kuulokkeita tai puhelimen kaiutinta. Älä käytä Bluetooth-laitteita."},
-  "instruction5": {"eng": "To ensure the correct functioning of the experiment, it is required that you disable the automatic lock of your phone screen. Tap Next to see instructions.",
-                   "fi": "Jotta koe onnistuu, sinun on poistettava puhelimen näytön automaattinen lukitus. Näet ohjeet napauttamalla Seuraava."},
-  "instruction6": {"eng": "On <b>iPhone</b>:",
-                   "fi": "<b>iPhonin</b> päällä"},
-  "instruction7": {"eng": "Settings <br> <img id='instructionLock' src='./images/instructions/iosInstruction0.png'></img>",
-                   "fi": "Asetukset <br> <img id='instructionLock' src='./images/instructions/iosInstruction0.png'></img>"},
-  "instruction8": {"eng": "Display & brightness <br> <img id='instructionLock' src='./images/instructions/iosInstruction1.png'></img>",
-                   "fi": "Näyttö & kirkkaus <br> <img id='instructionLock' src='./images/instructions/iosInstruction1.png'></img>"},
-  "instruction9": {"eng": "Auto-lock > Never <br> <img id='instructionLock' src='./images/instructions/iosInstruction2.png'></img>",
-                   "fi": "Automaattinen lukitus > Ei koskaan <br> <img id='instructionLock' src='./images/instructions/iosInstruction2.png'></img>"},
-  "instruction10": {"eng": "You can re-enable this setting once the experiment has ended.",
-                   "fi": "Voit ottaa tämän asetuksen uudelleen käyttöön, kun kokeilu on päättynyt."},
-  "instruction12": {"eng": "On <b>Android</b>:",
-                    "fi": "<b>Androiding</b> päällä"},
-  "instruction13": {"eng": "Settings <br> <img id='instructionLock' src='./images/instructions/androidInstructions0.png'></img>",
-                    "fi": "Astetukset <br> <img id='instructionLock' src='./images/instructions/androidInstructions0.png'></img>"},
-  "instruction14": {"eng": "Display <br> <img id='instructionLock' src='./images/instructions/androidInstructions1.png'></img>",
-                    "fi": "Näyttö & kirkkaus <br> <img id='instructionLock' src='./images/instructions/androidInstructions1.png'></img>"},
-  "instruction15": {"eng": "Screen timeout > 30/15 minutes <br> <img id='instructionLock' src='./images/instructions/androidInstructions2.png'></img>",
-                    "fi": "Näytön lukitus > 30/15 minuuttia <br> <img id='instructionLock' src='./images/instructions/androidInstructions2.png'></img>"},
-  "instruction16": {"eng": "You can re-enable this setting once the experiment has ended.",
-                    "fi": "Voit ottaa tämän asetuksen uudelleen käyttöön, kun kokeilu on päättynyt."},
-  "instruction17": {"eng": "You can take breaks between each task",
-                   "fi": "Voit pitää tauon jokaisen tehtävän välillä"},
-  "notAtAll": {"eng": "Not at all",
-               "fi": "En lainkaan"},
-  "veryMuch": {"eng": "Very much",
-               "fi": "Erittäin"},
-}
+var recurring = [
+  {"eng": "Welcome MMBB battery",
+        "fi": "Tervetuloa MMBB-patteriin"},
+  {"eng": "Welcome!",
+        "fi": "Tervetuloa!"},
+  {"eng": "When you are ready to begin, click Next", 
+         "fi": "Kun olet valmis aloittamaan, paina Seuraava"},
+  {"eng": "End of the task", 
+         "fi": "Tehtävä on päättynyt"},
+  {"eng": "End of task 2", 
+         "fi": "Tehtävä 2 on päättynyt"},
+  {"eng": "End of task 3", 
+        "fi": "Tehtävä 3 on päättynyt"},
+  {"eng": "Loading",      //New
+        "fi": "Ladataan"}, //new
+  {"eng": "Continue",     //New
+        "fi": "Jatka"},        //New
+  {"eng": "When you are ready to continue, click Next", 
+      "fi": "Kun olet valmis jatkamaan, paina Seuraava"},
+  {"eng": "How easy was this task for you?", 
+   "fi": "kuinka helppoa tämä tehtävä oli sinulle?"},
+  {"eng": "Very easy", 
+   "fi": "Todella helppoja"}, 
+  {"eng": "Very hard", 
+   "fi": "Todella haastavia"},
+  [{"eng": "For this task you will need the following items:",
+    "fi": "Tätä tehtävää varten tarvitset seuraavat esineet:"},
+  {"eng": "A pocket or a purse<br><img id='pocket' src='./images/pocket.svg'></img>",
+   "fi": "Taskun tai käsilaukun<br><img id='pocket' src='./images/pocket.svg'></img>"},
+  {"eng": "Please, use either wired headphones/earplugs or the phone's loudspeaker. Do not use bluetooth hearing-devices.<br> <img id='noBluetooth' src='./images/noBluetooth.svg'></img>",
+   "fi": "Käytä joko langallisia kuulokkeita tai puhelimen kaiutinta. Älä käytä Bluetooth-laitteita."}],
+  [{"eng": "To ensure the correct functioning of the experiment, it is required that you disable the automatic lock of your phone screen. Tap Next to see instructions.",
+    "fi": "Jotta koe onnistuu, sinun on poistettava puhelimen näytön automaattinen lukitus. Näet ohjeet napauttamalla Seuraava."},
+  {"eng": "On <b>iPhone</b>:",
+    "fi": "<b>iPhonin</b> päällä"},
+  {"eng": "Settings <br> <img id='instructionLock' src='./images/instructions/iosInstruction0.png'></img>",
+   "fi": "Asetukset <br> <img id='instructionLock' src='./images/instructions/iosInstruction0.png'></img>"},
+  {"eng": "Display & brightness <br> <img id='instructionLock' src='./images/instructions/iosInstruction1.png'></img>",
+   "fi": "Näyttö & kirkkaus <br> <img id='instructionLock' src='./images/instructions/iosInstruction1.png'></img>"},
+  {"eng": "Auto-lock > Never <br> <img id='instructionLock' src='./images/instructions/iosInstruction2.png'></img>",
+    "fi": "Automaattinen lukitus > Ei koskaan <br> <img id='instructionLock' src='./images/instructions/iosInstruction2.png'></img>"},
+  {"eng": "You can re-enable this setting once the experiment has ended.",
+   "fi": "Voit ottaa tämän asetuksen uudelleen käyttöön, kun kokeilu on päättynyt."}],
+  [{"eng": "To ensure the correct functioning of the experiment, it is required that you disable the automatic lock of your phone screen. Tap Next to see instructions.",
+    "fi": "Jotta koe onnistuu, sinun on poistettava puhelimen näytön automaattinen lukitus. Näet ohjeet napauttamalla Seuraava."},
+  {"eng": "On <b>Android</b>:",
+    "fi": "<b>Androiding</b> päällä"},
+  {"eng": "Settings <br> <img id='instructionLock' src='./images/instructions/androidInstructions0.png'></img>",
+    "fi": "Astetukset <br> <img id='instructionLock' src='./images/instructions/androidInstructions0.png'></img>"},
+  {"eng": "Display <br> <img id='instructionLock' src='./images/instructions/androidInstructions1.png'></img>",
+   "fi": "Näyttö & kirkkaus <br> <img id='instructionLock' src='./images/instructions/androidInstructions1.png'></img>"},
+  {"eng": "Screen timeout > 30/15 minutes <br> <img id='instructionLock' src='./images/instructions/androidInstructions2.png'></img>",
+   "fi": "Näytön lukitus > 30/15 minuuttia <br> <img id='instructionLock' src='./images/instructions/androidInstructions2.png'></img>"},
+  {"eng": "You can re-enable this setting once the experiment has ended.",
+    "fi": "Voit ottaa tämän asetuksen uudelleen käyttöön, kun kokeilu on päättynyt."},
+  ],
+  [{"eng": "Not at all",
+    "fi": "En lainkaan"},
+   {"eng": "Very much",
+    "fi": "Erittäin"},
+  ],
+  [{"eng": "For this task you will need the following items:",
+    "fi": "Tätä tehtävää varten tarvitset seuraavat esineet:"},
+  {"eng": "A flat surface where you can lay down your phone<br><img id='tableSVG' src='./images/table.svg'></img>",
+    "fi": "Tasainen pinta, jolle voit laskea puhelimen<br><img id='tableSVG' src='./images/table.svg'></img>"},
+  {"eng": "Please, use either wired headphones/earplugs or the phone's loudspeaker. Do not use bluetooth hearing-devices.<br> <img id='noBluetooth' src='./images/noBluetooth.svg'></img>",
+   "fi": "Käytä joko langallisia kuulokkeita tai puhelimen kaiutinta. Älä käytä Bluetooth-laitteita."},
+  {"eng": "You can take breaks between each task",
+   "fi": "Voit pitää tauon jokaisen tehtävän välillä"}],
+   {"eng": "Completion Progress",
+   "fi": "Tehtävän suoritus"},
+]
   
-var beatProduction = {
-  "instruction0": {"eng": "In this task, you will hear a song which has a click track on top of it<br><img id='music' src='./images/music.svg'></img>",
-                   "fi": "Tässä tehtävässä kuulet laulun jonka päällä on kilikkiraita<br><img id='music' src='./images/music.svg'></img>"},
-  "instruction1": {"eng": 'The click track sounds like this:<br><br><audio autoplay controls><source src="./songs/beatProductionAudio/beatModified/training/metronome_0.mp3" type="audio/mp3"></audio>',
-                    "fi": 'Kilikkiraita kuulostaa tältä:<br><br><audio autoplay controls><source src="./songs/beatProductionAudio/beatModified/training/metronome_0.mp3" type="audio/mp3"></audio>'},
-  "instruction2": {"eng": "The beat of the song and the click track may or may not be aligned with each other", 
-                    "fi": "Laulu ja kilikkiraita ovat joko samassa tahdissa tai eri tahdissa"},
-  "instruction3": {"eng": "Next, some examples",
-                    "fi": "Seuravassa pari esimerkki"},
-  "instruction4": {"eng": 'Not aligned: <br><br><audio autoplay controls><source src="./songs/beatProductionAudio/beatModified/baseSongs/example/notAligned.mp3" type="audio/mp3"></audio>',
-                    "fi": 'Eri tahdissa: <br><br><audio autoplay controls><source src="./songs/beatProductionAudio/beatModified/baseSongs/example/notAligned.mp3" type="audio/mp3"></audio>'},
-  "instruction5": {"eng": 'Aligned: <br><br><audio autoplay controls><source src="./songs/beatProductionAudio/beatModified/baseSongs/example/aligned.mp3" type="audio/mp3"></audio>',
-                    "fi": 'Samassa tahdissa: <br><br><audio autoplay controls><source src="./songs/beatProductionAudio/beatModified/baseSongs/example/aligned.mp3" type="audio/mp3"></audio>'},
-  "instruction6": {"eng": "Your task is to find the best alignment between the click and the song", 
-                    "fi": "Tehtäväsi on löytää paras kohdistus metronomin iskun ja kappaleen väliltä"},
-  "instruction7": {"eng": "By clicking these buttons, you will be able to align the song and the click in a few different ways:<br><img id='music' src='./images/exampleBAT.png'></img>",
-                    "fi": "<br><img id='music' src='./images/exampleBAT.png'></img>"},
-  "instruction8": {"eng": "Let's start with a practice trial",
-                    "fi": "Aloitetaan harjoit telutehtävällä"},
-  "instruction9": {"eng": "Your task is to click through the buttons until you find the best aligment between the song and the click. Once you find it, click Continue",
-                    "fi": "Tehtäväsi on koskettaa ja kokeilla eri painikkeita, kunnes löydät parhaan kohdistuksen kappaleen ja metronomin iskun väliltä. Kun löydät sen, paina Jatka"},
-  "instruction10": {"eng": "Each trial has a time-limit, so try to find the best alignment as quickly as you can",
-                    "fi": "Jokaisella kokeilulla on aikaraja, joten yritä löytää paras ajoitus mahdollisimman nopeasti"},
-  "instruction11": {"eng": "Ok, let's continue with the task",
-                    "fi": "Selvä, jatketaan varsinaisellä tehtävällä"},
-  "instruction12": {"eng": "Next you will hear 6 songs. Align the click track with the beat of the song",
-                    "fi": "Seuravaaksi kuulet 6 laulua. Säädää kilikkiraita laulun tahtiin"},
-  "adjustBeat": {"eng": "Adjust the beat<br>",
-                    "fi": "Säädää tahtia<br>"},
-  "openPage": {"eng": "Beat alignment task",
-               "fi": "Tahdin kohdistustehtävä"},
-  "howSatisfied": {"eng": "How satisfied were you with the alignment that you found between this song and the click?",
-                    "fi": "Kuinka tyytyväinen olit tämän kappaleen ja metronomin iskun väliseen linjaukseen?"}
-}
+var beatProduction = [
+  [{"eng": "In this task, you will hear a song which has a click track on top of it<br><img id='music' src='./images/music.svg'></img>",
+        "fi": "Tässä tehtävässä kuulet laulun jonka päällä on kilikkiraita<br><img id='music' src='./images/music.svg'></img>"},
+  {"eng": 'The click track sounds like this:' + '<br><br><audio autoplay controls><source src="./songs/beatProductionAudio/beatModified/training/metronome_0.mp3" type="audio/mp3"></audio>',
+       "fi": 'Kilikkiraita kuulostaa tältä: ' + '<br><br><audio autoplay controls><source src="./songs/beatProductionAudio/beatModified/training/metronome_0.mp3" type="audio/mp3"></audio>'},
+  {"eng": "The beat of the song and the click track may or may not be aligned with each other", 
+        "fi": "Laulu ja kilikkiraita ovat joko samassa tahdissa tai eri tahdissa"},
+  {"eng": "Next, some examples",
+        "fi": "Seuravassa pari esimerkki"},
+  {"eng": 'Not aligned: <br><br><audio autoplay controls><source src="./songs/beatProductionAudio/beatModified/baseSongs/example/notAligned.mp3" type="audio/mp3"></audio>',
+    "fi": 'Eri tahdissa: <br><br><audio autoplay controls><source src="./songs/beatProductionAudio/beatModified/baseSongs/example/notAligned.mp3" type="audio/mp3"></audio>'},
+  {"eng": 'Aligned: <br><br><audio autoplay controls><source src="./songs/beatProductionAudio/beatModified/baseSongs/example/aligned.mp3" type="audio/mp3"></audio>',
+        "fi": 'Samassa tahdissa: <br><br><audio autoplay controls><source src="./songs/beatProductionAudio/beatModified/baseSongs/example/aligned.mp3" type="audio/mp3"></audio>'},
+  {"eng": "Your task is to find the best alignment between the click and the song", 
+        "fi": "Tehtäväsi on löytää paras kohdistus metronomin iskun ja kappaleen väliltä"},
+  {"eng": "By clicking these buttons, you will be able to align the song and the click in a few different ways:<br><img id='music' src='./images/exampleBAT.png'></img>",
+        "fi": "<br><img id='music' src='./images/exampleBAT.png'></img>"},
+  {"eng": "Let's start with a practice trial",
+        "fi": "Aloitetaan harjoit telutehtävällä"},
+  {"eng": "Your task is to click through the buttons until you find the best aligment between the song and the click. Once you find it, click Continue",
+   "fi": "Tehtäväsi on koskettaa ja kokeilla eri painikkeita, kunnes löydät parhaan kohdistuksen kappaleen ja metronomin iskun väliltä. Kun löydät sen, paina Jatka"},
+  {"eng": "Each trial has a time-limit, so try to find the best alignment as quickly as you can",
+   "fi": "Jokaisella kokeilulla on aikaraja, joten yritä löytää paras ajoitus mahdollisimman nopeasti"}],
+  [{"eng": "Ok, let's continue with the task",
+    "fi": "Selvä, jatketaan varsinaisellä tehtävällä"},
+  {"eng": "Next you will hear 6 songs. Align the click track with the beat of the song",
+        "fi": "Seuravaaksi kuulet 6 laulua. Säädää kilikkiraita laulun tahtiin"}],
+  [{"eng": "Adjust the beat<br>",
+    "fi": "Säädää tahtia<br>"}],
+  [{"eng": "Beat alignment task",
+    "fi": "Tahdin kohdistustehtävä"}],
+  [{"eng": "How satisfied were you with the alignment that you found between this song and the click?",
+    "fi": "Kuinka tyytyväinen olit tämän kappaleen ja metronomin iskun väliseen linjaukseen?"}
+  ]
+]
 
 var initialInstructions = [
   [{"eng": "Can you hear this song?<br>If so, adjust the volume to a comfortable hearing level and click Continue.<br><img id='tableSVG' src='./images/soundSVG.svg'><br>If you cannot hear the song, try changing to a different computer/phone or to a different internet browser.",
@@ -243,317 +262,324 @@ var initialInstructions = [
     "fi": "En tiedä"}
   ]
 ]
-var musicalBackground = {
-  "howLongSing": {"eng": "How long have you been singing as a hobby?",
-                  "fi": "Kuinka kauan olet harrastanut laulamista?"},
-  "howOftenSingBefore": {"eng": "How often did you sing when you were most active with the hobby?",
-                         "fi": "Kuinka usein lauloit harrastuksen aktiivisimmassa vaiheessa?"},
-  "howOftenSingNow": {"eng": "How often do you sing nowadays?",
-                      "fi": "Kuinka usein laulat nykyään?"},
-  "howMuchTuitionSing": {"eng": "How much tuition have you received for singing (outside primary/lower secondary school)?",
-                         "fi": "Kuinka paljon opetusta olet saanut laulamiseen (peruskoulun ulkopuolella)?"},
-  "howLongInstrumentHobby": {"eng": "How long have you been playing a musical instrument as a hobby?",
-                             "fi": "Kuinka kauan olet harrastanut musiikki-instrumentin soittamista?"},
-  "howOftenPlayHobby": {"eng": "How often did you play when you were most active with the hobby?",
-                        "fi": "Kuinka usein soitit harrastuksen aktiivisimmassa vaiheessa?"},
-  "howOftenPlayNow": {"eng": "How often do you play nowadays?",
-                      "fi": "Kuinka usein soitat nykyään?"},
-  "howMuchTuitionInstrument": {"eng": "How much tuition have you received for playing (outside primary/lower secondary school)?",
-                               "fi": "Kuinka paljon opetusta olet saanut soittamiseen (peruskoulun ulkopuolella)?"},
-  "howLongDanceHobby": {"eng": "How long have you been dancing as a hobby?",
-                        "fi": "Kuinka kauan olet harrastanut tanssimista?"},
-  "howLongDanceHobyBefore": {"eng": "How often did you dance when you were most active with the hobby?",
-                             "fi": "Kuinka usein tanssit harrastuksen aktiivisimmassa vaiheessa?"},
-  "howOftenDanceNow": {"eng": "How often do you dance nowadays?",
-                       "fi": "Kuinka usein tanssit nykyään?"},
-  "howMuchTuitionDance": {"eng": "How much tuition have you received for dancing (outside primary/lower secondary school)?",
-                          "fi": "Kuinka paljon opetusta olet saanut tanssimiseen (peruskoulun ulkopuolella)?"},
-  "howOftenListenMusicNow": {"eng": "How often do you listen to music nowadays?",
-                             "fi": "Kuinka usein kuuntelet musiikkia nykyään?"},
-  "howMusical": {"eng": "How musical do you consider yourself?",
-                 "fi": "Kuinka musikaaliseksi koet itsesi?"},
-  "notAtAlMusical": {"eng": "not at all musical",
-                     "fi": "en lainkaan musikaaliseksi"},
-  "notThatMusical": {"eng": "not that musical",
-                     "fi": "en kovin musikaaliseksi"},
-  "aBitMusical": {"eng": "a bit musical",
-                  "fi": "hieman musikaaliseksi"},
-  "quiteMusical": {"eng": "quite musical",
-                   "fi": "melko musikaaliseksi"},
-  "veryMusical": {"eng": "very musical",
-                  "fi": "hyvin musikaaliseksi"},
-  "never": {"eng": "never",
-            "fi": "en koskaan"},
-  "oneTwoYears": {"eng": "1-2 years",
-                  "fi": "1-2 vuotta"},
-  "threeFiveYears": {"eng": "3-5 years",
-                     "fi": "3-5 vuotta"},
-  "sixNineYears": {"eng": "6-9 years",
-                   "fi": "6-9 vuotta"},
-  "tenMoreYears": {"eng": "10 or more years",
-                   "fi": "10 vuotta tai enemmän"},
-  "veryRarely": {"eng": "very rarely",
-                 "fi": "hyvin harvoin"},
-  "monthly": {"eng": "monthly",
-              "fi": "kuukausittain"},
-  "weekly": {"eng": "weekly",
-             "fi": "viikoittain"},
-  "daily": {"eng": "daily",
-            "fi": "päivittäin"}
-}
 
-var personalBackground = {
-  "title": {"eng": "Here are questions about your background",
-            "fi": "Seuraavassa on kysymyksiä taustastasi"},
-  "pleaseAnswer": {"eng": "Please, answer the following questions",
-                   "fi": "Please, answer the following questions"},
-  "yearOfBirth": {"eng": "Year of birth (month/date if children)",
-                  "fi": "Syntymävuosi (kuu/pvämäärä jos kyse lapsista)"},
-  "gender": {"eng": "Gender",
-             "fi": "Sukupuoli"},
-  "female": {"eng": "female",
-             "fi": "nainen"},
-  "male": {"eng": "male",
-           "fi": "mies"},
-  "other": {"eng": "other",
-            "fi": "muu"},
-  "ratherNotSay": {"eng": "rather not say",
-                   "fi": "en halua sanoa"},
-  "education": {"eng": "Education",
-                "fi": "Koulutus"},
-  "primarySchool": {"eng": "Primary school/grade school",
-                    "fi": "Kansakoulu"},
-  "comprehensiveSchool": {"eng": "Comprehensive school/elementary school",
-                          "fi": "Peruskoulu"},
-  "secondaryEducation": {"eng": "Secondary education/High school",
-                         "fi": "Lukio"},
-  "vocationalTraining": {"eng": "Secondary education/Vocational training",
-                         "fi": "Ammattikoulu tai vastaava"},
-  "bachelors": {"eng": "Bachelor’s degree (University or University of applied sciences)",
-                "fi": "Kandidaatin tutkinto (yliopisto tai ammattikorkeakoulu)"},
-  "masters": {"eng": "Master’s degree (University or University of applied sciences)",
-              "fi": "Maisterintutkinto (yliopisto tai ammattikorkeakoulu)"},
-  "doctoral": {"eng": "Licentiate or doctoral degree",
-               "fi": "Lisensiaatin tai tohtorintutkinto"},
-  "other": {"eng": "Other, what:",
-            "fi": "Muu, mikä:"}
-}
-  
-var musicalPreferences = {
-  "howMuchLikeGenre": {"eng": "How much do you like the following musical genres? For each genre, select the option that best describes your preference.",
-                       "fi": "Kuinka paljon pidät seuraavista musiikkityyleistä? Valitse jokaisen musiikkityylin kohdalla vaihtoehto, joka parhaiten kuvaa mieltymystäsi."},
-  "dislikeStrongly": {"eng": "dislike strongly",
-                      "fi": "inhoan paljon "},
-  "dislikeModerately": {"eng": "dislike moderately",
-                        "fi": "inhoan kohtalaisesti"},
-  "dislkikeAlittle": {"eng": "dislike a little",
-                      "fi": "inhoan hieman"},
-  "neutral": {"eng": "neither like nor dislike",
-              "fi": "siltä väliltä"},
-  "likeALittle": {"eng": "like a little",
-                  "fi": "pidän hieman"},
-  "likeModerately": {"eng": "like moderately",
-                     "fi": "pidän kohtalaisesti"},
-  "likeStrongly": {"eng": "like strongly",
-                   "fi": "pidän paljon"},
-  "blues": {"eng": "Blues",
-            "fi": "Blues"},
-  "jazz": {"eng": "Jazz",
-           "fi": "Jazz"},
-  "classical": {"eng": "Classical",
-                "fi": "Klassinen"},
-  "folk": {"eng": "Folk",
-           "fi": "Etno / kansanmusiikki"},
-  "rock": {"eng": "Rock",
-           "fi": "Rock"},
-  "alternative": {"eng": "Alternative",
-                  "fi": "Vaihtoehto / indie"},
-  "heavyMetal": {"eng": "Heavy metal",
-                 "fi": "Metalli"},
-  "country": {"eng": "Country",
-              "fi": "Kantri"},
-  "religious": {"eng": "Religious",
-                "fi": "Hengellinen"},
-  "pop": {"eng": "Pop",
-          "fi": "Pop / iskelmä"},
-  "rap": {"eng": "Rap / hip hop",
-          "fi": "Rap / hip hop"},
-  "soul": {"eng": "Soul / funk",
-           "fi": "Soul / funk"},
-  "electronic": {"eng": "Electronic / dance",
-            "fi": "Elektroninen / dance"}
-}
-
-var barcelonaReward = {
-  "question": {"eng": "Here are statements about experiencing music and about the role of music in life. How do they apply to you? Select the option that best fits you.",
-            "fi": "Seuraavassa on väitteitä musiikin kokemisesta ja merkityksestä elämässä. Missä määrin ne sopivat sinuun? Valitse vaihtoehto, joka parhaiten kuvaa sinua."},
-  "completelyDisagree": {"eng": "completely disagree",
-            "fi": "täysin eri mieltä"},
-  "somewhatDisagree": {"eng": "somewhat disagree",
-            "fi": "jonkin verran eri mieltä"},
-  "neitherDisagreeAgree": {"eng": "neither disagree nor agree",
-            "fi": "siltä väliltä"},
-  "somewhatAgree": {"eng": "somewhat agree",
-            "fi": "jonkin verran samaa mieltä"},
-  "completelyAgree": {"eng": "completely agree",
-            "fi": "täysin samaa mieltä"},
-  "shareMusic": {"eng": "When I share music with someone I feel a special connection with that person.",
-            "fi": "Kun jaan musiikkikokemuksen toisen kanssa, tunnen erityistä yhteyttä häneen"},
-  "freeNoListen": {"eng": "In my free time I hardly listen to music",
-            "fi": "En juurikaan kuuntele musiikkia vapaa-aikanani"},
-  "listenEmotion": {"eng": "I like listen to music that contains emotion",
-            "fi": "Pidän sellaisen musiikin kuuntelusta, jossa on tunnetta"},
-  "musicCompany": {"eng": "Music keeps me company when I’m alone",
-            "fi": "Musiikki pitää minulle seuraa yksin ollessani"},
-  "dontLikeDance": {"eng": "I don’t like to dance, not even with music I like",
-            "fi": "En pidä tanssimisesta edes mielimusiikkini tahtiin"},
-  "musicMakesMeBond": {"eng": "Music makes me bond with other people",
-            "fi": "Musiikki saa minut kokemaan yhteenkuuluvuutta muiden kanssa"},
-  "informMyself": {"eng": "I inform myself about music I like",
-            "fi": "Pidän itseni ajan tasalla makuani vastaavasta musiikista"},
-  "getEmotional": {"eng": "I get emotional listening to certain pieces of music",
-            "fi": "Liikutun, kun kuuntelen tiettyjä musiikkikappaleita"},
-  "musicCalms": {"eng": "Music calms and relaxes me",
-            "fi": "Musiikki rauhoittaa ja rentouttaa minua"},
-  "musicMakesMeDanceOften": {"eng": "Music often makes me dance",
-            "fi": "Musiikki saa minut usein tanssimaan"},
-  "lookingNewMusic": {"eng": "I’m always looking for new music",
-            "fi": "Etsin aina uutta musiikkia jota kuunnella tai esittää"},
-  "canBecomeTearful": {"eng": "I can become tearful or cry when I listen to a melody that I like very much",
-            "fi": "Saatan kyynelehtiä tai itkeä kuunnellessani melodiaa, josta pidän todella paljon"},
-  "likeToSing": {"eng": "I like to sing or play an instrument with other people",
-            "fi": "Pidän toisten kanssa laulamisesta tai soittamisesta"},
-  "musicHelpsChill": {"eng": "Music helps me chill out",
-            "fi": "Musiikki auttaa minua ottamaan rennosti"},
-  "hummingAlong": {"eng": "I can’t help humming or singing along to music that I like",
-            "fi": "En voi olla hyräilemättä tai laulamatta mukana kun kuulen musiikkia, josta pidän"},
-  "concertConnected": {"eng": "At a concert I feel connected to the performers and the audience",
-            "fi": "Konserteissa koen yhteyden esiintyjien ja yleisön kanssa"},
-  "spendQuite": {"eng": "I spend quite a bit of money on music and related items",
-            "fi": "Käytän melko paljon rahaa musiikkiin ja siihen liittyviin asioihin"},
-  "sometimesFeelChills": {"eng": "I sometimes feel chills when I hear a melody that I like",
-            "fi": "Saan toisinaan nautinnollisia väristyksiä kuullessani melodian, josta pidän"},
-  "musicComforts": {"eng": "Music comforts me",
-            "fi": "Musiikki lohduttaa minua"},
-  "whenIHearTune": {"eng": "When I hear a tune I like a lot I can’t help tapping or moving to its beat",
-            "fi": "Kuullessani kappaleen, josta pidän todella paljon, en malta olla taputtamatta tai liikkumatta sen tahtiin"}
-}
-
-var goldsmithPerception = {
-  "prompt": {"eng": "Here are some statements about music perception",
-             "fi": "Seuraavassa on muutamia väitteitä musiikin havaitsemisesta"},
-  "completelyDisagree": {"eng": "completely disagree",
-            "fi": "täysin eri mieltä"},
-  "somewhatDisagree": {"eng": "somewhat disagree",
-            "fi": "jonkin verran eri mieltä"},
-  "neitherDisagreeAgree": {"eng": "neither disagree nor agree",
-            "fi": "siltä väliltä"},
-  "somewhatAgree": {"eng": "somewhat agree",
-            "fi": "jonkin verran samaa mieltä"},
-  "completelyAgree": {"eng": "completely agree",
-            "fi": "täysin samaa mieltä"},
-  "easyControlMovement": {"eng": "I find it easy to control my movements",
-       "fi": "Minun on helppo hallita omia liikkeitäni tanssiessani"},
-  "ifAskDance": {"eng": "If someone asks me to dance, I usually say yes",
-       "fi": "Jos joku pyytää minua tanssimaan, niin suostun siihen yleensä"},
-  "whenDance": {"eng": "When I dance, I feel better",
-       "fi": "Kun tanssin, minulle tulee parempi olo"},
-  "easyLearn": {"eng": "I find it easy to learn or imitate other people's movements",
-       "fi": "Minun on helppo oppia tanssiliikkeitä tai matkia toisten liikkeitä"},
-  "wannaDance": {"eng": "When I hear a great track, it just makes me want to dance",
-       "fi": "Mahtavan biisin kuuleminen saa minut haluamaan tanssia"}
-}
-
-var goldsmithSinging = {
-  "prompt": {"eng": "Here are some statements about singing. How do they apply to you? Select the option that best fits you",
-             "fi": "Seuraavassa on muutamia väitteitä laulamisesta. Missä määrin ne sopivat sinuun? Valitse vaihtoehto, joka parhaiten kuvaa sinua"},
-  "songDontKnow": {"eng": "If somebody starts singing a song I don't know, I can usually join in",
-       "fi": "Jos joku alkaa laulamaan minulle tuntematonta kappaletta, pystyn yleensä liittymään mukaan lauluun"},
-  "ableHit": {"eng": "I am able to hit the right notes when I sing along with a recording",
-       "fi": "Pysyn nuotissa laulaessani äänitteen mukana"},
-  "likeSinging": {"eng": "I don’t like singing in public because I’m afraid that I would sing wrong notes",
-       "fi": "En pidä julkisesti laulamisesta, koska pelkään laulavani nuotin vierestä"},
-  "canSing": {"eng": "I can sing music from memory",
-       "fi": "Osaan laulaa kappaleita ulkomuistista"},
-  "afterHearing": {"eng": "After hearing a new song two or three times, I can usually sing it by myself",
-       "fi": "Kuultuani uuden laulun kahdesti tai kolmesti pystyn yleensä laulamaan sen itse"},
-}
-
-var goldsmithDancing = {
-  "prompt": {"eng": "Finally, here are some statements about dancing",
-             "fi": "How do they apply to you? Select the option that best fits you"},
-  "easyControl": {"eng": "I find it easy to control my movements",
-       "fi": "Minun on helppo hallita omia liikkeitäni tanssiessani"},
-  "ifSomeone": {"eng": "If someone asks me to dance, I usually say yes",
-       "fi": "Jos joku pyytää minua tanssimaan, niin suostun siihen yleensä"},
-  "whenDance": {"eng": "When I dance, I feel better",
-       "fi": "Kun tanssin, minulle tulee parempi olo"},
-  "iFind": {"eng": "I find it easy to learn or imitate other people's movements",
-       "fi": "Minun on helppo oppia tanssiliikkeitä tai matkia toisten liikkeitä"},
-  "greatTrack": {"eng": "When I hear a great track, it just makes me want to dance",
-    "fi": "Mahtavan biisin kuuleminen saa minut haluamaan tanssia"}
-}
-//BMMR
-var bmmr = {
-  "prompt": {"eng": "Rated on a 5-point scale:",
-             "fi": "Arvioidaan 5-portaisella asteikolla:"},
-  "completelyDisagree": {"eng": "completely disagree",
-            "fi": "täysin eri mieltä"},
-  "somewhatDisagree": {"eng": "somewhat disagree",
-            "fi": "jonkin verran eri mieltä"},
-  "neitherDisagreeAgree": {"eng": "neither disagree nor agree",
-            "fi": "siltä väliltä"},
-  "somewhatAgree": {"eng": "somewhat agree",
-            "fi": "jonkin verran samaa mieltä"},
-  "completelyAgree": {"eng": "completely agree",
-            "fi": "täysin samaa mieltä"},
-  "tiredOut": {"eng": "When I’m tired out, I rest by listening to music",
-                         "fi": "Kun olen uupunut, lepään kuuntelemalla musiikkia"},
-  "musicHelps": {"eng": "Music helps me to recognize different feelings in myself",
-                         "fi": "Musiikki auttaa minua ymmärtämään erilaisia tunteita itsessäni"},
-  "listenMusic": {"eng": "I listen to music to find solace when worries overwhelm me",
-                         "fi": "Kuuntelen musiikkia saadakseni lohtua murheisiini"},
-  "backgroundAtmosphere": {"eng": "I usually put background music on to make the atmosphere more pleasant",
-                         "fi": "Minulla on tapana laittaa taustamusiikkia soimaan tehdäkseni tilanteista mukavampia"},
-  "listenPerk": {"eng": "I listen to music to perk up after a rough day",
-                 "fi": "Kuuntelen musiikkia virkistyäkseni rankan päivän jälkeen"},
-  "reallyAngry": {"eng": "When I’m really angry, I feel like listening to some aggressive music",
-                  "fi": "Kun olen todella vihainen, minun tekee mieli kuunnella jotain vihaista musiikkia"},
-  "feelFantastic": {"eng": "I feel fantastic putting my soul fully into the music",
-                    "fi": "Minusta tuntuu mahtavalta eläytyä musiikkiin täysillä"},
-  "forgetWorries": {"eng": "For me, music is a way to forget about my worries",
-                    "fi": "Musiikki on minulle keino unohtaa murheet"},
-  "magnificentExperiences": {"eng": "Music has offered me magnificent experiences",
-                             "fi": "Musiikki on tarjonnut minulle upeita elämyksiä"},
-  "whenBusy": {"eng": "When I’m busy around the house and no one else is around, I like to have some music on the background",
-               "fi": "Kun puuhastelen yksin kotona, viihdyn paremmin jos musiikki soi taustalla"},
-  "musicHelped": {"eng": "Music has helped me to get through hard experiences",
-                  "fi": "Musiikki on auttanut minua käymään läpi vaikeita kokemuksia"},
-  "feelingSadComforts": {"eng": "When I’m feeling sad, listening to music comforts me",
-                         "fi": "Kun olen surullinen, musiikin kuuntelu lohduttaa minua"},
-  "everythingSad": {"eng": "When everything feels bad, it helps me to listen to music that expresses my bad feelings",
-                    "fi": "Kun kaikki tuntuu kurjalta, minua helpottaa kuunnella musiikkia joka ilmaisee pahaa oloani"},
-  "whenStressful": {"eng": "When stressful thoughts keep going round and round in my head, I start to listen to music to get them off my mind",
-                    "fi": "Kun mielessäni pyörii stressaavia ajatuksia, ryhdyn kuuntelemaan musiikkia työntääkseni ne pois mielestäni"}
-}
-
-var sharedMeasurementsTransitions = {
-  "surveyMMBB": {"eng": "Welcome to the MMBB survey!",
-   "fi": ""},
-  "personalBackground": {"eng": "Personal background",
-   "fi": ""},
-  "musicalBackground": {"eng": "Musical background",
-   "fi": ""},
-  "perception": {"eng": "Perception",
-   "fi": ""},
-  "singing": {"eng": "Singing",
-   "fi": ""},
-  "dancing": {"eng": "Dancing",
-   "fi": ""},
-  "musicalPreference": {"eng": "Musical preferences",
-   "fi": ""},
-  "musicalExperiences": {"eng": "Musical experiences",
-   "fi": ""},
+var sharedMeasurements = {
+  "age": {
+    "fi": "Kuinka vanha olet?",
+    "eng": "How old are you?"
+  },
+  "age": {
+    "fi": "Kuinka vanha olet?",
+    "eng": "How old are you?"
+  },
+  "gender": {
+    "fi": "Mikä on sukupuolesi?",
+    "eng": "What is your gender?"
+  },
+  "genderOption1": {
+    "fi": "nainen",
+    "eng": "female"
+  },
+  "genderOption2": {
+    "fi": "mies",
+    "eng": "male"
+  },
+  "genderOption3": {
+    "fi": "joku muu",
+    "eng": "other"
+  },
+  "genderOption4": {
+    "fi": "en halua kertoa",
+    "eng": "prefer not to say"
+  },
+  "languageSpeaksPrimary": {
+    "fi": "Mikä on äidinkielesi?",
+    "eng": "What is your primary spoken language?"
+  },
+  "languageSpeaksSecondary": {
+    "fi": "Mikä on toissijainen puhuttu kielesi? (jos on)",
+    "eng": "What is your secondary spoken language? (If applicable)"
+  },
+  "height": {
+    "fi": "Mikä on pituutesi (cm)?",
+    "eng": "What is your height (cm)?"
+  },
+  "weight": {
+    "fi": "Mikä on painosi (kg)?",
+    "eng": "What is your weight (Kg)?"
+  },
+  "yearsPracticeSinging": {
+    "fi": "Kuinka monta vuotta olet harrastanut laulamista?",
+    "eng": "How many years have you practiced singing?"
+  },
+  "oftenPracticeSingingActive": {
+    "fi": "Kuinka usein harrastit laulamista aktiivisimmassa vaiheessa?",
+    "eng": "How often did you practice singing at the most active stage?"
+  },
+  "oftenPracticeSingingCurrently": {
+    "fi": "Kuinka usein harrastat laulamista nykyään?",
+    "eng": "How often do you practice singing currently?"
+  },
+  "yearsPracticeInstrument": {
+    "fi": "Kuinka monta vuotta olet harrastanut soittamista?",
+    "eng": "How many years have you practiced playing an instrument?"
+  },
+  "oftenPracticedInstrumentActive": {
+    "fi": "Kuinka usein harrastit soittamista aktiivisimmassa vaiheessa?",
+    "eng": "How often did you practice playing an instrument at the most active stage?"
+  },
+  "oftenPracticeInstrumentCurrently": {
+    "fi": "Kuinka usein harrastat soittamista nykyään?",
+    "eng": "How often do you practice playing an instrument currently?"
+  },
+  "yearsPracticeDance": {
+    "fi": "Kuinka monta vuotta olet harrastanut tanssimista?",
+    "eng": "How many years have you practiced dancing?"
+  },
+  "oftenPracticedDanceActive": {
+    "fi": "Kuinka usein harrastit tanssimista aktiivisimmassa vaiheessa?",
+    "eng": "How often did you practice dancing at the most active stage? "
+  },
+  "oftenPracticeDanceCurrently": {
+    "fi": "Kuinka usein harrastat tanssimista nykyään?",
+    "eng": "How often do you practice dancing currently?"
+  },
+  "oftenListenMusic": {
+    "fi": "Kuinka usein kuuntelet musiikkia aktiivisesti?",
+    "eng": "How often do you actively listen to music?"
+  },
+  "yearsTraining": {
+    "fi": "Kuinka monta vuotta olet saanut opetusta peruskoulun ulkopuolella laulamiseen, soittamiseen, ja/tai tanssimiseen?",
+    "eng": "How many years of training outside of primary and lower secondary school have you received for singing, playing an instrument, and/or dancing?"
+  },
+  "howMusical": {
+    "fi": "Kuinka musikaaliseksi koet itsesi? 1 (en lainkaan) – 5 (hyvin)",
+    "eng": "How musical do you consider yourself? 1 (not at all) – 5 (very)"
+  },
+  "musicalGenre": {
+    "fi": "Mistä musiikkilajeista pidät eniten? (luettele 3)",
+    "eng": "Which musical genres do you prefer the most? (list 3)"
+  },
+  "whichSongArtistsPrefer": {
+    "fi": "Mistä lauluista tai artisteista pidät eniten? (luettele 3)",
+    "eng": "Which songs or artists do you prefer the most? (list 3)"
+  },
+  "leastPreferedGenre": {
+    "fi": "Mistä musiikkilajeista pidät vähiten? (luettele 3)",
+    "eng": "Which musical genres do you prefer the least? (list 3)"
+  },
+  "leastPreferedArtists": {
+    "fi": "Mistä lauluista tai artisteista pidät vähiten? (luettele 3)",
+    "eng": "Which songs or artists do you prefer the least? (list 3)"
+  },
+  "likeMusicEmotion": {
+      "eng": "I like to listen to music that contains emotion.",
+      "fi": "Pidän sellaisen musiikin kuuntelusta, joka herättää tunteita."
+  },
+  "getEmotion": {
+      "eng": "I get emotional listening to certain pieces of music.",
+      "fi": "Liikutun, kun kuuntelen tiettyjä musiikkikappaleita."
+  },
+  "becomeTearful": {
+      "eng": "I can become tearful or cry when I listen to a melody that I like very much.",
+      "fi": "Saatan kyynelehtiä tai itkeä kuunnellessani melodiaa, josta pidän todella paljon."
+  },
+  "feelChill": {
+      "eng": "I sometimes feel chills when I hear a melody that I like.",
+      "fi": "Toisinaan menen kananlihalle kuunnellessani melodiaa, josta pidän."
+  },
+  "dontLikeToDance": {
+      "eng": "I don’t like to dance, not even with music I like.",
+      "fi": "En pidä tanssimisesta edes mielimusiikkini tahtiin."
+  },
+  "makesMeDance": {
+      "eng": "Music often makes me dance.",
+      "fi": "Musiikki saa minut usein tanssimaan."
+  },
+  "humming": {
+      "eng": "I can’t help humming or singing along to music that I like.",
+      "fi": "En voi olla hyräilemättä tai laulamatta mukana kun kuulen musiikkia, josta pidän."
+  },
+  "cantStopTapping": {
+      "eng": "When I hear a tune I like a lot I can’t help tapping or moving to its beat.",
+      "fi": "Kuullessani musiikkikappaleen, josta pidän todella paljon, en malta olla taputtamatta tai liikkumatta sen tahtiin."
+  },
+  "keepCompany": {
+      "eng": "Music keeps me company when I’m alone.",
+      "fi": "Musiikki pitää minulle seuraa yksin ollessani."
+  },
+  "calmsRelaxes": {
+      "eng": "Music calms and relaxes me.",
+      "fi": "Musiikki rauhoittaa ja rentouttaa minua."
+  },
+  "chillOut": {
+      "eng": "Music helps me chill out.",
+      "fi": "Musiikki auttaa minua rentoutumaan."
+  },
+  "comfortsMe": {
+      "eng": "Music comforts me.",
+      "fi": "Musiikki lohduttaa minua."
+  },
+  "hardlyListen": {
+      "eng": "In my free time I hardly listen to music.",
+      "fi": "En juurikaan kuuntele musiikkia vapaa-aikanani."
+  },
+  "informMyself": {
+      "eng": "I inform myself about music I like.",
+      "fi": "Pidän itseni ajan tasalla makuani vastaavasta musiikista."
+  },
+  "alwaysLooking": {
+      "eng": "I’m always looking for new music.",
+      "fi": "Etsin aina uutta musiikkia."
+  },
+  "moneySpend": {
+      "eng": "I spend quite a bit of money on music and related items.",
+      "fi": "Käytän melko paljon rahaa musiikkiin ja siihen liittyviin asioihin."
+  },
+  "shareConnection": {
+      "eng": "When I share music with someone, I feel a special connection with that person.",
+      "fi": "Kun kuuntelen tai esitän musiikkia toisen ihmisen kanssa, tunnen erityistä yhteyttä häneen."
+  },
+  "bondOtherPeople": {
+      "eng": "Music makes me bond with other people.",
+      "fi": "Musiikki saa minut kokemaan yhteenkuuluvuutta muiden kanssa."
+  },
+  "singWithOthers": {
+      "eng": "I like to sing or play an instrument with other people.",
+      "fi": "Pidän toisten kanssa laulamisesta tai soittamisesta."
+  },
+  "connectedPerformers": {
+      "eng": "At a concert, I feel connected to the performers and the audience.",
+      "fi": "Konserteissa koen yhteyden esiintyjien ja yleisön kanssa."
+  },
+  "backgroundAtmosphere":{
+      "eng": "I usually put background music on to make the atmosphere more pleasant.",
+      "fi": "Soitan yleensä taustamusiikkia tehdäkseni tunnelmasta miellyttävämmän."
+  },
+  "busyBackground": {
+      "eng": "When I’m busy around the house and no one else is around, I like to have some music on the background.",
+      "fi": "Kun olen yksin tehdessäni kotitöitä, pidän taustamusiikin soitosta."
+  },
+  "afterRough": {
+      "eng": "I listen to music to perk up after a rough day. ",
+      "fi": "Kuuntelen musiikkia piristyäkseni rankan päivän jälkeen. "
+  },
+  "exhaustedListen": {
+      "eng": "When I’m exhausted, I listen to music to perk up.",
+      "fi": "Kun olen uupunut, kuuntelen musiikkia piristyäkseni."
+  },
+  "magnificentExperience": {
+      "eng": "Music has offered me magnificent experiences.",
+      "fi": "Musiikki on tarjonnut minulle upeita kokemuksia."
+  },
+  "feellWholeBody": {
+      "eng": "I want to feel the music in my whole body.",
+      "fi": "Haluan tuntea musiikin koko kehossani."
+  },
+  "forgetWorries": {
+      "eng": "For me, music is a way to forget about my worries. ",
+      "fi": "Musiikki auttaa minua unohtamaan huoleni. "
+  },
+  "stressfulThoughts": {
+      "eng": "When stressful thoughts keep going round and round in my head, I start to listen to music to get them off my mind.",
+      "fi": "Kun ahdistavia ajatuksia pyörii päässäni, alan kuuntelemaan musiikkia päästäkseni niistä eroon."
+  },
+  "reallyAngry": {
+      "eng": "When I’m really angry, I feel like listening to some aggressive music.",
+      "fi": "Kun olen todella vihainen, minun tekee mieli kuunnella aggressiivista musiikkia."
+  },
+  "angrySomeone": {
+      "eng": "When I’m angry with someone, I listen to music that expresses my anger.",
+      "fi": "Kun olen vihainen jollekin, kuuntelen musiikkia joka ilmaisee vihaani."
+  },
+  "hardExperiences": {
+      "eng": "Music has helped me to get through hard experiences.",
+      "fi": "Musiikki on auttanut minua selviytymään kovista kokemuksista."
+  },
+  "distressedClarify": {
+      "eng": "When I’m distressed by something, music helps me to clarify my feelings.",
+      "fi": "Kun jokin ahdistaa minua, musiikki auttaa selkeyttämään tunteitani."
+  },
+  "feelsBadComforts": {
+      "eng": "When everything feels bad, music understands and comforts me.",
+      "fi": "Kun kaikki tuntuu pahalta, musiikki ymmärtää ja lohduttaa minua."
+  },
+  "feelSadComfort": {
+      "eng": "When I’m feeling sad, listening to music comforts me.",
+      "fi": "Musiikin kuunteleminen lohduttaa minua kun olen surullinen."
+  },
+  "ableJudge": {
+    "eng": "I am able to judge whether someone is a good singer or not.",
+    "fi": "Pystyn arvioimaan onko joku hyvä laulaja vai ei."
+  },
+  "spotMistakes": {
+    "eng": "I find it difficult to spot mistakes in a performance of a song even if I know the tune. ",
+    "fi": "Minusta on vaikea havaita virheitä kappaleen esityksessä vaikka tietäisin kappaleen sävelmän."
+  },
+  "recognizingFamiliar": {
+    "eng": "I have trouble recognizing a familiar song when played in a different way or by a different performer.",
+    "fi": "Minusta on hankala tunnistaa tuttu kappale kun se soitetaan eri tavalla tai eri esittäjä soittaa sen."
+  },
+  "canTellOff": {
+    "eng": "I can tell when people sing or play out of time with the beat.",
+    "fi": "Huomaan kun ihmiset laulavat tai soittavat väärään tahtiin."
+  },
+  "canTellOutTune": {
+    "eng": "I can tell when people sing or play out of tune.",
+    "fi": "Huomaan kun ihmiset laulavat tai soittavat epävireessä."
+  },
+  "noIdeaTune": {
+    "eng": "When I sing, I have no idea whether I'm in tune or not.",
+    "fi": "Laulaessani en tiedä laulanko epävireessä vai en."
+  },
+  "usuallyJoin": {
+    "eng": "If somebody starts singing a song I don't know, I can usually join in.",
+    "fi": "Jos joku alkaa laulamaan minulle tuntematonta kappaletta, voin yleensä liittyä mukaan lauluun."
+  },
+  "singFromMemory": {
+    "eng": "I can sing or play music from memory.",
+    "fi": "Osaan laulaa tai soittaa musiikkia ulkomuistista."
+  },
+  "ableToHitRightNote": {
+    "eng": "I am able to hit the right notes when I sing along with a recording.",
+    "fi": "Pystyn osumaan oikeisiin nuotteihin laulaessani äänitteen mukana."
+  },
+  "notAbleHarmony": {
+    "eng": "I am not able to sing in harmony when somebody is singing a familiar tune. ",
+    "fi": "En pysty laulamaan harmoniassa, kun joku laulaa tuttua säveltä."
+  },
+  "singingPublic": {
+    "eng": "I don’t like singing in public because I’m afraid that I would sing wrong notes.",
+    "fi": "En pidä julkisesti laulamisesta, koska pelkään laulavani vääriä nuotteja."
+  },
+  "singItMyself": {
+    "eng": "After hearing a new song two or three times, I can usually sing it by myself.",
+    "fi": "Kuultuani uuden kappaleen kahdesti tai kolmesti, pystyn yleensä laulamaan sen itsekseni."
+  },
+  "easyControlMovement": {
+    "eng": "I find it easy to control my movements.",
+    "fi": "Minusta on helppo hallita omia liikkeitäni."
+  },
+  "easyLearnImitate": {
+    "eng": "I find it easy to learn or imitate other people's movements.",
+    "fi": "Minusta on helppo oppia tai matkia toisten liikkeitä."
+  },
+  "danceYes": {
+    "eng": "If someone asks me to dance, I usually say yes.",
+    "fi": "Sanon yleensä kyllä, jos joku pyytää minua tanssimaan."
+  },
+  "embarrassingDance": {
+    "eng": "I find dancing really embarrassing.",
+    "fi": "Tanssiminen on minusta todella noloa."
+  },
+  "whenDanceBetter": {
+    "eng": "When I dance, I feel better.",
+    "fi": "Minulle tulee parempi olo kun tanssin."
+  },
+  "feelHaveToDance": {
+    "eng": "Sometimes I feel like I just have to dance.",
+    "fi": "Joskus koen että minun on vain tanssittava."
+  },
 }
 
 var tasksIcons = {
@@ -574,8 +600,8 @@ var tasksIcons = {
     "fi": "Tunteet"
   },
   "MBEMA": {
-    "eng": "MBEMA",
-    "fi": "MTMM"
+    "eng": "Perception",
+    "fi": "Havaitseminen"
   },
   "rhythm": {
     "eng": "Rhythm",
@@ -790,44 +816,54 @@ var buttonsMBEMA = [
   {"eng": "Yes", 
    "fi": "Kyllä"},
   {"eng": "No", 
-   "fi": "Ei"}   
+   "fi": "Ei"},
+  {"eng": "Home",
+   "fi": "Alku"},
 ]
 
 var mbema = [
-  [{"eng": "Montreal Battery of Evaluation of Musical Abilities",
-    "fi": "Montrealin tutkimuspatteristo musiikillisuuden määrittämiseen"},
-   {"eng": "Here, your musical abilities are quickly tested",
-    "fi": "Tässä osiossa testataan musiikillisuuttasi"},
-   {"eng": "You will hear a warning signal followed by two successive melodies that are to be compared.",
-    "fi": "Tässä tehtävässä kuulet peräkkäisiä melodiapätkiä joita vertailet"},
-   {"eng": 'These two melodies are separated by a very short silence.',
-    "fi": 'Näitä melodioita erottaa lyhyt hiljaisuus.'},
-   {"eng": 'You have to decide whether these two melodies sound the same or different.',
-    "fi": 'Näitä melodioita erottaa lyhyt hiljaisuus.'},
-   {"eng": 'If you think that these two melodies are the same, just press SAME.  If you think that these two melodies are different, just press DIFFERENT',
-    "fi": 'Tehtäväsi on päättää ovatko melodiat samoja vai erilaisia. Jos mielestäsi melodiat ovat samoja, valitse nappi SAMA. Jos mielestäsi melodiat ovat erilaisia, valitse ERI'},
-   {"eng": 'First, we will have a couple of practice melodies',
-    "fi": 'Nyt alkuun tulee pari harjoitusmelodiaa'}],
+  [{"eng": "<b>Welcome to the Music perception task!</b><br><br>The task consists of three parts and it takes about 15 min in total. Please do the whole task in one session. Thank you!<br><br>Adjust first the volume to a comfortable level.<br>If there were issues with the sound playback, press Home button to return.<br><button class=\"jspsych-btn\" style=\"margin:5vw;\"><img src=\"images/play-btn.svg\" style=\"width:10vw;padding:5vw;\" onclick=\"testaudio.play()\"></button><br>Press “Next” to continue<br>Press “Home” to return to the starting screen.<br>",
+    "fi": "<b>Tervetuloa Musiikin havaitsemistehtävään!</b><br><br>Tehtävä koostuu kolmesta osiosta ja sen tekemiseen menee yhteensä noin 15 min. Pyydämme, että teet koko tehtävän samalla kertaa. Kiitos!<br><br>Säädä äänenvoimakkuus itsellesi mukavaksi tietokoneen asetuksista.<br>Jos ääntä ei kuulu, voit palata aloitusnäyttöön painamalla Alku-nappia<br><button class=\"jspsych-btn\" style=\"margin:5vw;\"><img src=\"images/play-btn.svg\" style=\"width:10vw;padding:5vw;\" onclick=\"testaudio.play()\"></button><br>Jatka painamalla ”Seuraava”.<br>Palaa aloitusnäyttöön painamalla ”Alku”<br>"},
+   {"eng": "In the first task part, you will hear a short signal tone followed by two successive melodies.<br><br>The melodies are separated by a short break.",
+    "fi": "Ensimmäisessä tehtäväosiossa kuulet lyhyen merkkiäänen ja sen jälkeen kaksi peräkkäistä melodiaa.<br><br>Melodioiden välillä on lyhyt tauko."},
+   {"eng": 'Your task is to compare the two successive melodies and decide whether they sound the same or different.<br><br>If you think that the melodies are the same, just press ”Same”. If you think that the melodies are different, press ”Different”',
+    "fi": 'Tehtäväsi on verrata kahta peräkkäistä melodiaa ja päättää, kuulostavatko ne samalta vai erilaisilta.<br><br>Jos melodiat ovat mielestäsi samat, paina ”Sama”. Jos melodiat ovat mielestäsi erilaiset, paina ”Eri”'},
+   {"eng": "First, let's do a couple of practice trials",
+    "fi": 'Otetaan aluksi pari harjoittelukierrosta'}],
   [{"eng": "Listen",
     "fi": "Kuuntele"}],
   [{"eng": "Choose",
     "fi": "Valitse"}],
-  [{"eng": "Wrong, do you wish to repeat the stimuli?",
-    "fi": "Väärin, haluatko että esimerkki toistetaan?"}],
-  [{"eng": "Next portion. Again, you will hear a warning signal followed by two successive melodies that are to be compared.",
-    "fi": "Seuraava vaihe. Tässäkin tehtävässä kuulet peräkkäisiä melodiapätkiä joita vertailet"},
-  {"eng": 'These two melodies are separated by a very short silence. You have to decide whether these two melodies sound the same or different. If you think that these two melodies are the same, just press SAME.  If you think that these two melodies are different, just press DIFFERENT',
-    "fi": 'Näitä melodioita erottaa lyhyt hiljaisuus. Tehtäväsi on päättää ovatko melodiat samoja vai erilaisia. Jos mielestäsi melodiat ovat samoja, valitse nappi SAMA. Jos mielestäsi melodiat ovat erilaisia, valitse ERI'},
-  {"eng": 'First, we will have a couple of practice melodies',
-   "fi": 'Nyt alkuun tulee pari harjoitusmelodiaa'}],		
-  [{"eng": "You have heard many melodies several times with me.  Can you tell which ones have already been presented to you and which ones are completely novel?",
-    "fi": "Saatat olla kuullut joitain melodioita monta kertaa. Voitko kertoa mitkä on esitetty aiemmin sinulle ja mitkä ovat kokonaan uusia?"},
-  {"eng": 'When you have the feeling that you have heard the melody before, just say YES and say NO otherwise.',
-   "fi": 'Jos sinusta tuntuu, että olet kuullut melodian aikaisemmin, valitse KYLLÄ, ja muussa tapauksessa EI'},
-  {"eng": 'First, we will have a couple of practice melodies',
-   "fi": 'Nyt alkuun tulee pari harjoitusmelodiaa'}],		
-  [{"eng": "Have you heard the melody before?",
-    "fi": "Oletko kuullut melodian aikaisemmin?"}],
-  [{"eng": "Now, we will continue with the actual task. Listen carefully!",
-    "fi": "Nyt jatketaan varsinaisella tehtävällä. Kuuntele tarkasti!"}],
+  [{"eng": "Your answer was wrong.<br><br>Would you like to try again?",
+    "fi": "Vastauksesi oli väärin.<br><br>Haluatko kokeilla uudelleen?"}],
+  [{"eng": "Thank you for your answers!<br><br>Let's continue with another similar task part.",
+    "fi": "Kiitos vastauksistasi!<br><br>Jatketaan toisella samantyyppisellä tehtäväosiolla."},
+  {"eng": 'You will again hear successive melodies and your task is to decide whether they sound the same or different.<br><br>If you think that the melodies are the same, just press ”Same”. If you think that the melodies are different, press ”Different”',
+    "fi": 'Kuulet jälleen perättäisiä melodioita ja sinun tulee päättää, kuulostavatko ne samalta vai erilaisilta. <br><br>Jos melodiat ovat mielestäsi samat, paina ”Sama”. Jos melodiat ovat mielestäsi erilaiset, paina ”Eri”'},
+  {"eng": "First, let's do a couple of practice trials",
+   "fi": 'Otetaan aluksi pari harjoittelukierrosta'},
+   ],		
+  [{"eng": "Thank you for your answers!<br><br>Let's do the third and final task part.",
+    "fi": "Kiitos vastauksistasi!<br><br>Tehdään vielä kolmas ja viimeinen tehtäväosio."},
+	{"eng": "In the previous task parts, you have heard many melodies several times.<br><br>Next you will hear both previously presented melodies and entirely novel melodies.",	
+    "fi": "Olet edellisissä tehtäväosioissa kuullut useita melodioita moneen kertaan.<br><br>Seuraavassa kuulet sekä aiemmin esitettyjä melodioita että täysin uusia melodioita."},	
+  {"eng": 'Can you tell which melodies have already been presented to you and which ones are novel?<br><br>When you have the feeling that you have heard the melody before, press the ”Yes” button. Otherwise, press ”No”.',
+   "fi": 'Osaatko sanoa, mitkä melodiat on esitetty sinulle jo aiemmin ja mitkä ovat uusia?<br><br>Kun sinusta tuntuu, että olet kuullut melodian aikaisemmin, paina ”Kyllä”. Muutoin paina nappia ”Ei”'},
+  {"eng": "First, let's do a couple of practice trials",
+   "fi": 'Otetaan aluksi pari harjoittelukierrosta'}],		
+  [{"eng": "Have you heard this melody before?<br><br>",
+    "fi": "Oletko kuullut tämän melodian aikaisemmin?<br><br>"}],
+  {"eng": "Now, let's continue with the actual task.<br><br>In the task, you will hear a total of 20 melody pairs<br><br>Listen carefully and decide if the melodies sound the same or different.",
+    "fi": "Nyt jatketaan varsinaisella tehtävällä.<br><br>Tehtävässä tulee yhteensä 20 melodiaparia.<br><br>Kuuntele tarkasti ja päätä, kuulostavatko melodiat samalta vai erilaiselta."},
+	[{"eng":"Thank you for completing this part!<br><br>How difficult/easy did this task feel?<br><br>Answer by moving the bar.",
+	"fi":"Kiitos tämä osion tekemisestä!<br><br>Kuinka vaikealta/helpolta tämä tehtävä tuntui?<br><br>Vastaa liikuttamalla palkkia."},
+	{"eng":"difficult",
+	"fi":"vaikea"},
+	{"eng":"easy",
+	"fi":"helppo"},
+	],
+	{"eng":"The task is now complete!<br><br>Thank you for your participation. You will be redirected to the main page in a few seconds, or you can press the ”Home” button.",
+	"fi":"Tehtävä on nyt valmis!<br><br>Kiitos osallistumisesta. Siirryt aloitusnäyttöön muutaman sekunnin päästä. Voit myös painaa ”Alku” -nappia."},
+  {"eng": "Now, let's continue with the actual task.<br><br>In the task, you will hear a total of 20 melodies<br><br>Listen carefully and answer if have you heard the melody before",
+    "fi": "Nyt jatketaan varsinaisella tehtävällä.<br><br>Tehtävässä kuulet yhteensä 20 melodiaa.<br><br>Kuuntele tarkasti ja vastaa oletko kuullut melodian aiemmin."},
 ]	
