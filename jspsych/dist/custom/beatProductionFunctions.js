@@ -206,7 +206,7 @@ function generateContextTrial(songBaseURL, beatsURL, lang){
   var loadNextTrial = {
     type: jsPsychHtmlButtonResponse,
     stimulus: '<img id="logoLoading" src="./images/loading2.gif"><br>Loading...',
-    choices: [buttons[0][lang]],
+    choices: [buttons["next"][lang]],
     prompt: "",
     on_load: async function(){
 

@@ -43,8 +43,8 @@ var movement = {
         "fi":  "Nyt sinua pyydetään liikkumaan itsellesi luonnollisella tavalla eri kappaleisiin<br><img id='dance' src='./images/dance.svg'></img>"},
   "instruction20": {"eng": "Feel free to dance to the music if you want to",
         "fi":  "Jos haluat niin voit tanssia vapaasti laulun mukana"},
-  "instruction21": {"eng": "Next we ask you to choose a song that you would like to dance to",
-        "fi":  "Seuravaaksi, pyydämme sinua valitsemaan laulun, jonka tahtiin haluat liikkua"},
+  "instruction21": {"eng": "Next we ask you to choose a song that you would like to dance to:",
+        "fi":  "Seuravaaksi, pyydämme sinua valitsemaan laulun, jonka tahtiin haluat liikkua:"},
   "instruction22": {"eng": "Move to the song in a way that feels natural to you<br><img id='dance' src='./images/dance.svg'></img>",
         "fi":  "Liiku kappaleen tahdissa tavalla, joka tuntuu luonnolliselta sinulle<br><img id='dance' src='./images/dance.svg'></img>"},
   "instruction23": {"eng": "Feel free to dance to the music if you want to<br><img id='dance' src='./images/dance.svg'></img>",
@@ -130,6 +130,9 @@ var buttons = {
                 "fi": "Edellinen"},
   "continue": {"eng": "Continue",
                "fi": "Jatka"},
+  "choose": {
+    "eng": "Choose",
+    "fi": "Valitse"}
 }
 
 var recurring = {
@@ -308,11 +311,17 @@ var personalBackground = {
   "title": {"eng": "Here are questions about your background",
             "fi": "Seuraavassa on kysymyksiä taustastasi"},
   "pleaseAnswer": {"eng": "Please, answer the following questions",
-                   "fi": "Please, answer the following questions"},
+                   "fi": "Ole hyvä ja vastaa seuraaviin kysymyksiin"},
+  "primaryLanguage": {"eng": "What is your primary spoken language?",
+                      "fi": "Mikä on äidinkielesi?"},
+  "secondaryLanguage": {"eng": "What is your secondary spoken language? (If 100%applicable)",
+                        "fi": "Mikä on toissijainen puhuttu kielesi? (jos on)"},
   "yearOfBirth": {"eng": "Year of birth (month/date if children)",
                   "fi": "Syntymävuosi (kuu/pvämäärä jos kyse lapsista)"},
   "gender": {"eng": "Gender",
              "fi": "Sukupuoli"},
+  "genderOther": {"eng": "Gender, other:",
+                  "fi": "Sukupuoli, muu:"},
   "female": {"eng": "female",
              "fi": "nainen"},
   "male": {"eng": "male",
@@ -323,6 +332,8 @@ var personalBackground = {
                    "fi": "en halua sanoa"},
   "education": {"eng": "Education",
                 "fi": "Koulutus"},
+  "educationOther": {"eng": "Education, other:",
+                "fi": "Koulutus, muu:"},
   "primarySchool": {"eng": "Primary school/grade school",
                     "fi": "Kansakoulu"},
   "comprehensiveSchool": {"eng": "Comprehensive school/elementary school",
@@ -541,21 +552,21 @@ var bmmr = {
 
 var sharedMeasurementsTransitions = {
   "surveyMMBB": {"eng": "Welcome to the MMBB survey!",
-   "fi": ""},
+   "fi": "Tervetuloa MMBB kyselyyn!"},
   "personalBackground": {"eng": "Personal background",
-   "fi": ""},
+   "fi": "Taustatietosi"},
   "musicalBackground": {"eng": "Musical background",
-   "fi": ""},
+   "fi": "Musiikkitaustasi"},
   "perception": {"eng": "Perception",
-   "fi": ""},
+   "fi": "Perception"},
   "singing": {"eng": "Singing",
-   "fi": ""},
+   "fi": "Laulaminen"},
   "dancing": {"eng": "Dancing",
-   "fi": ""},
+   "fi": "Tanssiminen"},
   "musicalPreference": {"eng": "Musical preferences",
-   "fi": ""},
+   "fi": "Musiikkimieltymykset"},
   "musicalExperiences": {"eng": "Musical experiences",
-   "fi": ""},
+   "fi": "Musiikilliset kokemukset"},
 }
 
 var tasksIcons = {

@@ -24,11 +24,8 @@
     <script src="./jspsych/dist/plugin-instructions.js"> </script>
     <script src="./jspsych/dist/plugin-survey-likert.js"> </script>
     <script src="./jspsych/dist/plugin-survey-text.js"> </script>
-    <script src="./jspsych/dist/plugin-canvas-button-response.js"> </script>
-    <script src="./jspsych/dist/extension-accelerometer.js"> </script>
     <script src="./jspsych/dist/plugin-html-keyboard-response.js"> </script>
     <script src="./jspsych/dist/plugin-survey-multi-choice.js"> </script>
-    <script src="./jspsych/dist/plugin-initialize-microphone.js"> </script>
     <script src="./jspsych/dist/plugin-audio-keyboard-response.js"> </script>
     <script src="./jspsych/dist/plugin-html-audio-response.js"> </script>
     <script src="./jspsych/dist/plugin-preload.js"> </script>
@@ -66,30 +63,22 @@
 
   <script>
 
+    //Stores current trial
+    var trialOverallIndex = 0
+
     //Time begin experiment
     var timeBegin = Date.now();
 
-    /* View in fullscreen */
-    function openFullscreen() {
-      if (entirePage.requestFullscreen) {
-        entirePage.requestFullscreen();
-      } else if (entirePage.webkitRequestFullscreen) { /* Safari */
-        entirePage.webkitRequestFullscreen();
-      } else if (entirePage.msRequestFullscreen) { /* IE11 */
-        entirePage.msRequestFullscreen();
-      }
-    }
-
-    try{
-      openFullscreen() 
-    } catch(e){
-      console.log("No full screen")
-    }
-
     var jsPsych = initJsPsych({
-      extensions: [
-        {type: jsPsychExtensionAccelerometer }
-      ],
+      show_progress_bar: true,
+      auto_update_progress_bar: false,
+      on_trial_start: function(data) {
+        window.trialOverallIndex = trialOverallIndex + 1
+        console.log(window.trialOverallIndex)
+
+        var totalTrials = completeSequence.flat(1000).length
+        jsPsych.setProgressBar(trialOverallIndex/totalTrials) 
+      },
       on_finish: function() {
 
         var measurePerformance = performance.getEntriesByType('resource');
@@ -212,9 +201,22 @@
       var procedureMovementFinal = {
           timeline: completeSequence[Number(nodeIndex)][trialIndex],
           on_timeline_start: function() {
-            console.log('This timeline has started');
-            console.log(jatos.urlQueryParameters.nodeIndex)
-            console.log(jatos.urlQueryParameters.trialIndex)
+            var nodeIndex = jatos.urlQueryParameters.nodeIndex
+            if(nodeIndex == undefined){
+              var nodeIndex = 0
+            }
+
+            var trialIndex = jatos.urlQueryParameters.trialIndex
+
+            if(nodeIndex === 0){
+              window.trialOverallIndex = trialOverallIndex + 1
+            } else {
+              var nCompletedNodes = completeSequence.slice(0, Number(nodeIndex)).flat(1000).length
+              var nCompletedTrials = completeSequence[Number(nodeIndex)].slice(0, trialIndex).flat(1000).length
+              var totalTrials = nCompletedNodes + nCompletedTrials
+
+              window.trialOverallIndex = totalTrials
+            }
           }
       }
 

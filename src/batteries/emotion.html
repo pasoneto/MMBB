@@ -34,7 +34,7 @@
 
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
 
-    <link rel="stylesheet" href="./src/styles/generalCSS.css">
+    <link rel="stylesheet" href="./src/styles/generalCSSBackup.css">
 
   </head>
 
@@ -112,23 +112,23 @@
       var welcomePart1 = {
         type: jsPsychInstructions,
         pages: [emotionTranslations['openStatement'][lang]],
-        button_label_next: buttons[0][lang],
-        button_label_previous: buttons[1][lang],
+        button_label_next: buttons["next"][lang],
+        button_label_previous: buttons["previous"][lang],
         allow_backward: false,
         show_clickable_nav: true
       }
       var instructionsPart1 = {
         type: jsPsychInstructions,
         pages: emotionTranslations['instructions1'].map(i => i[lang]),
-        button_label_next: buttons[0][lang],
-        button_label_previous: buttons[1][lang],
+        button_label_next: buttons["next"][lang],
+        button_label_previous: buttons["previous"][lang],
         allow_backward: true,
         show_clickable_nav: true
       }
       var test_ending = {
         type: jsPsychInstructions,
         pages: emotionTranslations['instructions2'].map(i => i[lang]),
-        button_label_next: buttons[0][lang],
+        button_label_next: buttons["next"][lang],
         show_clickable_nav: true,
         allow_backward: false,
         on_start: function(test_ending){
@@ -250,7 +250,7 @@
       var task_repeat = {
         type: jsPsychInstructions,
         pages: [emotionTranslations['thankYouRepeat'][lang]],
-        button_label_next: buttons[0][lang],
+        button_label_next: buttons["next"][lang],
         show_clickable_nav: true,
         on_start: function(data){
           epoch = 0
@@ -272,8 +272,8 @@
       var welcomePart2 = {
         type: jsPsychInstructions,
         pages: [emotionTranslations["musicEmotionPart2"][lang]],
-        button_label_next: buttons[0][lang],
-        button_label_previous: buttons[1][lang],
+        button_label_next: buttons["next"][lang],
+        button_label_previous: buttons["previous"][lang],
         allow_backward: false,
         show_clickable_nav: true
       }
@@ -281,8 +281,8 @@
       var instructionsPart2 = {
         type: jsPsychInstructions,
         pages: emotionTranslations['instructions3'].map(i => i[lang]),
-        button_label_next: buttons[0][lang],
-        button_label_previous: buttons[1][lang],
+        button_label_next: buttons["next"][lang],
+        button_label_previous: buttons["previous"][lang],
         allow_backward: true,
         show_clickable_nav: true
       }
@@ -401,9 +401,9 @@
         type: jsPsychSurvey,
         pages: [[qAge], [qGender], [qFeedback]],
         title: '',
-        button_label_next: buttons[0][lang],
-        button_label_back: buttons[1][lang],
-        button_label_finish: buttons[0][lang],
+        button_label_next: buttons["next"][lang],
+        button_label_back: buttons["previous"][lang],
+        button_label_finish: buttons["next"][lang],
         show_question_numbers: 'onPage',
         on_load: function(){
           document.querySelector(".sv_next_btn").style.background = "#fa6400";

@@ -2,8 +2,8 @@ function generateBatTimeline(lang){
   var frontPage = {
       type: jsPsychInstructions,
       pages: [beatProduction["openPage"][lang]],
-      button_label_next: buttons[0][lang],
-      button_label_previous: buttons[1][lang],
+      button_label_next: buttons["next"][lang],
+      button_label_previous: buttons["previous"][lang],
       show_clickable_nav: true,
       on_start: function(){
         //disalowRefresh.addEventListener("onbeforeunload", preventRefresh, false);
@@ -14,16 +14,16 @@ function generateBatTimeline(lang){
   var instruction2 = {
       type: jsPsychInstructions,
       pages: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(i=> beatProduction["instruction" + i][lang]),
-      button_label_next: buttons[0][lang],
-      button_label_previous: buttons[1][lang],
+      button_label_next: buttons["next"][lang],
+      button_label_previous: buttons["previous"][lang],
       show_clickable_nav: true,
   }
 
   var instruction3 = {
       type: jsPsychInstructions,
       pages: [11, 12].map(i=> beatProduction["instruction" + i][lang]),
-      button_label_next: buttons[0][lang],
-      button_label_previous: buttons[1][lang],
+      button_label_next: buttons["next"][lang],
+      button_label_previous: buttons["previous"][lang],
       show_clickable_nav: true,
   }
 

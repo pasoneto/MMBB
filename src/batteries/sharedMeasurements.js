@@ -63,10 +63,6 @@ function generateSharedMeasurementsTimeline(lang, short){
       show_clickable_nav: true
   }
 
-  var languages = ["Suomi", "العربية", "Bahasa Indonesia", "Bahasa Melayu", "Български", "Català", "Cebuano", "Čeština", "Dansk", "Deutsch", "Eesti", "Ελληνικά", "English", "Español", "Esperanto", "Euskara", "فارسی", "Français", "Galego", "한국어", "Հայերեն", "हिन्दी", "Hrvatski", "Italiano", "עברית", "Қазақша", "Latina", "Lietuvių", "Magyar", "Minangkabau", "Nederlands", "日本語", "Norsk bokmål", "Norsk nynorsk", "Oʻzbekcha/ўзбекча", "Polski", "Português", "Română", "Русский", "Simple English", "Slovenčina", "Slovenščina", "Српски / srpski", "Srpskohrvatski / српскохрватски", "Svenska", "Tiếng Việt", "Türkçe", "Українська", "Volapük", "Winaray", "中文", "Muu"]
-  var likertValues = [ {value: 1}, {value: 2}, {value: 3}, {value: 4}, {value: 5} ]
-  var genderOptions = ['genderOption1', 'genderOption2', 'genderOption3', 'genderOption4']
-
   function generateLikertObject(prompt, likertValues, min, max, required, scale){
         var rObj = {
           type: 'likert',
@@ -119,10 +115,13 @@ function generateSharedMeasurementsTimeline(lang, short){
       type: jsPsychSurvey,
       pages: [[i]],
       title: prompt,
-      button_label_next: 'Continue',
-      button_label_back: 'Previous',
-      button_label_finish: 'Continue',
-      on_load: () => {changeStyle()}
+      button_label_next: buttons["continue"][lang],
+      button_label_back: buttons["previous"][lang],
+      button_label_finish: buttons["continue"][lang],
+      on_load: () => {
+        changeStyle()
+        document.querySelector(".sv_q_dropdown_control").children[0].innerHTML = buttons["choose"][lang]
+      }
     }
     return(musicalBackgroundSurveySeed)
   }
@@ -136,6 +135,7 @@ function generateSharedMeasurementsTimeline(lang, short){
       document.querySelector(".sv_next_btn").style.color = "#fff";
       document.querySelector(".sv_prev_btn").style.color = "#fff";
       document.querySelector(".sv_complete_btn").style.background = "#fa6400";
+      document.getElementById("jspsych-content").style.width = "100%";
   }
 
   //Personal background
@@ -143,29 +143,76 @@ function generateSharedMeasurementsTimeline(lang, short){
     type: jsPsychSurvey,
     pages: [["yearOfBirth"].map(i => generateTextObject(personalBackground[i][lang], true, 5, 1))],
     title: personalBackground['pleaseAnswer'][lang],
-    button_label_next: 'Continue',
-    button_label_back: 'Previous',
-    button_label_finish: 'Continue',
+    button_label_next: buttons["continue"][lang],
+    button_label_back: buttons["previous"][lang],
+    button_label_finish: buttons["continue"][lang],
     on_load: () => {changeStyle()}
   };
+  
+  var languages = ["Suomi", "العربية", "Bahasa Indonesia", "Bahasa Melayu", "Български", "Català", "Cebuano", "Čeština", "Dansk", "Deutsch", "Eesti", "Ελληνικά", "English", "Español", "Esperanto", "Euskara", "فارسی", "Français", "Galego", "한국어", "Հայերեն", "हिन्दी", "Hrvatski", "Italiano", "עברית", "Қазақша", "Latina", "Lietuvių", "Magyar", "Minangkabau", "Nederlands", "日本語", "Norsk bokmål", "Norsk nynorsk", "Oʻzbekcha/ўзбекча", "Polski", "Português", "Română", "Русский", "Simple English", "Slovenčina", "Slovenščina", "Српски / srpski", "Srpskohrvatski / српскохрватски", "Svenska", "Tiếng Việt", "Türkçe", "Українська", "Volapük", "Winaray", "中文", "Muu"]
+
+  var languageSpoken1 = {
+    type: jsPsychSurvey,
+    pages: [[generateDropdownObject(personalBackground['primaryLanguage'][lang], languages, true)]],
+    title: personalBackground['pleaseAnswer'][lang],
+    button_label_next: buttons["continue"][lang],
+    button_label_back: buttons["previous"][lang],
+    button_label_finish: buttons["continue"][lang],
+    on_load: () => {
+      changeStyle()
+      document.querySelector(".sv_q_dropdown_control").children[0].innerHTML = buttons["choose"][lang]
+    }
+  };
+
+  var languageSpoken2 = {
+    type: jsPsychSurvey,
+    pages: [[generateDropdownObject(personalBackground['secondaryLanguage'][lang], languages, false)]],
+    title: personalBackground['pleaseAnswer'][lang],
+    button_label_next: buttons["continue"][lang],
+    button_label_back: buttons["previous"][lang],
+    button_label_finish: buttons["continue"][lang],
+    on_load: () => {
+      changeStyle()
+      document.querySelector(".sv_q_dropdown_control").children[0].innerHTML = buttons["choose"][lang]
+    }
+  };
+
+  var yearBirth = {
+    type: jsPsychSurveyText,
+    preamble: "<div id='preamble'>" + personalBackground["yearOfBirth"][lang] + "</div>",
+    questions: [
+      {prompt: '', name: 'yearOfBirth', required: true},
+    ],
+    on_load: () => {
+      document.getElementById("jspsych-survey-text-form").style.height = '20%'
+      document.getElementById("jspsych-survey-text-form").style.width = '80%'
+      document.getElementById("jspsych-content").style.height = '100%'
+      document.getElementById("preamble").style.fontSize = '0.75em'
+      document.getElementById("input-0").type = "date"
+      document.getElementById("input-0").style.padding = "20px"
+    }
+  }
 
   var genderSurvey = {
     type: jsPsychSurvey,
     pages: [[generateDropdownObject(personalBackground["gender"][lang], ["female", "male", "ratherNotSay", "other"].map(i => personalBackground[i][lang]), true)]],
     title: personalBackground['pleaseAnswer'][lang],
-    button_label_next: 'Continue',
-    button_label_back: 'Previous',
-    button_label_finish: 'Continue',
-    on_load: () => {changeStyle()}
+    button_label_next: buttons["continue"][lang],
+    button_label_back: buttons["previous"][lang],
+    button_label_finish: buttons["continue"][lang],
+    on_load: () => {
+      changeStyle()
+      document.querySelector(".sv_q_dropdown_control").children[0].innerHTML = buttons["choose"][lang]
+    }
   };
 
   var otherGenderTrial = {
     type: jsPsychSurvey,
-    pages: [["gender"].map(i => generateTextObject(personalBackground[i][lang], true, 5, 1))],
+    pages: [["genderOther"].map(i => generateTextObject(personalBackground[i][lang], true, 5, 1))],
     title: personalBackground['pleaseAnswer'][lang],
-    button_label_next: 'Continue',
-    button_label_back: 'Previous',
-    button_label_finish: 'Continue',
+    button_label_next: buttons["continue"][lang],
+    button_label_back: buttons["previous"][lang],
+    button_label_finish: buttons["continue"][lang],
     on_load: () => {changeStyle()}
   }
 
@@ -187,20 +234,23 @@ function generateSharedMeasurementsTimeline(lang, short){
     type: jsPsychSurvey,
     pages: [[generateDropdownObject(personalBackground["education"][lang], ["primarySchool", "comprehensiveSchool", "secondaryEducation", "vocationalTraining", "bachelors", "masters", "doctoral", "other"].map(i => personalBackground[i][lang]), true)]],
     title: personalBackground['pleaseAnswer'][lang],
-    button_label_next: 'Continue',
-    button_label_back: 'Previous',
-    button_label_finish: 'Continue',
-    on_load: () => {changeStyle()}
+    button_label_next: buttons["continue"][lang],
+    button_label_back: buttons["previous"][lang],
+    button_label_finish: buttons["continue"][lang],
+    on_load: () => {
+      changeStyle()
+      document.querySelector(".sv_q_dropdown_control").children[0].innerHTML = buttons["choose"][lang]
+    }
   };
 
 
   var otherEducationTrial = {
     type: jsPsychSurvey,
-    pages: [["education"].map(i => generateTextObject(personalBackground[i][lang], true, 5, 1))],
+    pages: [["educationOther"].map(i => generateTextObject(personalBackground[i][lang], true, 5, 1))],
     title: personalBackground['pleaseAnswer'][lang],
-    button_label_next: 'Continue',
-    button_label_back: 'Previous',
-    button_label_finish: 'Continue',
+    button_label_next: buttons["continue"][lang],
+    button_label_back: buttons["previous"][lang],
+    button_label_finish: buttons["continue"][lang],
     on_load: () => {changeStyle()}
   }
 
@@ -222,10 +272,13 @@ function generateSharedMeasurementsTimeline(lang, short){
     type: jsPsychSurvey,
     pages: [[generateDropdownObject(personalBackground["education"][lang], ["primarySchool", "comprehensiveSchool", "secondaryEducation", "vocationalTraining", "bachelors", "masters", "doctoral", "other"].map(i => personalBackground[i][lang]), true)]],
     title: personalBackground['pleaseAnswer'][lang],
-    button_label_next: 'Continue',
-    button_label_back: 'Previous',
-    button_label_finish: 'Continue',
-    on_load: () => {changeStyle()}
+    button_label_next: buttons["continue"][lang],
+    button_label_back: buttons["previous"][lang],
+    button_label_finish: buttons["continue"][lang],
+    on_load: () => {
+      changeStyle()
+      document.querySelector(".sv_q_dropdown_control").children[0].innerHTML = buttons["choose"][lang]
+    }
   };
 
   //Musical background
@@ -237,7 +290,7 @@ function generateSharedMeasurementsTimeline(lang, short){
   var optionsMusical = [neverTen, neverDaily, neverDaily, neverDaily, neverTen, neverDaily, neverDaily, neverTen, neverTen, neverTen, neverDaily, neverTen, neverDaily, yesNoMusical]
 
   var questionsMusical = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map(i => generateDropdownObject(musicalBackground[promptsMusical[i]][lang], optionsMusical[i], true))
-  var musicalBackgroundSurvey = questionsMusical.map(i => generateManyDropDowns(i, "Please, answer the following questions"))
+  var musicalBackgroundSurvey = questionsMusical.map(i => generateManyDropDowns(i, personalBackground['pleaseAnswer'][lang]))
 
   //STOMP
   var optionsLikeDislike = ["dislikeStrongly", "dislikeModerately", "dislkikeAlittle", "neutral", "likeALittle", "likeModerately", "likeStrongly"].map(i => musicalPreferences[i][lang])
@@ -361,6 +414,8 @@ function generateSharedMeasurementsTimeline(lang, short){
                       otherGender,
                       educationSurvey, 
                       otherEducation, 
+                      languageSpoken1,
+                      languageSpoken2,
                       between2,
                       musicalBackgroundSurvey,
                       between3,

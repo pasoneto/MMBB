@@ -1,8 +1,11 @@
 body{
-  height: 100vh;
   background: RGB(146, 168, 209, 0.2);
+  overscroll-behavior-y: contain; /* Disables pull-to-refresh but allows overscroll glow effects. */
+  overscroll-behavior: contain;
+  width: 100vw;
+  height: 100vh;
+  margin:0;
 }
-
 button, #jspsych-html-slider-response-next, .jspsych-btn, #jspsych-survey-multi-choice-next, .sv_next_btn, .sv_prev_btn, .sv_complete_btn, #jspsych-survey-likert-next{
   align-items: center;
   background-clip: padding-box;
@@ -14,6 +17,7 @@ button, #jspsych-html-slider-response-next, .jspsych-btn, #jspsych-survey-multi-
   color: #fff;
   cursor: pointer;
   display: inline-flex;
+  font-size: 16px;
   font-weight: 600;
   justify-content: center;
   line-height: 1.25;
@@ -30,7 +34,22 @@ button, #jspsych-html-slider-response-next, .jspsych-btn, #jspsych-survey-multi-
   width: auto;
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
+#jspsych-progressbar-container{
+  margin-bottom: 0em;
+}
+/*Removes highlight from button*/
+.jspsych-audio-button-response-button{
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
 
+.jspsych-btn:disabled, button[disabled]{
+  background-color: #fa6400;
+  border: 1px solid transparent;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  color: #fff;
+}
 #jspsych-content{
   display: flex;
   flex-flow: column wrap;
@@ -38,16 +57,20 @@ button, #jspsych-html-slider-response-next, .jspsych-btn, #jspsych-survey-multi-
   align-items: center;
   justify-content: center;
   font-family: Garamond, serif;
+  font-size: 5vh;
+  line-height: 1.3em;
   color: black;
   max-height: inherit;
-  width: 80%;
 }
-/*Removes highlight from button*/
-.jspsych-audio-button-response-button{
-  margin: 0;
-  user-select: none;
-  -webkit-user-select: none;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
+
+/*Beat alignment task*/
+.fa.fa-arrow-left{
+  font-size: 50px;
+  color: white;
+}
+.fa.fa-arrow-right{
+  font-size: 50px;
+  color: white;
 }
 .circle {
    display:block;
@@ -64,21 +87,27 @@ button, #jspsych-html-slider-response-next, .jspsych-btn, #jspsych-survey-multi-
 .deg-1 {
    transform:rotate(46deg) translate(110px) rotate(-46deg);
 }
+
 .deg-2 {
    transform:rotate(91deg) translate(110px) rotate(-91deg);
 }
+
 .deg-3 {
    transform:rotate(136deg) translate(110px) rotate(-136deg);
 }
+
 .deg-4 {
    transform:rotate(181deg) translate(110px) rotate(-181deg);
 }
+
 .deg-5 {
    transform:rotate(226deg) translate(110px) rotate(-226deg);
 }
+
 .deg-6 {
    transform:rotate(271deg) translate(110px) rotate(-271deg);
 }
+
 .deg-7 {
    transform:rotate(316deg) translate(110px) rotate(-316deg);
 }
@@ -93,12 +122,48 @@ button[id^="bat"] {
 							0 0.75rem 0.5rem rgba(255,255,255, 0.4) inset,
 							0 0.25rem 0.5rem 0 blue inset;
 }
+#add{
+  height: 10vh; 
+  margin: 2px;
+  margin-top: 10px;
+  width: 20vw;
+  box-shadow: none;
+	border: none;
+  margin-bottom: 10px;
+  border-radius: 100px;
+  background: #82b3e7;
+}
+#subtract{
+  height: 10vh; 
+  margin: 2px;
+  margin-top: 10px;
+	border: none;
+  width: 20vw;
+  box-shadow: none;
+  margin-bottom: 10px;
+  border-radius: 100px;
+  background: #ff4b38;
+}
+#jspsych-survey-multi-choice-question{
+  margin-top: 0em;
+  margin-bottom: 0em;
+}
+/*End of BAT styles*/
 
 /*Movement task jspsych-html-slider-response-next*/
+#sliderCustom{
+  height: 100px;
+  margin-top: 100px;
+  line-height:18px;
+  font-size:4vw;
+}
 #labelsWrapper{
   display: inline-block;
   width: 100%;
   height: 10vh;
+}
+#jspsych-content{
+  width: 100%;
 }
 #label0{
   line-height: 1.3em;
@@ -127,6 +192,9 @@ button[id^="bat"] {
 #logoLoading{
   width: 50vw;
 }
+#jspsych-survey-multi-choice-form{
+  margin-left: 5%
+}
 /*End of movement task*/
 
 /*Tapping task*/
@@ -144,6 +212,7 @@ button[id^="bat"] {
   background: #82b3e7;
 }
 #customText{
+  font-size:15vw; 
   color: white;
   text-align: center;
 }
@@ -173,16 +242,11 @@ button[id^="bat"] {
 }
 /*End of tapping task*/
 
-/*General instructions*/
-#muteButton{
-  width: 60vw
-}
-
 /* For mobile */
 @media only screen and (max-width: 600px) {
   #buttonSongItem{
     border-radius: 12px;
-    width: 35vw;
+    width: 45vw;
     height: 10%;
     color: black;
     background-color: lightgray;
@@ -195,12 +259,19 @@ button[id^="bat"] {
   }
 }
 
+#muteButton{
+  width: 60vw
+}
+
 #jspsych-instructions-next{
   background: purple;
 }
 .jspsych-instructions-nav{
+    margin-top: auto;
+    margin-bottom: 5%;
 }
 /*Text survey styles*/
+
 #jspsych-survey-text-form{
   display: flex;
   flex-flow: column wrap;
@@ -214,14 +285,8 @@ button[id^="bat"] {
 #jspsych-survey-text-next{
   width: 50%
 }
-#textInInstruction{
-  margin-top: auto
-}
-.jspsych-instructions-nav{
-    margin-top: auto;
-    margin-bottom: 5%;
-}
 /*End of text survey styles*/
+
 #textInInstruction{
   margin-top: auto
 }
@@ -247,6 +312,7 @@ button:focus {
   box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
   transform: translateY(0);
 }
+
 #buttonContainerSurvey{
   display: flex;
   flex-direction: row;
@@ -257,6 +323,10 @@ button:focus {
 }
 #a, #b, #c, #d{
   width: 20%
+}
+#Instruction{
+  font-size: 2em;
+  margin-bottom: 5%
 }
 #tableSVG{
   min-width: 150px;
@@ -293,11 +363,61 @@ button:focus {
   width: 80%;
 }
 
+/*Slider styles*/
+.jspsych-slider{
+  -webkit-appearance: none;
+  width: 100%;
+  height: 50px;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+.jspsych-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 35px;
+  height: 35px;
+  border-color: purple;
+  background: purple;
+  cursor: pointer;
+  margin-top: -13px;
+}
+.jspsych-slider::-moz-range-thumb {
+  width: 50px;
+  height: 50px;
+  border-color: purple;
+  background: purple;
+  cursor: pointer;
+}
+.jspsych-slider::-ms-thumb {
+  height: 20px;
+  width: 15px;
+  border-radius: 5px;
+  border-color: purple;
+  background: purple;
+  cursor: pointer;
+  margin-top: -5px;
+}
+
 /*Shared measurements*/
 .sv-string-viewer{
   color: black
 }
 
+/*MBEMA styles*/
+#labelMBEMARight{
+  font-size: 6vw;
+  margin: 0;
+  margin-left: 5px;
+  text-align: center;
+}
+#labelMBEMALeft{
+  font-size: 6vw;
+  margin: 0;
+  margin-right: 5px;
+  text-align: center
+}
 
 /* Likert survey styles */
 #labelsWrapperLikert{
@@ -309,11 +429,13 @@ button:focus {
   width: 100%
 }
 #likertPrompt{
+  font-size: 5vh
 }
 #labelLikert{
   color: black
 }
 #leftLabel{
+  font-size: 3vh;
   width: 50%;
   text-align: left;
   padding: 0;
@@ -321,10 +443,13 @@ button:focus {
   margin-top: 25px
 }
 #rightLabel{
+  font-size: 3vh;
   width: 50%;
   text-align: right;
   padding: 0;
   margin: 0;
   margin-top: 25px
 }
-/*Emotion*/
+.jspsych-survey-likert-statement{
+  line-height: 2
+}
