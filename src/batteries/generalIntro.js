@@ -62,7 +62,11 @@ function generateGeneralIntroWrap(lang, subBattery){
     choices: [buttons["continue"][lang]],
     prompt: initialInstructions[0][4][lang] + '<img src="./images/muteButton.png" id="muteButton"></img>',
     on_load: function(){
-      document.getElementById("jspsych-content").style.fontSize = "20px";
+      //document.querySelector(".jspsych-content-wrapper").style.justifyContent = "center"
+      //document.getElementById("jspsych-content").style.height = "85vh"
+      //document.getElementById("jspsych-content").style.justifyContent = "start"
+      //document.getElementById("jspsych-content").style.margin = "0"
+      document.getElementById("jspsych-content").style.fontSize = "1em"
     }
   };
 
@@ -71,9 +75,6 @@ function generateGeneralIntroWrap(lang, subBattery){
     stimulus: './songs/movementTapAudio/elPesebre.mp3',
     choices: [buttons["continue"][lang]],
     prompt: initialInstructions[0][0][lang],
-    on_load: function(){
-      document.getElementById("jspsych-content").style.fontSize = "20px";
-    }
   };
 
   var testAudioIOS = {
@@ -113,6 +114,9 @@ function generateGeneralIntroWrap(lang, subBattery){
       var last2 = jsPsych.data.get().last(3);
       var songBeingRated = last2['trials'][0].stimulus
       data.song = songBeingRated
+    },
+    on_load: function(){
+      document.querySelector(".jspsych-survey-likert-statement").style.fontSize = '1em'
     }
   };
 

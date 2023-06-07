@@ -7,6 +7,7 @@ var pathUtils = '/assets/utils/'
 var pathAuth = '/assets/backend/'
 var pathStyles = '/assets/src/styles/'
 var pathPlugins = '/assets/jspsych/dist/'
+var pathCustom = '/assets/jspsych/dist/custom/'
 
 //'content-type': 'multipart/form-data'
 
@@ -66,6 +67,16 @@ fs.readdir("../../jspsych/dist", (err, files) => {
     fs.readFile("../../jspsych/dist/" + i, 'utf8', (err, data) => {
       console.log(i)
       pushFileJATOS(data, pathPlugins + i)
+    })
+  })
+})
+
+//Fetching custom functions
+fs.readdir("../../jspsych/dist/custom/", (err, files) => {
+  files.forEach(i => {
+    fs.readFile("../../jspsych/dist/custom/" + i, 'utf8', (err, data) => {
+      console.log(i)
+      pushFileJATOS(data, pathCustom + i)
     })
   })
 })

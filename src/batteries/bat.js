@@ -70,11 +70,15 @@ function generateBatTimeline(lang){
       labels: [1, 2, 3, 4, 5].map(i => "<div id='labelLikert'>" + i + "</div>"),
     }],
     randomize_question_order: false,
+    on_load: function(){
+      document.querySelector(".jspsych-survey-likert-statement").style.fontSize = '1em'
+    }
   };
 
   var trialBeat = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: '<p style="margin: 0px; height: 30px; margin-bottom: 10px">' + beatProduction["adjustBeat"][lang] + '</p>'+
+    stimulus: '<p style="margin: 0px">' + beatProduction["adjustBeat"][lang] + '</p>'+
+              '<div id="circleWrap">' +
               '<div class="circle">'+
                 '<button class= "circle deg-4" id="bat0"></button>' +
                 '<button class= "circle deg-5" id="bat1"></button>' +
@@ -84,6 +88,7 @@ function generateBatTimeline(lang){
                 '<button class= "circle deg-1" id="bat5"></button>' +
                 '<button class= "circle deg-2" id="bat6"></button>' +
                 '<button class= "circle deg-3" id="bat7"></button>' +
+              '</div>'+
               '</div>',
     choices: [buttons["continue"][lang]],
     prompt: "",
@@ -105,12 +110,19 @@ function generateBatTimeline(lang){
 
       document.querySelector(".jspsych-btn").style.display = "none"
       document.getElementById("jspsych-html-button-response-stimulus").style.display = "none"
+      document.getElementById("jspsych-html-button-response-stimulus").style.marginTop = "0"
+      document.getElementById("jspsych-content").style.height = "68vh"
+      document.getElementById("jspsych-content").style.margin = "0"
+      document.querySelector(".jspsych-content-wrapper").style.justifyContent = "center"
+
 
       var startButton = document.createElement("button");
       startButton.textContent = "Start"
       startButton.setAttribute('id', 'startButton');  
       document.getElementById("jspsych-content").appendChild(startButton);
       document.getElementById("startButton").addEventListener("click", startSounds)
+
+      document.getElementById("jspsych-html-button-response-btngroup").style.marginTop = "0"
 
       //Start beats
       function startSounds(){
@@ -155,6 +167,10 @@ function generateBatTimeline(lang){
       labels: [1, 2, 3, 4, 5].map(i => "<div id='labelLikert'>" + i + "</div>"),
     }],
     randomize_question_order: false,
+    on_load: function(){
+      document.querySelector(".jspsych-survey-likert-statement").style.fontSize = '1em'
+    }
+
   };
 
   var frontPageInstructions = [frontPage, instruction2]

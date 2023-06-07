@@ -139,7 +139,7 @@
             jatos.endStudyAndRedirect(urlRedirect, finalData)
 
           } else { //If end of experiment. Redirect to homepage
-              var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&Movement=done"
+              var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&Rhythm=done"
               jatos.endStudyAndRedirect(urlRedirect, finalData)
           }
         }
@@ -183,6 +183,11 @@
         trial_duration: 3000,
         stimulus: '',
         on_start: function(){
+        },
+        on_load: function(){
+          document.getElementById("jspsych-content").style.height = "10vh"
+          var cookieExpires = (new Date(Date.now()+ 86400*1000)).toUTCString();
+          document.cookie = "Rhythm=done" + ";" + "expires=" + cookieExpires + ";path=/"
         }
       };
 

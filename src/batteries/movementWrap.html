@@ -20,6 +20,7 @@
     <script src="./jspsych/dist/plugin-html-songselector-response.js"> </script>
     <script src="./jspsych/dist/plugin-html-slider-response.js"></script>
     <script src="./jspsych/dist/plugin-audio-button-response.js"> </script>
+    <script src="./jspsych/dist/plugin-fullscreen.js"> </script>
     <script src="./jspsych/dist/plugin-html-button-response.js"> </script>
     <script src="./jspsych/dist/plugin-instructions.js"> </script>
     <script src="./jspsych/dist/plugin-survey-likert.js"> </script>
@@ -71,23 +72,6 @@
     var timeBegin = Date.now();
     
     var entirePage = document.documentElement;
-
-    /* View in fullscreen */
-    function openFullscreen() {
-      if (entirePage.requestFullscreen) {
-        entirePage.requestFullscreen();
-      } else if (entirePage.webkitRequestFullscreen) { /* Safari */
-        entirePage.webkitRequestFullscreen();
-      } else if (entirePage.msRequestFullscreen) { /* IE11 */
-        entirePage.msRequestFullscreen();
-      }
-    }
-
-    try{
-      openFullscreen() 
-    } catch(e){
-      console.log("No full screen")
-    }
 
     var jsPsych = initJsPsych({
       extensions: [
@@ -181,6 +165,9 @@
         trial_duration: 3000,
         stimulus: '',
         on_start: function(){
+        },
+        on_load: function(){
+          document.getElementById("jspsych-content").style.height = "10vh"
         }
       };
 

@@ -155,17 +155,24 @@ function generateMovementTimeline(lang){
       show_clickable_nav: true
   }
 
+
   var instruction0b = {
       type: jsPsychInstructions,
-      pages: [4, 5, 6, 7, 8, 9, 10, 11, 12].map(i => movement["instruction" + i][lang]),
+      pages: [4, 5, 6, 7, 8, 9, 10, 11].map(i => movement["instruction" + i][lang]),
       button_label_next: buttons["next"][lang],
       button_label_previous: buttons["previous"][lang],
       show_clickable_nav: true
   }
 
+  var trial_in_fullscreen = {
+    type: jsPsychFullscreen,
+    message: "<div id='fullscreenCommand'>" + movement["instruction12"][lang] + "</div>",
+    fullscreen_mode: true
+  }
+
   var instruction1 = {
       type: jsPsychInstructions,
-      pages: [14, 15, 16, 17, 18].map(i => movement["instruction" + i][lang]),
+      pages: [14, 15, 16, 17].map(i => movement["instruction" + i][lang]),
       button_label_next: buttons["next"][lang],
       button_label_previous: buttons["previous"][lang],
       show_clickable_nav: true
@@ -198,6 +205,9 @@ function generateMovementTimeline(lang){
       var last2 = jsPsych.data.get().last(4);
       var songBeingRated = last2['trials'][0].stimulus
       data.song = songBeingRated
+    },
+    on_load: function(){
+      document.querySelector(".jspsych-survey-likert-statement").style.fontSize = '1em'
     }
   };
 
@@ -234,6 +244,9 @@ function generateMovementTimeline(lang){
       var last2 = jsPsych.data.get().last(4);
       var songBeingRated = last2['trials'][0].stimulus
       data.song = songBeingRated
+    },
+    on_load: function(){
+      document.querySelector(".jspsych-survey-likert-statement").style.fontSize = '1em'
     }
   };
 
@@ -249,6 +262,9 @@ function generateMovementTimeline(lang){
       var songBeingRated = last2['trials'][0].stimulus
       data.song = songBeingRated
     },
+    on_load: function(){
+      document.querySelector(".jspsych-survey-likert-statement").style.fontSize = '1em'
+    }
   };
 
   var grooveRatingBeat = {
@@ -262,6 +278,9 @@ function generateMovementTimeline(lang){
       var last2 = jsPsych.data.get().last(5);
       var songBeingRated = last2['trials'][0].stimulus
       data.song = songBeingRated
+    },
+    on_load: function(){
+      document.querySelector(".jspsych-survey-likert-statement").style.fontSize = '1em'
     }
   };
 
@@ -276,6 +295,9 @@ function generateMovementTimeline(lang){
       var last2 = jsPsych.data.get().last(6);
       var songBeingRated = last2['trials'][0].stimulus
       data.song = songBeingRated
+    },
+    on_load: function(){
+      document.querySelector(".jspsych-survey-likert-statement").style.fontSize = '1em'
     }
   };
 
@@ -290,6 +312,9 @@ function generateMovementTimeline(lang){
       var last2 = jsPsych.data.get().last(3);
       var songBeingRated = last2['trials'][0].stimulus
       data.song = songBeingRated
+    },
+    on_load: function(){
+      document.querySelector(".jspsych-survey-likert-statement").style.fontSize = '1em'
     }
   };
 
@@ -299,10 +324,6 @@ function generateMovementTimeline(lang){
       prompt: [movement["instruction13"][lang]],
       trial_duration: 7000,
       choices: ["NO_KEYS"],
-      on_load: function(){
-        document.getElementById("pocket").style.marginTop = 0
-      }
-
   }
 
   var countDown = {
@@ -462,10 +483,10 @@ function generateMovementTimeline(lang){
   //var movementTimeline = [[preloadSongs1, instruction0, promptAccel, loadAccel, phonePocket, countDown, trialAccelerometer1, pickUpPhone, howDifficultMovement, instruction1, phonePocket, countDown, trialAccelerometer2, pickUpPhone, howDifficultMovement, likingBeatRating, grooveRatingBeat, instruction2, phonePocket, countDown, trialAccelerometer3, pickUpPhone, howDifficultMovement, familiarityRating, likingRating, grooveRating, instruction3, chooseSongs, preloadChosen, phonePocket, countDown, trialAccelerometer4, pickUpPhone, howDifficultMovement, familiarityRating, likingRating, grooveRating]];
 
   //Step by step
-  var firstMovement = [instruction0a, promptAccel, loadAccel, instruction0b, phonePocket, countDown, trialAccelerometer1, pickUpPhone, howDifficultMovement, phoneInPocket1] //4
-  var secondMovement = [preloadSongs1, instruction1, phonePocket, countDown, trialAccelerometer2, pickUpPhone, howDifficultMovement, likingBeatRating, grooveRatingBeat, phoneInPocket2] //6
-  var thirdMovement = [preloadSongs1, instruction2, phonePocket, countDown, trialAccelerometer3, pickUpPhone, howDifficultMovement, familiarityRating, likingRating, grooveRating, knowThisSong, phoneInPocket3] //8
-  var fourthMovement = [instruction3, chooseSongs, preloadChosen, phonePocket, countDown, trialAccelerometer4, pickUpPhone, howDifficultMovement, familiarityRating, likingRating, grooveRating, knowThisSong, phoneInPocket3] //8
+  var firstMovement = [instruction0a, promptAccel, loadAccel, instruction0b, trial_in_fullscreen, phonePocket, countDown, trialAccelerometer1, pickUpPhone, howDifficultMovement, phoneInPocket1] //4
+  var secondMovement = [preloadSongs1, instruction1, trial_in_fullscreen, phonePocket, countDown, trialAccelerometer2, pickUpPhone, howDifficultMovement, likingBeatRating, grooveRatingBeat, phoneInPocket2] //6
+  var thirdMovement = [preloadSongs1, instruction2, trial_in_fullscreen, phonePocket, countDown, trialAccelerometer3, pickUpPhone, howDifficultMovement, familiarityRating, likingRating, grooveRating, knowThisSong, phoneInPocket3] //8
+  var fourthMovement = [instruction3, chooseSongs, preloadChosen, trial_in_fullscreen, phonePocket, countDown, trialAccelerometer4, pickUpPhone, howDifficultMovement, familiarityRating, likingRating, grooveRating, knowThisSong, phoneInPocket3] //8
 
   var movementTimeline = [firstMovement, secondMovement, thirdMovement, fourthMovement];
 

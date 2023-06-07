@@ -126,6 +126,9 @@ function generateTappingTimeline(lang){
       labels: [1, 2, 3, 4, 5].map(i => "<div id='labelLikert'>" + i + "</div>"),
     }],
     randomize_question_order: false,
+    on_load: function(){
+      document.querySelector(".jspsych-survey-likert-statement").style.fontSize = '1em'
+    }
   };
 
   var messageEndTask = {
