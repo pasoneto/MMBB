@@ -51,7 +51,7 @@
 
         var urlRedirect = studyLinks['surveyFriendsStrangers'] + "?group=" + window.groupNumber + "&participantNumber=" + window.participant
         console.log(urlRedirect)
-        jatos.endStudyAndRedirect(urlRedirect)
+        window.location.href = urlRedirect
 
       }
     }
