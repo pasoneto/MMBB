@@ -5,28 +5,28 @@ var questions3 = ["Nolostumisen pelko saa minut välttelemään asioiden tekemis
 var questionnaire1 = []
 var likert_scale = [ "Vahvasti eri mieltä", "Melko paljon eri mieltä", "Vähän eri mieltä", "Ei samaa eikä eri mieltä", "Vähän samaa mieltä", "Melko paljon samaa mieltä", "Vahvasti samaa mieltä" ];
 for(k in questions1){
-  var a = {prompt: questions1[k], labels: likertScale}
+  var a = {prompt: questions1[k], labels: likert_scale}
   questionnaire1.push(a)
 }
 
 var questionnaire2 = []
 var likert_scale = ["ei kuvaa minua hyvin", "", "", "", "kuvaa minua erittäin hyvin"];
 for(k in questions1){
-  var a = {prompt: questions1[k], labels: likertScale}
+  var a = {prompt: questions1[k], labels: likert_scale}
   questionnaire1.push(a)
 }
 
 var liket_scale = ["ei lainkaan", "hieman", "jonkin verran", "todella paljon", "erittäin paljon"]
 var questionnaire3 = []
 for(k in questions3){
-  var a = {prompt: questions3[k], labels: likertScale}
+  var a = {prompt: questions3[k], labels: likert_scale}
   questionnaire3.push(a)
 }
 
 var modelQuestionnaire1 = {
   type: jsPsychSurveyLikert,
   questions: questionnaire1,
-  preamble: "<p>Tässä on muutamia persoonallisuuspiirteitä, jotka saattavat kuvastaa tai olla kuvastamatta sinua. Kerro missä määrin olet samaa tai eri mieltä kunkin väittämän kanssa. Sinun tulee arvioida missä määrin kukin piirrepari kuvastaa sinua, vaikka toinen piirre sopisikin sinuun paremmin kuin toinen.<br>Olen mielestäni:</p>"
+  preamble: "<p>Tässä on muutamia persoonallisuuspiirteitä, jotka saattavat kuvastaa tai olla kuvastamatta sinua. Kerro missä määrin olet samaa tai eri mieltä kunkin väittämän kanssa. Sinun tulee arvioida missä määrin kukin piirrepari kuvastaa sinua, vaikka toinen piirre sopisikin sinuun paremmin kuin toinen.<br>Olen mielestäni:</p>",
   randomize_question_order: false,
   data: {questionnaireType: "TIPI"}
 };

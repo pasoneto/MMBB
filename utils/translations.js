@@ -17,8 +17,8 @@ var movement = {
         "fi":  "voit lisätä puhelimesi äänenvoimakkuutta ennen kuin laitat sen taskuusi<br><img id='increaseVolume' src='./images/increaseVolume.svg'></img>"},
   "instruction7": {"eng": "Do not lock the screen of your phone<br><img id='dontLock' src='./images/dontLock.svg'></img>",
         "fi":  "Älä lukiste puhelimesi nayttöä<br><img id='dontLock' src='./images/dontLock.svg'></img>"},
-  "instruction8": {"eng": "Before each task starts, you will hear a voice countdown<br><img id='tableSVG' src='./images/voiceSVG.svg'></img>",
-        "fi":  "Ennen jokaiset tehtävän alkamista kuulet ääneen lärtölaskennan"},
+  "instruction8": {"eng": "Before each task starts, you will hear a voice countdown<br><img id='voiceSVG' src='./images/voiceSVG.svg'></img>",
+        "fi":  "Ennen jokaiset tehtävän alkamista kuulet ääneen lärtölaskennan<br><img id='voiceSVG' src='./images/voiceSVG.svg'></img>"},
   "instruction9": {"eng": "A voice will also tell you  when the task has ended<br><img id='tableSVG' src='./images/stopSVG.svg'></img>",
         "fi":  "Ääni myös kertoo kun tehtävä on loppunut<br><img id='tableSVG' src='./images/stopSVG.svg'></img>"},
   "instruction10": {"eng": "For the first task, go to a space where there's room to walk around<br><img id='tableSVG' src='./images/walkSVG.svg'></img>",
@@ -234,16 +234,16 @@ var beatProduction = {
 }
 
 var initialInstructions = [
-  [{"eng": "Can you hear this song?<br>If so, adjust the volume to a comfortable hearing level and click Continue.<br><img id='tableSVG' src='./images/soundSVG.svg'><br>If you cannot hear the song, try changing to a different computer/phone or to a different internet browser.",
-    "fi": "Kuunletko tämän kappaleen?<br>Jos kuulet, säädä äänenvoimakkuutta miellyttävälle kuulotasolle ja napauta Jatka.<br><img id='tableSVG' src='./images/soundSVG.svg'> <br>Jos et kuule kappaletta, yritä vaihtaa toiseen tietokoneeseen/puhelimeen tai toiseen internetselaimeen."},
+  [{"eng": "Can you hear this song? If so, adjust the volume to a comfortable hearing level and click Continue.<img id='tableSVG' src='./images/soundSVG.svg'>If you cannot hear the song, try changing to a different computer/phone or to a different internet browser.",
+    "fi": "Kuunletko tämän kappaleen? Jos kuulet, säädä äänenvoimakkuutta miellyttävälle kuulotasolle ja napauta Jatka.<img id='tableSVG' src='./images/soundSVG.svg'>Jos et kuule kappaletta, yritä vaihtaa toiseen tietokoneeseen/puhelimeen tai toiseen internetselaimeen."},
    {"eng": "Yes",
     "fi": "Kyllä"},
    {"eng": "No",
     "fi": "Ei"},
    {"eng": "Is someone helping you to complete this task?",
     "fi": "Auttaako joku sinua tämän tehtävän suorittamisessa?"},
-   {"eng": "Can you hear this song?<br>If yes, adjust the volume to a comfortable hearing level and click Next.<br>Make sure that the 'mute' button on the left side of your phone is disabled. <br> If it still doesn't work change to a different phone or to a different internet browser.",
-    "fi": "Kuunteletko tämän kappaleen?<br>Jos kyllä, säädä äänenvoimakkuus miellyttävälle kuulotasolle ja napsauta Seuraava.<br>Jos käytät iPhonea, poista käytöstä puhelimen vasemmalla puolella oleva mykistyspainike. <br> Jos se ei vieläkään toimi, vaihda toiseen puhelimeen tai toiseen Internet-selaimeen."},
+   {"eng": "Can you hear this song? If yes, adjust the volume to a comfortable hearing level and click Next. Make sure that the 'mute' button on the left side of your phone is disabled. If it still doesn't work change to a different phone or to a different internet browser.",
+    "fi": "Kuunteletko tämän kappaleen? Jos kyllä, säädä äänenvoimakkuus miellyttävälle kuulotasolle ja napsauta Seuraava. Jos käytät iPhonea, poista käytöstä puhelimen vasemmalla puolella oleva mykistyspainike. Jos se ei vieläkään toimi, vaihda toiseen puhelimeen tai toiseen Internet-selaimeen."},
    {"eng": "I don't know",
     "fi": "En tiedä"}
   ]

@@ -261,17 +261,27 @@
       var inter = {
           type: jsPsychInstructions,
           pages: [
-          'Thank you for your responses,<br><br>You can put the iPad down and call the experimenter',
+          'Thank you for your responses,<br><br>Give the iPad back to the experimenter.',
           ],
           button_label_next: "Next",
           button_label_previous: "Previous",
           show_clickable_nav: true,
           on_load: function(){
             document.getElementById("jspsych-instructions-next").style.display = "none"
-            sleep(30000).then(r => {
+            sleep(5000).then(r => {
               document.getElementById("jspsych-instructions-next").style.display = ""
             })
           }
+      }
+      function generateNextStep(nextStep){
+        var nextStep = {
+            type: jsPsychInstructions,
+            pages: [nextStep],
+            button_label_next: "Next",
+            button_label_previous: "Previous",
+            show_clickable_nav: true,
+        }
+        return(nextStep)
       }
 
       var changePairs = {
@@ -388,29 +398,33 @@
       //- Please rate your relationship with the second person you danced and created a playlist with   
       var evenOdd = groupNumber % 2
 
-      var A = [enterFullscreen, howFeeling, closeness1, inter,
-               howWasPlaylist, howFeeling, closeness1, inter,
-               howFeeling, closeness1, questionsAboutSongs, inter, 
-               modelQuestionnaire1, modelQuestionnaire2, modelQuestionnaire3, howFeeling, closeness1, inter,
+      var stepsA = ["Generate playlist", "Dance to self-selected songs", "Fill out questionnaires", "Dance researcher stimuli"]
+      var A = [enterFullscreen, howFeeling, closeness1, inter, generateNextStep(stepsA[0]),
+               howWasPlaylist, howFeeling, closeness1, inter, generateNextStep(stepsA[1]),
+               howFeeling, closeness1, questionsAboutSongs, inter, generateNextStep(stepsA[2]),
+               modelQuestionnaire1, modelQuestionnaire2, modelQuestionnaire3, howFeeling, closeness1, inter, generateNextStep(stepsA[3]),
                howFeeling, closeness1, questionsAboutSongs, relationshipFriend, feedbackSpace]
 
-      var B = [enterFullscreen, howFeeling, closeness1, inter,
-               howFeeling, closeness1, questionsAboutSongs, inter,
-               howFeeling, closeness1, howWasPlaylist, inter,
-               howFeeling, closeness1, questionsAboutSongs, inter, 
-               howFeeling, closeness1, modelQuestionnaire1, modelQuestionnaire2, modelQuestionnaire3,
-               howFeeling, closeness1, relationshipFriend, feedbackSpace]
+      var stepsB = ["Dance researcher stimuli", "Generate playlist", "Dance to self-selected songs", "Fill out questionnaires"]
+      var B = [enterFullscreen, howFeeling, closeness1, inter, generateNextStep(stepsB[0]),
+               howFeeling, closeness1, questionsAboutSongs, inter, generateNextStep(stepsB[1]),
+               howFeeling, closeness1, howWasPlaylist, inter, generateNextStep(stepsB[2]),
+               howFeeling, closeness1, questionsAboutSongs, inter, generateNextStep(stepsB[3]),
+               howFeeling, closeness1, modelQuestionnaire1, modelQuestionnaire2, modelQuestionnaire3, howFeeling, closeness1, relationshipFriend, feedbackSpace]
 
-      var C = [enterFullscreen, howFeeling, closeness1, inter,
-               howWasPlaylist, howFeeling,closeness1, inter,
-               howFeeling, closeness1, questionsAboutSongs, linkToMMBB, howFeeling, closeness1, inter,
+      var stepsC = ["Generate playlist", "Dance to self-selected songs", "Fill out questionnaires (MMBB)", "Dance researcher stimuli"]
+      var C = [enterFullscreen, howFeeling, closeness1, inter, generateNextStep(stepsC[0]),
+               howWasPlaylist, howFeeling,closeness1, inter, generateNextStep(stepsC[1]),
+               howFeeling, closeness1, questionsAboutSongs, generateNextStep(stepsC[2]),
+               linkToMMBB, howFeeling, closeness1, inter, generateNextStep(stepsC[3]),
                howFeeling, closeness1, questionsAboutSongs, relationshipFriend, feedbackSpace]
 
-      var D = [enterFullscreen, howFeeling, closeness1, inter,
-               howFeeling, closeness1, questionsAboutSongs, inter,
-               howFeeling, closeness1, howWasPlaylist, inter,
-               howFeeling, closeness1, questionsAboutSongs, linkToMMBB, howFeeling, closeness1,
-               relationshipFriend, feedbackSpace]
+      var stepsD = ["Dance researcher stimuli", "Generate playlist", "Dance to self-selected songs", "Fill out questionnaires"]
+      var D = [enterFullscreen, howFeeling, closeness1, inter, generateNextStep(stepsD[0]),
+               howFeeling, closeness1, questionsAboutSongs, inter, generateNextStep(stepsD[1]),
+               howFeeling, closeness1, howWasPlaylist, inter, generateNextStep(stepsD[2]),
+               howFeeling, closeness1, questionsAboutSongs, generateNextStep(stepsD[3]),
+               linkToMMBB, howFeeling, closeness1, relationshipFriend, feedbackSpace]
       
       if(evenOdd == 1){ //Odd
         console.log("Friends - Strangers")
