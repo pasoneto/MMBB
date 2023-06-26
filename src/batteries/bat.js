@@ -77,20 +77,25 @@ function generateBatTimeline(lang){
 
   var trialBeat = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: '<p style="margin: 0px">' + beatProduction["adjustBeat"][lang] + '</p>'+
-              '<div id="circleWrap">' +
+    stimulus: '<div id="titleBAT">' + beatProduction["adjustBeat"][lang] + "</div>" +
               '<div class="circle">'+
+                '<div id="firstRowCircle">' +
                 '<button class= "circle deg-4" id="bat0"></button>' +
                 '<button class= "circle deg-5" id="bat1"></button>' +
                 '<button class= "circle deg-6" id="bat2"></button>' +
+                '</div>' +
+                '<div id="secondRowCircle">' +
                 '<button class= "circle deg-7" id="bat3"></button>' +
                 '<button class= "circle deg-0" id="bat4"></button>' +
+                '</div>' +
+                '<div id="thirdRowCircle">' +
                 '<button class= "circle deg-1" id="bat5"></button>' +
                 '<button class= "circle deg-2" id="bat6"></button>' +
                 '<button class= "circle deg-3" id="bat7"></button>' +
-              '</div>'+
+                '</div>' +
               '</div>',
     choices: [buttons["continue"][lang]],
+    trial_duration: 500000, //simu
     prompt: "",
     on_start: function(data){
       data.initialOffset = window.initialOffset;
@@ -110,19 +115,15 @@ function generateBatTimeline(lang){
 
       document.querySelector(".jspsych-btn").style.display = "none"
       document.getElementById("jspsych-html-button-response-stimulus").style.display = "none"
-      document.getElementById("jspsych-html-button-response-stimulus").style.marginTop = "0"
-      document.getElementById("jspsych-content").style.height = "68vh"
-      document.getElementById("jspsych-content").style.margin = "0"
       document.querySelector(".jspsych-content-wrapper").style.justifyContent = "center"
 
-
       var startButton = document.createElement("button");
-      startButton.textContent = "Start"
-      startButton.setAttribute('id', 'startButton');  
+      startButton.textContent = buttons['start'][lang]
+      startButton.setAttribute('id', 'startButton');
       document.getElementById("jspsych-content").appendChild(startButton);
       document.getElementById("startButton").addEventListener("click", startSounds)
 
-      document.getElementById("jspsych-html-button-response-btngroup").style.marginTop = "0"
+      //document.getElementById("jspsych-html-button-response-btngroup").style.marginTop = "0"
 
       //Start beats
       function startSounds(){
@@ -133,10 +134,17 @@ function generateBatTimeline(lang){
           allSources[i].start(2)
         }
         document.querySelector(".jspsych-btn").style.display = "block"
-        document.getElementById("jspsych-html-button-response-stimulus").style.display = "block"
+        document.getElementById("jspsych-html-button-response-stimulus").style.display = "flex"
+        document.getElementById("jspsych-html-button-response-stimulus").style.margin = "auto"
+        document.getElementById("jspsych-html-button-response-stimulus").style.flexWrap = "wrap"
+        document.getElementById("jspsych-html-button-response-stimulus").style.justifyContent = "center"
+        document.getElementById("jspsych-html-button-response-stimulus").style.height = "80%"
+        document.getElementById("jspsych-html-button-response-stimulus").style.alignContent = "flex-start"
+        //document.getElementById("jspsych-content").style.height = "80vh"
+
         
         //Adjust style of circle
-        document.getElementById("jspsych-html-button-response-btngroup").style.marginTop = "auto"
+        //document.getElementById("jspsych-html-button-response-btngroup").style.marginTop = "auto"
         startButton.remove()
 
         //Disable button for a 5 seconds
@@ -155,7 +163,7 @@ function generateBatTimeline(lang){
       data.initialOffset = window.initialOffset; //Initial offset
       var allSources = [window.source1, window.source2, window.source3, window.source4, window.source5, window.source6, window.source7, window.source8, window.sourceBase] //Stopping all songs
       for(i in allSources) {
-        allSources[i].stop()
+        //allSources[i].stop() simu
       }
     }
   };
@@ -183,7 +191,9 @@ function generateBatTimeline(lang){
   var six = [loadTrial6, trialBeat, howSatisfiedBeat, howDifficult]
 
   //Step by step
-  var batTimeline = [frontPageInstructions, zero, one, two, three, four, five, six]
+  //var batTimeline = [frontPageInstructions, zero, one, two, three, four, five, six] simu
+
+  var batTimeline = [one]
 
   //Original
   //var batTimeline = [frontPage, instruction2, loadTrial0, trialBeat, instruction3, loadTrial1, trialBeat, betweenTrial, loadTrial2, trialBeat, betweenTrial, loadTrial3, trialBeat, betweenTrial, loadTrial4, trialBeat, betweenTrial, loadTrial5, trialBeat, betweenTrial, loadTrial6, trialBeat];

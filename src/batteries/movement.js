@@ -66,6 +66,7 @@ var prompt_songs = function(lang){
           albumCovers.push('./songs/movementTapAudio/imageAlbums/' + i + '.jpg');
       }
       html = "<div id='songName'>" + movement["instruction21"][lang] + "</div>"
+      html += "<div id='buttonsChooseWrap'>"
       for(i in listSongs){
         var songPath = listSongs[i].src
         var songName = songNames[i]
@@ -73,6 +74,7 @@ var prompt_songs = function(lang){
         var sNumber = Number(i) + 1 
         html += "<audio></audio> <button id='buttonSongItem' name='buttonMusic' onclick=" + "othersStop(listSongs);PlaySound(listSongs[" + i + "]);changeColor(this);setNextSong('" + songCode + "');> Song " + sNumber + "</button>"
       }
+      html += "</div>" //Close buttonsChooseWrap
       html += "</div>"
       return(html)
 };
@@ -99,6 +101,8 @@ function generateMovementTimeline(lang){
     choices: [buttons["next"][lang]],
     on_start: function(trial){
       trial.stimulus = prompt_songs(lang)
+      //simu
+      setNextSong(1)
     },
     on_finish: function(){
       for(k in window.listSongs){
@@ -140,7 +144,8 @@ function generateMovementTimeline(lang){
       type: jsPsychAudioKeyboardResponse,
       stimulus: './songs/movementTapAudio/silence.wav',
       prompt: movement["accessAcelerometer"][lang] + '<br><img id="logoLoading" src="./images/loading2.gif">',
-      trial_duration: 3000,
+      //trial_duration: 3000, simu
+      trial_duration: 1000,
       choices: ["NO_KEYS"],
       extensions: [
         {type: jsPsychExtensionAccelerometer }
@@ -322,7 +327,8 @@ function generateMovementTimeline(lang){
       type: jsPsychAudioKeyboardResponse,
       stimulus: './songs/movementTapAudio/instructionsAudio/phonePocket.mp3',
       prompt: [movement["instruction13"][lang]],
-      trial_duration: 7000,
+      //trial_duration: 7000, simu
+      trial_duration: 1000,
       choices: ["NO_KEYS"],
   }
 
@@ -330,7 +336,8 @@ function generateMovementTimeline(lang){
       type: jsPsychAudioKeyboardResponse,
       stimulus: './songs/movementTapAudio/instructionsAudio/countdown.mp3',
       prompt: "<img id='tableSVG' src='./images/voiceSVG.svg'></img>",
-      trial_duration: 6500,
+    //trial_duration: 6500, simu
+      trial_duration: 1000,
       choices: ["NO_KEYS"],
       on_load: function(){
         document.getElementById("tableSVG").style.marginTop = 0
@@ -343,7 +350,8 @@ function generateMovementTimeline(lang){
       stimulus: './songs/movementTapAudio/instructionsAudio/pickPhone.mp3',
       prompt: "<img id='tableSVG' src='./images/voiceSVG.svg'></img>",
       choices: ["NO_KEYS"],
-      trial_duration: 10000,
+    //trial_duration: 10000, simu
+      trial_duration: 1000,
       on_load: function(){
         document.getElementById("tableSVG").style.marginTop = 0
       }
@@ -353,7 +361,8 @@ function generateMovementTimeline(lang){
       type: jsPsychAudioKeyboardResponse,
       stimulus: './songs/movementTapAudio/silence.wav',
       prompt: "<img id='pocket' src='./images/pocket.svg'></img>",
-      trial_duration: 30000,
+    //trial_duration: 30000, simu
+      trial_duration: 1000,
       choices: ["NO_KEYS"],
       extensions: [
         {type: jsPsychExtensionAccelerometer }
@@ -377,7 +386,8 @@ function generateMovementTimeline(lang){
       type: jsPsychAudioKeyboardResponse,
       stimulus: './songs/movementTapAudio/modifiedAudio/' + randomMetronomeSong,
       prompt: "<img id='pocket' src='./images/pocket.svg'></img>",
-      trial_duration: 63000,
+    //trial_duration: 63000, simu
+      trial_duration: 1000,
       choices: ["NO_KEYS"],
       extensions: [
         {type: jsPsychExtensionAccelerometer }
@@ -410,7 +420,8 @@ function generateMovementTimeline(lang){
       type: jsPsychAudioKeyboardResponse,
       stimulus: './songs/movementTapAudio/modifiedAudio/' + randomElPesebreSong,
       prompt: "<img id='pocket' src='./images/pocket.svg'></img>",
-      trial_duration: 63000,
+    //trial_duration: 63000, simu
+      trial_duration: 1000,
       choices: ["NO_KEYS"],
       extensions: [
         {type: jsPsychExtensionAccelerometer }
@@ -421,7 +432,8 @@ function generateMovementTimeline(lang){
       type: jsPsychAudioKeyboardResponse,
       stimulus: '',
       prompt: "<img id='pocket' src='./images/pocket.svg'></img>",
-      trial_duration: 63000,
+    //trial_duration: 63000, simu
+      trial_duration: 1000,
       choices: ["NO_KEYS"],
       extensions: [
         {type: jsPsychExtensionAccelerometer }

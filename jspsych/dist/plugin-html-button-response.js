@@ -188,7 +188,7 @@ var jsPsychHtmlButtonResponse = (function (jspsych) {
       create_simulation_data(trial, simulation_options) {
           const default_data = {
               stimulus: trial.stimulus,
-              rt: this.jsPsych.randomization.sampleExGaussian(500, 50, 1 / 150, true),
+              rt: 800,
               response: this.jsPsych.randomization.randomInt(0, trial.choices.length - 1),
           };
           const data = this.jsPsych.pluginAPI.mergeSimulationData(default_data, simulation_options);

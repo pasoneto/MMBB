@@ -2,14 +2,16 @@
 
 #Friends-strangers:
 
-- how ask for nationality?
-- use short versions
-- add height and weight back
-- implement post questionnaire (replicate for friend and for stranger)
-- translate everything
-- check participant ordering
-- implement fullscreen
-- Check that participants can't skip to next question
+- how ask for nationality?;
+- use short versions;
+- add height and weight back (movement);
+- implement post questionnaire (replicate for friend and for stranger);
+- translate everything (double check);
+- check iPad update;
+- make list of checkpoints for each part of the timeline (in case the ipad shuts off);
+- make personalized link to Shared Measurements;
+- make post questionnaire;
+
 
 Implement questionnaires for friends strangers
 https://jyu-my.sharepoint.com/:x:/g/personal/maarhart_jyu_fi/EVOc-nBuAUJHm4X2U3HPjGgBVw2rWoge47n5PCWtFcb86g?e=9bCRHE

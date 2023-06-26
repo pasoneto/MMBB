@@ -140,7 +140,7 @@
 
           } else { //If end of experiment. Redirect to homepage
               var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&Rhythm=done"
-              jatos.endStudyAndRedirect(urlRedirect, finalData)
+              jatos.endStudyAndRedirect(urlRedirect, finalData) //simu
           }
         }
       }
@@ -179,19 +179,19 @@
       var messageFinishSub = {
         type: jsPsychHtmlButtonResponse,
         prompt: endTask[0][lang],
-        choices: [],
+        //choices: [], simu
+        choices: ["a"],
         trial_duration: 3000,
         stimulus: '',
         on_start: function(){
         },
         on_load: function(){
           document.getElementById("jspsych-content").style.height = "10vh"
-          var cookieExpires = (new Date(Date.now()+ 86400*1000)).toUTCString();
-          document.cookie = "Rhythm=done" + ";" + "expires=" + cookieExpires + ";path=/"
         }
       };
 
-      window.completeSequence = [sequenceTrials["intro"], sequenceTrials[indexTrial[0]], sequenceTrials[indexTrial[1]], [[messageFinishSub]]]
+      //window.completeSequence = [sequenceTrials["intro"], sequenceTrials[indexTrial[0]], sequenceTrials[indexTrial[1]], [[messageFinishSub]]] //simu
+      window.completeSequence = [sequenceTrials[indexTrial[0]], sequenceTrials[indexTrial[1]], [[messageFinishSub]]]
 
       var nodeIndex = jatos.urlQueryParameters.nodeIndex //Which trial to be performed
       if(nodeIndex == undefined){ 
@@ -225,7 +225,9 @@
           }
       }
 
-      jsPsych.run([procedureMovementFinal])
+      jsPsych.run([procedureMovementFinal]) //simu
+      //jsPsych.simulate([procedureMovementFinal], "visual")
+
     });
 
  </script>

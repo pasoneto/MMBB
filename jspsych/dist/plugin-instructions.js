@@ -228,7 +228,8 @@ var jsPsychInstructions = (function (jspsych) {
           let rt = 0;
           const view_history = [];
           while (curr_page !== trial.pages.length) {
-              const view_time = this.jsPsych.randomization.sampleExGaussian(3000, 300, 1 / 300);
+            //const view_time = this.jsPsych.randomization.sampleExGaussian(1000, 300, 1 / 300);
+              const view_time = 800;
               view_history.push({ page_index: curr_page, viewing_time: view_time });
               rt += view_time;
               if (curr_page == 0 || !trial.allow_backward) {

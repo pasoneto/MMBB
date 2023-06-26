@@ -107,63 +107,46 @@ var jsPsychHtmlMultiSliderResponse = (function (jspsych) {
       trial(display_element, trial) {
           // half of the thumb width value from jspsych.css, used to adjust the label positions
           var half_thumb_width = 7.5;
-          var html = '<div id="jspsych-html-slider-response-wrapper" style="margin: 100px 0px;">';
+          var html = '<div id="jspsych-html-slider-response-wrapper-emotion">';
           if (trial.prompt !== null) {
-            html += trial.prompt;
-        }
+            html += '<div id="emotionPromptDiv">' + trial.prompt + '</div>';
+          }
           for (var k = 0; k < trial.nSliders; k++) {
-          html += '<div id="jspsych-html-slider-response-stimulus">' + trial.stimulus[k] + "</div>";
-          html +=
-              '<div class="jspsych-html-slider-response-container" style="position:relative; margin: 0 auto 3em auto; ';
-          if (trial.slider_width !== null) {
-              html += "width:" + trial.slider_width + "px;";
-          }
-          else {
-              html += "width:auto;";
-          }
-          html += '">';
+            html += '<div id="emotionSliderWrap">'
+            html += '<div id="jspsych-html-slider-response-stimulus">' + trial.stimulus[k] + "</div>";
+            html += '<div class="jspsych-html-slider-response-container">';
 
-          html +=
-              '<input type="range" class="jspsych-slider" value="' +
-                  trial.slider_start +
-                  '" min="' +
-                  trial.min +
-                  '" max="' +
-                  trial.max +
-                  '" step="' +
-                  trial.step +
-                  '" id="jspsych-html-slider-response-response-' + k.toString() + '"></input>';
-          html += "<div>";
-          for (var j = 0; j < trial.labels[k].length; j++) {
-              var label_width_perc = 100 / (trial.labels[k].length - 1);
-              var percent_of_range = j * (100 / (trial.labels[k].length - 1));
-              var percent_dist_from_center = ((percent_of_range - 50) / 50) * 100;
-              var offset = (percent_dist_from_center * half_thumb_width) / 100;
-              html +=
-                  '<div style="border: 1px solid transparent; display: inline-block; position: absolute; ' +
-                      "left:calc(" +
-                      percent_of_range +
-                      "% - (" +
-                      label_width_perc +
-                      "% / 2) - " +
-                      offset +
-                      "px); text-align: center; width: " +
-                      label_width_perc +
-                      '%; ">';
-              html += '<span style="text-align: center; font-size: 80%;">' + trial.labels[k][j] + "</span>";
-              html += "</div>";
+            html +=
+                '<input type="range" class="jspsych-slider" value="' +
+                    trial.slider_start +
+                    '" min="' +
+                    trial.min +
+                    '" max="' +
+                    trial.max +
+                    '" step="' +
+                    trial.step +
+                    '" id="jspsych-html-slider-response-response-' + k.toString() + '"></input>';
+            html += "<div id='multiSliderWrapper'>";
+            for (var j = 0; j < trial.labels[k].length; j++) {
+                var label_width_perc = 100 / (trial.labels[k].length - 1);
+                var percent_of_range = j * (100 / (trial.labels[k].length - 1));
+                var percent_dist_from_center = ((percent_of_range - 50) / 50) * 100;
+                var offset = (percent_dist_from_center * half_thumb_width) / 100;
+                html += '<div id="labelMultiSlider">' + trial.labels[k][j] + "</div>";
+            }
+            html += "</div>";
+            html += "</div>";
+
+            html += '</div>' //Closing emotionSliderWrap
           }
-          html += "</div>";
-          html += "</div>";
-        }
-          html += "</div>";
-          // add submit button
           html +=
               '<button id="jspsych-html-slider-response-next" class="jspsych-btn" ' +
                   (trial.require_movement ? "disabled" : "") +
                   ">" +
                   trial.button_label +
                   "</button>";
+          html += "</div>";
+          // add submit button
           display_element.innerHTML = html;
           var response = {
               rt: null,
@@ -240,7 +223,7 @@ var jsPsychHtmlMultiSliderResponse = (function (jspsych) {
               stimulus: trial.stimulus,
               slider_start: trial.slider_start,
               response: this.jsPsych.randomization.randomInt(trial.min, trial.max),
-              rt: this.jsPsych.randomization.sampleExGaussian(500, 50, 1 / 150, true),
+              rt: 2000,
           };
           const data = this.jsPsych.pluginAPI.mergeSimulationData(default_data, simulation_options);
           this.jsPsych.pluginAPI.ensureSimulationDataConsistency(trial, data);
@@ -260,7 +243,7 @@ var jsPsychHtmlMultiSliderResponse = (function (jspsych) {
               setTimeout(() => {
                   this.jsPsych.pluginAPI.clickTarget(el);
                   el.valueAsNumber = data.response;
-              }, data.rt / 2);
+              }, 2);
               this.jsPsych.pluginAPI.clickTarget(display_element.querySelector("button"), data.rt);
           }
       }

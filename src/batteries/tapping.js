@@ -61,14 +61,16 @@ function generateTappingTimeline(lang){
       choices: [tapping["tapHere"][lang]],
       stimulus: './songs/movementTapAudio/silence.wav',
       prompt: '<div id="recordingText">' + tapping["recording"][lang] + '</div>',
-      trial_duration: 30000,
+      //trial_duration: 30000, simu
+      trial_duration: 1000,
       margin_horizontal: '0px',
       button_html: '<button type="button" ' + ' id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">' + tapping["tapHere"][lang] + '</p></button>',
       response_ends_trial: false,
       on_load: function(){
-        document.querySelector(".jspsych-display-element").style.border = "red"
-        document.querySelector(".jspsych-display-element").style.borderStyle = "solid"
-        document.querySelector(".jspsych-display-element").style.borderWidth = "3px"
+        document.querySelector(".jspsych-display-element").style.border = "red";
+        document.querySelector(".jspsych-display-element").style.borderStyle = "solid";
+        document.querySelector(".jspsych-display-element").style.borderWidth = "3px";
+        document.getElementById("jspsych-audio-button-response-btngroup").style.margin = "auto";
       },
       on_finish: function(){
         document.querySelector(".jspsych-display-element").style.border = "none"
@@ -82,14 +84,16 @@ function generateTappingTimeline(lang){
       choices: [tapping["tapHere"][lang]],
       prompt: '<div id="recordingText">' + tapping["recording"][lang] + '</div>',
       stimulus: './songs/movementTapAudio/modifiedAudio/' + randomMetronome,
-      trial_duration: 63000,
+    //trial_duration: 63000, simu
+      trial_duration: 1000,
       margin_horizontal: '0px',
       button_html: '<button type="button" ' + ' id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">' + tapping["tapHere"][lang] + '</p></button>',
       response_ends_trial: false,
       on_load: function(){
-        document.querySelector(".jspsych-display-element").style.border = "red"
-        document.querySelector(".jspsych-display-element").style.borderStyle = "solid"
-        document.querySelector(".jspsych-display-element").style.borderWidth = "5px"
+        document.querySelector(".jspsych-display-element").style.border = "red";
+        document.querySelector(".jspsych-display-element").style.borderStyle = "solid";
+        document.querySelector(".jspsych-display-element").style.borderWidth = "5px";
+        document.getElementById("jspsych-audio-button-response-btngroup").style.margin = "auto";
       },
       on_finish: function(){
         document.querySelector(".jspsych-display-element").style.border = "none"
@@ -103,14 +107,16 @@ function generateTappingTimeline(lang){
       choices: [tapping["tapHere"][lang]],
       prompt: '<div id="recordingText">' + tapping["recording"][lang] + '</div>',
       stimulus: './songs/movementTapAudio/modifiedAudio/' + randomElPesebreSong,
-      trial_duration: 63000,
+    //trial_duration: 63000, simu
+      trial_duration: 1000,
       margin_horizontal: '0px',
       button_html: '<button type="button" ' + ' id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">' + tapping["tapHere"][lang] + '</p></button>',
       response_ends_trial: false,
       on_load: function(){
-        document.querySelector(".jspsych-display-element").style.border = "red"
-        document.querySelector(".jspsych-display-element").style.borderStyle = "solid"
-        document.querySelector(".jspsych-display-element").style.borderWidth = "5px"
+        document.querySelector(".jspsych-display-element").style.border = "red";
+        document.querySelector(".jspsych-display-element").style.borderStyle = "solid";
+        document.querySelector(".jspsych-display-element").style.borderWidth = "5px";
+        document.getElementById("jspsych-audio-button-response-btngroup").style.margin = "auto";
       },
       on_finish: function(){
         document.querySelector(".jspsych-display-element").style.border = "none"
@@ -134,7 +140,8 @@ function generateTappingTimeline(lang){
   var messageEndTask = {
     type: jsPsychHtmlButtonResponse,
     prompt: recurring["endTask1"][lang],
-    choices: [],
+    //choices: [], simu
+    choices: ["a"],
     trial_duration: 3000,
     stimulus: '',
     on_finish: function(){
@@ -142,7 +149,8 @@ function generateTappingTimeline(lang){
     }
   };
 
-  var tappingTimeline = [[frontPage, preloadSongs2, instruction0, trialTapping0, messageEndTask, howDifficult, instruction1, trialTapping1, messageEndTask, howDifficult, instruction3, trialTapping3, messageEndTask, howDifficult]];
+  //var tappingTimeline = [[frontPage, preloadSongs2, instruction0, trialTapping0, messageEndTask, howDifficult, instruction1, trialTapping1, messageEndTask, howDifficult, instruction3, trialTapping3, howDifficult]]; //simu
+  var tappingTimeline = [[preloadSongs2, trialTapping0]]
 
   return(tappingTimeline)
 }

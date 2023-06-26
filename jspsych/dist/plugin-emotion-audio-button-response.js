@@ -165,6 +165,7 @@ var jsPsychEmotionAudioButtonResponse = (function (jspsych) {
                   }
               }
               var html = '<div id="jspsych-audio-button-response-btngroup">' + trial.question + "<br></div>";
+              html += "<div id='emotionButtonWrapper'>"
               for (var i = 0; i < trial.choices.length; i++) {
                   var str = buttons[i].replace(/%choice%/g, trial.choices[i].img);
                   html +=
@@ -181,10 +182,12 @@ var jsPsychEmotionAudioButtonResponse = (function (jspsych) {
                           '<h2 style="margin:0">' + trial.choices[i].type + '</h2>' +
                           "</div>";
               }
+              html += '</div>';
               //show prompt if there is one
               if (trial.prompt !== null) {
-                  html += '<br><br>' + '<div style="display: inline-block" id="id_prompt">' + trial.prompt + '</div>';
+                  html += '<div id="id_prompt">' + trial.prompt + '</div>';
               }
+
               display_element.innerHTML = html;
               if (trial.response_allowed_while_playing) {
                   enable_buttons();

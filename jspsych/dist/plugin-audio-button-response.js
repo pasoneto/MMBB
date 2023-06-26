@@ -151,7 +151,9 @@ var jsPsychAudioButtonResponse = (function (jspsych) {
               var html = "";
               //show prompt if there is one
               if (trial.prompt !== null) {
-                  html = trial.prompt;
+                html = '<div id="audioPrompt">'
+                html += trial.prompt
+                html += '</div>'
               }
 
               html += '<div id="jspsych-audio-button-response-btngroup">';
@@ -324,18 +326,11 @@ var jsPsychAudioButtonResponse = (function (jspsych) {
           const data = this.create_simulation_data(trial, simulation_options);
           const display_element = this.jsPsych.getDisplayElement();
           const respond = () => {
-              if (data.rt !== null) {
-                  this.jsPsych.pluginAPI.clickTarget(display_element.querySelector(`div[data-choice="${data.response}"] button`), data.rt);
-              }
+              this.jsPsych.pluginAPI.clickTarget(display_element.querySelector(".jspsych-tapping-btn"), 300);
           };
           this.trial(display_element, trial, () => {
               load_callback();
-              if (!trial.response_allowed_while_playing) {
-                  this.audio.addEventListener("ended", respond);
-              }
-              else {
-                  respond();
-              }
+              respond();
           });
       }
   }

@@ -120,7 +120,6 @@ function generateSharedMeasurementsTimeline(lang, short){
       button_label_finish: buttons["continue"][lang],
       on_load: () => {
         changeStyle()
-        document.querySelector(".sv_q_dropdown_control").children[0].innerHTML = buttons["choose"][lang]
       }
     }
     return(musicalBackgroundSurveySeed)
@@ -160,7 +159,6 @@ function generateSharedMeasurementsTimeline(lang, short){
     button_label_finish: buttons["continue"][lang],
     on_load: () => {
       changeStyle()
-      document.querySelector(".sv_q_dropdown_control").children[0].innerHTML = buttons["choose"][lang]
     }
   };
 
@@ -173,7 +171,6 @@ function generateSharedMeasurementsTimeline(lang, short){
     button_label_finish: buttons["continue"][lang],
     on_load: () => {
       changeStyle()
-      document.querySelector(".sv_q_dropdown_control").children[0].innerHTML = buttons["choose"][lang]
     }
   };
 
@@ -202,7 +199,6 @@ function generateSharedMeasurementsTimeline(lang, short){
     button_label_finish: buttons["continue"][lang],
     on_load: () => {
       changeStyle()
-      document.querySelector(".sv_q_dropdown_control").children[0].innerHTML = buttons["choose"][lang]
     }
   };
 
@@ -239,7 +235,6 @@ function generateSharedMeasurementsTimeline(lang, short){
     button_label_finish: buttons["continue"][lang],
     on_load: () => {
       changeStyle()
-      document.querySelector(".sv_q_dropdown_control").children[0].innerHTML = buttons["choose"][lang]
     }
   };
 
@@ -277,7 +272,6 @@ function generateSharedMeasurementsTimeline(lang, short){
     button_label_finish: buttons["continue"][lang],
     on_load: () => {
       changeStyle()
-      document.querySelector(".sv_q_dropdown_control").children[0].innerHTML = buttons["choose"][lang]
     }
   };
 

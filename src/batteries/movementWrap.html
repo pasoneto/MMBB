@@ -144,7 +144,10 @@
 
           } else { //If end of experiment. Redirect to homepage
               var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&Movement=done"
-              jatos.endStudyAndRedirect(urlRedirect, finalData)
+              //jatos.endStudyAndRedirect(urlRedirect, finalData) //simu
+
+              jatos.endStudyAndRedirect("https://mmbb.ltdk.helsinki.fi/publix/PKudyqAmMau?lang=eng", finalData)
+              
           }
         }
       }
@@ -161,7 +164,8 @@
       var messageFinishSub = {
         type: jsPsychHtmlButtonResponse,
         prompt: endTask[0][lang],
-        choices: [],
+        //choices: [], simu
+        choices: ["a"],
         trial_duration: 3000,
         stimulus: '',
         on_start: function(){
@@ -205,7 +209,9 @@
           }
       }
 
-      jsPsych.run([procedureMovementFinal])
+      //jsPsych.run([procedureMovementFinal]) //simu
+      jsPsych.simulate([procedureMovementFinal], "visual")
+
     });
 
  </script>

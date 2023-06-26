@@ -155,9 +155,9 @@ var jsPsychSurveyLikert = (function (jspsych) {
           }
           // add submit button
           html +=
-              '<input type="submit" id="jspsych-survey-likert-next" class="jspsych-survey-likert jspsych-instructions-btn" value="' +
+          '<button type="submit" id="jspsych-survey-likert-next" class="jspsych-survey-likert jspsych-instructions-btn">' +
                   trial.button_label +
-                  '"></input>';
+                  '</button>';
           html += "</form>";
           display_element.innerHTML = html;
           display_element.querySelector("#jspsych-survey-likert-form").addEventListener("submit", (e) => {
@@ -210,11 +210,11 @@ var jsPsychSurveyLikert = (function (jspsych) {
       }
       create_simulation_data(trial, simulation_options) {
           const question_data = {};
-          let rt = 1000;
+          let rt = 200;
           for (const q of trial.questions) {
               const name = q.name ? q.name : `Q${trial.questions.indexOf(q)}`;
               question_data[name] = this.jsPsych.randomization.randomInt(0, q.labels.length - 1);
-              rt += this.jsPsych.randomization.sampleExGaussian(1500, 400, 1 / 200, true);
+              rt += 800;
           }
           const default_data = {
               response: question_data,

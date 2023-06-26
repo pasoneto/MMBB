@@ -34,7 +34,7 @@
 
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
 
-    <link rel="stylesheet" href="./src/styles/generalCSSBackup.css">
+    <link rel="stylesheet" href="./src/styles/generalCSS.css">
 
   </head>
 
@@ -54,7 +54,9 @@
           
           allowRefresh();
           var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&Emotion=done"
-          jatos.endStudyAndRedirect(urlRedirect, finalData)
+          //jatos.endStudyAndRedirect(urlRedirect, finalData) //simu
+
+          jatos.endStudyAndRedirect("https://mmbb.ltdk.helsinki.fi/publix/oLzabocUoB1?lang=eng", finalData)
 
     }});
     
@@ -90,8 +92,10 @@
       var current_trial = []
       var current_emotion = []
       var excerpt_names = []
-      var N = 30
-      var N_part2 = 12
+      //var N = 30 //simu
+      var N = 1 //simu
+      //var N_part2 = 12 //simu
+      var N_part2 = 1
       var candidate_trial = []
       var correct_response = []
       var trial_images = []
@@ -149,11 +153,12 @@
         type: jsPsychEmotionAudioButtonResponse,
         stimulus: './songs/emotionAudio/trimmed_mp3/001.mp3',
         choices: [images[0]['img'], images[3]['img']],
-        button_html: '<img src="%choice%" style="width: 110px" />',
+        button_html: '<img id="imageButtonEmotion" src="%choice%"/>',
         update_choices: '',
         update_text_after_timeout: emotionTranslations['choose'][lang],
         response_allowed_while_playing: false,
         response_ends_trial: true,
+        trial_duration: 1000, //simu
         update_onset: 10000,
         prompt: 'init',
         question: 'init',
@@ -165,8 +170,10 @@
               i.style.fontSize = '16px'
             }
           )
-          document.getElementById("jspsych-audio-button-response-btngroup").style.marginBottom = '60px'
-          document.getElementById("id_prompt").style.fontSize = '18px'
+          //document.getElementById("jspsych-audio-button-response-btngroup").style.marginBottom = '60px'
+          document.getElementById("jspsych-audio-button-response-btngroup").style.marginTop = "0px"
+          document.getElementById("jspsych-audio-button-response-btngroup").style.marginBottom = "20%"
+          //document.getElementById("id_prompt").style.fontSize = '18px'
         },
         on_start: function(trial1){ 
           current_emotion = emotions[emotion_order[epoch]-1]
@@ -290,16 +297,17 @@
       var part2_audio = {
         type: jsPsychAudioKeyboardResponse,
         stimulus: './songs/emotionAudio/trimmed_mp3/001.mp3',
-        prompt: emotionTranslations["listen"][lang],
-        trial_duration: stim_dur,
+        prompt: emotionTranslations["listen"][lang] + "<img id='tableSVG' src='./images/soundSVG.svg'>",
+        //trial_duration: stim_dur, //simu
+        trial_duration: 1000,
         choices: ["NO_KEYS"],
         on_start: function(part2_audio){
           part2_audio.stimulus = '././songs/emotionAudio/trimmed_part2_mp3/' + part2_excerpt_order[epochPart2] + '.mp3'
         },
         on_load: function(){
-          document.getElementById("jspsych-content").style.fontSize = "6vh";
           document.getElementById("jspsych-content").style.textAlign = "center";
           document.getElementById("jspsych-content").style.margin = "auto";
+          document.getElementById("jspsych-content").style.justifyContent = "center";
         }
       }
 
@@ -308,17 +316,15 @@
         stimulus: [emotionTranslations["mood"][lang], emotionTranslations["energy"][lang], emotionTranslations["howStrongEmotion"][lang]],
         nSliders: 3,
         require_movement: true,
-        slider_width: 250,
+        //slider_width: 250,
         labels: [[emotionTranslations["negative"][lang], emotionTranslations["neutral"][lang], emotionTranslations["positive"][lang]], 
                  [emotionTranslations["veryLowEnergy"][lang], emotionTranslations["veryHighEnergy"][lang]],
                  [emotionTranslations["notAtAll"][lang], emotionTranslations["veryStrong"][lang]]],
-        prompt: "<p margin-bottom: 5%>" + emotionTranslations["rateEmotionalContent"][lang] + "</p>",
+        prompt: emotionTranslations["rateEmotionalContent"][lang],
         on_load: function(){
-          document.getElementById("jspsych-html-slider-response-wrapper").style.margin = ""
-          document.getElementById("jspsych-content").style.fontSize = "110%"
-          document.getElementById("jspsych-content").style.overflowX = "hidden"
-          document.getElementById("jspsych-content").style.marginTop = "0" 
-          document.getElementById("jspsych-content").style.marginLeft = "auto" 
+          document.getElementById("jspsych-content").style.fontSize = "110%";
+          document.getElementById("jspsych-content").style.height = "80vh";
+          document.querySelector(".jspsych-content-wrapper").style.display = "block"
         }
       };
       
@@ -328,7 +334,7 @@
                    emotionTranslations["howFamiliar"][lang]],
         nSliders: 2,
         require_movement: true,
-        slider_width: 250,
+        //slider_width: 250,
         labels: [[emotionTranslations["stronglyDisliked"][lang], emotionTranslations["neutral"][lang], emotionTranslations["stronglyLiked"][lang]],
                  [emotionTranslations["veryUnfamiliar"][lang], emotionTranslations["veryFamiliar"][lang]]],
         on_finish: function(part2_other_scales){
@@ -336,9 +342,8 @@
           jsPsych.setProgressBar((epoch+epochPart2)/(N+N_part2))
         },
         on_load: function(){
-          document.querySelectorAll(".jspsych-html-slider-response-container").forEach(function(i) {
-            i.style.margin = "0 auto 6em auto"})
-          document.getElementById("jspsych-html-slider-response-wrapper").style.margin = "25px 0px";
+          document.getElementById("jspsych-content").style.fontSize = "110%"
+          document.querySelector(".jspsych-content-wrapper").style.display = "block"
         }
       };
 
@@ -350,7 +355,8 @@
       var messageFinishEmotion = {
         type: jsPsychHtmlButtonResponse,
         prompt: emotionTranslations['thankYouEnd'][lang],
-        choices: [],
+        //choices: [], simu
+        choices: ["a"],
         trial_duration: 2000,
         stimulus: '',
         on_start: function(){
@@ -425,7 +431,9 @@
           }
       }
 
-      jsPsych.run([procedureEmotionFinal])
+      //jsPsych.run([procedureEmotionFinal]) //simu
+      jsPsych.simulate([procedureEmotionFinal], "visual")
+
 
     });
 

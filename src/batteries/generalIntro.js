@@ -60,21 +60,23 @@ function generateGeneralIntroWrap(lang, subBattery){
     type: jsPsychAudioButtonResponse,
     stimulus: './songs/movementTapAudio/elPesebre.mp3',
     choices: [buttons["continue"][lang]],
+    trial_duration: 1000, //simu
     prompt: initialInstructions[0][4][lang] + '<img src="./images/muteButton.png" id="muteButton"></img>',
     on_load: function(){
-      //document.querySelector(".jspsych-content-wrapper").style.justifyContent = "center"
-      //document.getElementById("jspsych-content").style.height = "85vh"
-      //document.getElementById("jspsych-content").style.justifyContent = "start"
-      //document.getElementById("jspsych-content").style.margin = "0"
-      document.getElementById("jspsych-content").style.fontSize = "1em"
+      document.getElementById("jspsych-content").style.fontSize = "1.2em"
     }
   };
 
   var tAudioAndroid = {
     type: jsPsychAudioButtonResponse,
     stimulus: './songs/movementTapAudio/elPesebre.mp3',
+    trial_duration: 1000, //simu
     choices: [buttons["continue"][lang]],
     prompt: initialInstructions[0][0][lang],
+    on_load: function(){
+      document.getElementById("jspsych-content").style.fontSize = "1.2em"
+      document.getElementById("audioPrompt").style.margin = "auto"
+    }
   };
 
   var testAudioIOS = {
@@ -100,6 +102,7 @@ function generateGeneralIntroWrap(lang, subBattery){
     prompt: '',
     on_load: function(){
       document.getElementById("jspsych-html-button-response-btngroup").getElementsByClassName("jspsych-btn")[1].style.background = "purple"
+      document.getElementById("jspsych-content").style.fontSize = '1.5em'
     },
   };
 
@@ -134,6 +137,7 @@ function generateGeneralIntroWrap(lang, subBattery){
   var generalIntroEmotion = [[preloadTest, testAudioIOS, testAudioAndroid, gettingHelp]];
   var generalIntroWrapRhythm = [[preloadTest, requirementsRhythm, lockIOS, lockAndroid, testAudioIOS, testAudioAndroid, gettingHelp]];
   var generalIntroWrapMovement = [[preloadTest, requirementsMovement, lockIOS, lockAndroid, testAudioIOS, testAudioAndroid, gettingHelp]];
+  var generalIntroWrapMBEMA = [[preloadTest, testAudioIOS, testAudioAndroid, gettingHelp]];
   
   if(subBattery == "emotion"){
     return(generalIntroEmotion)
@@ -141,7 +145,9 @@ function generateGeneralIntroWrap(lang, subBattery){
   if(subBattery == "rhythm"){
     return(generalIntroWrapRhythm)
   }
-  else {
-    return(generalIntroWrapMovement)
+  if(subBattery == "mbema"){
+    return(generalIntroWrapMBEMA)
   }
+  else {
+    return(generalIntroWrapMovement) }
 }

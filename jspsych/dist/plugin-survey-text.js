@@ -178,9 +178,9 @@ var jsPsychSurveyText = (function (jspsych) {
           }
           // add submit button
           html +=
-              '<input type="submit" id="jspsych-survey-text-next" class="jspsych-btn jspsych-survey-text" value="' +
+          '<button type="submit" id="jspsych-survey-text-next" class="jspsych-btn jspsych-survey-text">' +
                   trial.button_label +
-                  '"></input>';
+                  '</button>';
           html += "</form>";
           display_element.innerHTML = html;
           // backup in case autofocus doesn't work
