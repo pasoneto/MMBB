@@ -1,76 +1,1152 @@
 <!DOCTYPE html>
 <html>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <meta charset="UTF-8">
   <head>
-    <title>MMBB batery</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="../../jspsych/dist/graphFunction.js"> </script>
-    <script src="https://unpkg.com/jspsych@7.1.2"></script>
-    <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.0"></script>
-    <script src="https://unpkg.com/@jspsych/plugin-audio-keyboard-response@1.1.0"></script>
-    <script src="../../jspsych/dist/plugin-audio-button-response.js"> </script>
-    <script src="../../jspsych/dist/plugin-html-button-response.js"> </script>
-    <script src="../../jspsych/dist/plugin-instructions.js"> </script>
-    <script src="../../jspsych/dist/plugin-survey-likert.js"> </script>
-    <script src="../../jspsych/dist/plugin-canvas-button-response.js"> </script>
-    <script src="../../jspsych/dist/extension-accelerometer.js"> </script>
-    <script src="../../jspsych/dist/plugin-html-keyboard-response.js"> </script>
-    <script src="../../jspsych/dist/plugin-survey-multi-choice.js"> </script>
-    <script src="../../jspsych/dist/plugin-initialize-microphone.js"> </script>
-    <script src="../../jspsych/dist/plugin-html-audio-response.js"> </script>
-    <link href="../../jspsych/dist/jspsych.css" rel="stylesheet" type="text/css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>MMBB laulutehtävä</title>
+	  <script src="jatos.js"></script>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="./utils/preventRefresh.js"> </script>
+    <script src="./utils/identifyOS.js"> </script>
+    <script src="./utils/manageCookies.js"> </script>	
+    <script src="./jspsych/dist/custom/utils.js"> </script>
+    <script src="./jspsych/dist/jspsych.js"></script>
+    <script src="./jspsych/dist/plugin-html-button-response.js"></script>
+    <script src="./jspsych/dist/plugin-audio-keyboard-response.js"></script>
+    <script src="./jspsych/dist/plugin-audio-button-response.js"> </script>
+    <script src="./jspsych/dist/plugin-html-button-response.js"> </script>
+    <script src="./jspsych/dist/plugin-instructions.js"> </script>
+    <script src="./jspsych/dist/plugin-survey-likert.js"> </script>
+    <script src="./jspsych/dist/plugin-canvas-button-response.js"> </script>
+    <script src="./jspsych/dist/plugin-html-keyboard-response.js"> </script>
+    <script src="./jspsych/dist/plugin-survey-multi-choice.js"> </script>
+    <script src="./jspsych/dist/plugin-initialize-microphone.js"> </script>
+    <script src="./jspsych/dist/plugin-html-audio-response.js"> </script>
+    <script src="./jspsych/dist/plugin-html-slider-response.js"> </script>
+
+    <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
+
+    <link rel="stylesheet" href="./src/styles/generalCSS.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <script src="./utils/translations.js"></script>
+    <script src="./utils/stim_dur_singing.js"></script>
+  <style> 
+
+    .laulu-btn {
+	  padding:5vw;
+	  background-color:#F8CBAD;
+    }
+    .laulu-btn:hover {
+	  background-color:#F09252;
+    }
+	.progress-light-grey {
+	    color: #000!important;
+		background-color: #f1f1f1!important;
+		border-style: solid;
+		border-color: white;
+	}
+	.progress-grey {
+	    color: #000!important;
+		background-color: #9e9e9e!important;
+	}
+
+  </style>
   </head>
   <body></body>
   <script>
+	var lang="fi";
+	var user;
+	
+	var voicetype=""; // Male or Female
+	var voicepitch=""; // Low / Mid / High
+	var play_reps=[]; // true/false array
+	var record_test_ok=false;
+	var stimcounter=0;
+	var famsong="";
+	var novsong="";
+	if (lang=="fi") { 
+		famsong="PaljonOnneaVaan";
+		novsong="KelloLaulu";
+	} else if (lang=="eng") {
+		famsong="HappyBirthday";
+		novsong="KelloLaulu";
+	} else {
+		famsong="PaljonOnneaVaan";
+		novsong="KelloLaulu";
+	}
 
     var jsPsych = initJsPsych({
       extensions: [],
       on_finish: function() {
-        //jsPsych.data.displayData();
-        jsPsych.data.get().localSave('csv','mydata.csv');
+        console.log('end study redirect to https://mmbb.ltdk.helsinki.fi/publix/2zUqwTbq1lS?lang=' + window.lang + "&user=" + window.user);
+        jatos.endStudyAndRedirect('https://mmbb.ltdk.helsinki.fi/publix/2zUqwTbq1lS?lang=' + window.lang + "&user=" + window.user);
       }
-    });
+    })
 
-    var instruction1 = {
-        type: jsPsychInstructions,
-        pages: [
-        '<p style="font-size:7vw;">Welcome MMBB batery.</p>',
-        '<p style="font-size:7vw;">Movement task</p>',
-        '<p style="font-size:7vw;">When you click start, you will hear a song.</p>',
-        '<p style="font-size:7vw;">Your task is to move along with the beat.</p>'
-        ],
-        button_label_next: "Next",
-        button_label_previous: "Previous",
-        show_clickable_nav: true
-    }
+	//if (jatos.urlQueryParameters && Object.keys(jatos.urlQueryParameters).length > 0 && Object.getPrototypeOf(jatos.urlQueryParameters) === Object.prototype) 
+	if (globalThis.jatos.urlQueryParameters){
+		console.log('jatos urlQueryParameters exist');
+		// check if urlQueryParameters exist and are not empty
+		// as per https://stackoverflow.com/questions/679915/how-do-i-test-for-an-empty-javascript-object
+		if (typeof globalThis.jatos.urlQueryParameters.lang !== "undefined") { 
+			var lang=jatos.urlQueryParameters.lang; 
+			console.log('update lang:' + lang); 
+		}
+	} 
+	
+	var instruction0 = {
+		type: jsPsychHtmlButtonResponse,
+		stimulus: singing[1].map(i=> i[lang]),
+		choices: [buttons["home"][lang], buttons["next"][lang]],
+		on_start: function() {
+			if(('urlQueryParameters' in jatos) && ('user' in jatos.urlQueryParameters) && ('lang' in jatos.urlQueryParameters)){
+				window.lang=globalThis.jatos.urlQueryParameters.lang; 
+				window.user=globalThis.jatos.urlQueryParameters.user; 
+				console.log('jatos lang + user:' + lang + "/" + user); 
+				jsPsych.data.addProperties({subject: window.user, lang: window.lang});
+			} 
+		},
+		on_finish: function(data) {
+			if (data.response==0) {
+				// go back to main
+				console.log	('end study redirect to https://mmbb.ltdk.helsinki.fi/publix/2zUqwTbq1lS?lang=' + window.lang + "&user=" + window.user)
+				jatos.endStudyAndRedirect('https://mmbb.ltdk.helsinki.fi/publix/2zUqwTbq1lS?lang=' + window.lang + "&user=" + window.user);
+			}
+		}
+	}
 
-    var instruction1 = {
-        type: jsPsychInstructions,
-        pages: [
-        '<p style="font-size:7vw;">Welcome MMBB batery.</p>',
-        '<p style="font-size:7vw;">Singing task</p>',
-        '<p style="font-size:7vw;">When you click start, you will hear a song.</p>',
-        '<p style="font-size:7vw;">Your task is to sing along.</p>'
-        ],
-        button_label_next: 'Next',
-        button_label_previous: 'Previous',
-        show_clickable_nav: true
-    }
+	var testaudio = new Audio('./songs/singing/SingleTones/Male/Mid_4.mp3');
+	var recaudio=document.createElement('audio');
+	var recaudio_src=document.createElement('source');
+	var low_en = new Audio('./songs/singing/HappyBirthday/Female/Low.mp3');
+	var mid_en = new Audio('./songs/singing/HappyBirthday/Female/Mid.mp3');
+	var high_en = new Audio('./songs/singing/HappyBirthday/Female/High.mp3');
+	var low_fi = new Audio('./songs/singing/PaljonOnneaVaan/Female/Low.mp3');
+	var mid_fi = new Audio('./songs/singing/PaljonOnneaVaan/Female/Mid.mp3');
+	var high_fi = new Audio('./songs/singing/PaljonOnneaVaan/Female/High.mp3');
+	var testtone = new Audio('./songs/singing/SingleTones/Male/Mid_5.mp3');
+	var novsong_audio;
+	var tmp_audio;
+	var audio_dur=-1;
+	var audio_pos=-1;
+	var audio_recpos=0;
+	var rep1_ok=false;
+	//var tone_arr = [];
+	//var tonerep_arr = [];
+	//var audiorep_tmp;
+	
+	function testtonerep() {
+		testtone.play();
+		window.play_reps['tonerep']=true;
+		setTimeout(function() { if (window.play_reps['tonerep']) { testtone.play(); window.play_reps['tonerep']=false; } }, Math.round(testtone.duration*1000)+1000);
+	}
+
+
+	function audiorep2(audio_to_play,isi,id) {
+	// onset-to-onset ISI / SOA
+		audio_to_play.preload=true;
+		audio_to_play.play();
+		var audiorep_tmp=new Audio(audio_to_play.src);
+		audiorep_tmp.preload=true;
+		window.play_reps[id]=true;
+		console.log("inside audiorep2: audio_to_play src: " + audio_to_play.src);
+		console.log("inside audiorep2: audio_to_play onset-to-onset ISI/SOA: " + isi);
+		setTimeout(function() { if (window.play_reps[id]) { audio_to_play.play(); window.play_reps[id]=false;} }, isi);
+	}	
+
+	function audiorep3(audio_to_play,isi,id) {
+	// onset-to-onset ISI / SOA
+		audio_to_play.preload=true;
+		audio_to_play.play();
+		var audiorep_tmp=new Audio(audio_to_play.src);
+		audiorep_tmp.preload=true;
+		window.play_reps[id]=true;
+		console.log("inside audiorep3: audio_to_play src: " + audio_to_play.src);
+		console.log("inside audiorep3: audio_to_play onset-to-onset ISI/SOA: " + isi);
+		setTimeout(function() { if (window.play_reps[id]) { audio_to_play.play(); } }, isi);
+		setTimeout(function() { if (window.play_reps[id]) { audio_to_play.play(); window.play_reps[id]=false; } }, isi*2);
+	}	
+	
+	function novsong_play() {
+		novsong_audio.play();
+		document.getElementById('novsongbtn').onclick="";
+	}
+	
+	function updateProgBar() {
+		if (document.getElementById('progbar')==null) return;
+		if (audio_pos>=audio_recpos) {
+			document.getElementById('progbarcont').style.borderColor="red";
+		} else {
+			document.getElementById('progbarcont').style.borderColor="white";
+		}
+		var pcnt=100*audio_pos/audio_dur;
+		if (pcnt<0) pcnt=0; 
+		if (pcnt>100) pcnt=100; 
+		document.getElementById('progbar').style.width='' + pcnt + '%';
+		setTimeout(function() { window.audio_pos+=100; updateProgBar(); }, 100);
+	}
+	
+	var instruction1 = {
+		// test audio
+		type: jsPsychHtmlButtonResponse,
+		stimulus: singing[2].map(i=> i[lang]),
+		choices: [buttons["home"][lang], buttons["next"][lang]],
+		on_finish: function(data) {
+			testaudio.pause(); testaudio.currentTime=0;
+			if (data.response==0) {
+				// go back to main
+				console.log	('end study redirect to https://mmbb.ltdk.helsinki.fi/publix/2zUqwTbq1lS?lang=' + window.lang + "&user=" + window.user)
+				jatos.endStudyAndRedirect('https://mmbb.ltdk.helsinki.fi/publix/2zUqwTbq1lS?lang=' + window.lang + "&user=" + window.user);
+			}
+		}
+	}
 
     var initializeMic = {
-      type: jsPsychInitializeMicrophone
-    };
+      type: jsPsychInitializeMicrophone,
+	  device_select_message: singing[3][0][lang],
+	  button_label: singing[3][1][lang],
+	}
 
-    var record = {
+	var testrecord1 = {
+		// record audio portion start
+		type: jsPsychHtmlButtonResponse,
+		stimulus: singing[4][0][lang],
+		choices:[buttons["record"][lang]],
+		prompt: "&nbsp;",
+		button_html: '<button class="jspsych-btn" style="margin:5vw;"><img src="./images/imagesSinging/rec-btn.svg" style="width:10vw;padding:5vw;"></button>',
+	}
+
+    var testrecord2_orig = {
         type: jsPsychHtmlAudioResponse,
-        audiostimulus: '../../songs/movementTapAudio/silence.wav',
-        stimulus: '<p style="font-size:48px;">Sing</p>',
+        audiostimulus: '',
+        stimulus: singing[4][8][lang],
         recording_duration: 5000,
+		record_again_button_label:singing[4][2][lang],
+		record_again_stimulus:singing[4][9][lang],
         allow_playback: true,
+		accept_button_label:buttons["next"][lang],
+		done_button_label:buttons["next"][lang],
+		on_finish: function() {
+			  console.log('storing data ..');
+			  jatos.submitResultData(jsPsych.data.get().json());
+			  console.log('intermediate data storage (warmup) complete! ..');
+		  },
     };
 
-    jsPsych.run([instruction1, initializeMic, record]);
+   var testrecord2 = {
+        type: jsPsychHtmlAudioResponse,
+        audiostimulus: '',
+        stimulus: singing[4][8][lang],
+        recording_duration: 5000,
+        allow_playback: false,
+		save_audio_url: true,
+		done_button_label:buttons["next"][lang],
+		on_start: function() {
+			window.audio_pos=0;
+			window.audio_recpos=0;
+			window.audio_dur=5000;
+			updateProgBar();
+			setTimeout(function() { window.audio_pos+=100; updateProgBar(); }, 100);
+		}
+    };
+	
+	var testrecord2a = {
+		type: jsPsychAudioButtonResponse,
+		stimulus: ()=>{
+			return jsPsych.data.get().last(1).values()[0].audio_url;
+		},
+		on_load: function() {
+			window.recaudio = new Audio(jsPsych.data.get().last(1).values()[0].audio_url);
+		},
+		prompt: singing[4][11][lang],
+		choices: [buttons["home"][lang], singing[4][2][lang], buttons["next"][lang]],
+		on_finish: function(data) {
+			if (data.response==0) {
+				// go back to main
+				console.log	('end study redirect to https://mmbb.ltdk.helsinki.fi/publix/2zUqwTbq1lS?lang=' + window.lang + "&user=" + window.user)
+				jatos.endStudyAndRedirect('https://mmbb.ltdk.helsinki.fi/publix/2zUqwTbq1lS?lang=' + window.lang + "&user=" + window.user);
+			}
+			if (data.response==2) {
+				console.log	('record test ok')
+				window.record_test_ok=true;
+			}
+		},		
+	};
+		
+	var loop_record2 = {
+		timeline: [testrecord2, testrecord2a],
+		loop_function: function() {
+			// check score
+			if (window.record_test_ok) {
+				console.log("record test ok, skipping, skipping loop_record2");
+				return false;
+			} else {
+				console.log("record test not ok yet, running loop_record2");
+				return true;
+			}
+		}
+	};	
+
+     var testrecord2b = {
+		type: jsPsychHtmlButtonResponse,
+		stimulus: ()=>{ return singing[4][11][lang] + "<br>url:" + jsPsych.data.get().last(2).values()[0].audio_url; },
+		choices: [buttons["home"][lang], buttons["next"][lang]],
+		on_start: function() {
+			window.recaudio_src.src=jsPsych.data.get().last(2).values()[0].audio_url;
+			window.recaudio_src.type="audio/webm;codecs=opus";
+			window.recaudio.appendChild(window.recaudio_src);
+			window.recaudio.load();
+			window.recaudio.addEventListener('onstalled', function(e) { 
+				window.recaudio.load();
+			}, false);
+		},
+		on_finish: function(data) {
+			if (data.response==0) {
+				// go back to main
+				console.log	('end study redirect to https://mmbb.ltdk.helsinki.fi/publix/2zUqwTbq1lS?lang=' + window.lang + "&user=" + window.user)
+				jatos.endStudyAndRedirect('https://mmbb.ltdk.helsinki.fi/publix/2zUqwTbq1lS?lang=' + window.lang + "&user=" + window.user);
+			}
+		},
+    };	
+
+	var testrecord3 = {
+		// test audio
+		type: jsPsychInstructions,
+		pages: [singing[4][4][lang]],
+		button_label_next: buttons["next"][lang],
+		button_label_previous: buttons["previous"][lang],
+		show_clickable_nav: true,
+		allow_backward: false,
+	}
+
+	var voicesel1 = {
+		// voice selection intro
+		type: jsPsychInstructions,
+		pages: [singing[5][0][lang]],
+		button_label_next: buttons["next"][lang],
+		button_label_previous: buttons["previous"][lang],
+		allow_backward: false,
+		show_clickable_nav: true,
+		on_load: function () {
+
+		}
+	}
+
+	var voicesel2 = {
+		// voice selection female/male/child
+		type: jsPsychHtmlButtonResponse,
+		stimulus: singing[6][0][lang],
+		choices: [singing[6][1][lang],singing[6][2][lang],singing[6][3][lang]],
+		prompt: '',
+		on_load: function () { 
+			// fine tune div spacing
+			var tmp_coll=document.getElementsByClassName('jspsych-btn');
+			for (let i = 0; i < 3; i++) {
+			  tmp_coll[i].classList.add("laulu-btn");
+			  }
+		},
+		on_finish: function (data) {
+			if (data.response==0) {
+				voicetype = "Female";
+				low_en.src="./songs/singing/HappyBirthday/Female/Low.mp3"
+				mid_en.src="./songs/singing/HappyBirthday/Female/Mid.mp3"
+				high_en.src="./songs/singing/HappyBirthday/Female/High.mp3"
+				low_fi.src="./songs/singing/PaljonOnneaVaan/Female/Low.mp3"
+				mid_fi.src="./songs/singing/PaljonOnneaVaan/Female/Mid.mp3"
+				high_fi.src="./songs/singing/PaljonOnneaVaan/Female/High.mp3"
+			} else if (data.response==1) {
+				voicetype = "Male";
+				low_en.src="./songs/singing/HappyBirthday/Male/Low.mp3"
+				mid_en.src="./songs/singing/HappyBirthday/Male/Mid.mp3"
+				high_en.src="./songs/singing/HappyBirthday/Male/High.mp3"
+				low_fi.src="./songs/singing/PaljonOnneaVaan/Male/Low.mp3"
+				mid_fi.src="./songs/singing/PaljonOnneaVaan/Male/Mid.mp3"
+				high_fi.src="./songs/singing/PaljonOnneaVaan/Male/High.mp3"
+			} else if (data.response==2) {
+				voicetype = "Female";
+				low_en.src="./songs/singing/HappyBirthday/Female/Low.mp3"
+				mid_en.src="./songs/singing/HappyBirthday/Female/Mid.mp3"
+				high_en.src="./songs/singing/HappyBirthday/Female/High.mp3"
+				low_fi.src="./songs/singing/PaljonOnneaVaan/Female/Low.mp3"
+				mid_fi.src="./songs/singing/PaljonOnneaVaan/Female/Mid.mp3"
+				high_fi.src="./songs/singing/PaljonOnneaVaan/Female/High.mp3"
+			}
+		}
+	}
+
+	var voicesel3 = {
+		// voice selection playback
+		type: jsPsychInstructions,
+		pages: [singing[6][4][lang]],
+		button_label_next: buttons["next"][lang],
+		button_label_previous: buttons["previous"][lang],
+		show_clickable_nav: true,
+		allow_backward: false,
+		on_load: function () {
+			// fine tune div spacing
+			var tmp_coll=document.getElementsByClassName('jspsych-btn');
+			for (let i = 0; i < 3; i++) {
+			  tmp_coll[i].classList.add("laulu-btn");
+			  }
+		},
+		on_finish: function () {
+			low_en.pause(); low_fi.currentTime=0; 
+			mid_en.pause(); mid_fi.currentTime=0; 
+			high_en.pause(); high_fi.currentTime=0; 
+			low_fi.pause(); low_fi.currentTime=0; 
+			mid_fi.pause(); mid_fi.currentTime=0; 
+			high_fi.pause(); high_fi.currentTime=0; 
+		}
+		
+	}
+
+	var voicesel4 = {
+		// voice selection low/mid/high
+		type: jsPsychHtmlButtonResponse,
+		stimulus: singing[6][5][lang],
+		choices: [singing[6][6][lang],singing[6][7][lang],singing[6][8][lang]],
+		prompt: '',
+		on_load: function () { 
+			// fine tune div spacing
+			var tmp_coll=document.getElementsByClassName('jspsych-btn');
+			for (let i = 0; i < 3; i++) {
+			  tmp_coll[i].classList.add("laulu-btn");
+			  }
+
+		},
+		on_finish: function (data) {
+			if (data.response==0) {
+				voicepitch = "Low";
+			} else if (data.response==1) {
+				voicepitch = "Mid";
+			} else if (data.response==2) {
+				voicepitch = "High";
+			}
+		},
+	}
+
+	// ##### TONES
+	var toneintro1 = {
+		// tone singing intro
+		type: jsPsychInstructions,
+		pages: [singing[7][0][lang]],
+		button_label_next: buttons["next"][lang],
+		button_label_previous: buttons["previous"][lang],
+		allow_backward: false,
+		show_clickable_nav: true,
+		on_load: function () {
+			window.stimcounter=0;
+		}
+	}
+
+	var toneintro2 = {
+		// tone singing intro with playback
+		type: jsPsychInstructions,
+		pages: [singing[7][1][lang]],
+		button_label_next: buttons["next"][lang],
+		button_label_previous: buttons["previous"][lang],
+		show_clickable_nav: true,
+		allow_backward: false,
+		on_load: function () {
+			testtone.src='./songs/singing/SingleTones/' + voicetype + '/' + voicepitch + '_5.mp3';
+		},
+		on_finish: function() {
+			testtone.pause(); testtone.currentTime=0;
+		},
+	}
+
+	var tone_trials = {
+      timeline: [
+	  { 
+		// record audio
+		type: jsPsychHtmlButtonResponse,
+		stimulus: singing[7][2][lang],
+		choices:[buttons["record"][lang]],
+		prompt: "&nbsp;",
+		button_html: '<button class="jspsych-btn" style="margin:5vw;"><img src="./images/imagesSinging/rec-btn.svg" style="width:10vw;padding:5vw;"></button>',
+		on_load: function() {
+			window.stimcounter++;
+			document.getElementById('stimcounter').innerHTML=window.stimcounter + '/8';
+		}
+	  },
+	  {
+	  type: jsPsychHtmlAudioResponse,
+        stimulus: singing[4][1][lang],
+        recording_duration: 5000,
+		record_again_button_label:singing[4][2][lang],
+        allow_playback: false,
+		accept_button_html:singing[4][3][lang],
+		done_button_label:buttons["next"][lang],
+		on_load: function() {
+		},
+		on_start: function() {
+			var tone_level=jsPsych.timelineVariable('level');
+			var tmp_audio=new Audio('./songs/singing/SingleTones/' + voicetype + '/' + voicepitch + '_' + tone_level.toString() + '.mp3');
+			tmp_audio.play();
+			window.tmp_audio=tmp_audio;
+			window.audio_pos=0;
+			window.audio_recpos=Math.round(tone_dur[voicetype][voicepitch][tone_level]*1000)+1000;			
+			window.audio_dur=Math.round(tone_dur[voicetype][voicepitch][tone_level]*1000)*2+2000;
+			updateProgBar();
+			setTimeout(function() { window.audio_pos+=100; updateProgBar(); }, 100);
+		},
+		on_finish: function() {
+			window.tmp_audio.pause(); window.tmp_audio.currentTime=0;
+			jsPsych.data.get().addToLast({level: jsPsych.timelineVariable('level'),id:jsPsych.timelineVariable('id'),wav:'./songs/singing/SingleTones/' + voicetype + '/' + voicepitch + '_' + jsPsych.timelineVariable('level').toString() + '.mp3'});
+			  if (window.stimcounter>=8) {
+				  console.log('storing data ..');
+				  jatos.submitResultData(jsPsych.data.get().json());
+				  console.log('intermediate data storage (tone_trials) complete! ..');
+			  }
+		  },
+		}
+	  ],
+	  timeline_variables: [
+	  {id:'tone1', level:1},
+	  {id:'tone2', level:2},
+	  {id:'tone3', level:3},
+	  {id:'tone4', level:4},
+	  {id:'tone5', level:5},
+	  {id:'tone6', level:6},
+	  {id:'tone7', level:7},
+	  {id:'tone8', level:8},
+	  ],
+	  randomize_order: true	  
+	}
+
+	var tone_feedback = {
+		type: jsPsychHtmlSliderResponse,
+		stimulus: singing[8][0][lang],
+		require_movement: false,
+		slider_width: '80vw',
+		labels: [singing[8][1][lang],singing[8][2][lang]],
+		button_label:buttons["next"][lang],
+		on_finish: function() {
+			jsPsych.data.get().addToLast({id:'tone',wav:''});
+		},
+	};
+
+	var tonerepintro1 = {
+		// tone singing intro
+		type: jsPsychInstructions,
+		pages: [singing[9][0][lang]],
+		button_label_next: buttons["next"][lang],
+		button_label_previous: buttons["previous"][lang],
+		show_clickable_nav: true,
+		allow_backward: false,
+		on_load: function () {
+			window.stimcounter=0;
+		}
+	}
+
+	var tonerepintro2 = {
+		// tone singing intro with playback
+		type: jsPsychInstructions,
+		pages: [singing[9][1][lang]],
+		button_label_next: buttons["next"][lang],
+		button_label_previous: buttons["previous"][lang],
+		show_clickable_nav: true,
+		allow_backward: false,
+		on_load: function () {
+			testtone.src='./songs/singing/SingleTones/' + voicetype + '/' + voicepitch + '_5.mp3';
+		},
+		on_finish: function() {
+			window.play_reps['tonerep']=false;
+			testtone.pause(); testtone.currentTime=0;
+		},
+	}
+
+	var tonerep_trials = {
+      timeline: [
+	  { 
+		// record audio
+		type: jsPsychHtmlButtonResponse,
+		stimulus: singing[9][2][lang],
+		choices:[buttons["record"][lang]],
+		prompt: "&nbsp;",
+		button_html: '<button class="jspsych-btn" style="margin:5vw;"><img src="./images/imagesSinging/rec-btn.svg" style="width:10vw;padding:5vw;"></button>',
+		on_load: function() {
+			window.stimcounter++;
+			document.getElementById('stimcounter').innerHTML=window.stimcounter + "/8";
+		}
+	  },
+	  {
+	  type: jsPsychHtmlAudioResponse,
+        stimulus: singing[4][1][lang],
+        recording_duration: 7000,
+		record_again_button_label:singing[4][2][lang],
+        allow_playback: false,
+		accept_button_html:singing[4][3][lang],
+		done_button_label:buttons["next"][lang],
+		on_load: function() {
+		},
+		on_start: function() {
+			var tone_level=jsPsych.timelineVariable('level');
+			var tmp_audio=new Audio('./songs/singing/SingleTones/' + voicetype + '/' + voicepitch + '_' + tone_level.toString() + '.mp3');
+			tmp_audio.preload=true;
+			window.tmp_audio=tmp_audio;
+			//tonerep_arr[window.stimcounter-1]=new Audio('./songs/singing/SingleTones/' + voicetype + '/' + voicepitch + '_' + tone_level.toString() + '.mp3');
+			//tonerep_tmp=new Audio('./songs/singing/SingleTones/' + voicetype + '/' + voicepitch + '_' + tone_level.toString() + '.mp3');
+			//tonerep_tmp.preload=true;
+			//tonerep_arr[window.stimcounter-1].play(); // first repetition
+			//var audio_dur=Math.round(tonerep_arr[window.stimcounter-1].duration*1000);
+			console.log('calling audiorep2() with param ' + tmp_audio + " and duration " + Math.round(tone_dur[voicetype][voicepitch][tone_level]*1000) + " [ms]");
+			audiorep2(tmp_audio,Math.round(tone_dur[voicetype][voicepitch][tone_level]*1000)+1000,jsPsych.timelineVariable('id')); // first AND second repetition
+			//setTimeout(function(){ tonerep_tmp.play() },Math.round(tonerep_tmp.duration*1000)+1000);
+			window.audio_pos=0;
+			window.audio_recpos=Math.round(tone_dur[voicetype][voicepitch][tone_level]*1000)+1000;			
+			window.audio_dur=Math.round(tone_dur[voicetype][voicepitch][tone_level]*1000)*2+2000;
+			updateProgBar();
+			setTimeout(function() { window.audio_pos+=100; updateProgBar(); }, 100);
+		},
+		on_finish: function() {
+			window.tmp_audio.pause(); window.tmp_audio.currentTime=0;
+			window.play_reps[jsPsych.timelineVariable('id')]=false;
+			jsPsych.data.get().addToLast({level: jsPsych.timelineVariable('level'),id:jsPsych.timelineVariable('id'),wav:'./songs/singing/SingleTones/' + voicetype + '/' + voicepitch + '_' + jsPsych.timelineVariable('level').toString() + '.mp3'});
+			  if (window.stimcounter>=8) {
+				  console.log('storing data ..');
+				  jatos.submitResultData(jsPsych.data.get().json());
+				  console.log('intermediate data storage (tonerep_trials) complete! ..');
+			  }
+		  },
+		}
+	  ],
+	  timeline_variables: [
+	  {id:'tonerep1', level:1},
+	  {id:'tonerep2', level:2},
+	  {id:'tonerep3', level:3},
+	  {id:'tonerep4', level:4},
+	  {id:'tonerep5', level:5},
+	  {id:'tonerep6', level:6},
+	  {id:'tonerep7', level:7},
+	  {id:'tonerep8', level:8},
+	  ],
+	  randomize_order: true	  
+	}
+
+	var tonerep_feedback = {
+		type: jsPsychHtmlSliderResponse,
+		stimulus: singing[8][0][lang],
+		require_movement: false,
+		slider_width: '80vw',
+		labels: [singing[8][1][lang],singing[8][2][lang]],
+		button_label:buttons["next"][lang],
+		on_finish: function() {
+			jsPsych.data.get().addToLast({id:'tonerep',wav:''});
+		},
+	};
+
+	// ##### TONE SEQUENCES
+	var toneseqintro1 = {
+		// tone singing intro
+		type: jsPsychInstructions,
+		pages: [singing[10][0][lang]],
+		button_label_next: buttons["next"][lang],
+		button_label_previous: buttons["previous"][lang],
+		show_clickable_nav: true,
+		allow_backward: false,
+		on_load: function () {
+			window.stimcounter=0;
+		}
+	}
+
+	var toneseqintro2 = {
+		// tone singing intro with playback
+		type: jsPsychInstructions,
+		pages: [singing[10][1][lang]],
+		button_label_next: buttons["next"][lang],
+		button_label_previous: buttons["previous"][lang],
+		show_clickable_nav: true,
+		allow_backward: false,
+		on_load: function () {
+			testtone.src='./songs/singing/ToneSequences/' + voicetype + '/' + voicepitch + '_2.mp3';
+		},
+		on_finish: function() {
+			testtone.pause(); testtone.currentTime=0;
+		},
+	}
+
+	var toneseq_trials = {
+      timeline: [
+	  { 
+		// record audio
+		type: jsPsychHtmlButtonResponse,
+		stimulus: singing[10][2][lang],
+		choices:[buttons["record"][lang]],
+		prompt: "&nbsp;",
+		button_html: '<button class="jspsych-btn" style="margin:5vw;"><img src="./images/imagesSinging/rec-btn.svg" style="width:10vw;padding:5vw;"></button>',
+		on_load: function() {
+			window.stimcounter++;
+			document.getElementById('stimcounter').innerHTML=window.stimcounter + "/10";
+		}
+	  },
+	  {
+	  type: jsPsychHtmlAudioResponse,
+        stimulus: singing[4][5][lang],
+        recording_duration: 15000,
+		record_again_button_label:singing[4][2][lang],
+        allow_playback: false,
+		accept_button_html:singing[4][3][lang],
+		done_button_label:buttons["next"][lang],
+		on_load: function() {
+		},
+		on_start: function() {
+			var tone_level=jsPsych.timelineVariable('level');
+			var tmp_audio=new Audio('./songs/singing/ToneSequences/' + voicetype + '/' + voicepitch + '_' + tone_level.toString() + '.mp3');
+			tmp_audio.play();
+			window.tmp_audio=tmp_audio;
+			window.audio_pos=0;
+			window.audio_recpos=Math.round(toneseq_dur[voicetype][voicepitch][tone_level]*1000)+1000;			
+			window.audio_dur=Math.round(toneseq_dur[voicetype][voicepitch][tone_level]*1000)*2+2000;
+			updateProgBar();
+			setTimeout(function() { window.audio_pos+=100; updateProgBar(); }, 100);
+		},
+		on_finish: function() {
+			window.tmp_audio.pause(); window.tmp_audio.currentTime=0;
+			jsPsych.data.get().addToLast({level: jsPsych.timelineVariable('level'),id:jsPsych.timelineVariable('id'),wav:'./songs/singing/ToneSequences/' + voicetype + '/' + voicepitch + '_' + jsPsych.timelineVariable('level').toString() + '.mp3'});
+			  if (window.stimcounter>=10) {
+				  console.log('storing data ..');
+				  jatos.submitResultData(jsPsych.data.get().json());
+				  console.log('intermediate data storage (toneseq_trials) complete! ..');
+			  }
+		  },
+		}
+	  ],
+	  timeline_variables: [
+	  {id:'toneseq1', level:1},
+	  {id:'toneseq2', level:2},
+	  {id:'toneseq3', level:3},
+	  {id:'toneseq4', level:4},
+	  {id:'toneseq5', level:5},
+	  {id:'toneseq6', level:6},
+	  {id:'toneseq7', level:7},
+	  {id:'toneseq8', level:8},
+	  {id:'toneseq9', level:9},
+	  {id:'toneseq10', level:10},
+	  ],
+	  randomize_order: true	  
+	}
+
+	var toneseq_feedback = {
+		type: jsPsychHtmlSliderResponse,
+		stimulus: singing[8][0][lang],
+		require_movement: false,
+		slider_width: '80vw',
+		labels: [singing[8][1][lang],singing[8][2][lang]],
+		button_label:buttons["next"][lang],
+		on_finish: function() {
+			jsPsych.data.get().addToLast({id:'toneseq',wav:''});
+		},
+	};
+
+	var toneseqrepintro1 = {
+		// tone singing intro
+		type: jsPsychInstructions,
+		pages: [singing[11][0][lang]],
+		button_label_next: buttons["next"][lang],
+		button_label_previous: buttons["previous"][lang],
+		show_clickable_nav: true,
+		allow_backward: false,
+		on_load: function () {
+			window.stimcounter=0;
+		}
+	}
+
+	var toneseqrepintro2 = {
+		// tone singing intro with playback
+		type: jsPsychInstructions,
+		pages: [singing[11][1][lang]],
+		button_label_next: buttons["next"][lang],
+		button_label_previous: buttons["previous"][lang],
+		show_clickable_nav: true,
+		allow_backward: false,
+		on_load: function () {
+			testtone.src='./songs/singing/ToneSequences/' + voicetype + '/' + voicepitch + '_5.mp3';
+		},
+		on_finish: function() {
+			window.play_reps['tonerep']=false;
+			testtone.pause(); testtone.currentTime=0;
+		},
+	}
+
+	var toneseqrep_trials = {
+      timeline: [
+	  { 
+		// record audio
+		type: jsPsychHtmlButtonResponse,
+		stimulus: singing[11][2][lang],
+		choices:[buttons["record"][lang]],
+		prompt: "&nbsp;",
+		button_html: '<button class="jspsych-btn" style="margin:5vw;"><img src="./images/imagesSinging/rec-btn.svg" style="width:10vw;padding:5vw;"></button>',
+		on_load: function() {
+			window.stimcounter++;
+			document.getElementById('stimcounter').innerHTML=window.stimcounter + "/10";
+		}
+	  },
+	  {
+	  type: jsPsychHtmlAudioResponse,
+        stimulus: singing[4][5][lang],
+        recording_duration: 20000,
+		record_again_button_label:singing[4][2][lang],
+        allow_playback: false,
+		accept_button_html:singing[4][3][lang],
+		done_button_label:buttons["next"][lang],
+		on_load: function() {
+		},
+		on_start: function() {
+			var tone_level=jsPsych.timelineVariable('level');
+			var tmp_audio=new Audio('./songs/singing/ToneSequences/' + voicetype + '/' + voicepitch + '_' + tone_level.toString() + '.mp3');
+			tmp_audio.preload=true;
+			window.tmp_audio=tmp_audio;
+			//tonerep_arr[window.stimcounter-1]=new Audio('./songs/singing/SingleTones/' + voicetype + '/' + voicepitch + '_' + tone_level.toString() + '.mp3');
+			//tonerep_tmp=new Audio('./songs/singing/SingleTones/' + voicetype + '/' + voicepitch + '_' + tone_level.toString() + '.mp3');
+			//tonerep_tmp.preload=true;
+			//tonerep_arr[window.stimcounter-1].play(); // first repetition
+			//var audio_dur=Math.round(tonerep_arr[window.stimcounter-1].duration*1000);
+			console.log('calling audiorep2() with param ' + tmp_audio + " and duration " + Math.round(toneseq_dur[voicetype][voicepitch][tone_level]*1000) + " [ms]");
+			audiorep2(tmp_audio,Math.round(toneseq_dur[voicetype][voicepitch][tone_level]*1000)+1000,jsPsych.timelineVariable('id')); // first AND second repetition
+			//setTimeout(function(){ tonerep_tmp.play() },Math.round(tonerep_tmp.duration*1000)+1000);
+			window.audio_pos=0;
+			window.audio_recpos=Math.round(toneseq_dur[voicetype][voicepitch][tone_level]*1000)+1000;			
+			window.audio_dur=Math.round(toneseq_dur[voicetype][voicepitch][tone_level]*1000)*2+2000;
+			updateProgBar();
+			setTimeout(function() { window.audio_pos+=100; updateProgBar(); }, 100);
+
+		},
+		on_finish: function() {
+			window.tmp_audio.pause(); window.tmp_audio.currentTime=0;
+			window.play_reps[jsPsych.timelineVariable('id')]=false;
+			jsPsych.data.get().addToLast({level: jsPsych.timelineVariable('level'),id:jsPsych.timelineVariable('id'),wav:'./songs/singing/ToneSequences/' + voicetype + '/' + voicepitch + '_' + jsPsych.timelineVariable('level').toString() + '.mp3'});
+			if (window.stimcounter>=10) {
+				console.log('storing data ..');
+				jatos.submitResultData(jsPsych.data.get().json());
+				console.log('intermediate data storage (toneseqrep_trials) complete! ..');
+			}
+		  },
+		}
+	  ],
+	  timeline_variables: [
+	  {id:'toneseqrep1', level:1},
+	  {id:'toneseqrep2', level:2},
+	  {id:'toneseqrep3', level:3},
+	  {id:'toneseqrep4', level:4},
+	  {id:'toneseqrep5', level:5},
+	  {id:'toneseqrep6', level:6},
+	  {id:'toneseqrep7', level:7},
+	  {id:'toneseqrep8', level:8},
+	  {id:'toneseqrep9', level:9},
+	  {id:'toneseqrep10', level:10},	  
+	  ],
+	  randomize_order: true	  
+	}
+
+	var toneseqrep_feedback = {
+		type: jsPsychHtmlSliderResponse,
+		stimulus: singing[8][0][lang],
+		require_movement: false,
+		slider_width: '80vw',
+		labels: [singing[8][1][lang],singing[8][2][lang]],
+		button_label:buttons["next"][lang],
+		on_finish: function() {
+			jsPsych.data.get().addToLast({id:'toneseqrep',wav:''});
+		},
+	};
+	
+	var famsong_memory_intro1 = {
+		// familiar song singing intro
+		type: jsPsychInstructions,
+		pages: [singing[12][0][lang]],
+		button_label_next: buttons["next"][lang],
+		button_label_previous: buttons["previous"][lang],
+		show_clickable_nav: true,
+		allow_backward: false,
+	}
+	
+	var famsong_memory_intro2 = {
+		// familiar song singing intro
+		type: jsPsychHtmlButtonResponse,
+		stimulus: [singing[12][1][lang]],
+		choices:[buttons["record"][lang]],
+		prompt: "&nbsp;",
+		button_html: '<button class="jspsych-btn" style="margin:5vw;"><img src="./images/imagesSinging/rec-btn.svg" style="width:10vw;padding:5vw;"></button>',
+	}
+	
+	var famsong_memory_trial = {
+		type:jsPsychHtmlAudioResponse,
+        stimulus: singing[4][10][lang],
+        recording_duration: 30000,
+		record_again_button_label:singing[4][2][lang],
+        allow_playback: false,
+		accept_button_html:singing[4][3][lang],
+		done_button_label:buttons["next"][lang],	
+		on_start: function() {
+			window.audio_pos=0;
+			window.audio_recpos=0;			
+			window.audio_dur=28000;
+			updateProgBar();
+			setTimeout(function() { window.audio_pos+=100; updateProgBar(); }, 100);
+		},
+		on_finish: function() {
+			jsPsych.data.get().addToLast({id:'famsong_memory',wav:''});
+			  console.log('storing data ..');
+			  jatos.submitResultData(jsPsych.data.get().json());
+			  console.log('intermediate data storage (famsong_memory_trial) complete! ..');
+		},
+	}
+
+	var famsong_memory_feedback = {
+		type: jsPsychHtmlSliderResponse,
+		stimulus: singing[8][0][lang],
+		require_movement: false,
+		slider_width: '80vw',
+		labels: [singing[8][1][lang],singing[8][2][lang]],
+		button_label:buttons["next"][lang],
+		on_finish: function() {
+			jsPsych.data.get().addToLast({id:'famsong_memory',wav:''});
+		},
+	};
+
+	var famsong_along_intro1 = {
+		// familiar song singing intro
+		type: jsPsychInstructions,
+		pages: [singing[13][0][lang]],
+		button_label_next: buttons["next"][lang],
+		button_label_previous: buttons["previous"][lang],
+		show_clickable_nav: true,
+		allow_backward: false,
+	}
+	
+	var famsong_along_intro2 = {
+		// familiar song singing rec start
+		type: jsPsychHtmlButtonResponse,
+		stimulus: [singing[13][1][lang]],
+		choices:[buttons["record"][lang]],
+		prompt: "&nbsp;",
+		button_html: '<button class="jspsych-btn" style="margin:5vw;"><img src="./images/imagesSinging/rec-btn.svg" style="width:10vw;padding:5vw;"></button>',
+	}
+	
+	var famsong_along_trial = {
+		type:jsPsychHtmlAudioResponse,
+        stimulus: singing[4][10][lang],
+        recording_duration: 30000,
+		record_again_button_label:singing[4][2][lang],
+        allow_playback: false,
+		accept_button_html:singing[4][3][lang],
+		done_button_label:buttons["next"][lang],
+		on_load: function() {
+		},
+		on_start: function() {
+			var tmp_audio=new Audio('./songs/singing/' + famsong + '/' + voicetype + '/' + voicepitch + '.mp3');
+			window.tmp_audio=tmp_audio;
+			setTimeout(function() { var cnt=document.getElementById('counter'); if (cnt !== null) cnt.innerHTML="3";  }, 100); // first drawing takes some time
+			setTimeout(function() { var cnt=document.getElementById('counter'); if (cnt !== null) cnt.innerHTML="2";  }, 1000);
+			setTimeout(function() { var cnt=document.getElementById('counter'); if (cnt !== null) cnt.innerHTML="1";  }, 2000);
+			setTimeout(function() { var cnt=document.getElementById('counter'); if (cnt !== null) cnt.innerHTML="&nbsp;"; window.tmp_audio.play(); }, 3000);
+			window.audio_pos=0;
+			window.audio_recpos=3000;			
+			window.audio_dur=Math.round(famsong_dur[lang][voicetype][voicepitch]*1000)+4000;
+			updateProgBar();
+			setTimeout(function() { window.audio_pos+=100; updateProgBar(); }, 100);
+
+		},
+		on_finish: function() {
+			window.tmp_audio.pause(); window.tmp_audio.currentTime=0;
+			jsPsych.data.get().addToLast({id:'famsong_along',wav:'./songs/singing/' + famsong + '/' + voicetype + '/' + voicepitch + '.mp3'});
+			console.log('storing data ..');
+			jatos.submitResultData(jsPsych.data.get().json());
+			console.log('intermediate data storage (famsong_along_trial) complete! ..');
+		},
+	}
+
+	var famsong_along_feedback = {
+		type: jsPsychHtmlSliderResponse,
+		stimulus: singing[8][0][lang],
+		require_movement: false,
+		slider_width: '80vw',
+		labels: [singing[8][1][lang],singing[8][2][lang]],
+		button_label:buttons["next"][lang],
+		on_finish: function() {
+			jsPsych.data.get().addToLast({id:'famsong_along',wav:'./songs/singing/' + famsong + '/' + voicetype + '/' + voicepitch + '.mp3'});
+		},
+	};
+
+	var novsong_intro1 = {
+		// novel song singing intro
+		type: jsPsychInstructions,
+		pages: [singing[14][0][lang]],
+		button_label_next: buttons["next"][lang],
+		button_label_previous: buttons["previous"][lang],
+		show_clickable_nav: true,
+		allow_backward: false,
+	}
+
+	var novsong_intro2 = {
+		// novel song singing playback
+		type: jsPsychInstructions,
+		pages: [singing[14][1][lang]],
+		button_label_next: buttons["next"][lang],
+		button_label_previous: buttons["previous"][lang],
+		show_clickable_nav: true,
+		allow_backward: false,
+		on_load: function() {
+			var tmp_audio=new Audio('./songs/singing/' + novsong + '/' + voicetype + '/' + voicepitch + '.mp3');
+			novsong_audio=tmp_audio;
+			window.tmp_audio=tmp_audio;
+		},
+		on_finish: function() {
+			window.tmp_audio.pause(); window.tmp_audio.currentTime=0;
+		},
+	}
+
+	var novsong_intro3 = {
+		// novel song singing rec start
+		type: jsPsychHtmlButtonResponse,
+		stimulus: [singing[14][2][lang]],
+		choices:[buttons["record"][lang]],
+		prompt: "&nbsp;",
+		button_html: '<button class="jspsych-btn" style="margin:5vw;"><img src="./images/imagesSinging/rec-btn.svg" style="width:10vw;padding:5vw;"></button>',
+	}
+	
+	var novsong_trial = {
+		type:jsPsychHtmlAudioResponse,
+        stimulus: singing[4][7][lang],
+        recording_duration: 60000,
+		record_again_button_label:singing[4][2][lang],
+        allow_playback: false,
+		accept_button_html:singing[4][3][lang],
+		done_button_label:buttons["next"][lang],
+		on_load: function() {
+		},
+		on_start: function() {
+			var tmp_audio=new Audio('./songs/singing/' + novsong + '/' + voicetype + '/' + voicepitch + '.mp3');
+			window.tmp_audio=tmp_audio;
+			setTimeout(function() { var cnt=document.getElementById('counter'); if (cnt !== null) cnt.innerHTML="3";  }, 100); // first drawing takes some time
+			setTimeout(function() { var cnt=document.getElementById('counter'); if (cnt !== null) cnt.innerHTML="2";  }, 1000);
+			setTimeout(function() { var cnt=document.getElementById('counter'); if (cnt !== null) cnt.innerHTML="1";  }, 2000);
+			setTimeout(function() { var cnt=document.getElementById('counter'); if (cnt !== null) cnt.innerHTML="&nbsp;"; audiorep3(tmp_audio,Math.round(novsong_dur[lang][voicetype][voicepitch]*1000)+1000,'novsong');  }, 3000);
+			//audiorep3(tmp_audio,Math.round(novsong_dur[lang][voicetype][voicepitch]*1000)+1000,'novsong'); // 3x repetition
+			window.audio_pos=0;
+			window.audio_recpos=3000;			
+			window.audio_dur=Math.round(novsong_dur[lang][voicetype][voicepitch]*1000)*3+4000;
+			updateProgBar();
+			setTimeout(function() { window.audio_pos+=100; updateProgBar(); }, 100);
+		},
+		on_finish: function() {
+			window.tmp_audio.pause(); window.tmp_audio.currentTime=0;
+			window.play_reps['novsong']=false;
+			jsPsych.data.get().addToLast({id:'novsong',wav:'./songs/singing/' + novsong + '/' + voicetype + '/' + voicepitch + '.mp3'});
+		},
+	}
+
+	var novsong_feedback = {
+		type: jsPsychHtmlSliderResponse,
+		stimulus: singing[8][0][lang],
+		require_movement: false,
+		slider_width: '80vw',
+		labels: [singing[8][1][lang],singing[8][2][lang]],
+		button_label:buttons["next"][lang],
+		on_finish: function() {
+			jsPsych.data.get().addToLast({id:'novsong',wav:'./songs/singing/' + novsong + '/' + voicetype + '/' + voicepitch + '.mp3'});
+			console.log('storing data ..');
+			jatos.submitResultData(jsPsych.data.get().json());
+			console.log('intermediate data storage (novsong_feedback) complete! ..');
+		},
+	};
+	
+	var thankyoupage = {
+		// generic thank you
+		type: jsPsychInstructions,
+		pages: [singing[15][0][lang]],
+		button_label_next: buttons["home"][lang],
+		button_label_previous: buttons["previous"][lang],
+		show_clickable_nav: true,
+		allow_backward: false,
+		on_start: function() { window.onbeforeunload = null; },
+	}
+
+	jatos.onLoad(() => {
+		jatos.addAbortButton();
+		var timeline=[instruction0, instruction1, initializeMic, testrecord1, loop_record2, testrecord3,voicesel1,voicesel2,voicesel3,voicesel4];
+	  // tone and tonerep by chance 
+	  if (Math.random()<0.5) {
+		// first single tones, then repetition
+		timeline.push(toneintro1);
+		timeline.push(toneintro2);
+		timeline.push(tone_trials);
+		timeline.push(tone_feedback);
+		timeline.push(tonerepintro1);
+		timeline.push(tonerepintro2);
+		timeline.push(tonerep_trials);
+		timeline.push(tonerep_feedback);
+	  } else {
+		// first repetition, then single tones
+		timeline.push(tonerepintro1);
+		timeline.push(tonerepintro2);
+		timeline.push(tonerep_trials);
+		timeline.push(tonerep_feedback);
+		timeline.push(toneintro1);
+		timeline.push(toneintro2);
+		timeline.push(tone_trials);
+		timeline.push(tone_feedback);
+	  }
+	  if (Math.random()<0.5) {
+		// first single tone sequences, then repetition
+		timeline.push(toneseqintro1);
+		timeline.push(toneseqintro2);
+		timeline.push(toneseq_trials);
+		timeline.push(toneseq_feedback);
+		timeline.push(toneseqrepintro1);
+		timeline.push(toneseqrepintro2);
+		timeline.push(toneseqrep_trials);
+		timeline.push(toneseqrep_feedback);
+	  } else {
+		// first repetition, then single tones
+		timeline.push(toneseqrepintro1);
+		timeline.push(toneseqrepintro2);
+		timeline.push(toneseqrep_trials);
+		timeline.push(toneseqrep_feedback);
+		timeline.push(toneseqintro1);
+		timeline.push(toneseqintro2);
+		timeline.push(toneseq_trials);
+		timeline.push(toneseq_feedback);
+	  }
+
+		if (Math.random()<0.5) {
+		// select order randomly: first memory, then sing-along
+			timeline.push(famsong_memory_intro1);
+			timeline.push(famsong_memory_intro2);
+			timeline.push(famsong_memory_trial);
+			timeline.push(famsong_memory_feedback);
+			timeline.push(famsong_along_intro1);
+			timeline.push(famsong_along_intro2);
+			timeline.push(famsong_along_trial);
+			timeline.push(famsong_along_feedback);		
+		} else {
+		// select order randomly: first sing-along, then memory
+			timeline.push(famsong_along_intro1);
+			timeline.push(famsong_along_intro2);
+			timeline.push(famsong_along_trial);
+			timeline.push(famsong_along_feedback);
+			timeline.push(famsong_memory_intro1);
+			timeline.push(famsong_memory_intro2);
+			timeline.push(famsong_memory_trial);
+			timeline.push(famsong_memory_feedback);
+		}
+		
+
+		timeline.push(novsong_intro1);
+		timeline.push(novsong_intro2);
+		timeline.push(novsong_intro3);
+		timeline.push(novsong_trial);
+		timeline.push(novsong_feedback);
+
+		timeline.push(thankyoupage);
+		
+		jsPsych.run(timeline);
+	});	
 
  </script>
 </html>

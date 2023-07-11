@@ -310,7 +310,7 @@
           document.getElementById("jspsych-content").style.justifyContent = "center";
         }
       }
-
+      
       var part2_emotion_scales = {
         type: jsPsychHtmlMultiSliderResponse,
         stimulus: [emotionTranslations["mood"][lang], emotionTranslations["energy"][lang], emotionTranslations["howStrongEmotion"][lang]],
@@ -334,6 +334,7 @@
                    emotionTranslations["howFamiliar"][lang]],
         nSliders: 2,
         require_movement: true,
+        prompt: emotionTranslations["pleaseAnswer"][lang],
         //slider_width: 250,
         labels: [[emotionTranslations["stronglyDisliked"][lang], emotionTranslations["neutral"][lang], emotionTranslations["stronglyLiked"][lang]],
                  [emotionTranslations["veryUnfamiliar"][lang], emotionTranslations["veryFamiliar"][lang]]],
@@ -432,7 +433,9 @@
       }
 
       //jsPsych.run([procedureEmotionFinal]) //simu
+
       jsPsych.simulate([procedureEmotionFinal], "visual")
+
 
 
     });

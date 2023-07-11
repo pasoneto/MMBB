@@ -1,7 +1,7 @@
 var jsPsychInitializeMicrophone = (function (jspsych) {
     'use strict';
 
-    /*! *****************************************************************************
+    /******************************************************************************
     Copyright (c) Microsoft Corporation.
 
     Permission to use, copy, modify, and/or distribute this software for any
@@ -69,7 +69,7 @@ var jsPsychInitializeMicrophone = (function (jspsych) {
                     this.updateDeviceList(display_element);
                 };
                 const mic_id = yield this.waitForSelection(display_element);
-                const stream = yield navigator.mediaDevices.getUserMedia({ audio: { deviceId: mic_id } });
+                const stream = yield navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: false, deviceId: mic_id } });
                 this.jsPsych.pluginAPI.initializeMicrophoneRecorder(stream);
                 return mic_id;
             });
@@ -85,7 +85,7 @@ var jsPsychInitializeMicrophone = (function (jspsych) {
       ${trial.device_select_message}
       <select name="mic" id="which-mic" style="font-size:14px; font-family: 'Open Sans', 'Arial', sans-serif; padding: 4px;">
       </select>
-      <p><button class="jspsych-survey-btn" id="btn-select-mic">${trial.button_label}</button></p>`;
+      <p><button class="jspsych-btn" id="btn-select-mic">${trial.button_label}</button></p>`;
             display_element.innerHTML = html;
         }
         waitForSelection(display_element) {
@@ -99,13 +99,8 @@ var jsPsychInitializeMicrophone = (function (jspsych) {
         updateDeviceList(display_element) {
             navigator.mediaDevices.enumerateDevices().then((devices) => {
                 const mics = devices.filter((d) => d.kind === "audioinput" && d.deviceId !== "default" && d.deviceId !== "communications");
-
-              //console.log(mics)
                 // remove entries with duplicate groupID
                 const unique_mics = mics.filter((mic, index, arr) => arr.findIndex((v) => v.groupId == mic.groupId) == index);
-
-                console.log(unique_mics)
-
                 // reset the list by clearing all current options
                 display_element.querySelector("#which-mic").innerHTML = "";
                 unique_mics.forEach((d) => {
@@ -118,7 +113,6 @@ var jsPsychInitializeMicrophone = (function (jspsych) {
         }
     }
     InitializeMicrophonePlugin.info = info;
-
 
     return InitializeMicrophonePlugin;
 

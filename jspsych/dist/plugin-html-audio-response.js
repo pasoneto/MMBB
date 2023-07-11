@@ -9,10 +9,6 @@ var jsPsychHtmlAudioResponse = (function (jspsych) {
               type: jspsych.ParameterType.HTML_STRING,
               default: undefined,
           },
-          audiostimulus: {
-              type: jspsych.ParameterType.STRING,
-              default: undefined,
-          },
           /** How long to show the stimulus. */
           stimulus_duration: {
               type: jspsych.ParameterType.INT,
@@ -23,26 +19,36 @@ var jsPsychHtmlAudioResponse = (function (jspsych) {
               type: jspsych.ParameterType.INT,
               default: 2000,
           },
+          /** Whether or not to show a button to end the recording. If false, the recording_duration must be set. */
           show_done_button: {
               type: jspsych.ParameterType.BOOL,
               default: true,
           },
+          /** Label for the done (stop recording) button. Only used if show_done_button is true. */
           done_button_label: {
               type: jspsych.ParameterType.STRING,
               default: "Continue",
+          },
+          /** Label for the record again button (only used if allow_playback is true). */
+          record_again_stimulus: {
+              type: jspsych.ParameterType.STRING,
+              default: "Listen to playback",
           },
           record_again_button_label: {
               type: jspsych.ParameterType.STRING,
               default: "Record again",
           },
+          /** Label for the button to accept the audio recording (only used if allow_playback is true). */
           accept_button_label: {
               type: jspsych.ParameterType.STRING,
               default: "Continue",
           },
+          /** Whether or not to allow the participant to playback the recording and either accept or re-record. */
           allow_playback: {
               type: jspsych.ParameterType.BOOL,
               default: false,
           },
+          /** Whether or not to save the video URL to the trial data. */
           save_audio_url: {
               type: jspsych.ParameterType.BOOL,
               default: false,
@@ -62,7 +68,6 @@ var jsPsychHtmlAudioResponse = (function (jspsych) {
           this.recorded_data_chunks = [];
       }
       trial(display_element, trial) {
-          this.audiostimulus = new Audio(trial.audiostimulus);
           this.recorder = this.jsPsych.pluginAPI.getMicrophoneRecorder();
           this.setupRecordingEvents(display_element, trial);
           this.startRecording();
@@ -76,7 +81,7 @@ var jsPsychHtmlAudioResponse = (function (jspsych) {
           ro.observe(display_element);
           let html = `<div id="jspsych-html-audio-response-stimulus">${trial.stimulus}</div>`;
           if (trial.show_done_button) {
-              html += `<p><button class="jspsych-instructions-btn" id="finish-trial">${trial.done_button_label}</button></p>`;
+              html += `<p><button class="jspsych-btn" id="finish-trial">${trial.done_button_label}</button></p>`;
           }
           display_element.innerHTML = html;
       }
@@ -105,13 +110,12 @@ var jsPsychHtmlAudioResponse = (function (jspsych) {
       }
       setupRecordingEvents(display_element, trial) {
           this.data_available_handler = (e) => {
-              console.log(e)
               if (e.data.size > 0) {
                   this.recorded_data_chunks.push(e.data);
               }
           };
           this.stop_event_handler = () => {
-              const data = new Blob(this.recorded_data_chunks, { type: "audio/webm" });
+              const data = new Blob(this.recorded_data_chunks, { type: "audio/webm;codecs=opus" });
               this.audio_url = URL.createObjectURL(data);
               const reader = new FileReader();
               reader.addEventListener("load", () => {
@@ -156,29 +160,25 @@ var jsPsychHtmlAudioResponse = (function (jspsych) {
           this.recorder.addEventListener("start", this.start_event_handler);
       }
       startRecording() {
-          this.audiostimulus.play();
           this.recorder.start();
       }
       stopRecording() {
           this.recorder.stop();
-          this.audiostimulus.pause();
-          this.audiostimulus.currentTime = 0;
           return new Promise((resolve) => {
               this.load_resolver = resolve;
           });
       }
       showPlaybackControls(display_element, trial) {
           display_element.innerHTML = `
-      <p><audio id="playback" src="${this.audio_url}" controls></audio></p>
-      <button id="record-again" class="jspsych-instructions-btn">${trial.record_again_button_label}</button>
-      <button id="continue" class="jspsych-instructions-btn">${trial.accept_button_label}</button>
+      ${trial.record_again_stimulus}
+	 <p><audio id="playback" src="${this.audio_url}" controls></audio></p>
+      <button id="record-again" class="jspsych-btn">${trial.record_again_button_label}</button>
+      <button id="continue" class="jspsych-btn">${trial.accept_button_label}</button>
     `;
           display_element.querySelector("#record-again").addEventListener("click", () => {
               // release object url to save memory
               URL.revokeObjectURL(this.audio_url);
               this.startRecording();
-              this.audiostimulus.play();
-
           });
           display_element.querySelector("#continue").addEventListener("click", () => {
               this.endTrial(display_element, trial);
@@ -196,7 +196,6 @@ var jsPsychHtmlAudioResponse = (function (jspsych) {
           // gather the data to store for the trial
           var trial_data = {
               rt: this.rt,
-              audiostimulus: trial.audiostimulus,
               stimulus: trial.stimulus,
               response: this.response,
               estimated_stimulus_onset: Math.round(this.stimulus_start_time - this.recorder_start_time),

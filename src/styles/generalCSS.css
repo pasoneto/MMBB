@@ -42,8 +42,7 @@ button, #jspsych-html-slider-response-next, .jspsych-btn, #jspsych-survey-multi-
   align-items: center;
   justify-content: center;
   line-height: 1;
-  font-family: Garamond, serif;
-  font-size: 1.5em;
+  /*font-size: 1.5em;*/
   color: black;
   max-height: inherit;
   width: 80%;
@@ -371,12 +370,12 @@ button:focus {
   display: flex;
   flex-flow: column;
   width: 80vw;
-  gap: 20px
+  gap: 8px
 }
 .jspsych-html-slider-response-container{
   display: flex;
   flex-flow: column;
-  gap: 10px;
+  gap: 5px;
 }
 #jspsych-html-slider-response-wrapper-emotion{
   display: flex;
@@ -399,4 +398,8 @@ button:focus {
 /*MBEMA*/
 .mbemaContainer{
   gap: 10%;
+}
+/*Progress bar container*/
+#jspsych-progressbar-container {
+  margin-bottom: 0.3em;
 }

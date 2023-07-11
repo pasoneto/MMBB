@@ -325,7 +325,7 @@ function generateMovementTimeline(lang){
 
   var phonePocket = {
       type: jsPsychAudioKeyboardResponse,
-      stimulus: './songs/movementTapAudio/instructionsAudio/phonePocket.mp3',
+      stimulus: './songs/movementTapAudio/instructionsAudio/phonePocket' + lang.toUpperCase() + '.mp3',
       prompt: [movement["instruction13"][lang]],
       //trial_duration: 7000, simu
       trial_duration: 1000,
@@ -334,7 +334,7 @@ function generateMovementTimeline(lang){
 
   var countDown = {
       type: jsPsychAudioKeyboardResponse,
-      stimulus: './songs/movementTapAudio/instructionsAudio/countdown.mp3',
+      stimulus: './songs/movementTapAudio/instructionsAudio/countdown' + lang.toUpperCase() + '.mp3',
       prompt: "<img id='tableSVG' src='./images/voiceSVG.svg'></img>",
     //trial_duration: 6500, simu
       trial_duration: 1000,
@@ -347,7 +347,7 @@ function generateMovementTimeline(lang){
 
   var pickUpPhone = {
       type: jsPsychAudioKeyboardResponse,
-      stimulus: './songs/movementTapAudio/instructionsAudio/pickPhone.mp3',
+      stimulus: './songs/movementTapAudio/instructionsAudio/pickPhone' + lang.toUpperCase() + '.mp3',
       prompt: "<img id='tableSVG' src='./images/voiceSVG.svg'></img>",
       choices: ["NO_KEYS"],
     //trial_duration: 10000, simu

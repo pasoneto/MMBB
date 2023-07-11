@@ -168,14 +168,14 @@ var jsPsychSurveyMultiChoice = (function (jspsych) {
           }
           // add submit button
           html +=
-              '<input type="submit" id="' +
+              '<button type="submit" id="' +
                   plugin_id_name +
                   '-next" class="' +
                   plugin_id_name +
-                  ' jspsych-survey-btn"' +
-                  (trial.button_label ? ' value="' + trial.button_label + '"' : "") +
-                  "></input>";
-          html += "</form>";
+        ' jspsych-survey-btn">' +
+          (trial.button_label ? trial.button_label : "") +
+          "</button>";
+          html += "</button>";
           // render
           display_element.innerHTML = html;
           document.querySelector("form").addEventListener("submit", (event) => {

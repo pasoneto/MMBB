@@ -103,7 +103,7 @@
 	  // first round instructions
     var instruction1 = {
         type: jsPsychInstructions,
-        pages: ["taskConsists", "wholeTask", "firstPart", "yourTask", "firstLets", "listen"].map(i => mbema[i][lang]),
+        pages: ["taskConsists", "wholeTask", "firstPart", "firstPartB", "yourTask", "yourTaskB", "firstLets", "listen"].map(i => mbema[i][lang]),
         button_label_next: buttons["next"][lang],
         button_label_previous: buttons["previous"][lang],
         show_clickable_nav: true,
@@ -112,7 +112,7 @@
 	  // second round instructions
     var instruction2 = {
         type: jsPsychInstructions,
-        pages: ["thanksThird", "previousParts", "canYouTell", "firstCouple"].map(i => mbema[i][lang]),
+        pages: ["thanksThird", "previousParts", "previousPartsB", "canYouTell", "canYouTellB", "firstCouple"].map(i => mbema[i][lang]),
         button_label_next: buttons["next"][lang],
         button_label_previous: buttons["previous"][lang],
         show_clickable_nav: true,
@@ -121,7 +121,7 @@
 	  // memory part instructions
     var instruction3 = {
         type: jsPsychInstructions,
-        pages: ["thankYouSimilar", "youWillAgain", "firstPractice"].map(i => mbema[i][lang]),
+        pages: ["thankYouSimilar", "youWillAgain", "youWillAgainB", "firstPractice"].map(i => mbema[i][lang]),
         button_label_next: buttons["next"][lang],
         button_label_previous: buttons["previous"][lang],
         show_clickable_nav: true,
@@ -129,7 +129,7 @@
 
     var instruction_start_actual = {
         type: jsPsychInstructions,
-        pages: [mbema["nowContinue"][lang]],
+        pages: ["nowContinue", "nowContinueB", "nowContinueC"].map(i => mbema[i][lang]),
         button_label_next: buttons["next"][lang],
         button_label_previous: buttons["previous"][lang],
         show_clickable_nav: true,
@@ -139,7 +139,7 @@
 
     var instruction_start_actual_pt3 = {
         type: jsPsychInstructions,
-        pages: [mbema["totalOfTwenty"][lang]],
+        pages: ["totalOfTwenty", "totalOfTwentyB","totalOfTwentyC"].map(i => mbema[i][lang]),
         button_label_next: buttons["next"][lang],
         button_label_previous: buttons["previous"][lang],
         show_clickable_nav: true,
