@@ -52,7 +52,7 @@ var jsPsychHtmlButtonResponse = (function (jspsych) {
           margin_horizontal: {
               type: jspsych.ParameterType.STRING,
               pretty_name: "Margin horizontal",
-              default: "8px",
+              default: "0px",
           },
           /** If true, then trial will end when user responds. */
           response_ends_trial: {
@@ -94,11 +94,7 @@ var jsPsychHtmlButtonResponse = (function (jspsych) {
           for (var i = 0; i < trial.choices.length; i++) {
               var str = buttons[i].replace(/%choice%/g, trial.choices[i]);
               html +=
-                  '<div class="jspsych-html-button-response-button" style="display: inline-block; margin:' +
-                      trial.margin_vertical +
-                      " " +
-                      trial.margin_horizontal +
-                      '" id="jspsych-html-button-response-button-' +
+                  '<div class="jspsych-html-button-response-button" id="jspsych-html-button-response-button-' +
                       i +
                       '" data-choice="' +
                       i +

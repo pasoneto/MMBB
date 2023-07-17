@@ -160,10 +160,7 @@ var jsPsychAudioButtonResponse = (function (jspsych) {
               for (var i = 0; i < trial.choices.length; i++) {
                   var str = buttons[i].replace(/%choice%/g, trial.choices[i]);
                   html +=
-                      '<div class="jspsych-audio-button-response-button" style="cursor: pointer; display: inline-block; margin:' +
-                          trial.margin_vertical +
-                          " " +
-                          trial.margin_horizontal +
+                      '<div class="jspsych-audio-button-response-button"' +
                           '" id="jspsych-audio-button-response-button-' +
                           i +
                           '" data-choice="' +

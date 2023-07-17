@@ -38,7 +38,8 @@ button, #jspsych-html-slider-response-next, .jspsych-btn, #jspsych-survey-multi-
 #jspsych-content{
   display: flex;
   flex-flow: column;
-  height: 70vh;
+  /*height: 70vh;*/
+  min-height: 70vh;
   align-items: center;
   justify-content: center;
   line-height: 1;
@@ -400,6 +401,66 @@ button:focus {
   gap: 10%;
 }
 /*Progress bar container*/
-#jspsych-progressbar-container {
-  margin-bottom: 0.3em;
+#jspsych-progressbar-container2 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: 14px;
+  padding: 1%;
+  justify-content: center;
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #dedede;
+  color: #555;
 }
+/*Singing*/
+#recButton{
+  width: 25vw;
+}
+#playButton, .playButton{
+  width: 30vw;
+  margin-top: 10%
+}
+#jspsych-audio-button-response-btngroup{
+  display: flex;
+  justify-content: center;
+  gap: 6%;
+  width: 100%
+}
+.jspsych-tapping-btn{
+  height: 100%
+}
+#jspsych-html-button-response-btngroup{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5%
+}
+#selectMicText, #which-mic, #btn-select-mic{
+  margin-top: auto
+}
+#btn-select-mic{
+ white-space: wrap
+}
+.jspsych-singing-btn{
+  background: RGB(146, 168, 209, 0.2)
+}
+#finish-trial{
+  margin-top: auto
+}
+#which-mic{
+  width: 80%
+}
+#jspsych-html-audio-response-stimulus{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#recordingLabel{
+  margin-bottom: 30%
+}
+#progbarcont{
+}
+/*white-space: nowrap*/
+/*Singing*/

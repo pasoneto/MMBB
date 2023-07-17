@@ -109,10 +109,9 @@
           var lang = "eng"
         }
 
-        jsPsych.data.addProperties({userID: userID, lang: lang, timeEnd: timeEnd, timeBegin: timeBegin, sequenceTrials: getCookie('sequenceTrial'), nodeIndex: nodeIndex, tIndex: trialIndex});
+        jsPsych.data.addProperties({userID: userID, lang: lang, timeEnd: timeEnd, timeBegin: timeBegin, sequenceTrials: getCookie('sequenceTrial'), nodeIndex: nodeIndex, tIndex: trialIndex, infoUser: navigator.userAgent});
 
         var finalData = jsPsych.data.get()
-        finalData['trials'].push({"performance": measurePerformance, "infoUser": navigator.userAgent})
 
         var urlBase = ""
 

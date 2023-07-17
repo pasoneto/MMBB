@@ -63,7 +63,6 @@ function generateGeneralIntroWrap(lang, subBattery){
     trial_duration: 1000, //simu
     prompt: initialInstructions[0][4][lang] + '<img src="./images/muteButton.png" id="muteButton"></img>',
     on_load: function(){
-      document.getElementById("jspsych-content").style.fontSize = "1.2em"
     }
   };
 
@@ -74,7 +73,6 @@ function generateGeneralIntroWrap(lang, subBattery){
     choices: [buttons["continue"][lang]],
     prompt: initialInstructions[0][0][lang],
     on_load: function(){
-      document.getElementById("jspsych-content").style.fontSize = "1.2em"
       document.getElementById("audioPrompt").style.margin = "auto"
     }
   };
@@ -102,7 +100,6 @@ function generateGeneralIntroWrap(lang, subBattery){
     prompt: '',
     on_load: function(){
       document.getElementById("jspsych-html-button-response-btngroup").getElementsByClassName("jspsych-btn")[1].style.background = "purple"
-      document.getElementById("jspsych-content").style.fontSize = '1.5em'
     },
   };
 

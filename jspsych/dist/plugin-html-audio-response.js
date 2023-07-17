@@ -81,7 +81,7 @@ var jsPsychHtmlAudioResponse = (function (jspsych) {
           ro.observe(display_element);
           let html = `<div id="jspsych-html-audio-response-stimulus">${trial.stimulus}</div>`;
           if (trial.show_done_button) {
-              html += `<p><button class="jspsych-btn" id="finish-trial">${trial.done_button_label}</button></p>`;
+              html += `<button class="jspsych-btn" id="finish-trial">${trial.done_button_label}</button>`;
           }
           display_element.innerHTML = html;
       }
