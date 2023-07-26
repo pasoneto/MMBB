@@ -61,7 +61,7 @@ function generateGeneralIntroWrap(lang, subBattery){
     stimulus: './songs/movementTapAudio/elPesebre.mp3',
     choices: [buttons["continue"][lang]],
     trial_duration: 1000, //simu
-    prompt: initialInstructions[0][4][lang] + '<img src="./images/muteButton.png" id="muteButton"></img>',
+    prompt: initialInstructions["canYouHear2"][lang] + '<img src="./images/muteButton.png" id="muteButton"></img>',
     on_load: function(){
     }
   };
@@ -71,7 +71,7 @@ function generateGeneralIntroWrap(lang, subBattery){
     stimulus: './songs/movementTapAudio/elPesebre.mp3',
     trial_duration: 1000, //simu
     choices: [buttons["continue"][lang]],
-    prompt: initialInstructions[0][0][lang],
+    prompt: initialInstructions["canYouHear"][lang],
     on_load: function(){
       document.getElementById("audioPrompt").style.margin = "auto"
     }
@@ -95,8 +95,8 @@ function generateGeneralIntroWrap(lang, subBattery){
 
   var gettingHelp = {
     type: jsPsychHtmlButtonResponse,
-    stimulus: initialInstructions[0][3][lang],
-    choices: [initialInstructions[0][2][lang], initialInstructions[0][1][lang]],
+    stimulus: initialInstructions["gettingHelp"][lang],
+    choices: [initialInstructions["no"][lang], initialInstructions["yes"][lang]],
     prompt: '',
     on_load: function(){
       document.getElementById("jspsych-html-button-response-btngroup").getElementsByClassName("jspsych-btn")[1].style.background = "purple"

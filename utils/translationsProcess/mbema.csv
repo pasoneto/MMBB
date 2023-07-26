@@ -1,0 +1,40 @@
+eng,fi
+Welcome to the Music perception task!,Tervetuloa Musiikin havaitsemistehtävään!
+The task consists of three parts and it takes about 15 min in total,Tehtävä koostuu kolmesta osiosta ja sen tekemiseen menee yhteensä noin 15 min
+Please do the whole task in one session,"Pyydämme, että teet koko tehtävän samalla kertaa"
+"In the first task part, you will hear a short signal tone followed by two successive melodies",Ensimmäisessä tehtäväosiossa kuulet lyhyen merkkiäänen ja sen jälkeen kaksi peräkkäistä melodiaa
+The melodies are separated by a short break,Melodioiden välillä on lyhyt tauko
+Your task is to compare the two successive melodies and decide whether they sound the same or different,"Tehtäväsi on verrata kahta peräkkäistä melodiaa ja päättää, kuulostavatko ne samalta vai erilaisilta"
+"If you think that the melodies are the same, just press ""Same"". If you think that the melodies are different, press ""Different""","Jos melodiat ovat mielestäsi samat, paina ""Sama"". Jos melodiat ovat mielestäsi erilaiset, paina ""Eri"""
+"First, let's do a couple of practice trials",Otetaan aluksi pari harjoittelukierrosta
+Listen<br><img id='music' src='./images/music.svg'></img>,Kuuntele<br><img id='music' src='./images/music.svg'></img>
+Thank you for your answers! Let's do the third and final task part.,Kiitos vastauksistasi! Tehdään vielä kolmas ja viimeinen tehtäväosio.
+"In the previous task parts, you have heard many melodies several times",Olet edellisissä tehtäväosioissa kuullut useita melodioita moneen kertaan
+Next you will hear both previously presented melodies and entirely novel melodies.,Seuraavassa kuulet sekä aiemmin esitettyjä melodioita että täysin uusia melodioita.
+Can you tell which melodies have already been presented to you and which ones are novel?,"Osaatko sanoa, mitkä melodiat on esitetty sinulle jo aiemmin ja mitkä ovat uusia?"
+"When you have the feeling that you have heard the melody before, press the ""Yes"" button. Otherwise, press ""No""","Kun sinusta tuntuu, että olet kuullut melodian aikaisemmin, paina ""Kyllä"". Muutoin paina nappia ""Ei"""
+"First, let's do a couple of practice trials",Otetaan aluksi pari harjoittelukierrosta
+Thank you for your answers! Let's continue with another similar task part.,Kiitos vastauksistasi! Jatketaan toisella samantyyppisellä tehtäväosiolla.
+You will again hear successive melodies and your task is to decide whether they sound the same or different.,"Kuulet jälleen perättäisiä melodioita ja sinun tulee päättää, kuulostavatko ne samalta vai erilaisilta"
+"If you think that the melodies are the same, just press ""Same"". If you think that the melodies are different, press ""Different""","Jos melodiat ovat mielestäsi samat, paina ""Sama"". Jos melodiat ovat mielestäsi erilaiset, paina ""Eri"""
+"First, let's do a couple of practice trials",Otetaan aluksi pari harjoittelukierrosta
+"Now, let's continue with the actual task",Nyt jatketaan varsinaisella tehtävällä
+"In the task, you will hear a total of 20 melody pairs",Tehtävässä tulee yhteensä 20 melodiaparia
+Listen carefully and decide if the melodies sound the same or different,"Kuuntele tarkasti ja päätä, kuulostavatko melodiat samalta vai erilaiselta"
+"Now, let's continue with the actual task",Nyt jatketaan varsinaisella tehtävällä
+"In the task, you will hear a total of 20 melodies",Tehtävässä kuulet yhteensä 20 melodiaa
+Listen carefully and answer if have you heard the melody before,Kuuntele tarkasti ja vastaa oletko kuullut melodian aiemmin.
+Choose,Valitse
+Have you heard this melody before?,Oletko kuullut tämän melodian aikaisemmin?
+Your answer was wrong. Would you like to try again?,Vastauksesi oli väärin. Haluatko kokeilla uudelleen?
+Difficult,Vaikea
+Easy,Helppo
+The task is now complete! Thank you for your participation. You will be redirected to the main page in a few seconds,Tehtävä on nyt valmis! Kiitos osallistumisesta. Siirryt aloitusnäyttöön muutaman sekunnin päästä
+How difficult/easy did this task feel?,Kuinka vaikealta/helpolta tämä tehtävä tuntui?
+Next,Seuraava
+Previous,Edellinen
+Same,Sama
+Different,Eri
+Yes,Kyllä
+No,Ei
+Home,Alku

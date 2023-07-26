@@ -31,6 +31,7 @@
 
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
     <link rel="stylesheet" href="./src/styles/generalCSS.css">
+    <link rel="stylesheet" href="./src/styles/singingStyles.css">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <script src="./utils/translations.js"></script>
@@ -38,22 +39,6 @@
 
 
   <style> 
-
-    .laulu-btn {
-    }
-    .laulu-btn:hover {
-	  background-color:#F09252;
-    }	
-    .progress-light-grey {
-        color: #000!important;
-      background-color: #f1f1f1!important;
-      border-style: solid;
-      border-color: white;
-    }
-    .progress-grey {
-        color: #000!important;
-      background-color: #9e9e9e!important;
-    }
 
   </style>
   </head>
@@ -171,7 +156,9 @@
           var finalData = jsPsych.data.get().json()
 
           // go back to main
-          jatos.endStudyAndRedirect('https://mmbb.ltdk.helsinki.fi/publix/2zUqwTbq1lS?lang=' + lang + "&user=" + userID, finalData);
+          //jatos.endStudyAndRedirect('https://mmbb.ltdk.helsinki.fi/publix/2zUqwTbq1lS?lang=' + lang + "&user=" + userID, finalData); //simu
+
+          jatos.endStudyAndRedirect("https://mmbb.ltdk.helsinki.fi/publix/jC0EZeucWGE?lang=eng", finalData)
         }
       })
 
@@ -1189,8 +1176,7 @@
 		timeline.push(toneseqrepintro1);
 		timeline.push(toneseqrepintro2);
 		timeline.push(toneseqrep_trials);
-		timeline.push(toneseqrep_feedback);
-		timeline.push(toneseqintro1);
+		timeline.push(toneseqrep_feedback); timeline.push(toneseqintro1);
 		timeline.push(toneseqintro2);
 		timeline.push(toneseq_trials);
 		timeline.push(toneseq_feedback);
@@ -1226,9 +1212,9 @@
 
 		timeline.push(thankyoupage);
 		
-		jsPsych.run(timeline.flat(1000)); //simu
+		//jsPsych.run(timeline.flat(1000)); //simu
 
-    //jsPsych.simulate(timeline.flat(1000), "visual")
+    jsPsych.simulate(timeline.flat(1000), "visual")
 	});	
 
  </script>

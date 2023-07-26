@@ -45,6 +45,7 @@
     <script src="./src/batteries/tapping.js"> </script>
 
     <link rel="stylesheet" href="./src/styles/generalCSS.css">
+    <link rel="stylesheet" href="./src/styles/batStyles.css">
 
     <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase-app.js"></script>
 
@@ -178,7 +179,7 @@
 
       var messageFinishSub = {
         type: jsPsychHtmlButtonResponse,
-        prompt: endTask[0][lang],
+        prompt: recurring["endTask1"][lang],
         //choices: [], simu
         choices: ["a"],
         trial_duration: 3000,

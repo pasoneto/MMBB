@@ -1,0 +1,15 @@
+eng,fi
+"In this task, we will ask you to place your phone on a table, and tap on a button on the screen using the index finger of your preferred hand<br><img id='tableSVG' src='./images/tappingSVG.svg'></img>",Tässä tehtävässä pyydämme sinua naputtamaan ruudulla näkyvää painiketta paremman kätesi etusormella
+Tap on the button at a speed that feels natural to you,Naputa painiketta nopeudella joka tuntuu luontevalta
+Try to keep the tapping speed as constant as possible,Yritä pitää nopeus mahdollisimman tasaisena
+"In the next task, you will hear a constant beat<br><img id='ear' src='./images/ear.svg'></img>",Seuraavassa tehtävässä kuulet tasaisen sykkeen
+Your task is to tap in synchrony to the beat,Naputa tahdissa sykkeen mukana
+"This is an example: <br><video id=""myVideo"" width=""100%"" controls><source src=""./songs/movementTapAudio/exampleTapping/metronome2.mp4"" type=""video/mp4""></video>","Tässä on esimerkki: <br><video id=""myVideo"" width=""100%"" controls><source src=""./songs/movementTapAudio/exampleTapping/metronome2.mp4"" type=""video/mp4""></video>"
+"In the next task, you will hear a rhythmic pattern<br><img id='tableSVG' src='./images/table.svg'></img>",Seuraavassa tehtävässä kuulet rytmikuivon<br><img id='tableSVG' src='./images/table.svg'></img>
+Your task is to tap in synchrony to the beat of the rhythmic pattern<br><img id='tableSVG' src='./images/tappingSVG.svg'></img>,Naputa tahdissa rytmikuivon sykkeen mukana<br><img id='tableSVG' src='./images/tappingSVG.svg'></img>
+"This is an example: <br><video id=""myVideo"" width=""100%"" controls><source src=""./songs/movementTapAudio/exampleTapping/hemiole.mp4"" type=""video/mp4""></video>","Tässä on esimerkki: <br><video id=""myVideo"" width=""100%"" controls><source src=""./songs/movementTapAudio/exampleTapping/hemiole.mp4"" type=""video/mp4""></video>"
+In the next task you will hear a musical piece<br><img id='ear' src='./images/ear.svg'></img>,Seuraavassa tehtävässä kuulet musiikkikappaleen<br><img id='ear' src='./images/ear.svg'></img>
+Your task is to tap in synchrony to the beat of the music,Naputa tahdissa musiikin sykkeen mukana
+Tap here,Napauta tästä
+Recording taps...,Tallennetaan naputuksia...
+Tapping task,Naputustehtävä

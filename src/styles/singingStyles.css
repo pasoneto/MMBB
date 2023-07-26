@@ -1,0 +1,77 @@
+/*Singing*/
+.laulu-btn {
+}
+.laulu-btn:hover {
+background-color:#F09252;
+}	
+.progress-light-grey {
+    color: #000!important;
+  background-color: #f1f1f1!important;
+  border-style: solid;
+  border-color: white;
+}
+.progress-grey {
+    color: #000!important;
+  background-color: #9e9e9e!important;
+}
+#recButton{
+  width: 25vw;
+}
+#playButton, .playButton{
+  width: 30vw;
+  margin: 10%;
+  padding: 2%;
+	border: 1.5px solid;
+  border-radius:5%;
+  padding: 2%
+}
+#jspsych-audio-button-response-btngroup{
+  display: flex;
+  justify-content: center;
+  gap: 6%;
+}
+.jspsych-tapping-btn{
+  height: 100%
+}
+#jspsych-html-button-response-btngroup{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5%;
+  width: 50%;
+}
+#selectMicText, #which-mic, #btn-select-mic{
+  margin-top: auto
+}
+#btn-select-mic{
+ white-space: wrap
+}
+.jspsych-singing-btn{
+  background: none
+}
+#finish-trial{
+  margin-top: auto
+}
+#which-mic{
+  width: 80%
+}
+#jspsych-html-audio-response-stimulus{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#recordingLabel{
+  margin-bottom: 30%
+}
+.jspsych-btn.laulu-btn{
+  width: 50%
+}
+#textInInstruction{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center
+}
+/*white-space: nowrap*/
+/*Singing*/

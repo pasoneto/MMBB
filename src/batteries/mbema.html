@@ -146,10 +146,10 @@
     }
     
     var images = [
-      { img: "./images/imagesMBEMA/same.svg",  type: buttonsMBEMA[2][lang]},
-      { img: "./images/imagesMBEMA/different.svg",  type: buttonsMBEMA[3][lang]},
-      { img: "./images/imagesMBEMA/familiar.svg",  type: buttonsMBEMA[4][lang]},
-      { img: "./images/imagesMBEMA/novel.svg",  type: buttonsMBEMA[5][lang]}
+      { img: "./images/imagesMBEMA/same.svg",  type: mbema["same"][lang]},
+      { img: "./images/imagesMBEMA/different.svg",  type: mbema["different"][lang]},
+      { img: "./images/imagesMBEMA/familiar.svg",  type: mbema["yes"][lang]},
+      { img: "./images/imagesMBEMA/novel.svg",  type: mbema["no"][lang]}
     ];
 
     var sameDiffResp = {
@@ -172,10 +172,10 @@
     
     var melodyYesNoResp = {
       type: jsPsychHtmlButtonResponse,
-      choices: [buttonsMBEMA[4][lang], buttonsMBEMA[5][lang]],
+      choices: [mbema["yes"][lang], mbema["no"][lang]],
       stimulus: mbema["heardBefore"][lang],
       button_html: ['<button class="mbema-btn">%choice%</button>',
-                    '<button class="mbema-btn" style="background:purple">%choice%</button>'],
+                    '<button class="mbema-btn" style="background-color:purple">%choice%</button>'],
       post_trial_gap: 1000,
       on_load: function () { 
         // fine tune div spacing
@@ -188,11 +188,11 @@
 
     var practiceWrongRepeat = {
       type: jsPsychHtmlButtonResponse,
-      choices: [buttonsMBEMA[4][lang], buttonsMBEMA[5][lang]],
+      choices: [mbema["yes"][lang], mbema["no"][lang]],
       stimulus: mbema["answerWrong"][lang],
       post_trial_gap: 1000,
       on_load: function(){
-        document.querySelectorAll(".jspsych-btn")[0].style.background = "purple"
+        document.querySelectorAll(".jspsych-btn")[0].style.backgroundColor = "purple"
       }
     };
 
@@ -526,7 +526,7 @@
   var messageFinishMBEMA = {
     type: jsPsychHtmlButtonResponse,
     prompt: '',
-    choices: [buttonsMBEMA[6][lang]],
+    choices: [mbema["home"][lang]],
     trial_duration: 5000,
     stimulus: mbema["taskComplete"][lang],
   };

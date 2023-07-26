@@ -1,7 +1,7 @@
 function generateSharedMeasurementsTimeline(lang, short){
   var frontPageShared = {
       type: jsPsychInstructions,
-      pages: [sharedMeasurementsTransitions['surveyMMBB'][lang]],
+      pages: [sharedMeasurementsT['surveyMMBB'][lang]],
       button_label_next: buttons["next"][lang],
       button_label_previous: buttons["previous"][lang],
       show_clickable_nav: true
@@ -9,7 +9,7 @@ function generateSharedMeasurementsTimeline(lang, short){
 
   var between1 = {
       type: jsPsychInstructions,
-      pages: [sharedMeasurementsTransitions['personalBackground'][lang]],
+      pages: [sharedMeasurementsT['personalBackground'][lang]],
       button_label_next: buttons["next"][lang],
       button_label_previous: buttons["previous"][lang],
       show_clickable_nav: true
@@ -17,7 +17,7 @@ function generateSharedMeasurementsTimeline(lang, short){
 
   var between2 = {
       type: jsPsychInstructions,
-      pages: [sharedMeasurementsTransitions['musicalBackground'][lang]],
+      pages: [sharedMeasurementsT['musicalBackground'][lang]],
       button_label_next: buttons["next"][lang],
       button_label_previous: buttons["previous"][lang],
       show_clickable_nav: true
@@ -25,7 +25,7 @@ function generateSharedMeasurementsTimeline(lang, short){
 
   var between3 = {
       type: jsPsychInstructions,
-      pages: [sharedMeasurementsTransitions['musicalPreference'][lang]],
+      pages: [sharedMeasurementsT['musicalPreference'][lang]],
       button_label_next: buttons["next"][lang],
       button_label_previous: buttons["previous"][lang],
       show_clickable_nav: true
@@ -33,7 +33,7 @@ function generateSharedMeasurementsTimeline(lang, short){
 
   var between4 = {
       type: jsPsychInstructions,
-      pages: [sharedMeasurementsTransitions['musicalExperiences'][lang]],
+      pages: [sharedMeasurementsT['musicalExperiences'][lang]],
       button_label_next: buttons["next"][lang],
       button_label_previous: buttons["previous"][lang],
       show_clickable_nav: true
@@ -41,7 +41,7 @@ function generateSharedMeasurementsTimeline(lang, short){
 
   var between5 = {
       type: jsPsychInstructions,
-      pages: [sharedMeasurementsTransitions['perception'][lang]],
+      pages: [sharedMeasurementsT['perception'][lang]],
       button_label_next: buttons["next"][lang],
       button_label_previous: buttons["previous"][lang],
       show_clickable_nav: true
@@ -49,7 +49,7 @@ function generateSharedMeasurementsTimeline(lang, short){
 
   var between6 = {
       type: jsPsychInstructions,
-      pages: [sharedMeasurementsTransitions['singing'][lang]],
+      pages: [sharedMeasurementsT['singing'][lang]],
       button_label_next: buttons["next"][lang],
       button_label_previous: buttons["previous"][lang],
       show_clickable_nav: true
@@ -57,22 +57,10 @@ function generateSharedMeasurementsTimeline(lang, short){
 
   var between7 = {
       type: jsPsychInstructions,
-      pages: [sharedMeasurementsTransitions['dancing'][lang]],
+      pages: [sharedMeasurementsT['dancing'][lang]],
       button_label_next: buttons["next"][lang],
       button_label_previous: buttons["previous"][lang],
       show_clickable_nav: true
-  }
-
-  function generateLikertObject(prompt, likertValues, min, max, required, scale){
-        var rObj = {
-          type: 'likert',
-          prompt: sharedMeasurements[prompt][lang] + scale,
-          likert_scale_min_label: min,
-          likert_scale_max_label: max,
-          likert_scale_values: likertValues,
-          required: required,
-        }
-    return(rObj)
   }
 
   function generateTextObject(prompt, required, columns, rows){
@@ -94,18 +82,8 @@ function generateSharedMeasurementsTimeline(lang, short){
           prompt: prompt, 
           options: options,
           name: prompt, 
-          required: required,
-        }
-    return(rObj)
-  }
-
-  function generateMultiChoiceObject(prompt, options, required){
-        var rObj = {
-          type: 'multi-choice',
-          prompt: sharedMeasurements[prompt][lang], 
-          options: options.map(i=>sharedMeasurements[i][lang]),
-          name: prompt, 
-          required: required
+          required: required, //simu
+          //required: false //simu
         }
     return(rObj)
   }
@@ -140,8 +118,8 @@ function generateSharedMeasurementsTimeline(lang, short){
   //Personal background
   var yearBirth = {
     type: jsPsychSurvey,
-    pages: [["yearOfBirth"].map(i => generateTextObject(personalBackground[i][lang], true, 5, 1))],
-    title: personalBackground['pleaseAnswer'][lang],
+    pages: [["yearOfBirth"].map(i => generateTextObject(sharedMeasurementsT[i][lang], true, 5, 1))],
+    title: sharedMeasurementsT['pleaseAnswer'][lang],
     button_label_next: buttons["continue"][lang],
     button_label_back: buttons["previous"][lang],
     button_label_finish: buttons["continue"][lang],
@@ -152,8 +130,8 @@ function generateSharedMeasurementsTimeline(lang, short){
 
   var languageSpoken1 = {
     type: jsPsychSurvey,
-    pages: [[generateDropdownObject(personalBackground['primaryLanguage'][lang], languages, true)]],
-    title: personalBackground['pleaseAnswer'][lang],
+    pages: [[generateDropdownObject(sharedMeasurementsT['primaryLanguage'][lang], languages, true)]],
+    title: sharedMeasurementsT['pleaseAnswer'][lang],
     button_label_next: buttons["continue"][lang],
     button_label_back: buttons["previous"][lang],
     button_label_finish: buttons["continue"][lang],
@@ -164,8 +142,8 @@ function generateSharedMeasurementsTimeline(lang, short){
 
   var languageSpoken2 = {
     type: jsPsychSurvey,
-    pages: [[generateDropdownObject(personalBackground['secondaryLanguage'][lang], languages, false)]],
-    title: personalBackground['pleaseAnswer'][lang],
+    pages: [[generateDropdownObject(sharedMeasurementsT['secondaryLanguage'][lang], languages, false)]],
+    title: sharedMeasurementsT['pleaseAnswer'][lang],
     button_label_next: buttons["continue"][lang],
     button_label_back: buttons["previous"][lang],
     button_label_finish: buttons["continue"][lang],
@@ -176,7 +154,7 @@ function generateSharedMeasurementsTimeline(lang, short){
 
   var yearBirth = {
     type: jsPsychSurveyText,
-    preamble: "<div id='preamble'>" + personalBackground["yearOfBirth"][lang] + "</div>",
+    preamble: "<div id='preamble'>" + sharedMeasurementsT["yearOfBirth"][lang] + "</div>",
     questions: [
       {prompt: '', name: 'yearOfBirth', required: true},
     ],
@@ -192,8 +170,8 @@ function generateSharedMeasurementsTimeline(lang, short){
 
   var genderSurvey = {
     type: jsPsychSurvey,
-    pages: [[generateDropdownObject(personalBackground["gender"][lang], ["female", "male", "ratherNotSay", "other"].map(i => personalBackground[i][lang]), true)]],
-    title: personalBackground['pleaseAnswer'][lang],
+    pages: [[generateDropdownObject(sharedMeasurementsT["gender"][lang], ["female", "male", "ratherNotSay", "other"].map(i => sharedMeasurementsT[i][lang]), true)]],
+    title: sharedMeasurementsT['pleaseAnswer'][lang],
     button_label_next: buttons["continue"][lang],
     button_label_back: buttons["previous"][lang],
     button_label_finish: buttons["continue"][lang],
@@ -204,8 +182,8 @@ function generateSharedMeasurementsTimeline(lang, short){
 
   var otherGenderTrial = {
     type: jsPsychSurvey,
-    pages: [["genderOther"].map(i => generateTextObject(personalBackground[i][lang], true, 5, 1))],
-    title: personalBackground['pleaseAnswer'][lang],
+    pages: [["genderOther"].map(i => generateTextObject(sharedMeasurementsT[i][lang], true, 5, 1))],
+    title: sharedMeasurementsT['pleaseAnswer'][lang],
     button_label_next: buttons["continue"][lang],
     button_label_back: buttons["previous"][lang],
     button_label_finish: buttons["continue"][lang],
@@ -228,8 +206,8 @@ function generateSharedMeasurementsTimeline(lang, short){
 
   var educationSurvey = {
     type: jsPsychSurvey,
-    pages: [[generateDropdownObject(personalBackground["education"][lang], ["primarySchool", "comprehensiveSchool", "secondaryEducation", "vocationalTraining", "bachelors", "masters", "doctoral", "other"].map(i => personalBackground[i][lang]), true)]],
-    title: personalBackground['pleaseAnswer'][lang],
+    pages: [[generateDropdownObject(sharedMeasurementsT["education"][lang], ["primarySchool", "comprehensiveSchool", "secondaryEducation", "vocationalTraining", "bachelors", "masters", "doctoral", "other"].map(i => sharedMeasurementsT[i][lang]), true)]],
+    title: sharedMeasurementsT['pleaseAnswer'][lang],
     button_label_next: buttons["continue"][lang],
     button_label_back: buttons["previous"][lang],
     button_label_finish: buttons["continue"][lang],
@@ -241,8 +219,8 @@ function generateSharedMeasurementsTimeline(lang, short){
 
   var otherEducationTrial = {
     type: jsPsychSurvey,
-    pages: [["educationOther"].map(i => generateTextObject(personalBackground[i][lang], true, 5, 1))],
-    title: personalBackground['pleaseAnswer'][lang],
+    pages: [["educationOther"].map(i => generateTextObject(sharedMeasurementsT[i][lang], true, 5, 1))],
+    title: sharedMeasurementsT['pleaseAnswer'][lang],
     button_label_next: buttons["continue"][lang],
     button_label_back: buttons["previous"][lang],
     button_label_finish: buttons["continue"][lang],
@@ -265,8 +243,8 @@ function generateSharedMeasurementsTimeline(lang, short){
 
   var educationSurvey = {
     type: jsPsychSurvey,
-    pages: [[generateDropdownObject(personalBackground["education"][lang], ["primarySchool", "comprehensiveSchool", "secondaryEducation", "vocationalTraining", "bachelors", "masters", "doctoral", "other"].map(i => personalBackground[i][lang]), true)]],
-    title: personalBackground['pleaseAnswer'][lang],
+    pages: [[generateDropdownObject(sharedMeasurementsT["education"][lang], ["primarySchool", "comprehensiveSchool", "secondaryEducation", "vocationalTraining", "bachelors", "masters", "doctoral", "other"].map(i => sharedMeasurementsT[i][lang]), true)]],
+    title: sharedMeasurementsT['pleaseAnswer'][lang],
     button_label_next: buttons["continue"][lang],
     button_label_back: buttons["previous"][lang],
     button_label_finish: buttons["continue"][lang],
@@ -276,41 +254,41 @@ function generateSharedMeasurementsTimeline(lang, short){
   };
 
   //Musical background
-  var yesNoMusical = ["notAtAlMusical", "notThatMusical", "aBitMusical", "quiteMusical", "veryMusical"].map(i => musicalBackground[i][lang])
-  var neverTen = ["never", "oneTwoYears", "threeFiveYears", "sixNineYears", "tenMoreYears"].map(i => musicalBackground[i][lang])
-  var neverDaily = ["never", "veryRarely", "monthly", "weekly", "daily"].map(i => musicalBackground[i][lang])
+  var yesNoMusical = ["notAtAlMusical", "notThatMusical", "aBitMusical", "quiteMusical", "veryMusical"].map(i => sharedMeasurementsT[i][lang])
+  var neverTen = ["never", "oneTwoYears", "threeFiveYears", "sixNineYears", "tenMoreYears"].map(i => sharedMeasurementsT[i][lang])
+  var neverDaily = ["never", "veryRarely", "monthly", "weekly", "daily"].map(i => sharedMeasurementsT[i][lang])
 
   var promptsMusical = ['howLongSing', 'howOftenSingBefore', 'howOftenSingNow', 'howMuchTuitionSing', 'howLongInstrumentHobby', 'howOftenPlayHobby', 'howOftenPlayNow', 'howMuchTuitionInstrument', 'howLongDanceHobby', 'howLongDanceHobyBefore', 'howOftenDanceNow', 'howMuchTuitionDance', 'howOftenListenMusicNow', 'howMusical']
   var optionsMusical = [neverTen, neverDaily, neverDaily, neverDaily, neverTen, neverDaily, neverDaily, neverTen, neverTen, neverTen, neverDaily, neverTen, neverDaily, yesNoMusical]
 
-  var questionsMusical = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map(i => generateDropdownObject(musicalBackground[promptsMusical[i]][lang], optionsMusical[i], true))
-  var musicalBackgroundSurvey = questionsMusical.map(i => generateManyDropDowns(i, personalBackground['pleaseAnswer'][lang]))
+  var questionsMusical = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map(i => generateDropdownObject(sharedMeasurementsT[promptsMusical[i]][lang], optionsMusical[i], true))
+  var musicalBackgroundSurvey = questionsMusical.map(i => generateManyDropDowns(i, sharedMeasurementsT['pleaseAnswer'][lang]))
 
   //STOMP
-  var optionsLikeDislike = ["dislikeStrongly", "dislikeModerately", "dislkikeAlittle", "neutral", "likeALittle", "likeModerately", "likeStrongly"].map(i => musicalPreferences[i][lang])
+  var optionsLikeDislike = ["dislikeStrongly", "dislikeModerately", "dislkikeAlittle", "neutral", "likeALittle", "likeModerately", "likeStrongly"].map(i => sharedMeasurementsT[i][lang])
   var genrePreferences = ["blues", "jazz", "classical", "folk", "rock", "alternative", "heavyMetal", "country", "religious", "pop", "rap", "soul", "electronic"]
-  var genreObjects = genrePreferences.map(i => generateDropdownObject(musicalPreferences[i][lang], optionsLikeDislike, true))
+  var genreObjects = genrePreferences.map(i => generateDropdownObject(sharedMeasurementsT[i][lang], optionsLikeDislike, true))
 
-  var stompTrials = genreObjects.map(i => generateManyDropDowns(i, musicalPreferences["howMuchLikeGenre"][lang]))
+  var stompTrials = genreObjects.map(i => generateManyDropDowns(i, sharedMeasurementsT["howMuchLikeGenre"][lang]))
 
   //Barcelona
-  var promptBarcelona = barcelonaReward['question'][lang]
-  var optionsBarcelona = ['completelyDisagree', 'somewhatDisagree', 'neitherDisagreeAgree', 'somewhatAgree', 'completelyAgree'].map(i => barcelonaReward[i][lang])
-  var questionsBarcelonaLong = ['shareMusic', 'freeNoListen', 'listenEmotion', 'musicCompany', 'dontLikeDance', 'musicMakesMeBond', 'informMyself', 'getEmotional', 'musicCalms', 'musicMakesMeDanceOften', 'lookingNewMusic', 'canBecomeTearful', 'likeToSing', 'musicHelpsChill', 'hummingAlong', 'concertConnected', 'spendQuite', 'sometimesFeelChills', 'musicComforts', 'whenIHearTune'].map(i => barcelonaReward[i][lang])
+  var promptBarcelona = sharedMeasurementsT['question'][lang]
+  var optionsBarcelona = ['completelyDisagree', 'somewhatDisagree', 'neitherDisagreeAgree', 'somewhatAgree', 'completelyAgree'].map(i => sharedMeasurementsT[i][lang])
+  var questionsBarcelonaLong = ['shareMusic', 'freeNoListen', 'listenEmotion', 'musicCompany', 'dontLikeDance', 'musicMakesMeBond', 'informMyself', 'getEmotional', 'musicCalms', 'musicMakesMeDanceOften', 'lookingNewMusic', 'canBecomeTearful', 'likeToSing', 'musicHelpsChill', 'hummingAlong', 'concertConnected', 'spendQuite', 'sometimesFeelChills', 'musicComforts', 'whenIHearTune'].map(i => sharedMeasurementsT[i][lang])
 
   var barcelonaObjectsLong = questionsBarcelonaLong.map(i => generateDropdownObject(i, optionsBarcelona, true))
   var barcelonaTrialsLong = barcelonaObjectsLong.map(i => generateManyDropDowns(i, promptBarcelona))
 
-  var questionsBarcelonaShort = ['shareMusic', 'musicMakesMeDanceOften', 'lookingNewMusic', 'musicHelpsChill', 'sometimesFeelChills'].map(i => barcelonaReward[i][lang])
+  var questionsBarcelonaShort = ['shareMusic', 'musicMakesMeDanceOften', 'lookingNewMusic', 'musicHelpsChill', 'sometimesFeelChills'].map(i => sharedMeasurementsT[i][lang])
 
   var barcelonaObjectsShort = questionsBarcelonaShort.map(i => generateDropdownObject(i, optionsBarcelona, true))
   var barcelonaTrialsShort = barcelonaObjectsShort.map(i => generateManyDropDowns(i, promptBarcelona))
 
   //BMMR
-  var bmmrPrompt = bmmr['prompt'][lang]
-  var optionsBMMR = ['completelyDisagree', 'somewhatDisagree', 'neitherDisagreeAgree', 'somewhatAgree', 'completelyAgree'].map(i => bmmr[i][lang])
-  var bmmrQuestionsLong = ['tiredOut', 'musicHelps', 'listenMusic', 'backgroundAtmosphere', 'listenPerk', 'reallyAngry', 'feelFantastic', 'forgetWorries', 'magnificentExperiences', 'whenBusy', 'musicHelped', 'feelingSadComforts', 'everythingSad', 'whenStressful'].map(i => bmmr[i][lang])
-  var bmmrQuestionsShort = ['backgroundAtmosphere', 'listenPerk', 'forgetWorries', 'magnificentExperiences', 'musicHelped', 'feelingSadComforts', 'everythingSad'].map(i => bmmr[i][lang])
+  var bmmrPrompt = sharedMeasurementsT['prompt'][lang]
+  var optionsBMMR = ['completelyDisagree', 'somewhatDisagree', 'neitherDisagreeAgree', 'somewhatAgree', 'completelyAgree'].map(i => sharedMeasurementsT[i][lang])
+  var bmmrQuestionsLong = ['tiredOut', 'musicHelps', 'listenMusic', 'backgroundAtmosphere', 'listenPerk', 'reallyAngry', 'feelFantastic', 'forgetWorries', 'magnificentExperiences', 'whenBusy', 'musicHelped', 'feelingSadComforts', 'everythingSad', 'whenStressful'].map(i => sharedMeasurementsT[i][lang])
+  var bmmrQuestionsShort = ['backgroundAtmosphere', 'listenPerk', 'forgetWorries', 'magnificentExperiences', 'musicHelped', 'feelingSadComforts', 'everythingSad'].map(i => sharedMeasurementsT[i][lang])
 
   var bmmrObjectsShort = bmmrQuestionsShort.map(i => generateDropdownObject(i, optionsBMMR, true))
   var bmmrTrialsShort = bmmrObjectsShort.map(i => generateManyDropDowns(i, bmmrPrompt))
@@ -319,22 +297,12 @@ function generateSharedMeasurementsTimeline(lang, short){
   var bmmrTrialsLong = bmmrObjectsLong.map(i => generateManyDropDowns(i, bmmrPrompt))
 
   //Goldsmiths
-  //Perception
-  var optionsGoldsmith = ['completelyDisagree', 'somewhatDisagree', 'neitherDisagreeAgree', 'somewhatAgree', 'completelyAgree'].map(i => goldsmithPerception[i][lang])
-  var goldsmithPerceptionPrompt = goldsmithPerception['prompt'][lang]
-  var goldsmithPerceptionQuestionsLong = ["easyControlMovement", "ifAskDance", "whenDance", "easyLearn", "wannaDance"].map(i => goldsmithPerception[i][lang])
-  var goldsmithPerceptionQuestionsShort = ["easyControlMovement", "ifAskDance", "whenDance"].map(i => goldsmithPerception[i][lang])
-
-  var goldsmithPerceptionObjectsShort = goldsmithPerceptionQuestionsShort.map(i => generateDropdownObject(i, optionsGoldsmith, true))
-  var goldsmithPerceptionTrialsShort = goldsmithPerceptionObjectsShort.map(i => generateManyDropDowns(i, goldsmithPerceptionPrompt))
-
-  var goldsmithPerceptionObjectsLong = goldsmithPerceptionQuestionsLong.map(i => generateDropdownObject(i, optionsGoldsmith, true))
-  var goldsmithPerceptionTrialsLong = goldsmithPerceptionObjectsLong.map(i => generateManyDropDowns(i, goldsmithPerceptionPrompt))
+  var optionsGoldsmith = ['completelyDisagree', 'somewhatDisagree', 'neitherDisagreeAgree', 'somewhatAgree', 'completelyAgree'].map(i => sharedMeasurementsT[i][lang])
 
   //Singing
-  var goldsmithSingingPrompt = goldsmithSinging['prompt'][lang]
-  var goldsmithSingingQuestionsLong = ["songDontKnow", "ableHit", "likeSinging", "canSing", "afterHearing"].map(i => goldsmithSinging[i][lang])
-  var goldsmithSingingQuestionsShort = ["songDontKnow", "ableHit", "likeSinging"].map(i => goldsmithSinging[i][lang])
+  var goldsmithSingingPrompt = sharedMeasurementsT['prompt'][lang]
+  var goldsmithSingingQuestionsLong = ["songDontKnow", "ableHit", "likeSinging", "canSing", "afterHearing"].map(i => sharedMeasurementsT[i][lang])
+  var goldsmithSingingQuestionsShort = ["songDontKnow", "ableHit", "likeSinging"].map(i => sharedMeasurementsT[i][lang])
 
   var goldsmithSingingObjectsLong = goldsmithSingingQuestionsLong.map(i => generateDropdownObject(i, optionsGoldsmith, true))
   var goldsmithSingingTrialsLong = goldsmithSingingObjectsLong.map(i => generateManyDropDowns(i, goldsmithSingingPrompt))
@@ -342,10 +310,21 @@ function generateSharedMeasurementsTimeline(lang, short){
   var goldsmithSingingObjectsShort = goldsmithSingingQuestionsShort.map(i => generateDropdownObject(i, optionsGoldsmith, true))
   var goldsmithSingingTrialsShort = goldsmithSingingObjectsShort.map(i => generateManyDropDowns(i, goldsmithSingingPrompt))
 
+  //Perception
+  var goldsmithPerceptionPrompt = sharedMeasurementsT['prompt'][lang]
+  var goldsmithPerceptionQuestionsLong = ["iCanTell", "iCanTellTune", "iFind", "haveTrouble", "whenISing"].map(i => sharedMeasurementsT[i][lang])
+  var goldsmithPerceptionQuestionsShort = ["iCanTell", "iCanTellTune", "iFind"].map(i => sharedMeasurementsT[i][lang])
+
+  var goldsmithPerceptionObjectsLong = goldsmithPerceptionQuestionsLong.map(i => generateDropdownObject(i, optionsGoldsmith, true))
+  var goldsmithPerceptionTrialsLong = goldsmithPerceptionObjectsLong.map(i => generateManyDropDowns(i, goldsmithPerceptionPrompt))
+
+  var goldsmithPerceptionObjectsShort = goldsmithPerceptionQuestionsShort.map(i => generateDropdownObject(i, optionsGoldsmith, true))
+  var goldsmithPerceptionTrialsShort = goldsmithPerceptionObjectsShort.map(i => generateManyDropDowns(i, goldsmithPerceptionPrompt))
+  
   //Goldsmith dancing
-  var goldsmithDancingPrompt = goldsmithDancing['prompt'][lang]
-  var goldsmithDancingQuestionsLong = ["easyControl", "ifSomeone", "whenDance", "iFind", "greatTrack"].map(i => goldsmithDancing[i][lang])
-  var goldsmithDancingQuestionsShort = ["easyControl", "ifSomeone", "whenDance"].map(i => goldsmithDancing[i][lang])
+  var goldsmithDancingPrompt = sharedMeasurementsT['prompt'][lang]
+  var goldsmithDancingQuestionsLong = ["easyControl", "ifSomeone", "whenDance", "iFind", "greatTrack"].map(i => sharedMeasurementsT[i][lang])
+  var goldsmithDancingQuestionsShort = ["easyControl", "ifSomeone", "whenDance"].map(i => sharedMeasurementsT[i][lang])
 
   var goldsmithDancingObjectsLong = goldsmithDancingQuestionsLong.map(i => generateDropdownObject(i, optionsGoldsmith, true))
   var goldsmithDancingTrialsLong = goldsmithDancingObjectsLong.map(i => generateManyDropDowns(i, goldsmithDancingPrompt))
@@ -424,6 +403,7 @@ function generateSharedMeasurementsTimeline(lang, short){
                       between7,
                       goldsmithDancingTrialsLong,
                       messageFinishSharedMeasures].flat(100)
+
   if(short){
     return(timelineShort)
   } else{

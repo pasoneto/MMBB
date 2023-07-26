@@ -123,7 +123,7 @@
       }
       var instructionsPart1 = {
         type: jsPsychInstructions,
-        pages: emotionTranslations['instructions1'].map(i => i[lang]),
+        pages: ["instructions1", "instructions2"].map(i => emotionTranslations[i][lang]),
         button_label_next: buttons["next"][lang],
         button_label_previous: buttons["previous"][lang],
         allow_backward: true,
@@ -131,7 +131,7 @@
       }
       var test_ending = {
         type: jsPsychInstructions,
-        pages: emotionTranslations['instructions2'].map(i => i[lang]),
+        pages: ["instructions3"].map(i => emotionTranslations[i][lang]),
         button_label_next: buttons["next"][lang],
         show_clickable_nav: true,
         allow_backward: false,
@@ -287,7 +287,7 @@
 
       var instructionsPart2 = {
         type: jsPsychInstructions,
-        pages: emotionTranslations['instructions3'].map(i => i[lang]),
+        pages: ["instructions4", "instructions5"].map(i => emotionTranslations[i][lang]),
         button_label_next: buttons["next"][lang],
         button_label_previous: buttons["previous"][lang],
         allow_backward: true,
@@ -379,7 +379,7 @@
       var qGender = {
         type: 'multi-choice',
         prompt: emotionTranslations['gender'][lang], 
-        options: emotionTranslations['genderOptions'].map(i => i[lang]),
+        options: ["genderOption1", "genderOption2", "genderOption3", "genderOption4"].map(i => emotionTranslations[i][lang]),
         name: 'gender', 
         required: true
       }

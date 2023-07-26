@@ -1,0 +1,1 @@
+var taskIcons = {"movement":{"eng":"Movement","fi":"Liike"},"singing":{"eng":"Singing","fi":"Laulaminen"},"survey":{"eng":"Survey","fi":"Kysely"},"emotion":{"eng":"Emotion","fi":"Tunteet"},"MBEMA":{"eng":"Perception","fi":"Havaitseminen"},"rhythm":{"eng":"Rhythm","fi":"Rytmi"}}

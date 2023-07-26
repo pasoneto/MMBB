@@ -1,0 +1,11 @@
+#jspsych-content {
+    display: flex;
+    flex-flow: column;
+    height: 70vh;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    color: black;
+    max-height: inherit;
+    width: 80%;
+}
