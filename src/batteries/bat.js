@@ -193,11 +193,7 @@ function generateBatTimeline(lang){
   var six = [loadTrial6, trialBeat, howSatisfiedBeat, howDifficult]
 
   //Step by step
-  //var batTimeline = [frontPageInstructions, zero, one, two, three, four, five, six] simu
+  var batTimeline = [frontPageInstructions, zero, one, two, three, four, five, six]
 
-  var batTimeline = [one]
-
-  //Original
-  //var batTimeline = [frontPage, instruction2, loadTrial0, trialBeat, instruction3, loadTrial1, trialBeat, betweenTrial, loadTrial2, trialBeat, betweenTrial, loadTrial3, trialBeat, betweenTrial, loadTrial4, trialBeat, betweenTrial, loadTrial5, trialBeat, betweenTrial, loadTrial6, trialBeat];
   return(batTimeline)
 }

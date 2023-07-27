@@ -2,40 +2,40 @@ function generateTappingTimeline(lang){
   var frontPage = {
       type: jsPsychInstructions,
       pages: [tapping["openPage"][lang]],
-      button_label_next: "Next",
-      button_label_previous: "Previous",
+      button_label_next: buttons["next"][lang],
+      button_label_previous: buttons["previous"][lang],
       show_clickable_nav: true,
   }
 
   var instruction0 = {
       type: jsPsychInstructions,
       pages: [1, 2, 3].map(i=> tapping["instruction" + i][lang]),
-      button_label_next: "Next",
-      button_label_previous: "Previous",
+      button_label_next: buttons["next"][lang],
+      button_label_previous: buttons["previous"][lang],
       show_clickable_nav: true,
   }
 
   var instruction1 = {
       type: jsPsychInstructions,
       pages: [4, 5, 6].map(i=> tapping["instruction" + i][lang]),
-      button_label_next: "Next",
-      button_label_previous: "Previous",
+      button_label_next: buttons["next"][lang],
+      button_label_previous: buttons["previous"][lang],
       show_clickable_nav: true,
   }
 
   var instruction2 = {
       type: jsPsychInstructions,
       pages: [7, 8, 9].map(i=> tapping["instruction" + i][lang]),
-      button_label_next: "Next",
-      button_label_previous: "Previous",
+      button_label_next: buttons["next"][lang],
+      button_label_previous: buttons["previous"][lang],
       show_clickable_nav: true,
   }
 
   var instruction3 = {
       type: jsPsychInstructions,
       pages: [10, 11].map(i=> tapping["instruction" + i][lang]),
-      button_label_next: "Next",
-      button_label_previous: "Previous",
+      button_label_next: buttons["next"][lang],
+      button_label_previous: buttons["previous"][lang],
       show_clickable_nav: true,
   }
 
@@ -131,6 +131,7 @@ function generateTappingTimeline(lang){
       prompt: recurring["howEasy"][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + recurring["veryEasy"][lang] + "</div><div id='rightLabel'>" + recurring["veryHard"][lang] + "</div></div>",  
       labels: [1, 2, 3, 4, 5].map(i => "<div id='labelLikert'>" + i + "</div>"),
     }],
+    button_label: recurring['continue'][lang],
     randomize_question_order: false,
     on_load: function(){
       document.querySelector(".jspsych-survey-likert-statement").style.fontSize = '1em'
@@ -149,8 +150,7 @@ function generateTappingTimeline(lang){
     }
   };
 
-  //var tappingTimeline = [[frontPage, preloadSongs2, instruction0, trialTapping0, messageEndTask, howDifficult, instruction1, trialTapping1, messageEndTask, howDifficult, instruction3, trialTapping3, howDifficult]]; //simu
-  var tappingTimeline = [[preloadSongs2, trialTapping0]]
+  var tappingTimeline = [[frontPage, preloadSongs2, instruction0, trialTapping0, messageEndTask, howDifficult, instruction1, trialTapping1, messageEndTask, howDifficult, instruction3, trialTapping3, howDifficult]];
 
   return(tappingTimeline)
 }
