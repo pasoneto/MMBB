@@ -69,6 +69,7 @@ function generateBatTimeline(lang){
       prompt: beatProduction["howSatisfied"][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + recurring["notAtAll"][lang] + "</div><div id='rightLabel'>" + recurring["veryMuch"][lang] + "</div></div>",  
       labels: [1, 2, 3, 4, 5].map(i => "<div id='labelLikert'>" + i + "</div>"),
     }],
+    button_label: recurring['continue'][lang],
     randomize_question_order: false,
     on_load: function(){
       document.querySelector(".jspsych-survey-likert-statement").style.fontSize = '1em'
@@ -174,6 +175,7 @@ function generateBatTimeline(lang){
       prompt: recurring["howEasy"][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + recurring["veryEasy"][lang] + "</div><div id='rightLabel'>" + recurring["veryHard"][lang] + "</div></div>",  
       labels: [1, 2, 3, 4, 5].map(i => "<div id='labelLikert'>" + i + "</div>"),
     }],
+    button_label: recurring['continue'][lang],
     randomize_question_order: false,
     on_load: function(){
       document.querySelector(".jspsych-survey-likert-statement").style.fontSize = '1em'

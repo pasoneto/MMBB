@@ -143,6 +143,7 @@
       var jsPsych = initJsPsych({
         extensions: [],
         show_progress_bar: true,
+        message_progress_bar: recurring["completionProgress"][lang],
         on_finish: function() {
 
           var userID = jatos.urlQueryParameters.user
@@ -176,7 +177,7 @@
 
     var instruction0 = {
         type: jsPsychInstructions,
-        pages: [singing[1].map(i=> i[lang])],
+        pages: [singing["welcome"][lang]],
         button_label_next: buttons["next"][lang],
         button_label_previous: buttons["previous"][lang],
         show_clickable_nav: true
@@ -190,7 +191,7 @@
     var instruction1 = {
       // test audio
       type: jsPsychHtmlButtonResponse,
-      stimulus: singing[2].map(i=> i[lang]),
+      stimulus: singing["inThisTask"][lang],
       choices: [buttons["home"][lang], buttons["next"][lang]],
       on_finish: function(data) {
         testaudio.pause(); testaudio.currentTime=0;
@@ -204,8 +205,8 @@
 
   var initializeMic = {
     type: jsPsychInitializeMicrophone,
-    device_select_message: "<div id='selectMicText'>" + singing[3][0][lang] + "</div>",
-	  button_label: singing[3][1][lang],
+    device_select_message: "<div id='selectMicText'>" + singing["pleaseSelect"][lang] + "</div>",
+	  button_label: singing["selectThis"][lang],
     on_start: function(){
       sleep(2000).then(r => {
         document.getElementById("btn-select-mic").click()
@@ -216,7 +217,7 @@
 	var testrecord1 = {
 		// record audio portion start
 		type: jsPsychHtmlButtonResponse,
-		stimulus: singing[4][0][lang],
+		stimulus: singing["letsCheck"][lang],
 		choices:[buttons["record"][lang]],
 		prompt: "&nbsp;",
 		button_html: '<button class="jspsych-singing-btn"><img id="recButton" src="./images/imagesSinging/rec-btn.svg"></button>',
@@ -225,11 +226,11 @@
     var testrecord2_orig = {
         type: jsPsychHtmlAudioResponse,
         audiostimulus: '',
-        stimulus: singing[4][8][lang],
+        stimulus: singing["recording4"][lang],
         //recording_duration: 5000, //simu
         recording_duration: 1000,
-        record_again_button_label:singing[4][2][lang],
-        record_again_stimulus:singing[4][9][lang],
+        record_again_button_label:singing["recordAgain"][lang],
+        record_again_stimulus:singing["hereYouMay"][lang],
         allow_playback: true,
         accept_button_label:buttons["next"][lang],
         done_button_label:buttons["next"][lang],
@@ -243,7 +244,7 @@
    var testrecord2 = {
         type: jsPsychHtmlAudioResponse,
         audiostimulus: '',
-        stimulus: singing[4][8][lang],
+        stimulus: singing["recording4"][lang],
         //recording_duration: 5000, //simu
         recording_duration: 1000,
         allow_playback: false,
@@ -266,8 +267,8 @@
 		on_load: function() {
 			window.recaudio = new Audio(jsPsych.data.get().last(1).values()[0].audio_url);
 		},
-		prompt: singing[4][11][lang],
-    choices: [buttons["home"][lang], singing[4][2][lang], buttons["next"][lang]],
+		prompt: singing["hereYouMay2"][lang],
+    choices: [buttons["home"][lang], singing["recordAgain"][lang], buttons["next"][lang]],
     on_load: function(){
       var pE = document.getElementById("jspsych-audio-button-response-button-1")
       pE.querySelector(".jspsych-tapping-btn").style.backgroundColor = "purple"
@@ -314,7 +315,7 @@
 
   var testrecord2b = {
 		type: jsPsychHtmlButtonResponse,
-		stimulus: ()=>{ return singing[4][11][lang] + "<br>url:" + jsPsych.data.get().last(2).values()[0].audio_url; },
+		stimulus: ()=>{ return singing["hereYouMay2"][lang] + "<br>url:" + jsPsych.data.get().last(2).values()[0].audio_url; },
 		choices: [buttons["home"][lang], buttons["next"][lang]],
 		on_start: function() {
 			window.recaudio_src.src=jsPsych.data.get().last(2).values()[0].audio_url;
@@ -337,7 +338,7 @@
 	var testrecord3 = {
 		// test audio
 		type: jsPsychInstructions,
-		pages: [singing[4][4][lang]],
+		pages: [singing["yourMicrophone"][lang]],
 		button_label_next: buttons["next"][lang],
 		button_label_previous: buttons["previous"][lang],
 		show_clickable_nav: true,
@@ -347,7 +348,7 @@
 	var voicesel1 = {
 		// voice selection intro
 		type: jsPsychInstructions,
-		pages: [singing[5][0][lang]],
+		pages: [singing["shortSinging"][lang]],
 		button_label_next: buttons["next"][lang],
 		button_label_previous: buttons["previous"][lang],
 		allow_backward: false,
@@ -357,8 +358,8 @@
 	var voicesel2 = {
 		// voice selection female/male/child
 		type: jsPsychHtmlButtonResponse,
-		stimulus: singing[6][0][lang],
-		choices: [singing[6][1][lang],singing[6][2][lang],singing[6][3][lang]],
+		stimulus: singing["firstLetsType"][lang],
+		choices: [singing["woman"][lang],singing["man"][lang],singing["child"][lang]],
 		prompt: '',
     on_load: function(){
       var pE = document.getElementById("jspsych-html-button-response-btngroup")
@@ -406,7 +407,7 @@
 	var voicesel3 = {
 		// voice selection playback
 		type: jsPsychInstructions,
-		pages: [singing[6][4][lang]],
+		pages: [singing["byPressing"][lang]],
 		button_label_next: buttons["next"][lang],
 		button_label_previous: buttons["previous"][lang],
 		show_clickable_nav: true,
@@ -438,8 +439,8 @@
 	var voicesel4 = {
 		// voice selection low/mid/high
 		type: jsPsychHtmlButtonResponse,
-		stimulus: singing[6][5][lang],
-		choices: [singing[6][6][lang],singing[6][7][lang],singing[6][8][lang]],
+		stimulus: singing["whichRange"][lang],
+		choices: [singing["low"][lang],singing["mild"][lang],singing["high"][lang]],
 		prompt: '',
 		on_load: function () { 
       var pE = document.getElementById("jspsych-html-button-response-btngroup")
@@ -469,7 +470,7 @@
 	var toneintro1 = {
 		// tone singing intro
 		type: jsPsychInstructions,
-		pages: [singing[7][0][lang]],
+		pages: [singing["singBack"][lang]],
 		button_label_next: buttons["next"][lang],
 		button_label_previous: buttons["previous"][lang],
 		allow_backward: false,
@@ -482,7 +483,7 @@
 	var toneintro2 = {
 		// tone singing intro with playback
 		type: jsPsychInstructions,
-		pages: [singing[7][1][lang]],
+		pages: [singing["practiceRound"][lang]],
 		button_label_next: buttons["next"][lang],
 		button_label_previous: buttons["previous"][lang],
 		show_clickable_nav: true,
@@ -500,7 +501,7 @@
 	  { 
 		// record audio
 		type: jsPsychHtmlButtonResponse,
-		stimulus: singing[7][2][lang],
+		stimulus: singing["toneFirst"][lang],
 		choices:[buttons["record"][lang]],
 		prompt: "&nbsp;",
 		button_html: '<button class="jspsych-singing-btn"><img id="recButton" src="./images/imagesSinging/rec-btn.svg"></button>',
@@ -512,12 +513,12 @@
 	  },
 	  {
 	  type: jsPsychHtmlAudioResponse,
-        stimulus: singing[4][1][lang],
+        stimulus: singing["recording"][lang],
         //recording_duration: 5000, //simu
         recording_duration: 1000,
-		record_again_button_label:singing[4][2][lang],
+		record_again_button_label:singing["recordAgain"][lang],
         allow_playback: false,
-		accept_button_html:singing[4][3][lang],
+		accept_button_html:singing["recordingOK"][lang],
 		done_button_label:buttons["next"][lang],
 		on_load: function() {
 		},
@@ -559,9 +560,10 @@
   var tone_feedback = {
     type: jsPsychSurveyLikert,
     questions: [{
-      prompt: singing[8][0][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + singing[8][1][lang] + "</div><div id='rightLabel'>" + singing[8][2][lang] + "</div></div>",  
+      prompt: singing["thankYouSingingDifficult"][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + singing["difficult"][lang] + "</div><div id='rightLabel'>" + singing["easy"][lang] + "</div></div>",  
       labels: [1, 2, 3, 4, 5].map(i => "<div id='labelLikert'>" + i + "</div>"),
     }],
+    button_label: recurring['continue'][lang],
     randomize_question_order: false,
     on_finish: function(data){
 			jsPsych.data.get().addToLast({id:'tone',wav:''});
@@ -574,7 +576,7 @@
 	var tonerepintro1 = {
 		// tone singing intro
 		type: jsPsychInstructions,
-		pages: [singing[9][0][lang]],
+		pages: [singing["singAlongIndividual"][lang]],
 		button_label_next: buttons["next"][lang],
 		button_label_previous: buttons["previous"][lang],
 		show_clickable_nav: true,
@@ -587,7 +589,7 @@
 	var tonerepintro2 = {
 		// tone singing intro with playback
 		type: jsPsychInstructions,
-		pages: [singing[9][1][lang]],
+		pages: [singing["listenFirstPractice"][lang]],
 		button_label_next: buttons["next"][lang],
 		button_label_previous: buttons["previous"][lang],
 		show_clickable_nav: true,
@@ -606,7 +608,7 @@
 	  { 
 		// record audio
 		type: jsPsychHtmlButtonResponse,
-		stimulus: singing[9][2][lang],
+		stimulus: singing["toneListenFirst"][lang],
 		choices:[buttons["record"][lang]],
 		prompt: "&nbsp;",
 		button_html: '<button class="jspsych-singing-btn"><img id="recButton" src="./images/imagesSinging/rec-btn.svg"></button>',
@@ -617,12 +619,12 @@
 	  },
 	  {
 	  type: jsPsychHtmlAudioResponse,
-        stimulus: singing[4][1][lang],
+        stimulus: singing["recording"][lang],
         //recording_duration: 7000, //simu
         recording_duration: 1000,
-		record_again_button_label:singing[4][2][lang],
+		record_again_button_label:singing["recordAgain"][lang],
         allow_playback: false,
-		accept_button_html:singing[4][3][lang],
+		accept_button_html:singing["recordingOK"][lang],
 		done_button_label:buttons["next"][lang],
 		on_load: function() {
 		},
@@ -673,9 +675,10 @@
   var tonerep_feedback = {
     type: jsPsychSurveyLikert,
     questions: [{
-      prompt: singing[8][0][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + singing[8][1][lang] + "</div><div id='rightLabel'>" + singing[8][2][lang] + "</div></div>",  
+      prompt: singing["thankYouSingingDifficult"][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + singing["difficult"][lang] + "</div><div id='rightLabel'>" + singing["easy"][lang] + "</div></div>",  
       labels: [1, 2, 3, 4, 5].map(i => "<div id='labelLikert'>" + i + "</div>"),
     }],
+    button_label: recurring['continue'][lang],
     randomize_question_order: false,
     on_finish: function(data){
 			jsPsych.data.get().addToLast({id:'tonerep',wav:''});
@@ -689,7 +692,7 @@
 	var toneseqintro1 = {
 		// tone singing intro
 		type: jsPsychInstructions,
-		pages: [singing[10][0][lang]],
+		pages: [singing["nextTaskSingBack"][lang]],
 		button_label_next: buttons["next"][lang],
 		button_label_previous: buttons["previous"][lang],
 		show_clickable_nav: true,
@@ -702,7 +705,7 @@
 	var toneseqintro2 = {
 		// tone singing intro with playback
 		type: jsPsychInstructions,
-		pages: [singing[10][1][lang]],
+		pages: [singing["practiceMelody"][lang]],
 		button_label_next: buttons["next"][lang],
 		button_label_previous: buttons["previous"][lang],
 		show_clickable_nav: true,
@@ -720,7 +723,7 @@
 	  { 
 		// record audio
 		type: jsPsychHtmlButtonResponse,
-		stimulus: singing[10][2][lang],
+		stimulus: singing["melodyListenFirst"][lang],
 		choices:[buttons["record"][lang]],
 		prompt: "&nbsp;",
 		button_html: '<button class="jspsych-singing-btn"><img id="recButton" src="./images/imagesSinging/rec-btn.svg"></button>',
@@ -731,12 +734,12 @@
 	  },
 	  {
 	  type: jsPsychHtmlAudioResponse,
-        stimulus: singing[4][5][lang],
+        stimulus: singing["recording2"][lang],
         //recording_duration: 15000, //simu
         recording_duration: 1000,
-		    record_again_button_label:singing[4][2][lang],
+		    record_again_button_label:singing["recordAgain"][lang],
         allow_playback: false,
-        accept_button_html:singing[4][3][lang],
+        accept_button_html:singing["recordingOK"][lang],
         done_button_label:buttons["next"][lang],
         on_load: function() {
         },
@@ -780,9 +783,10 @@
   var toneseq_feedback = {
     type: jsPsychSurveyLikert,
     questions: [{
-      prompt: singing[8][0][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + singing[8][1][lang] + "</div><div id='rightLabel'>" + singing[8][2][lang] + "</div></div>",  
+      prompt: singing["thankYouSingingDifficult"][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + singing["difficult"][lang] + "</div><div id='rightLabel'>" + singing["easy"][lang] + "</div></div>",  
       labels: [1, 2, 3, 4, 5].map(i => "<div id='labelLikert'>" + i + "</div>"),
     }],
+    button_label: recurring['continue'][lang],
     randomize_question_order: false,
     on_finish: function(data){
 			jsPsych.data.get().addToLast({id:'toneseq',wav:''});
@@ -796,7 +800,7 @@
 	var toneseqrepintro1 = {
 		// tone singing intro
 		type: jsPsychInstructions,
-		pages: [singing[11][0][lang]],
+		pages: [singing["shortMelodySing"][lang]],
 		button_label_next: buttons["next"][lang],
 		button_label_previous: buttons["previous"][lang],
 		show_clickable_nav: true,
@@ -809,7 +813,7 @@
 	var toneseqrepintro2 = {
 		// tone singing intro with playback
 		type: jsPsychInstructions,
-		pages: [singing[11][1][lang]],
+		pages: [singing["practiceShortMelody"][lang]],
 		button_label_next: buttons["next"][lang],
 		button_label_previous: buttons["previous"][lang],
 		show_clickable_nav: true,
@@ -828,7 +832,7 @@
 	  { 
 		// record audio
 		type: jsPsychHtmlButtonResponse,
-		stimulus: singing[11][2][lang],
+		stimulus: singing["listenFirstShortMelody"][lang],
 		choices:[buttons["record"][lang]],
 		prompt: "&nbsp;",
 		button_html: '<button class="jspsych-singing-btn"><img id="recButton" src="./images/imagesSinging/rec-btn.svg"></button>',
@@ -839,12 +843,12 @@
 	  },
 	  {
 	  type: jsPsychHtmlAudioResponse,
-        stimulus: singing[4][5][lang],
+        stimulus: singing["recording2"][lang],
         //recording_duration: 20000, //simu
         recording_duration: 1000,
-		record_again_button_label:singing[4][2][lang],
+		record_again_button_label:singing["recordAgain"][lang],
         allow_playback: false,
-		accept_button_html:singing[4][3][lang],
+		accept_button_html:singing["recordingOK"][lang],
 		done_button_label:buttons["next"][lang],
 		on_load: function() {
 		},
@@ -898,9 +902,10 @@
   var toneseqrep_feedback = {
     type: jsPsychSurveyLikert,
     questions: [{
-      prompt: singing[8][0][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + singing[8][1][lang] + "</div><div id='rightLabel'>" + singing[8][2][lang] + "</div></div>",  
+      prompt: singing["thankYouSingingDifficult"][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + singing["difficult"][lang] + "</div><div id='rightLabel'>" + singing["easy"][lang] + "</div></div>",  
       labels: [1, 2, 3, 4, 5].map(i => "<div id='labelLikert'>" + i + "</div>"),
     }],
+    button_label: recurring['continue'][lang],
     randomize_question_order: false,
     on_finish: function(data){
 			jsPsych.data.get().addToLast({id:'toneseqrep',wav:''});
@@ -914,7 +919,7 @@
 	var famsong_memory_intro1 = {
 		// familiar song singing intro
 		type: jsPsychInstructions,
-		pages: [singing[12][0][lang]],
+		pages: [singing["nextTaskHappyBirthday"][lang]],
 		button_label_next: buttons["next"][lang],
 		button_label_previous: buttons["previous"][lang],
 		show_clickable_nav: true,
@@ -924,7 +929,7 @@
 	var famsong_memory_intro2 = {
 		// familiar song singing intro
 		type: jsPsychHtmlButtonResponse,
-		stimulus: [singing[12][1][lang]],
+		stimulus: [singing["lyricsAre"][lang]],
 		choices:[buttons["record"][lang]],
 		prompt: "&nbsp;",
 		button_html: '<button class="jspsych-singing-btn"><img id="recButton" src="./images/imagesSinging/rec-btn.svg"></button>',
@@ -932,12 +937,12 @@
 	
 	var famsong_memory_trial = {
 		type:jsPsychHtmlAudioResponse,
-        stimulus: singing[4][10][lang],
+        stimulus: singing["recording5"][lang],
         //recording_duration: 30000, //simu
         recording_duration: 1000,
-		    record_again_button_label:singing[4][2][lang],
+		    record_again_button_label:singing["recordAgain"][lang],
         allow_playback: false,
-        accept_button_html:singing[4][3][lang],
+        accept_button_html:singing["recordingOK"][lang],
         done_button_label:buttons["next"][lang],	
         on_start: function() {
           window.audio_pos=0;
@@ -957,9 +962,10 @@
   var famsong_memory_feedback = {
     type: jsPsychSurveyLikert,
     questions: [{
-      prompt: singing[8][0][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + singing[8][1][lang] + "</div><div id='rightLabel'>" + singing[8][2][lang] + "</div></div>",  
+      prompt: singing["thankYouSingingDifficult"][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + singing["difficult"][lang] + "</div><div id='rightLabel'>" + singing["easy"][lang] + "</div></div>",  
       labels: [1, 2, 3, 4, 5].map(i => "<div id='labelLikert'>" + i + "</div>"),
     }],
+    button_label: recurring['continue'][lang],
     randomize_question_order: false,
     on_finish: function(data){
 			jsPsych.data.get().addToLast({id:'famsong_memory',wav:''});
@@ -973,7 +979,7 @@
 	var famsong_along_intro1 = {
 		// familiar song singing intro
 		type: jsPsychInstructions,
-		pages: [singing[13][0][lang]],
+		pages: [singing["nextTaskSingAlongHappyBirthday"][lang]],
 		button_label_next: buttons["next"][lang],
 		button_label_previous: buttons["previous"][lang],
 		show_clickable_nav: true,
@@ -983,7 +989,7 @@
 	var famsong_along_intro2 = {
 		// familiar song singing rec start
 		type: jsPsychHtmlButtonResponse,
-		stimulus: [singing[13][1][lang]],
+		stimulus: [singing["lyricsAreSingAlong"][lang]],
 		choices:[buttons["record"][lang]],
 		prompt: "&nbsp;",
 		button_html: '<button class="jspsych-singing-btn"><img id="recButton" src="./images/imagesSinging/rec-btn.svg"></button>',
@@ -991,12 +997,12 @@
 	
 	var famsong_along_trial = {
 		type:jsPsychHtmlAudioResponse,
-        stimulus: singing[4][10][lang],
+        stimulus: singing["recording5"][lang],
         //recording_duration: 30000, //simu
         recording_duration: 1000,
-		    record_again_button_label:singing[4][2][lang],
+		    record_again_button_label:singing["recordAgain"][lang],
         allow_playback: false,
-        accept_button_html:singing[4][3][lang],
+        accept_button_html:singing["recordingOK"][lang],
         done_button_label:buttons["next"][lang],
         on_load: function() {},
         on_start: function() {
@@ -1025,9 +1031,10 @@
   var famsong_along_feedback = {
     type: jsPsychSurveyLikert,
     questions: [{
-      prompt: singing[8][0][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + singing[8][1][lang] + "</div><div id='rightLabel'>" + singing[8][2][lang] + "</div></div>",  
+      prompt: singing["thankYouSingingDifficult"][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + singing["difficult"][lang] + "</div><div id='rightLabel'>" + singing["easy"][lang] + "</div></div>",  
       labels: [1, 2, 3, 4, 5].map(i => "<div id='labelLikert'>" + i + "</div>"),
     }],
+    button_label: recurring['continue'][lang],
     randomize_question_order: false,
     on_finish: function(data){
 			jsPsych.data.get().addToLast({id:'famsong_along',wav:'./songs/singing/' + famsong + '/' + voicetype + '/' + voicepitch + '.mp3'});
@@ -1040,7 +1047,7 @@
 	var novsong_intro1 = {
 		// novel song singing intro
 		type: jsPsychInstructions,
-		pages: [singing[14][0][lang]],
+		pages: [singing["finalTask"][lang]],
 		button_label_next: buttons["next"][lang],
 		button_label_previous: buttons["previous"][lang],
 		show_clickable_nav: true,
@@ -1050,7 +1057,7 @@
 	var novsong_intro2 = {
 		// novel song singing playback
 		type: jsPsychInstructions,
-		pages: [singing[14][1][lang]],
+		pages: [singing["theLyricsGoLike"][lang]],
 		button_label_next: buttons["next"][lang],
 		button_label_previous: buttons["previous"][lang],
 		show_clickable_nav: true,
@@ -1068,7 +1075,7 @@
 	var novsong_intro3 = {
 		// novel song singing rec start
 		type: jsPsychHtmlButtonResponse,
-		stimulus: [singing[14][2][lang]],
+		stimulus: [singing["nextHearThreeTimes"][lang]],
 		choices:[buttons["record"][lang]],
 		prompt: "&nbsp;",
 		button_html: '<button class="jspsych-singing-btn"><img id="recButton" src="./images/imagesSinging/rec-btn.svg"></button>',
@@ -1076,12 +1083,12 @@
 	
 	var novsong_trial = {
 		type:jsPsychHtmlAudioResponse,
-        stimulus: singing[4][7][lang],
+        stimulus: singing["recording3"][lang],
         //recording_duration: 60000, //simu
         recording_duration: 1000,
-		    record_again_button_label:singing[4][2][lang],
+		    record_again_button_label:singing["recordAgain"][lang],
         allow_playback: false,
-        accept_button_html:singing[4][3][lang],
+        accept_button_html:singing["recordingOK"][lang],
         done_button_label:buttons["next"][lang],
         on_load: function() {
         },
@@ -1109,10 +1116,11 @@
   var novsong_feedback = {
     type: jsPsychSurveyLikert,
     questions: [{
-      prompt: singing[8][0][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + singing[8][1][lang] + "</div><div id='rightLabel'>" + singing[8][2][lang] + "</div></div>",  
+      prompt: singing["thankYouSingingDifficult"][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + singing["difficult"][lang] + "</div><div id='rightLabel'>" + singing["easy"][lang] + "</div></div>",  
       labels: [1, 2, 3, 4, 5].map(i => "<div id='labelLikert'>" + i + "</div>"),
     }],
     randomize_question_order: false,
+    button_label: recurring['continue'][lang],
     on_finish: function(data){
 			jsPsych.data.get().addToLast({id:'novsong',wav:'./songs/singing/' + novsong + '/' + voicetype + '/' + voicepitch + '.mp3'});
 			console.log('storing data ..');
@@ -1127,7 +1135,7 @@
 	var thankyoupage = {
 		// generic thank you
 		type: jsPsychInstructions,
-		pages: [singing[15][0][lang]],
+		pages: [singing["endSinging"][lang]],
 		button_label_next: buttons["home"][lang],
 		button_label_previous: buttons["previous"][lang],
 		show_clickable_nav: true,

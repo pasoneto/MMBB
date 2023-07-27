@@ -62216,7 +62216,7 @@ var jsPsychSurvey = (function (jspsych) {
 	                dropdown_select_prompt: {
 	                    type: jspsych.ParameterType.STRING,
 	                    pretty_name: "Drop-down select prompt",
-	                    default: "Choose...",
+	                    default: "--",
 	                },
 	                /** Drop-down/multi-choice/multi-select/likert-table/ranking only: Array of strings that contains the set of multiple choice options to display for the question. */
 	                options: {

@@ -47,29 +47,33 @@
   
     var timeBegin = Date.now();
 
-    var jsPsych = initJsPsych({
-      show_progress_bar: true,
-        auto_update_progress_bar: true,
-        on_finish: function() {
-
-          var lang = jatos.urlQueryParameters.lang
-          var userID = jatos.urlQueryParameters.user
-
-          var timeEnd = Date.now();
-
-          jsPsych.data.addProperties({userID: userID, lang: lang, timeEnd: timeEnd, timeBegin: timeBegin});
-
-          var dFinal = jsPsych.data.get()
-          
-          allowRefresh();
-
-          var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&SharedMeasures=done"
-          jatos.endStudyAndRedirect(urlRedirect, dFinal)
-
-    }});
+    var jsPsych;
 
     jatos.onLoad(() => {
       var lang = jatos.urlQueryParameters.lang
+
+      window.jsPsych = initJsPsych({
+          show_progress_bar: true,
+          message_progress_bar: recurring["completionProgress"][lang],
+          auto_update_progress_bar: true,
+          on_finish: function() {
+
+            var lang = jatos.urlQueryParameters.lang
+            var userID = jatos.urlQueryParameters.user
+
+            var timeEnd = Date.now();
+
+            jsPsych.data.addProperties({userID: userID, lang: lang, timeEnd: timeEnd, timeBegin: timeBegin});
+
+            var dFinal = jsPsych.data.get()
+            
+            allowRefresh();
+
+            var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&SharedMeasures=done"
+            jatos.endStudyAndRedirect(urlRedirect, dFinal)
+
+      }});
+
       var short = jatos.urlQueryParameters.short
       var timelineSharedMeasurements = generateSharedMeasurementsTimeline(lang, short)
       jsPsych.run(timelineSharedMeasurements) //simu

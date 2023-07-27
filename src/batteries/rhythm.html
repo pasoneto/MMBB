@@ -70,86 +70,90 @@
     //Time begin experiment
     var timeBegin = Date.now();
 
-    var jsPsych = initJsPsych({
-      show_progress_bar: true,
-      auto_update_progress_bar: false,
-      on_trial_start: function(data) {
-        window.trialOverallIndex = trialOverallIndex + 1
-        console.log(window.trialOverallIndex)
+    var jsPsych;
 
-        var totalTrials = completeSequence.flat(1000).length
-        jsPsych.setProgressBar(trialOverallIndex/totalTrials) 
-      },
-      on_finish: function() {
-
-        var measurePerformance = performance.getEntriesByType('resource');
-
-        var userID = jatos.urlQueryParameters.user
-        //var userID = urlParams.get('user')
-
-        var nodeIndex = jatos.urlQueryParameters.nodeIndex
-        //var nodeIndex = urlParams.get('nodeIndex')
-        if(nodeIndex == undefined){
-          var nodeIndex = 0
-        }
-
-        //var trialIndex = urlParams.get('trialIndex')
-        var trialIndex = jatos.urlQueryParameters.trialIndex
-        if(trialIndex == undefined){
-          var trialIndex = 0
-        }
-
-        var timeEnd = Date.now();
-        
-        var lang = jatos.urlQueryParameters.lang
-        if(lang == undefined){
-          var lang = "eng"
-        }
-
-        jsPsych.data.addProperties({userID: userID, lang: lang, timeEnd: timeEnd, timeBegin: timeBegin, sequenceTrials: getCookie('sequenceTrial'), nodeIndex: nodeIndex, tIndex: trialIndex});
-
-        var finalData = jsPsych.data.get()
-        finalData['trials'].push({"performance": measurePerformance, "infoUser": navigator.userAgent})
-
-        var urlBase = ""
-
-        allowRefresh();
-
-        var nNodes = completeSequence.length-1
-        var nTrials = completeSequence[Number(nodeIndex)].length-1
-
-        if(Number(trialIndex) < Number(nTrials)){
-          trialIndex = Number(trialIndex)+1
-
-          var urlRedirect = studyLinks['rhythmLink'] + "?user=" + userID + "&trialIndex=" + trialIndex + "&nodeIndex=" + nodeIndex + "&lang=" + lang
-          
-          console.log("Next trial")
-          console.log(urlRedirect)
-          jatos.endStudyAndRedirect(urlRedirect, finalData)
-        } else {
-          //If there's another node, go to the next one
-
-          if(nodeIndex < nNodes){
-            trialIndex = Number(0)
-            nodeIndex = Number(nodeIndex)+1
-
-            var urlRedirect = studyLinks['rhythmLink'] + "?user=" + userID + "&trialIndex=" + trialIndex + "&nodeIndex=" + nodeIndex + "&lang=" + lang
-
-            console.log("Next node")
-            console.log(urlRedirect)
-            jatos.endStudyAndRedirect(urlRedirect, finalData)
-
-          } else { //If end of experiment. Redirect to homepage
-              var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&Rhythm=done"
-              jatos.endStudyAndRedirect(urlRedirect, finalData) //simu
-          }
-        }
-      }
-    });
-    
     jatos.onLoad(() => {
 
       var lang = jatos.urlQueryParameters.lang
+
+      window.jsPsych = initJsPsych({
+        show_progress_bar: true,
+        auto_update_progress_bar: false,
+        message_progress_bar: recurring["completionProgress"][lang],
+        on_trial_start: function(data) {
+          window.trialOverallIndex = trialOverallIndex + 1
+          console.log(window.trialOverallIndex)
+
+          var totalTrials = completeSequence.flat(1000).length
+          jsPsych.setProgressBar(trialOverallIndex/totalTrials) 
+        },
+        on_finish: function() {
+
+          var measurePerformance = performance.getEntriesByType('resource');
+
+          var userID = jatos.urlQueryParameters.user
+          //var userID = urlParams.get('user')
+
+          var nodeIndex = jatos.urlQueryParameters.nodeIndex
+          //var nodeIndex = urlParams.get('nodeIndex')
+          if(nodeIndex == undefined){
+            var nodeIndex = 0
+          }
+
+          //var trialIndex = urlParams.get('trialIndex')
+          var trialIndex = jatos.urlQueryParameters.trialIndex
+          if(trialIndex == undefined){
+            var trialIndex = 0
+          }
+
+          var timeEnd = Date.now();
+          
+          var lang = jatos.urlQueryParameters.lang
+          if(lang == undefined){
+            var lang = "eng"
+          }
+
+          jsPsych.data.addProperties({userID: userID, lang: lang, timeEnd: timeEnd, timeBegin: timeBegin, sequenceTrials: getCookie('sequenceTrial'), nodeIndex: nodeIndex, tIndex: trialIndex});
+
+          var finalData = jsPsych.data.get()
+          finalData['trials'].push({"performance": measurePerformance, "infoUser": navigator.userAgent})
+
+          var urlBase = ""
+
+          allowRefresh();
+
+          var nNodes = completeSequence.length-1
+          var nTrials = completeSequence[Number(nodeIndex)].length-1
+
+          if(Number(trialIndex) < Number(nTrials)){
+            trialIndex = Number(trialIndex)+1
+
+            var urlRedirect = studyLinks['rhythmLink'] + "?user=" + userID + "&trialIndex=" + trialIndex + "&nodeIndex=" + nodeIndex + "&lang=" + lang
+            
+            console.log("Next trial")
+            console.log(urlRedirect)
+            jatos.endStudyAndRedirect(urlRedirect, finalData)
+          } else {
+            //If there's another node, go to the next one
+
+            if(nodeIndex < nNodes){
+              trialIndex = Number(0)
+              nodeIndex = Number(nodeIndex)+1
+
+              var urlRedirect = studyLinks['rhythmLink'] + "?user=" + userID + "&trialIndex=" + trialIndex + "&nodeIndex=" + nodeIndex + "&lang=" + lang
+
+              console.log("Next node")
+              console.log(urlRedirect)
+              jatos.endStudyAndRedirect(urlRedirect, finalData)
+
+            } else { //If end of experiment. Redirect to homepage
+                var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&Rhythm=done"
+                jatos.endStudyAndRedirect(urlRedirect, finalData) //simu
+            }
+          }
+        }
+      });
+
       var sequenceTrials = {
         intro: generateGeneralIntroWrap(lang, "rhythm"),
         bat: generateBatTimeline(lang),

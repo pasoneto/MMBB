@@ -30,6 +30,7 @@ var tappingKeys = ['instruction1', 'instruction2', 'instruction3', 'instruction4
 var sharedMeasurementsKeys = ["howLongSing", "howOftenSingBefore", "howOftenSingNow", "howMuchTuitionSing", "howLongInstrumentHobby", "howOftenPlayHobby", "howOftenPlayNow", "howMuchTuitionInstrument", "howLongDanceHobby", "howLongDanceHobyBefore", "howOftenDanceNow", "howMuchTuitionDance", "howOftenListenMusicNow", "howMusical", "notAtAlMusical", "notThatMusical", "aBitMusical", "quiteMusical", "veryMusical", "never", "oneTwoYears", "threeFiveYears", "sixNineYears", "tenMoreYears", "veryRarely", "monthly", "weekly", "daily", "surveyMMBB", "personalBackground", "musicalBackground", "perception", "singing", "dancing", "musicalPreference", "musicalExperiences", "prompt", "iCanTell", "iCanTellTune", "iFind", "haveTrouble", "whenISing", "title", "pleaseAnswer", "primaryLanguage", "secondaryLanguage", "yearOfBirth", "nationality", "gender", "genderOther", "female", "male", "other", "ratherNotSay", "education", "educationOther", "primarySchool", "comprehensiveSchool", "secondaryEducation", "vocationalTraining", "bachelors", "masters", "doctoral", "howMuchLikeGenre", "dislikeStrongly", "dislikeModerately", "dislkikeAlittle", "neutral", "likeALittle", "likeModerately", "likeStrongly", "blues", "jazz", "classical", "folk", "rock", "alternative", "heavyMetal", "country", "religious", "pop", "rap", "soul", "electronic", "question", "completelyDisagree", "somewhatDisagree", "neitherDisagreeAgree", "somewhatAgree", "completelyAgree", "shareMusic", "freeNoListen", "listenEmotion", "musicCompany", "dontLikeDance", "musicMakesMeBond", "informMyself", "getEmotional", "musicCalms", "musicMakesMeDanceOften", "lookingNewMusic", "canBecomeTearful", "likeToSing", "musicHelpsChill", "hummingAlong", "concertConnected", "spendQuite", "sometimesFeelChills", "musicComforts", "whenIHearTune", "songDontKnow", "ableHit", "likeSinging", "canSing", "afterHearing", "easyControl", "ifSomeone", "whenDance", "greatTrack", "tiredOut", "musicHelps", "listenMusic", "backgroundAtmosphere", "listenPerk", "reallyAngry", "feelFantastic", "forgetWorries", "magnificentExperiences", "whenBusy", "musicHelped", "feelingSadComforts", "everythingSad", "whenStressful"]
 var taskIconsKeys = ["movement", "singing", "survey", "emotion", "MBEMA", "rhythm"]
 var buttonsKeys = ["next", "previous", "continue", "choose", "start", "home", "record"]
+var singingKeys = ['welcome', 'inThisTask', 'pleaseSelect', 'selectThis', 'letsCheck', 'recordAgain', 'recordingOK', 'yourMicrophone', 'recording', 'recording2', 'recording3', 'recording4', 'recording5', 'hereYouMay', 'hereYouMay2', 'shortSinging', 'firstLetsType', 'woman', 'man', 'child', 'byPressing', 'whichRange', 'low', 'mild', 'high', 'singBack', 'practiceRound', 'toneFirst', 'thankYouSingingDifficult', 'difficult', 'easy', 'singAlongIndividual', 'listenFirstPractice', 'toneListenFirst', 'nextTaskSingBack', 'practiceMelody', 'melodyListenFirst', 'shortMelodySing', 'practiceShortMelody', 'listenFirstShortMelody', 'nextTaskHappyBirthday', 'lyricsAre', 'nextTaskSingAlongHappyBirthday', 'lyricsAreSingAlong', 'finalTask', 'theLyricsGoLike', 'nextHearThreeTimes', 'endSinging']
 
 const movementFile = './movement'
 const recurringFile = './recurring'
@@ -41,6 +42,7 @@ const tappingFile = './tapping'
 const sharedMeasurementsFile = './shared'
 const taskIconsFile = "./taskIcons"
 const buttonsFile = './buttons'
+const singingFile = './singing'
 
 processTranslation(movementFile, movementKeys, "movement")
 processTranslation(recurringFile, recurringKeys, "recurring")
@@ -52,6 +54,7 @@ processTranslation(tappingFile, tappingKeys, "tapping")
 processTranslation(sharedMeasurementsFile, sharedMeasurementsKeys, "sharedMeasurementsT")
 processTranslation(taskIconsFile, taskIconsKeys, "taskIcons")
 processTranslation(buttonsFile, buttonsKeys, "buttons")
+processTranslation(singingFile, singingKeys, "singing")
 
 
 //namesObjects:

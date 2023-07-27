@@ -82,14 +82,14 @@ function generateSharedMeasurementsTimeline(lang, short){
           prompt: prompt, 
           options: options,
           name: prompt, 
-          required: required, //simu
-          //required: false //simu
+          //required: required, //simu
+          required: false //simu
         }
     return(rObj)
   }
 
   function generateManyDropDowns(i, prompt){
-    var musicalBackgroundSurveySeed = {
+    var modelSeed = {
       type: jsPsychSurvey,
       pages: [[i]],
       title: prompt,
@@ -98,9 +98,9 @@ function generateSharedMeasurementsTimeline(lang, short){
       button_label_finish: buttons["continue"][lang],
       on_load: () => {
         changeStyle()
-      }
+      },
     }
-    return(musicalBackgroundSurveySeed)
+    return(modelSeed)
   }
 
   function changeStyle(){
