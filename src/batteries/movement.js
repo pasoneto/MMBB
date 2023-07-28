@@ -501,6 +501,14 @@ function generateMovementTimeline(lang){
     }
   }
 
+  var weightHeight = {
+    type: jsPsychSurveyText,
+    questions: [
+      {prompt: movement["height"][lang], columns: 30},
+      {prompt: movement["weight"][lang], columns: 30}
+    ],
+    button_label: recurring['continue'][lang],
+  }
 
   //Original
   //var movementTimeline = [[preloadSongs1, instruction0, promptAccel, loadAccel, phonePocket, countDown, trialAccelerometer1, pickUpPhone, howDifficultMovement, instruction1, phonePocket, countDown, trialAccelerometer2, pickUpPhone, howDifficultMovement, likingBeatRating, grooveRatingBeat, instruction2, phonePocket, countDown, trialAccelerometer3, pickUpPhone, howDifficultMovement, familiarityRating, likingRating, grooveRating, instruction3, chooseSongs, preloadChosen, phonePocket, countDown, trialAccelerometer4, pickUpPhone, howDifficultMovement, familiarityRating, likingRating, grooveRating]];
@@ -509,7 +517,7 @@ function generateMovementTimeline(lang){
   var firstMovement = [instruction0a, promptAccel, loadAccel, instruction0b, trial_in_fullscreen, phonePocket, countDown, trialAccelerometer1, pickUpPhone, howDifficultMovement, phoneInPocket1] //4
   var secondMovement = [preloadSongs1, instruction1, trial_in_fullscreen, phonePocket, countDown, trialAccelerometer2, pickUpPhone, howDifficultMovement, likingBeatRating, grooveRatingBeat, phoneInPocket2] //6
   var thirdMovement = [preloadSongs1, instruction2, trial_in_fullscreen, phonePocket, countDown, trialAccelerometer3, pickUpPhone, howDifficultMovement, familiarityRating, likingRating, grooveRating, knowThisSong, phoneInPocket3] //8
-  var fourthMovement = [instruction3, chooseSongs, preloadChosen, trial_in_fullscreen, phonePocket, countDown, trialAccelerometer4, pickUpPhone, howDifficultMovement, familiarityRating, likingRating, grooveRating, knowThisSong, phoneInPocket3] //8
+  var fourthMovement = [instruction3, chooseSongs, preloadChosen, trial_in_fullscreen, phonePocket, countDown, trialAccelerometer4, pickUpPhone, howDifficultMovement, familiarityRating, likingRating, grooveRating, knowThisSong, phoneInPocket3, weightHeight] //9
 
   var movementTimeline = [firstMovement, secondMovement, thirdMovement, fourthMovement];
 
