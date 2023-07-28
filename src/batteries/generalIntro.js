@@ -60,7 +60,7 @@ function generateGeneralIntroWrap(lang, subBattery){
     type: jsPsychAudioButtonResponse,
     stimulus: './songs/movementTapAudio/elPesebre.mp3',
     choices: [buttons["continue"][lang]],
-    trial_duration: 1000, //simu
+    //trial_duration: 1000, //simuBack
     prompt: initialInstructions["canYouHear2"][lang] + '<img src="./images/muteButton.png" id="muteButton"></img>',
     on_load: function(){
     }
@@ -69,7 +69,7 @@ function generateGeneralIntroWrap(lang, subBattery){
   var tAudioAndroid = {
     type: jsPsychAudioButtonResponse,
     stimulus: './songs/movementTapAudio/elPesebre.mp3',
-    trial_duration: 1000, //simu
+    //trial_duration: 1000, //simuBack
     choices: [buttons["continue"][lang]],
     prompt: initialInstructions["canYouHear"][lang],
     on_load: function(){

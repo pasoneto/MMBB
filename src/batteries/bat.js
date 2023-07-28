@@ -96,7 +96,7 @@ function generateBatTimeline(lang){
                 '</div>' +
               '</div>',
     choices: [buttons["continue"][lang]],
-    trial_duration: 500000, //simu
+    trial_duration: 500000, //simuBack
     prompt: "",
     on_start: function(data){
       data.initialOffset = window.initialOffset;
@@ -164,7 +164,7 @@ function generateBatTimeline(lang){
       data.initialOffset = window.initialOffset; //Initial offset
       var allSources = [window.source1, window.source2, window.source3, window.source4, window.source5, window.source6, window.source7, window.source8, window.sourceBase] //Stopping all songs
       for(i in allSources) {
-        //allSources[i].stop() simu
+        allSources[i].stop() //simuBack
       }
     }
   };

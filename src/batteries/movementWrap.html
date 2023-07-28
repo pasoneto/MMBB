@@ -150,9 +150,9 @@
 
             } else { //If end of experiment. Redirect to homepage
                 var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&Movement=done"
-                //jatos.endStudyAndRedirect(urlRedirect, finalData) //simu
+                jatos.endStudyAndRedirect(urlRedirect, finalData)
 
-                jatos.endStudyAndRedirect("https://mmbb.ltdk.helsinki.fi/publix/PKudyqAmMau?lang=eng", finalData)
+                //jatos.endStudyAndRedirect("https://mmbb.ltdk.helsinki.fi/publix/PKudyqAmMau?lang=eng", finalData) //simuBack
                 
             }
           }
@@ -164,11 +164,19 @@
         movement: generateMovementTimeline(lang)
       }
 
+      var frontPageMovement = {
+          type: jsPsychInstructions,
+          pages: [movement['movementOpen'][lang]],
+          button_label_next: buttons["next"][lang],
+          button_label_previous: buttons["previous"][lang],
+          show_clickable_nav: true
+      }
+
       var messageFinishSub = {
         type: jsPsychHtmlButtonResponse,
         prompt: recurring["endTask1"][lang],
-        //choices: [], simu
-        choices: ["a"],
+        choices: [],
+        //choices: ["a"], //simuBack
         trial_duration: 3000,
         stimulus: '',
         on_start: function(){
@@ -178,7 +186,7 @@
         }
       };
 
-      window.completeSequence = [sequenceTrials["intro"], sequenceTrials["movement"], [[messageFinishSub]]]
+      window.completeSequence = [[[frontPageMovement]], sequenceTrials["intro"], sequenceTrials["movement"], [[messageFinishSub]]]
 
       var nodeIndex = jatos.urlQueryParameters.nodeIndex //Which trial to be performed
       if(nodeIndex == undefined){ 
@@ -212,8 +220,8 @@
           }
       }
 
-      //jsPsych.run([procedureMovementFinal]) //simu
-      jsPsych.simulate([procedureMovementFinal], "visual")
+      jsPsych.run([procedureMovementFinal])
+      //jsPsych.simulate([procedureMovementFinal], "visual") //simuBack
 
     });
 

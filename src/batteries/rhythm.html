@@ -148,7 +148,7 @@
 
             } else { //If end of experiment. Redirect to homepage
                 var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&Rhythm=done"
-                jatos.endStudyAndRedirect(urlRedirect, finalData) //simu
+                jatos.endStudyAndRedirect(urlRedirect, finalData)
             }
           }
         }
@@ -181,12 +181,20 @@
       }
       //Enf of Storing cookies for the sequence of trials
 
+      var frontPageRhythm = {
+          type: jsPsychInstructions,
+          pages: [tapping['rhythmOpen'][lang]],
+          button_label_next: buttons["next"][lang],
+          button_label_previous: buttons["previous"][lang],
+          show_clickable_nav: true
+      }
+
       var messageFinishSub = {
         type: jsPsychHtmlButtonResponse,
         prompt: recurring["endTask1"][lang],
-        //choices: [], simu
-        choices: ["a"],
-        trial_duration: 3000,
+        choices: [],
+        //choices: ["a"], //simuBack
+        trial_duration: 1000,
         stimulus: '',
         on_start: function(){
         },
@@ -195,8 +203,8 @@
         }
       };
 
-      //window.completeSequence = [sequenceTrials["intro"], sequenceTrials[indexTrial[0]], sequenceTrials[indexTrial[1]], [[messageFinishSub]]] //simu
-      window.completeSequence = [sequenceTrials[indexTrial[0]], sequenceTrials[indexTrial[1]], [[messageFinishSub]]]
+      window.completeSequence = [[[frontPageRhythm]], sequenceTrials["intro"], sequenceTrials[indexTrial[0]], sequenceTrials[indexTrial[1]], [[messageFinishSub]]]
+      //window.completeSequence = [sequenceTrials[indexTrial[0]], sequenceTrials[indexTrial[1]], [[messageFinishSub]]] //simuBack
 
       var nodeIndex = jatos.urlQueryParameters.nodeIndex //Which trial to be performed
       if(nodeIndex == undefined){ 
@@ -230,8 +238,8 @@
           }
       }
 
-      jsPsych.run([procedureMovementFinal]) //simu
-      //jsPsych.simulate([procedureMovementFinal], "visual")
+      jsPsych.run([procedureMovementFinal]) 
+      //jsPsych.simulate([procedureMovementFinal], "visual") //simuBack
 
     });
 

@@ -61,8 +61,8 @@ function generateTappingTimeline(lang){
       choices: [tapping["tapHere"][lang]],
       stimulus: './songs/movementTapAudio/silence.wav',
       prompt: '<div id="recordingText">' + tapping["recording"][lang] + '</div>',
-      //trial_duration: 30000, simu
-      trial_duration: 1000,
+      trial_duration: 30000, 
+      //trial_duration: 1000, //simuBack
       margin_horizontal: '0px',
       button_html: '<button type="button" ' + ' id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">' + tapping["tapHere"][lang] + '</p></button>',
       response_ends_trial: false,
@@ -84,8 +84,8 @@ function generateTappingTimeline(lang){
       choices: [tapping["tapHere"][lang]],
       prompt: '<div id="recordingText">' + tapping["recording"][lang] + '</div>',
       stimulus: './songs/movementTapAudio/modifiedAudio/' + randomMetronome,
-    //trial_duration: 63000, simu
-      trial_duration: 1000,
+      trial_duration: 63000,
+      //trial_duration: 1000, //simuBack
       margin_horizontal: '0px',
       button_html: '<button type="button" ' + ' id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">' + tapping["tapHere"][lang] + '</p></button>',
       response_ends_trial: false,
@@ -107,8 +107,8 @@ function generateTappingTimeline(lang){
       choices: [tapping["tapHere"][lang]],
       prompt: '<div id="recordingText">' + tapping["recording"][lang] + '</div>',
       stimulus: './songs/movementTapAudio/modifiedAudio/' + randomElPesebreSong,
-    //trial_duration: 63000, simu
-      trial_duration: 1000,
+      trial_duration: 63000, 
+      //trial_duration: 1000, //simuBack
       margin_horizontal: '0px',
       button_html: '<button type="button" ' + ' id="tappingButton"><p id="customText" style="font-size:15vw; color: white;">' + tapping["tapHere"][lang] + '</p></button>',
       response_ends_trial: false,
@@ -141,8 +141,8 @@ function generateTappingTimeline(lang){
   var messageEndTask = {
     type: jsPsychHtmlButtonResponse,
     prompt: recurring["endTask1"][lang],
-    //choices: [], simu
-    choices: ["a"],
+    choices: [],
+    //choices: ["a"], //simuBack
     trial_duration: 3000,
     stimulus: '',
     on_finish: function(){
