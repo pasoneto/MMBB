@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+
+    <meta charset="UTF-8">
+
+    <script src="jatos.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://unpkg.com/jspsych@7.1.2"></script>
+
+    <script src="./jspsych/dist/custom/utils.js"> </script>
+
+    <script src="./jspsych/dist/plugin-audio-button-response.js"></script>
+    <script src="./jspsych/dist/plugin-html-button-response.js"></script>
+    <script src="./jspsych/dist/plugin-html-slider-response.js"></script>
+    <script src="./jspsych/dist/plugin-instructions.js"></script>
+    <script src="./jspsych/dist/plugin-instructions-timedout.js"></script>
+    <script src="./jspsych/dist/plugin-survey.js"></script>
+    <script src="./jspsych/dist/plugin-survey-text.js"></script>
+    <script src="./jspsych/dist/plugin-survey-likert.js"> </script>
+    <link rel="stylesheet" href="https://unpkg.com/@jspsych/plugin-survey@0.2.1/css/survey.css">
+
+    <script src="./utils/translations.js"></script>
+    <script src="./utils/studyLinks.js"></script>
+    <script src="./src/batteries/generalIntro.js"></script>
+
+    <script src="./src/batteries/sharedMeasurements.js"></script>
+
+    <script src="./utils/preventRefresh.js"> </script>
+    <script src="./utils/identifyOS.js"> </script>
+
+    <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
+
+    <link rel="stylesheet" href="./src/styles/generalCSS.css">
+
+  </head>
+
+  <script>
+  
+    var lang = "eng"
+
+    function generateDropdownObject(prompt, options, required){
+          var rObj = {
+            type: 'drop-down',
+            prompt: prompt, 
+            options: options,
+            name: prompt, 
+            required: required, //simu
+            //required: false //simuBack
+          }
+      return(rObj)
+    }
+
+    function changeStyle(){
+        document.querySelector(".sv_body").style.background = "#e9edf5";
+        document.querySelector(".sv_next_btn").style.background = "#fa6400";
+        document.querySelector(".sv_prev_btn").style.background = "purple";
+        document.querySelector(".sv_next_btn").style.color = "#fff";
+        document.querySelector(".sv_prev_btn").style.color = "#fff";
+        document.querySelector(".sv_complete_btn").style.background = "#fa6400";
+        document.getElementById("jspsych-content").style.width = "100%";
+    }
+
+    function generateManyDropDowns(i, prompt){
+      var modelSeed = {
+        type: jsPsychSurvey,
+        pages: [[i]],
+        title: prompt,
+        button_label_next: buttons["continue"][lang],
+        button_label_back: buttons["previous"][lang],
+        button_label_finish: buttons["continue"][lang],
+        on_load: () => {
+          changeStyle()
+        },
+      }
+      return(modelSeed)
+    }
+
+    function generateTextObject(prompt, required, columns, rows){
+          var rObj = {
+            type: 'text',
+            prompt: prompt,
+            placeholder: '',
+            name: prompt, 
+            textbox_columns: columns,
+            textbox_rows: rows,
+            required: required,
+          }
+      return(rObj)
+    }
+
+    var jsPsych;
+
+    var text0 = ["This is a follow-up to the study in which you came to the University to dance and make music playlists with your friend and with a stranger.", "We have a few questions for you about the stranger."]
+    var text1 = "Were you in any contact after the study?"
+    var text2 = "In which way? (e.g. Instagram, real contact,...)"
+    var text3 = "Would you have liked to stay in contact with that person?"
+    var text6 = "Please rate how close do you feel with this person"
+
+    var options1 = ["Yes", "No"]
+    var options2 = ["Yes", "Perhaps", "No"]
+
+    var objDrop1 = generateDropdownObject(text1, options1, true)
+    var trialDrop1 = generateManyDropDowns(objDrop1, "") //First
+
+    var objDrop2 = generateDropdownObject(text3, options2, true)
+    var trialDrop2 = generateManyDropDowns(objDrop2, "")
+
+    var trialObject1 = generateTextObject(text2, true, 20, 1)
+    var trialObject2 = generateTextObject(text3, true, 20, 1)
+
+    var instruction0 = {
+        type: jsPsychInstructions,
+        pages: text0,
+        button_label_next: buttons["next"][lang],
+        button_label_previous: buttons["previous"][lang],
+        show_clickable_nav: true
+    }
+
+    var trialTextYes = {
+      type: jsPsychSurvey,
+      pages: [[trialObject1]],
+      title: '',
+      button_label_next: buttons["continue"][lang],
+      button_label_back: buttons["previous"][lang],
+      button_label_finish: buttons["continue"][lang],
+      on_load: () => {changeStyle()}
+    };
+
+    var trialTextNo = {
+      type: jsPsychSurvey,
+      pages: [[trialObject2]],
+      title: '',
+      button_label_next: buttons["continue"][lang],
+      button_label_back: buttons["previous"][lang],
+      button_label_finish: buttons["continue"][lang],
+      on_load: () => {changeStyle()}
+    };
+
+    var conditionalYes = {
+        timeline: [trialTextYes],
+        conditional_function: function(){
+            var typeQuestion = Object.keys(jsPsych.data.getLastTrialData(1)['trials'][0].response)[0]
+            var otherWhich = jsPsych.data.getLastTrialData(1)['trials'][0].response[typeQuestion]
+            console.log(otherWhich)
+            var showNode = otherWhich == 'Yes'
+            console.log(showNode)
+            if(showNode){
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
+    var conditionalNo = {
+        timeline: [trialTextNo],
+        conditional_function: function(){
+            var typeQuestion = Object.keys(jsPsych.data.getLastTrialData(1)['trials'][0].response)[0]
+            var otherWhich = jsPsych.data.getLastTrialData(1)['trials'][0].response[typeQuestion]
+            var showNode = otherWhich == "No"
+            if(showNode){
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
+    var howClose = {
+      type: jsPsychSurveyLikert,
+      questions: [{
+        prompt: text6 + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + movement["notAtAll"][lang] + "</div><div id='rightLabel'>" + movement["veryMuch"][lang] + "</div></div>",  
+        labels: [1, 2, 3, 4, 5].map(i => "<div id='labelLikert'>" + i + "</div>"),
+      }],
+      button_label: recurring['continue'][lang],
+      randomize_question_order: false,
+      on_load: function(){
+        document.querySelector(".jspsych-survey-likert-statement").style.fontSize = '1em'
+      }
+    };
+
+    var finishPost = {
+      type: jsPsychHtmlButtonResponse,
+      prompt: "Thank you for your responses",
+      choices: [],
+      //choices: ["a"], //simuBack
+      trial_duration: 2000,
+      stimulus: '',
+      on_start: function(){
+      },
+      on_load: function(){
+        document.getElementById("jspsych-content").style.height = "10vh"
+      }
+    };
+
+
+    jatos.onLoad(() => {
+
+      window.jsPsych = initJsPsych({
+          show_progress_bar: true,
+          message_progress_bar: recurring["completionProgress"][lang],
+          auto_update_progress_bar: true,
+          on_finish: function() {
+
+            var lang = jatos.urlQueryParameters.lang
+            var userID = jatos.urlQueryParameters.user
+
+            var timeEnd = Date.now();
+
+            var dFinal = jsPsych.data.get()
+            
+            allowRefresh();
+
+            var urlRedirect = studyLinks['chooseBatteryLink']
+            jatos.endStudyAndRedirect(urlRedirect, dFinal)
+
+      }});
+
+      var timeline = [instruction0, trialDrop1, conditionalYes, conditionalNo, howClose, finishPost]//, trialTextNo]
+
+      jsPsych.run(timeline) //simu
+
+    })
+    
+
+ </script>
+</html>

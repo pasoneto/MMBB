@@ -82,8 +82,8 @@ function generateSharedMeasurementsTimeline(lang, short){
           prompt: prompt, 
           options: options,
           name: prompt, 
-          //required: required, //simu
-          required: false //simu
+          required: required, //simu
+          //required: false //simuBack
         }
     return(rObj)
   }

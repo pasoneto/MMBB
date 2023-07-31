@@ -64,9 +64,9 @@
             
             allowRefresh();
             var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&Emotion=done"
-            //jatos.endStudyAndRedirect(urlRedirect, finalData) //simu
+            jatos.endStudyAndRedirect(urlRedirect, finalData)
 
-            jatos.endStudyAndRedirect("https://mmbb.ltdk.helsinki.fi/publix/oLzabocUoB1?lang=eng", finalData)
+            //jatos.endStudyAndRedirect("https://mmbb.ltdk.helsinki.fi/publix/oLzabocUoB1?lang=eng", finalData) //simuBack
 
       }});
 
@@ -96,10 +96,10 @@
       var current_trial = []
       var current_emotion = []
       var excerpt_names = []
-      //var N = 30 //simu
-      var N = 1 //simu
-      //var N_part2 = 12 //simu
-      var N_part2 = 1
+      var N = 30
+      //var N = 1 //simuBack
+      var N_part2 = 12 
+      //var N_part2 = 1 //simuBack
       var candidate_trial = []
       var correct_response = []
       var trial_images = []
@@ -162,7 +162,7 @@
         update_text_after_timeout: emotionTranslations['choose'][lang],
         response_allowed_while_playing: false,
         response_ends_trial: true,
-        trial_duration: 1000, //simu
+        //trial_duration: 1000, //simuBack
         update_onset: 10000,
         prompt: 'init',
         question: 'init',
@@ -302,8 +302,8 @@
         type: jsPsychAudioKeyboardResponse,
         stimulus: './songs/emotionAudio/trimmed_mp3/001.mp3',
         prompt: emotionTranslations["listen"][lang] + "<img id='tableSVG' src='./images/soundSVG.svg'>",
-        //trial_duration: stim_dur, //simu
-        trial_duration: 1000,
+        trial_duration: stim_dur,
+        //trial_duration: 1000, //simuBack
         choices: ["NO_KEYS"],
         on_start: function(part2_audio){
           part2_audio.stimulus = '././songs/emotionAudio/trimmed_part2_mp3/' + part2_excerpt_order[epochPart2] + '.mp3'
@@ -362,8 +362,8 @@
       var messageFinishEmotion = {
         type: jsPsychHtmlButtonResponse,
         prompt: emotionTranslations['thankYouEnd'][lang],
-        //choices: [], simu
-        choices: ["a"],
+        choices: [],
+        //choices: ["a"], //simuBack
         trial_duration: 2000,
         stimulus: '',
         on_start: function(){
@@ -438,11 +438,9 @@
           }
       }
 
-      //jsPsych.run([procedureEmotionFinal]) //simu
+      jsPsych.run([procedureEmotionFinal])
 
-      jsPsych.simulate([procedureEmotionFinal], "visual")
-
-
+      //jsPsych.simulate([procedureEmotionFinal], "visual") //simuBack
 
     });
 

@@ -124,6 +124,8 @@
       setTimeout(function() { if (window.play_reps[id]) { audio_to_play.play(); window.play_reps[id]=false;} }, isi);
     }	
 
+  var jsPsych;
+
 	jatos.onLoad(() => {
 
     var userID = jatos.urlQueryParameters.user
@@ -140,10 +142,24 @@
       novsong="KelloLaulu";
     }
 
-      var jsPsych = initJsPsych({
+    window.jsPsych = initJsPsych({
         extensions: [],
         show_progress_bar: true,
         message_progress_bar: recurring["completionProgress"][lang],
+        on_trial_finish: function(data){
+          var userID = jatos.urlQueryParameters.user
+          var lang = jatos.urlQueryParameters.lang
+          var userID = jatos.urlQueryParameters.user
+          var timeEnd = Date.now();
+          jsPsych.data.addProperties({userID: userID, lang: lang, timeEnd: timeEnd});
+
+          var trialData = jsPsych.data.getLastTrialData();
+
+          jatos.appendResultData(trialData).then(() => {
+            console.log("Data appended to server") 
+            console.log(trialData)}
+          )
+        },
         on_finish: function() {
 
           var userID = jatos.urlQueryParameters.user
@@ -157,9 +173,9 @@
           var finalData = jsPsych.data.get().json()
 
           // go back to main
-          //jatos.endStudyAndRedirect('https://mmbb.ltdk.helsinki.fi/publix/2zUqwTbq1lS?lang=' + lang + "&user=" + userID, finalData); //simu
+          jatos.endStudyAndRedirect('https://mmbb.ltdk.helsinki.fi/publix/2zUqwTbq1lS?lang=' + lang + "&user=" + userID);
 
-          jatos.endStudyAndRedirect("https://mmbb.ltdk.helsinki.fi/publix/jC0EZeucWGE?lang=eng", finalData)
+          //jatos.endStudyAndRedirect("https://mmbb.ltdk.helsinki.fi/publix/jC0EZeucWGE?lang=eng", finalData) //simuBack
         }
       })
 
@@ -207,11 +223,6 @@
     type: jsPsychInitializeMicrophone,
     device_select_message: "<div id='selectMicText'>" + singing["pleaseSelect"][lang] + "</div>",
 	  button_label: singing["selectThis"][lang],
-    on_start: function(){
-      sleep(2000).then(r => {
-        document.getElementById("btn-select-mic").click()
-      })
-    }
 	}
 
 	var testrecord1 = {
@@ -227,8 +238,8 @@
         type: jsPsychHtmlAudioResponse,
         audiostimulus: '',
         stimulus: singing["recording4"][lang],
-        //recording_duration: 5000, //simu
-        recording_duration: 1000,
+        recording_duration: 5000,
+        //recording_duration: 1000, //simuBack
         record_again_button_label:singing["recordAgain"][lang],
         record_again_stimulus:singing["hereYouMay"][lang],
         allow_playback: true,
@@ -245,8 +256,8 @@
         type: jsPsychHtmlAudioResponse,
         audiostimulus: '',
         stimulus: singing["recording4"][lang],
-        //recording_duration: 5000, //simu
-        recording_duration: 1000,
+        recording_duration: 5000,
+        //recording_duration: 1000, simuBack
         allow_playback: false,
 		save_audio_url: true,
 		done_button_label:buttons["next"][lang],
@@ -514,8 +525,8 @@
 	  {
 	  type: jsPsychHtmlAudioResponse,
         stimulus: singing["recording"][lang],
-        //recording_duration: 5000, //simu
-        recording_duration: 1000,
+        recording_duration: 5000,
+        //recording_duration: 1000, //simuBack
 		record_again_button_label:singing["recordAgain"][lang],
         allow_playback: false,
 		accept_button_html:singing["recordingOK"][lang],
@@ -620,8 +631,8 @@
 	  {
 	  type: jsPsychHtmlAudioResponse,
         stimulus: singing["recording"][lang],
-        //recording_duration: 7000, //simu
-        recording_duration: 1000,
+        recording_duration: 7000,
+        //recording_duration: 1000, //simuBack
 		record_again_button_label:singing["recordAgain"][lang],
         allow_playback: false,
 		accept_button_html:singing["recordingOK"][lang],
@@ -735,8 +746,8 @@
 	  {
 	  type: jsPsychHtmlAudioResponse,
         stimulus: singing["recording2"][lang],
-        //recording_duration: 15000, //simu
-        recording_duration: 1000,
+        recording_duration: 15000,
+        //recording_duration: 1000, //simuBack
 		    record_again_button_label:singing["recordAgain"][lang],
         allow_playback: false,
         accept_button_html:singing["recordingOK"][lang],
@@ -844,8 +855,8 @@
 	  {
 	  type: jsPsychHtmlAudioResponse,
         stimulus: singing["recording2"][lang],
-        //recording_duration: 20000, //simu
-        recording_duration: 1000,
+        recording_duration: 20000,
+        //recording_duration: 1000, //simuBack
 		record_again_button_label:singing["recordAgain"][lang],
         allow_playback: false,
 		accept_button_html:singing["recordingOK"][lang],
@@ -938,8 +949,8 @@
 	var famsong_memory_trial = {
 		type:jsPsychHtmlAudioResponse,
         stimulus: singing["recording5"][lang],
-        //recording_duration: 30000, //simu
-        recording_duration: 1000,
+        recording_duration: 30000,
+        //recording_duration: 1000, //simuBack
 		    record_again_button_label:singing["recordAgain"][lang],
         allow_playback: false,
         accept_button_html:singing["recordingOK"][lang],
@@ -998,8 +1009,8 @@
 	var famsong_along_trial = {
 		type:jsPsychHtmlAudioResponse,
         stimulus: singing["recording5"][lang],
-        //recording_duration: 30000, //simu
-        recording_duration: 1000,
+        recording_duration: 30000,
+        //recording_duration: 1000, //simuBack
 		    record_again_button_label:singing["recordAgain"][lang],
         allow_playback: false,
         accept_button_html:singing["recordingOK"][lang],
@@ -1084,8 +1095,8 @@
 	var novsong_trial = {
 		type:jsPsychHtmlAudioResponse,
         stimulus: singing["recording3"][lang],
-        //recording_duration: 60000, //simu
-        recording_duration: 1000,
+        recording_duration: 60000,
+        //recording_duration: 1000, //simuBack
 		    record_again_button_label:singing["recordAgain"][lang],
         allow_playback: false,
         accept_button_html:singing["recordingOK"][lang],
@@ -1220,9 +1231,10 @@
 
 		timeline.push(thankyoupage);
 		
-		//jsPsych.run(timeline.flat(1000)); //simu
+		jsPsych.run(timeline.flat(1000));
 
-    jsPsych.simulate(timeline.flat(1000), "visual")
+    //jsPsych.simulate(timeline.flat(1000), "visual") //simuBack
+
 	});	
 
  </script>

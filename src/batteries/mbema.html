@@ -59,9 +59,9 @@
         var timeEnd = Date.now();
 
         var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&MBEMA=done"
-        //jatos.endStudyAndRedirect(urlRedirect, finalData) //simu
+        jatos.endStudyAndRedirect(urlRedirect, finalData)
 
-        jatos.endStudyAndRedirect("https://mmbb.ltdk.helsinki.fi/publix/YK3bdjI0tbl?lang=eng", finalData) //simu
+        //jatos.endStudyAndRedirect("https://mmbb.ltdk.helsinki.fi/publix/YK3bdjI0tbl?lang=eng", finalData) //simuBack
 
       }
     });
@@ -71,8 +71,8 @@
         type: jsPsychAudioKeyboardResponse, 
         stimulus: stimulus + i + '.wav', 
         prompt: mbema["listen"][lang], 
-        //trial_ends_after_audio: true,  //simu
-        trial_duration: 1000,
+        trial_ends_after_audio: true,
+        //trial_duration: 1000, //simuBack
         choices: ["NO_KEYS"], 
         post_trial_gap: 500
       }
@@ -159,7 +159,7 @@
       button_html: ['<img src="%choice%" style="height:15vh"/><p id="labelMBEMALeft">' + images[0].type + '</p>',
                     '<img src="%choice%" style="height:15vh"/><p id="labelMBEMARight">' + images[1].type + '</p>'],
       post_trial_gap: 1000,
-      trial_duration: 1000, // simu
+      //trial_duration: 1000, //simuBack
       on_load: function () { 
         // fine tune div spacing
         var tmp_stim=document.getElementById('jspsych-content');
@@ -200,8 +200,8 @@
         type: jsPsychAudioKeyboardResponse,
         stimulus: './songs/mbemaShort/1. Melody/bMelody - Example 1.wav',
         prompt: mbema["listen"][lang],
-        //trial_ends_after_audio: true, //simu
-        trial_duration: 1000, //simu
+        trial_ends_after_audio: true,
+        //trial_duration: 1000, //simuBack
         choices: ["NO_KEYS"],
         post_trial_gap: 1000
     };
@@ -240,9 +240,9 @@
         type: jsPsychAudioKeyboardResponse,
         stimulus: './songs/mbemaShort/1. Melody/bMelody - Example 2.wav',
         prompt: mbema["listen"][lang],
-        //trial_ends_after_audio: true, //simu
+        trial_ends_after_audio: true,
         choices: ["NO_KEYS"],
-        trial_duration: 1000,
+        //trial_duration: 1000, //simuBack
         post_trial_gap: 1000
     };
     
@@ -274,8 +274,8 @@
         }	  
     };	
 
-      //var oneToTwenty = Array.from({length:20},(v,k)=>k+1) //simu
-      var oneToTwenty = Array.from({length:2},(v,k)=>k+1) //simu
+      var oneToTwenty = Array.from({length:20},(v,k)=>k+1)
+      //var oneToTwenty = Array.from({length:2},(v,k)=>k+1) //simuBack
 
       var allMBEMATrials5 = oneToTwenty.map(i => [generateMBEMATrial(i, "./songs/mbemaShort/1. Melody/bMelody - "), sameDiffResp])
 
@@ -296,10 +296,10 @@
           type: jsPsychAudioKeyboardResponse,
           stimulus: './songs/mbemaShort/2. Rhythm/bRhythm - Example 1.wav',
           prompt: mbema["listen"][lang],
-          //trial_ends_after_audio: true, //simu
-          trial_duration: 1000,
+          trial_ends_after_audio: true,
+          //trial_duration: 1000, //simuBack
           choices: ["NO_KEYS"],
-          //post_trial_gap: 1000 simu
+          post_trial_gap: 1000
       };
     
     var p2p1_feedback = {
@@ -338,8 +338,8 @@
           type: jsPsychAudioKeyboardResponse,
           stimulus: './songs/mbemaShort/2. Rhythm/bRhythm - Example 2.wav',
           prompt: mbema["listen"][lang],
-          //trial_ends_after_audio: true, //simu
-          trial_duration: 1000,
+          trial_ends_after_audio: true,
+          //trial_duration: 1000, //simuBack
           choices: ["NO_KEYS"],
           post_trial_gap: 1000
       };
@@ -395,8 +395,8 @@
           type: jsPsychAudioKeyboardResponse,
           stimulus: './songs/mbemaShort/3. Memory/bMemory - Example 1.wav',
           prompt: mbema["listen"][lang],
-          //trial_ends_after_audio: true, //simu
-          trial_duration: 1000, //simu
+          trial_ends_after_audio: true,
+          //trial_duration: 1000, //simuBack
           choices: ["NO_KEYS"],
           post_trial_gap: 1000
       };
@@ -437,8 +437,8 @@
           type: jsPsychAudioKeyboardResponse,
           stimulus: './songs/mbemaShort/3. Memory/bMemory - Example 2.wav',
           prompt: mbema["listen"][lang],
-          //trial_ends_after_audio: true, //simu
-          trial_duration: 1000, //simu
+          trial_ends_after_audio: true,
+          //trial_duration: 1000, //simuBack
           choices: ["NO_KEYS"],
           post_trial_gap: 1000
       };
@@ -571,9 +571,9 @@
 		timeline.push(p3_feedback);
 		timeline.push(messageFinishMBEMA);
 
-		//jsPsych.run(timeline); //simu
+		jsPsych.run(timeline);
 
-    jsPsych.simulate(timeline, "visual")
+    //jsPsych.simulate(timeline, "visual") //simuBack
 		
 	});
 
