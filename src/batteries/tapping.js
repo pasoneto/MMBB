@@ -1,4 +1,4 @@
-function generateTappingTimeline(lang){
+function generateTappingTimeline(lang, alicia){
   var frontPage = {
       type: jsPsychInstructions,
       pages: [tapping["openPage"][lang]],
@@ -6,6 +6,18 @@ function generateTappingTimeline(lang){
       button_label_previous: buttons["previous"][lang],
       show_clickable_nav: true,
   }
+
+  var frontPageAlicia = {
+    type: jsPsychHtmlButtonResponse,
+    prompt: 'User ID is:',
+    choices: [recurring["continue"][lang]],
+    stimulus: '',
+    on_start: function(trial){
+      var userIDAlicia = jsPsych.randomization.randomID(10)
+      trial.prompt = "userID is: " + userIDAlicia; // this will change what stimulus is displayed in the trial
+      jsPsych.data.addProperties({userIDAlicia: userIDAlicia});
+    }
+  };
 
   var instruction0 = {
       type: jsPsychInstructions,
@@ -128,7 +140,7 @@ function generateTappingTimeline(lang){
   var howDifficult = {
     type: jsPsychSurveyLikert,
     questions: [{
-      prompt: recurring["howEasy"][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + recurring["veryEasy"][lang] + "</div><div id='rightLabel'>" + recurring["veryHard"][lang] + "</div></div>",  
+      prompt: recurring["howEasy"][lang] + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + recurring["veryHard"][lang] + "</div><div id='rightLabel'>" + recurring["veryEasy"][lang] + "</div></div>",  
       labels: [1, 2, 3, 4, 5].map(i => "<div id='labelLikert'>" + i + "</div>"),
     }],
     button_label: recurring['continue'][lang],
@@ -150,7 +162,23 @@ function generateTappingTimeline(lang){
     }
   };
 
+  var endAlicia = {
+    type: jsPsychHtmlButtonResponse,
+    prompt: 'Please double check the userID',
+    choices: [recurring["continue"][lang]],
+    stimulus: '',
+    on_start: function(trial){
+      var userIDAlicia = jsPsych.randomization.randomID(10)
+      trial.prompt = "userID is: " + userIDAlicia; // this will change what stimulus is displayed in the trial
+      jsPsych.data.addProperties({userIDAlicia: userIDAlicia});
+    }
+  };
+
   var tappingTimeline = [[frontPage, preloadSongs2, instruction0, trialTapping0, messageEndTask, howDifficult, instruction1, trialTapping1, messageEndTask, howDifficult, instruction3, trialTapping3, howDifficult]];
+
+  if(alicia == "1"){
+    var tappingTimeline = [[frontPageAlicia, preloadSongs2, instruction0, trialTapping0, messageEndTask, howDifficult, instruction1, trialTapping1, messageEndTask, howDifficult, endAlicia]];
+  }
 
   return(tappingTimeline)
 }

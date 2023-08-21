@@ -25,6 +25,7 @@
     <script src="./jspsych/dist/plugin-instructions.js"> </script>
     <script src="./jspsych/dist/plugin-survey-likert.js"> </script>
     <script src="./jspsych/dist/plugin-survey-text.js"> </script>
+    <script src="./jspsych/dist/plugin-survey.js"></script>
     <script src="./jspsych/dist/plugin-canvas-button-response.js"> </script>
     <script src="./jspsych/dist/extension-accelerometer.js"> </script>
     <script src="./jspsych/dist/plugin-html-keyboard-response.js"> </script>
@@ -134,7 +135,14 @@
             
             console.log("Next trial")
             console.log(urlRedirect)
-            jatos.endStudyAndRedirect(urlRedirect, finalData)
+            //jatos.endStudyAndRedirect(urlRedirect, finalData)
+
+            console.log("Appending result data...")
+            jatos.appendResultData(finalData).then((r) => {
+                console.log("Redirecting...")
+                window.location.href = urlRedirect;
+            })
+
           } else {
             //If there's another node, go to the next one
 
@@ -146,14 +154,22 @@
 
               console.log("Next node")
               console.log(urlRedirect)
-              jatos.endStudyAndRedirect(urlRedirect, finalData)
+              //jatos.endStudyAndRedirect(urlRedirect, finalData)
+
+              console.log("Appending result data...")
+              jatos.appendResultData(finalData).then((r) => {
+                console.log("Redirecting...")
+                window.location.href = urlRedirect;
+              })
 
             } else { //If end of experiment. Redirect to homepage
                 var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&Movement=done"
-                jatos.endStudyAndRedirect(urlRedirect, finalData)
 
-                //jatos.endStudyAndRedirect("https://mmbb.ltdk.helsinki.fi/publix/PKudyqAmMau?lang=eng", finalData) //simuBack
-                
+                console.log("Appending result data...")
+                jatos.appendResultData(finalData).then(r => {
+                  jatos.endStudyAndRedirect(urlRedirect)
+                })
+
             }
           }
         }
@@ -177,7 +193,7 @@
         prompt: recurring["endTask1"][lang],
         choices: [],
         //choices: ["a"], //simuBack
-        trial_duration: 3000,
+        trial_duration: 1000,
         stimulus: '',
         on_start: function(){
         },

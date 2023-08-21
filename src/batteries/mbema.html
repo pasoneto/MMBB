@@ -109,10 +109,11 @@
         show_clickable_nav: true,
     }
 
+
 	  // second round instructions
     var instruction2 = {
         type: jsPsychInstructions,
-        pages: ["thanksThird", "previousParts", "previousPartsB", "canYouTell", "canYouTellB", "firstCouple"].map(i => mbema[i][lang]),
+        pages: ["thankYouSimilar", "youWillAgain", "youWillAgainB", "firstPractice"].map(i => mbema[i][lang]),
         button_label_next: buttons["next"][lang],
         button_label_previous: buttons["previous"][lang],
         show_clickable_nav: true,
@@ -121,7 +122,7 @@
 	  // memory part instructions
     var instruction3 = {
         type: jsPsychInstructions,
-        pages: ["thankYouSimilar", "youWillAgain", "youWillAgainB", "firstPractice"].map(i => mbema[i][lang]),
+        pages: ["thanksThird", "previousParts", "previousPartsB", "canYouTell", "canYouTellB", "firstCouple"].map(i => mbema[i][lang]),
         button_label_next: buttons["next"][lang],
         button_label_previous: buttons["previous"][lang],
         show_clickable_nav: true,
@@ -172,7 +173,7 @@
     
     var melodyYesNoResp = {
       type: jsPsychHtmlButtonResponse,
-      choices: [mbema["yes"][lang], mbema["no"][lang]],
+      choices: [mbema["no"][lang], mbema["yes"][lang]],
       stimulus: mbema["heardBefore"][lang],
       button_html: ['<button class="mbema-btn">%choice%</button>',
                     '<button class="mbema-btn" style="background-color:purple">%choice%</button>'],
@@ -188,7 +189,7 @@
 
     var practiceWrongRepeat = {
       type: jsPsychHtmlButtonResponse,
-      choices: [mbema["yes"][lang], mbema["no"][lang]],
+      choices: [mbema["no"][lang], mbema["yes"][lang]],
       stimulus: mbema["answerWrong"][lang],
       post_trial_gap: 1000,
       on_load: function(){

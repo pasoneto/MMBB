@@ -164,7 +164,13 @@ function generateSharedMeasurementsTimeline(lang, short){
       document.getElementById("jspsych-content").style.height = '100%'
       document.getElementById("preamble").style.fontSize = '0.75em'
       document.getElementById("input-0").type = "date"
+      document.getElementById("input-0").autofocus = false
+      document.getElementById("input-0").inputmode = 'none'
       document.getElementById("input-0").style.padding = "20px"
+      var elelist = document.getElementsByTagName("input");
+      for(var i = 0; i < elelist.length; i++){
+          elelist[i].blur();
+      }
     }
   }
 
@@ -259,10 +265,55 @@ function generateSharedMeasurementsTimeline(lang, short){
   var neverDaily = ["never", "veryRarely", "monthly", "weekly", "daily"].map(i => sharedMeasurementsT[i][lang])
 
   var promptsMusical = ['howLongSing', 'howOftenSingBefore', 'howOftenSingNow', 'howMuchTuitionSing', 'howLongInstrumentHobby', 'howOftenPlayHobby', 'howOftenPlayNow', 'howMuchTuitionInstrument', 'howLongDanceHobby', 'howLongDanceHobyBefore', 'howOftenDanceNow', 'howMuchTuitionDance', 'howOftenListenMusicNow', 'howMusical']
-  var optionsMusical = [neverTen, neverDaily, neverDaily, neverDaily, neverTen, neverDaily, neverDaily, neverTen, neverTen, neverTen, neverDaily, neverTen, neverDaily, yesNoMusical]
+  var optionsMusical = [neverTen,       neverDaily,           neverDaily,        neverTen,             neverTen,                 neverDaily,          neverDaily,        neverTen,                   neverTen,            neverDaily,               neverDaily,         neverTen,              neverDaily,               yesNoMusical]
 
   var questionsMusical = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map(i => generateDropdownObject(sharedMeasurementsT[promptsMusical[i]][lang], optionsMusical[i], true))
   var musicalBackgroundSurvey = questionsMusical.map(i => generateManyDropDowns(i, sharedMeasurementsT['pleaseAnswer'][lang]))
+
+  var singConditional = {
+      timeline: [musicalBackgroundSurvey[1], musicalBackgroundSurvey[2]],
+      conditional_function: function(){
+          var typeQuestion = Object.keys(jsPsych.data.getLastTrialData(1)['trials'][0].response)[0]
+          var otherWhich = jsPsych.data.getLastTrialData(1)['trials'][0].response[typeQuestion]
+          var showNode = otherWhich == 'never' || otherWhich == "en koskaan"
+          console.log(otherWhich)
+          if(showNode){
+              return false;
+          } else {
+              return true;
+          }
+      }
+  }
+
+  var instrumentConditional = {
+      timeline: [musicalBackgroundSurvey[5], musicalBackgroundSurvey[6]],
+      conditional_function: function(){
+          var typeQuestion = Object.keys(jsPsych.data.getLastTrialData(1)['trials'][0].response)[0]
+          var otherWhich = jsPsych.data.getLastTrialData(1)['trials'][0].response[typeQuestion]
+          var showNode = otherWhich == 'never' || otherWhich == "en koskaan"
+          if(showNode){
+              return false;
+          } else {
+              return true;
+          }
+      }
+  }
+
+  var danceConditional = {
+      timeline: [musicalBackgroundSurvey[9], musicalBackgroundSurvey[10]],
+      conditional_function: function(){
+          var typeQuestion = Object.keys(jsPsych.data.getLastTrialData(1)['trials'][0].response)[0]
+          var otherWhich = jsPsych.data.getLastTrialData(1)['trials'][0].response[typeQuestion]
+          var showNode = otherWhich == 'never' || otherWhich == "en koskaan"
+          if(showNode){
+              return false;
+          } else {
+              return true;
+          }
+      }
+  }
+  
+  var musicalBackgroundSurvey = [ musicalBackgroundSurvey[0], singConditional, musicalBackgroundSurvey[3], musicalBackgroundSurvey[4], instrumentConditional, musicalBackgroundSurvey[7], musicalBackgroundSurvey[8], danceConditional, musicalBackgroundSurvey[11], musicalBackgroundSurvey[12], musicalBackgroundSurvey[13]]
 
   //STOMP
   var optionsLikeDislike = ["dislikeStrongly", "dislikeModerately", "dislkikeAlittle", "neutral", "likeALittle", "likeModerately", "likeStrongly"].map(i => sharedMeasurementsT[i][lang])

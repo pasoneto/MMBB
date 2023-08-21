@@ -11,19 +11,19 @@ Continue,Jatka
 How easy was this task for you?,Kuinka helpoksi koit tehtävän?
 Very easy,Todella helppo.
 Very hard,Todella haastava.
-For this task you will need the following items:,Tätä tehtävää varten tarvitset seuraavat esineet:
+For this task you will need the following items...,Tätä tehtävää varten tarvitset seuraavat esineet...
 A pocket or a purse<br><img id='pocket' src='./images/pocket.svg'></img>,Taskun tai käsilaukun. <br><img id='pocket' src='./images/pocket.svg'></img>
 A flat surface where you can lay down your phone<br><img id='tableSVG' src='./images/table.svg'></img>,"Tasaisen pinnan, jolle voit laskea puhelimesi. <br><img id='tableSVG' src='./images/table.svg'></img>"
 "Please, use either wired headphones/earplugs or the phone's loudspeaker. Do not use bluetooth hearing-devices.<br> <img id='noBluetooth' src='./images/noBluetooth.svg'></img>",Käytä joko langallisia kuulokkeita tai puhelimesi omaa kaiutinta. Emme suosittele käyttämään Bluetooth-laitteita.
 "To ensure the correct functioning of the experiment, it is required that you disable the automatic lock of your phone screen. Tap Next to see instructions.",Tehtävän tekemiseksi sinun on poistettava hetkellisesti puhelimen näytön automaattinen lukitus. Näet ohjeet napauttamalla 'Seuraava'.
-On <b>iPhone</b>:,<b>iPhonin</b> päällä
+On <b>iPhone</b>:,<b>iPhonessa</b>
 Settings <br> <img id='instructionLock' src='./images/instructions/iosInstruction0.png'></img>,Asetukset <br> <img id='instructionLock' src='./images/instructions/iosInstruction0.png'></img>
-Display & brightness <br> <img id='instructionLock' src='./images/instructions/iosInstruction1.png'></img>,Näyttö & kirkkaus <br> <img id='instructionLock' src='./images/instructions/iosInstruction1.png'></img>
+Display & brightness <br> <img id='instructionLock' src='./images/instructions/iosInstruction1.png'></img>,Näyttö ja kirkkaus <br> <img id='instructionLock' src='./images/instructions/iosInstruction1.png'></img>
 Auto-lock > Never <br> <img id='instructionLock' src='./images/instructions/iosInstruction2.png'></img>,Automaattinen lukitus > Ei koskaan <br> <img id='instructionLock' src='./images/instructions/iosInstruction2.png'></img>
 You can re-enable this setting once the experiment has ended.,Voit ottaa vanhat asetuksesi uudelleen käyttöön kun koe on päättynyt.
-On <b>Android</b>:,Päällä <b>Androiding</b>
-Settings <br> <img id='instructionLock' src='./images/instructions/androidInstructions0.png'></img>,Astetukset <br> <img id='instructionLock' src='./images/instructions/androidInstructions0.png'></img>
-Display <br> <img id='instructionLock' src='./images/instructions/androidInstructions1.png'></img>,Näyttö & kirkkaus <br> <img id='instructionLock' src='./images/instructions/androidInstructions1.png'></img>
+On <b>Android</b>:,<b>Androidin</b> kohdalla
+Settings <br> <img id='instructionLock' src='./images/instructions/androidInstructions0.png'></img>,Asetukset <br> <img id='instructionLock' src='./images/instructions/androidInstructions0.png'></img>
+Display <br> <img id='instructionLock' src='./images/instructions/androidInstructions1.png'></img>,Näyttö ja kirkkaus <br> <img id='instructionLock' src='./images/instructions/androidInstructions1.png'></img>
 Screen timeout > 30/15/10 minutes <br> <img id='instructionLock' src='./images/instructions/androidInstructions2.png'></img>,Näytön lukitus > 30/15/10 minuuttia <br> <img id='instructionLock' src='./images/instructions/androidInstructions2.png'></img>
 You can re-enable this setting once the experiment has ended.,Voit ottaa vanhat asetuksesi uudelleen käyttöön kun koe on päättynyt.
 You can take breaks between each task,Voit halutessasi vapaasti pitää taukoja tehtävien välillä.

@@ -27,7 +27,7 @@ very rarely,hyvin harvoin
 monthly,kuukausittain
 weekly,viikoittain
 daily,päivittäin
-<b>Welcome to the MMBB survey!</b>,<b>Tervetuloa MMBB kyselyyn!</b>
+<b>Welcome to the MMBB survey!</b>,<b>Tervetuloa MMBB-kyselyyn!</b>
 Personal background,Taustatietosi
 Musical background,Musiikkitaustasi
 Perception,Havainnointi
@@ -35,7 +35,7 @@ Singing,Laulaminen
 Dancing,Tanssiminen
 Musical preferences,Musiikkimieltymykset
 Musical experiences,Musiikilliset kokemukset
-Rated on a 5-point scale:,Arvioidaan 5-portaisella asteikolla:
+"Please, answer the following:",Arvioidaan 5-portaisella asteikolla:
 I can tell when people sing or play out of time with the beat,Huomaan kun ihmiset laulavat tai soittavat väärässä tahdissa
 I can tell when people sing or play out of tune,Huomaan kun ihmiset laulavat tai soittavat epävireisesti
 I find it easy to learn or imitate other people's movements,Minusta on helppo oppia tai matkia toisten liikkeitä.
@@ -45,7 +45,7 @@ Here are questions about your background,Seuraavassa on kysymyksiä taustastasi
 "Please, answer the following questions",Ole hyvä ja vastaa seuraaviin kysymyksiin
 What is your primary spoken language?,Mikä on äidinkielesi?
 What is your secondary spoken language? (If applicable),Mikä on toissijainen puhuttu kielesi? (jos on)
-Year of birth,Syntymävuosi
+Date of birth,Syntymäpäivä
 What is your nationality,Mikä on kansalaisuutesi?
 Gender,Sukupuoli
 "Gender, other:","Sukupuoli, muu:"
@@ -111,7 +111,7 @@ Music comforts me,Musiikki lohduttaa minua
 When I hear a tune I like a lot I can’t help tapping or moving to its beat,"Kuullessani musiikkikappaleen, josta pidän todella paljon, en malta olla taputtamatta tai liikkumatta sen tahtiin"
 "If somebody starts singing a song I don't know, I can usually join in","Jos joku alkaa laulamaan minulle tuntematonta kappaletta, voin yleensä liittyä mukaan lauluun."
 I am able to hit the right notes when I sing along with a recording,Pystyn osumaan oikeisiin nuotteihin laulaessani äänitteen mukana
-"En pidä julkisesti laulamisesta, koska pelkään laulavani vääriä nuotteja.","En pidä julkisesti laulamisesta, koska pelkään laulavani nuotin vierestä"
+I don’t like singing in public because I’m afraid that I would sing wrong notes.,"En pidä julkisesti laulamisesta, koska pelkään laulavani nuotin vierestä"
 I can sing music from memory,Osaan laulaa kappaleita ulkomuistista
 "After hearing a new song two or three times, I can usually sing it by myself","Kuultuani uuden kappaleen kahdesti tai kolmesti, pystyn yleensä laulamaan sen itsekseni."
 I find it easy to control my movements,Minusta on helppo hallita omia liikkeitäni.

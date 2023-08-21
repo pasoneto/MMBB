@@ -40,7 +40,8 @@
   </head>
 
   <script>
-  
+    //  Post questionnaire change how much would you have liked? To scale.
+    //  Translate 
     var lang = "eng"
 
     function generateDropdownObject(prompt, options, required){
@@ -98,20 +99,15 @@
     var text0 = ["This is a follow-up to the study in which you came to the University to dance and make music playlists with your friend and with a stranger.", "We have a few questions for you about the stranger."]
     var text1 = "Were you in any contact after the study?"
     var text2 = "In which way? (e.g. Instagram, real contact,...)"
-    var text3 = "Would you have liked to stay in contact with that person?"
+    var text3 = "How much would you have liked to stay in contact with that person?"
     var text6 = "Please rate how close do you feel with this person"
 
-    var options1 = ["Yes", "No"]
-    var options2 = ["Yes", "Perhaps", "No"]
+    var options1 = [initialInstructions["yes"][lang], initialInstructions["no"][lang]]
 
     var objDrop1 = generateDropdownObject(text1, options1, true)
     var trialDrop1 = generateManyDropDowns(objDrop1, "") //First
 
-    var objDrop2 = generateDropdownObject(text3, options2, true)
-    var trialDrop2 = generateManyDropDowns(objDrop2, "")
-
     var trialObject1 = generateTextObject(text2, true, 20, 1)
-    var trialObject2 = generateTextObject(text3, true, 20, 1)
 
     var instruction0 = {
         type: jsPsychInstructions,
@@ -132,13 +128,16 @@
     };
 
     var trialTextNo = {
-      type: jsPsychSurvey,
-      pages: [[trialObject2]],
-      title: '',
-      button_label_next: buttons["continue"][lang],
-      button_label_back: buttons["previous"][lang],
-      button_label_finish: buttons["continue"][lang],
-      on_load: () => {changeStyle()}
+      type: jsPsychSurveyLikert,
+      questions: [{
+        prompt: text3 + "<div id='labelsWrapperLikert'><div id='leftLabel'>" + movement["notAtAll"][lang] + "</div><div id='rightLabel'>" + movement["veryMuch"][lang] + "</div></div>",  
+        labels: [1, 2, 3, 4, 5].map(i => "<div id='labelLikert'>" + i + "</div>"),
+      }],
+      button_label: recurring['continue'][lang],
+      randomize_question_order: false,
+      on_load: function(){
+        document.querySelector(".jspsych-survey-likert-statement").style.fontSize = '1em'
+      }
     };
 
     var conditionalYes = {

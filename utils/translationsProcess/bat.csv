@@ -9,9 +9,9 @@ Your task is to find the best alignment between the click and the song,Tehtävä
 "By clicking these buttons, you will be able to align the song and the click in a few different ways:<br><img id='music' src='./images/exampleBAT.png'></img>",Näiden painikkeiden avulla voit kohdistaa kappaleen ja klikkiraidan muutamalla eri tavalla:<br><img id='music' src='./images/exampleBAT.png'></img>
 Let's start with a practice trial,Aloitetaan harjoittelutehtävällä
 "Your task is to click through the buttons until you find the best aligment between the song and the click. Once you find it, click Continue","Tehtäväsi on koskettaa ja kokeilla eri painikkeita, kunnes löydät parhaan kohdistuksen kappaleen ja klikkiraidan välille. Kun löydät sen, paina Jatka"
-"Each trial has a time-limit, so try to find the best alignment as quickly as you can","Jokaisella osiolla on aikaraja, joten yritä löytää paras ajoitus mahdollisimman nopeasti"
+"Each trial has a time limit, so try to find the best alignment as quickly as you can","Jokaisella osiolla on aikaraja, joten yritä löytää paras ajoitus mahdollisimman nopeasti"
 "Ok, let's continue with the task","Selvä, jatketaan varsinaisella tehtävällä"
 Next you will hear 6 songs. Align the click track with the beat of the song,Seuravaaksi kuulet 6 laulua. Säädää kilikkiraita laulun tahtiin
-Adjust the beat<br>,Säädä tahtia<br>
+Adjust the beat<br>,Säädä tahdistusta<br>
 Beat alignment task,Tahdin kohdistustehtävä
 How satisfied were you with the alignment that you found between this song and the click?,Kuinka tyytyväinen olit tämän kappaleen ja klikkiraidan väliseen kohdistukseen?
