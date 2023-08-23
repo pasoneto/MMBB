@@ -13,9 +13,9 @@ function generateTappingTimeline(lang, alicia){
     choices: [recurring["continue"][lang]],
     stimulus: '',
     on_start: function(trial){
-      var userIDAlicia = jsPsych.randomization.randomID(10)
-      trial.prompt = "userID is: " + userIDAlicia; // this will change what stimulus is displayed in the trial
-      jsPsych.data.addProperties({userIDAlicia: userIDAlicia});
+      window.userIDAlicia = jsPsych.randomization.randomID(10)
+      trial.prompt = "userID is: " + window.userIDAlicia; // this will change what stimulus is displayed in the trial
+      jsPsych.data.addProperties({userIDAlicia: window.userIDAlicia});
     }
   };
 
@@ -168,9 +168,8 @@ function generateTappingTimeline(lang, alicia){
     choices: [recurring["continue"][lang]],
     stimulus: '',
     on_start: function(trial){
-      var userIDAlicia = jsPsych.randomization.randomID(10)
-      trial.prompt = "userID is: " + userIDAlicia; // this will change what stimulus is displayed in the trial
-      jsPsych.data.addProperties({userIDAlicia: userIDAlicia});
+      trial.prompt = "userID is: " + window.userIDAlicia; // this will change what stimulus is displayed in the trial
+      jsPsych.data.addProperties({userIDAlicia: window.userIDAlicia});
     }
   };
 
