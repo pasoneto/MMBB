@@ -169,7 +169,6 @@ function generateTappingTimeline(lang, alicia){
     stimulus: '',
     on_start: function(trial){
       trial.prompt = "userID is: " + window.userIDAlicia; // this will change what stimulus is displayed in the trial
-      jsPsych.data.addProperties({userIDAlicia: window.userIDAlicia});
     }
   };
 
