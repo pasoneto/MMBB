@@ -126,7 +126,6 @@
       changeLangURL("fi")
     }
 
-
     //Watch if user logged in
     firebase.auth().onAuthStateChanged(user => {
       if(user){ //If user logged in, stay in choose battery, else go to auth
@@ -157,7 +156,7 @@
           location.href = rhythmDirect
         }
       } else {
-        location.href = studyLinks["frontPageLink"]
+        location.href = studyLinks['frontPageLink']
       }
     })
 
