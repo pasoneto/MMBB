@@ -13,7 +13,7 @@ var studyLinks = {
 
 //Server
 var studyLinks = {
-  frontPageLink: "https://pasoneto.github.io/MMBB/",
+  frontPageLink: "https://mmbb.fi",
   chooseBatteryLink: "https://mmbb.fi/pages/chooseBattery.html",
   emotionLink: "https://mmbb.ltdk.helsinki.fi/publix/YK3bdjI0tbl",
   movementLink: "https://mmbb.ltdk.helsinki.fi/publix/oLzabocUoB1",
