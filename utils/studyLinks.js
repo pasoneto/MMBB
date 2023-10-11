@@ -14,7 +14,7 @@ var studyLinks = {
 //Server
 var studyLinks = {
   frontPageLink: "https://pasoneto.github.io/MMBB/",
-  chooseBatteryLink: "https://pasoneto.github.io/MMBB/pages/chooseBattery.html",
+  chooseBatteryLink: "https://mmbb.fi/pages/chooseBattery.html",
   emotionLink: "https://mmbb.ltdk.helsinki.fi/publix/YK3bdjI0tbl",
   movementLink: "https://mmbb.ltdk.helsinki.fi/publix/oLzabocUoB1",
   sharedLink: "https://mmbb.ltdk.helsinki.fi/publix/GVTvw1u3Dmj",
