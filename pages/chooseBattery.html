@@ -106,7 +106,8 @@
     }
 
     function changeLangURL(lang){
-      var urlRedirect = studyLinks['chooseBatteryLink'] + "?lang=" + lang
+      redir =  window.location.origin;
+      var urlRedirect = redir + "?lang=" + lang
       location.href = urlRedirect
     }
 

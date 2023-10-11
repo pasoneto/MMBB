@@ -47,7 +47,8 @@
         if(lang == undefined){
           var lang = "eng"
         }
-        var urlRedirect = studyLinks["chooseBatteryLink"] + '?lang=' + lang + '&user=' + userID
+        redir = window.location.origin;
+        var urlRedirect = redir + '?lang=' + lang + '&user=' + userID
         location.href = urlRedirect
       }
     })
