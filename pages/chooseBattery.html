@@ -71,7 +71,8 @@
 
     var queryStringIndex = window.location.search;
     var urlParamsIndex = new URLSearchParams(queryStringIndex);
-
+     
+    //Check tasks that have already been done
     var movementDone = urlParamsIndex.get('Movement')
     var emotionDone = urlParamsIndex.get('Emotion')
     var mbemaDone = urlParamsIndex.get('MBEMA')
@@ -89,15 +90,11 @@
       }
     }
 
-    //Check which tasks have been done
     allTasksNames.map(i => {
       if(getCookie(i) == "done"){
         document.getElementById("task" + i).style.background = "lightgreen";
       }
     })
-
-    var queryStringIndex = window.location.search;
-    var urlParamsIndex = new URLSearchParams(queryStringIndex);
 
     var lang = urlParamsIndex.get('lang')
 
@@ -111,13 +108,26 @@
       location.href = urlRedirect
     }
 
+    //Rendering only sub-batteries from study
+    var studyID = urlParamsIndex.get('studyID')
+    if(studyID == undefined){
+      var studyID = "main"
+    }
+
+    var studyIDtasks = {"main": ["movement", "survey"],
+                        "123": ["emotion", "survey"]}
+    var studyIDtasks = studyIDtasks[studyID]
+
+    for(a in studyIDtasks){
+      document.getElementById(studyIDtasks[a] + "TaskIcon").style.display = "block"
+    }
+
     document.getElementById("movementTaskIcon").innerHTML = taskIcons['movement'][lang]
     document.getElementById("singingTaskIcon").innerHTML = taskIcons['singing'][lang]
     document.getElementById("emotionTaskIcon").innerHTML = taskIcons['emotion'][lang]
     document.getElementById("surveyTaskIcon").innerHTML = taskIcons['survey'][lang]
     document.getElementById("mbemaTaskIcon").innerHTML = taskIcons['MBEMA'][lang]
     document.getElementById("rhythmTaskIcon").innerHTML = taskIcons['rhythm'][lang]
-
 
     document.getElementById("langEng").onclick = function(){
       changeLangURL("eng")

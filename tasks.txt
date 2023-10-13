@@ -15,3 +15,11 @@
 
 Implement questionnaires for friends strangers
 https://jyu-my.sharepoint.com/:x:/g/personal/maarhart_jyu_fi/EVOc-nBuAUJHm4X2U3HPjGgBVw2rWoge47n5PCWtFcb86g?e=9bCRHE
+
+#Emotion
+- Add keywords for translations;
+- Add structure for studyID, which shows only a subset;
+- Divide emotion game and ?;
+- Deleting familiarity question;
+- Ask age, gender and nationality upon registration (?)
+

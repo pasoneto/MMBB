@@ -44,10 +44,15 @@
         var userID = user.uid
         var lang = urlParamsIndex.get('lang')
 
+        var studyID = urlParamsIndex.get('studyID')
+        if(studyID == undefined){
+          var studyID = "main"
+        }
+
         if(lang == undefined){
           var lang = "eng"
         }
-        var urlRedirect = studyLinks['chooseBatteryLink'] + '?lang=' + lang + '&user=' + userID
+        var urlRedirect = studyLinks['chooseBatteryLink'] + '?lang=' + lang + '&user=' + userID + '&studyID=' + studyID
         location.href = urlRedirect
       }
     })
