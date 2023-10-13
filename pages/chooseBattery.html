@@ -141,31 +141,31 @@
         document.getElementById("userName").innerHTML = "Hello, " + user.displayName
         var userIDFirebase = user.uid
         document.getElementById("linkToMovement").onclick = function(){
-          var movementRedirect = studyLinks['movementLink'] + '?lang=' + lang + '&user=' + userIDFirebase
+          var movementRedirect = studyLinks['movementLink'] + '?lang=' + lang + '&user=' + userIDFirebase + '&studyID=' + studyID
           location.href = movementRedirect
         }
         document.getElementById("linkToEmotion").onclick = function(){
-          var emotionRedirect = studyLinks['emotionLink'] + '?lang=' + lang + '&user=' + userIDFirebase
+          var emotionRedirect = studyLinks['emotionLink'] + '?lang=' + lang + '&user=' + userIDFirebase  + '&studyID=' + studyID
           location.href = emotionRedirect
         }
         document.getElementById("taskSharedMeasures").onclick = function(){
-          var sharedDirect = studyLinks['sharedLink'] + '?lang=' + lang + '&user=' + userIDFirebase
+          var sharedDirect = studyLinks['sharedLink'] + '?lang=' + lang + '&user=' + userIDFirebase + '&studyID=' + studyID
           location.href = sharedDirect
         }
         document.getElementById("taskMBEMA").onclick = function(){
-          var mbemaDirect = studyLinks['mbema'] + '?lang=' + lang + '&user=' + userIDFirebase
+          var mbemaDirect = studyLinks['mbema'] + '?lang=' + lang + '&user=' + userIDFirebase + '&studyID=' + studyID
           location.href = mbemaDirect
         }
         document.getElementById("taskSinging").onclick = function(){
-          var singingDirect = studyLinks['singingLink'] + '?lang=' + lang + '&user=' + userIDFirebase
+          var singingDirect = studyLinks['singingLink'] + '?lang=' + lang + '&user=' + userIDFirebase + '&studyID=' + studyID
           location.href = singingDirect
         }
         document.getElementById("taskRhythm").onclick = function(){
-          var rhythmDirect = studyLinks['rhythmLink'] + '?lang=' + lang + '&user=' + userIDFirebase
+          var rhythmDirect = studyLinks['rhythmLink'] + '?lang=' + lang + '&user=' + userIDFirebase + '&studyID=' + studyID
           location.href = rhythmDirect
         }
       } else {
-        location.href = studyLinks['frontPageLink']
+        location.href = studyLinks['frontPageLink'] + '?lang=' + lang + '&studyID=' + studyID
       }
     })
 
