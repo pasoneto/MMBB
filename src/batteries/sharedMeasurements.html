@@ -60,16 +60,20 @@
 
             var lang = jatos.urlQueryParameters.lang
             var userID = jatos.urlQueryParameters.user
+            var studyID = jatos.urlQueryParameters.studyID
+            if(studyID == undefined){
+              var studyID = "main"
+            }
 
             var timeEnd = Date.now();
 
-            jsPsych.data.addProperties({userID: userID, lang: lang, timeEnd: timeEnd, timeBegin: timeBegin});
+            jsPsych.data.addProperties({userID: userID, lang: lang, timeEnd: timeEnd, timeBegin: timeBegin, studyID: studyID});
 
             var dFinal = jsPsych.data.get()
             
             allowRefresh();
 
-            var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&SharedMeasures=done"
+            var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&SharedMeasures=done" + "&studyID=" + studyID
             jatos.endStudyAndRedirect(urlRedirect, dFinal)
 
       }});

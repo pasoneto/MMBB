@@ -46,13 +46,17 @@
     }
 	
     var userID = jatos.urlQueryParameters.user;
+    var studyID = jatos.urlQueryParameters.studyID;
+    if(studyID == undefined){
+      var studyID = "main"
+    }
 
     var jsPsych = initJsPsych({
       show_progress_bar: true,
 	    message_progress_bar: recurring["completionProgress"][lang],
       override_safe_mode: true,
       on_finish: function() {
-        jsPsych.data.addProperties({userID: userID, lang: lang, timeEnd: timeEnd, timeBegin: timeBegin});
+        jsPsych.data.addProperties({userID: userID, lang: lang, timeEnd: timeEnd, timeBegin: timeBegin, studyID: studyID});
         
         var finalData = jsPsych.data.get()
 

@@ -130,7 +130,11 @@
 	jatos.onLoad(() => {
 
     var userID = jatos.urlQueryParameters.user
+    var studyID = jatos.urlQueryParameters.studyID
     var lang = jatos.urlQueryParameters.lang
+    if(studyID == undefined){
+      var studyID = "main"
+    }
 
     if (lang=="fi") { 
       famsong="PaljonOnneaVaan";
@@ -150,9 +154,12 @@
         on_trial_finish: function(data){
           var userID = jatos.urlQueryParameters.user
           var lang = jatos.urlQueryParameters.lang
-          var userID = jatos.urlQueryParameters.user
+          var studyID = jatos.urlQueryParameters.studyID
+          if(studyID == undefined){
+            var studyID = "main"
+          }
           var timeEnd = Date.now();
-          jsPsych.data.addProperties({userID: userID, lang: lang, timeEnd: timeEnd});
+          jsPsych.data.addProperties({userID: userID, lang: lang, timeEnd: timeEnd, studyID: studyID});
 
           var trialData = jsPsych.data.getLastTrialData();
 
@@ -164,17 +171,21 @@
         on_finish: function() {
 
           var userID = jatos.urlQueryParameters.user
+          var studyID = jatos.urlQueryParameters.studyID
+          if(studyID == undefined){
+            var studyID = "main"
+          }
           var lang = jatos.urlQueryParameters.lang
           
           //Time end experiment
           var timeEnd = Date.now();
 
-          jsPsych.data.addProperties({userID: userID, lang: lang, timeBegin: timeBegin, timeEnd: timeEnd});
+          jsPsych.data.addProperties({userID: userID, lang: lang, timeBegin: timeBegin, timeEnd: timeEnd, studyID: studyID});
 
           var finalData = jsPsych.data.get().json()
 
           // go back to main
-          var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&Singing=done"
+          var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&Singing=done" + "&studyID=" + studyID
           jatos.endStudyAndRedirect(urlRedirect)
 
           //jatos.endStudyAndRedirect("https://mmbb.ltdk.helsinki.fi/publix/jC0EZeucWGE?lang=eng", finalData) //simuBack
@@ -215,8 +226,8 @@
         testaudio.pause(); testaudio.currentTime=0;
         if (data.response==0) {
           // go back to main
-          console.log	('end study redirect to https://mmbb.ltdk.helsinki.fi/publix/2zUqwTbq1lS?lang=' + lang + "&user=" + userID)
-          jatos.endStudyAndRedirect('https://mmbb.ltdk.helsinki.fi/publix/2zUqwTbq1lS?lang=' + lang + "&user=" + userID);
+          console.log	('end study redirect to https://mmbb.ltdk.helsinki.fi/publix/2zUqwTbq1lS?lang=' + lang + "&user=" + userID, + "&studyID=" + studyID)
+          jatos.endStudyAndRedirect('https://mmbb.ltdk.helsinki.fi/publix/2zUqwTbq1lS?lang=' + lang + "&user=" + userID + "&studyID=" + studyID);
         }
       }
     }
@@ -302,8 +313,8 @@
 
 			if (data.response==0) {
 				// go back to main
-				console.log	('end study redirect to https://mmbb.ltdk.helsinki.fi/publix/2zUqwTbq1lS?lang=' + lang + "&user=" + userID)
-				jatos.endStudyAndRedirect('https://mmbb.ltdk.helsinki.fi/publix/2zUqwTbq1lS?lang=' + lang + "&user=" + userID);
+				console.log	('end study redirect to https://mmbb.ltdk.helsinki.fi/publix/2zUqwTbq1lS?lang=' + lang + "&user=" + userID + "&studyID=" + studyID)
+				jatos.endStudyAndRedirect('https://mmbb.ltdk.helsinki.fi/publix/2zUqwTbq1lS?lang=' + lang + "&user=" + userID + "&studyID" + studyID);
 			}
 			if (data.response==2) {
 				console.log	('record test ok')
@@ -342,8 +353,8 @@
 		on_finish: function(data) {
 			if (data.response==0) {
 				// go back to main
-				console.log	('end study redirect to https://mmbb.ltdk.helsinki.fi/publix/2zUqwTbq1lS?lang=' + lang + "&user=" + userID)
-				jatos.endStudyAndRedirect('https://mmbb.ltdk.helsinki.fi/publix/2zUqwTbq1lS?lang=' + lang + "&user=" + userID);
+				console.log	('end study redirect to https://mmbb.ltdk.helsinki.fi/publix/2zUqwTbq1lS?lang=' + lang + "&user=" + userID + "&studyID" + studyID)
+				jatos.endStudyAndRedirect('https://mmbb.ltdk.helsinki.fi/publix/2zUqwTbq1lS?lang=' + lang + "&user=" + userID + "&studyID=" + studyID);
 			}
 		},
     };	

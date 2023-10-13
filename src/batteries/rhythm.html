@@ -94,7 +94,11 @@
           var measurePerformance = performance.getEntriesByType('resource');
 
           var userID = jatos.urlQueryParameters.user
+          var studyID = jatos.urlQueryParameters.studyID
           //var userID = urlParams.get('user')
+          if(studyID == undefined){
+            var studyID = "main"
+          }
 
           var nodeIndex = jatos.urlQueryParameters.nodeIndex
           //var nodeIndex = urlParams.get('nodeIndex')
@@ -115,7 +119,7 @@
             var lang = "eng"
           }
 
-          jsPsych.data.addProperties({userID: userID, lang: lang, timeEnd: timeEnd, timeBegin: timeBegin, sequenceTrials: getCookie('sequenceTrial'), nodeIndex: nodeIndex, tIndex: trialIndex});
+          jsPsych.data.addProperties({userID: userID, lang: lang, timeEnd: timeEnd, timeBegin: timeBegin, sequenceTrials: getCookie('sequenceTrial'), nodeIndex: nodeIndex, tIndex: trialIndex, studyID: studyID});
 
           var finalData = jsPsych.data.get()
           finalData['trials'].push({"performance": measurePerformance, "infoUser": navigator.userAgent})
@@ -130,7 +134,7 @@
           if(Number(trialIndex) < Number(nTrials)){
             trialIndex = Number(trialIndex)+1
 
-            var urlRedirect = studyLinks['rhythmLink'] + "?user=" + userID + "&trialIndex=" + trialIndex + "&nodeIndex=" + nodeIndex + "&lang=" + lang + "&alicia=" + alicia
+            var urlRedirect = studyLinks['rhythmLink'] + "?user=" + userID + "&trialIndex=" + trialIndex + "&nodeIndex=" + nodeIndex + "&lang=" + lang + "&alicia=" + alicia + '&studyID=' + studyID
             
             console.log("Next trial")
             console.log(urlRedirect)
@@ -150,7 +154,7 @@
               trialIndex = Number(0)
               nodeIndex = Number(nodeIndex)+1
 
-              var urlRedirect = studyLinks['rhythmLink'] + "?user=" + userID + "&trialIndex=" + trialIndex + "&nodeIndex=" + nodeIndex + "&lang=" + lang + "&alicia=" + alicia
+              var urlRedirect = studyLinks['rhythmLink'] + "?user=" + userID + "&trialIndex=" + trialIndex + "&nodeIndex=" + nodeIndex + "&lang=" + lang + "&alicia=" + alicia + '&studyID=' + studyID
 
               console.log("Next node")
               console.log(urlRedirect)
@@ -162,7 +166,7 @@
               })
 
             } else { //If end of experiment. Redirect to homepage
-                var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&Rhythm=done"
+                var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&Rhythm=done" + '&studyID=' + studyID
                 //jatos.endStudyAndRedirect(urlRedirect, finalData)
                 console.log("Appending result data...")
                 jatos.appendResultData(finalData).then(r => {
