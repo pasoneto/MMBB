@@ -1,7 +1,7 @@
 var studyIDtasks = {
     "main": ["Movement", "Singing", "Emotion", "Rhythm", "MBEMA", "SharedMeasures"],
-    "emotion":  ["Emotion", "SharedMeasurements"],
-    "accelClass":  ["Movement", "SharedMeasurements"],
-    "movementWhole":  ["Movement", "Rhythm", "SharedMeasurements"],
+    "emotion":  ["Emotion", "SharedMeasures"],
+    "accelClass":  ["Movement", "SharedMeasures"],
+    "movementWhole":  ["Movement", "Rhythm", "SharedMeasures"],
     "alicia": ["Rhythm"]
   }
