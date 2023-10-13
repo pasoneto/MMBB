@@ -115,10 +115,10 @@
       var studyID = "main"
     }
 
-    var studyIDtasks = studyIDtasks[studyID]
+    var studyIDtasksRender = studyIDtasks[studyID]
 
-    for(a in studyIDtasks){
-      document.getElementById("task" + studyIDtasks[a]).style.display = "block"
+    for(a in studyIDtasksRender){
+      document.getElementById("task" + studyIDtasksRender[a]).style.display = "block"
     }
 
     document.getElementById("movementTaskIcon").innerHTML = taskIcons['movement'][lang]
