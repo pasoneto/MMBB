@@ -28,7 +28,6 @@ img{
   display: flex
 }
 #langs{
-  flex-grow: 0.8; 
   margin-bottom: 15px;
 }
 #langFi, #langEng {
