@@ -69,7 +69,7 @@
                       survey: true,
                   }).then(r => {
                     //Then redirect to basic survey
-                    var urlRedirect = studyLinks['sharedLink'] + '?lang=' + lang + '&user=' + userID + '&studyID=' + studyID
+                    var urlRedirect = studyLinks['sharedLink'] + '?lang=' + lang + '&user=' + userID + '&studyID=' + studyID + '&version=' + 'basic'
                     location.href = urlRedirect
                   })
                   .catch((error) => {

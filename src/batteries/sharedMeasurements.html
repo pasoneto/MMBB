@@ -78,8 +78,8 @@
 
       }});
 
-      var short = jatos.urlQueryParameters.short
-      var timelineSharedMeasurements = generateSharedMeasurementsTimeline(lang, short)
+      var version = jatos.urlQueryParameters.version
+      var timelineSharedMeasurements = generateSharedMeasurementsTimeline(lang, version)
       jsPsych.run(timelineSharedMeasurements) //simu
     })
     

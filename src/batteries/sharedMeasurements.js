@@ -1,4 +1,4 @@
-function generateSharedMeasurementsTimeline(lang, short){
+function generateSharedMeasurementsTimeline(lang, version){
   var frontPageShared = {
       type: jsPsychInstructions,
       pages: [sharedMeasurementsT['surveyMMBB'][lang]],
@@ -396,7 +396,7 @@ function generateSharedMeasurementsTimeline(lang, short){
       }
     ],
   };
-
+  
   var messageFinishSharedMeasures = {
     type: jsPsychHtmlButtonResponse,
     prompt: emotionTranslations['thankYouEnd'][lang],
@@ -408,6 +408,8 @@ function generateSharedMeasurementsTimeline(lang, short){
       document.cookie = "SharedMeasures=done;" + " expires=" + cookieExpires + "; path=/"
     }
   };
+
+  var timelineBasic = [frontPageShared, yearBirth, genderSurvey, otherGender, educationSurvey, otherEducation, languageSpoken1, languageSpoken2]
 
   var timelineShort = [frontPageShared, 
                        between1,
@@ -455,9 +457,15 @@ function generateSharedMeasurementsTimeline(lang, short){
                       goldsmithDancingTrialsLong,
                       messageFinishSharedMeasures].flat(100)
 
-  if(short){
-    return(timelineShort)
-  } else{
-    return(timelineLong)
+  var versionsShared = {
+    short: timelineShort,
+    basic: timelineBasic
   }
+
+  if(!version){
+    return(timelineLong)
+  } else {
+    return(versionShared[version])
+  }
+
 }
