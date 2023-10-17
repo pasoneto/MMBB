@@ -1,47 +1,47 @@
-eng,fi
-<b>Welcome to the Movement Task</b>,<b>Tervetuloa Liiketehtävään</b>
-Accessing accelerometer,Tarkistetaan kiihtyvyysanturia.
-"In the next page, you will be asked to allow access to your phone's motion sensors. Please, click on 'Allow'.",Seuraavalla sivulla sinua pyydetään hyväksymään puhelimesi liiketunnistimien käyttö. Pääset eteenpäin painamalla 'Hyväksy'.
-"In the following tasks, we ask you to perform body movements in different situations<br><img id='dance' src='./images/dance.svg'></img>",Seuraavissa tehtävissä pyydämme sinua toistamaan erilaisia kehon liikkeitä.
-Your body movements will be automatically recorded using the accelerometers of your phone,Kehosi liikkeet tallennetaan automaattisesti puhelimesi kiihtyvyysantureiden avulla.
-"To move freely, you will be asked to put the phone on your pocket, with the screen facing away from your body: <br><img id='phonePocket' src='./images/phonePocket2.jpeg'></img>","Liikkuaksesi vapaasti, suosittelemme sinua laittamaan puhelimen taskuusi siten, että sen näyttö on poispäin kehostasi: <br><img id='phonePocket' src='./images/phonePocket2.jpeg'></img>"
-"If you are not wearing headphones or earplugs,","Jos et käytä tehtävän aikana kuulokkeita,"
-you may want to increase the volume of your phone before you put it in your pocket<br><img id='increaseVolume' src='./images/increaseVolume.svg'></img>,suosittelemme tarkistamaan ja nostamaan puhelimesi äänenvoimakkuuden tarpeeksi kuuluvalle tasolle ennen puhelimen asettamista taskuusi. <br><img id='increaseVolume' src='./images/increaseVolume.svg'></img>
-Do not switch off your phone screen<br><img id='dontLock' src='./images/dontLock.svg'></img>,Älä lukitse puhelimesi näyttöä. <br><img id='dontLock' src='./images/dontLock.svg'></img>
-"Before each task starts, you will hear a voice countdown<br><img id='tableSVG' src='./images/voiceSVG.svg'></img>",Kuulet aina ennen tehtävien alkamista lähtölaskennan.
-A voice will also tell you  when the task has ended<br><img id='tableSVG' src='./images/stopSVG.svg'></img>,Kuulet myös äänen kun tehtävä on loppunut. <br><img id='tableSVG' src='./images/stopSVG.svg'></img>
-"For the first task, go to a space where there's room to walk around<br><img id='tableSVG' src='./images/walkSVG.svg'></img>","Varmista, että sinulla on tarpeeksi tilaa ympärilläsi ennen ensimmäisen tehtävän aloitusta."
-"We will ask you to walk for 30 seconds, at a speed that feels most natural for you",Pyydämme sinua seuraavaksi kävelemään 30 sekunnin ajan sinulle luontaisimmalla askelluksella. 
-"When you are ready to begin, click Continue","Kun olet valmis aloittamaan, paina 'Jatka'."
-Put your phone in your pocket<br><img id='pocket' src='./images/pocket.svg'></img>,Voit nyt laittaa puhelimen taskuusi. <br><img id='pocket' src='./images/pocket.svg'></img>
-"In the next task, you will hear a constant beat<br><img id='ear' src='./images/ear.svg'></img>",Seuraavassa tehtävässä kuulet äänen joka soi tasaiseen tahtiin. <br><img id='ear' src='./images/ear.svg'></img>
-Your task is to bounce along to the beat,Tehtävänäsi on liikkua ponnahdellen kevyesti ylös ja alas kuulemasi äänen tahdissa.
-"This is an example of bouncing<br><video id=""myVideo"" width=""100%"" controls controlsList=""nofullscreen""><source src=""./songs/movementTapAudio/instructionsAudio/bouncing.mp4"" type=""video/mp4""></video>","Tässä esimerkki ponnahtelusta. <br><video id=""myVideo"" width=""100%"" controls controlsList=""nofullscreen""><source src=""./songs/movementTapAudio/instructionsAudio/bouncing.mp4"" type=""video/mp4""></video>"
-"When bouncing, stay in place and do not perform other body movements","Ponnahdellessasi pysy samassa paikassa, ja vältä mahdollisuuksien mukaan muita kehon liikkeitä."
-"When you are ready to begin, click Continue","Kun olet valmis aloittamaan, paina Jatka."
-Now you are asked to move to a musical piece in a way that feels natural to you<br><img id='dance' src='./images/dance.svg'></img>,Pyydämme sinua liikkumaan itsellesi luonnollisimmalla tavalla eri kappaleiden tahtiin. <br><img id='dance' src='./images/dance.svg'></img>
-Feel free to dance to the music if you want to,"Jos haluat, voit tanssia vapaasti musiikin tahdissa."
-Next we ask you to choose a song that you would like to dance to,Seuravaaksi pyydämme sinua valitsemaan laulun jonka tahtiin haluaisit mieluiten liikkua.
-Move to the song in a way that feels natural to you<br><img id='dance' src='./images/dance.svg'></img>,"Liiku kappaleen tahdissa tavalla, joka tuntuu luonnollisimmalta sinulle. <br><img id='dance' src='./images/dance.svg'></img>"
-Feel free to dance to the music if you want to<br><img id='dance' src='./images/dance.svg'></img>,"Jos siltä tuntuu, voit vapaasti tanssia musiikin tahdissa. <br><img id='dance' src='./images/dance.svg'></img>"
-"You can choose among 6 song alternatives. Before choosing, make sure you have previewed all the songs.",Voit valita laulun 6 eri vaihtoehdosta.
-Press the buttons to hear an excerpt of the song,Paina painiketta / kuvaa kuullaksesi näytteen kappaleeta.
-"When you have made your selection, scroll down to the bottom and press Next","Kun olet valinnut laulun, navigoi ruudun alaosaan ja paina 'Seuraava'."
-Choose a song below and click Next when you have made your choice,"Valitse kappale alapuolelta ja paina 'Seuraava', kun olet tehnyt valintasi."
-How familiar are you with this music style?,Kuinka tuttu tämä musiikkityyli on sinulle entuudestaan?
-Not at all,Ei ollenkaan
-Very much,Erittäin
-How much did you like the song?,Kuinka paljon pidit laulusta?
-How much did the song make you want to move?,Kuinka paljon musiikki sai sinut haluamaan liikkua?
-A lot,Paljon
-How much did you like this beat?,Kuinka paljon pidit tästä rytmistä?
-How much did the beat make you want to move?,Kuinka paljon rytmi sai sinut haluamaan liikkua?
-Have you heard this song before?,Oletko kuullut tämän kappaleen aiemmin?
-Where did you leave your phone during the tasks?,Mihin asetit puhelimesi tehtävien ajaksi?
-Pocket,Tasku
-Purse,Laukku
-Hand,Käsi
-Other,Muu
-Song,Laulu
-Your height (cm),Pituutesi (cm)
-Your weight (kg),Painosi (kg)
+keys,eng,fi
+movementOpen,<b>Welcome to the Movement Task</b>,<b>Tervetuloa Liiketehtävään</b>
+accessAcelerometer,Accessing accelerometer,Tarkistetaan kiihtyvyysanturia.
+instruction1,"In the next page, you will be asked to allow access to your phone's motion sensors. Please, click on 'Allow'.",Seuraavalla sivulla sinua pyydetään hyväksymään puhelimesi liiketunnistimien käyttö. Pääset eteenpäin painamalla 'Hyväksy'.
+instruction2,"In the following tasks, we ask you to perform body movements in different situations<br><img id='dance' src='./images/dance.svg'></img>",Seuraavissa tehtävissä pyydämme sinua toistamaan erilaisia kehon liikkeitä.
+instruction3,Your body movements will be automatically recorded using the accelerometers of your phone,Kehosi liikkeet tallennetaan automaattisesti puhelimesi kiihtyvyysantureiden avulla.
+instruction4,"To move freely, you will be asked to put the phone on your pocket, with the screen facing away from your body: <br><img id='phonePocket' src='./images/phonePocket2.jpeg'></img>","Liikkuaksesi vapaasti, suosittelemme sinua laittamaan puhelimen taskuusi siten, että sen näyttö on poispäin kehostasi: <br><img id='phonePocket' src='./images/phonePocket2.jpeg'></img>"
+instruction5,"If you are not wearing headphones or earplugs,","Jos et käytä tehtävän aikana kuulokkeita,"
+instruction6,you may want to increase the volume of your phone before you put it in your pocket<br><img id='increaseVolume' src='./images/increaseVolume.svg'></img>,suosittelemme tarkistamaan ja nostamaan puhelimesi äänenvoimakkuuden tarpeeksi kuuluvalle tasolle ennen puhelimen asettamista taskuusi. <br><img id='increaseVolume' src='./images/increaseVolume.svg'></img>
+instruction7,Do not switch off your phone screen<br><img id='dontLock' src='./images/dontLock.svg'></img>,Älä lukitse puhelimesi näyttöä. <br><img id='dontLock' src='./images/dontLock.svg'></img>
+instruction8,"Before each task starts, you will hear a voice countdown<br><img id='tableSVG' src='./images/voiceSVG.svg'></img>",Kuulet aina ennen tehtävien alkamista lähtölaskennan.
+instruction9,A voice will also tell you  when the task has ended<br><img id='tableSVG' src='./images/stopSVG.svg'></img>,Kuulet myös äänen kun tehtävä on loppunut. <br><img id='tableSVG' src='./images/stopSVG.svg'></img>
+instruction10,"For the first task, go to a space where there's room to walk around<br><img id='tableSVG' src='./images/walkSVG.svg'></img>","Varmista, että sinulla on tarpeeksi tilaa ympärilläsi ennen ensimmäisen tehtävän aloitusta."
+instruction11,"We will ask you to walk for 30 seconds, at a speed that feels most natural for you",Pyydämme sinua seuraavaksi kävelemään 30 sekunnin ajan sinulle luontaisimmalla askelluksella. 
+instruction12,"When you are ready to begin, click Continue","Kun olet valmis aloittamaan, paina 'Jatka'."
+instruction13,Put your phone in your pocket<br><img id='pocket' src='./images/pocket.svg'></img>,Voit nyt laittaa puhelimen taskuusi. <br><img id='pocket' src='./images/pocket.svg'></img>
+instruction14,"In the next task, you will hear a constant beat<br><img id='ear' src='./images/ear.svg'></img>",Seuraavassa tehtävässä kuulet äänen joka soi tasaiseen tahtiin. <br><img id='ear' src='./images/ear.svg'></img>
+instruction15,Your task is to bounce along to the beat,Tehtäväsi on hytkyä ylös alas kuulemasi äänen tahtiin
+instruction16,"This is an example of bouncing<br><video id=""myVideo"" width=""100%"" controls controlsList=""nofullscreen""><source src=""./songs/movementTapAudio/instructionsAudio/bouncing.mp4"" type=""video/mp4""></video>","Tässä esimerkki ponnahtelusta. <br><video id=""myVideo"" width=""100%"" controls controlsList=""nofullscreen""><source src=""./songs/movementTapAudio/instructionsAudio/bouncing.mp4"" type=""video/mp4""></video>"
+instruction17,"When bouncing, stay in place and do not perform other body movements","Ponnahdellessasi pysy samassa paikassa, ja vältä mahdollisuuksien mukaan muita kehon liikkeitä."
+instruction18,"When you are ready to begin, click Continue","Kun olet valmis aloittamaan, paina Jatka."
+instruction19,Now you are asked to move to a musical piece in a way that feels natural to you<br><img id='dance' src='./images/dance.svg'></img>,Pyydämme sinua liikkumaan itsellesi luonnollisimmalla tavalla eri kappaleiden tahtiin. <br><img id='dance' src='./images/dance.svg'></img>
+instruction20,Feel free to dance to the music if you want to,"Jos haluat, voit tanssia vapaasti musiikin tahdissa."
+instruction21,Next we ask you to choose a song that you would like to dance to,Seuravaaksi pyydämme sinua valitsemaan laulun jonka tahtiin haluaisit mieluiten liikkua.
+instruction22,Move to the song in a way that feels natural to you<br><img id='dance' src='./images/dance.svg'></img>,"Liiku kappaleen tahdissa tavalla, joka tuntuu luonnollisimmalta sinulle. <br><img id='dance' src='./images/dance.svg'></img>"
+instruction23,Feel free to dance to the music if you want to<br><img id='dance' src='./images/dance.svg'></img>,"Jos siltä tuntuu, voit vapaasti tanssia musiikin tahdissa. <br><img id='dance' src='./images/dance.svg'></img>"
+instruction24,"You can choose one song amongst six alternatives. Before choosing, make sure you have previewed all the songs.","Voit valita yhden kappaleen kuudesta vaihtoehdosta. Ennen kuin valitset, varmista, että olet tutustunut kaikkiin kappaleisiin."
+instruction25,Press the buttons to hear an excerpt of the song,Paina painiketta / kuvaa kuullaksesi näytteen kappaleeta.
+instruction26,"When you have made your selection, scroll down to the bottom and press Next","Kun olet valinnut laulun, navigoi ruudun alaosaan ja paina 'Seuraava'."
+Instruction27,Choose a song below and click Next when you have made your choice,"Valitse kappale alapuolelta ja paina 'Seuraava', kun olet tehnyt valintasi."
+howFamiliar,How familiar are you with this music style?,Kuinka tuttu tämä musiikkityyli on sinulle entuudestaan?
+notAtAll,Not at all,Ei ollenkaan
+veryMuch,Very much,Erittäin
+howMuchLikeSong,How much did you like the song?,Kuinka paljon pidit laulusta?
+howMuchMoveSong,How much did the song make you want to move?,Kuinka paljon musiikki sai sinut haluamaan liikkua?
+aLot,A lot,Paljon
+howMuchLikeBeat,How much did you like this beat?,Kuinka paljon pidit tästä rytmistä?
+howMuchMoveBeat,How much did the beat make you want to move?,Kuinka paljon rytmi sai sinut haluamaan liikkua?
+haveYouHeardThisSong,Have you heard this song before?,Oletko kuullut tämän kappaleen aiemmin?
+wherePhone,Where did you leave your phone during the tasks?,Mihin asetit puhelimesi tehtävien ajaksi?
+pocket,Pocket,Tasku
+purse,Purse,Laukku
+hand,Hand,Käsi
+other,Other,Muu
+song,Song,Laulu
+height,Your height (cm),Pituutesi (cm)
+weight,Your weight (kg),Painosi (kg)

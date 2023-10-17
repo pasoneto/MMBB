@@ -1,7 +1,7 @@
-eng,fi
-Movement,Liike
-Singing,Laulaminen
-Survey,Kysely
-Emotion,Tunteet
-Perception,Havaitseminen
-Rhythm,Rytmi
+keys,eng,fi
+movement,Movement,Liike
+singing,Singing,Laulaminen
+survey,Survey,Kysely
+emotion,Emotion,Tunteet
+MBEMA,Perception,Havaitseminen
+rhythm,Rhythm,Rytmi

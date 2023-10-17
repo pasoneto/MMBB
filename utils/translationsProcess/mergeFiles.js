@@ -10,7 +10,6 @@ for(k in filesRead){
 
 fs.writeFileSync("../translations.js", allData);
 
-
 var allData = ""
 for(k in filesRead){
   var data = fs.readFileSync("./" + filesRead[k] + ".csv", 'utf8')
