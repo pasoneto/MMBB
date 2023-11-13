@@ -208,8 +208,12 @@
 
             var lang = jatos.urlQueryParameters.lang
             var userID = jatos.urlQueryParameters.user
+            var participant = jatos.urlQueryParameters.participant
+            var group = jatos.urlQueryParameters.group
 
             var timeEnd = Date.now();
+
+            jsPsych.data.addProperties({userID: userID, participant: participant, group: group});
 
             var dFinal = jsPsych.data.get()
             

@@ -374,6 +374,17 @@ button:focus {
   display: flex;
   flex-flow: row;
 }
+#listenAgain{
+  min-width: 20px;
+  width: 10vw;
+}
+#listenAgainButton{
+  background-color: lightgray
+}
+#wrapColumnEmojis{
+  display: flex;
+  flex-flow: row;
+}
 #emotionPromptDiv{
 }
 #emotionSliderWrap{
@@ -386,12 +397,30 @@ button:focus {
   display: flex;
   flex-flow: column;
   gap: 5px;
+  width: 100%
 }
 #jspsych-html-slider-response-wrapper-emotion{
   display: flex;
   flex-flow: column;
   height: 80vh;
   justify-content: space-between;
+  align-items: center;
+}
+#newEmotionEmoji{
+  height: 50px; 
+  max-width: 50px;
+}
+#smallEmotionEmoji{
+  height: 25px; 
+  max-width: 25px;
+}
+#emotionText{
+  font-size: 0.8em;
+}
+#labelWrapEmotion{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
 }
 #jspsych-html-slider-response-wrapper{

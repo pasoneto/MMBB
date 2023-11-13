@@ -496,7 +496,7 @@ function generateMovementTimeline(lang){
   var weightHeight = {
     type: jsPsychSurveyText,
     questions: [
-      {prompt: sharedMeasurementsT["pleaseAnswer"][lang]+ ":", placeholder: movement["height"][lang], columns: 30},
+      {prompt: movement["reasonWeight"][lang]+ ":", placeholder: movement["height"][lang], columns: 30},
       {prompt: "", placeholder: movement["weight"][lang], columns: 30}
     ],
     button_label: recurring['continue'][lang],

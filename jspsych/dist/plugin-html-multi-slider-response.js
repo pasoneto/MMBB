@@ -33,7 +33,7 @@ var jsPsychHtmlMultiSliderResponse = (function (jspsych) {
             type: jspsych.ParameterType.INT,
             pretty_name: "Slider number",
             default: 1,
-        },
+          },
           /** Sets the step of the slider */
           step: {
               type: jspsych.ParameterType.INT,
@@ -45,6 +45,13 @@ var jsPsychHtmlMultiSliderResponse = (function (jspsych) {
               type: jspsych.ParameterType.HTML_STRING,
               pretty_name: "Labels",
               default: [],
+              array: true,
+          },
+          /** Array containing the labels for the slider. Labels will be displayed at equidistant locations along the slider. */
+          emojis: {
+              type: jspsych.ParameterType.HTML_STRING,
+              pretty_name: "Emojis",
+              default: null,
               array: true,
           },
           /** Width of the slider in pixels. */
@@ -114,8 +121,11 @@ var jsPsychHtmlMultiSliderResponse = (function (jspsych) {
           for (var k = 0; k < trial.nSliders; k++) {
             html += '<div id="emotionSliderWrap">'
             html += '<div id="jspsych-html-slider-response-stimulus">' + trial.stimulus[k] + "</div>";
+            html += '<div id="wrapColumnEmojis">'
+            if(trial.emojis){ //Adding emoji to the left of slider
+              html += trial.emojis[k][0]
+            }
             html += '<div class="jspsych-html-slider-response-container">';
-
             html +=
                 '<input type="range" class="jspsych-slider" value="' +
                     trial.slider_start +
@@ -135,6 +145,10 @@ var jsPsychHtmlMultiSliderResponse = (function (jspsych) {
                 html += '<div id="labelMultiSlider">' + trial.labels[k][j] + "</div>";
             }
             html += "</div>";
+            html += "</div>";
+            if(trial.emojis){ //Adding emoji to the left of slider
+              html += trial.emojis[k][1]
+            }
             html += "</div>";
 
             html += '</div>' //Closing emotionSliderWrap

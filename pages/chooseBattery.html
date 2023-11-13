@@ -42,6 +42,7 @@
         <div id="taskMovement"><div id="linkToMovement" href=""><img src="../images/dance.svg"/></div><div id="movementTaskIcon"></div></div>
         <div id="taskSinging"><div id="linkToSinging"><img src="../images/singing.svg"/></div><div id="singingTaskIcon"></div></div>
         <div id="taskEmotion"><div id="linkToEmotion"><img src="../images/emotion.svg"/></div><div id="emotionTaskIcon"></div></div>
+        <div id="taskEmotionAdaptive"><div id="linkToEmotionAdaptive"><img src="../images/emotion.svg"/></div><div id="emotionTaskIcon"></div></div>
         <div id="taskRhythm"><div id="linkToRhythm"><img src="../images/rhythm.svg"/></div><div id="rhythmTaskIcon"></div></div>
         <div id="taskSharedMeasures"><div id="linkToSurvey"><img src="../images/survey.svg"/></div><div id="surveyTaskIcon"></div></div>
         <div id="taskMBEMA"><div id="linkToMBEMA"><img src="../images/mbemaLogo.svg"/></div><div id="mbemaTaskIcon"></div></div>
@@ -148,6 +149,10 @@
           var emotionRedirect = studyLinks['emotionLink'] + '?lang=' + lang + '&user=' + userIDFirebase  + '&studyID=' + studyID
           location.href = emotionRedirect
         }
+        document.getElementById("linkToEmotionAdaptive").onclick = function(){
+          var emotionRedirect = studyLinks['emotionAdaptiveLink'] + '?lang=' + lang + '&user=' + userIDFirebase  + '&studyID=' + studyID
+          location.href = emotionRedirect
+        }
         document.getElementById("taskSharedMeasures").onclick = function(){
           var sharedDirect = studyLinks['sharedLink'] + '?lang=' + lang + '&user=' + userIDFirebase + '&studyID=' + studyID
           location.href = sharedDirect
@@ -168,7 +173,6 @@
         location.href = studyLinks['frontPageLink'] + '?lang=' + lang + '&studyID=' + studyID
       }
     })
-
 
 
   </script>

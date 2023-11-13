@@ -61,13 +61,17 @@
             var lang = jatos.urlQueryParameters.lang
             var userID = jatos.urlQueryParameters.user
             var studyID = jatos.urlQueryParameters.studyID
+            //Variables friends-strangers
+            var participantNumber = jatos.urlQueryParameters.participantNumber
+            var groupNumber = jatos.urlQueryParameters.groupNumber
+
             if(studyID == undefined){
               var studyID = "main"
             }
 
             var timeEnd = Date.now();
 
-            jsPsych.data.addProperties({userID: userID, lang: lang, timeEnd: timeEnd, timeBegin: timeBegin, studyID: studyID});
+            jsPsych.data.addProperties({userID: userID, lang: lang, timeEnd: timeEnd, timeBegin: timeBegin, participantNumber: participantNumber, groupNumber: groupNumber, studyID: studyID});
 
             var dFinal = jsPsych.data.get()
             

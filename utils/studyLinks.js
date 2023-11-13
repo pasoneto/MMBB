@@ -1,3 +1,17 @@
+//Server
+var studyLinks = {
+  frontPageLink: "https://mmbb.fi",
+  chooseBatteryLink: "https://mmbb.fi/pages/chooseBattery.html",
+  emotionLink: "https://mmbb.ltdk.helsinki.fi/publix/YK3bdjI0tbl",
+  emotionAdaptiveLink: "https://mmbb.ltdk.helsinki.fi/publix/DXL0L8cXc24",
+  movementLink: "https://mmbb.ltdk.helsinki.fi/publix/oLzabocUoB1",
+  sharedLink: "https://mmbb.ltdk.helsinki.fi/publix/GVTvw1u3Dmj",
+  surveyFriendsStrangers: "https://mmbb.ltdk.helsinki.fi/publix/yt4TjOrEuqU",
+  mbema: "https://mmbb.ltdk.helsinki.fi/publix/jC0EZeucWGE",
+  singingLink: "https://mmbb.ltdk.helsinki.fi/publix/aTWLqQJmemF",
+  rhythmLink: "https://mmbb.ltdk.helsinki.fi/publix/PKudyqAmMau"
+}
+
 //Local
 var studyLinks = {
   frontPageLink: "http://127.0.0.1:9000/publix/c8dJWxsolMj",
@@ -9,17 +23,4 @@ var studyLinks = {
   mbema: "http://127.0.0.1:9000/publix/QIqWTYK6CrE",
   singingLink: "http://127.0.0.1:9000/publix/qm7EgPbTNmO",
   rhythmLink: "http://127.0.0.1:9000/publix/FBJN3gQTWwp"
-}
-
-//Server
-var studyLinks = {
-  frontPageLink: "https://mmbb.fi",
-  chooseBatteryLink: "https://mmbb.fi/pages/chooseBattery.html",
-  emotionLink: "https://mmbb.ltdk.helsinki.fi/publix/YK3bdjI0tbl",
-  movementLink: "https://mmbb.ltdk.helsinki.fi/publix/oLzabocUoB1",
-  sharedLink: "https://mmbb.ltdk.helsinki.fi/publix/GVTvw1u3Dmj",
-  surveyFriendsStrangers: "https://mmbb.ltdk.helsinki.fi/publix/yt4TjOrEuqU",
-  mbema: "https://mmbb.ltdk.helsinki.fi/publix/jC0EZeucWGE",
-  singingLink: "https://mmbb.ltdk.helsinki.fi/publix/aTWLqQJmemF",
-  rhythmLink: "https://mmbb.ltdk.helsinki.fi/publix/PKudyqAmMau"
 }

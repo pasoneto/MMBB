@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta charset="UTF-8">
+    <script src="jatos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://unpkg.com/jspsych@7.1.2"></script>
+    <script src="./jspsych/dist/custom/utils.js"> </script>
+    <script src=https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.3.0/math.min.js></script>
+
+    <script src="./jspsych/dist/plugin-preload.js"> </script>
+    <script src="./jspsych/dist/plugin-survey-likert.js"> </script>
+    <script src="./jspsych/dist/plugin-audio-button-response.js"></script>
+    <script src="./jspsych/dist/plugin-html-button-response.js"></script>
+    <script src="./jspsych/dist/plugin-html-slider-response.js"></script>
+    <script src="./jspsych/dist/plugin-instructions.js"></script>
+    <script src="./jspsych/dist/plugin-audio-keyboard-response.js"></script>
+    <script src="./jspsych/dist/plugin-instructions-timedout.js"></script>
+    <script src="./jspsych/dist/plugin-html-multi-slider-response.js"></script>
+    <script src="./jspsych/dist/plugin-emotion-audio-button-response.js"> </script>
+    <script src="./jspsych/dist/plugin-survey.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/@jspsych/plugin-survey@0.2.1/css/survey.css">
+
+    <script src="./utils/emotion_data/example_info.js"></script> 
+    <script src="./utils/emotion_data/information.js"></script> 
+    <script src="./utils/emotion_data/pstar.js"></script> 
+    <script src="./utils/emotion_data/trial_info.js"></script> 
+
+    <script src="./utils/langFetch.js"></script>
+    <script src="./utils/translations.js"></script>
+    <script src="./src/batteries/generalIntro.js"></script>
+    <script src="./utils/preventRefresh.js"> </script>
+    <script src="./utils/identifyOS.js"> </script>
+    <script src="./utils/manageCookies.js"> </script>
+    <script src="./utils/studyLinks.js"> </script>
+
+    <script src="./backend/setupLogFile.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
+
+    <link rel="stylesheet" href="./src/styles/generalCSS.css">
+
+  </head>
+
+  <script>
+  
+    var timeBegin = Date.now();
+    var jsPsych;
+    
+    console.log("New emotion")
+
+    jatos.onLoad(() => {
+
+      window.lang = jatos.urlQueryParameters.lang
+
+      if(window.lang == undefined){
+        window.lang = "eng"
+      }
+
+      window.jsPsych = initJsPsych({
+          show_progress_bar: true,
+          auto_update_progress_bar: false,
+          message_progress_bar: recurring["completionProgress"][lang],
+          on_finish: function() {
+
+            var timeEnd = Date.now();
+
+            jsPsych.data.addProperties({userID: userID, lang: lang, studyID: studyID});
+            var finalData = jsPsych.data.get()
+            
+            allowRefresh();
+            var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&Emotion=done"
+            jatos.endStudyAndRedirect(urlRedirect, finalData)
+
+            //jatos.endStudyAndRedirect("https://mmbb.ltdk.helsinki.fi/publix/oLzabocUoB1?lang=eng", finalData) //simuBack
+
+      }});
+
+      window.userID = jatos.urlQueryParameters.user
+      window.studyID = jatos.urlQueryParameters.studyID
+      if(window.studyID == undefined){
+        window.studyID = "main"
+      }
+
+      //var trials = {"1": {"2": [{"Label": "happy anger", "Name": "23", "TargetEmo": "8.2089552238806", "ComparisonEmo": "1.04477611940298", "Distance": "44.7779330824821", "Label1": "2", "Label2": "1", "Soundtrack": "Shallow Grave", "Level": "1", "Trials": "1"}]}}
+
+      //PART1
+      var images = [
+        { img: "./images/emotion/v1a5.png",  type: emotionTranslations['angry'][lang]},
+        { img: "./images/emotion/fearful.png",  type: emotionTranslations['fear'][lang]},
+        { img: "./images/emotion/v5a5.png",  type: emotionTranslations['happy'][lang]},
+        { img: "./images/emotion/v1a1.png",  type: emotionTranslations['sad'][lang]},
+        { img: "./images/emotion/v5a1.png",  type: emotionTranslations['tender'][lang]}
+      ];
+      
+      var preload = {
+        type: jsPsychPreload,
+        images: ["./images/emotion/v1a5.png","./images/emotion/fearful.png", "./images/emotion/v5a5.png","./images/emotion/v1a1.png","./images/emotion/v5a1.png"]
+      }
+
+      var labels = ['Label','Label1','Label2','Trials','Track110','Difficulty','TargetEmo','Soundtrack']
+      var emotions = ['angry','fearful','happy','sad','tender']
+      var emotions_numeric = [1,2,3,4,5]
+      var excerpts_played = [4,13]
+      var difficulty_change = 1
+      var N = 20
+      var epoch = 0
+      var starting_difficulty = [-0.5,0.5]
+      var examples_phase = 1
+      var examples_N = example_info[0].length
+      console.log('examples length = ', examples_N)
+      //var N = 1 //simuBack
+      //var N_part2 = 1 //simuBack
+      var N_part2 = 12 
+
+      // temp vars
+      var trial_idx = []
+      var trial_idx_history = []
+      var correct_response = []
+      var trial_images = []
+      var label1 = []
+      var label2 = []
+      var trial_track = []
+      var difficulty_dist = []
+      var excerpt_idx = []
+      //theta vars
+      var theta = 0
+      var theta_high = 6
+      var theta_low = -6
+      var theta_step = 0.02
+      var theta_range = [theta_low]
+      while (theta_range[theta_range.length-1]<theta_high){
+        theta_range.push(Math.round((theta_range[theta_range.length-1]+theta_step)*100)/100)
+      }
+      var theta_idx = Math.round(theta_range.length/2)
+      var theta_dis = []
+      console.log(theta_idx)
+      //optimizer vars
+      var guessing = 0.5
+      var optimizer = 1
+      var min_criterion = 0.02
+      var n_iter = 200
+      var iter = []
+      var max_jump = 0.25
+      var delta_th = 1
+      var p_correct = []
+      var numerator = []
+      var denominator = []
+      var numerator2 = []
+      var denominator2 = []
+
+      //Declared functions
+      // get all indexes function
+      function getInd(arr, val) {
+        let index = [], i = -1;
+        while ((i = arr.indexOf(val, i + 1)) != -1) {
+          index.push(i);
+        }
+        return index;
+      }
+      // shuffle array
+      function shuffle(array) {
+        let currentIndex = array.length,  randomIndex;
+        while (currentIndex > 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+        [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+        }
+        return array;
+      }
+      //sortwithIndexes
+      function sortWithIndeces(toSort) {
+        for (var i = 0; i < toSort.length; i++) {
+          toSort[i] = [toSort[i], i];
+        }
+        toSort.sort(function(left, right) {
+          return left[0] < right[0] ? -1 : 1;
+        });
+        toSort.sortIndices = [];
+        for (var j = 0; j < toSort.length; j++) {
+          toSort.sortIndices.push(toSort[j][1]);
+          toSort[j] = toSort[j][0];
+        }
+        return toSort;
+      }
+
+      var emotion_order = []
+      for (let i=0;i<N/emotions_numeric.length;i++) {
+        emotion_order = emotion_order.concat(jsPsych.randomization.sampleWithoutReplacement(emotions_numeric,emotions_numeric.length))
+      }
+      console.log(emotion_order)
+      emotion_order = shuffle(emotion_order)
+      console.log(emotion_order)
+      var excerpt_order = []
+      for (let i=0;i<N;i++) {
+        excerpt_order.push(jsPsych.randomization.sampleWithoutReplacement([0,1],2))
+      }
+
+      var starting_difficulty_order = []
+      starting_difficulty_order.push(jsPsych.randomization.sampleWithoutReplacement([0,1],2))
+      starting_difficulty = [starting_difficulty[starting_difficulty_order[0][0]],starting_difficulty[starting_difficulty_order[0][1]]]
+
+      var starting_difficulty_item = []
+      starting_difficulty_item.push(jsPsych.randomization.sampleWithoutReplacement([0,1,2,3],2))
+
+      //trials 
+      var welcomePart1 = {
+        type: jsPsychInstructions,
+        pages: [emotionTranslations['openStatement'][lang]],
+        button_label_next: buttons["next"][lang],
+        button_label_previous: buttons["previous"][lang],
+        allow_backward: false,
+        show_clickable_nav: true
+      }
+      var instructionsPart1 = {
+        type: jsPsychInstructions,
+        pages: ["instructions1", "instructions2"].map(i => emotionTranslations[i][lang]),
+        button_label_next: buttons["next"][lang],
+        button_label_previous: buttons["previous"][lang],
+        allow_backward: true,
+        show_clickable_nav: true
+      }
+      var example_trials_ending = {
+        type: jsPsychInstructions,
+        pages: ["instructions3"].map(i => emotionTranslations[i][lang]),
+        button_label_next: buttons["next"][lang],
+        show_clickable_nav: true,
+        allow_backward: false,
+        on_start: function(example_trials_ending){
+          if (epoch==examples_N){
+          epoch = 0
+          theta = 0
+          examples_phase = 0
+          console.log('Example phase ended')
+          console.log('epoch',2)
+          console.log('examples n',examples_N)
+          }
+      }}
+
+      var trial_load_message = {
+        type: jsPsychInstructionsTimedout,
+        pages: ["<img id='logoLoading' src='./images/loading2.gif'>"],
+        show_clickable_nav: false,
+        trial_duration: 2000, 
+        on_start: function(trial_load_message){
+          trial_load_message.pages = ["<img id='logoLoading' src='./images/loading2.gif'>"] 
+        }}      
+
+      var trial1 = {
+        type: jsPsychEmotionAudioButtonResponse,
+        stimulus: './songs/emotionAudio/trimmed_mp3/001.mp3',
+        choices: [images[0]['img'], images[3]['img']],
+        button_html: '<img id="imageButtonEmotion" src="%choice%"/>',
+        update_choices: '',
+        update_text_after_timeout: emotionTranslations['choose'][lang],
+        response_allowed_while_playing: false,
+        response_ends_trial: true,
+        //trial_duration: 1000, //simuBack
+        update_onset: 10000,
+        prompt: 'init',
+        question: 'init',
+        data: {},
+        on_load: function(){
+          console.log("console test")
+          document.querySelectorAll(".jspsych-audio-button-response-button").forEach(
+            function(i) {
+              i.style.fontSize = '16px'
+            }
+          )
+          //document.getElementById("jspsych-audio-button-response-btngroup").style.marginBottom = '60px'
+          document.getElementById("jspsych-audio-button-response-btngroup").style.marginTop = "0px"
+          document.getElementById("jspsych-audio-button-response-btngroup").style.marginBottom = "20%"
+          //document.getElementById("id_prompt").style.fontSize = '18px'
+        },
+        on_start: function(trial1){ 
+          current_emotion = emotions[emotion_order[epoch]-1]
+          candidate_trial = []
+          if (epoch>starting_difficulty.length-1){ //find item based on information
+            var emo_idx = getInd(trial_info[1],emotion_order[epoch]);
+            trial_idx = emo_idx.filter(function(x) {
+              return excerpt_idx.indexOf(x) < 0;}); 
+            trial_idx = shuffle(trial_idx)
+            difficulty_dist = trial_idx.map(x=>information[theta_idx][x])
+            difficulty_dist = sortWithIndeces(difficulty_dist)
+            difficulty_dist = difficulty_dist['sortIndices']
+            trial_idx = trial_idx[difficulty_dist[difficulty_dist.length-1]]
+            console.log(trial_idx) 
+          }
+          else {       //find item based on starting difficulty
+            if (epoch==0) {
+              trial_idx = getInd(trial_info[1],emotion_order[epoch]);
+            }
+            else {
+              var emo_idx = getInd(trial_info[1],emotion_order[epoch]);
+              trial_idx = emo_idx.filter(function(x) {
+                return excerpt_idx.indexOf(x) < 0;}); 
+              trial_idx = shuffle(trial_idx) 
+            }
+            difficulty_dist = math.abs(math.subtract(trial_idx.map(x=>trial_info[5][x]),starting_difficulty[epoch]))
+            difficulty_dist = sortWithIndeces(difficulty_dist)
+            difficulty_dist = difficulty_dist['sortIndices'].slice(0,4)
+            trial_idx = trial_idx[difficulty_dist[starting_difficulty_item[0][epoch]]]
+            console.log(trial_idx)
+          }
+          
+          //if (!excerpts_played.includes(level_trials[i]['Name'])){
+            //candidate_trial.push(level_trials[i])}
+              //current_trial = jsPsych.randomization.sampleWithoutReplacement(candidate_trial,1)[0]
+          
+          if (examples_phase==1){ //find examples
+            label1 = example_info[1][epoch]
+            label2 = example_info[2][epoch]
+            trial_track = example_info[4][epoch]
+            trial_idx = example_info[3][epoch]-1
+          }
+          else {  
+          excerpts_played[epoch] = trial_info[4][trial_idx] 
+          trial_track = excerpts_played[epoch]
+          label1 = trial_info[1][trial_idx]
+          label2 = trial_info[2][trial_idx]
+          temp_excerpt_idx = getInd(trial_info[4],trial_track);
+          excerpt_idx = Array.from([...new Set([...temp_excerpt_idx,...excerpt_idx])])
+          //console.log('Excluded excerpts: ',excerpt_idx)
+          } 
+          console.log('EPOCH ',epoch,' -----------------------------------------------')
+          console.log('Label1',label1)
+          console.log('Label2',label2)
+          trial_images = [label1,label2].sort();
+          trial_track = String(trial_track)
+          while (trial_track.length<3) {
+            trial_track = '0' + trial_track
+          }
+          console.log(trial_track)
+          trial1.stimulus = './songs/emotionAudio/trimmed_mp3/' + trial_track + '.mp3'
+          trial1.question = emotionTranslations["whichEmotion"][lang]
+          trial1.prompt = emotionTranslations["listen"][lang]
+          trial1.choices = [images[trial_images[0]-1], images[trial_images[1]-1]]
+          trial1.update_choices = [images[trial_images[0]-1], images[trial_images[1]-1]]
+          console.log('Example phase = ',examples_phase)
+          console.log('theta = ',theta)
+          console.log('theta index = ',theta_idx)
+          console.log('item difficulty = ',trial_info[5][trial_idx])
+          console.log('optimizer = ',optimizer)
+          console.log('Trial = ',trial_idx)
+          console.log('epoch = ',epoch)
+          console.log('Correct responses: ',correct_response)
+          console.log('Trial idx history: ',trial_idx_history)
+          },
+        on_finish: function(data){
+          // Score the response as correct or incorrect.
+          jsPsych.setProgressBar((epoch+1)/(N))
+          if (examples_phase==0){
+          if(data.response == trial_images.findIndex(element => element == label1)){
+            correct_response[epoch] = 1;
+          }   
+          else {
+            correct_response[epoch] = 0;
+          }
+          trial_idx_history[epoch] = trial_idx
+          const anyCorrect = (currentValue) => currentValue == 1;
+          if(correct_response.some(anyCorrect) && !correct_response.every(anyCorrect)){
+            optimizer=2
+          }
+
+          if(optimizer==1){
+             if(correct_response[epoch]==1){
+              theta = theta + (theta_high-theta)/(2*theta_high/difficulty_change);
+             } 
+             else {
+              theta = theta + (theta_low-theta)/(2*theta_high/difficulty_change);
+             }
+             if(theta<theta_low){
+                theta_idx = 1
+                theta = theta_low}
+              else if (theta>theta_high){
+                theta_idx = theta_range.length
+                theta = theta_high
+              } 
+              else {
+                theta_dis = math.abs(math.subtract(theta_range,theta))
+                theta_dis = sortWithIndeces(theta_dis)
+                theta_idx = theta_dis['sortIndices'][0]
+                theta = theta_range[theta_idx]
+              }
+          }
+          else {
+            theta = 0
+            theta_idx = Math.round(theta_range.length/2)
+            iter = 0
+            delta_th = 1
+            startTime = new Date();
+            while(math.abs(delta_th)>min_criterion){
+              if(iter==n_iter){break}
+
+              //p_correct = (guessing+(1-guessing).*p_star(j,th_idx))'
+              //console.log(pstar[theta_idx])
+              console.log('Iteration ',iter)
+              p_correct = math.abs(math.chain(trial_idx_history.map(x=>pstar[theta_idx][x])).multiply(1-guessing).add(guessing).done())
+              //console.log('p star',trial_idx_history.map(x=>pstar[theta_idx][x]))
+              //console.log('p correct',p_correct)
+              //numerator = sum((u-p_correct) .* (p_star(j,th_idx)'./p_correct));
+              numerator = math.chain(correct_response).subtract(p_correct).done()
+              //console.log('numerator = ',numerator)
+
+              numerator2 = trial_idx_history.map(x=>pstar[theta_idx][x]).map(function(n, i) { return n / p_correct[i]; });
+              //console.log('numerator2 = ',numerator2)
+              numerator = math.chain(numerator).multiply(numerator2).done()
+              //console.log('numerator sum= ',numerator)
+              //numerator = numerator.map(function(n, i) { return n * numerator2[i]; });
+              //console.log('numerator final= ',numerator)
+              //numerator = numerator.reduce((accumulator, currentValue) => accumulator + currentValue);
+              //console.log('numerator sum= ',numerator)
+              //denominator = sum(-(p_correct.*(1-p_correct).* (p_star(j,th_idx)'./p_correct).^2));
+              denominator = p_correct.map(function(n, i) { return n * math.subtract(1,p_correct)[i]; });
+              denominator2 = trial_idx_history.map(x=>pstar[theta_idx][x]).map(function(n, i) { return n / p_correct[i]; });
+              denominator2 = denominator2.map(function(n, i) { return n * denominator2[i]; });
+              denominator = math.multiply(denominator,denominator2)
+              denominator = -denominator
+              //console.log('denominator sum = ',denominator)
+              delta_th = numerator/denominator
+              console.log('delta theta = ',delta_th)
+              if(delta_th>max_jump){
+                delta_th = 0.25
+              }
+              else if (delta_th<-max_jump){
+                delta_th = -0.25
+              }
+              theta = theta-delta_th
+              console.log('theta = ',theta)
+              if(theta<theta_low){
+                theta_idx = 1
+                theta = theta_low
+                break}
+              else if (theta>theta_high){
+                theta_idx = theta_range.length
+                theta = theta_high
+                break
+              } 
+              else {
+                theta_dis = math.abs(math.subtract(theta_range,theta))
+                theta_dis = sortWithIndeces(theta_dis)
+                theta_idx = theta_dis['sortIndices'][0]
+                theta = theta_range[theta_idx]
+                console.log(theta)
+              }
+              iter = iter+1
+            }
+            console.log('NUmber of iterations = ',iter)
+            endTime = new Date();
+            console.log('Optimizer time to converge:',(endTime - startTime)/1000);
+          }
+          }
+          trial1.data.Correct_emotion = emotions[label1-1]
+          trial1.data.Wrong_emotion = emotions[label2-1]
+          trial1.data.Trial = trial_idx+1
+          trial1.data.Track = trial_track
+          trial1.data.Soundtrack = trial_info[7][trial_idx]
+          trial1.data.Theta = theta
+          trial1.data.Theta_idx = theta_idx
+          trial1.data.Difficulty = trial_info[5][trial_idx]
+          trial1.data.Correct_response = correct_response[epoch] 
+          trial1.data.Optimizer = optimizer
+          trial1.data.Iterations = iter
+          trial1.data.Epoch = epoch
+          epoch = epoch+1
+          
+      }}
+
+      var part1_trials = {
+        timeline: [trial_load_message,trial1],
+        repetitions: N
+      }
+
+      var example_trials = {
+        timeline: [trial_load_message,trial1, trial_load_message,trial1, example_trials_ending],
+      }
+
+      //Second part
+      var stim_dur = 8200
+      var part2_excerpts = ['091','010','093','026','077','055','037','078','088','052','028','041']
+      var part2_excerpt_order = jsPsych.randomization.repeat(part2_excerpts,1)
+      var epochPart2 = 0
+
+      var welcomePart2 = {
+        type: jsPsychInstructions,
+        pages: [emotionTranslations["musicEmotionPart2"][lang]],
+        button_label_next: buttons["next"][lang],
+        button_label_previous: buttons["previous"][lang],
+        allow_backward: false,
+        show_clickable_nav: true
+      }
+
+      var instructionsPart2 = {
+        type: jsPsychInstructions,
+        pages: ["instructions4", "instructions5"].map(i => emotionTranslations[i][lang]),
+        button_label_next: buttons["next"][lang],
+        button_label_previous: buttons["previous"][lang],
+        allow_backward: true,
+        show_clickable_nav: true
+      }
+
+      var part2_audio = {
+        type: jsPsychAudioKeyboardResponse,
+        stimulus: './songs/emotionAudio/trimmed_mp3/001.mp3',
+        prompt: emotionTranslations["listen"][lang] + "<img id='tableSVG' src='./images/soundSVG.svg'>",
+        trial_duration: stim_dur,
+        //trial_duration: 1000, //simuBack
+        choices: ["NO_KEYS"],
+        on_start: function(part2_audio){
+          part2_audio.stimulus = '././songs/emotionAudio/trimmed_part2_mp3/' + part2_excerpt_order[epochPart2] + '.mp3'
+        },
+        on_load: function(){
+          document.getElementById("jspsych-content").style.textAlign = "center";
+          document.getElementById("jspsych-content").style.margin = "auto";
+          document.getElementById("jspsych-content").style.justifyContent = "center";
+        }
+      }
+      
+      window.emotionAudio = null;
+      window.emotionAudioPlaying = false;
+      function playAudio(url) {
+        if(window.emotionAudioPlaying){
+          window.emotionAudio.pause();
+          window.emotionAudio.currentTime = 0;
+          window.emotionAudioPlaying = false;
+        } else {
+          window.emotionAudio = new Audio(url);
+          window.emotionAudioPlaying = true;
+          window.emotionAudio.play();
+        }
+      }
+
+      var part2_emotion_scales = {
+        type: jsPsychHtmlMultiSliderResponse,
+        stimulus: ["", ""],
+        nSliders: 2,
+        emojis: [["<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/sad.png'</img> <div id='emotionText'>" + emotionTranslations["veryNegative"][lang] + "</div></div>", 
+                  "<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/happy.png'</img> <div id='emotionText'>" + emotionTranslations["positive"][lang] + "</div></div>"],
+                 ["<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/sleepy.png'</img> <div id='emotionText'>" + emotionTranslations["veryLowEnergy"][lang] + "</div></div>", 
+                  "<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/surprised.png'</img> <div id='emotionText'>" + emotionTranslations["veryHighEnergy"][lang] + "</div></div>"]
+        ],
+        require_movement: true,
+        button_label: recurring['continue'][lang],
+        //slider_width: 250,
+        labels: [[],[],[]],
+        prompt: emotionTranslations["instructions5"][lang],
+        on_load: function(){
+          document.getElementById("jspsych-content").style.fontSize = "110%";
+          document.getElementById("jspsych-content").style.height = "80vh";
+          document.querySelector(".jspsych-content-wrapper").style.display = "block"
+          document.querySelectorAll(".jspsych-html-slider-response-container").forEach(
+            function(i) {
+              i.style.justifyContent = 'center'
+              i.style.width = '85%'
+            }
+          )
+          //Fetching previous song
+          var lasttrialdata = jsPsych.data.get().last(1);
+          var lastSong = lasttrialdata['trials'][0].stimulus
+
+          //Create button to listen song
+          var newNode = document.createElement("button");
+          newNode.setAttribute('id', 'listenAgainButton')
+          newNode.innerHTML = "<img id='listenAgain' src='./images/soundSVG.svg'>";
+
+          //Add song to button
+          newNode.onclick = function(){
+            playAudio(lastSong)
+          }
+
+          const list = document.getElementById("jspsych-html-slider-response-wrapper-emotion");
+          var b = document.getElementById("jspsych-html-slider-response-next")
+          list.insertBefore(newNode, b);
+
+        },
+        on_finish: function(){
+          window.emotionAudio.pause();
+          window.emotionAudio.currentTime = 0;
+          window.emotionAudioPlaying = false;
+        }
+      };
+
+      var part2_emotion_scales2 = {
+        type: jsPsychHtmlMultiSliderResponse,
+        stimulus: [emotionTranslations["howStrongEmotion"][lang]],
+        nSliders: 1,
+        emojis: [["<div id='labelWrapEmotion'><img id='smallEmotionEmoji' src='./images/emotion/newEmojis/explosion.png'</img> <div id='emotionText'>" + emotionTranslations["notAtAll"][lang] + "</div></div>", 
+                  "<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/explosion.png'</img> <div id='emotionText'>" + emotionTranslations["veryStrong"][lang] + "</div></div>"]],
+        require_movement: true,
+        button_label: recurring['continue'][lang],
+        //slider_width: 250,
+        labels: [[],[],[]],
+        prompt: "",
+        on_load: function(){
+          document.getElementById("jspsych-content").style.fontSize = "110%";
+          document.getElementById("jspsych-content").style.height = "80vh";
+          document.querySelector(".jspsych-content-wrapper").style.display = "block"
+          document.querySelectorAll(".jspsych-html-slider-response-container").forEach(
+            function(i) {
+              i.style.justifyContent = 'center'
+              i.style.width = '85%'
+            }
+          )
+
+          //Fetching previous song
+          var lasttrialdata = jsPsych.data.get().last(2);
+          var lastSong = lasttrialdata['trials'][0].stimulus
+
+          //Create button to listen song
+          var newNode = document.createElement("button");
+          newNode.setAttribute('id', 'listenAgainButton')
+          newNode.innerHTML = "<img id='listenAgain' src='./images/soundSVG.svg'>";
+
+          //Add song to button
+          newNode.onclick = function(){
+            playAudio(lastSong)
+          }
+
+          const list = document.getElementById("jspsych-html-slider-response-wrapper-emotion");
+          var b = document.getElementById("jspsych-html-slider-response-next")
+          list.insertBefore(newNode, b);
+
+        },
+        on_finish: function(){
+          window.emotionAudio.pause();
+          window.emotionAudio.currentTime = 0;
+          window.emotionAudioPlaying = false;
+        }
+      };
+
+
+      var part2_emotion_scales3 = {
+        type: jsPsychHtmlMultiSliderResponse,
+        stimulus: [emotionTranslations["howMuchLike"][lang]],
+        nSliders: 1,
+        emojis: [["<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/bad.png'</img> <div id='emotionText'>" + emotionTranslations["stronglyDisliked"][lang] + "</div></div>", 
+                  "<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/good.png'</img> <div id='emotionText'>" + emotionTranslations["stronglyLiked"][lang] + "</div></div>"]],
+        require_movement: true,
+        button_label: recurring['continue'][lang],
+        //slider_width: 250,
+        labels: [[],[],[]],
+        prompt: "",
+        on_load: function(){
+          document.getElementById("jspsych-content").style.fontSize = "110%";
+          document.getElementById("jspsych-content").style.height = "80vh";
+          document.querySelector(".jspsych-content-wrapper").style.display = "block"
+          document.querySelectorAll(".jspsych-html-slider-response-container").forEach(
+            function(i) {
+              i.style.justifyContent = 'center'
+              i.style.width = '85%'
+            }
+          )
+          //Fetching previous song
+          var lasttrialdata = jsPsych.data.get().last(3);
+          var lastSong = lasttrialdata['trials'][0].stimulus
+
+          //Create button to listen song
+          var newNode = document.createElement("button");
+          newNode.setAttribute('id', 'listenAgainButton')
+          newNode.innerHTML = "<img id='listenAgain' src='./images/soundSVG.svg'>";
+
+          //Add song to button
+          newNode.onclick = function(){
+            playAudio(lastSong)
+          }
+
+          const list = document.getElementById("jspsych-html-slider-response-wrapper-emotion");
+          var b = document.getElementById("jspsych-html-slider-response-next")
+          list.insertBefore(newNode, b);
+        },
+        on_finish: function(part2_emotion_scales3){
+
+          window.emotionAudio.pause();
+          window.emotionAudio.currentTime = 0;
+          window.emotionAudioPlaying = false;
+
+          epochPart2 = epochPart2+1
+          jsPsych.setProgressBar((epoch+epochPart2)/(N+N_part2))
+        },
+      };
+      
+      var part2_trials = {
+          timeline: [part2_audio,part2_emotion_scales, part2_emotion_scales2,part2_emotion_scales3],
+          repetitions: N_part2
+      }
+
+      var messageFinishEmotion = {
+        type: jsPsychHtmlButtonResponse,
+        prompt: emotionTranslations['thankYouEnd'][lang],
+        choices: [],
+        //choices: ["a"], //simuBack
+        trial_duration: 2000,
+        stimulus: '',
+        on_start: function(){
+          var cookieExpires = (new Date(Date.now()+ 86400*1000)).toUTCString();
+          document.cookie = "Emotion=done;" + " expires=" + cookieExpires + "; path=/"
+        }
+      };
+
+      var qAge = {
+        type: 'text',
+        prompt: emotionTranslations['howOld'][lang],
+        placeholder: '',
+        name: 'age', 
+        textbox_columns: 5,
+        textbox_rows: 1,
+        required: true,
+      }
+
+      var qGender = {
+        type: 'multi-choice',
+        prompt: emotionTranslations['gender'][lang], 
+        options: ["genderOption1", "genderOption2", "genderOption3", "genderOption4"].map(i => emotionTranslations[i][lang]),
+        name: 'gender', 
+        required: true
+      }
+
+      var qFeedback = {
+        type: 'text',
+        prompt: emotionTranslations['feedbackAsk'][lang],
+        placeholder: emotionTranslations['feedbackPlaceHolder'][lang],
+        name: 'age', 
+        textbox_columns: 30,
+        textbox_rows: 7,
+        required: false,
+      }
+
+      var qNormalHearing = {
+        type: 'text',
+        prompt: emotionTranslations['feedbackAsk'][lang],
+        placeholder: emotionTranslations['feedbackPlaceHolder'][lang],
+        name: 'age', 
+        textbox_columns: 30,
+        textbox_rows: 7,
+        required: false,
+      }
+
+      var demographics = {
+        type: jsPsychSurvey,
+        pages: [[qAge], [qGender], [qFeedback]],
+        title: '',
+        button_label_next: buttons["next"][lang],
+        button_label_back: buttons["previous"][lang],
+        button_label_finish: buttons["next"][lang],
+        show_question_numbers: 'onPage',
+        on_load: function(){
+          document.querySelector(".sv_next_btn").style.background = "#fa6400";
+          document.querySelector(".sv_prev_btn").style.background = "purple";
+          document.querySelector(".sv_next_btn").style.color = "#fff";
+          document.querySelector(".sv_prev_btn").style.color = "#fff";
+          document.querySelector(".sv_complete_btn").style.background = "#fa6400";
+        }
+      };
+     
+      var generalIntroEmotion = generateGeneralIntroWrap(lang, "emotion")
+
+      var procedureEmotionFinal = {
+          timeline: [welcomePart1, generalIntroEmotion, instructionsPart1, preload, example_trials, part1_trials, instructionsPart2, part2_trials, messageFinishEmotion].flat(1000),
+          on_timeline_start: function() {
+            console.log('This timeline has started');
+          }
+      }
+
+      jsPsych.run([procedureEmotionFinal])
+
+    });
+
+ </script>
+
+</html>
