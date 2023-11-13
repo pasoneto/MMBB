@@ -4,6 +4,7 @@ var pathBatteries = '/assets/src/batteries/'
 var pathIndex = '/assets/'
 var pathChooseBattery = '/assets/pages/'
 var pathUtils = '/assets/utils/'
+var pathUtilsEmotion = '/assets/utils/emotion_data'
 var pathAuth = '/assets/backend/'
 var pathStyles = '/assets/src/styles/'
 var pathPlugins = '/assets/jspsych/dist/'
@@ -99,6 +100,31 @@ fs.readFile("../../utils/studyLinks.js", 'utf8', (err, data) => {
 fs.readFile("../../utils/translations.js", 'utf8', (err, data) => {
   pushFileJATOS(data, pathUtils + "translations.js" , 28)
   console.log("Success, pushed " + "translations.js")
+});
+
+fs.readFile("../../utils/emotion_data/example_info.js", 'utf8', (err, data) => {
+  pushFileJATOS(data, pathUtilsEmotion + "example_info.js" , 28)
+  console.log("Success, pushed " + "example_info.js")
+});
+
+fs.readFile("../../utils/emotion_data/information.js", 'utf8', (err, data) => {
+  pushFileJATOS(data, pathUtilsEmotion + "information.js" , 28)
+  console.log("Success, pushed " + "information.js")
+});
+
+fs.readFile("../../utils/emotion_data/pstar.js", 'utf8', (err, data) => {
+  pushFileJATOS(data, pathUtilsEmotion + "pstar.js" , 28)
+  console.log("Success, pushed " + "pstar.js")
+});
+
+fs.readFile("../../utils/emotion_data/trial_info.js", 'utf8', (err, data) => {
+  pushFileJATOS(data, pathUtilsEmotion + "trial_info.js" , 28)
+  console.log("Success, pushed " + "trial_info.js")
+});
+
+fs.readFile("../../utils/emotion_data/trial_info_labels.txt", 'utf8', (err, data) => {
+  pushFileJATOS(data, pathUtilsEmotion + "trial_info_labels.txt" , 28)
+  console.log("Success, pushed " + "trial_info_labels.txt")
 });
 
 fs.readdir("../styles/", (err, files) => {
