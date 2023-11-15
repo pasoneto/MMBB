@@ -1,8 +1,8 @@
-keys,eng,fi
-next,Next,Seuraava
-previous,Previous,Edellinen
-continue,Continue,Jatka
-choose,Choose,Valitse
-start,Start,Aloita
-home,Home,Alku
-record,Record,Tallenna
+keys,eng,fi,pt
+next,Next,Seuraava,Próximo
+previous,Previous,Edellinen,Anterior
+continue,Continue,Jatka,Continue
+choose,Choose,Valitse,Escolha
+start,Start,Aloita,Começar
+home,Home,Alku,Home
+record,Record,Tallenna,Gravar

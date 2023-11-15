@@ -1,32 +1,32 @@
-keys,eng,fi
-openPage,<b>Welcome to the MMBB battery</b>,<b>Tervetuloa MMBB-testikokoelmaan!</b>
-welcome,Welcome!,Tervetuloa!
-readyNext,"When you are ready to begin, click Next","Kun olet valmis aloittamaan, paina 'Seuraava'."
-endTask1,End of the task,Tehtävä on päättynyt.
-endTask2,End of task 2,Tehtävä 2 on päättynyt.
-endTask3,End of task 3,Tehtävä 3 on päättynyt.
-loading,Loading,Ladataan
-continue,Continue,Jatka
-readyNext2,"When you are ready to continue, click Next","Kun olet valmis jatkamaan, paina 'Seuraava'."
-howEasy,How easy was this task for you?,Kuinka helpoksi koit tehtävän?
-veryEasy,Very easy,Todella helppo.
-veryHard,Very hard,Todella haastava.
-instruction1,For this task you will need the following items...,Tätä tehtävää varten tarvitset seuraavat esineet...
-instruction2,A pocket or a purse<br><img id='pocket' src='./images/pocket.svg'></img>,Taskun tai käsilaukun. <br><img id='pocket' src='./images/pocket.svg'></img>
-instruction3,A flat surface where you can lay down your phone<br><img id='tableSVG' src='./images/table.svg'></img>,"Tasaisen pinnan, jolle voit laskea puhelimesi. <br><img id='tableSVG' src='./images/table.svg'></img>"
-instruction4,"Please, use either wired headphones/earplugs or the phone's loudspeaker. Do not use bluetooth hearing-devices.<br> <img id='noBluetooth' src='./images/noBluetooth.svg'></img>",Käytä joko langallisia kuulokkeita tai puhelimesi omaa kaiutinta. Emme suosittele käyttämään Bluetooth-laitteita.
-instruction5,"To ensure the correct functioning of the experiment, it is required that you disable the automatic lock of your phone screen. Tap Next to see instructions.",Tehtävän tekemiseksi sinun on poistettava hetkellisesti puhelimen näytön automaattinen lukitus. Näet ohjeet napauttamalla 'Seuraava'.
-instruction6,On <b>iPhone</b>:,<b>iPhonessa</b>
-instruction7,Settings <br> <img id='instructionLock' src='./images/instructions/iosInstruction0.png'></img>,Asetukset <br> <img id='instructionLock' src='./images/instructions/iosInstruction0.png'></img>
-instruction8,Display & brightness <br> <img id='instructionLock' src='./images/instructions/iosInstruction1.png'></img>,Näyttö ja kirkkaus <br> <img id='instructionLock' src='./images/instructions/iosInstruction1.png'></img>
-instruction9,Auto-lock > Never <br> <img id='instructionLock' src='./images/instructions/iosInstruction2.png'></img>,Automaattinen lukitus > Ei koskaan <br> <img id='instructionLock' src='./images/instructions/iosInstruction2.png'></img>
-instruction10,You can re-enable this setting once the experiment has ended.,Voit ottaa vanhat asetuksesi uudelleen käyttöön kun koe on päättynyt.
-instruction12,On <b>Android</b>:,<b>Androidin</b> kohdalla
-instruction13,Settings <br> <img id='instructionLock' src='./images/instructions/androidInstructions0.png'></img>,Asetukset <br> <img id='instructionLock' src='./images/instructions/androidInstructions0.png'></img>
-instruction14,Display <br> <img id='instructionLock' src='./images/instructions/androidInstructions1.png'></img>,Näyttö ja kirkkaus <br> <img id='instructionLock' src='./images/instructions/androidInstructions1.png'></img>
-instruction15,Screen timeout > 30/15/10 minutes <br> <img id='instructionLock' src='./images/instructions/androidInstructions2.png'></img>,Näytön lukitus > 30/15/10 minuuttia <br> <img id='instructionLock' src='./images/instructions/androidInstructions2.png'></img>
-instruction16,You can re-enable this setting once the experiment has ended.,Voit ottaa vanhat asetuksesi uudelleen käyttöön kun koe on päättynyt.
-instruction17,You can take breaks between each task,Voit halutessasi vapaasti pitää taukoja tehtävien välillä.
-notAtAll,Not at all,En lainkaan
-veryMuch,Very much,Erittäin paljon
-completionProgress,Completion Progress,Tehtävän suoritus
+keys,eng,fi,pt
+openPage,<b>Welcome to the MMBB battery</b>,<b>Tervetuloa MMBB-testikokoelmaan!</b>,<b>Bem-vindo(a) à MMBB-MB</b>
+welcome,Welcome!,Tervetuloa!,Bem-vindo(a)!
+readyNext,"When you are ready to begin, click Next","Kun olet valmis aloittamaan, paina 'Seuraava'.","Quando você estiver pronto, aperte Próximo"
+endTask1,End of the task,Tehtävä on päättynyt.,Fim da tarefa
+endTask2,End of task 2,Tehtävä 2 on päättynyt.,Fim da tarefa 2
+endTask3,End of task 3,Tehtävä 3 on päättynyt.,Fim da tarefa 3
+loading,Loading,Ladataan,Carregando
+continue,Continue,Jatka,Continue
+readyNext2,"When you are ready to continue, click Next","Kun olet valmis jatkamaan, paina 'Seuraava'.","Quando você estiver pronto, aperte Próximo"
+howEasy,How easy was this task for you?,Kuinka helpoksi koit tehtävän?,Quão fácil foi essa tarefa para você?
+veryEasy,Very easy,Todella helppo.,Muito fácil
+veryHard,Very hard,Todella haastava.,Muito difícil
+instruction1,For this task you will need the following items...,Tätä tehtävää varten tarvitset seuraavat esineet...,"Para esta tarefa, você precisará dos seguintes itens..."
+instruction2,A pocket or a purse<br><img id='pocket' src='./images/pocket.svg'></img>,Taskun tai käsilaukun. <br><img id='pocket' src='./images/pocket.svg'></img>,Um bolso ou uma bolsa<br><img id='pocket' src='./images/pocket.svg'></img>
+instruction3,A flat surface where you can lay down your phone<br><img id='tableSVG' src='./images/table.svg'></img>,"Tasaisen pinnan, jolle voit laskea puhelimesi. <br><img id='tableSVG' src='./images/table.svg'></img>",Uma superfície plana onde você possa deixar seu celular<br><img id='tableSVG' src='./images/table.svg'></img>
+instruction4,"Please, use either wired headphones/earplugs or the phone's loudspeaker. Do not use bluetooth hearing-devices.<br> <img id='noBluetooth' src='./images/noBluetooth.svg'></img>",Käytä joko langallisia kuulokkeita tai puhelimesi omaa kaiutinta. Emme suosittele käyttämään Bluetooth-laitteita.,"Por favor, use fones com fio, ou o speaker to seu celular. Não use aparelhos com bluetooth<br> <img id='noBluetooth' src='./images/noBluetooth.svg'></img>"
+instruction5,"To ensure the correct functioning of the experiment, it is required that you disable the automatic lock of your phone screen. Tap Next to see instructions.",Tehtävän tekemiseksi sinun on poistettava hetkellisesti puhelimen näytön automaattinen lukitus. Näet ohjeet napauttamalla 'Seuraava'.,"Para garantir o funcionamento correto do experimento, você deve desabilitar o trancamento automático da sua tela. Aperte Próximo para ver as instruções."
+instruction6,On <b>iPhone</b>:,<b>iPhonessa</b>,No <b>iPhone</b>:
+instruction7,Settings <br> <img id='instructionLock' src='./images/instructions/iosInstruction0.png'></img>,Asetukset <br> <img id='instructionLock' src='./images/instructions/iosInstruction0.png'></img>,Ajustes <br> <img id='instructionLock' src='./images/instructions/iosInstruction0.png'></img>
+instruction8,Display & brightness <br> <img id='instructionLock' src='./images/instructions/iosInstruction1.png'></img>,Näyttö ja kirkkaus <br> <img id='instructionLock' src='./images/instructions/iosInstruction1.png'></img>,Tela e brilho <br> <img id='instructionLock' src='./images/instructions/iosInstruction1.png'></img>
+instruction9,Auto-lock > Never <br> <img id='instructionLock' src='./images/instructions/iosInstruction2.png'></img>,Automaattinen lukitus > Ei koskaan <br> <img id='instructionLock' src='./images/instructions/iosInstruction2.png'></img>,Bloqueio automático > Nunca <br> <img id='instructionLock' src='./images/instructions/iosInstruction2.png'></img>
+instruction10,You can re-enable this setting once the experiment has ended.,Voit ottaa vanhat asetuksesi uudelleen käyttöön kun koe on päättynyt.,Você pode reabilitar essa configuração ao final do experimento.
+instruction12,On <b>Android</b>:,<b>Androidin</b> kohdalla,No <b>Android</b>:
+instruction13,Settings <br> <img id='instructionLock' src='./images/instructions/androidInstructions0.png'></img>,Asetukset <br> <img id='instructionLock' src='./images/instructions/androidInstructions0.png'></img>,Configurações <br> <img id='instructionLock' src='./images/instructions/androidInstructions0.png'></img>
+instruction14,Display <br> <img id='instructionLock' src='./images/instructions/androidInstructions1.png'></img>,Näyttö ja kirkkaus <br> <img id='instructionLock' src='./images/instructions/androidInstructions1.png'></img>,Segurança <br> <img id='instructionLock' src='./images/instructions/androidInstructions1.png'></img>
+instruction15,Screen timeout > 30/15/10 minutes <br> <img id='instructionLock' src='./images/instructions/androidInstructions2.png'></img>,Näytön lukitus > 30/15/10 minuuttia <br> <img id='instructionLock' src='./images/instructions/androidInstructions2.png'></img>,Bloqueio de tela > 30/15/10 minutos <br> <img id='instructionLock' src='./images/instructions/androidInstructions2.png'></img>
+instruction16,You can re-enable this setting once the experiment has ended.,Voit ottaa vanhat asetuksesi uudelleen käyttöön kun koe on päättynyt.,Você pode reabilitar essa configuração ao final do experimento.
+instruction17,You can take breaks between each task,Voit halutessasi vapaasti pitää taukoja tehtävien välillä.,Você pode fazer pausas entre cada tarefa
+notAtAll,Not at all,En lainkaan,Nada
+veryMuch,Very much,Erittäin paljon,Muito
+completionProgress,Completion Progress,Tehtävän suoritus,Progresso
