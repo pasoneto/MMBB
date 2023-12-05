@@ -13,15 +13,17 @@ var uiConfig = {
       return false;
     },
   },
-  //signInSuccessUrl: '../pages/chooseBattery.html',
+  //Cannot run this because do not have access to necessary url params
+  //signInSuccessUrl: studyLinks["chooseBatteryLink"] + '?lang=' + lang + '&user=' + userID,
   signInOptions: [
     firebase.auth.EmailAuthProvider.PROVIDER_ID,
   ],
-  //tosUrl: '../pages/chooseBattery.html',
+  tosUrl: 'google.com',
   privacyPolicyUrl: function() {
-    window.location.assign('./');
+    window.location.assign('youtube.com');
   }
 };
 
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
 ui.start('#firebaseui-auth-container', uiConfig);
+
