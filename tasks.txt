@@ -8,14 +8,12 @@
 - make personalized link to Shared Measurements;
 - make post questionnaire;
 
+#Implement questionnaire translations for friends strangers
+- https://jyu-my.sharepoint.com/:x:/g/personal/maarhart_jyu_fi/EVOc-nBuAUJHm4X2U3HPjGgBVw2rWoge47n5PCWtFcb86g?e=9bCRHE
 
-Implement questionnaires for friends strangers
-https://jyu-my.sharepoint.com/:x:/g/personal/maarhart_jyu_fi/EVOc-nBuAUJHm4X2U3HPjGgBVw2rWoge47n5PCWtFcb86g?e=9bCRHE
+#Privacy note
+- Add to google login system
+    https://jyu-my.sharepoint.com/:w:/r/personal/maarhart_jyu_fi/_layouts/15/Doc.aspx?sourcedoc=%7B25B0EC9E-680B-4DB4-BDB8-4B2A5878B2EC%7D&file=Privacy_Notice_friends_strangers_dance_2023-04-18.docx&action=default&mobileredirect=true
+    https://jyu-my.sharepoint.com/:w:/r/personal/maarhart_jyu_fi/_layouts/15/Doc.aspx?sourcedoc=%7BF1B25C61-F829-4D80-8D82-747016A5BC07%7D&file=Uusi%20Tietosuojailmoitus%20Musiikki%20ja%20tanssi%204_2022.docx&action=default&mobileredirect=true
 
-#Emotion
-- Add keywords for translations;
-- Add structure for studyID, which shows only a subset;
-- Divide emotion game and ?;
-- Deleting familiarity question;
-- Ask age, gender and nationality upon registration (?)
-
+#Set up questionnaire QR code

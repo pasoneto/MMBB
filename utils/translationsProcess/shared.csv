@@ -1,135 +1,135 @@
-keys,eng,fi
-howLongSing,How long have you been singing as a hobby?,Kuinka kauan olet harrastanut laulamista?
-howOftenSingBefore,How often did you sing when you were most active with the hobby?,Kuinka usein lauloit harrastuksen aktiivisimmassa vaiheessa?
-howOftenSingNow,How often do you sing nowadays?,Kuinka usein laulat nykyään?
-howMuchTuitionSing,How much tuition have you received for singing (outside primary/lower secondary school)?,Kuinka paljon opetusta olet saanut laulamiseen (peruskoulun ulkopuolella)?
-howLongInstrumentHobby,How long have you been playing a musical instrument as a hobby?,Kuinka kauan olet harrastanut musiikki-instrumentin soittamista?
-howOftenPlayHobby,How often did you play when you were most active with the hobby?,Kuinka usein soitit harrastuksen aktiivisimmassa vaiheessa?
-howOftenPlayNow,How often do you play nowadays?,Kuinka usein soitat nykyään?
-howMuchTuitionInstrument,How much tuition have you received for playing (outside primary/lower secondary school)?,Kuinka paljon opetusta olet saanut soittamiseen (peruskoulun ulkopuolella)?
-howLongDanceHobby,How long have you been dancing as a hobby?,Kuinka kauan olet harrastanut tanssimista?
-howLongDanceHobyBefore,How often did you dance when you were most active with the hobby?,Kuinka usein tanssit harrastuksen aktiivisimmassa vaiheessa?
-howOftenDanceNow,How often do you dance nowadays?,Kuinka usein tanssit nykyään?
-howMuchTuitionDance,How much tuition have you received for dancing (outside primary/lower secondary school)?,Kuinka paljon opetusta olet saanut tanssimiseen (peruskoulun ulkopuolella)?
-howOftenListenMusicNow,How often do you listen to music nowadays?,Kuinka usein kuuntelet musiikkia nykyään?
-howMusical,How musical do you consider yourself?,Kuinka musikaaliseksi koet itsesi?
-notAtAlMusical,not at all musical,en lainkaan musikaaliseksi
-notThatMusical,not that musical,en kovin musikaaliseksi
-aBitMusical,a bit musical,hieman musikaaliseksi
-quiteMusical,quite musical,melko musikaaliseksi
-veryMusical,very musical,hyvin musikaaliseksi
-never,never,en koskaan
-oneTwoYears,1-2 years,1-2 vuotta
-threeFiveYears,3-5 years,3-5 vuotta
-sixNineYears,6-9 years,6-9 vuotta
-tenMoreYears,10 or more years,10 vuotta tai enemmän
-veryRarely,very rarely,hyvin harvoin
-monthly,monthly,kuukausittain
-weekly,weekly,viikoittain
-daily,daily,päivittäin
-surveyMMBB,<b>Welcome to the MMBB survey!</b>,<b>Tervetuloa MMBB-kyselyyn!</b>
-personalBackground,Personal background,Taustatietosi
-musicalBackground,Musical background,Musiikkitaustasi
-perception,Perception,Havainnointi
-singing,Singing,Laulaminen
-dancing,Dancing,Tanssiminen
-musicalPreference,Musical preferences,Musiikkimieltymykset
-musicalExperiences,Musical experiences,Musiikilliset kokemukset
-prompt,"Please, answer the following:",Arvioidaan 5-portaisella asteikolla:
-iCanTell,I can tell when people sing or play out of time with the beat,Huomaan kun ihmiset laulavat tai soittavat väärässä tahdissa
-iCanTellTune,I can tell when people sing or play out of tune,Huomaan kun ihmiset laulavat tai soittavat epävireisesti
-iFind,I find it easy to learn or imitate other people's movements,Minusta on helppo oppia tai matkia toisten liikkeitä.
-haveTrouble,I have trouble recognizing a familiar song when played in a different way or by a different performer,Minun on hankala tunnistaa tuttu kappale kun se soitetaan eri tavalla tai eri esittäjä soittaa sen
-whenISing,"When I sing, I have no idea whether I'm in tune or not",Laulaessani en tiedä lainkaan laulanko vireessä vai epävireessä
-title,Here are questions about your background,Seuraavassa on kysymyksiä taustastasi
-pleaseAnswer,"Please, answer the following questions",Ole hyvä ja vastaa seuraaviin kysymyksiin
-primaryLanguage,What is your primary spoken language?,Mikä on äidinkielesi?
-secondaryLanguage,What is your secondary spoken language? (If applicable),Mikä on toissijainen puhuttu kielesi? (jos on)
-yearOfBirth,Date of birth,Syntymäpäivä
-nationality,What is your nationality,Mikä on kansalaisuutesi?
-gender,Gender,Sukupuoli
-genderOther,"Gender, other:","Sukupuoli, muu:"
-female,female,nainen
-male,male,mies
-other,"Other, what:","Muu, mikä:"
-ratherNotSay,rather not say,en halua sanoa
-education,Education,Koulutus
-educationOther,"Education, other:","Koulutus, muu:"
-primarySchool,Primary school/grade school,Kansakoulu
-comprehensiveSchool,Comprehensive school/elementary school,Peruskoulu
-secondaryEducation,Secondary education/High school,Lukio
-vocationalTraining,Secondary education/Vocational training,Ammattikoulu tai vastaava
-bachelors,Bachelor’s degree (University or University of applied sciences),Kandidaatin tutkinto (yliopisto tai ammattikorkeakoulu)
-masters,Master’s degree (University or University of applied sciences),Maisterintutkinto (yliopisto tai ammattikorkeakoulu)
-doctoral,Licentiate or doctoral degree,Lisensiaatin tai tohtorintutkinto
-howMuchLikeGenre,"How much do you like the following musical genres? For each genre, select the option that best describes your preference.","Kuinka paljon pidät seuraavista musiikkityyleistä? Valitse jokaisen musiikkityylin kohdalla vaihtoehto, joka parhaiten kuvaa mieltymystäsi."
-dislikeStrongly,dislike strongly,inhoan paljon
-dislikeModerately,dislike moderately,inhoan kohtalaisesti
-dislkikeAlittle,dislike a little,inhoan hieman
-neutral,neither like nor dislike,siltä väliltä
-likeALittle,like a little,pidän hieman
-likeModerately,like moderately,pidän kohtalaisesti
-likeStrongly,like strongly,pidän paljon
-blues,Blues,Blues
-jazz,Jazz,Jazz
-classical,Classical,Klassinen
-folk,Folk,Etno / kansanmusiikki
-rock,Rock,Rock
-alternative,Alternative,Vaihtoehto / indie
-heavyMetal,Heavy metal,Metalli
-country,Country,Kantri
-religious,Religious,Hengellinen
-pop,Pop,Pop / iskelmä
-rap,Rap / hip hop,Rap / hip hop
-soul,Soul / funk,Soul / funk
-electronic,Electronic / dance,Elektroninen / dance
-question,Here are statements about experiencing music and about the role of music in life. How do they apply to you? Select the option that best fits you.,"Seuraavassa on väitteitä musiikin kokemisesta ja merkityksestä elämässä. Missä määrin ne sopivat sinuun? Valitse vaihtoehto, joka parhaiten kuvaa sinua."
-completelyDisagree,completely disagree,täysin eri mieltä
-somewhatDisagree,somewhat disagree,jonkin verran eri mieltä
-neitherDisagreeAgree,neither disagree nor agree,siltä väliltä
-somewhatAgree,somewhat agree,jonkin verran samaa mieltä
-completelyAgree,completely agree,täysin samaa mieltä
-shareMusic,When I share music with someone I feel a special connection with that person.,"Kun jaan musiikkikokemuksen toisen kanssa, tunnen erityistä yhteyttä häneen"
-freeNoListen,In my free time I hardly listen to music,En juurikaan kuuntele musiikkia vapaa-aikanani
-listenEmotion,I like listen to music that contains emotion,"Pidän sellaisen musiikin kuuntelusta, jossa on tunnetta"
-musicCompany,Music keeps me company when I’m alone,Musiikki pitää minulle seuraa yksin ollessani
-dontLikeDance,"I don’t like to dance, not even with music I like",En pidä tanssimisesta edes mielimusiikkini tahtiin
-musicMakesMeBond,Music makes me bond with other people,Musiikki saa minut kokemaan yhteenkuuluvuutta muiden kanssa
-informMyself,I inform myself about music I like,Pidän itseni ajan tasalla makuani vastaavasta musiikista
-getEmotional,I get emotional listening to certain pieces of music,"Liikutun, kun kuuntelen tiettyjä musiikkikappaleita"
-musicCalms,Music calms and relaxes me,Musiikki rauhoittaa ja rentouttaa minua
-musicMakesMeDanceOften,Music often makes me dance,Musiikki saa minut usein tanssimaan
-lookingNewMusic,I’m always looking for new music,Etsin aina uutta musiikkia
-canBecomeTearful,I can become tearful or cry when I listen to a melody that I like very much,"Saatan kyynelehtiä tai itkeä kuunnellessani melodiaa, josta pidän todella paljon"
-likeToSing,I like to sing or play an instrument with other people,Pidän toisten kanssa laulamisesta tai soittamisesta.
-musicHelpsChill,Music helps me chill out,Musiikki auttaa minua rentoutumaan
-hummingAlong,I can’t help humming or singing along to music that I like,"En voi olla hyräilemättä tai laulamatta mukana kun kuulen musiikkia, josta pidän"
-concertConnected,At a concert I feel connected to the performers and the audience,Konserteissa koen yhteyden esiintyjien ja yleisön kanssa
-spendQuite,I spend quite a bit of money on music and related items,Käytän melko paljon rahaa musiikkiin ja siihen liittyviin asioihin
-sometimesFeelChills,I sometimes feel chills when I hear a melody that I like,"Toisinaan menen kananlihalle kuunnellessani melodiaa, josta pidän"
-musicComforts,Music comforts me,Musiikki lohduttaa minua
-whenIHearTune,When I hear a tune I like a lot I can’t help tapping or moving to its beat,"Kuullessani musiikkikappaleen, josta pidän todella paljon, en malta olla taputtamatta tai liikkumatta sen tahtiin"
-songDontKnow,"If somebody starts singing a song I don't know, I can usually join in","Jos joku alkaa laulamaan minulle tuntematonta kappaletta, voin yleensä liittyä mukaan lauluun."
-ableHit,I am able to hit the right notes when I sing along with a recording,Pystyn osumaan oikeisiin nuotteihin laulaessani äänitteen mukana
-likeSinging,I don’t like singing in public because I’m afraid that I would sing wrong notes.,"En pidä julkisesti laulamisesta, koska pelkään laulavani nuotin vierestä"
-canSing,I can sing music from memory,Osaan laulaa kappaleita ulkomuistista
-afterHearing,"After hearing a new song two or three times, I can usually sing it by myself","Kuultuani uuden kappaleen kahdesti tai kolmesti, pystyn yleensä laulamaan sen itsekseni."
-easyControl,I find it easy to control my movements,Minusta on helppo hallita omia liikkeitäni.
-ifSomeone,"If someone asks me to dance, I usually say yes","Sanon yleensä kyllä, jos joku pyytää minua tanssimaan"
-whenDance,"When I dance, I feel better","Kun tanssin, minulle tulee parempi olo"
-greatTrack,"When I hear a great track, it just makes me want to dance",Mahtavan biisin kuuleminen saa minut haluamaan tanssia
-tiredOut,"When I’m tired out, I rest by listening to music","Kun olen uupunut, lepään kuuntelemalla musiikkia"
-musicHelps,Music helps me to recognize different feelings in myself,Musiikki auttaa minua ymmärtämään erilaisia tunteita itsessäni
-listenMusic,I listen to music to find solace when worries overwhelm me,Kuuntelen musiikkia saadakseni lohtua murheisiini
-backgroundAtmosphere,I usually put background music on to make the atmosphere more pleasant,Soitan yleensä taustamusiikkia tehdäkseni tunnelmasta miellyttävämmän.
-listenPerk,I listen to music to perk up after a rough day,Kuuntelen musiikkia piristyäkseni rankan päivän jälkeen
-reallyAngry,"When I’m really angry, I feel like listening to some aggressive music","Kun olen todella vihainen, minun tekee mieli kuunnella aggressiivista musiikkia"
-feelFantastic,I feel fantastic putting my soul fully into the music,Minusta tuntuu mahtavalta eläytyä musiikkiin täysillä
-forgetWorries,"For me, music is a way to forget about my worries",Musiikki auttaa minua unohtamaan huoleni.
-magnificentExperiences,Music has offered me magnificent experiences,Musiikki on tarjonnut minulle upeita kokemuksia
-whenBusy,"When I’m busy around the house and no one else is around, I like to have some music on the background","Kun olen yksin tehdessäni kotitöitä, pidän taustamusiikin soitosta"
-musicHelped,Music has helped me to get through hard experiences,Musiikki on auttanut minua selviytymään kovista kokemuksista
-feelingSadComforts,"When I’m feeling sad, listening to music comforts me",Musiikin kuunteleminen lohduttaa minua kun olen surullinen.
-everythingSad,"When everything feels bad, it helps me to listen to music that expresses my bad feelings","Kun kaikki tuntuu kurjalta, minua helpottaa kuunnella musiikkia joka ilmaisee pahaa oloani"
-whenStressful,"When stressful thoughts keep going round and round in my head, I start to listen to music to get them off my mind","Kun ahdistavia ajatuksia pyörii päässäni, alan kuuntelemaan musiikkia päästäkseni niistä eroon."
-countryFrom,Where are you from?,Missä olet kotoisin
+keys,eng,fi,pt
+howLongSing,How long have you been singing as a hobby?,Kuinka kauan olet harrastanut laulamista?,How long have you been singing as a hobby?
+howOftenSingBefore,How often did you sing when you were most active with the hobby?,Kuinka usein lauloit harrastuksen aktiivisimmassa vaiheessa?,How often did you sing when you were most active with the hobby?
+howOftenSingNow,How often do you sing nowadays?,Kuinka usein laulat nykyään?,How often do you sing nowadays?
+howMuchTuitionSing,How much tuition have you received for singing (outside primary/lower secondary school)?,Kuinka paljon opetusta olet saanut laulamiseen (peruskoulun ulkopuolella)?,How much tuition have you received for singing (outside primary/lower secondary school)?
+howLongInstrumentHobby,How long have you been playing a musical instrument as a hobby?,Kuinka kauan olet harrastanut musiikki-instrumentin soittamista?,How long have you been playing a musical instrument as a hobby?
+howOftenPlayHobby,How often did you play when you were most active with the hobby?,Kuinka usein soitit harrastuksen aktiivisimmassa vaiheessa?,How often did you play when you were most active with the hobby?
+howOftenPlayNow,How often do you play nowadays?,Kuinka usein soitat nykyään?,How often do you play nowadays?
+howMuchTuitionInstrument,How much tuition have you received for playing (outside primary/lower secondary school)?,Kuinka paljon opetusta olet saanut soittamiseen (peruskoulun ulkopuolella)?,How much tuition have you received for playing (outside primary/lower secondary school)?
+howLongDanceHobby,How long have you been dancing as a hobby?,Kuinka kauan olet harrastanut tanssimista?,How long have you been dancing as a hobby?
+howLongDanceHobyBefore,How often did you dance when you were most active with the hobby?,Kuinka usein tanssit harrastuksen aktiivisimmassa vaiheessa?,How often did you dance when you were most active with the hobby?
+howOftenDanceNow,How often do you dance nowadays?,Kuinka usein tanssit nykyään?,How often do you dance nowadays?
+howMuchTuitionDance,How much tuition have you received for dancing (outside primary/lower secondary school)?,Kuinka paljon opetusta olet saanut tanssimiseen (peruskoulun ulkopuolella)?,How much tuition have you received for dancing (outside primary/lower secondary school)?
+howOftenListenMusicNow,How often do you listen to music nowadays?,Kuinka usein kuuntelet musiikkia nykyään?,How often do you listen to music nowadays?
+howMusical,How musical do you consider yourself?,Kuinka musikaaliseksi koet itsesi?,How musical do you consider yourself?
+notAtAlMusical,not at all musical,en lainkaan musikaaliseksi,not at all musical
+notThatMusical,not that musical,en kovin musikaaliseksi,not that musical
+aBitMusical,a bit musical,hieman musikaaliseksi,a bit musical
+quiteMusical,quite musical,melko musikaaliseksi,quite musical
+veryMusical,very musical,hyvin musikaaliseksi,very musical
+never,never,en koskaan,never
+oneTwoYears,1-2 years,1-2 vuotta,1-2 years
+threeFiveYears,3-5 years,3-5 vuotta,3-5 years
+sixNineYears,6-9 years,6-9 vuotta,6-9 years
+tenMoreYears,10 or more years,10 vuotta tai enemmän,10 or more years
+veryRarely,very rarely,hyvin harvoin,very rarely
+monthly,monthly,kuukausittain,monthly
+weekly,weekly,viikoittain,weekly
+daily,daily,päivittäin,daily
+surveyMMBB,<b>Welcome to the MMBB survey!</b>,<b>Tervetuloa MMBB-kyselyyn!</b>,<b>Bem-vindo(a) ao questionário básico</b>
+personalBackground,Personal background,Taustatietosi,Personal background
+musicalBackground,Musical background,Musiikkitaustasi,Musical background
+perception,Perception,Havainnointi,Perception
+singing,Singing,Laulaminen,Singing
+dancing,Dancing,Tanssiminen,Dancing
+musicalPreference,Musical preferences,Musiikkimieltymykset,Musical preferences
+musicalExperiences,Musical experiences,Musiikilliset kokemukset,Musical experiences
+prompt,"Please, answer the following:",Arvioidaan 5-portaisella asteikolla:,"Please, answer the following:"
+iCanTell,I can tell when people sing or play out of time with the beat,Huomaan kun ihmiset laulavat tai soittavat väärässä tahdissa,I can tell when people sing or play out of time with the beat
+iCanTellTune,I can tell when people sing or play out of tune,Huomaan kun ihmiset laulavat tai soittavat epävireisesti,I can tell when people sing or play out of tune
+iFind,I find it easy to learn or imitate other people's movements,Minusta on helppo oppia tai matkia toisten liikkeitä.,I find it easy to learn or imitate other people's movements
+haveTrouble,I have trouble recognizing a familiar song when played in a different way or by a different performer,Minun on hankala tunnistaa tuttu kappale kun se soitetaan eri tavalla tai eri esittäjä soittaa sen,I have trouble recognizing a familiar song when played in a different way or by a different performer
+whenISing,"When I sing, I have no idea whether I'm in tune or not",Laulaessani en tiedä lainkaan laulanko vireessä vai epävireessä,"When I sing, I have no idea whether I'm in tune or not"
+title,Here are questions about your background,Seuraavassa on kysymyksiä taustastasi,Here are questions about your background
+pleaseAnswer,"Please, answer the following questions",Ole hyvä ja vastaa seuraaviin kysymyksiin,"Por favor, responda:"
+primaryLanguage,What is your primary spoken language?,Mikä on äidinkielesi?,Qual é sua primeira língua?
+secondaryLanguage,What is your secondary spoken language? (If applicable),Mikä on toissijainen puhuttu kielesi? (jos on),Qual é sua segunda língua (se aplicável)
+yearOfBirth,Date of birth,Syntymäpäivä,Data de nascimento
+nationality,What is your nationality,Mikä on kansalaisuutesi?,Qual é sua nacionalidade?
+gender,Gender,Sukupuoli,Gênero
+genderOther,"Gender, other:","Sukupuoli, muu:",Gênero (Outro)
+female,female,nainen,Feminino
+male,male,mies,Masculino
+other,"Other, what:","Muu, mikä:","Outro, qual:"
+ratherNotSay,rather not say,en halua sanoa,Prefiro não dizer
+education,Education,Koulutus,Educação
+educationOther,"Education, other:","Koulutus, muu:","Educação, outro:"
+primarySchool,Primary school/grade school,Kansakoulu,Educação básica
+comprehensiveSchool,Comprehensive school/elementary school,Peruskoulu,Ensino secundário
+secondaryEducation,Secondary education/High school,Lukio,Ensino médio
+vocationalTraining,Secondary education/Vocational training,Ammattikoulu tai vastaava,Escola técnica
+bachelors,Bachelor’s degree (University or University of applied sciences),Kandidaatin tutkinto (yliopisto tai ammattikorkeakoulu),Bacharelado
+masters,Master’s degree (University or University of applied sciences),Maisterintutkinto (yliopisto tai ammattikorkeakoulu),Mestrado
+doctoral,Licentiate or doctoral degree,Lisensiaatin tai tohtorintutkinto,Doutorado
+howMuchLikeGenre,"How much do you like the following musical genres? For each genre, select the option that best describes your preference.","Kuinka paljon pidät seuraavista musiikkityyleistä? Valitse jokaisen musiikkityylin kohdalla vaihtoehto, joka parhaiten kuvaa mieltymystäsi.","How much do you like the following musical genres? For each genre, select the option that best describes your preference."
+dislikeStrongly,dislike strongly,inhoan paljon,dislike strongly
+dislikeModerately,dislike moderately,inhoan kohtalaisesti,dislike moderately
+dislkikeAlittle,dislike a little,inhoan hieman,dislike a little
+neutral,neither like nor dislike,siltä väliltä,neither like nor dislike
+likeALittle,like a little,pidän hieman,like a little
+likeModerately,like moderately,pidän kohtalaisesti,like moderately
+likeStrongly,like strongly,pidän paljon,like strongly
+blues,Blues,Blues,Blues
+jazz,Jazz,Jazz,Jazz
+classical,Classical,Klassinen,Classical
+folk,Folk,Etno / kansanmusiikki,Folk
+rock,Rock,Rock,Rock
+alternative,Alternative,Vaihtoehto / indie,Alternative
+heavyMetal,Heavy metal,Metalli,Heavy metal
+country,Country,Kantri,Country
+religious,Religious,Hengellinen,Religious
+pop,Pop,Pop / iskelmä,Pop
+rap,Rap / hip hop,Rap / hip hop,Rap / hip hop
+soul,Soul / funk,Soul / funk,Soul / funk
+electronic,Electronic / dance,Elektroninen / dance,Electronic / dance
+question,Here are statements about experiencing music and about the role of music in life. How do they apply to you? Select the option that best fits you.,"Seuraavassa on väitteitä musiikin kokemisesta ja merkityksestä elämässä. Missä määrin ne sopivat sinuun? Valitse vaihtoehto, joka parhaiten kuvaa sinua.",Here are statements about experiencing music and about the role of music in life. How do they apply to you? Select the option that best fits you.
+completelyDisagree,completely disagree,täysin eri mieltä,completely disagree
+somewhatDisagree,somewhat disagree,jonkin verran eri mieltä,somewhat disagree
+neitherDisagreeAgree,neither disagree nor agree,siltä väliltä,neither disagree nor agree
+somewhatAgree,somewhat agree,jonkin verran samaa mieltä,somewhat agree
+completelyAgree,completely agree,täysin samaa mieltä,completely agree
+shareMusic,When I share music with someone I feel a special connection with that person.,"Kun jaan musiikkikokemuksen toisen kanssa, tunnen erityistä yhteyttä häneen",When I share music with someone I feel a special connection with that person.
+freeNoListen,In my free time I hardly listen to music,En juurikaan kuuntele musiikkia vapaa-aikanani,In my free time I hardly listen to music
+listenEmotion,I like listen to music that contains emotion,"Pidän sellaisen musiikin kuuntelusta, jossa on tunnetta",I like listen to music that contains emotion
+musicCompany,Music keeps me company when I’m alone,Musiikki pitää minulle seuraa yksin ollessani,Music keeps me company when I’m alone
+dontLikeDance,"I don’t like to dance, not even with music I like",En pidä tanssimisesta edes mielimusiikkini tahtiin,"I don’t like to dance, not even with music I like"
+musicMakesMeBond,Music makes me bond with other people,Musiikki saa minut kokemaan yhteenkuuluvuutta muiden kanssa,Music makes me bond with other people
+informMyself,I inform myself about music I like,Pidän itseni ajan tasalla makuani vastaavasta musiikista,I inform myself about music I like
+getEmotional,I get emotional listening to certain pieces of music,"Liikutun, kun kuuntelen tiettyjä musiikkikappaleita",I get emotional listening to certain pieces of music
+musicCalms,Music calms and relaxes me,Musiikki rauhoittaa ja rentouttaa minua,Music calms and relaxes me
+musicMakesMeDanceOften,Music often makes me dance,Musiikki saa minut usein tanssimaan,Music often makes me dance
+lookingNewMusic,I’m always looking for new music,Etsin aina uutta musiikkia,I’m always looking for new music
+canBecomeTearful,I can become tearful or cry when I listen to a melody that I like very much,"Saatan kyynelehtiä tai itkeä kuunnellessani melodiaa, josta pidän todella paljon",I can become tearful or cry when I listen to a melody that I like very much
+likeToSing,I like to sing or play an instrument with other people,Pidän toisten kanssa laulamisesta tai soittamisesta.,I like to sing or play an instrument with other people
+musicHelpsChill,Music helps me chill out,Musiikki auttaa minua rentoutumaan,Music helps me chill out
+hummingAlong,I can’t help humming or singing along to music that I like,"En voi olla hyräilemättä tai laulamatta mukana kun kuulen musiikkia, josta pidän",I can’t help humming or singing along to music that I like
+concertConnected,At a concert I feel connected to the performers and the audience,Konserteissa koen yhteyden esiintyjien ja yleisön kanssa,At a concert I feel connected to the performers and the audience
+spendQuite,I spend quite a bit of money on music and related items,Käytän melko paljon rahaa musiikkiin ja siihen liittyviin asioihin,I spend quite a bit of money on music and related items
+sometimesFeelChills,I sometimes feel chills when I hear a melody that I like,"Toisinaan menen kananlihalle kuunnellessani melodiaa, josta pidän",I sometimes feel chills when I hear a melody that I like
+musicComforts,Music comforts me,Musiikki lohduttaa minua,Music comforts me
+whenIHearTune,When I hear a tune I like a lot I can’t help tapping or moving to its beat,"Kuullessani musiikkikappaleen, josta pidän todella paljon, en malta olla taputtamatta tai liikkumatta sen tahtiin",When I hear a tune I like a lot I can’t help tapping or moving to its beat
+songDontKnow,"If somebody starts singing a song I don't know, I can usually join in","Jos joku alkaa laulamaan minulle tuntematonta kappaletta, voin yleensä liittyä mukaan lauluun.","If somebody starts singing a song I don't know, I can usually join in"
+ableHit,I am able to hit the right notes when I sing along with a recording,Pystyn osumaan oikeisiin nuotteihin laulaessani äänitteen mukana,I am able to hit the right notes when I sing along with a recording
+likeSinging,I don’t like singing in public because I’m afraid that I would sing wrong notes.,"En pidä julkisesti laulamisesta, koska pelkään laulavani nuotin vierestä",I don’t like singing in public because I’m afraid that I would sing wrong notes.
+canSing,I can sing music from memory,Osaan laulaa kappaleita ulkomuistista,I can sing music from memory
+afterHearing,"After hearing a new song two or three times, I can usually sing it by myself","Kuultuani uuden kappaleen kahdesti tai kolmesti, pystyn yleensä laulamaan sen itsekseni.","After hearing a new song two or three times, I can usually sing it by myself"
+easyControl,I find it easy to control my movements,Minusta on helppo hallita omia liikkeitäni.,I find it easy to control my movements
+ifSomeone,"If someone asks me to dance, I usually say yes","Sanon yleensä kyllä, jos joku pyytää minua tanssimaan","If someone asks me to dance, I usually say yes"
+whenDance,"When I dance, I feel better","Kun tanssin, minulle tulee parempi olo","When I dance, I feel better"
+greatTrack,"When I hear a great track, it just makes me want to dance",Mahtavan biisin kuuleminen saa minut haluamaan tanssia,"When I hear a great track, it just makes me want to dance"
+tiredOut,"When I’m tired out, I rest by listening to music","Kun olen uupunut, lepään kuuntelemalla musiikkia","When I’m tired out, I rest by listening to music"
+musicHelps,Music helps me to recognize different feelings in myself,Musiikki auttaa minua ymmärtämään erilaisia tunteita itsessäni,Music helps me to recognize different feelings in myself
+listenMusic,I listen to music to find solace when worries overwhelm me,Kuuntelen musiikkia saadakseni lohtua murheisiini,I listen to music to find solace when worries overwhelm me
+backgroundAtmosphere,I usually put background music on to make the atmosphere more pleasant,Soitan yleensä taustamusiikkia tehdäkseni tunnelmasta miellyttävämmän.,I usually put background music on to make the atmosphere more pleasant
+listenPerk,I listen to music to perk up after a rough day,Kuuntelen musiikkia piristyäkseni rankan päivän jälkeen,I listen to music to perk up after a rough day
+reallyAngry,"When I’m really angry, I feel like listening to some aggressive music","Kun olen todella vihainen, minun tekee mieli kuunnella aggressiivista musiikkia","When I’m really angry, I feel like listening to some aggressive music"
+feelFantastic,I feel fantastic putting my soul fully into the music,Minusta tuntuu mahtavalta eläytyä musiikkiin täysillä,I feel fantastic putting my soul fully into the music
+forgetWorries,"For me, music is a way to forget about my worries",Musiikki auttaa minua unohtamaan huoleni.,"For me, music is a way to forget about my worries"
+magnificentExperiences,Music has offered me magnificent experiences,Musiikki on tarjonnut minulle upeita kokemuksia,Music has offered me magnificent experiences
+whenBusy,"When I’m busy around the house and no one else is around, I like to have some music on the background","Kun olen yksin tehdessäni kotitöitä, pidän taustamusiikin soitosta","When I’m busy around the house and no one else is around, I like to have some music on the background"
+musicHelped,Music has helped me to get through hard experiences,Musiikki on auttanut minua selviytymään kovista kokemuksista,Music has helped me to get through hard experiences
+feelingSadComforts,"When I’m feeling sad, listening to music comforts me",Musiikin kuunteleminen lohduttaa minua kun olen surullinen.,"When I’m feeling sad, listening to music comforts me"
+everythingSad,"When everything feels bad, it helps me to listen to music that expresses my bad feelings","Kun kaikki tuntuu kurjalta, minua helpottaa kuunnella musiikkia joka ilmaisee pahaa oloani","When everything feels bad, it helps me to listen to music that expresses my bad feelings"
+whenStressful,"When stressful thoughts keep going round and round in my head, I start to listen to music to get them off my mind","Kun ahdistavia ajatuksia pyörii päässäni, alan kuuntelemaan musiikkia päästäkseni niistä eroon.","When stressful thoughts keep going round and round in my head, I start to listen to music to get them off my mind"
+countryFrom,Where are you from?,Missä olet kotoisin,De onde você é?

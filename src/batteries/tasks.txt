@@ -1,8 +1,5 @@
 #Implement terms of service and privacy statements.
 
-#Emotion: 
-- https://jyu-my.sharepoint.com/:x:/r/personal/maarhart_jyu_fi/_layouts/15/Doc.aspx?sourcedoc=%7B36BC85D6-9DA8-46CF-8D32-29F6957185DF%7D&file=Text%20in%20emotion%20subbattery.xlsx&_DSL=1&action=default&mobileredirect=true
-
 #Add to the changePair trial: which participantNumber should this person be matched with.
 #Add sharedMeasurements timeline (with MMBB).
 #Name each file with participantNumber and groupNumber.
