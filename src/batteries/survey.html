@@ -49,6 +49,8 @@
   <body></body>
   <script>
 
+    var lang = "fi"
+
     function generateDropdownObject(prompt, options, required){
           var rObj = {
             type: 'drop-down',
@@ -93,7 +95,6 @@
 
           var groupNumber = jatos.urlQueryParameters.group
           var participantNumberUrl = jatos.urlQueryParameters.participantNumber
-          var lang = jatos.urlQueryParameters.lang
 
           jsPsych.data.addProperties({group: groupNumber, participantNumber: participantNumberUrl});
 
@@ -126,7 +127,6 @@
       });
 
       var groupNumber = jatos.urlQueryParameters.group
-      var participantNumberUrl = jatos.urlQueryParameters.user
       var participantNumberUrl = jatos.urlQueryParameters.participantNumber
 
       window.onbeforeunload = preventRefresh0
@@ -149,6 +149,20 @@
         preamble: '<p style="font-size:7vw">Session number</p>',
         html: '<p><input type="text" id="test-resp-box" name="response" size="10" /></p>',
         autofocus: 'test-resp-box'
+      };
+
+      var agreement1 = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: '<iframe src="../../utils/friends_strangers_tiedote_tutkittavalle.pdf" width="100%" height="600px" loading="lazy" title="PDF-file" ></iframe>',
+        choices: ['Agree'],
+        prompt: "<p>Read and accept</p>"
+      };
+
+      var agreement2 = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: '<iframe src="friends_strangers_tietosuojailmoitus.pdf" width="100%" height="600px" loading="lazy" title="PDF-file" ></iframe>',
+        choices: ['Agree'],
+        prompt: "<p>Read and accept</p>"
       };
 
       var instruction1 = {
@@ -492,20 +506,20 @@
         console.log("P2: A->D")
         console.log("P3: B->C")
         console.log("P4: B->D")
-        var participant1 = [...A, ...[changePairs], ...C, ...[endTask]]
-        var participant2 = [...A, ...[changePairs], ...D, ...[endTask]]
-        var participant3 = [...B, ...[changePairs], ...C, ...[endTask]]
-        var participant4 = [...B, ...[changePairs], ...D, ...[endTask]]
+        var participant1 = [agreement1, agreement2, ...A, ...[changePairs], ...C, ...[endTask]]
+        var participant2 = [agreement1, agreement2, ...A, ...[changePairs], ...D, ...[endTask]]
+        var participant3 = [agreement1, agreement2, ...B, ...[changePairs], ...C, ...[endTask]]
+        var participant4 = [agreement1, agreement2, ...B, ...[changePairs], ...D, ...[endTask]]
       } else {
         console.log("Strangers - Friends")
         console.log("P1: D->B")
         console.log("P2: C->B")
         console.log("P3: D->A")
         console.log("P4: C->A")
-        var participant1 = [...D, ...[changePairs], ...B, ...[endTask]]
-        var participant2 = [...C, ...[changePairs], ...B, ...[endTask]]
-        var participant3 = [...D, ...[changePairs], ...A, ...[endTask]]
-        var participant4 = [...C, ...[changePairs], ...A, ...[endTask]]
+        var participant1 = [agreement1, agreement2, ...D, ...[changePairs], ...B, ...[endTask]]
+        var participant2 = [agreement1, agreement2, ...C, ...[changePairs], ...B, ...[endTask]]
+        var participant3 = [agreement1, agreement2, ...D, ...[changePairs], ...A, ...[endTask]]
+        var participant4 = [agreement1, agreement2, ...C, ...[changePairs], ...A, ...[endTask]]
       }
 
       var participant1 = participant1.map(i => [i])

@@ -54,6 +54,7 @@
     jatos.onLoad(() => {
 
       window.lang = jatos.urlQueryParameters.lang
+      window.part = jatos.urlQueryParameters.part
 
       if(window.lang == undefined){
         window.lang = "eng"
@@ -71,7 +72,7 @@
             var finalData = jsPsych.data.get()
             
             allowRefresh();
-            var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&Emotion=done"
+            var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&Emotion" + window.part + "=done"
             jatos.endStudyAndRedirect(urlRedirect, finalData)
 
             //jatos.endStudyAndRedirect("https://mmbb.ltdk.helsinki.fi/publix/oLzabocUoB1?lang=eng", finalData) //simuBack
@@ -207,7 +208,7 @@
       starting_difficulty_item.push(jsPsych.randomization.sampleWithoutReplacement([0,1,2,3],2))
 
       //trials 
-      var welcomePart1 = {
+      var welcome = {
         type: jsPsychInstructions,
         pages: [emotionTranslations['openStatement'][lang]],
         button_label_next: buttons["next"][lang],
@@ -484,15 +485,6 @@
       var part2_excerpt_order = jsPsych.randomization.repeat(part2_excerpts,1)
       var epochPart2 = 0
 
-      var welcomePart2 = {
-        type: jsPsychInstructions,
-        pages: [emotionTranslations["musicEmotionPart2"][lang]],
-        button_label_next: buttons["next"][lang],
-        button_label_previous: buttons["previous"][lang],
-        allow_backward: false,
-        show_clickable_nav: true
-      }
-
       var instructionsPart2 = {
         type: jsPsychInstructions,
         pages: ["instructions4", "instructions5"].map(i => emotionTranslations[i][lang]),
@@ -757,8 +749,18 @@
      
       var generalIntroEmotion = generateGeneralIntroWrap(lang, "emotion")
 
+      console.log(window.part)
+
+      if(window.part == "One"){
+        var timelineChosen = [welcome, generalIntroEmotion, instructionsPart1, preload, example_trials, part1_trials, messageFinishEmotion].flat(1000)
+      } else if(window.part == "Two"){
+        var timelineChosen = [welcome, generalIntroEmotion, instructionsPart2, part2_trials, messageFinishEmotion].flat(1000)
+      } else {
+        var timelineChosen = [welcome, generalIntroEmotion, instructionsPart1, preload, example_trials, part1_trials, instructionsPart2, part2_trials, messageFinishEmotion].flat(1000)
+      }
+
       var procedureEmotionFinal = {
-          timeline: [welcomePart1, generalIntroEmotion, instructionsPart1, preload, example_trials, part1_trials, instructionsPart2, part2_trials, messageFinishEmotion].flat(1000),
+          timeline: timelineChosen,
           on_timeline_start: function() {
             console.log('This timeline has started');
           }

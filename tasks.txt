@@ -1,10 +1,7 @@
-- Weight and size: move to movement battery
-
 #Friends-strangers:
 
-- how ask for nationality?;
-- use short versions;
-- make list of checkpoints for each part of the timeline (in case the ipad shuts off);
+- Perform saving by node, similar to movement battery
+- make list of checkpoint links for each part of the timeline (in case the ipad shuts off);
 - make personalized link to Shared Measurements;
 - make post questionnaire;
 

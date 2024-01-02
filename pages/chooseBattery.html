@@ -41,8 +41,9 @@
       <div id="choicesEng">
         <div id="taskMovement"><div id="linkToMovement" href=""><img src="../images/dance.svg"/></div><div id="movementTaskIcon"></div></div>
         <div id="taskSinging"><div id="linkToSinging"><img src="../images/singing.svg"/></div><div id="singingTaskIcon"></div></div>
-        <div id="taskEmotion"><div id="linkToEmotion"><img src="../images/emotion.svg"/></div><div id="emotionTaskIcon"></div></div>
+        /*<div id="taskEmotion"><div id="linkToEmotion"><img src="../images/emotion.svg"/></div><div id="emotionTaskIcon"></div></div>*/
         <div id="taskEmotionAdaptive"><div id="linkToEmotionAdaptive"><img src="../images/emotion.svg"/></div><div id="emotionTaskIcon"></div></div>
+        <div id="taskEmotionAdaptive2"><div id="linkToEmotionAdaptive2"><img src="../images/emotion.svg"/></div><div id="emotionTaskIcon"></div></div>
         <div id="taskRhythm"><div id="linkToRhythm"><img src="../images/rhythm.svg"/></div><div id="rhythmTaskIcon"></div></div>
         <div id="taskSharedMeasures"><div id="linkToSurvey"><img src="../images/survey.svg"/></div><div id="surveyTaskIcon"></div></div>
         <div id="taskMBEMA"><div id="linkToMBEMA"><img src="../images/mbemaLogo.svg"/></div><div id="mbemaTaskIcon"></div></div>
@@ -76,14 +77,15 @@
      
     //Check tasks that have already been done
     var movementDone = urlParamsIndex.get('Movement')
-    var emotionDone = urlParamsIndex.get('Emotion')
+    var emotion1Done = urlParamsIndex.get('EmotionOne')
+    var emotion2Done = urlParamsIndex.get('EmotionTwo')
     var mbemaDone = urlParamsIndex.get('MBEMA')
     var singingDone = urlParamsIndex.get('Singing')
     var sharedDone = urlParamsIndex.get('SharedMeasures')
     var rhythmDone = urlParamsIndex.get('Rhythm')
 
-    var allTasksNames = ["Movement", "Emotion", "MBEMA", "Singing", "SharedMeasures", "Rhythm"]
-    var allTasksDone = [movementDone, emotionDone, mbemaDone, singingDone, sharedDone, rhythmDone]
+    var allTasksNames = ["Movement", "EmotionAdaptive", "EmotionAdaptive2", "MBEMA", "Singing", "SharedMeasures", "Rhythm"]
+    var allTasksDone = [movementDone, emotion1Done,      emotion2Done,      mbemaDone, singingDone, sharedDone, rhythmDone]
     for(b in allTasksNames){
       if(allTasksDone[b] == "done"){
         console.log("Done " + allTasksNames[b] + ". Storing cookie..")
@@ -145,12 +147,16 @@
           var movementRedirect = studyLinks['movementLink'] + '?lang=' + lang + '&user=' + userIDFirebase + '&studyID=' + studyID
           location.href = movementRedirect
         }
-        document.getElementById("linkToEmotion").onclick = function(){
-          var emotionRedirect = studyLinks['emotionLink'] + '?lang=' + lang + '&user=' + userIDFirebase  + '&studyID=' + studyID
+        //document.getElementById("linkToEmotion").onclick = function(){
+          //var emotionRedirect = studyLinks['emotionLink'] + '?lang=' + lang + '&user=' + userIDFirebase  + '&studyID=' + studyID
+          //location.href = emotionRedirect
+        //}
+        document.getElementById("linkToEmotionAdaptive").onclick = function(){
+          var emotionRedirect = studyLinks['emotionAdaptiveLink'] + '?lang=' + lang + '&user=' + userIDFirebase + &part=one + '&studyID=' + studyID
           location.href = emotionRedirect
         }
-        document.getElementById("linkToEmotionAdaptive").onclick = function(){
-          var emotionRedirect = studyLinks['emotionAdaptiveLink'] + '?lang=' + lang + '&user=' + userIDFirebase  + '&studyID=' + studyID
+        document.getElementById("linkToEmotionAdaptive2").onclick = function(){
+          var emotionRedirect = studyLinks['emotionAdaptiveLink'] + '?lang=' + lang + '&user=' + userIDFirebase + &part=two + '&studyID=' + studyID
           location.href = emotionRedirect
         }
         document.getElementById("taskSharedMeasures").onclick = function(){
