@@ -148,10 +148,10 @@
           var movementRedirect = studyLinks['movementLink'] + '?lang=' + lang + '&user=' + userIDFirebase + '&studyID=' + studyID
           location.href = movementRedirect
         }
-        //document.getElementById("linkToEmotion").onclick = function(){
-          //var emotionRedirect = studyLinks['emotionLink'] + '?lang=' + lang + '&user=' + userIDFirebase  + '&studyID=' + studyID
-          //location.href = emotionRedirect
-        //}
+        document.getElementById("linkToEmotion").onclick = function(){
+          var emotionRedirect = studyLinks['emotionLink'] + '?lang=' + lang + '&user=' + userIDFirebase  + '&studyID=' + studyID
+          location.href = emotionRedirect
+        }
         document.getElementById("linkToEmotionAdaptive").onclick = function(){
           var emotionRedirect = studyLinks['emotionAdaptiveLink'] + '?lang=' + lang + '&user=' + userIDFirebase + '&part=One' + '&studyID=' + studyID
           location.href = emotionRedirect
