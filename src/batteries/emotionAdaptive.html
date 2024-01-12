@@ -192,9 +192,9 @@
       for (let i=0;i<N/emotions_numeric.length;i++) {
         emotion_order = emotion_order.concat(jsPsych.randomization.sampleWithoutReplacement(emotions_numeric,emotions_numeric.length))
       }
-      console.log(emotion_order)
+      //console.log(emotion_order)
       emotion_order = shuffle(emotion_order)
-      console.log(emotion_order)
+      //console.log(emotion_order)
       var excerpt_order = []
       for (let i=0;i<N;i++) {
         excerpt_order.push(jsPsych.randomization.sampleWithoutReplacement([0,1],2))
@@ -327,8 +327,8 @@
           //console.log('Excluded excerpts: ',excerpt_idx)
           } 
           console.log('EPOCH ',epoch,' -----------------------------------------------')
-          console.log('Label1',label1)
-          console.log('Label2',label2)
+          //console.log('Label1',label1)
+          //console.log('Label2',label2)
           trial_images = [label1,label2].sort();
           trial_track = String(trial_track)
           while (trial_track.length<3) {
