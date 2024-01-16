@@ -105,16 +105,16 @@
       var lang = 'eng'
     }
 
-    function changeLangURL(lang){
-      redir =  window.location.origin;
-      var urlRedirect = redir + "?lang=" + lang
-      location.href = urlRedirect
-    }
-
     //Rendering only sub-batteries from study
     var studyID = urlParamsIndex.get('studyID')
     if(studyID == undefined){
       var studyID = "main"
+    }
+
+    function changeLangURL(lang, studyID){
+      redir =  window.location.origin;
+      var urlRedirect = redir + "?lang=" + lang + "&studyID=" + studyID;
+      location.href = urlRedirect
     }
 
     var studyIDtasksRender = studyIDtasks[studyID]
