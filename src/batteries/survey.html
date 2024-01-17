@@ -96,7 +96,6 @@
           var groupNumber = jatos.urlQueryParameters.group
           var participantNumberUrl = jatos.urlQueryParameters.participantNumber
 
-          jsPsych.data.addProperties({group: groupNumber, participantNumber: participantNumberUrl});
 
           var finalData = jsPsych.data.get()
 
@@ -105,6 +104,8 @@
             var nodeIndex = 0
           }
           var nNodes = participantsObject[participantNumberUrl].length-1
+
+          jsPsych.data.addProperties({group: groupNumber, participantNumber: participantNumberUrl, nodeNumber: nodeIndex});
 
           if(nodeIndex < nNodes){
             nodeIndex = Number(nodeIndex)+1
