@@ -72,7 +72,7 @@
             var finalData = jsPsych.data.get()
             
             allowRefresh();
-            var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&Emotion" + window.part + "=done"
+            var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&Emotion" + window.part + "=done" + "&studyID=" + studyID;
             jatos.endStudyAndRedirect(urlRedirect, finalData)
 
             //jatos.endStudyAndRedirect("https://mmbb.ltdk.helsinki.fi/publix/oLzabocUoB1?lang=eng", finalData) //simuBack
