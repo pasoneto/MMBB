@@ -5,3 +5,6 @@
 #Name each file with participantNumber and groupNumber.
 #Collect unix time
 #Translate shared measurements.
+
+
+#Do a system that accepts manually entered IDs

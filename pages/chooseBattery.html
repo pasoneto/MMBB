@@ -125,9 +125,12 @@
 
     document.getElementById("movementTaskIcon").innerHTML = taskIcons['movement'][lang]
     document.getElementById("singingTaskIcon").innerHTML = taskIcons['singing'][lang]
-    document.getElementById("emotionTaskIcon1").innerHTML = taskIcons['emotion1'][lang]
+    //document.getElementById("emotionTaskIcon1").innerHTML = taskIcons['emotion1'][lang]
     document.getElementById("emotionTaskIcon2").innerHTML = taskIcons['emotion2'][lang]
-    document.getElementById("emotionTaskIcon1").innerHTML = taskIcons['emotion1'][lang]
+    //document.getElementById("emotionTaskIcon1").innerHTML = taskIcons['emotion1'][lang]
+
+    Array.from(document.querySelectorAll("#emotionTaskIcon1")).map(i => i.innerHTML = taskIcons['emotion1'][lang])
+
     document.getElementById("surveyTaskIcon").innerHTML = taskIcons['survey'][lang]
     document.getElementById("mbemaTaskIcon").innerHTML = taskIcons['MBEMA'][lang]
     document.getElementById("rhythmTaskIcon").innerHTML = taskIcons['rhythm'][lang]
