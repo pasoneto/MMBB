@@ -47,8 +47,15 @@
 	
     var userID = jatos.urlQueryParameters.user;
     var studyID = jatos.urlQueryParameters.studyID;
+    var uniqueID = jatos.urlQueryParameters.uniqueID;
     if(studyID == undefined){
       var studyID = "main"
+    } else if(studyID == "lukilapsi") {
+      // a few customizations due to shorter task
+      mbema["taskConsists"][lang]=mbema["taskConsists"][lang].replaceAll("15 min"," 10 min");
+      mbema["nowContinueB"][lang]=mbema["nowContinueB"][lang].replaceAll(" 20 "," 10 ");
+      mbema["totalOfTwentyB"][lang]=mbema["totalOfTwentyB"][lang].replaceAll(" 20 "," 10 ");
+      console.log("lukilapsi customizations #1");
     }
 
     var jsPsych = initJsPsych({
@@ -56,7 +63,7 @@
 	    message_progress_bar: recurring["completionProgress"][lang],
       override_safe_mode: true,
       on_finish: function() {
-        jsPsych.data.addProperties({userID: userID, lang: lang, timeEnd: timeEnd, timeBegin: timeBegin, studyID: studyID});
+        jsPsych.data.addProperties({userID: userID, lang: lang, timeEnd: timeEnd, timeBegin: timeBegin, studyID: studyID, uniqueID: uniqueID});
         
         var finalData = jsPsych.data.get()
 
@@ -177,7 +184,7 @@
     
     var melodyYesNoResp = {
       type: jsPsychHtmlButtonResponse,
-      choices: [mbema["no"][lang], mbema["yes"][lang]],
+      choices: [mbema["yes"][lang], mbema["no"][lang]],
       stimulus: mbema["heardBefore"][lang],
       button_html: ['<button class="mbema-btn">%choice%</button>',
                     '<button class="mbema-btn" style="background-color:purple">%choice%</button>'],
@@ -193,7 +200,7 @@
 
     var practiceWrongRepeat = {
       type: jsPsychHtmlButtonResponse,
-      choices: [mbema["no"][lang], mbema["yes"][lang]],
+      choices: [mbema["yes"][lang], mbema["no"][lang]],
       stimulus: mbema["answerWrong"][lang],
       post_trial_gap: 1000,
       on_load: function(){
@@ -281,8 +288,15 @@
 
       var oneToTwenty = Array.from({length:20},(v,k)=>k+1)
       //var oneToTwenty = Array.from({length:2},(v,k)=>k+1) //simuBack
+      
+      var allMBEMATrials5 = oneToTwenty.map(i => [generateMBEMATrial(i, "./songs/mbemaShort/1. Melody/bMelody - "), sameDiffResp]);
 
-      var allMBEMATrials5 = oneToTwenty.map(i => [generateMBEMATrial(i, "./songs/mbemaShort/1. Melody/bMelody - "), sameDiffResp])
+      if(studyID == "lukilapsi") {
+        var p1_reduced=[1,3,4,6,5,8,9,14,20,16];
+        allMBEMATrials5 = p1_reduced.map(i => [generateMBEMATrial(i, "./songs/mbemaShort/1. Melody/bMelody - "), sameDiffResp]);
+        console.log("lukilapsi customizations #2:" + p1_reduced);
+      }
+        
 
       var p1= {
           timeline: [pt1_practice1, 
@@ -381,6 +395,12 @@
 
       var allMBEMATrials = oneToTwenty.map(i => [generateMBEMATrial(i, "./songs/mbemaShort/2. Rhythm/bRhythm - "), sameDiffResp])
 
+      if(studyID == "lukilapsi") {
+        p2_reduced=[1,3,9,10,13,14,15,16,18,20];
+        allMBEMATrials = p2_reduced.map(i => [generateMBEMATrial(i, "./songs/mbemaShort/2. Rhythm/bRhythm - "), sameDiffResp])
+        console.log("lukilapsi customizations #3:" + p2_reduced);
+      }
+
       var p2= {
           timeline: [
              pt2_practice1, 
@@ -478,6 +498,12 @@
       };		
       
       var allMBEMATrials2 = oneToTwenty.map(i => [generateMBEMATrial(i, "./songs/mbemaShort/3. Memory/bMemory - "), melodyYesNoResp])
+
+      if(studyID == "lukilapsi") {
+        p3_reduced=[1,3,4,6,9,12,10,15,17,20];
+        allMBEMATrials2 = p3_reduced.map(i => [generateMBEMATrial(i, "./songs/mbemaShort/3. Memory/bMemory - "), melodyYesNoResp]);
+        console.log("lukilapsi customizations #4:" + p3_reduced);
+      }
 
       var p3= {
           timeline: [pt3_practice1, 
