@@ -56,6 +56,8 @@
           var lang = "eng"
         }
 
+        var uniqueID = urlParamsIndex.get('uniqueID')
+
         var db = firebase.firestore();
         db.collection("users").where("userID", "==", userID)
             .get()
@@ -69,7 +71,7 @@
                       survey: true,
                   }).then(r => {
                     //Then redirect to basic survey
-                    var urlRedirect = studyLinks['sharedLink'] + '?lang=' + lang + '&user=' + userID + '&studyID=' + studyID + '&version=' + 'basic'
+                    var urlRedirect = studyLinks['sharedLink'] + '?lang=' + lang + '&user=' + userID + '&studyID=' + studyID + '&version=' + 'basic' + '&uniqueID=' + uniqueID;
                     location.href = urlRedirect
                   })
                   .catch((error) => {
@@ -77,7 +79,7 @@
                   });
                 } else {
                   //Send straight to main page
-                  var urlRedirect = studyLinks['chooseBatteryLink'] + '?lang=' + lang + '&user=' + userID + '&studyID=' + studyID
+                  var urlRedirect = studyLinks['chooseBatteryLink'] + '?lang=' + lang + '&user=' + userID + '&studyID=' + studyID + '&uniqueID=' + uniqueID;
                   location.href = urlRedirect
                 }
             })

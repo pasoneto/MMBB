@@ -111,9 +111,11 @@
       var studyID = "main"
     }
 
+    var uniqueID = urlParamsIndex.get('uniqueID');
+
     function changeLangURL(lang, studyID){
       redir =  window.location.origin;
-      var urlRedirect = redir + "?lang=" + lang + "&studyID=" + studyID;
+      var urlRedirect = redir + "?lang=" + lang + "&studyID=" + studyID + '&uniqueID=' + uniqueID;
       location.href = urlRedirect
     }
 
