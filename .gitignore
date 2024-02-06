@@ -1,2 +1,3 @@
 backend/pushDatabase.js
 songs/singing/
+.DS_Store
