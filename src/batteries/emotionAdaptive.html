@@ -49,12 +49,11 @@
     var timeBegin = Date.now();
     var jsPsych;
     
-    console.log("New emotion")
-
     jatos.onLoad(() => {
 
       window.lang = jatos.urlQueryParameters.lang
       window.part = jatos.urlQueryParameters.part
+      window.uniqueID = jatos.urlQueryParameters.uniqueID
 
       if(window.lang == undefined){
         window.lang = "eng"
@@ -68,11 +67,11 @@
 
             var timeEnd = Date.now();
 
-            jsPsych.data.addProperties({userID: userID, lang: lang, studyID: studyID});
+            jsPsych.data.addProperties({userID: userID, lang: lang, studyID: studyID, uniqueID: uniqueID});
             var finalData = jsPsych.data.get()
             
             allowRefresh();
-            var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&Emotion" + window.part + "=done" + "&studyID=" + studyID;
+            var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&Emotion" + window.part + "=done" + "&studyID=" + studyID + '&uniqueID=' + uniqueID;
             jatos.endStudyAndRedirect(urlRedirect, finalData)
 
             //jatos.endStudyAndRedirect("https://mmbb.ltdk.helsinki.fi/publix/oLzabocUoB1?lang=eng", finalData) //simuBack

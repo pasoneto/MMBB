@@ -60,6 +60,7 @@
 
             var lang = jatos.urlQueryParameters.lang
             var userID = jatos.urlQueryParameters.user
+            var uniqueID = jatos.urlQueryParameters.uniqueID
             var studyID = jatos.urlQueryParameters.studyID
             //Variables friends-strangers
             var participantNumber = jatos.urlQueryParameters.participantNumber
@@ -71,13 +72,13 @@
 
             var timeEnd = Date.now();
 
-            jsPsych.data.addProperties({userID: userID, lang: lang, timeEnd: timeEnd, timeBegin: timeBegin, participantNumber: participantNumber, groupNumber: groupNumber, studyID: studyID});
+            jsPsych.data.addProperties({userID: userID, lang: lang, timeEnd: timeEnd, timeBegin: timeBegin, participantNumber: participantNumber, groupNumber: groupNumber, studyID: studyID, uniqueID: uniqueID});
 
             var dFinal = jsPsych.data.get()
             
             allowRefresh();
 
-            var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&SharedMeasures=done" + "&studyID=" + studyID
+            var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&SharedMeasures=done" + "&studyID=" + studyID + '&uniqueID=' + uniqueID;
             jatos.endStudyAndRedirect(urlRedirect, dFinal)
 
       }});

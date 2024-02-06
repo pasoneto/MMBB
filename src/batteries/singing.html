@@ -130,6 +130,7 @@
 	jatos.onLoad(() => {
 
     var userID = jatos.urlQueryParameters.user
+    var uniqueID = jatos.urlQueryParameters.uniqueID
     var studyID = jatos.urlQueryParameters.studyID
     var lang = jatos.urlQueryParameters.lang
     if(studyID == undefined){
@@ -159,7 +160,7 @@
             var studyID = "main"
           }
           var timeEnd = Date.now();
-          jsPsych.data.addProperties({userID: userID, lang: lang, timeEnd: timeEnd, studyID: studyID});
+          jsPsych.data.addProperties({userID: userID, lang: lang, timeEnd: timeEnd, studyID: studyID, uniqueID: uniqueID});
 
           var trialData = jsPsych.data.getLastTrialData();
 
@@ -180,12 +181,12 @@
           //Time end experiment
           var timeEnd = Date.now();
 
-          jsPsych.data.addProperties({userID: userID, lang: lang, timeBegin: timeBegin, timeEnd: timeEnd, studyID: studyID});
+          jsPsych.data.addProperties({userID: userID, lang: lang, timeBegin: timeBegin, timeEnd: timeEnd, studyID: studyID, uniqueID: uniqueID});
 
           var finalData = jsPsych.data.get().json()
 
           // go back to main
-          var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&Singing=done" + "&studyID=" + studyID
+          var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&Singing=done" + "&studyID=" + studyID + '&uniqueID=' + uniqueID;
           jatos.endStudyAndRedirect(urlRedirect)
 
           //jatos.endStudyAndRedirect("https://mmbb.ltdk.helsinki.fi/publix/jC0EZeucWGE?lang=eng", finalData) //simuBack

@@ -121,7 +121,10 @@
             var lang = "eng"
           }
 
-          jsPsych.data.addProperties({userID: userID, lang: lang, timeEnd: timeEnd, timeBegin: timeBegin, sequenceTrials: getCookie('sequenceTrial'), nodeIndex: nodeIndex, tIndex: trialIndex, infoUser: navigator.userAgent, studyID: studyID});
+          //Unique ID if experiment requires additional identification key
+          var uniqueID = jatos.urlQueryParameters.uniqueID;
+
+          jsPsych.data.addProperties({userID: userID, lang: lang, timeEnd: timeEnd, timeBegin: timeBegin, sequenceTrials: getCookie('sequenceTrial'), nodeIndex: nodeIndex, tIndex: trialIndex, infoUser: navigator.userAgent, studyID: studyID, uniqueID: uniqueID});
 
           var finalData = jsPsych.data.get()
 
@@ -135,7 +138,7 @@
           if(Number(trialIndex) < Number(nTrials)){
             trialIndex = Number(trialIndex)+1
 
-            var urlRedirect = studyLinks['movementLink'] + "?user=" + userID + "&trialIndex=" + trialIndex + "&nodeIndex=" + nodeIndex + "&lang=" + lang + '&studyID=' + studyID
+            var urlRedirect = studyLinks['movementLink'] + "?user=" + userID + "&trialIndex=" + trialIndex + "&nodeIndex=" + nodeIndex + "&lang=" + lang + '&studyID=' + studyID + '&uniqueID=' + uniqueID
             
             console.log("Next trial")
             console.log(urlRedirect)
@@ -154,7 +157,7 @@
               trialIndex = Number(0)
               nodeIndex = Number(nodeIndex)+1
 
-              var urlRedirect = studyLinks['movementLink'] + "?user=" + userID + "&trialIndex=" + trialIndex + "&nodeIndex=" + nodeIndex + "&lang=" + lang + '&studyID=' + studyID
+              var urlRedirect = studyLinks['movementLink'] + "?user=" + userID + "&trialIndex=" + trialIndex + "&nodeIndex=" + nodeIndex + "&lang=" + lang + '&studyID=' + studyID + '&uniqueID=' + uniqueID;
 
               console.log("Next node")
               console.log(urlRedirect)
@@ -167,7 +170,7 @@
               })
 
             } else { //If end of experiment. Redirect to homepage
-                var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&Movement=done" + 'studyID=' + studyID
+                var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&Movement=done" + 'studyID=' + studyID + '&uniqueID=' + uniqueID;
 
                 console.log("Appending result data...")
                 jatos.appendResultData(finalData).then(r => {

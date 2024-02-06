@@ -69,7 +69,7 @@
 
         var timeEnd = Date.now();
 
-        var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&MBEMA=done"
+        var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&MBEMA=done" + "&uniqueID=" + uniqueID;
         jatos.endStudyAndRedirect(urlRedirect, finalData)
 
         //jatos.endStudyAndRedirect("https://mmbb.ltdk.helsinki.fi/publix/YK3bdjI0tbl?lang=eng", finalData) //simuBack
