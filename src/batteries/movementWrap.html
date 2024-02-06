@@ -80,6 +80,9 @@
 
       var lang = jatos.urlQueryParameters.lang
 
+      //Unique ID if experiment requires additional identification key
+      var uniqueID = jatos.urlQueryParameters.uniqueID;
+
       window.jsPsych = initJsPsych({
         extensions: [
           {type: jsPsychExtensionAccelerometer }
@@ -120,9 +123,6 @@
           if(lang == undefined){
             var lang = "eng"
           }
-
-          //Unique ID if experiment requires additional identification key
-          var uniqueID = jatos.urlQueryParameters.uniqueID;
 
           jsPsych.data.addProperties({userID: userID, lang: lang, timeEnd: timeEnd, timeBegin: timeBegin, sequenceTrials: getCookie('sequenceTrial'), nodeIndex: nodeIndex, tIndex: trialIndex, infoUser: navigator.userAgent, studyID: studyID, uniqueID: uniqueID});
 
@@ -170,7 +170,7 @@
               })
 
             } else { //If end of experiment. Redirect to homepage
-                var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&Movement=done" + 'studyID=' + studyID + '&uniqueID=' + uniqueID;
+                var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&Movement=done" + '&studyID=' + studyID + '&uniqueID=' + uniqueID;
 
                 console.log("Appending result data...")
                 jatos.appendResultData(finalData).then(r => {
