@@ -568,9 +568,13 @@
 
         },
         on_finish: function(){
-          window.emotionAudio.pause();
-          window.emotionAudio.currentTime = 0;
-          window.emotionAudioPlaying = false;
+          try{
+            window.emotionAudio.pause();
+            window.emotionAudio.currentTime = 0;
+            window.emotionAudioPlaying = false;
+          } catch(e){
+            console.log(e)
+          }
         }
       };
 
@@ -616,9 +620,13 @@
 
         },
         on_finish: function(){
-          window.emotionAudio.pause();
-          window.emotionAudio.currentTime = 0;
-          window.emotionAudioPlaying = false;
+          try{
+            window.emotionAudio.pause();
+            window.emotionAudio.currentTime = 0;
+            window.emotionAudioPlaying = false;
+          } catch(e){
+            console.log(e)
+          }
         }
       };
 
@@ -663,11 +671,13 @@
           list.insertBefore(newNode, b);
         },
         on_finish: function(part2_emotion_scales3){
-
-          window.emotionAudio.pause();
-          window.emotionAudio.currentTime = 0;
-          window.emotionAudioPlaying = false;
-
+          try{
+            window.emotionAudio.pause();
+            window.emotionAudio.currentTime = 0;
+            window.emotionAudioPlaying = false;
+          } catch(e){
+            console.log(e)
+          }
           epochPart2 = epochPart2+1
           jsPsych.setProgressBar((epoch+epochPart2)/(N+N_part2))
         },
