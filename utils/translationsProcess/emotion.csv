@@ -1,8 +1,37 @@
-keys,eng,fi,pt
-movement,Movement,Liike,Movimento
-singing,Singing,Laulaminen,Canto
-survey,Survey,Kysely,Questionário
-emotion1,Emotion 1,Tunteet 1,Emoção 1
-emotion2,Emotion 2,Tunteet 2,Emoção 2
-MBEMA,Perception,Havaitseminen,Percepção
-rhythm,Rhythm,Rytmi,Rítmo
+keys,eng,fi
+openStatement,<b>Welcome to the music and Emotion Survey</b>,<b>Tervetuloa Tunnetehtävään</b>
+pleaseAnswer,"Please, answer the following questions",Ole hyvä ja vastaa seuraaviin kysymyksiin
+musicEmotionPart2,Music and Emotion Part 2,Tunnetehtävä / Osa 2
+angry,Anger,Viha
+happy,Happiness,Ilo
+sad,Sadness,Suru
+tender,Tenderness,Hellyys
+fear,Fear,Pelko
+instructions1,"Next, you will listen to clips of music. Please choose the emotion that the music expresses the most.","Seuraavaksi kuulet musiikkia. Valitse tunnetila, jota musiikki ilmaisee mielestäsi parhaiten."
+instructions2,"You can practice once to get familiar with the task. Before starting, please adjust the volume to a comfortable level.","Voit nyt harjoitella ennen varsinaisen tehtävän aloittamista, ja voit samalla myös säätää äänenvoimakkuuden itselle sopivaksi."
+instructions3,"Thank you for your response! The practice is over, you can start the task by clicking Next","Kiitos vastauksesta! Harjoitus on nyt ohi, ja voit aloittaa varsinaisen tehtävän painamalla 'Seuraava'."
+whichEmotion,Which of these two emotions does the music express the most?,Mitä tunnetilaa musiikki mielestäsi ilmaisee parhaiten?
+listen,Listen...,Kuuntele…
+instructions4,"Next, listen to the clips of music and rate what they express in terms of mood, energy, and strength of emotions. You can start the task by clicking ""Next","Seuraavaksi kuulet musiikkia. Arvioi, mitä eri kappaleet mielestäsi ilmaisevat niiden tunnetilan, energisyyden ja tunteiden voimakkuuden suhteen. Voit aloittaa tehtävän painamalla 'Seuraava'."
+instructions5,Please rate the emotions<br>expressed by the music,Arvioi musiikin<br>ilmaisemia tunteita
+howStrongEmotion,How strong are the emotions expressed by the music?,Kuinka voimakkaasti musiikki ilmaisee tunteita?
+howMuchLike,How much did you like the music?,Kuinka paljon pidit musiikista?
+veryNegative,Very negative,Todella negatiivinen
+positive,Very positive,Todella positiivinen
+veryLowEnergy,Very low energy,Ei lainkaan energinen
+veryHighEnergy,Very high energy,Todella vahvasti energinen
+notAtAll,Not at all,Ei lainkaan
+veryStrong,Very strong,Todella voimakkaita
+stronglyDisliked,Strongly disliked,En pidä lainkaan
+choose,Choose,Valitse
+stronglyLiked,Strongly liked,Pidän paljon
+thankYouRepeat,Thank you for your responses! The task will now be repeated.,Kiitos vastauksista! Tehtävä toistuu vielä uudelleen.
+thankYouEnd,The task is now complete! Thank you for your participation,Tehtävä on nyt valmis! Kiitos osallistumisestasi.
+howOld,How old are you?,Kuinka vanha olet?
+gender,What is your gender?,Mikä on sukupuolesi?
+feedbackAsk,Do you have any feedback to give us about this task?,Onko sinulla antaa meille palautetta?
+feedbackPlaceHolder,Was there any difficulty that you would like to report?,"Löysitkö ongelmia, joista haluaisit ilmoittaa meille?"
+genderOption1,Woman ,Nainen
+genderOption2,Man,Mies
+genderOption3,Other,Jokin muu
+genderOption4,Prefer not to say,En halua kertoa
