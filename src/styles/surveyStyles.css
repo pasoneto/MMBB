@@ -250,3 +250,19 @@ button:focus {
   }
   /*End of Front survey styles*/
 /*End of survey friends-strangers*/
+
+#twoImagesContainer{
+  display: flex;
+}
+
+#circle1{
+  margin-left: 33%
+}
+
+#circle2{
+  margin-right: 33%
+}
+
+
+
+

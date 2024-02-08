@@ -154,16 +154,16 @@
 
       var agreement1 = {
         type: jsPsychHtmlButtonResponse,
-        stimulus: '<iframe src="../../utils/friends_strangers_tiedote_tutkittavalle.pdf" width="100%" height="600px" loading="lazy" title="PDF-file" ></iframe>',
+        stimulus: '<iframe src="../src/utils/friends_strangers_tiedote_tutkittavalle.pdf" width="100%" height="600px" loading="lazy" title="PDF-file" ></iframe>',
         choices: ['Agree'],
-        prompt: "<p>Read and accept</p>"
+        prompt: ""
       };
 
       var agreement2 = {
         type: jsPsychHtmlButtonResponse,
-        stimulus: '<iframe src="friends_strangers_tietosuojailmoitus.pdf" width="100%" height="600px" loading="lazy" title="PDF-file" ></iframe>',
+        stimulus: '<iframe src="../src/utils/friends_strangers_tietosuojailmoitus.pdf" width="100%" height="600px" loading="lazy" title="PDF-file" ></iframe>',
         choices: ['Agree'],
-        prompt: "<p>Read and accept</p>"
+        prompt: ""
       };
 
       var instruction1 = {
@@ -260,72 +260,30 @@
       }
 
       var closeness1 = {
-        type: jsPsychImageSliderResponse,
-        stimulus: ['./images/transparentCircle.png', './images/transparentCircle.png'],
-        stimulus_width: 200,
-        labels: ["Ei tunneta lainkaan", "Emme ole kovin läheisiä", "Tunnemme toisiamme hieman", "Olemme aika läheisiä", "Olemme todella läheisiä", "Olemme äärimmäisen läheisiä"],
-        min: 0,
-        slider_start: 0,
-        step: 1,
-        max: 360,
-        maintain_aspect_ration: true,
-        on_load: function(){
-          var a = document.createElement("div");
-          a.setAttribute("id", "promptSlider");
-          a.innerHTML = "Käytä liukusäädintä osoittaaksesi, kuinka läheisiä olet parisi kanssa"
-          a.style.marginTop = "50px";
-          a.style.fontSize = "30px";
-          a.style.textAlign = "center";
-          a.style.justifyContent = "center";
-          document.querySelector(".jspsych-display-element").prepend(a)
-          
-          document.getElementById("jspsych-image-slider-response-stimulus1").style.marginTop = "60px"
-          document.getElementById("jspsych-image-slider-response-stimulus2").style.marginTop = "60px"
+          type: jsPsychHtmlSliderResponse,
+          stimulus: [`<p style="font-size:3vw;">Käytä liukusäädintä osoittaaksesi, kuinka läheisiä olet parisi kanssa</p>
+                      <div id="twoImagesContainer">
+                        <svg width="100%">
+                          <circle id="circle1" cx="77.5%" cy="70" r="7%" stroke="black" stroke-width="3" fill="transparent" />
+                          <circle id="circle2" cx="22.5%" cy="70" r="7%" stroke="black" stroke-width="3" fill="transparent" />
+                        </svg>
+                      </div>`],
+          require_movement: true,
+          labels: [["Ei tunneta lainkaan", "Emme ole kovin läheisiä", "Tunnemme toisiamme hieman", "Olemme aika läheisiä", "Olemme todella läheisiä", "Olemme äärimmäisen läheisiä"]],
+          on_load: function(){
+            document.querySelector(".jspsych-html-slider-response-container").style.width = "80%"
+            var circle1 = document.getElementById("circle1")
+            var circle2 = document.getElementById("circle2")
+            var slider = document.querySelector(".jspsych-slider")
 
-          document.querySelector(".jspsych-image-slider-response-container").style.width = "80%"
-
-        },
-        on_finish: function(){
-          document.getElementById("promptSlider").remove()
-        }
-      };
-
-      var closeness2 = {
-        type: jsPsychImageSliderResponse,
-        stimulus: ['./images/transparentCircle.png', './images/transparentCircle.png'],
-        stimulus_width: 200,
-        min: 0,
-        slider_start: 500,
-        step: 1,
-        max: 360,
-        maintain_aspect_ration: true,
-        on_load: function(){
-          var a = document.createElement("div");
-          a.setAttribute("id", "promptSlider");
-          a.innerHTML = "Käytä liukusäädintä osoittaaksesi, kuinka läheisiä olet parisi kanssa"
-          a.style.marginTop = "50px";
-          a.style.fontSize = "30px";
-          a.style.textAlign = "center";
-          a.style.justifyContent = "center";
-          document.querySelector(".jspsych-display-element").prepend(a)
-
-          document.getElementById("jspsych-image-slider-response-stimulus1").style.marginTop = "60px"
-          document.getElementById("jspsych-image-slider-response-stimulus2").style.marginTop = "60px"
-
-          document.querySelector(".jspsych-image-slider-response-container").style.width = "80%"
-
-        },
-        on_start: function(trial) {
-          var closenessTrials = jsPsych.data.get().filter({stimulus: "../emotion_demo/basic_emoji/v5a1.png"})
-          var closenessTrials = closenessTrials['trials']
-          var startPoint = closenessTrials[closenessTrials.length - 1]['response']
-          console.log(startPoint)
-          trial.slider_start = startPoint
-          trial.start_separation = startPoint
-        },
-        on_finish: function(){
-          document.getElementById("promptSlider").remove()
-        }
+            slider.addEventListener("input", function(){
+              var sValue = slider.value
+              console.log(slider.value)
+             
+              circle1.style.cx = 100 - ((45*sValue)/100) + "%"
+              circle2.style.cx = ((45*sValue)/100) + "%"
+            })
+          }
       };
 
       var linkToMMBB = {
