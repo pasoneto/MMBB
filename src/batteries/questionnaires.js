@@ -28,15 +28,17 @@ var modelQuestionnaire1 = {
   questions: questionnaire1,
   preamble: "<p>Tässä on muutamia persoonallisuuspiirteitä, jotka saattavat kuvastaa tai olla kuvastamatta sinua. Kerro missä määrin olet samaa tai eri mieltä kunkin väittämän kanssa. Sinun tulee arvioida missä määrin kukin piirrepari kuvastaa sinua, vaikka toinen piirre sopisikin sinuun paremmin kuin toinen.<br>Olen mielestäni:</p>",
   randomize_question_order: false,
-  data: {questionnaireType: "TIPI"}
+  button_label: "Jatka",
+  data: {trialCategory: "questionnaire_TIPI"}
 };
 
 var modelQuestionnaire2 = {
   type: jsPsychSurveyLikert,
   questions: questionnaire2,
   preamble: "Seuraavat väittämät liittyvät ajatuksiin ja tuntemuksiin erilaisissa tilanteissa. Arvioi miten hyvin väittämät kuvaavat sinua.",
+  button_label: "Jatka",
   randomize_question_order: false,
-  data: {questionnaireType: "IRI"}
+  data: {trialCategory: "questionnaire_IRI"}
 };
 
 var modelQuestionnaire3 = {
@@ -44,5 +46,6 @@ var modelQuestionnaire3 = {
   questions: questionnaire3,
   preamble: "Alla on 30 väitettä, joista voit olla samaa tai eri mieltä. Kerro asteikon 1-5 avulla, missä määrin olet samaa mieltä kunkin väitteen kohdalla.",
   randomize_question_order: false,
-  data: {questionnaireType: "mini-SPIN"}
+  button_label: "Jatka",
+  data: {trialCategory: "questionnaire_mini_SPIN"}
 };

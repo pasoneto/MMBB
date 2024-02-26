@@ -9,6 +9,7 @@
 
     <script src="./utils/preventRefresh.js"> </script>
     <script src="./utils/studyLinks.js"> </script>
+    <script src="./utils/friends_strangers.js"> </script>
 
     <script src="https://unpkg.com/jspsych@7.1.2"></script>
     <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.0"></script>
@@ -81,21 +82,25 @@
         button_label_next: buttons["continue"][lang],
         button_label_back: buttons["previous"][lang],
         button_label_finish: buttons["continue"][lang],
+        data: { trialCategory: 'howLongBeenFriends' },
         on_load: () => {
           changeStyle()
         },
       }
       return(modelSeed)
     }
+    
+    //Store current pair
+    window.currentPair;
 
     jatos.onLoad(() => {
 
+      window.currentPair = jatos.urlQueryParameters.currentPair;
       var jsPsych = initJsPsych({
         on_finish: function() {
 
           var groupNumber = jatos.urlQueryParameters.group
           var participantNumberUrl = jatos.urlQueryParameters.participantNumber
-
 
           var finalData = jsPsych.data.get()
 
@@ -105,13 +110,13 @@
           }
           var nNodes = participantsObject[participantNumberUrl].length-1
 
-          jsPsych.data.addProperties({group: groupNumber, participantNumber: participantNumberUrl, nodeNumber: nodeIndex});
+          jsPsych.data.addProperties({group: groupNumber, participantNumber: participantNumberUrl, nodeNumber: nodeIndex, currentPair: window.currentPair});
 
           if(nodeIndex < nNodes){
             nodeIndex = Number(nodeIndex)+1
             console.log(nodeIndex)
 
-            var urlRedirect = studyLinks['surveyFriendsStrangers'] + "?participantNumber=" + participantNumberUrl + "&group=" + groupNumber + "&nodeIndex=" + nodeIndex 
+            var urlRedirect = studyLinks['surveyFriendsStrangers'] + "?participantNumber=" + participantNumberUrl + "&group=" + groupNumber + "&nodeIndex=" + nodeIndex + "&currentPair=" + window.currentPair
 
             console.log("Next node")
             console.log(urlRedirect)
@@ -155,14 +160,14 @@
       var agreement1 = {
         type: jsPsychHtmlButtonResponse,
         stimulus: '<iframe src="../src/utils/friends_strangers_tiedote_tutkittavalle.pdf" width="100%" height="600px" loading="lazy" title="PDF-file" ></iframe>',
-        choices: ['Agree'],
+        choices: ["Hyväksyn"],
         prompt: ""
       };
 
       var agreement2 = {
         type: jsPsychHtmlButtonResponse,
         stimulus: '<iframe src="../src/utils/friends_strangers_tietosuojailmoitus.pdf" width="100%" height="600px" loading="lazy" title="PDF-file" ></iframe>',
-        choices: ['Agree'],
+        choices: ["Hyväksyn"],
         prompt: ""
       };
 
@@ -186,26 +191,8 @@
                      </div>`],
           require_movement: false,
           labels: [['Äärimmäisen<br>ikävältä', 'Todella<br>ikävältä', 'Ikävältä', 'Hyvältä', 'Todella<br>hyvältä', 'Äärimmäisen<br>hyvältä']],
-          data: { previousHowFeeling: 'true' },
-          on_load: function(){
-            document.querySelector(".jspsych-html-slider-response-container").style.width = "80%"
-          }
-      };
-
-      var howFeeling2 = {
-          type: jsPsychHtmlSliderResponse,
-          stimulus: [`<div>
-                      <p style="font-size:3vw;">Miltä sinusta tuntuu?
-                     </div>`],
-          require_movement: false,
-          labels: [['Äärimmäisen<br>ikävältä', 'Todella<br>ikävältä', 'Ikävältä', 'Hyvältä', 'Todella<br>hyvältä', 'Äärimmäisen<br>hyvältä']],
-          data: { previousHowFeeling: 'true' },
-          on_start: function(trial) {
-            var howFeelingEdellinen = jsPsych.data.get().filter({previousHowFeeling: 'true'})['trials']
-            var howFeelingEdellinen = howFeelingEdellinen.slice(-1)[0]
-            var howFeelingEdellinen = howFeelingEdellinen['response']
-            trial.slider_start = howFeelingEdellinen
-          },
+          button_label: "Jatka",
+          data: { trialCategory: 'howFeeling' },
           on_load: function(){
             document.querySelector(".jspsych-html-slider-response-container").style.width = "80%"
           }
@@ -214,17 +201,22 @@
       var relationshipFriend = {
           type: jsPsychHtmlSliderResponse,
           stimulus: [`<div>
-                       Prior to the experiment, how well did you know the person you just danced and created a playlist with?
+                       Kuinka hyvin tunsit henkilön, jonka kanssa juuri tanssit ja loi soittolistan ennen tätä tutkimusta?
                      </div>`],
           require_movement: false,
-          labels: [["We didn't know each other at all", 'We knew each other but rarely interacted', 'We were very good friends', 'We were best friends']],
+          button_label: "Jatka",
+          labels: [["Emme tunteneet toisiamme ollenkaan.", 
+                    "Tiesimme toisemme, mutta harvoin olemme olleet tekemisissä", 
+                    "Olemme hyviä kavereita", 
+                    "Olemme parhaita ystäviä"]],
+          data: { trialCategory: 'relationship_prior_experiment' },
           on_load: function(){
             document.querySelector(".jspsych-html-slider-response-container").style.width = "80%"
           }
       };
 
-      var options1 = ["We met today", "Less than one year", "1 year", "2 years", "3 years", "4 years", "5 years", "6 years", "7 years", "8 years", "9 years", "10 years", "11 years", "12 years", "13 years", "14 years", "15 years", "16 years", "17 years", "18 years", "19 years", "20 years"]
-      var objDrop1 = generateDropdownObject("For how long have you been friends with the person you just danced and created a playlist with?", options1, true)
+      var options1 = ["Tapasimme tänään", "Vähemmän kuin vuoden", "Yhden vuoden", "Kaksi vuotta", "Kolme vuotta", "Neljä vuotta", "Viisi vuotta", "Kuusi vuotta", "Seitsemän vuotta", "Kahdeksan vuotta", "Yhdeksän vuotta", "Kymmenen vuotta", "Yksitoista vuotta", "Kaksitoista vuotta", "Kolmetoista vuotta", "Neljätoista vuotta", "Viisitoista vuotta", "Kuusitoista vuotta", "Seitsemäntoista vuotta", "Kahdeksantoista vuotta", "Yhdeksäntoista vuotta", "Kaksikymmentä vuotta"]
+      var objDrop1 = generateDropdownObject("Henkilö, jonka kanssa juuri tanssit ja loit soittolistan, kuinka kauan olette olleet kavereita?", options1, true)
       var howLongFriend = generateManyDropDowns(objDrop1, "") //First
 
       //How long have you been friends
@@ -236,6 +228,8 @@
                      </div>`],
           require_movement: false,
           labels: [["Äärimmäisen vaikeaa", "Todella vaikeaa", "Vaikeaa", "Helppoa", "Todella helppoa", "Äärimmäisen helppoa"]],
+          button_label: "Jatka",
+          data: { trialCategory: 'howWasPlaylist' },
           on_load: function(){
             document.querySelector(".jspsych-html-slider-response-container").style.width = "80%"
           }
@@ -249,16 +243,6 @@
         "Strongly Agree"
       ];
 
-      var instructionPreCloseness = {
-        type: jsPsychInstructions,
-        pages: [
-        'In the next page, use the slider to indicate how close you feel to your partner',
-        ],
-        button_label_next: "Seuraava",
-        button_label_previous: "Edellinen",
-        show_clickable_nav: true
-      }
-
       var closeness1 = {
           type: jsPsychHtmlSliderResponse,
           stimulus: [`<p style="font-size:3vw;">Käytä liukusäädintä osoittaaksesi, kuinka läheisiä olet parisi kanssa</p>
@@ -269,7 +253,9 @@
                         </svg>
                       </div>`],
           require_movement: true,
+          data: { trialCategory: 'howClose' },
           labels: [["Ei tunneta lainkaan", "Emme ole kovin läheisiä", "Tunnemme toisiamme hieman", "Olemme aika läheisiä", "Olemme todella läheisiä", "Olemme äärimmäisen läheisiä"]],
+          button_label: "Jatka",
           on_load: function(){
             document.querySelector(".jspsych-html-slider-response-container").style.width = "80%"
             var circle1 = document.getElementById("circle1")
@@ -290,7 +276,7 @@
         type: jsPsychImageButtonResponse,
         stimulus: './images/qrCodeLink.png',
         choices: ['Jatka'],
-        prompt: "<p>Use the camera of your phone to access a questionnaire. <br> After that, you can close the ipad. <br>Click condinue when you have finished with your phone.</p>"
+        prompt: "<p>Käytä puhelimesi kameraa päästäksesi täyttämään kyselyä. Paina jatka, kun olet saanut kyselyn valmiiksi puhelimellasi. Sen jälkeen voit sulkea iPadin.</p>"
       };
 
       var inter = {
@@ -306,36 +292,36 @@
             })
           }
       }
-      function generateSeuraavaStep(nextStep){
+      function generateSeuraavaStep(nextStep, previous, after){
         var nextStep = {
             type: jsPsychInstructions,
-            pages: [nextStep],
+            pages: ["<div id='ba'>" + previous + "</div>" + " <- " + "<b>" + nextStep + "</b>" + " -> " + "<div id='ba'>" + after + "</div>"],
             button_label_next: "Seuraava",
             button_label_previous: "Edellinen",
             show_clickable_nav: true,
+            on_load: function(){
+              console.log("A")
+              document.querySelector(".jspsych-content-wrapper").style.background = "lightyellow"
+            }
         }
         return(nextStep)
       }
 
       var changePairs = {
           type: jsPsychInstructions,
-          pages: [
-          'Time to change pair!<br> Please call the experimenter.',
-          ],
+          pages: ["Aika vaihtaa paria!<br>Pyydä tutkimuksen avustaja paikalle"],
           button_label_next: "Seuraava",
           button_label_previous: "Edellinen",
-          show_clickable_nav: true
+          show_clickable_nav: true,
+          on_load: function(){
+            var groupNumber = jatos.urlQueryParameters.group
+            var participantNumberUrl = jatos.urlQueryParameters.participantNumber
+            var evenOdd = groupNumber % 2
+            window.currentPair = participantScheme["second"][evenOdd][participantNumberUrl];
+            console.log(currentPair)
+          }
       }
 
-      var shortBreak = {
-          type: jsPsychInstructions,
-          pages: [
-            'Now we are having a short break. Leave the iPad down and call the experimenter.<br><br>',
-          ],
-          button_label_next: "Seuraava",
-          button_label_previous: "Edellinen",
-          show_clickable_nav: true
-      }
       var haveYouHeardBefore;
       //This repeats for each song (7 tracks)
       function generateSongQuestions(nTrial){
@@ -347,11 +333,13 @@
                        "<br><br>Kuinka tuttu musiikkityyli oli sinulle?<br><br>"
             ],
             nSliders: 4,
+            data: { trialCategory: 'songQuestion' + nTrial },
             require_movement: false,
             labels: [['Äärimmäisen<br>vastenmielinen', 'Todella<br>vastenmielinen', 'Aika<br>vastenmielinen', 'Pidin<br>kappaleesta', 'Pidin<br>kappaleesta paljon', 'Pidin kappaleesta<br>todella paljon'],
                      ["Ei lainkaan", "Todella paljon"], 
                      ["Ei lainkaan", "Todella paljon"], 
                      ['Ei lainkaan', 'Todella paljon']],
+            button_label: "Jatka",
             on_load: function(){
               var slidersContainers = document.querySelectorAll(".jspsych-html-slider-response-container")
               slidersContainers.forEach(i => {
@@ -414,14 +402,15 @@
 
       var feedbackSpace = {
         type: jsPsychSurveyHtmlForm,
-        preamble: '<p style="font-size:7vw">Have any feedback?</p>',
+        preamble: '<p style="font-size:7vw">Onko sinulla antaa jotain palautetta?</p>',
         html: '<p><input type="text" id="test-resp-box" name="response" size="100" /></p>',
+        data: { trialCategory: 'feedback' },
         autofocus: 'test-resp-box'
       };
 
       var endTask = {
           type: jsPsychInstructions,
-          pages: ['This is the end of the experiment<br>Thank you for your participation!'],
+          pages: ["Tutkimus on päättynyt<br>Kiitos osallistumisestasi!"],
           button_label_next: "Seuraava",
           button_label_previous: "Edellinen",
           show_clickable_nav: true,
@@ -432,31 +421,31 @@
       var evenOdd = groupNumber % 2
 
       var stepsA = ["Generate playlist", "Dance to self-selected songs", "Fill out questionnaires", "Dance researcher stimuli"]
-      var A = [howFeeling, closeness1, inter, generateSeuraavaStep(stepsA[0]),
-               howWasPlaylist, howFeeling, closeness1, inter, generateSeuraavaStep(stepsA[1]),
-               howFeeling, closeness1, questionsAboutSongs, inter, generateSeuraavaStep(stepsA[2]),
-               modelQuestionnaire1, modelQuestionnaire2, modelQuestionnaire3, howFeeling, closeness1, inter, generateSeuraavaStep(stepsA[3]),
+      var A = [howFeeling, closeness1, inter, generateSeuraavaStep(stepsA[0], "Beginning", stepsA[1]),
+               howWasPlaylist, howFeeling, closeness1, inter, generateSeuraavaStep(stepsA[1], stepsA[0], stepsA[2]),
+               howFeeling, closeness1, questionsAboutSongs, inter, generateSeuraavaStep(stepsA[2], stepsA[1], stepsA[3]),
+               modelQuestionnaire1, modelQuestionnaire2, modelQuestionnaire3, howFeeling, closeness1, inter, generateSeuraavaStep(stepsA[3], stepsA[2], "End..."),
                howFeeling, closeness1, questionsAboutSongs, relationshipFriend, howLongFriend, feedbackSpace]
 
       var stepsB = ["Dance researcher stimuli", "Generate playlist", "Dance to self-selected songs", "Fill out questionnaires"]
-      var B = [howFeeling, closeness1, inter, generateSeuraavaStep(stepsB[0]),
-               howFeeling, closeness1, questionsAboutSongs, inter, generateSeuraavaStep(stepsB[1]),
-               howFeeling, closeness1, howWasPlaylist, inter, generateSeuraavaStep(stepsB[2]),
-               howFeeling, closeness1, questionsAboutSongs, inter, generateSeuraavaStep(stepsB[3]),
+      var B = [howFeeling, closeness1, inter, generateSeuraavaStep(stepsB[0], "Beginning", stepsB[1]),
+               howFeeling, closeness1, questionsAboutSongs, inter, generateSeuraavaStep(stepsB[1], stepsB[0], stepsB[2]),
+               howFeeling, closeness1, howWasPlaylist, inter, generateSeuraavaStep(stepsB[2], stepsB[1], stepsB[3]),
+               howFeeling, closeness1, questionsAboutSongs, inter, generateSeuraavaStep(stepsB[3], stepsB[2], "End..."),
                howFeeling, closeness1, modelQuestionnaire1, modelQuestionnaire2, modelQuestionnaire3, howFeeling, closeness1, relationshipFriend, howLongFriend, feedbackSpace]
 
       var stepsC = ["Generate playlist", "Dance to self-selected songs", "Fill out questionnaires (MMBB)", "Dance researcher stimuli"]
-      var C = [howFeeling, closeness1, inter, generateSeuraavaStep(stepsC[0]),
-               howWasPlaylist, howFeeling,closeness1, inter, generateSeuraavaStep(stepsC[1]),
-               howFeeling, closeness1, questionsAboutSongs, generateSeuraavaStep(stepsC[2]),
-               linkToMMBB, howFeeling, closeness1, inter, generateSeuraavaStep(stepsC[3]),
+      var C = [howFeeling, closeness1, inter, generateSeuraavaStep(stepsC[0], "Beginning", stepsC[1]),
+               howWasPlaylist, howFeeling,closeness1, inter, generateSeuraavaStep(stepsC[1], stepsC[0], stepsC[2]),
+               howFeeling, closeness1, questionsAboutSongs, generateSeuraavaStep(stepsC[2], stepsC[1], stepsC[3]),
+               linkToMMBB, howFeeling, closeness1, inter, generateSeuraavaStep(stepsC[3], stepsC[2], "End..."),
                howFeeling, closeness1, questionsAboutSongs, relationshipFriend, howLongFriend, feedbackSpace]
 
       var stepsD = ["Dance researcher stimuli", "Generate playlist", "Dance to self-selected songs", "Fill out questionnaires"]
-      var D = [howFeeling, closeness1, inter, generateSeuraavaStep(stepsD[0]),
-               howFeeling, closeness1, questionsAboutSongs, inter, generateSeuraavaStep(stepsD[1]),
-               howFeeling, closeness1, howWasPlaylist, inter, generateSeuraavaStep(stepsD[2]),
-               howFeeling, closeness1, questionsAboutSongs, generateSeuraavaStep(stepsD[3]),
+      var D = [howFeeling, closeness1, inter, generateSeuraavaStep(stepsD[0], "Beginning", stepsD[1]),
+               howFeeling, closeness1, questionsAboutSongs, inter, generateSeuraavaStep(stepsD[1], stepsD[0], stepsD[2]),
+               howFeeling, closeness1, howWasPlaylist, inter, generateSeuraavaStep(stepsD[2], stepsD[1], stepsD[3]),
+               howFeeling, closeness1, questionsAboutSongs, generateSeuraavaStep(stepsD[3], stepsD[2], "End..."),
                linkToMMBB, howFeeling, closeness1, relationshipFriend, howLongFriend, feedbackSpace]
       
       if(evenOdd == 1){ //Odd

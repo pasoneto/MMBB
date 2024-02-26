@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../../src/styles/generalCSS.css">
     <link rel="stylesheet" href="../../src/styles/surveyStyles.css">
     <script src="../../utils/studyLinks.js"> </script>
+    <script src="../../utils/friends_strangers.js"> </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   </head>
   <body>
@@ -48,11 +49,11 @@
       if(window.groupNumber == undefined || window.participant == undefined){
         alert("Choose participant and group")
       } else {
-
-        var urlRedirect = studyLinks['surveyFriendsStrangers'] + "?group=" + window.groupNumber + "&participantNumber=" + window.participant
+        evenOdd = window.groupNumber % 2
+        var currentPair = participantScheme["first"][evenOdd][window.participant];
+        var urlRedirect = studyLinks['surveyFriendsStrangers'] + "?group=" + window.groupNumber + "&participantNumber=" + window.participant + "&currentPair=" + currentPair
         console.log(urlRedirect)
         window.location.href = urlRedirect
-
       }
     }
   </script>

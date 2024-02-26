@@ -263,6 +263,7 @@ button:focus {
   margin-right: 33%
 }
 
-
-
-
+#ba{
+  font-size: 15px;
+  color: gray;
+}
