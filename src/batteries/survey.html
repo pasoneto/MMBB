@@ -291,10 +291,24 @@
             })
           }
       }
-      function generateSeuraavaStep(nextStep, previous, after){
+      function generateSeuraavaStep(nextStepList, index){
+
+        var prevIndex = index - 1
+        if(prevIndex < 0){
+          var prev = "Beginning"
+        } else {
+          var prev = nextStepList[prevIndex] 
+        }
+        var nextIndex = index + 1
+        if(nextIndex > nextStepList.length - 1){
+          var nex = "End"
+        } else {
+          var nex = nextStepList[nextIndex]
+        }
+
         var nextStep = {
             type: jsPsychInstructions,
-            pages: ["<div id='ba'>" + previous + "</div>" + " <- " + "<b>" + nextStep + "</b>" + " -> " + "<div id='ba'>" + after + "</div>"],
+            pages: ["<div id='ba'>" + prev + "</div>" + " <- " + "<b>" + nextStepList[index] + "</b>" + " -> " + "<div id='ba'>" + nex + "</div>"],
             button_label_next: "Seuraava",
             button_label_previous: "Edellinen",
             show_clickable_nav: true,
@@ -451,33 +465,165 @@
       //- Please rate your relationship with the second person you danced and created a playlist with   
       var evenOdd = groupNumber % 2
 
-      var stepsA = ["Generate playlist", "Dance to self-selected songs", "Fill out questionnaires", "Dance researcher stimuli"]
-      var A = [howFeeling, closeness1, inter, generateSeuraavaStep(stepsA[0], "Beginning", stepsA[1]),
-               howWasPlaylist, howFeeling, closeness1, inter, generateSeuraavaStep(stepsA[1], stepsA[0], stepsA[2]),
-               howFeeling, closeness1, questionsAboutSongs, inter, generateSeuraavaStep(stepsA[2], stepsA[1], stepsA[3]),
-               modelQuestionnaire1, modelQuestionnaire2, modelQuestionnaire3, howFeeling, closeness1, inter, generateSeuraavaStep(stepsA[3], stepsA[2], "End..."),
-               howFeeling, closeness1, questionsAboutSongs, relationshipFriend, howLongFriend, feedbackSpace]
+      var stepsA = ["Closeness questions (Computer room) - Hand iPad", 
+                    "Generate playlist (Computer room) - Keep iPad", 
+                    "Answer playlist questions and closeness (Computer room) - Hand iPad", 
+                    "Dance to self-selected songs (Mocap lab) - Keep iPad", 
+                    "Closeness questions (Mocap lab) - Hand iPad",
+                    "Song ratings (Mocap lab) - Hand iPad",
+                    "Fill out questionnaires (Hallway) - Hand iPad", 
+                    "Closeness questions (Hallway) - Hand iPad", 
+                    "Dance researcher stimuli (Mocap Lab) - Keep iPad",
+                    "Closeness questions (Mocap Lab) - Hand iPad",
+                    "Song ratings (Mocap Lab) - Hand iPad"]
+      var A = [generateSeuraavaStep(stepsA, 0),  //Closeness
+               howFeeling, closeness1, 
+               inter, 
+               generateSeuraavaStep(stepsA, 1), //Generate playlist
+               generateSeuraavaStep(stepsA, 2), //Answer playlist questions
+               howWasPlaylist, 
+               howFeeling, closeness1, 
+               inter, 
+               generateSeuraavaStep(stepsA, 3), //Dance
+               generateSeuraavaStep(stepsA, 4), //Closeness
+               howFeeling, closeness1, 
+               inter,
+               generateSeuraavaStep(stepsA, 5), //Song ratings
+               questionsAboutSongs, 
+               inter, 
+               generateSeuraavaStep(stepsA, 6),
+               modelQuestionnaire1, modelQuestionnaire2, modelQuestionnaire3, 
+               inter,
+               generateSeuraavaStep(stepsA, 7),
+               howFeeling, closeness1, 
+               inter, 
+               generateSeuraavaStep(stepsA, 8),
+               generateSeuraavaStep(stepsA, 9),
+               howFeeling, closeness1, 
+               inter,
+               generateSeuraavaStep(stepsA, 10),
+               questionsAboutSongs, 
+               relationshipFriend, howLongFriend, feedbackSpace]
 
-      var stepsB = ["Dance researcher stimuli", "Generate playlist", "Dance to self-selected songs", "Fill out questionnaires"]
-      var B = [howFeeling, closeness1, inter, generateSeuraavaStep(stepsB[0], "Beginning", stepsB[1]),
-               howFeeling, closeness1, questionsAboutSongs, inter, generateSeuraavaStep(stepsB[1], stepsB[0], stepsB[2]),
-               howFeeling, closeness1, howWasPlaylist, inter, generateSeuraavaStep(stepsB[2], stepsB[1], stepsB[3]),
-               howFeeling, closeness1, questionsAboutSongs, inter, generateSeuraavaStep(stepsB[3], stepsB[2], "End..."),
-               howFeeling, closeness1, modelQuestionnaire1, modelQuestionnaire2, modelQuestionnaire3, howFeeling, closeness1, relationshipFriend, howLongFriend, feedbackSpace]
+      var stepsB = ["Closeness questions (Mocap Lab) - Hand iPad",                  //0
+                    "Dance researcher stimuli (Mocap lab)",                         //1
+                    "Closeness questions (Mocap Lab) - Hand iPad",                  //2
+                    "Song ratings (Mocap Lab) - Hand iPad",                         //3
+                    "Generate playlist (computer room) - Keep iPad",                //4
+                    "Answer playlist questions (computer room) - Hand iPad",        //5
+                    "Dance to self-selected songs (Mocap Lab) - Keep iPad",         //6
+                    "Closeness questions (Mocap Lab)- Hand iPad",                   //7
+                    "Song ratings (Mocap Lab)- Hand iPad",                          //8
+                    "Closeness and questionnaires (Hallway) - Hand iPad"]           //9
+      var B = [generateSeuraavaStep(stepsB, 0), 
+               howFeeling, closeness1, 
+               inter, 
+               generateSeuraavaStep(stepsB, 1),
+               generateSeuraavaStep(stepsB, 2),
+               howFeeling, closeness1, 
+               inter,
+               generateSeuraavaStep(stepsB, 3),
+               questionsAboutSongs, 
+               inter, 
+               generateSeuraavaStep(stepsB, 4),
+               generateSeuraavaStep(stepsB, 5),
+               howFeeling, closeness1, 
+               howWasPlaylist, 
+               inter, 
+               generateSeuraavaStep(stepsB, 6),
+               generateSeuraavaStep(stepsB, 7),
+               howFeeling, closeness1, 
+               inter,
+               generateSeuraavaStep(stepsB, 8),
+               questionsAboutSongs, 
+               inter, 
+               generateSeuraavaStep(stepsB, 9),
+               howFeeling, closeness1, 
+               modelQuestionnaire1, modelQuestionnaire2, modelQuestionnaire3, 
+               howFeeling, closeness1, relationshipFriend, howLongFriend, feedbackSpace]
 
-      var stepsC = ["Generate playlist", "Dance to self-selected songs", "Fill out questionnaires (MMBB)", "Dance researcher stimuli"]
-      var C = [howFeeling, closeness1, inter, generateSeuraavaStep(stepsC[0], "Beginning", stepsC[1]),
-               howWasPlaylist, howFeeling,closeness1, inter, generateSeuraavaStep(stepsC[1], stepsC[0], stepsC[2]),
-               howFeeling, closeness1, questionsAboutSongs, generateSeuraavaStep(stepsC[2], stepsC[1], stepsC[3]),
-               linkToMMBB, howFeeling, closeness1, inter, generateSeuraavaStep(stepsC[3], stepsC[2], "End..."),
-               howFeeling, closeness1, questionsAboutSongs, relationshipFriend, howLongFriend, feedbackSpace]
+      var stepsC = ["Closeness questions (Computer room) - Hand iPad",
+                    "Generate playlist (Computer room) - Keep iPad",
+                    "Playlist questions and closeness questions (Computer room) - Hand iPad",
+                    "Dance to self-selected songs (Mocap Lab) - Keep iPad",
+                    "Closeness questions (Mocap Lab) - Hand iPad",
+                    "Song ratings (Mocap Lab) - Hand iPad",
+                    "Fill out questionnaires-MMBB and closeness (Hallway) - Hand iPad",
+                    "Dance researcher stimuli (Mocap Lab) - Keep iPad",
+                    "Closeness questions (Mocap lab) - Hand iPad",
+                    "Song ratings and closeness (Mocap lab) - Hand iPad",
+      ]
+      var C = [generateSeuraavaStep(stepsC, 0), 
+               howFeeling, 
+               closeness1, 
+               inter, 
+               generateSeuraavaStep(stepsC, 1),
+               generateSeuraavaStep(stepsC, 2),
+               howWasPlaylist,
+               howFeeling, 
+               closeness1, 
+               inter, 
+               generateSeuraavaStep(stepsC, 3),
+               generateSeuraavaStep(stepsC, 4),
+               howFeeling, 
+               closeness1, 
+               inter,
+               generateSeuraavaStep(stepsC, 5),
+               questionsAboutSongs, 
+               inter,
+               generateSeuraavaStep(stepsC, 6),
+               linkToMMBB, 
+               howFeeling, 
+               closeness1, 
+               inter, 
+               generateSeuraavaStep(stepsC, 7),
+               generateSeuraavaStep(stepsC, 8),
+               howFeeling, 
+               closeness1, 
+               inter,
+               generateSeuraavaStep(stepsC, 9),
+               questionsAboutSongs, 
+               relationshipFriend, 
+               howLongFriend, 
+               feedbackSpace]
 
-      var stepsD = ["Dance researcher stimuli", "Generate playlist", "Dance to self-selected songs", "Fill out questionnaires"]
-      var D = [howFeeling, closeness1, inter, generateSeuraavaStep(stepsD[0], "Beginning", stepsD[1]),
-               howFeeling, closeness1, questionsAboutSongs, inter, generateSeuraavaStep(stepsD[1], stepsD[0], stepsD[2]),
-               howFeeling, closeness1, howWasPlaylist, inter, generateSeuraavaStep(stepsD[2], stepsD[1], stepsD[3]),
-               howFeeling, closeness1, questionsAboutSongs, generateSeuraavaStep(stepsD[3], stepsD[2], "End..."),
-               linkToMMBB, howFeeling, closeness1, relationshipFriend, howLongFriend, feedbackSpace]
+      var stepsD = ["Closeness questions (Mocap Lab) - Hand iPad", 
+                    "Dance researcher stimuli (Mocap lab) - Keep iPad", 
+                    "Closeness questions (Mocap Lab) - Hand iPad", 
+                    "Song ratings (Computer room) - Hand iPad", 
+                    "Generate playlist (Computer room) - Keep iPad", 
+                    "How easy playlist and closeness (Computer room) - Hand iPad", 
+                    "Dance to self-selected songs (Mocap Lab) - Keep iPad", 
+                    "Closeness questions (Mocap Lab) - Hand iPad", 
+                    "Song ratings (Mocap Lab) - Hand iPad", 
+                    "Fill out questionnaires and closeness (Hallway)"]
+      var D = [generateSeuraavaStep(stepsD, 0), 
+               howFeeling, closeness1, 
+               inter, 
+               generateSeuraavaStep(stepsD, 1),
+               generateSeuraavaStep(stepsD, 2),
+               howFeeling, closeness1, 
+               inter,
+               generateSeuraavaStep(stepsD, 3),
+               questionsAboutSongs, 
+               inter, 
+               generateSeuraavaStep(stepsD, 4),
+               generateSeuraavaStep(stepsD, 5),
+               howFeeling, 
+               closeness1, 
+               howWasPlaylist, 
+               inter, 
+               generateSeuraavaStep(stepsD, 6),
+               generateSeuraavaStep(stepsD, 7),
+               howFeeling, 
+               closeness1, 
+               inter,
+               generateSeuraavaStep(stepsD, 8),
+               questionsAboutSongs, 
+               inter,
+               generateSeuraavaStep(stepsD, 9),
+               linkToMMBB, 
+               howFeeling, closeness1, relationshipFriend, howLongFriend, feedbackSpace]
       
       if(evenOdd == 1){ //Odd
         console.log("Friends - Strangers")
