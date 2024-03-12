@@ -158,14 +158,14 @@
 
       var agreement1 = {
         type: jsPsychHtmlButtonResponse,
-        stimulus: '<iframe src="../src/utils/friends_strangers_tiedote_tutkittavalle.pdf" width="100%" height="600px" loading="lazy" title="PDF-file" ></iframe>',
+        stimulus: '<iframe src="../src/utils/tietosuojailmoitus_m1.pdf" width="100%" height="600px" loading="lazy" title="PDF-file" ></iframe>',
         choices: ["Hyväksyn"],
         prompt: ""
       };
 
       var agreement2 = {
         type: jsPsychHtmlButtonResponse,
-        stimulus: '<iframe src="../src/utils/friends_strangers_tietosuojailmoitus.pdf" width="100%" height="600px" loading="lazy" title="PDF-file" ></iframe>',
+        stimulus: '<iframe src="../src/utils/tiedote_m1.pdf" width="100%" height="600px" loading="lazy" title="PDF-file" ></iframe>',
         choices: ["Hyväksyn"],
         prompt: ""
       };
@@ -469,12 +469,12 @@
                     "Generate playlist (Computer room) - Keep iPad", 
                     "Answer playlist questions and closeness (Computer room) - Hand iPad", 
                     "Dance to self-selected songs (Mocap lab) - Keep iPad", 
-                    "Closeness questions (Mocap lab) - Hand iPad",
+                    "Closeness questions and song ratings (Mocap lab) - Hand iPad",
                     "Song ratings (Mocap lab) - Hand iPad",
                     "Fill out questionnaires (Hallway) - Hand iPad", 
                     "Closeness questions (Hallway) - Hand iPad", 
                     "Dance researcher stimuli (Mocap Lab) - Keep iPad",
-                    "Closeness questions (Mocap Lab) - Hand iPad",
+                    "Closeness questions and song ratings (Mocap Lab) - Hand iPad",
                     "Song ratings (Mocap Lab) - Hand iPad"]
       var A = [generateSeuraavaStep(stepsA, 0),  //Closeness
                howFeeling, closeness1, 
@@ -487,8 +487,8 @@
                generateSeuraavaStep(stepsA, 3), //Dance
                generateSeuraavaStep(stepsA, 4), //Closeness
                howFeeling, closeness1, 
-               inter,
-               generateSeuraavaStep(stepsA, 5), //Song ratings
+               //inter,
+               //generateSeuraavaStep(stepsA, 5), //Song ratings
                questionsAboutSongs, 
                inter, 
                generateSeuraavaStep(stepsA, 6),
@@ -500,19 +500,19 @@
                generateSeuraavaStep(stepsA, 8),
                generateSeuraavaStep(stepsA, 9),
                howFeeling, closeness1, 
-               inter,
-               generateSeuraavaStep(stepsA, 10),
+               //inter,
+               //generateSeuraavaStep(stepsA, 10),
                questionsAboutSongs, 
                relationshipFriend, howLongFriend, feedbackSpace]
 
       var stepsB = ["Closeness questions (Mocap Lab) - Hand iPad",                  //0
                     "Dance researcher stimuli (Mocap lab)",                         //1
-                    "Closeness questions (Mocap Lab) - Hand iPad",                  //2
+                    "Closeness questions and song ratings (Mocap Lab) - Hand iPad", //2
                     "Song ratings (Mocap Lab) - Hand iPad",                         //3
                     "Generate playlist (computer room) - Keep iPad",                //4
                     "Answer playlist questions (computer room) - Hand iPad",        //5
                     "Dance to self-selected songs (Mocap Lab) - Keep iPad",         //6
-                    "Closeness questions (Mocap Lab)- Hand iPad",                   //7
+                    "Closeness questions and song ratings(Mocap Lab)- Hand iPad",   //7
                     "Song ratings (Mocap Lab)- Hand iPad",                          //8
                     "Closeness and questionnaires (Hallway) - Hand iPad"]           //9
       var B = [generateSeuraavaStep(stepsB, 0), 
@@ -521,8 +521,8 @@
                generateSeuraavaStep(stepsB, 1),
                generateSeuraavaStep(stepsB, 2),
                howFeeling, closeness1, 
-               inter,
-               generateSeuraavaStep(stepsB, 3),
+               //inter,
+               //generateSeuraavaStep(stepsB, 3),
                questionsAboutSongs, 
                inter, 
                generateSeuraavaStep(stepsB, 4),
@@ -533,8 +533,8 @@
                generateSeuraavaStep(stepsB, 6),
                generateSeuraavaStep(stepsB, 7),
                howFeeling, closeness1, 
-               inter,
-               generateSeuraavaStep(stepsB, 8),
+               //inter,
+               //generateSeuraavaStep(stepsB, 8),
                questionsAboutSongs, 
                inter, 
                generateSeuraavaStep(stepsB, 9),
@@ -546,11 +546,11 @@
                     "Generate playlist (Computer room) - Keep iPad",
                     "Playlist questions and closeness questions (Computer room) - Hand iPad",
                     "Dance to self-selected songs (Mocap Lab) - Keep iPad",
-                    "Closeness questions (Mocap Lab) - Hand iPad",
+                    "Closeness questions and song ratings (Mocap Lab) - Hand iPad",
                     "Song ratings (Mocap Lab) - Hand iPad",
                     "Fill out questionnaires-MMBB and closeness (Hallway) - Hand iPad",
                     "Dance researcher stimuli (Mocap Lab) - Keep iPad",
-                    "Closeness questions (Mocap lab) - Hand iPad",
+                    "Closeness questions and song ratings (Mocap lab) - Hand iPad",
                     "Song ratings and closeness (Mocap lab) - Hand iPad",
       ]
       var C = [generateSeuraavaStep(stepsC, 0), 
@@ -567,8 +567,8 @@
                generateSeuraavaStep(stepsC, 4),
                howFeeling, 
                closeness1, 
-               inter,
-               generateSeuraavaStep(stepsC, 5),
+               //inter,
+               //generateSeuraavaStep(stepsC, 5),
                questionsAboutSongs, 
                inter,
                generateSeuraavaStep(stepsC, 6),
@@ -580,8 +580,8 @@
                generateSeuraavaStep(stepsC, 8),
                howFeeling, 
                closeness1, 
-               inter,
-               generateSeuraavaStep(stepsC, 9),
+               //inter,
+               //generateSeuraavaStep(stepsC, 9),
                questionsAboutSongs, 
                relationshipFriend, 
                howLongFriend, 
@@ -589,12 +589,12 @@
 
       var stepsD = ["Closeness questions (Mocap Lab) - Hand iPad", 
                     "Dance researcher stimuli (Mocap lab) - Keep iPad", 
-                    "Closeness questions (Mocap Lab) - Hand iPad", 
+                    "Closeness questions and song ratings (Mocap Lab) - Hand iPad", 
                     "Song ratings (Computer room) - Hand iPad", 
                     "Generate playlist (Computer room) - Keep iPad", 
                     "How easy playlist and closeness (Computer room) - Hand iPad", 
                     "Dance to self-selected songs (Mocap Lab) - Keep iPad", 
-                    "Closeness questions (Mocap Lab) - Hand iPad", 
+                    "Closeness questions and song ratings (Mocap Lab) - Hand iPad", 
                     "Song ratings (Mocap Lab) - Hand iPad", 
                     "Fill out questionnaires and closeness (Hallway)"]
       var D = [generateSeuraavaStep(stepsD, 0), 
@@ -603,8 +603,8 @@
                generateSeuraavaStep(stepsD, 1),
                generateSeuraavaStep(stepsD, 2),
                howFeeling, closeness1, 
-               inter,
-               generateSeuraavaStep(stepsD, 3),
+               //inter,
+               //generateSeuraavaStep(stepsD, 3),
                questionsAboutSongs, 
                inter, 
                generateSeuraavaStep(stepsD, 4),
@@ -617,8 +617,8 @@
                generateSeuraavaStep(stepsD, 7),
                howFeeling, 
                closeness1, 
-               inter,
-               generateSeuraavaStep(stepsD, 8),
+               //inter,
+               //generateSeuraavaStep(stepsD, 8),
                questionsAboutSongs, 
                inter,
                generateSeuraavaStep(stepsD, 9),
