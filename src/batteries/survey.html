@@ -368,6 +368,7 @@
       }
 
       var haveYouHeardBefore;
+      var whoChoseSong;
       //This repeats for each song (7 tracks)
       function generateSongQuestions(nTrial){
         var songQuestions = {
@@ -418,6 +419,31 @@
               container.append(titleKnowSong);
               container.append(knowSongDiv);
 
+              //Who chose song
+              var choseSongDiv = document.createElement("div")
+              var buttonTexts = ["Minä", "Parini", "Molemmat"];
+
+              buttonTexts.map(i => {
+                var buttonDiv = document.createElement("button")
+                buttonDiv.setAttribute('id', 'buttonChoseSong')
+                buttonDiv.style.width = "20%";
+                buttonDiv.style.height = "30px";
+                buttonDiv.onclick = function(){
+                  window.whoChoseSong = this.innerHTML;
+                  document.querySelectorAll("#buttonChoseSong").forEach(i => {
+                    i.style.background = "#fa6400";
+                  })
+                  this.style.background = "purple";
+                }
+                buttonDiv.innerHTML = i;
+                choseSongDiv.appendChild(buttonDiv);
+              });
+
+              var titleChoseSong = document.createElement("div")
+              titleChoseSong.innerHTML = '<br><br>Kumpi ehdotti tätä kappaletta?<br><br>';
+              container.append(titleChoseSong);
+              container.append(choseSongDiv);
+
 
               //Create local progress bar
 
@@ -435,6 +461,7 @@
             },
             on_finish: function(data){
               data.heardSongBefore = window.haveYouHeardBefore;
+              data.whoChoseSong = window.whoChoseSong;
             }
 
         };
@@ -447,8 +474,8 @@
 
       var feedbackSpace = {
         type: jsPsychSurveyHtmlForm,
-        preamble: '<p style="font-size:7vw">Onko sinulla antaa jotain palautetta?</p>',
-        html: '<p><input type="text" id="test-resp-box" name="response" size="100" /></p>',
+        preamble: '<p style="font-size:3vw">Onko sinulla antaa jotain palautetta?</p>',
+        html: '<p><input type="text" rows="3" id="test-resp-box" name="response" size="100" /></p>',
         data: { trialCategory: 'feedback' },
         autofocus: 'test-resp-box'
       };
@@ -465,7 +492,8 @@
       //- Please rate your relationship with the second person you danced and created a playlist with   
       var evenOdd = groupNumber % 2
 
-      var stepsA = ["Closeness questions (Computer room) - Hand iPad", 
+      var stepsA = ["Accept agreement (Computer room) - Hand iPad",
+                    "Closeness questions (Computer room) - Hand iPad", 
                     "Generate playlist (Computer room) - Keep iPad", 
                     "Answer playlist questions and closeness (Computer room) - Hand iPad", 
                     "Dance to self-selected songs (Mocap lab) - Keep iPad", 
@@ -476,36 +504,37 @@
                     "Dance researcher stimuli (Mocap Lab) - Keep iPad",
                     "Closeness questions and song ratings (Mocap Lab) - Hand iPad",
                     "Song ratings (Mocap Lab) - Hand iPad"]
-      var A = [generateSeuraavaStep(stepsA, 0),  //Closeness
+      var A = [generateSeuraavaStep(stepsA, 1),  //Closeness
                howFeeling, closeness1, 
                inter, 
-               generateSeuraavaStep(stepsA, 1), //Generate playlist
-               generateSeuraavaStep(stepsA, 2), //Answer playlist questions
+               generateSeuraavaStep(stepsA, 2), //Generate playlist
+               generateSeuraavaStep(stepsA, 3), //Answer playlist questions
                howWasPlaylist, 
                howFeeling, closeness1, 
                inter, 
-               generateSeuraavaStep(stepsA, 3), //Dance
-               generateSeuraavaStep(stepsA, 4), //Closeness
+               generateSeuraavaStep(stepsA, 4), //Dance
+               generateSeuraavaStep(stepsA, 5), //Closeness
                howFeeling, closeness1, 
                //inter,
-               //generateSeuraavaStep(stepsA, 5), //Song ratings
+               //generateSeuraavaStep(stepsA, 6), //Song ratings
                questionsAboutSongs, 
                inter, 
-               generateSeuraavaStep(stepsA, 6),
+               generateSeuraavaStep(stepsA, 7),
                modelQuestionnaire1, modelQuestionnaire2, modelQuestionnaire3, 
                inter,
-               generateSeuraavaStep(stepsA, 7),
+               generateSeuraavaStep(stepsA, 8),
                howFeeling, closeness1, 
                inter, 
-               generateSeuraavaStep(stepsA, 8),
                generateSeuraavaStep(stepsA, 9),
+               generateSeuraavaStep(stepsA, 10),
                howFeeling, closeness1, 
                //inter,
-               //generateSeuraavaStep(stepsA, 10),
+               //generateSeuraavaStep(stepsA, 11),
                questionsAboutSongs, 
                relationshipFriend, howLongFriend, feedbackSpace]
 
-      var stepsB = ["Closeness questions (Mocap Lab) - Hand iPad",                  //0
+      var stepsB = ["Accept agreement (Mocap lab) - Hand iPad",
+                    "Closeness questions (Mocap Lab) - Hand iPad",                  //0
                     "Dance researcher stimuli (Mocap lab)",                         //1
                     "Closeness questions and song ratings (Mocap Lab) - Hand iPad", //2
                     "Song ratings (Mocap Lab) - Hand iPad",                         //3
@@ -515,34 +544,35 @@
                     "Closeness questions and song ratings(Mocap Lab)- Hand iPad",   //7
                     "Song ratings (Mocap Lab)- Hand iPad",                          //8
                     "Closeness and questionnaires (Hallway) - Hand iPad"]           //9
-      var B = [generateSeuraavaStep(stepsB, 0), 
+      var B = [generateSeuraavaStep(stepsB, 1), 
                howFeeling, closeness1, 
                inter, 
-               generateSeuraavaStep(stepsB, 1),
                generateSeuraavaStep(stepsB, 2),
+               generateSeuraavaStep(stepsB, 3),
                howFeeling, closeness1, 
                //inter,
-               //generateSeuraavaStep(stepsB, 3),
+               //generateSeuraavaStep(stepsB, 4),
                questionsAboutSongs, 
                inter, 
-               generateSeuraavaStep(stepsB, 4),
                generateSeuraavaStep(stepsB, 5),
+               generateSeuraavaStep(stepsB, 6),
                howFeeling, closeness1, 
                howWasPlaylist, 
                inter, 
-               generateSeuraavaStep(stepsB, 6),
                generateSeuraavaStep(stepsB, 7),
+               generateSeuraavaStep(stepsB, 8),
                howFeeling, closeness1, 
                //inter,
-               //generateSeuraavaStep(stepsB, 8),
+               //generateSeuraavaStep(stepsB, 9),
                questionsAboutSongs, 
                inter, 
-               generateSeuraavaStep(stepsB, 9),
+               generateSeuraavaStep(stepsB, 10),
                howFeeling, closeness1, 
                modelQuestionnaire1, modelQuestionnaire2, modelQuestionnaire3, 
                howFeeling, closeness1, relationshipFriend, howLongFriend, feedbackSpace]
 
-      var stepsC = ["Closeness questions (Computer room) - Hand iPad",
+      var stepsC = ["Accept agreement (Computer room) - Hand iPad",
+                    "Closeness questions (Computer room) - Hand iPad",
                     "Generate playlist (Computer room) - Keep iPad",
                     "Playlist questions and closeness questions (Computer room) - Hand iPad",
                     "Dance to self-selected songs (Mocap Lab) - Keep iPad",
@@ -553,41 +583,42 @@
                     "Closeness questions and song ratings (Mocap lab) - Hand iPad",
                     "Song ratings and closeness (Mocap lab) - Hand iPad",
       ]
-      var C = [generateSeuraavaStep(stepsC, 0), 
+      var C = [generateSeuraavaStep(stepsC, 1), 
                howFeeling, 
                closeness1, 
                inter, 
-               generateSeuraavaStep(stepsC, 1),
                generateSeuraavaStep(stepsC, 2),
+               generateSeuraavaStep(stepsC, 3),
                howWasPlaylist,
                howFeeling, 
                closeness1, 
                inter, 
-               generateSeuraavaStep(stepsC, 3),
                generateSeuraavaStep(stepsC, 4),
+               generateSeuraavaStep(stepsC, 5),
                howFeeling, 
                closeness1, 
                //inter,
-               //generateSeuraavaStep(stepsC, 5),
+               //generateSeuraavaStep(stepsC, 6),
                questionsAboutSongs, 
                inter,
-               generateSeuraavaStep(stepsC, 6),
+               generateSeuraavaStep(stepsC, 7),
                linkToMMBB, 
                howFeeling, 
                closeness1, 
                inter, 
-               generateSeuraavaStep(stepsC, 7),
                generateSeuraavaStep(stepsC, 8),
+               generateSeuraavaStep(stepsC, 9),
                howFeeling, 
                closeness1, 
                //inter,
-               //generateSeuraavaStep(stepsC, 9),
+               //generateSeuraavaStep(stepsC, 10),
                questionsAboutSongs, 
                relationshipFriend, 
                howLongFriend, 
                feedbackSpace]
 
-      var stepsD = ["Closeness questions (Mocap Lab) - Hand iPad", 
+      var stepsD = ["Accept agreement (Mocap lab) - Hand iPad",
+                    "Closeness questions (Mocap Lab) - Hand iPad", 
                     "Dance researcher stimuli (Mocap lab) - Keep iPad", 
                     "Closeness questions and song ratings (Mocap Lab) - Hand iPad", 
                     "Song ratings (Computer room) - Hand iPad", 
@@ -597,31 +628,31 @@
                     "Closeness questions and song ratings (Mocap Lab) - Hand iPad", 
                     "Song ratings (Mocap Lab) - Hand iPad", 
                     "Fill out questionnaires and closeness (Hallway)"]
-      var D = [generateSeuraavaStep(stepsD, 0), 
+      var D = [generateSeuraavaStep(stepsD, 1), 
                howFeeling, closeness1, 
                inter, 
-               generateSeuraavaStep(stepsD, 1),
                generateSeuraavaStep(stepsD, 2),
+               generateSeuraavaStep(stepsD, 3),
                howFeeling, closeness1, 
                //inter,
-               //generateSeuraavaStep(stepsD, 3),
+               //generateSeuraavaStep(stepsD, 4),
                questionsAboutSongs, 
                inter, 
-               generateSeuraavaStep(stepsD, 4),
                generateSeuraavaStep(stepsD, 5),
+               generateSeuraavaStep(stepsD, 6),
                howFeeling, 
                closeness1, 
                howWasPlaylist, 
                inter, 
-               generateSeuraavaStep(stepsD, 6),
                generateSeuraavaStep(stepsD, 7),
+               generateSeuraavaStep(stepsD, 8),
                howFeeling, 
                closeness1, 
                //inter,
                //generateSeuraavaStep(stepsD, 8),
                questionsAboutSongs, 
                inter,
-               generateSeuraavaStep(stepsD, 9),
+               generateSeuraavaStep(stepsD, 10),
                linkToMMBB, 
                howFeeling, closeness1, relationshipFriend, howLongFriend, feedbackSpace]
       
@@ -631,20 +662,20 @@
         console.log("P2: A->D")
         console.log("P3: B->C")
         console.log("P4: B->D")
-        var participant1 = [agreement1, agreement2, ...A, ...[changePairs], ...C, ...[endTask]]
-        var participant2 = [agreement1, agreement2, ...A, ...[changePairs], ...D, ...[endTask]]
-        var participant3 = [agreement1, agreement2, ...B, ...[changePairs], ...C, ...[endTask]]
-        var participant4 = [agreement1, agreement2, ...B, ...[changePairs], ...D, ...[endTask]]
+        var participant1 = [generateSeuraavaStep(stepsA, 0), agreement1, agreement2, inter, ...A, ...[changePairs], ...C, ...[endTask]]
+        var participant2 = [generateSeuraavaStep(stepsA, 0), agreement1, agreement2, inter, ...A, ...[changePairs], ...D, ...[endTask]]
+        var participant3 = [generateSeuraavaStep(stepsB, 0), agreement1, agreement2, inter, ...B, ...[changePairs], ...C, ...[endTask]]
+        var participant4 = [generateSeuraavaStep(stepsB, 0), agreement1, agreement2, inter, ...B, ...[changePairs], ...D, ...[endTask]]
       } else {
         console.log("Strangers - Friends")
         console.log("P1: D->B")
         console.log("P2: C->B")
         console.log("P3: D->A")
         console.log("P4: C->A")
-        var participant1 = [agreement1, agreement2, ...D, ...[changePairs], ...B, ...[endTask]]
-        var participant2 = [agreement1, agreement2, ...C, ...[changePairs], ...B, ...[endTask]]
-        var participant3 = [agreement1, agreement2, ...D, ...[changePairs], ...A, ...[endTask]]
-        var participant4 = [agreement1, agreement2, ...C, ...[changePairs], ...A, ...[endTask]]
+        var participant1 = [generateSeuraavaStep(stepsD, 0), agreement1, agreement2, inter, ...D, ...[changePairs], ...B, ...[endTask]]
+        var participant2 = [generateSeuraavaStep(stepsC, 0), agreement1, agreement2, inter, ...C, ...[changePairs], ...B, ...[endTask]]
+        var participant3 = [generateSeuraavaStep(stepsD, 0), agreement1, agreement2, inter, ...D, ...[changePairs], ...A, ...[endTask]]
+        var participant4 = [generateSeuraavaStep(stepsC, 0), agreement1, agreement2, inter, ...C, ...[changePairs], ...A, ...[endTask]]
       }
 
       var participant1 = participant1.map(i => [i])

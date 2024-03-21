@@ -51,10 +51,10 @@ function generateTappingTimeline(lang, alicia){
       show_clickable_nav: true,
   }
 
-  var randomElPesebreIndex = random(0, songKeys['7'].length -1)
+  var randomElPesebreIndex = random(0, songKeys['7'].length)
   var randomElPesebreSong = songKeys['7'][randomElPesebreIndex]
 
-  var randomMetronome = random(0, songKeys['11'].length -1)
+  var randomMetronome = random(0, songKeys['11'].length)
   var randomMetronome = songKeys['11'][randomMetronome]
 
   var songsToPreload = [randomElPesebreSong, randomMetronome]

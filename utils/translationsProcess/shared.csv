@@ -2,15 +2,15 @@ keys,eng,fi,pt
 howLongSing,How long have you been singing as a hobby?,Kuinka kauan olet harrastanut laulamista?,How long have you been singing as a hobby?
 howOftenSingBefore,How often did you sing when you were most active with the hobby?,Kuinka usein lauloit harrastuksen aktiivisimmassa vaiheessa?,How often did you sing when you were most active with the hobby?
 howOftenSingNow,How often do you sing nowadays?,Kuinka usein laulat nykyään?,How often do you sing nowadays?
-howMuchTuitionSing,How much tuition have you received for singing (outside primary/lower secondary school)?,Kuinka paljon opetusta olet saanut laulamiseen (peruskoulun ulkopuolella)?,How much tuition have you received for singing (outside primary/lower secondary school)?
+howMuchTuitionSing,How many years of tuition have you received for singing (outside primary/lower secondary school)?,Kuinka monta vuotta olet saanut opetusta laulamiseen (peruskoulun ulkopuolella)?,How many years of tuition have you received for singing (outside primary/lower secondary school)?
 howLongInstrumentHobby,How long have you been playing a musical instrument as a hobby?,Kuinka kauan olet harrastanut musiikki-instrumentin soittamista?,How long have you been playing a musical instrument as a hobby?
 howOftenPlayHobby,How often did you play when you were most active with the hobby?,Kuinka usein soitit harrastuksen aktiivisimmassa vaiheessa?,How often did you play when you were most active with the hobby?
 howOftenPlayNow,How often do you play nowadays?,Kuinka usein soitat nykyään?,How often do you play nowadays?
-howMuchTuitionInstrument,How much tuition have you received for playing (outside primary/lower secondary school)?,Kuinka paljon opetusta olet saanut soittamiseen (peruskoulun ulkopuolella)?,How much tuition have you received for playing (outside primary/lower secondary school)?
+howMuchTuitionInstrument,How many years of tuition have you received for playing (outside primary/lower secondary school)?,Kuinka monta vuotta olet saanut opetusta soittamiseen (peruskoulun ulkopuolella)?,How many years of tuition have you received for playing (outside primary/lower secondary school)?
 howLongDanceHobby,How long have you been dancing as a hobby?,Kuinka kauan olet harrastanut tanssimista?,How long have you been dancing as a hobby?
 howLongDanceHobyBefore,How often did you dance when you were most active with the hobby?,Kuinka usein tanssit harrastuksen aktiivisimmassa vaiheessa?,How often did you dance when you were most active with the hobby?
 howOftenDanceNow,How often do you dance nowadays?,Kuinka usein tanssit nykyään?,How often do you dance nowadays?
-howMuchTuitionDance,How much tuition have you received for dancing (outside primary/lower secondary school)?,Kuinka paljon opetusta olet saanut tanssimiseen (peruskoulun ulkopuolella)?,How much tuition have you received for dancing (outside primary/lower secondary school)?
+howMuchTuitionDance,How many years of tuition have you received for dancing (outside primary/lower secondary school)?,Kuinka monta vuotta olet saanut opetusta tanssimiseen (peruskoulun ulkopuolella)?,How many years of tuition have you received for dancing (outside primary/lower secondary school)?
 howOftenListenMusicNow,How often do you listen to music nowadays?,Kuinka usein kuuntelet musiikkia nykyään?,How often do you listen to music nowadays?
 howMusical,How musical do you consider yourself?,Kuinka musikaaliseksi koet itsesi?,How musical do you consider yourself?
 notAtAlMusical,not at all musical,en lainkaan musikaaliseksi,not at all musical
@@ -91,7 +91,7 @@ somewhatAgree,somewhat agree,jonkin verran samaa mieltä,somewhat agree
 completelyAgree,completely agree,täysin samaa mieltä,completely agree
 shareMusic,When I share music with someone I feel a special connection with that person.,"Kun jaan musiikkikokemuksen toisen kanssa, tunnen erityistä yhteyttä häneen",When I share music with someone I feel a special connection with that person.
 freeNoListen,In my free time I hardly listen to music,En juurikaan kuuntele musiikkia vapaa-aikanani,In my free time I hardly listen to music
-listenEmotion,I like listen to music that contains emotion,"Pidän sellaisen musiikin kuuntelusta, jossa on tunnetta",I like listen to music that contains emotion
+listenEmotion,I like to listen to music that contains emotion,"Pidän sellaisen musiikin kuuntelusta, jossa on tunnetta",I like to listen to music that contains emotion
 musicCompany,Music keeps me company when I’m alone,Musiikki pitää minulle seuraa yksin ollessani,Music keeps me company when I’m alone
 dontLikeDance,"I don’t like to dance, not even with music I like",En pidä tanssimisesta edes mielimusiikkini tahtiin,"I don’t like to dance, not even with music I like"
 musicMakesMeBond,Music makes me bond with other people,Musiikki saa minut kokemaan yhteenkuuluvuutta muiden kanssa,Music makes me bond with other people
