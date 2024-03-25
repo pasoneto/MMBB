@@ -1,4 +1,4 @@
-function generateTappingTimeline(lang, alicia){
+function generateTappingTimeline(lang, studyID){
   var frontPage = {
       type: jsPsychInstructions,
       pages: [tapping["openPage"][lang]],
@@ -6,18 +6,6 @@ function generateTappingTimeline(lang, alicia){
       button_label_previous: buttons["previous"][lang],
       show_clickable_nav: true,
   }
-
-  var frontPageAlicia = {
-    type: jsPsychHtmlButtonResponse,
-    prompt: 'User ID is:',
-    choices: [recurring["continue"][lang]],
-    stimulus: '',
-    on_start: function(trial){
-      window.userIDAlicia = jsPsych.randomization.randomID(10)
-      trial.prompt = "userID is: " + window.userIDAlicia; // this will change what stimulus is displayed in the trial
-      jsPsych.data.addProperties({userIDAlicia: window.userIDAlicia});
-    }
-  };
 
   var instruction0 = {
       type: jsPsychInstructions,
@@ -162,20 +150,10 @@ function generateTappingTimeline(lang, alicia){
     }
   };
 
-  var endAlicia = {
-    type: jsPsychHtmlButtonResponse,
-    prompt: 'Please double check the userID',
-    choices: [recurring["continue"][lang]],
-    stimulus: '',
-    on_start: function(trial){
-      trial.prompt = "userID is: " + window.userIDAlicia; // this will change what stimulus is displayed in the trial
-    }
-  };
-
   var tappingTimeline = [[frontPage, preloadSongs2, instruction0, trialTapping0, messageEndTask, howDifficult, instruction1, trialTapping1, messageEndTask, howDifficult, instruction3, trialTapping3, howDifficult]];
 
-  if(alicia == "1"){
-    var tappingTimeline = [[frontPageAlicia, preloadSongs2, instruction0, trialTapping0, messageEndTask, howDifficult, instruction1, trialTapping1, messageEndTask, howDifficult, endAlicia]];
+  if(studyID == "alicia"){
+    var tappingTimeline = [[frontPage, preloadSongs2, instruction0, trialTapping0, messageEndTask, howDifficult, instruction1, trialTapping1, messageEndTask, howDifficult]];
   }
 
   return(tappingTimeline)

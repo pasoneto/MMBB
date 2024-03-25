@@ -78,6 +78,7 @@
 
       var lang = jatos.urlQueryParameters.lang;
       var uniqueID = jatos.urlQueryParameters.uniqueID;
+      var studyID = jatos.urlQueryParameters.studyID
   
       window.jsPsych = initJsPsych({
         show_progress_bar: true,
@@ -135,7 +136,7 @@
           if(Number(trialIndex) < Number(nTrials)){
             trialIndex = Number(trialIndex)+1
 
-            var urlRedirect = studyLinks['rhythmLink'] + "?user=" + userID + "&trialIndex=" + trialIndex + "&nodeIndex=" + nodeIndex + "&lang=" + lang + "&alicia=" + alicia + '&studyID=' + studyID + '&uniqueID=' + uniqueID
+            var urlRedirect = studyLinks['rhythmLink'] + "?user=" + userID + "&trialIndex=" + trialIndex + "&nodeIndex=" + nodeIndex + "&lang=" + lang + '&studyID=' + studyID + '&uniqueID=' + uniqueID
             
             console.log("Next trial")
             console.log(urlRedirect)
@@ -155,7 +156,7 @@
               trialIndex = Number(0)
               nodeIndex = Number(nodeIndex)+1
 
-              var urlRedirect = studyLinks['rhythmLink'] + "?user=" + userID + "&trialIndex=" + trialIndex + "&nodeIndex=" + nodeIndex + "&lang=" + lang + "&alicia=" + alicia + '&studyID=' + studyID + '&uniqueID=' + uniqueID;
+              var urlRedirect = studyLinks['rhythmLink'] + "?user=" + userID + "&trialIndex=" + trialIndex + "&nodeIndex=" + nodeIndex + "&lang=" + lang + '&studyID=' + studyID + '&uniqueID=' + uniqueID;
 
               console.log("Next node")
               console.log(urlRedirect)
@@ -178,19 +179,10 @@
         }
       });
 
-      var alicia = jatos.urlQueryParameters.alicia //Checks if it is reduced version of tapping task for alicia
-      if(alicia == '0'){
-        console.log("running full test")
-      }
-      if(alicia == undefined){
-        console.log("Running full test")
-        var alicia = '0'
-      }
-
       var sequenceTrials = {
         intro: generateGeneralIntroWrap(lang, "rhythm"),
         bat: generateBatTimeline(lang),
-        tapping: generateTappingTimeline(lang, alicia) //alicia variable tells which timeline will be presented
+        tapping: generateTappingTimeline(lang, studyID) //study ID tells which timeline will be presented
       }
 
       //Storing cookies for the sequence of trials
@@ -239,7 +231,7 @@
       window.completeSequence = [[[frontPageRhythm]], sequenceTrials["intro"], sequenceTrials[indexTrial[0]], sequenceTrials[indexTrial[1]], [[messageFinishSub]]]
 
       //Alicia's test
-      if(alicia == '1'){
+      if(studyID == 'alicia'){
         window.completeSequence = [[[frontPageRhythm]], sequenceTrials["tapping"], [[messageFinishSub]]]
       }
       console.log(window.completeSequence.length)

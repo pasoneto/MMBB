@@ -11,9 +11,9 @@ for(k in questions1){
 
 var questionnaire2 = []
 var likert_scale = ["ei kuvaa minua hyvin", "", "", "", "kuvaa minua erittäin hyvin"];
-for(k in questions1){
-  var a = {prompt: questions1[k], labels: likert_scale}
-  questionnaire1.push(a)
+for(k in questions2){
+  var a = {prompt: questions2[k], labels: likert_scale}
+  questionnaire2.push(a)
 }
 
 var liket_scale = ["ei lainkaan", "hieman", "jonkin verran", "todella paljon", "erittäin paljon"]
@@ -44,7 +44,7 @@ var modelQuestionnaire2 = {
 var modelQuestionnaire3 = {
   type: jsPsychSurveyLikert,
   questions: questionnaire3,
-  preamble: "Alla on 30 väitettä, joista voit olla samaa tai eri mieltä. Kerro asteikon 1-5 avulla, missä määrin olet samaa mieltä kunkin väitteen kohdalla.",
+  preamble: "Alla on 3 väitettä, joista voit olla samaa tai eri mieltä. Kerro asteikon 1-5 avulla, missä määrin olet samaa mieltä kunkin väitteen kohdalla.",
   randomize_question_order: false,
   button_label: "Jatka",
   data: {trialCategory: "questionnaire_mini_SPIN"}

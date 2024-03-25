@@ -13,8 +13,8 @@ var studyLinks = {
 
 //Server
 var studyLinks = {
-  frontPageLink: "https://mmbb.fi",
-  chooseBatteryLink: "https://mmbb.fi/pages/chooseBattery.html",
+  frontPageLink: "https://mmbb.ltdk.helsinki.fi/login",
+  chooseBatteryLink: "https://mmbb.ltdk.helsinki.fi/chooseBattery.html",
   emotionLink: "https://mmbb.ltdk.helsinki.fi/publix/YK3bdjI0tbl",
   emotionAdaptiveLink: "https://mmbb.ltdk.helsinki.fi/publix/DXL0L8cXc24",
   movementLink: "https://mmbb.ltdk.helsinki.fi/publix/oLzabocUoB1",
@@ -24,3 +24,4 @@ var studyLinks = {
   singingLink: "https://mmbb.ltdk.helsinki.fi/publix/aTWLqQJmemF",
   rhythmLink: "https://mmbb.ltdk.helsinki.fi/publix/PKudyqAmMau"
 }
+

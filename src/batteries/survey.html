@@ -370,7 +370,7 @@
       var haveYouHeardBefore;
       var whoChoseSong;
       //This repeats for each song (7 tracks)
-      function generateSongQuestions(nTrial){
+      function generateSongQuestions(nTrial, afterPlaylist){
         var songQuestions = {
             type: jsPsychHtmlSliderResponse,
             stimulus: ["<br><br>Kuinka paljon pidit kappaleesta?<br><br>",
@@ -418,31 +418,33 @@
               titleKnowSong.innerHTML = 'Oletko kuullut kappaleen aiemmin?<br><br>';
               container.append(titleKnowSong);
               container.append(knowSongDiv);
-
+            
               //Who chose song
-              var choseSongDiv = document.createElement("div")
-              var buttonTexts = ["Minä", "Parini", "Molemmat"];
+              if(afterPlaylist){
+                var choseSongDiv = document.createElement("div")
+                var buttonTexts = ["Minä", "Parini", "Molemmat"];
 
-              buttonTexts.map(i => {
-                var buttonDiv = document.createElement("button")
-                buttonDiv.setAttribute('id', 'buttonChoseSong')
-                buttonDiv.style.width = "20%";
-                buttonDiv.style.height = "30px";
-                buttonDiv.onclick = function(){
-                  window.whoChoseSong = this.innerHTML;
-                  document.querySelectorAll("#buttonChoseSong").forEach(i => {
-                    i.style.background = "#fa6400";
-                  })
-                  this.style.background = "purple";
-                }
-                buttonDiv.innerHTML = i;
-                choseSongDiv.appendChild(buttonDiv);
-              });
+                buttonTexts.map(i => {
+                  var buttonDiv = document.createElement("button")
+                  buttonDiv.setAttribute('id', 'buttonChoseSong')
+                  buttonDiv.style.width = "20%";
+                  buttonDiv.style.height = "30px";
+                  buttonDiv.onclick = function(){
+                    window.whoChoseSong = this.innerHTML;
+                    document.querySelectorAll("#buttonChoseSong").forEach(i => {
+                      i.style.background = "#fa6400";
+                    })
+                    this.style.background = "purple";
+                  }
+                  buttonDiv.innerHTML = i;
+                  choseSongDiv.appendChild(buttonDiv);
+                });
 
-              var titleChoseSong = document.createElement("div")
-              titleChoseSong.innerHTML = '<br><br>Kumpi ehdotti tätä kappaletta?<br><br>';
-              container.append(titleChoseSong);
-              container.append(choseSongDiv);
+                var titleChoseSong = document.createElement("div")
+                titleChoseSong.innerHTML = '<br><br>Kumpi ehdotti tätä kappaletta?<br><br>';
+                container.append(titleChoseSong);
+                container.append(choseSongDiv);
+              }
 
 
               //Create local progress bar
@@ -469,15 +471,24 @@
       }
 
       var questionsAboutSongs = {
-        timeline: [1, 2, 3, 4, 5, 6].map(i => generateSongQuestions(i)).flat()
+        timeline: [1, 2, 3, 4, 5, 6].map(i => generateSongQuestions(i, false)).flat()
+      }
+
+      var questionsAboutSongsPlaylist = {
+        timeline: [1, 2, 3, 4, 5, 6].map(i => generateSongQuestions(i, true)).flat()
       }
 
       var feedbackSpace = {
         type: jsPsychSurveyHtmlForm,
         preamble: '<p style="font-size:3vw">Onko sinulla antaa jotain palautetta?</p>',
-        html: '<p><input type="text" rows="3" id="test-resp-box" name="response" size="100" /></p>',
+        html: '<p><textarea name="response" id="test-resp-box" cols="100", rows="5"></textarea></p>',
         data: { trialCategory: 'feedback' },
-        autofocus: 'test-resp-box'
+        autofocus: 'test-resp-box',
+        button_label: "Jatka",
+        on_load: function(){
+          document.querySelector('.jspsych-display-element input[type="text"]').style.height = "80px"
+        }
+        
       };
 
       var endTask = {
@@ -517,7 +528,7 @@
                howFeeling, closeness1, 
                //inter,
                //generateSeuraavaStep(stepsA, 6), //Song ratings
-               questionsAboutSongs, 
+               questionsAboutSongsPlaylist, 
                inter, 
                generateSeuraavaStep(stepsA, 7),
                modelQuestionnaire1, modelQuestionnaire2, modelQuestionnaire3, 
@@ -564,7 +575,7 @@
                howFeeling, closeness1, 
                //inter,
                //generateSeuraavaStep(stepsB, 9),
-               questionsAboutSongs, 
+               questionsAboutSongsPlaylist, 
                inter, 
                generateSeuraavaStep(stepsB, 10),
                howFeeling, closeness1, 
@@ -599,7 +610,7 @@
                closeness1, 
                //inter,
                //generateSeuraavaStep(stepsC, 6),
-               questionsAboutSongs, 
+               questionsAboutSongsPlaylist, 
                inter,
                generateSeuraavaStep(stepsC, 7),
                linkToMMBB, 
@@ -637,7 +648,7 @@
                //inter,
                //generateSeuraavaStep(stepsD, 4),
                questionsAboutSongs, 
-               inter, 
+               inter,
                generateSeuraavaStep(stepsD, 5),
                generateSeuraavaStep(stepsD, 6),
                howFeeling, 
@@ -650,7 +661,7 @@
                closeness1, 
                //inter,
                //generateSeuraavaStep(stepsD, 8),
-               questionsAboutSongs, 
+               questionsAboutSongsPlaylist,
                inter,
                generateSeuraavaStep(stepsD, 10),
                linkToMMBB, 
@@ -695,7 +706,8 @@
         var nodeIndex = 0
       }
 
-      jsPsych.run(participantsObject[participantNumberUrl][nodeIndex]);
+      jsPsych.run([feedbackSpace]);
+      //jsPsych.run(participantsObject[participantNumberUrl][nodeIndex]);
 
     })
 
