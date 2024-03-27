@@ -5,6 +5,7 @@
     <title>MMBB - login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
     <link href="./src/styles/frontPageStyles.css" rel="stylesheet" type="text/css"/>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.2/firebase-ui-auth.css" />
 
   </head>
 
@@ -13,6 +14,9 @@
       <img id="gif" src="./images/coe.gif" />
     </div>
     <div id="userName"></div>
+    <div id="container">
+      <div id="firebaseui-auth-container"></div>
+    </div>
     <div id="footer">
       <a href="https://www.jyu.fi/hytk/fi/laitokset/mutku/en/coe-mmbb">MMBB - CoE</a>
     </div>
@@ -36,10 +40,6 @@
     window.location.replace("https://mmbb.ltdk.helsinki.fi/login?" + "lang=" + lang + "&studyID=" + studyID);
 
   </script>
-
-
-
-
 
 
 </html>
