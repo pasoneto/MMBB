@@ -4,17 +4,7 @@
     <meta charset="UTF-8">
     <title>MMBB - login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-    <script src="https://www.gstatic.com/firebasejs/9.13.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.13.0/firebase-auth-compat.js"></script>
-    <script type="module" src="https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js"></script>
-
-    <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore-compat.js"></script>
-    <script type="module" src="https://www.gstatic.com/firebasejs/10.5.0/firebase-database.js"></script>
-
     <link href="./src/styles/frontPageStyles.css" rel="stylesheet" type="text/css"/>
-    <script src="https://www.gstatic.com/firebasejs/ui/6.0.2/firebase-ui-auth.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.2/firebase-ui-auth.css" />
-    <!--<script src="jatos.js"></script>-->
 
   </head>
 
@@ -23,71 +13,27 @@
       <img id="gif" src="./images/coe.gif" />
     </div>
     <div id="userName"></div>
-    <div id="container">
-      <div id="firebaseui-auth-container"></div>
-    </div>
     <div id="footer">
       <a href="https://www.jyu.fi/hytk/fi/laitokset/mutku/en/coe-mmbb">MMBB - CoE</a>
     </div>
   </body>
 
-  <script src="./utils/studyLinks.js"></script>
-  <script src="./utils/manageCookies.js"></script>
-  <script src="./backend/firebaseSetUp.js"></script>
-  <script src="./backend/pushDatabase.js"></script>
-  <script src="./backend/setupLogFile.js"></script>
-  <script src="./backend/auth.js"></script>
-
   <script>  
 
-    firebase.auth().onAuthStateChanged(user => {
-      if(user){ //If user logged in, stay in choose battery, else go to auth
-        var queryStringIndex = window.location.search;
-        var urlParamsIndex = new URLSearchParams(queryStringIndex);
+    var queryStringIndex = window.location.search;
+    var urlParamsIndex = new URLSearchParams(queryStringIndex);
 
-        var userID = user.uid
-        var lang = urlParamsIndex.get('lang')
+    var lang = urlParamsIndex.get('lang')
 
-        var studyID = urlParamsIndex.get('studyID')
-        if(studyID == undefined){
-          var studyID = "main"
-        }
-        if(lang == undefined){
-          var lang = "eng"
-        }
-
-        var uniqueID = urlParamsIndex.get('uniqueID')
-
-        var db = firebase.firestore();
-        db.collection("users").where("userID", "==", userID)
-            .get()
-            .then((querySnapshot) => {
-                var firstLogin = querySnapshot.empty
-                //If is first login of user
-                if (firstLogin) { 
-                  //Add user's name to database
-                  db.collection("users").add({
-                      userID: userID,
-                      survey: true,
-                  }).then(r => {
-                    //Then redirect to basic survey
-                    var urlRedirect = studyLinks['sharedLink'] + '?lang=' + lang + '&user=' + userID + '&studyID=' + studyID + '&version=' + 'basic' + '&uniqueID=' + uniqueID;
-                    location.href = urlRedirect
-                  })
-                  .catch((error) => {
-                      console.error("Error adding document: ", error);
-                  });
-                } else {
-                  //Send straight to main page
-                  var urlRedirect = studyLinks['chooseBatteryLink'] + '?lang=' + lang + '&user=' + userID + '&studyID=' + studyID + '&uniqueID=' + uniqueID;
-                  location.href = urlRedirect
-                }
-            })
-            .catch((error) => {
-                console.log("Error getting documents: ", error);
-            });
-      }
-    })
+    var studyID = urlParamsIndex.get('studyID')
+    if(studyID == undefined){
+      var studyID = "main"
+    }
+    if(lang == undefined){
+      var lang = "eng"
+    }
+  
+    window.location.replace("https://mmbb.ltdk.helsinki.fi/login?" + "lang=" + lang + "&studyID=" + studyID);
 
   </script>
 
