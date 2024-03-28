@@ -1172,78 +1172,105 @@
 
 		jatos.addAbortButton();
 		var timeline=[instruction0, generalInstructions, initializeMic, testrecord1, loop_record2, testrecord3,voicesel1,voicesel2,voicesel3,voicesel4];
-	// tone and tonerep by chance 
-	if (Math.random()<0.5) {
-	// first single tones, then repetition
-		timeline.push(toneintro1);
-		timeline.push(toneintro2);
-		timeline.push(tone_trials);
-		timeline.push(tone_feedback);
-		timeline.push(tonerepintro1);
-		timeline.push(tonerepintro2);
-		timeline.push(tonerep_trials);
-		timeline.push(tonerep_feedback);
-	} else {
-		// first repetition, then single tones
-		timeline.push(tonerepintro1);
-		timeline.push(tonerepintro2);
-		timeline.push(tonerep_trials);
-		timeline.push(tonerep_feedback);
-		timeline.push(toneintro1);
-		timeline.push(toneintro2);
-		timeline.push(tone_trials);
-		timeline.push(tone_feedback);
-	}
-	if (Math.random()<0.5) {
-		// first single tone sequences, then repetition
-		timeline.push(toneseqintro1);
-		timeline.push(toneseqintro2);
-		timeline.push(toneseq_trials);
-		timeline.push(toneseq_feedback);
-		timeline.push(toneseqrepintro1);
-		timeline.push(toneseqrepintro2);
-		timeline.push(toneseqrep_trials);
-		timeline.push(toneseqrep_feedback);
-	} else {
-		// first repetition, then single tones
-		timeline.push(toneseqrepintro1);
-		timeline.push(toneseqrepintro2);
-		timeline.push(toneseqrep_trials);
-		timeline.push(toneseqrep_feedback); timeline.push(toneseqintro1);
-		timeline.push(toneseqintro2);
-		timeline.push(toneseq_trials);
-		timeline.push(toneseq_feedback);
-	  }
+	// tone and tonerep by chance
+  if (studyID=="lukilapsi") {
+  // simplified set for lukilapsi
+    console.log("lukilapsi customizations / singing");
 
-	if (Math.random()<0.5) {
-	// select order randomly: first memory, then sing-along
-			timeline.push(famsong_memory_intro1);
-			timeline.push(famsong_memory_intro2);
-			timeline.push(famsong_memory_trial);
-			timeline.push(famsong_memory_feedback);
-			timeline.push(famsong_along_intro1);
-			timeline.push(famsong_along_intro2);
-			timeline.push(famsong_along_trial);
-			timeline.push(famsong_along_feedback);		
-		} else {
-		// select order randomly: first sing-along, then memory
-			timeline.push(famsong_along_intro1);
-			timeline.push(famsong_along_intro2);
-			timeline.push(famsong_along_trial);
-			timeline.push(famsong_along_feedback);
-			timeline.push(famsong_memory_intro1);
-			timeline.push(famsong_memory_intro2);
-			timeline.push(famsong_memory_trial);
-			timeline.push(famsong_memory_feedback);
-		}
-		
-		timeline.push(novsong_intro1);
-		timeline.push(novsong_intro2);
-		timeline.push(novsong_intro3);
-		timeline.push(novsong_trial);
-		timeline.push(novsong_feedback);
+    // just single tones, no sing-along/ repetition
+    timeline.push(toneintro1);
+    timeline.push(toneintro2);
+    timeline.push(tone_trials);
+    // just single tone sequences, no sing-along/ repetition
+    timeline.push(toneseqintro1);
+    timeline.push(toneseqintro2);
+    timeline.push(toneseq_trials);
 
-		timeline.push(thankyoupage);
+    // only memory, no sing-along
+    timeline.push(famsong_memory_intro1);
+    timeline.push(famsong_memory_intro2);
+    timeline.push(famsong_memory_trial);
+    
+    timeline.push(novsong_intro1);
+    timeline.push(novsong_intro2);
+    timeline.push(novsong_intro3);
+    timeline.push(novsong_trial);
+
+    timeline.push(thankyoupage);
+   
+  } else {
+    if (Math.random()<0.5) {
+    // first single tones, then repetition
+      timeline.push(toneintro1);
+      timeline.push(toneintro2);
+      timeline.push(tone_trials);
+      timeline.push(tone_feedback);
+      timeline.push(tonerepintro1);
+      timeline.push(tonerepintro2);
+      timeline.push(tonerep_trials);
+      timeline.push(tonerep_feedback);
+    } else {
+      // first repetition, then single tones
+      timeline.push(tonerepintro1);
+      timeline.push(tonerepintro2);
+      timeline.push(tonerep_trials);
+      timeline.push(tonerep_feedback);
+      timeline.push(toneintro1);
+      timeline.push(toneintro2);
+      timeline.push(tone_trials);
+      timeline.push(tone_feedback);
+    }
+    if (Math.random()<0.5) {
+      // first single tone sequences, then repetition
+      timeline.push(toneseqintro1);
+      timeline.push(toneseqintro2);
+      timeline.push(toneseq_trials);
+      timeline.push(toneseq_feedback);
+      timeline.push(toneseqrepintro1);
+      timeline.push(toneseqrepintro2);
+      timeline.push(toneseqrep_trials);
+      timeline.push(toneseqrep_feedback);
+    } else {
+      // first repetition, then single tones
+      timeline.push(toneseqrepintro1);
+      timeline.push(toneseqrepintro2);
+      timeline.push(toneseqrep_trials);
+      timeline.push(toneseqrep_feedback); timeline.push(toneseqintro1);
+      timeline.push(toneseqintro2);
+      timeline.push(toneseq_trials);
+      timeline.push(toneseq_feedback);
+      }
+
+    if (Math.random()<0.5) {
+    // select order randomly: first memory, then sing-along
+        timeline.push(famsong_memory_intro1);
+        timeline.push(famsong_memory_intro2);
+        timeline.push(famsong_memory_trial);
+        timeline.push(famsong_memory_feedback);
+        timeline.push(famsong_along_intro1);
+        timeline.push(famsong_along_intro2);
+        timeline.push(famsong_along_trial);
+        timeline.push(famsong_along_feedback);		
+      } else {
+      // select order randomly: first sing-along, then memory
+        timeline.push(famsong_along_intro1);
+        timeline.push(famsong_along_intro2);
+        timeline.push(famsong_along_trial);
+        timeline.push(famsong_along_feedback);
+        timeline.push(famsong_memory_intro1);
+        timeline.push(famsong_memory_intro2);
+        timeline.push(famsong_memory_trial);
+        timeline.push(famsong_memory_feedback);
+      }
+      
+      timeline.push(novsong_intro1);
+      timeline.push(novsong_intro2);
+      timeline.push(novsong_intro3);
+      timeline.push(novsong_trial);
+      timeline.push(novsong_feedback);
+
+      timeline.push(thankyoupage);
+    }
 		
 		jsPsych.run(timeline.flat(1000));
 
