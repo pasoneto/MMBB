@@ -103,14 +103,14 @@
       var labels = ['Label','Label1','Label2','Trials','Track110','Difficulty','TargetEmo','Soundtrack']
       var emotions = ['angry','fearful','happy','sad','tender']
       var emotions_numeric = [1,2,3,4,5]
-      var excerpts_played = [4,13]
+      var excerpts_played = []
       var difficulty_change = 1
       var N = 20
       var epoch = 0
       var starting_difficulty = [-0.5,0.5]
-      var examples_phase = 1
       var examples_N = example_info[0].length
-      console.log('examples length = ', examples_N)
+      var examples_epoch = 0
+      console.log('Examples length: ', examples_N)
       //var N = 1 //simuBack
       //var N_part2 = 1 //simuBack
       var N_part2 = 12 
@@ -136,7 +136,7 @@
       }
       var theta_idx = Math.round(theta_range.length/2)
       var theta_dis = []
-      console.log(theta_idx)
+      console.log('Theta idx: ',theta_idx)
       //optimizer vars
       var guessing = 0.5
       var optimizer = 1
@@ -199,11 +199,11 @@
         excerpt_order.push(jsPsych.randomization.sampleWithoutReplacement([0,1],2))
       }
 
-      var starting_difficulty_order = []
+      var starting_difficulty_order = [] //randomise the 2 starting difficulties 
       starting_difficulty_order.push(jsPsych.randomization.sampleWithoutReplacement([0,1],2))
       starting_difficulty = [starting_difficulty[starting_difficulty_order[0][0]],starting_difficulty[starting_difficulty_order[0][1]]]
 
-      var starting_difficulty_item = []
+      var starting_difficulty_item = [] //choose one of the four starting trial canditates
       starting_difficulty_item.push(jsPsych.randomization.sampleWithoutReplacement([0,1,2,3],2))
 
       //trials 
@@ -233,13 +233,10 @@
           if (epoch==examples_N){
           epoch = 0
           theta = 0
-          examples_phase = 0
           console.log('Example phase ended')
-          console.log('epoch',2)
           console.log('examples n',examples_N)
           }
       }}
-
       var trial_load_message = {
         type: jsPsychInstructionsTimedout,
         pages: ["<img id='logoLoading' src='./images/loading2.gif'>"],
@@ -247,9 +244,9 @@
         trial_duration: 2000, 
         on_start: function(trial_load_message){
           trial_load_message.pages = ["<img id='logoLoading' src='./images/loading2.gif'>"] 
-        }}      
-
-      var trial1 = {
+        }}  
+        
+        var example_trial1 = {
         type: jsPsychEmotionAudioButtonResponse,
         stimulus: './songs/emotionAudio/trimmed_mp3/001.mp3',
         choices: [images[0]['img'], images[3]['img']],
@@ -275,8 +272,57 @@
           document.getElementById("jspsych-audio-button-response-btngroup").style.marginBottom = "20%"
           //document.getElementById("id_prompt").style.fontSize = '18px'
         },
-        on_start: function(trial1){ 
-          current_emotion = emotions[emotion_order[epoch]-1]
+        on_start: function(example_trial1){ 
+          label1 = example_info[1][examples_epoch]
+          label2 = example_info[2][examples_epoch]
+          trial_track = example_info[4][examples_epoch]
+          trial_idx = example_info[3][examples_epoch]-1
+          console.log('EXAMPLE --------------------------------')
+          trial_images = [label1,label2].sort();
+          trial_track = String(trial_track)
+          while (trial_track.length<3) {
+            trial_track = '0' + trial_track
+          }
+          console.log('Current trial:', trial_idx)
+          example_trial1.stimulus = './songs/emotionAudio/trimmed_mp3/' + trial_track + '.mp3'
+          example_trial1.question = emotionTranslations["whichEmotion"][lang]
+          example_trial1.prompt = emotionTranslations["listen"][lang]
+          example_trial1.choices = [images[trial_images[0]-1], images[trial_images[1]-1]]
+          example_trial1.update_choices = [images[trial_images[0]-1], images[trial_images[1]-1]]
+          },
+        on_finish:function(data){
+          examples_epoch = examples_epoch+1
+        }} 
+
+        var trial1 = {
+        type: jsPsychEmotionAudioButtonResponse,
+        stimulus: './songs/emotionAudio/trimmed_mp3/001.mp3',
+        choices: [images[0]['img'], images[3]['img']],
+        button_html: '<img id="imageButtonEmotion" src="%choice%"/>',
+        update_choices: '',
+        update_text_after_timeout: emotionTranslations['choose'][lang],
+        response_allowed_while_playing: false,
+        response_ends_trial: true,
+        //trial_duration: 1000, //simuBack
+        update_onset: 10000,
+        prompt: 'init',
+        question: 'init',
+        data: {},
+        on_load: function(){
+          console.log("console test")
+          document.querySelectorAll(".jspsych-audio-button-response-button").forEach(
+            function(i) {
+              i.style.fontSize = '16px'
+            }
+          )
+          //document.getElementById("jspsych-audio-button-response-btngroup").style.marginBottom = '60px'
+          document.getElementById("jspsych-audio-button-response-btngroup").style.marginTop = "0px"
+          document.getElementById("jspsych-audio-button-response-btngroup").style.marginBottom = "20%"
+          //document.getElementById("id_prompt").style.fontSize = '18px'
+        },
+        on_start: function(trial1){
+          console.log('EPOCH ',epoch,' -----------------------------------------------') 
+          current_emotion = emotions[emotion_order[epoch]-1] //select emotion category
           candidate_trial = []
           if (epoch>starting_difficulty.length-1){ //find item based on information
             var emo_idx = getInd(trial_info[1],emotion_order[epoch]);
@@ -287,9 +333,9 @@
             difficulty_dist = sortWithIndeces(difficulty_dist)
             difficulty_dist = difficulty_dist['sortIndices']
             trial_idx = trial_idx[difficulty_dist[difficulty_dist.length-1]]
-            console.log(trial_idx) 
+            console.log('Current trial:', trial_idx) 
           }
-          else {       //find item based on starting difficulty
+          else {       //find item based on starting difficulty 
             if (epoch==0) {
               trial_idx = getInd(trial_info[1],emotion_order[epoch]);
             }
@@ -303,20 +349,9 @@
             difficulty_dist = sortWithIndeces(difficulty_dist)
             difficulty_dist = difficulty_dist['sortIndices'].slice(0,4)
             trial_idx = trial_idx[difficulty_dist[starting_difficulty_item[0][epoch]]]
-            console.log(trial_idx)
+            console.log('Current trial:', trial_idx)
           }
           
-          //if (!excerpts_played.includes(level_trials[i]['Name'])){
-            //candidate_trial.push(level_trials[i])}
-              //current_trial = jsPsych.randomization.sampleWithoutReplacement(candidate_trial,1)[0]
-          
-          if (examples_phase==1){ //find examples
-            label1 = example_info[1][epoch]
-            label2 = example_info[2][epoch]
-            trial_track = example_info[4][epoch]
-            trial_idx = example_info[3][epoch]-1
-          }
-          else {  
           excerpts_played[epoch] = trial_info[4][trial_idx] 
           trial_track = excerpts_played[epoch]
           label1 = trial_info[1][trial_idx]
@@ -324,8 +359,6 @@
           temp_excerpt_idx = getInd(trial_info[4],trial_track);
           excerpt_idx = Array.from([...new Set([...temp_excerpt_idx,...excerpt_idx])])
           //console.log('Excluded excerpts: ',excerpt_idx)
-          } 
-          console.log('EPOCH ',epoch,' -----------------------------------------------')
           //console.log('Label1',label1)
           //console.log('Label2',label2)
           trial_images = [label1,label2].sort();
@@ -333,26 +366,23 @@
           while (trial_track.length<3) {
             trial_track = '0' + trial_track
           }
-          console.log(trial_track)
+          console.log('Excerpt playing: ',trial_track)
           trial1.stimulus = './songs/emotionAudio/trimmed_mp3/' + trial_track + '.mp3'
           trial1.question = emotionTranslations["whichEmotion"][lang]
           trial1.prompt = emotionTranslations["listen"][lang]
           trial1.choices = [images[trial_images[0]-1], images[trial_images[1]-1]]
           trial1.update_choices = [images[trial_images[0]-1], images[trial_images[1]-1]]
-          console.log('Example phase = ',examples_phase)
-          console.log('theta = ',theta)
-          console.log('theta index = ',theta_idx)
-          console.log('item difficulty = ',trial_info[5][trial_idx])
-          console.log('optimizer = ',optimizer)
-          console.log('Trial = ',trial_idx)
-          console.log('epoch = ',epoch)
+          console.log('theta: ',theta)
+          console.log('theta index: ',theta_idx)
+          console.log('item difficulty: ',trial_info[5][trial_idx])
+          console.log('optimizer: ',optimizer)
           console.log('Correct responses: ',correct_response)
           console.log('Trial idx history: ',trial_idx_history)
+          console.log('Excerpt played history: ',excerpts_played)
           },
         on_finish: function(data){
           // Score the response as correct or incorrect.
           jsPsych.setProgressBar((epoch+1)/(N))
-          if (examples_phase==0){
           if(data.response == trial_images.findIndex(element => element == label1)){
             correct_response[epoch] = 1;
           }   
@@ -364,8 +394,9 @@
           if(correct_response.some(anyCorrect) && !correct_response.every(anyCorrect)){
             optimizer=2
           }
-
+          //choose optimizer
           if(optimizer==1){
+             //discretetize theta
              if(correct_response[epoch]==1){
               theta = theta + (theta_high-theta)/(2*theta_high/difficulty_change);
              } 
@@ -395,33 +426,20 @@
             while(math.abs(delta_th)>min_criterion){
               if(iter==n_iter){break}
 
-              //p_correct = (guessing+(1-guessing).*p_star(j,th_idx))'
-              //console.log(pstar[theta_idx])
-              console.log('Iteration ',iter)
+              //console.log('Iteration ',iter)
+              //optimizer calculation
               p_correct = math.abs(math.chain(trial_idx_history.map(x=>pstar[theta_idx][x])).multiply(1-guessing).add(guessing).done())
-              //console.log('p star',trial_idx_history.map(x=>pstar[theta_idx][x]))
-              //console.log('p correct',p_correct)
-              //numerator = sum((u-p_correct) .* (p_star(j,th_idx)'./p_correct));
               numerator = math.chain(correct_response).subtract(p_correct).done()
-              //console.log('numerator = ',numerator)
-
               numerator2 = trial_idx_history.map(x=>pstar[theta_idx][x]).map(function(n, i) { return n / p_correct[i]; });
-              //console.log('numerator2 = ',numerator2)
               numerator = math.chain(numerator).multiply(numerator2).done()
-              //console.log('numerator sum= ',numerator)
-              //numerator = numerator.map(function(n, i) { return n * numerator2[i]; });
-              //console.log('numerator final= ',numerator)
-              //numerator = numerator.reduce((accumulator, currentValue) => accumulator + currentValue);
-              //console.log('numerator sum= ',numerator)
-              //denominator = sum(-(p_correct.*(1-p_correct).* (p_star(j,th_idx)'./p_correct).^2));
               denominator = p_correct.map(function(n, i) { return n * math.subtract(1,p_correct)[i]; });
               denominator2 = trial_idx_history.map(x=>pstar[theta_idx][x]).map(function(n, i) { return n / p_correct[i]; });
               denominator2 = denominator2.map(function(n, i) { return n * denominator2[i]; });
               denominator = math.multiply(denominator,denominator2)
               denominator = -denominator
-              //console.log('denominator sum = ',denominator)
               delta_th = numerator/denominator
-              console.log('delta theta = ',delta_th)
+              //console.log('delta theta = ',delta_th)
+              //discrete delta theta change
               if(delta_th>max_jump){
                 delta_th = 0.25
               }
@@ -429,7 +447,8 @@
                 delta_th = -0.25
               }
               theta = theta-delta_th
-              console.log('theta = ',theta)
+              //console.log('theta = ',theta)
+              //bound theta
               if(theta<theta_low){
                 theta_idx = 1
                 theta = theta_low
@@ -444,15 +463,15 @@
                 theta_dis = sortWithIndeces(theta_dis)
                 theta_idx = theta_dis['sortIndices'][0]
                 theta = theta_range[theta_idx]
-                console.log(theta)
+                //console.log(theta)
               }
               iter = iter+1
             }
-            console.log('NUmber of iterations = ',iter)
+            console.log('Number of iterations: ',iter)
             endTime = new Date();
-            console.log('Optimizer time to converge:',(endTime - startTime)/1000);
+            console.log('Optimizer time to converge: ',(endTime - startTime)/1000);
           }
-          }
+          //store trial data
           trial1.data.Correct_emotion = emotions[label1-1]
           trial1.data.Wrong_emotion = emotions[label2-1]
           trial1.data.Trial = trial_idx+1
@@ -466,7 +485,6 @@
           trial1.data.Iterations = iter
           trial1.data.Epoch = epoch
           epoch = epoch+1
-          
       }}
 
       var part1_trials = {
@@ -475,7 +493,7 @@
       }
 
       var example_trials = {
-        timeline: [trial_load_message,trial1, trial_load_message,trial1, example_trials_ending],
+        timeline: [trial_load_message,example_trial1, trial_load_message,example_trial1, example_trials_ending],
       }
 
       //Second part
