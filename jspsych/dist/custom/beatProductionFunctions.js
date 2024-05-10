@@ -262,3 +262,25 @@ function generateContextTrial(songBaseURL, beatsURL, lang){
   };
   return(loadNextTrial)
 }
+
+//Creates countdown:
+function startCountdown(targetTimeSeconds) {
+  // Update the countdown every second
+  var currentTimeSeconds = 0;
+  var countdown = setInterval(function() {
+    // Add seconds to timer 
+    currentTimeSeconds = currentTimeSeconds+1;
+
+    // Calculate the remaining time in seconds
+    var remainingTimeSeconds = targetTimeSeconds - currentTimeSeconds;
+
+    var progressPercentage = (remainingTimeSeconds / (targetTimeSeconds)) * 100;
+    document.getElementById("progress-bar").style.width = progressPercentage + "%";
+
+    if (remainingTimeSeconds <= 0) {
+      clearInterval(countdown);
+    }
+    
+  }, 10); // Update every second
+  return(countdown)
+}

@@ -24,4 +24,3 @@ var studyLinks = {
   singingLink: "https://mmbb.ltdk.helsinki.fi/publix/aTWLqQJmemF",
   rhythmLink: "https://mmbb.ltdk.helsinki.fi/publix/PKudyqAmMau"
 }
-

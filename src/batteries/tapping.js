@@ -155,6 +155,9 @@ function generateTappingTimeline(lang, studyID){
   if(studyID == "alicia"){
     var tappingTimeline = [[frontPage, preloadSongs2, instruction0, trialTapping0, messageEndTask, howDifficult, instruction1, trialTapping1, messageEndTask, howDifficult]];
   }
+  if(studyID == "phase"){
+    var tappingTimeline = [[frontPage, preloadSongs2, instruction1, trialTapping1, messageEndTask]];
+  }
 
   return(tappingTimeline)
 }

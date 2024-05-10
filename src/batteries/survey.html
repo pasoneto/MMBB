@@ -96,6 +96,32 @@
 
       window.currentPair = jatos.urlQueryParameters.currentPair;
       var jsPsych = initJsPsych({
+        on_trial_start: function(trial) {
+          var groupNumber = jatos.urlQueryParameters.group
+          var participantNumberUrl = jatos.urlQueryParameters.participantNumber
+          var nodeIndex = jatos.urlQueryParameters.nodeIndex
+          var nodeIndex = jatos.urlQueryParameters.nodeIndex
+          if(nodeIndex == undefined){
+            var nodeIndex = 0
+          }
+          if(nodeIndex > 0){
+            var nodeIndex = nodeIndex-1
+          }
+          var urlRedirect = studyLinks['surveyFriendsStrangers'] + "?participantNumber=" + participantNumberUrl + "&group=" + groupNumber + "&nodeIndex=" + nodeIndex + "&currentPair=" + window.currentPair
+          var button = document.createElement("button");
+          button.classList.add("fixed-button");
+          button.textContent = "Edellinen";
+          button.addEventListener("click", function() {
+            jatos.endStudyAndRedirect(urlRedirect, {back_button_pressed: true,
+                                                    participantNumber: participantNumberUrl,
+                                                    group: groupNumber,
+                                                    nodeIndex: nodeIndex,
+                                                    currentPair: window.currentPair})
+          });
+          if(nodeIndex > 1){
+            document.body.appendChild(button);
+          }
+        },
         on_finish: function() {
 
           var groupNumber = jatos.urlQueryParameters.group
@@ -169,19 +195,6 @@
         choices: ["Hyväksyn"],
         prompt: ""
       };
-
-      var instruction1 = {
-          type: jsPsychInstructions,
-          pages: [
-          'When you click start, you will see some questions.',
-          'Your task is to answer them.'
-          ],
-          button_label_next: "Seuraava",
-          button_label_previous: "Edellinen",
-          show_clickable_nav: true
-      }
-
-      const sorting_stimuli = ['./img/survey/a.001.png', './img/survey/a.002.png']
 
       var howFeeling = {
           type: jsPsychHtmlSliderResponse,

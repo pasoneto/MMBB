@@ -53,6 +53,13 @@
 
                     var timeEnd = Date.now();
 
+                    window.userID = jatos.urlQueryParameters.user
+                    window.studyID = jatos.urlQueryParameters.studyID
+                    window.lang = jatos.urlQueryParameters.lang
+                    if (window.studyID == undefined) {
+                        window.studyID = "main"
+                    }
+
                     jsPsych.data.addProperties({
                         userID: userID,
                         lang: lang,

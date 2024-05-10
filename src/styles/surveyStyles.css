@@ -267,3 +267,11 @@ button:focus {
   font-size: 15px;
   color: gray;
 }
+
+.fixed-button {
+    position: fixed;
+    top: 20px; /* Adjust the top margin as needed */
+    left: 20px; /* Adjust the left margin as needed */
+    background: #82b3e7;
+    z-index: 999; /* Ensure the button stays on top of other elements */
+}

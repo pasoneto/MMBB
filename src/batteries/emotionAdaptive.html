@@ -54,6 +54,8 @@
       window.lang = jatos.urlQueryParameters.lang
       window.part = jatos.urlQueryParameters.part
       window.uniqueID = jatos.urlQueryParameters.uniqueID
+      window.studyID = jatos.urlQueryParameters.studyID
+      window.userID = jatos.urlQueryParameters.user
 
       if(window.lang == undefined){
         window.lang = "eng"
@@ -73,8 +75,6 @@
             allowRefresh();
             var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&Emotion" + window.part + "=done" + "&studyID=" + studyID + '&uniqueID=' + uniqueID;
             jatos.endStudyAndRedirect(urlRedirect, finalData)
-
-            //jatos.endStudyAndRedirect("https://mmbb.ltdk.helsinki.fi/publix/oLzabocUoB1?lang=eng", finalData) //simuBack
 
       }});
 
@@ -465,8 +465,13 @@
           trial1.data.Optimizer = optimizer
           trial1.data.Iterations = iter
           trial1.data.Epoch = epoch
+          trial1.data.part = "one"
           epoch = epoch+1
-          
+
+          console.log("Data appended to trial here:")
+          console.log(trial1.data) 
+          console.log(jsPsych.data.get())
+
       }}
 
       var part1_trials = {
@@ -693,7 +698,7 @@
         prompt: emotionTranslations['thankYouEnd'][lang],
         choices: [],
         //choices: ["a"], //simuBack
-        trial_duration: 2000,
+        trial_duration: 2000000000000000,
         stimulus: '',
         on_start: function(){
           var cookieExpires = (new Date(Date.now()+ 86400*1000)).toUTCString();

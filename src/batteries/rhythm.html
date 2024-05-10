@@ -72,13 +72,12 @@
 
     var jsPsych;
 
-    var userIDAlicia; //Stores ID for alicia's study
-
     jatos.onLoad(() => {
 
       var lang = jatos.urlQueryParameters.lang;
       var uniqueID = jatos.urlQueryParameters.uniqueID;
       var studyID = jatos.urlQueryParameters.studyID
+      var userID = jatos.urlQueryParameters.user
   
       window.jsPsych = initJsPsych({
         show_progress_bar: true,
@@ -97,7 +96,6 @@
 
           var userID = jatos.urlQueryParameters.user
           var studyID = jatos.urlQueryParameters.studyID
-          //var userID = urlParams.get('user')
           if(studyID == undefined){
             var studyID = "main"
           }
@@ -234,6 +232,7 @@
       if(studyID == 'alicia'){
         window.completeSequence = [[[frontPageRhythm]], sequenceTrials["tapping"], [[messageFinishSub]]]
       }
+
       console.log(window.completeSequence.length)
       var nodeIndex = jatos.urlQueryParameters.nodeIndex //Which trial to be performed
       if(nodeIndex == undefined){ 

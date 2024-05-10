@@ -95,6 +95,7 @@ var jsPsychAudioButtonResponse = (function (jspsych) {
           };
           // record webaudio context start time
           var startTime;
+          var audioStart;
 
           var baseLatencyEnd;
           var outputLatencyEnd;
@@ -180,10 +181,11 @@ var jsPsychAudioButtonResponse = (function (jspsych) {
               // start time
               startTime = performance.now();
               // start audio
-
+              console.log("Here")
               if (context !== null) {
                   startTime = context.currentTime;
                   this.audio.start(startTime);
+                  audioStart = performance.now();
 
                   baseLatencyBegin = context.baseLatency;
                   outputLatencyBegin = context.outputLatency;
@@ -205,14 +207,14 @@ var jsPsychAudioButtonResponse = (function (jspsych) {
           function after_response(choice) {
               // measure rt
               var endTime = performance.now();
-              var rt = Math.round(endTime - startTime);
+              var rt = endTime - startTime;
               if (context !== null) {
                   endTime = context.currentTime;
-                  rt = Math.round((endTime - startTime) * 1000);
+                  rt = (endTime - startTime) * 1000;
               }
               response.button = parseInt(choice);
               rts.push(rt);
-              rtsAudio.push(context.currentTime - startTime);
+              rtsAudio.push(performance.now() - audioStart);
               console.log(rts)
               console.log(rtsAudio)
               // disable all the buttons after a response

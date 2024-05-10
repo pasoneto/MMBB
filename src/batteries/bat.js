@@ -79,6 +79,9 @@ function generateBatTimeline(lang){
   var trialBeat = {
     type: jsPsychHtmlButtonResponse,
     stimulus: '<div id="titleBAT">' + beatProduction["adjustBeat"][lang] + "</div>" +
+              '<div id="loading-bar">'+
+                '<div id="progress-bar"></div>'+
+              '</div>'+
               '<div class="circle">'+
                 '<div id="firstRowCircle">' +
                 '<button class= "circle deg-4" id="bat0"></button>' +
@@ -96,7 +99,7 @@ function generateBatTimeline(lang){
                 '</div>' +
               '</div>',
     choices: [buttons["continue"][lang]],
-    trial_duration: 500000, //simuBack
+    trial_duration: 90000, //simuBack
     prompt: "",
     on_start: function(data){
       data.initialOffset = window.initialOffset;
@@ -123,7 +126,7 @@ function generateBatTimeline(lang){
       startButton.setAttribute('id', 'startButton');
       document.getElementById("jspsych-content").appendChild(startButton);
       document.getElementById("startButton").addEventListener("click", startSounds)
-
+  
       //document.getElementById("jspsych-html-button-response-btngroup").style.marginTop = "0"
 
       //Start beats
@@ -154,6 +157,8 @@ function generateBatTimeline(lang){
           document.querySelector(".jspsych-btn").disabled = false;
         })
 
+        window.countdown = startCountdown(9000)
+
       }
     },
     on_finish: function(data){
@@ -166,6 +171,7 @@ function generateBatTimeline(lang){
       for(i in allSources) {
         allSources[i].stop() //simuBack
       }
+      clearInterval(window.countdown);
     }
   };
 

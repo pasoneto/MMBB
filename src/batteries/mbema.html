@@ -69,7 +69,11 @@
 
         var timeEnd = Date.now();
 
-        var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&MBEMA=done" + "&uniqueID=" + uniqueID;
+        var userID = jatos.urlQueryParameters.user;
+        var studyID = jatos.urlQueryParameters.studyID;
+        var uniqueID = jatos.urlQueryParameters.uniqueID;
+
+        var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&MBEMA=done" + "&uniqueID=" + uniqueID + "&studyID=" + studyID;
         jatos.endStudyAndRedirect(urlRedirect, finalData)
 
         //jatos.endStudyAndRedirect("https://mmbb.ltdk.helsinki.fi/publix/YK3bdjI0tbl?lang=eng", finalData) //simuBack

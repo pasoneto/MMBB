@@ -9,3 +9,26 @@
     max-height: inherit;
     width: 80%;
 }
+
+#loading-bar {
+  width: 80%;
+  background-color: lightblue;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  height: 10px;
+  position: relative;
+}
+
+#progress-bar {
+  background-color: blue;
+  height: 100%;
+  border-radius: 15px;
+  width: 100%;
+  position: absolute;
+}
+
+#progress-text {
+  color: black;
+  text-align: center;
+  line-height: 30px;
+}
