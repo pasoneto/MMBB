@@ -36,6 +36,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <script src="./utils/translations.js"></script>
+    <script src="./utils/studyIDs.js"></script>
     <script src="./utils/stim_dur_singing.js"></script>
 
 
@@ -136,6 +137,7 @@
     if(studyID == undefined){
       var studyID = "main"
     }
+    var version = studyIDtasks[studyID]
 
     if (lang=="fi") { 
       famsong="PaljonOnneaVaan";

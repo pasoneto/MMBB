@@ -92,6 +92,11 @@ fs.readFile("../../pages/chooseBattery.html", 'utf8', (err, data) => {
   console.log("Success, pushed " + "chooseBattery.html")
 });
 
+fs.readFile("../../utils/studyIDs.js", 'utf8', (err, data) => {
+  pushFileJATOS(data, pathUtils + "studyIDs.js" , 28)
+  console.log("Success, pushed " + "studyIDs.js")
+});
+
 fs.readFile("../../utils/studyLinks.js", 'utf8', (err, data) => {
   pushFileJATOS(data, pathUtils + "studyLinks.js" , 28)
   console.log("Success, pushed " + "studyLinks.js")

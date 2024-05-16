@@ -15,6 +15,7 @@
     <script src="./utils/identifyOS.js"> </script>
     <script src="./utils/manageCookies.js"> </script>
     <script src="./utils/studyLinks.js"> </script>
+    <script src="./utils/studyIDs.js"> </script>
 
     <script src="https://unpkg.com/jspsych@7.1.2"></script>
     <script src="./jspsych/dist/plugin-html-songselector-response.js"> </script>
@@ -77,8 +78,14 @@
       var lang = jatos.urlQueryParameters.lang;
       var uniqueID = jatos.urlQueryParameters.uniqueID;
       var studyID = jatos.urlQueryParameters.studyID
+      if(studyID == undefined){
+        var studyID = "main"
+      }
+      var version = studyIDtasks[studyID]['version']
       var userID = jatos.urlQueryParameters.user
-  
+
+      console.log("Running version " + version) 
+
       window.jsPsych = initJsPsych({
         show_progress_bar: true,
         auto_update_progress_bar: false,
@@ -179,8 +186,8 @@
 
       var sequenceTrials = {
         intro: generateGeneralIntroWrap(lang, "rhythm"),
-        bat: generateBatTimeline(lang),
-        tapping: generateTappingTimeline(lang, studyID) //study ID tells which timeline will be presented
+        bat: generateBatTimeline(lang, studyID, version), //study ID tells which timeline will be presented
+        tapping: generateTappingTimeline(lang, studyID, version) 
       }
 
       //Storing cookies for the sequence of trials
