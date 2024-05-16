@@ -230,12 +230,8 @@
         show_clickable_nav: true,
         allow_backward: false,
         on_start: function(example_trials_ending){
-          if (epoch==examples_N){
-          epoch = 0
-          theta = 0
           console.log('Example phase ended')
           console.log('examples n',examples_N)
-          }
       }}
       var trial_load_message = {
         type: jsPsychInstructionsTimedout,
@@ -472,24 +468,24 @@
             console.log('Optimizer time to converge: ',(endTime - startTime)/1000);
           }
           //store trial data
-          trial1.data.Correct_emotion = emotions[label1-1]
-          trial1.data.Wrong_emotion = emotions[label2-1]
-          trial1.data.Trial = trial_idx+1
-          trial1.data.Track = trial_track
-          trial1.data.Soundtrack = trial_info[7][trial_idx]
-          trial1.data.Theta = theta
-          trial1.data.Theta_idx = theta_idx
-          trial1.data.Difficulty = trial_info[5][trial_idx]
-          trial1.data.Correct_response = correct_response[epoch] 
-          trial1.data.Optimizer = optimizer
-          trial1.data.Iterations = iter
-          trial1.data.Epoch = epoch
-          trial1.data.part = "one"
+          data.Correct_emotion = emotions[label1-1]
+          data.Wrong_emotion = emotions[label2-1]
+          data.Trial = trial_idx+1
+          data.Track = trial_track
+          data.Soundtrack = trial_info[7][trial_idx]
+          data.Theta = theta
+          data.Theta_idx = theta_idx
+          data.Difficulty = trial_info[5][trial_idx]
+          data.Correct_response = correct_response[epoch] 
+          data.Optimizer = optimizer
+          data.Iterations = iter
+          data.Epoch = epoch
+          data.part = "one"
           epoch = epoch+1
 
           console.log("Data appended to trial here:")
-          console.log(trial1.data) 
-          console.log(jsPsych.data.get())
+          console.log(data) 
+          //console.log(jsPsych.data.get())
 
       }}
 
@@ -504,7 +500,7 @@
 
       //Second part
       var stim_dur = 8200
-      var part2_excerpts = ['091','010','093','026','077','055','037','078','088','052','028','041']
+      var part2_excerpts = ['091','010','093','026','077','055','037','078','088','052','028','041','096','065','018']
       var part2_excerpt_order = jsPsych.randomization.repeat(part2_excerpts,1)
       var epochPart2 = 0
 
@@ -717,7 +713,7 @@
         prompt: emotionTranslations['thankYouEnd'][lang],
         choices: [],
         //choices: ["a"], //simuBack
-        trial_duration: 2000000000000000,
+        trial_duration: 2000,
         stimulus: '',
         on_start: function(){
           var cookieExpires = (new Date(Date.now()+ 86400*1000)).toUTCString();
