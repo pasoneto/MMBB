@@ -113,7 +113,7 @@
       console.log('Examples length: ', examples_N)
       //var N = 1 //simuBack
       //var N_part2 = 1 //simuBack
-      var N_part2 = 12 
+      var N_part2 = 15 
 
       // temp vars
       var trial_idx = []
@@ -699,7 +699,7 @@
             console.log(e)
           }
           epochPart2 = epochPart2+1
-          jsPsych.setProgressBar((epoch+epochPart2)/(N+N_part2))
+          jsPsych.setProgressBar(epochPart2/(N_part2))
         },
       };
       
