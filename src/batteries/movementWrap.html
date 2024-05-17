@@ -79,6 +79,11 @@
     jatos.onLoad(() => {
 
       var lang = jatos.urlQueryParameters.lang
+      var studyID = jatos.urlQueryParameters.studyID;
+      if(studyID == undefined){
+        var studyID = "main"
+      }
+      var version = studyIDtasks[studyID]["version"]
 
       //Unique ID if experiment requires additional identification key
       var uniqueID = jatos.urlQueryParameters.uniqueID;
@@ -184,7 +189,7 @@
 
       var sequenceTrials = {
         intro: generateGeneralIntroWrap(lang, "general"),
-        movement: generateMovementTimeline(lang)
+        movement: generateMovementTimeline(lang, version)
       }
 
       var frontPageMovement = {

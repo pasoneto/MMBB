@@ -1,4 +1,4 @@
-function generateTappingTimeline(lang, studyID){
+function generateTappingTimeline(lang, studyID, version){
   var frontPage = {
       type: jsPsychInstructions,
       pages: [tapping["openPage"][lang]],
@@ -150,13 +150,18 @@ function generateTappingTimeline(lang, studyID){
     }
   };
 
-  var tappingTimeline = [[frontPage, preloadSongs2, instruction0, trialTapping0, messageEndTask, howDifficult, instruction1, trialTapping1, messageEndTask, howDifficult, instruction3, trialTapping3, howDifficult]];
-
   if(studyID == "alicia"){
-    var tappingTimeline = [[frontPage, preloadSongs2, instruction0, trialTapping0, messageEndTask, howDifficult, instruction1, trialTapping1, messageEndTask, howDifficult]];
+    if(version == "short"){
+      var tappingTimeline = [[frontPage, preloadSongs2, instruction0, trialTapping0, messageEndTask, instruction1, trialTapping1, messageEndTask]];
+    } else {
+      var tappingTimeline = [[frontPage, preloadSongs2, instruction0, trialTapping0, messageEndTask, howDifficult, instruction1, trialTapping1, messageEndTask, howDifficult]];
+    }
   }
-  if(studyID == "phase"){
-    var tappingTimeline = [[frontPage, preloadSongs2, instruction1, trialTapping1, messageEndTask]];
+  
+  if(version == "short"){
+    var tappingTimeline = [[frontPage, preloadSongs2, instruction0, trialTapping0, messageEndTask, instruction1, trialTapping1, messageEndTask, instruction3, trialTapping3]];
+  } else {
+    var tappingTimeline = [[frontPage, preloadSongs2, instruction0, trialTapping0, messageEndTask, howDifficult, instruction1, trialTapping1, messageEndTask, howDifficult, instruction3, trialTapping3, howDifficult]];
   }
 
   return(tappingTimeline)

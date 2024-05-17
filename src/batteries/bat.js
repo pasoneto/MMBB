@@ -1,4 +1,4 @@
-function generateBatTimeline(lang){
+function generateBatTimeline(lang, studyID, version){
   var frontPage = {
       type: jsPsychInstructions,
       pages: [beatProduction["openPage"][lang]],
@@ -186,17 +186,29 @@ function generateBatTimeline(lang){
     on_load: function(){
       document.querySelector(".jspsych-survey-likert-statement").style.fontSize = '1em'
     }
-
   };
 
-  var frontPageInstructions = [frontPage, instruction2]
-  var zero = [loadTrial0, trialBeat, howSatisfiedBeat, howDifficult]
-  var one = [loadTrial1, trialBeat, howSatisfiedBeat, howDifficult]
-  var two = [loadTrial2, trialBeat, howSatisfiedBeat, howDifficult]
-  var three = [loadTrial3, trialBeat, howSatisfiedBeat, howDifficult]
-  var four = [loadTrial4, trialBeat, howSatisfiedBeat, howDifficult]
-  var five = [loadTrial5, trialBeat, howSatisfiedBeat, howDifficult]
-  var six = [loadTrial6, trialBeat, howSatisfiedBeat, howDifficult]
+  if(version == "short"){
+    console.log("Running short version")
+    var frontPageInstructions = [frontPage, instruction2]
+    var zero = [loadTrial0, trialBeat]
+    var one = [loadTrial1, trialBeat]
+    var two = [loadTrial2, trialBeat]
+    var three = [loadTrial3, trialBeat]
+    var four = [loadTrial4, trialBeat]
+    var five = [loadTrial5, trialBeat]
+    var six = [loadTrial6, trialBeat]
+  } else {
+    console.log("Running long version")
+    var frontPageInstructions = [frontPage, instruction2]
+    var zero = [loadTrial0, trialBeat, howSatisfiedBeat, howDifficult]
+    var one = [loadTrial1, trialBeat, howSatisfiedBeat, howDifficult]
+    var two = [loadTrial2, trialBeat, howSatisfiedBeat, howDifficult]
+    var three = [loadTrial3, trialBeat, howSatisfiedBeat, howDifficult]
+    var four = [loadTrial4, trialBeat, howSatisfiedBeat, howDifficult]
+    var five = [loadTrial5, trialBeat, howSatisfiedBeat, howDifficult]
+    var six = [loadTrial6, trialBeat, howSatisfiedBeat, howDifficult]
+  }
 
   //Step by step
   var batTimeline = [frontPageInstructions, zero, one, two, three, four, five, six]
