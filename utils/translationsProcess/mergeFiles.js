@@ -9,12 +9,12 @@ for(k in filesRead){
 }
 
 fs.writeFileSync("../translations.js", allData);
+fs.writeFileSync("/Users/pdealcan/Documents/github/mmbbLogin/public/utils/translations.js", allData);
+//var allData = ""
+//for(k in filesRead){
+//var data = fs.readFileSync("./" + filesRead[k] + ".csv", 'utf8')
+//var allData = allData + data + ",\n"
+//}
 
-var allData = ""
-for(k in filesRead){
-  var data = fs.readFileSync("./" + filesRead[k] + ".csv", 'utf8')
-  var allData = allData + data + ",\n"
-}
-
-var outputFile = '/Users/pdealcan/Documents/github/data/CoE/pilotMMBB/outputs/allTranslationsT.csv'
-fs.writeFileSync(outputFile, allData);
+//var outputFile = '/Users/pdealcan/Documents/github/data/CoE/pilotMMBB/outputs/allTranslationsT.csv'
+//fs.writeFileSync(outputFile, allData);
