@@ -170,7 +170,7 @@ function generateMovementTimeline(lang, version){
 
   var instruction1 = {
       type: jsPsychInstructions,
-      pages: [14, 15, 16, 17].map(i => movement["instruction" + i][lang]),
+      pages: ["14", "15", "16", "17", "17b"].map(i => movement["instruction" + i][lang]),
       button_label_next: buttons["next"][lang],
       button_label_previous: buttons["previous"][lang],
       show_clickable_nav: true

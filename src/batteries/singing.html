@@ -492,6 +492,35 @@
 			}
 		},
 	}
+  
+  //Short version here
+	var voicesel4short = {
+		// voice selection low/mid/high
+		type: jsPsychHtmlButtonResponse,
+		stimulus: singing["whichRange"][lang],
+		choices: [singing["low"][lang], singing["high"][lang]],
+		prompt: '',
+		on_load: function () { 
+      var pE = document.getElementById("jspsych-html-button-response-btngroup")
+      pE.style.flexDirection = "column"
+      pE.style.gap = "1%"
+      
+      var pE = document.querySelectorAll(".jspsych-btn")
+      Array.from(pE).map(i => i.style.width = "100%")
+
+      var pE2 = document.querySelectorAll(".jspsych-html-button-response-button")
+      Array.from(pE2).map(i => i.style.width = "100%")
+
+      document.querySelectorAll(".jspsych-btn")[1].style.backgroundColor = "purple"
+		},
+		on_finish: function (data) {
+			if (data.response==0) {
+				voicepitch = "Low";
+			} else if (data.response==2) {
+				voicepitch = "High";
+			}
+		},
+	}
 
 	// ##### TONES
 	var toneintro1 = {
@@ -1173,7 +1202,12 @@
     var generalInstructions = generateGeneralIntroWrap(lang, "mbema")
 
 		jatos.addAbortButton();
-		var timeline=[instruction0, generalInstructions, initializeMic, testrecord1, loop_record2, testrecord3,voicesel1,voicesel2,voicesel3,voicesel4];
+    if(studyID=="lukilapsi"){
+		  var timeline=[instruction0, generalInstructions, initializeMic, testrecord1, loop_record2, testrecord3,voicesel1,voicesel2,voicesel3,voicesel4];
+    } else {
+		  var timeline=[instruction0, generalInstructions, initializeMic, testrecord1, loop_record2, testrecord3,voicesel1,voicesel2,voicesel3,voicesel4short];
+    }
+
 	// tone and tonerep by chance
   if (studyID=="lukilapsi") {
   // simplified set for lukilapsi
