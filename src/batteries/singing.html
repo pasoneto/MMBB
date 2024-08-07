@@ -516,7 +516,7 @@
 		on_finish: function (data) {
 			if (data.response==0) {
 				voicepitch = "Low";
-			} else if (data.response==2) {
+			} else if (data.response==1) {
 				voicepitch = "High";
 			}
 		},
@@ -1203,9 +1203,9 @@
 
 		jatos.addAbortButton();
     if(studyID=="lukilapsi"){
-		  var timeline=[instruction0, generalInstructions, initializeMic, testrecord1, loop_record2, testrecord3,voicesel1,voicesel2,voicesel3,voicesel4];
-    } else {
 		  var timeline=[instruction0, generalInstructions, initializeMic, testrecord1, loop_record2, testrecord3,voicesel1,voicesel2,voicesel3,voicesel4short];
+    } else {
+		  var timeline=[instruction0, generalInstructions, initializeMic, testrecord1, loop_record2, testrecord3,voicesel1,voicesel2,voicesel3,voicesel4];
     }
 
 	// tone and tonerep by chance
