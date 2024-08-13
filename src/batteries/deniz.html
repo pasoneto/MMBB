@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <meta charset="UTF-8">
+        <script src="jatos.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://unpkg.com/jspsych@7.1.2"></script>
+        <script src="./jspsych/dist/custom/utils.js"></script>
+        <script src="./jspsych/dist/plugin-preload.js"></script>
+        <script src="./jspsych/dist/plugin-survey-likert.js"></script>
+        <script src="./jspsych/dist/plugin-audio-button-response.js"></script>
+        <script src="./jspsych/dist/plugin-html-button-response.js"></script>
+        <script src="./jspsych/dist/plugin-html-slider-response.js"></script>
+        <script src="./jspsych/dist/plugin-instructions.js"></script>
+        <script src="./jspsych/dist/plugin-audio-keyboard-response.js"></script>
+        <script src="./jspsych/dist/plugin-instructions-timedout.js"></script>
+        <script src="./jspsych/dist/plugin-html-multi-slider-response.js"></script>
+        <script src="./jspsych/dist/plugin-emotion-audio-button-response.js"></script>
+        <script src="./jspsych/dist/plugin-survey.js"></script>
+        <link rel="stylesheet" href="https://unpkg.com/@jspsych/plugin-survey@0.2.1/css/survey.css">
+        <script src="./utils/langFetch.js"></script>
+        <script src="./utils/translations.js"></script>
+        <script src="./src/batteries/generalIntro.js"></script>
+        <script src="./utils/preventRefresh.js"></script>
+        <script src="./utils/identifyOS.js"></script>
+        <script src="./utils/manageCookies.js"></script>
+        <script src="./utils/studyLinks.js"></script>
+        <script src="./backend/setupLogFile.js"></script>
+        <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
+        <link rel="stylesheet" href="./src/styles/generalCSS.css">
+    </head>
+    <script>
+
+        var timeBegin = Date.now();
+        var jsPsych;
+
+        jatos.onLoad(()=>{
+            
+            window.song1 = "";
+            window.song2 = "";
+            window.lang = jatos.urlQueryParameters.lang
+
+            if (window.lang == undefined) {
+                window.lang = "eng"
+            }
+
+            window.jsPsych = initJsPsych({
+                show_progress_bar: true,
+                auto_update_progress_bar: false,
+                message_progress_bar: recurring["completionProgress"][lang],
+                on_finish: function() {
+
+                    var timeEnd = Date.now();
+
+                    window.userID = jatos.urlQueryParameters.user
+                    window.studyID = jatos.urlQueryParameters.studyID
+                    window.lang = jatos.urlQueryParameters.lang
+                    if (window.studyID == undefined) {
+                        window.studyID = "main"
+                    }
+
+                    jsPsych.data.addProperties({
+                        userID: userID,
+                        lang: lang,
+                        studyID: studyID
+                    });
+                    var finalData = jsPsych.data.get()
+
+                    allowRefresh();
+                    var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&Emotion=done" + "&studyID=" + studyID;
+                    jatos.endStudyAndRedirect(urlRedirect, finalData)
+
+                    //jatos.endStudyAndRedirect("https://mmbb.ltdk.helsinki.fi/publix/oLzabocUoB1?lang=eng", finalData) //simuBack
+
+                }
+            });
+
+            window.userID = jatos.urlQueryParameters.user
+            window.studyID = jatos.urlQueryParameters.studyID
+            if (window.studyID == undefined) {
+                window.studyID = "main"
+            }
+
+            //trials 
+            var welcome = {
+                type: jsPsychInstructions,
+                pages: ["Hello"],
+                button_label_next: buttons["next"][lang],
+                button_label_previous: buttons["previous"][lang],
+                allow_backward: false,
+                show_clickable_nav: true
+            }
+            var instructions = {
+                type: jsPsychInstructions,
+                pages: ["instruction1", "instruction2"],
+                button_label_next: buttons["next"][lang],
+                button_label_previous: buttons["previous"][lang],
+                allow_backward: true,
+                show_clickable_nav: true
+            }
+
+            var trial1 = {
+              type: jsPsychHtmlButtonResponse,
+              stimulus: 'Which one of the two versions do you prefer?<br>Please select the preferred option<div id="buttonWrapDeniz"><button id="option1">Option 1</button><button id="option2">Option 2</button></div>',
+              choices: ['Continue'],
+              prompt: "",
+              response_ends_trial: true,
+              on_finish: function(){
+                window.song1.pause()
+                window.song2.pause()
+              },
+              on_load: function() {
+
+                  window.song1 = new Audio("./songs/movementTapAudio/vitrineSongs/1.mp3");
+                  window.song2 = new Audio("./songs/movementTapAudio/vitrineSongs/2.mp3");
+
+                  document.querySelectorAll(".jspsych-audio-button-response-button").forEach(function(i) {
+                      i.style.fontSize = '16px'
+                  })
+
+                  document.getElementById("jspsych-html-button-response-btngroup").style.marginTop = "0px"
+                  document.getElementById("jspsych-html-button-response-stimulus").style.marginTop = "0"
+                  document.getElementById("jspsych-html-button-response-stimulus").style.marginBottom = "auto"
+                  document.querySelector(".jspsych-btn").style.backgroundColor = "purple"
+                 
+                  document.getElementById("buttonWrapDeniz").style.display = "flex"
+                  document.getElementById("buttonWrapDeniz").style.marginTop = "50%"
+                  document.getElementById("buttonWrapDeniz").style.gap = "5%"
+                  document.getElementById("buttonWrapDeniz").style.justifyContent = "center"
+
+                  document.getElementById("option1").onclick = function(){
+                    console.log("Option 1")
+                    song2.pause();    // Stop song 2 if it's playing
+                    song2.currentTime = 0; // Reset song 2 to start
+                    song1.play();     // Play song 1
+                  }
+                  document.getElementById("option2").onclick = function(){
+                    console.log("Option 2")
+                    song1.pause();    // Stop song 1 if it's playing
+                    song1.currentTime = 0; // Reset song 1 to start
+                    song2.play();     // Play song 2
+                  }
+              },
+            };
+
+            var trial2 = {
+              type: jsPsychHtmlMultiSliderResponse,
+              stimulus: ["", ""],
+              nSliders: 2,
+              min: 0,
+              max: 7,
+              emojis: [["<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/sad.png'</img> <div id='emotionText'>" + "Very negative" + "</div></div>", 
+                        "<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/happy.png'</img> <div id='emotionText'>" + "Very positive" + "</div></div>"],
+                       ["<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/sleepy.png'</img> <div id='emotionText'>" + "Very low energy" + "</div></div>", 
+                        "<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/surprised.png'</img> <div id='emotionText'>" + "Very high energy" + "</div></div>"]
+              ],
+              require_movement: true,
+              button_label: "Continue",
+              //slider_width: 250,
+              labels: [[],[],[]],
+              prompt: "<br>How do you feel right now?<br>",
+              on_load: function(){
+                document.getElementById("jspsych-content").style.fontSize = "110%";
+                document.getElementById("jspsych-content").style.height = "80vh";
+                document.querySelector(".jspsych-content-wrapper").style.display = "block"
+                document.querySelectorAll(".jspsych-html-slider-response-container").forEach(
+                  function(i) {
+                    i.style.justifyContent = 'center'
+                    i.style.width = '85%'
+                  }
+                )
+              },
+              on_finish: function(data){
+              }
+            };
+
+            var trial3 = {
+              type: jsPsychHtmlMultiSliderResponse,
+              stimulus: ["This music makes we want to move", "I like this music", "I am familiar with this music"],
+              nSliders: 3,
+              min: 0,
+              max: 100,
+              emojis: [["<div id='labelWrapEmotion'><div id='emotionText'>" + "Completely disagree" + "</div></div>", 
+                        "<div id='labelWrapEmotion'><div id='emotionText'>" + "Completely agree" + "</div></div>"],
+                       ["<div id='labelWrapEmotion'><div id='emotionText'>" + "Completely disagree" + "</div></div>", 
+                        "<div id='labelWrapEmotion'><div id='emotionText'>" + "Completely agree" + "</div></div>"],
+                       ["<div id='labelWrapEmotion'><div id='emotionText'>" + "Completely disagree" + "</div></div>", 
+                        "<div id='labelWrapEmotion'><div id='emotionText'>" + "Completely agree" + "</div></div>"]
+              ],
+              require_movement: true,
+              button_label: "Continue",
+              //slider_width: 250,
+              labels: [[],[],[]],
+              prompt: "<br>Regarding the music you selected on the previous page...<br>How much do you agree with the following statements?",
+              on_load: function(){
+                document.getElementById("jspsych-content").style.fontSize = "110%";
+                document.getElementById("jspsych-content").style.height = "80vh";
+                document.querySelector(".jspsych-content-wrapper").style.display = "block"
+                document.querySelectorAll("#emotionText").forEach( function(i){
+                  i.style.marginLeft = "6px";
+                })
+                document.querySelectorAll(".jspsych-html-slider-response-container").forEach(
+                  function(i) {
+                    i.style.justifyContent = 'center'
+                    i.style.width = '85%'
+                  }
+                )
+              },
+              on_finish: function(data){
+              }
+            };
+
+            jsPsych.run([trial1, trial2, trial3])
+
+        }
+        );
+    </script>
+</html>

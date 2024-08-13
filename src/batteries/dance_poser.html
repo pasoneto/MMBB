@@ -1,49 +1,48 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MMBB batery</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width" />
-
     <script src="jatos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://unpkg.com/jspsych@7.1.2"></script>
+    <script src="./jspsych/dist/custom/utils.js"> </script>
+    <script src=https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.3.0/math.min.js></script>
 
+    <script src="./jspsych/dist/plugin-preload.js"> </script>
+    <script src="./jspsych/dist/plugin-survey-likert.js"> </script>
+    <script src="./jspsych/dist/plugin-audio-button-response.js"></script>
+    <script src="./jspsych/dist/plugin-html-button-response.js"></script>
+    <script src="./jspsych/dist/plugin-html-slider-response.js"></script>
+    <script src="./jspsych/dist/plugin-instructions.js"></script>
+    <script src="./jspsych/dist/plugin-audio-keyboard-response.js"></script>
+    <script src="./jspsych/dist/plugin-instructions-timedout.js"></script>
+    <script src="./jspsych/dist/plugin-html-multi-slider-response.js"></script>
+    <script src="./jspsych/dist/plugin-emotion-audio-button-response.js"> </script>
+    <script src="./jspsych/dist/plugin-survey.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/@jspsych/plugin-survey@0.2.1/css/survey.css">
+
+    <script src="./utils/emotion_data/example_info.js"></script> 
+    <script src="./utils/emotion_data/information.js"></script> 
+    <script src="./utils/emotion_data/pstar.js"></script> 
+    <script src="./utils/emotion_data/trial_info.js"></script> 
+
+    <script src="./utils/langFetch.js"></script>
+    <script src="./utils/translations.js"></script>
+    <script src="./src/batteries/generalIntro.js"></script>
     <script src="./utils/preventRefresh.js"> </script>
+    <script src="./utils/identifyOS.js"> </script>
+    <script src="./utils/manageCookies.js"> </script>
     <script src="./utils/studyLinks.js"> </script>
 
-    <script src="https://unpkg.com/jspsych@7.1.2"></script>
-    <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.0"></script>
-    <script src="https://unpkg.com/@jspsych/plugin-audio-keyboard-response@1.1.0"></script>
-    <script src="./jspsych/dist/plugin-audio-button-response.js"> </script>
-    <script src="./jspsych/dist/plugin-html-slider-response-multiple.js"> </script>
-    <script src="./jspsych/dist/plugin-fullscreen.js"> </script>
-    <script src="./jspsych/dist/plugin-html-button-response.js"> </script>
-    <script src="./jspsych/dist/plugin-survey-html-form.js"> </script>
-    <script src="./jspsych/dist/plugin-image-slider-response.js"> </script>
-    <script src="./jspsych/dist/plugin-image-button-response.js"> </script>
-    <script src="./jspsych/dist/plugin-instructions.js"> </script>
-    <script src="./jspsych/dist/plugin-free-sort.js"> </script>
-    <script src="https://unpkg.com/@jspsych/plugin-survey-likert@1.1.2"></script>
-    <script src="./jspsych/dist/plugin-canvas-button-response.js"> </script>
-    <script src="./jspsych/dist/extension-accelerometer.js"> </script>
-    <script src="./jspsych/dist/plugin-html-keyboard-response.js"> </script>
-    <script src="./jspsych/dist/plugin-survey-multi-choice.js"> </script>
-    <script src="./jspsych/dist/plugin-initialize-microphone.js"> </script>
-    <script src="./jspsych/dist/plugin-html-audio-response.js"> </script>
-    <script src="./jspsych/dist/plugin-survey.js"></script>
-    <script src="./utils/translations.js"></script>
-
-    <script src="./src/batteries/questionnaires.js"> </script>
-    <script src="./src/batteries/sharedMeasurements.js"> </script>
-    <script src="./jspsych/dist/custom/utils.js"></script>
-
-    <script src="./utils/preventRefresh.js"></script>
+    <script src="./backend/setupLogFile.js"></script>
 
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
-    <link rel="stylesheet" href="https://unpkg.com/@jspsych/plugin-survey@0.2.0/css/survey.css">
 
-    <link rel="stylesheet" href="./src/styles/surveyStyles.css">
+    <link rel="stylesheet" href="./src/styles/generalCSS.css">
 
-    <script src="./backend/pushDatabase.js"></script>
+    <script src="./videos/dance_poser/dyads.js"> </script>
+    <script src="./videos/dance_poser/singles.js"> </script>
 
   </head>
   <body></body>
@@ -54,39 +53,169 @@
       var jsPsych = initJsPsych({
         on_finish: function() {
           var finalData = jsPsych.data.get()
+          var urlRedirect = "https://mmbb.fi"
+          jatos.endStudyAndRedirect(urlRedirect, finalData)
         }
       });
 
-      var similarity = {
-        type: jsPsychHtmlMultiSliderResponse,
-        stimulus: ["", ""],
-        nSliders: 2,
-        emojis: [["<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/sad.png'</img> <div id='emotionText'>" + "0 Not at all" + "</div></div>", 
-                  "<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/happy.png'</img> <div id='emotionText'>" + 1 + "</div></div>"],
-                 ["<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/sleepy.png'</img> <div id='emotionText'>" + 2 + "</div></div>", 
-                  "<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/surprised.png'</img> <div id='emotionText'>" + "3 Very much" + "</div></div>"]
-        ],
-        require_movement: true,
-        button_label: recurring['continue'][lang],
-        labels: [[],[],[]],
-        prompt: "Rate similarity",
-        on_load: function(){
-          document.getElementById("jspsych-content").style.fontSize = "110%";
-          document.getElementById("jspsych-content").style.height = "80vh";
-          document.querySelector(".jspsych-content-wrapper").style.display = "block"
-          document.querySelectorAll(".jspsych-html-slider-response-container").forEach(
-            function(i) {
-              i.style.justifyContent = 'center'
-              i.style.width = '85%'
-            }
-          )
-        },
+      function generate_emotion(obj, condition){
+        var video = obj.base_name
+        if(condition == "experiment"){
+          var video = "singles/experiment/pred_" + video
+        } else {
+          var video = "singles/control/true_" + video
+        }
+        var emotion = {
+          type: jsPsychHtmlMultiSliderResponse,
+          stimulus: ["", ""],
+          nSliders: 2,
+          min: 0,
+          max: 7,
+          emojis: [["<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/sad.png'</img> <div id='emotionText'>" + "Very negative" + "</div></div>", 
+                    "<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/happy.png'</img> <div id='emotionText'>" + "Very positive" + "</div></div>"],
+                   ["<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/sleepy.png'</img> <div id='emotionText'>" + "Very low energy" + "</div></div>", 
+                    "<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/surprised.png'</img> <div id='emotionText'>" + "Very high energy" + "</div></div>"]
+          ],
+          require_movement: true,
+          button_label: "Continue",
+          //slider_width: 250,
+          labels: [[],[],[]],
+          prompt: "<br>Rate the emotions expressed by the dance<br><br>"+"<video width='320' height='240' controls autoplay loop><source src='./videos/dance_poser/" + video + "' type='video/mp4'>"+"</video>",
+          on_load: function(){
+            document.getElementById("jspsych-content").style.fontSize = "110%";
+            document.getElementById("jspsych-content").style.height = "80vh";
+            document.querySelector(".jspsych-content-wrapper").style.display = "block"
+            document.querySelectorAll(".jspsych-html-slider-response-container").forEach(
+              function(i) {
+                i.style.justifyContent = 'center'
+                i.style.width = '85%'
+              }
+            )
+            console.log(obj.base_name)
+            console.log(condition)
+          },
+          on_finish: function(data){
+            data.video = video
+            data.condition = condition
+          }
+        };
+        return(emotion)
+      }
+
+      function generate_similarity(obj, condition){
+        var video = obj.full_name
+        if(condition == "control"){
+          var video = "dyads/control/" + video
+        } else {
+          var video = "dyads/experiment/" + video
+        }
+        var similarity = {
+          type: jsPsychSurveyLikert,
+          questions: [{
+            prompt: "How similarly are blue and red dancing?<br><br>" +
+                      "<video width='320' height='240' controls autoplay loop><source src='./videos/dance_poser/" + video + "' type='video/mp4'>"+"</video>" +
+                    "<div id='labelsWrapperLikert'><div id='leftLabel'>" + "Not at all" + "</div><div id='rightLabel'>" + "Very much" + "</div></div>",  
+            labels: [1, 2, 3, 4, 5, 6, 7].map(i => "<div id='labelLikert'>" + i + "</div>"),
+          }],
+          button_label: "Continue",
+          randomize_question_order: false,
+          on_load: function(){
+            document.querySelector(".jspsych-survey-likert-statement").style.fontSize = '1em'
+            console.log(obj.condition)
+          },
+          on_finish: function(data){
+            data.video = video
+            data.condition = condition
+          }
+        };
+        return(similarity)
+      }
+
+      function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          // Generate random index from 0 to i
+          const j = Math.floor(Math.random() * (i + 1));
+          
+          // Swap elements array[i] and array[j]
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+        
+        return array;
+      }
+
+      function getRandomSample(objects, N) {
+        for (let i = objects.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [objects[i], objects[j]] = [objects[j], objects[i]];
+        }
+
+        // Select the first N items as the random sample
+        const sample = objects.slice(0, N);
+
+        return sample;
+      }    
+
+      var dyadsControl = getRandomSample(dyadNames.filter(i => i.condition == "control"), 10)
+      var dyadsExperiment = getRandomSample(dyadNames.filter(i => i.condition == "experiment"), 10)
+    
+      var all_similarity = []
+      for(k in dyadsControl){
+        var itemControl = generate_similarity(dyadsControl[k], "control")
+        var itemExperiment = generate_similarity(dyadsExperiment[k], "experiment")
+        all_similarity.push(itemControl)
+        all_similarity.push(itemExperiment)
+      }
+      
+      var all_similarity = shuffleArray(all_similarity);
+      
+      //Generating single trials
+      var singles = getRandomSample(singleNames, 10)
+      var all_singles = [];
+      for(k in singles){
+        var single_trial_control = generate_emotion(singles[k], "control")
+        var single_trial_experiment = generate_emotion(singles[k], "experiment")
+        all_singles.push(single_trial_control)
+        all_singles.push(single_trial_experiment)
+      }
+      var all_singles = shuffleArray(all_singles);
+      
+      var instructions0 = {
+        type: jsPsychInstructions,
+        pages: ["Welcome!", "You will watch clips of dancers", "Each clip lasts for about 10 seconds", "Your task is to rate how similarly the two individuals are dancing"],
+        button_label_next: buttons["next"][lang],
+        button_label_previous: buttons["previous"][lang],
+        show_clickable_nav: true
       };
 
-      jsPsych.run([similarity]);
+      var instructions1 = {
+        type: jsPsychInstructions,
+        pages: ["Nice, thank you!", "Now you will watch clips of single dancers", "Your task is to rate the emotions expressed by the dance", "<b>Do not</b> rate the emotions that the dance incites in you", "but rather the emotions that you think the dancer is trying to transmit"],
+        button_label_next: buttons["next"][lang],
+        button_label_previous: buttons["previous"][lang],
+        show_clickable_nav: true
+      };
 
+      var end = {
+        type: jsPsychHtmlButtonResponse,
+        prompt: "Thank you for your time!",
+        choices: [],
+        //choices: ["a"], //simuBack
+        trial_duration: 1000,
+        stimulus: '',
+        on_start: function(){
+        },
+        on_load: function(){
+          document.getElementById("jspsych-content").style.height = "10vh"
+        }
+      };
+
+      var timeline = [instructions0, all_similarity, instructions1, all_singles, end].flat(1000)
+
+      jsPsych.run(timeline);
 
     })
+
+
 
  </script>
 </html>
