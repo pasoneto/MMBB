@@ -21,6 +21,7 @@
         <link rel="stylesheet" href="https://unpkg.com/@jspsych/plugin-survey@0.2.1/css/survey.css">
         <script src="./utils/langFetch.js"></script>
         <script src="./utils/translations.js"></script>
+        <script src="./utils/groove.json"></script>
         <script src="./src/batteries/generalIntro.js"></script>
         <script src="./utils/preventRefresh.js"></script>
         <script src="./utils/identifyOS.js"></script>
@@ -35,6 +36,13 @@
         var timeBegin = Date.now();
         var jsPsych;
 
+        var stimuli_tempo = [{"path":"BarT_4_s3.mp3","name":"BarT_4","tempi":"s3.mp3"},{"path":"BarT_4_f3.mp3","name":"BarT_4","tempi":"f3.mp3"},{"path":"BlaH_1_f3.mp3","name":"BlaH_1","tempi":"f3.mp3"},{"path":"BlaH_1_s3.mp3","name":"BlaH_1","tempi":"s3.mp3"},{"path":"CobB_4_f3.mp3","name":"CobB_4","tempi":"f3.mp3"},{"path":"CobB_4_s3.mp3","name":"CobB_4","tempi":"s3.mp3"},{"path":"ColV_3_s3.mp3","name":"ColV_3","tempi":"s3.mp3"},{"path":"ColV_3_f3.mp3","name":"ColV_3","tempi":"f3.mp3"},{"path":"DavC_2_s3.mp3","name":"DavC_2","tempi":"s3.mp3"},{"path":"DavC_2_f3.mp3","name":"DavC_2","tempi":"f3.mp3"},{"path":"ErrG_3_f3.mp3","name":"ErrG_3","tempi":"f3.mp3"},{"path":"ErrG_3_s3.mp3","name":"ErrG_3","tempi":"s3.mp3"},{"path":"ErsP_1_f3.mp3","name":"ErsP_1","tempi":"f3.mp3"},{"path":"ErsP_1_s3.mp3","name":"ErsP_1","tempi":"s3.mp3"},{"path":"ErsP_2_f3.mp3","name":"ErsP_2","tempi":"f3.mp3"},{"path":"ErsP_2_s3.mp3","name":"ErsP_2","tempi":"s3.mp3"},{"path":"FreJ_1_s3.mp3","name":"FreJ_1","tempi":"s3.mp3"},{"path":"FreJ_1_f3.mp3","name":"FreJ_1","tempi":"f3.mp3"},{"path":"GadJ_1_f3.mp3","name":"GadJ_1","tempi":"f3.mp3"},{"path":"GadJ_1_s3.mp3","name":"GadJ_1","tempi":"s3.mp3"},{"path":"GadS_3_s3.mp3","name":"GadS_3","tempi":"s3.mp3"},{"path":"GadS_3_f3.mp3","name":"GadS_3","tempi":"f3.mp3"},{"path":"GadS_5_s3.mp3","name":"GadS_5","tempi":"s3.mp3"},{"path":"GadS_5_f3.mp3","name":"GadS_5","tempi":"f3.mp3"},{"path":"GroD_5_f3.mp3","name":"GroD_5","tempi":"f3.mp3"},{"path":"GroD_5_s3.mp3","name":"GroD_5","tempi":"s3.mp3"},{"path":"HakO_4_f3.mp3","name":"HakO_4","tempi":"f3.mp3"},{"path":"HakO_4_s3.mp3","name":"HakO_4","tempi":"s3.mp3"},{"path":"JacA_1_s3.mp3","name":"JacA_1","tempi":"s3.mp3"},{"path":"JacA_1_f3.mp3","name":"JacA_1","tempi":"f3.mp3"},{"path":"MarB_2_f3.mp3","name":"MarB_2","tempi":"f3.mp3"},{"path":"MarB_2_s3.mp3","name":"MarB_2","tempi":"s3.mp3"},{"path":"MayJ_4_s3.mp3","name":"MayJ_4","tempi":"s3.mp3"},{"path":"MayJ_4_f3.mp3","name":"MayJ_4","tempi":"f3.mp3"},{"path":"MitM_5_s3.mp3","name":"MitM_5","tempi":"s3.mp3"},{"path":"MitM_5_f3.mp3","name":"MitM_5","tempi":"f3.mp3"},{"path":"ModJ_2_s3.mp3","name":"ModJ_2","tempi":"s3.mp3"},{"path":"ModJ_2_f3.mp3","name":"ModJ_2","tempi":"f3.mp3"},{"path":"NelP_1_s3.mp3","name":"NelP_1","tempi":"s3.mp3"},{"path":"NelP_1_f3.mp3","name":"NelP_1","tempi":"f3.mp3"},{"path":"PaiI_1_s3.mp3","name":"PaiI_1","tempi":"s3.mp3"},{"path":"PaiI_1_f3.mp3","name":"PaiI_1","tempi":"f3.mp3"},{"path":"PeaN_2_f3.mp3","name":"PeaN_2","tempi":"f3.mp3"},{"path":"PeaN_2_s3.mp3","name":"PeaN_2","tempi":"s3.mp3"},{"path":"PurB_2_f3.mp3","name":"PurB_2","tempi":"f3.mp3"},{"path":"PurB_2_s3.mp3","name":"PurB_2","tempi":"s3.mp3"},{"path":"RobJ_2_f3.mp3","name":"RobJ_2","tempi":"f3.mp3"},{"path":"RobJ_2_s3.mp3","name":"RobJ_2","tempi":"s3.mp3"},{"path":"RobJ_4_f3.mp3","name":"RobJ_4","tempi":"f3.mp3"},{"path":"RobJ_4_s3.mp3","name":"RobJ_4","tempi":"s3.mp3"},{"path":"StaJ_2_f3.mp3","name":"StaJ_2","tempi":"f3.mp3"},{"path":"StaJ_2_s3.mp3","name":"StaJ_2","tempi":"s3.mp3"},{"path":"StuC_3_s3.mp3","name":"StuC_3","tempi":"s3.mp3"},{"path":"StuC_3_f3.mp3","name":"StuC_3","tempi":"f3.mp3"},{"path":"WarB_2_f3.mp3","name":"WarB_2","tempi":"f3.mp3"},{"path":"WarB_2_s3.mp3","name":"WarB_2","tempi":"s3.mp3"},{"path":"WarB_3_s3.mp3","name":"WarB_3","tempi":"s3.mp3"},{"path":"WarB_3_f3.mp3","name":"WarB_3","tempi":"f3.mp3"},{"path":"YouE_5_f3.mp3","name":"YouE_5","tempi":"f3.mp3"},{"path":"YouE_5_s3.mp3","name":"YouE_5","tempi":"s3.mp3"}]
+        var unique_files = [...new Set(stimuli_tempo.map(item => item.name))];
+        var unique_files = unique_files.sort(() => Math.random() - 0.5);
+
+        window.chosenSong = "";
+        window.order = "";
+
         jatos.onLoad(()=>{
             
             window.song1 = "";
@@ -47,7 +55,8 @@
 
             window.jsPsych = initJsPsych({
                 show_progress_bar: true,
-                auto_update_progress_bar: false,
+                auto_update_progress_bar: true,
+                default_iti: 100,
                 message_progress_bar: recurring["completionProgress"][lang],
                 on_finish: function() {
 
@@ -100,118 +109,162 @@
                 show_clickable_nav: true
             }
 
-            var trial1 = {
-              type: jsPsychHtmlButtonResponse,
-              stimulus: 'Which one of the two versions do you prefer?<br>Please select the preferred option<div id="buttonWrapDeniz"><button id="option1">Option 1</button><button id="option2">Option 2</button></div>',
-              choices: ['Continue'],
-              prompt: "",
-              response_ends_trial: true,
-              on_finish: function(){
-                window.song1.pause()
-                window.song2.pause()
-              },
-              on_load: function() {
+          var makeTrial1 = function(song){
+              var trial1 = {
+                type: jsPsychHtmlButtonResponse,
+                stimulus: 'Which one of the two versions do you prefer?<br>Please select the preferred option<div id="buttonWrapDeniz"><button id="option1">Option 1</button><button id="option2">Option 2</button></div>',
+                choices: ['Continue'],
+                prompt: "",
+                response_ends_trial: true,
+                on_finish: function(data){
+                  window.song1.pause()
+                  window.song2.pause()
+                  data.chosenSpeed = window.chosenSpeed
+                  data.song = song
+                  data.order = window.order
+                },
+                on_load: function() {
 
-                  window.song1 = new Audio("./songs/movementTapAudio/vitrineSongs/1.mp3");
-                  window.song2 = new Audio("./songs/movementTapAudio/vitrineSongs/2.mp3");
+                    var fast_first = Math.random() < 0.5 ? 0 : 1;
+                    var speedOptions = ["_f3.mp3", "_s3.mp3"]
+                  
+                    if(fast_first == 1){
+                      console.log("fast first")
+                      window.song1 = new Audio("./songs/deniz_groove/" + song + speedOptions[0]);
+                      window.song2 = new Audio("./songs/deniz_groove/" + song + speedOptions[1]);
+                      window.order = "fast_first"
+                    } else {
+                      console.log("slow first")
+                      window.song1 = new Audio("./songs/deniz_groove/" + song + speedOptions[1]);
+                      window.song2 = new Audio("./songs/deniz_groove/" + song + speedOptions[0]);
+                      window.order = "slow_first"
+                    }
 
-                  document.querySelectorAll(".jspsych-audio-button-response-button").forEach(function(i) {
-                      i.style.fontSize = '16px'
+                    document.querySelectorAll(".jspsych-audio-button-response-button").forEach(function(i) {
+                        i.style.fontSize = '16px'
+                    })
+
+                    document.getElementById("jspsych-html-button-response-btngroup").style.marginTop = "0px"
+                    document.getElementById("jspsych-html-button-response-stimulus").style.marginTop = "0"
+                    document.getElementById("jspsych-html-button-response-stimulus").style.marginBottom = "auto"
+                    document.querySelector(".jspsych-btn").style.backgroundColor = "purple"
+                   
+                    document.getElementById("buttonWrapDeniz").style.display = "flex"
+                    document.getElementById("buttonWrapDeniz").style.marginTop = "50%"
+                    document.getElementById("buttonWrapDeniz").style.gap = "5%"
+                    document.getElementById("buttonWrapDeniz").style.justifyContent = "center"
+
+                    document.getElementById("option1").onclick = function(){
+                      if(fast_first == 1){
+                        window.chosenSpeed = "f3"
+                      } else {
+                        window.chosenSpeed = "s3"
+                      }
+                      console.log(window.chosenSpeed)
+                      console.log(song1)
+                      song2.pause();    // Stop song 2 if it's playing
+                      song2.currentTime = 0; // Reset song 2 to start
+                      song1.play();     // Play song 1
+                      document.getElementById("option1").style.backgroundColor = "purple"
+                      document.getElementById("option2").style.backgroundColor = "#fa6400"
+                    }
+                    document.getElementById("option2").onclick = function(){
+                      if(fast_first == 1){
+                        window.chosenSpeed = "s3"
+                      } else {
+                        window.chosenSpeed = "f3"
+                      }
+                      console.log(window.chosenSpeed)
+                      console.log(song2)
+                      song1.pause();    // Stop song 1 if it's playing
+                      song1.currentTime = 0; // Reset song 1 to start
+                      song2.play();     // Play song 2
+                      document.getElementById("option1").style.backgroundColor = "#fa6400"
+                      document.getElementById("option2").style.backgroundColor = "purple"
+                    }
+                },
+              };
+
+              var trial2 = {
+                type: jsPsychHtmlMultiSliderResponse,
+                stimulus: ["", ""],
+                nSliders: 2,
+                min: 0,
+                max: 7,
+                emojis: [["<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/sad.png'</img> <div id='emotionText'>" + "Very negative" + "</div></div>", 
+                          "<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/happy.png'</img> <div id='emotionText'>" + "Very positive" + "</div></div>"],
+                         ["<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/sleepy.png'</img> <div id='emotionText'>" + "Very low energy" + "</div></div>", 
+                          "<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/surprised.png'</img> <div id='emotionText'>" + "Very high energy" + "</div></div>"]
+                ],
+                require_movement: true,
+                button_label: "Continue",
+                //slider_width: 250,
+                labels: [[],[],[]],
+                prompt: "<br>How do you feel right now?<br>",
+                on_load: function(){
+                  document.getElementById("jspsych-content").style.fontSize = "110%";
+                  document.getElementById("jspsych-content").style.height = "80vh";
+                  document.querySelector(".jspsych-content-wrapper").style.display = "block"
+                  document.querySelectorAll(".jspsych-html-slider-response-container").forEach(
+                    function(i) {
+                      i.style.justifyContent = 'center'
+                      i.style.width = '85%'
+                    }
+                  )
+                },
+                on_finish: function(data){
+                  data.chosenSpeed = window.chosenSpeed
+                  data.song = song
+                  data.order = window.order
+                }
+              };
+
+              var trial3 = {
+                type: jsPsychHtmlMultiSliderResponse,
+                stimulus: ["This music makes we want to move", "I like this music", "I am familiar with this music"],
+                nSliders: 3,
+                min: 0,
+                max: 100,
+                emojis: [["<div id='labelWrapEmotion'><div id='emotionText'>" + "Completely disagree" + "</div></div>", 
+                          "<div id='labelWrapEmotion'><div id='emotionText'>" + "Completely agree" + "</div></div>"],
+                         ["<div id='labelWrapEmotion'><div id='emotionText'>" + "Completely disagree" + "</div></div>", 
+                          "<div id='labelWrapEmotion'><div id='emotionText'>" + "Completely agree" + "</div></div>"],
+                         ["<div id='labelWrapEmotion'><div id='emotionText'>" + "Completely disagree" + "</div></div>", 
+                          "<div id='labelWrapEmotion'><div id='emotionText'>" + "Completely agree" + "</div></div>"]
+                ],
+                require_movement: true,
+                button_label: "Continue",
+                //slider_width: 250,
+                labels: [[],[],[]],
+                prompt: "<br>Regarding the music you selected on the previous page...<br>How much do you agree with the following statements?",
+                on_load: function(){
+                  document.getElementById("jspsych-content").style.fontSize = "110%";
+                  document.getElementById("jspsych-content").style.height = "80vh";
+                  document.querySelector(".jspsych-content-wrapper").style.display = "block"
+                  document.querySelectorAll("#emotionText").forEach( function(i){
+                    i.style.marginLeft = "6px";
                   })
+                  document.querySelectorAll(".jspsych-html-slider-response-container").forEach(
+                    function(i) {
+                      i.style.justifyContent = 'center'
+                      i.style.width = '85%'
+                    }
+                  )
+                },
+                on_finish: function(data){
+                  data.chosenSpeed = window.chosenSpeed
+                  data.song = song
+                  data.order = window.order
+                }
+              };
 
-                  document.getElementById("jspsych-html-button-response-btngroup").style.marginTop = "0px"
-                  document.getElementById("jspsych-html-button-response-stimulus").style.marginTop = "0"
-                  document.getElementById("jspsych-html-button-response-stimulus").style.marginBottom = "auto"
-                  document.querySelector(".jspsych-btn").style.backgroundColor = "purple"
-                 
-                  document.getElementById("buttonWrapDeniz").style.display = "flex"
-                  document.getElementById("buttonWrapDeniz").style.marginTop = "50%"
-                  document.getElementById("buttonWrapDeniz").style.gap = "5%"
-                  document.getElementById("buttonWrapDeniz").style.justifyContent = "center"
+            return([trial1, trial2, trial3])
+          }
 
-                  document.getElementById("option1").onclick = function(){
-                    console.log("Option 1")
-                    song2.pause();    // Stop song 2 if it's playing
-                    song2.currentTime = 0; // Reset song 2 to start
-                    song1.play();     // Play song 1
-                  }
-                  document.getElementById("option2").onclick = function(){
-                    console.log("Option 2")
-                    song1.pause();    // Stop song 1 if it's playing
-                    song1.currentTime = 0; // Reset song 1 to start
-                    song2.play();     // Play song 2
-                  }
-              },
-            };
+          var all_first_trials = unique_files.map(i => makeTrial1(i))
 
-            var trial2 = {
-              type: jsPsychHtmlMultiSliderResponse,
-              stimulus: ["", ""],
-              nSliders: 2,
-              min: 0,
-              max: 7,
-              emojis: [["<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/sad.png'</img> <div id='emotionText'>" + "Very negative" + "</div></div>", 
-                        "<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/happy.png'</img> <div id='emotionText'>" + "Very positive" + "</div></div>"],
-                       ["<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/sleepy.png'</img> <div id='emotionText'>" + "Very low energy" + "</div></div>", 
-                        "<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/surprised.png'</img> <div id='emotionText'>" + "Very high energy" + "</div></div>"]
-              ],
-              require_movement: true,
-              button_label: "Continue",
-              //slider_width: 250,
-              labels: [[],[],[]],
-              prompt: "<br>How do you feel right now?<br>",
-              on_load: function(){
-                document.getElementById("jspsych-content").style.fontSize = "110%";
-                document.getElementById("jspsych-content").style.height = "80vh";
-                document.querySelector(".jspsych-content-wrapper").style.display = "block"
-                document.querySelectorAll(".jspsych-html-slider-response-container").forEach(
-                  function(i) {
-                    i.style.justifyContent = 'center'
-                    i.style.width = '85%'
-                  }
-                )
-              },
-              on_finish: function(data){
-              }
-            };
 
-            var trial3 = {
-              type: jsPsychHtmlMultiSliderResponse,
-              stimulus: ["This music makes we want to move", "I like this music", "I am familiar with this music"],
-              nSliders: 3,
-              min: 0,
-              max: 100,
-              emojis: [["<div id='labelWrapEmotion'><div id='emotionText'>" + "Completely disagree" + "</div></div>", 
-                        "<div id='labelWrapEmotion'><div id='emotionText'>" + "Completely agree" + "</div></div>"],
-                       ["<div id='labelWrapEmotion'><div id='emotionText'>" + "Completely disagree" + "</div></div>", 
-                        "<div id='labelWrapEmotion'><div id='emotionText'>" + "Completely agree" + "</div></div>"],
-                       ["<div id='labelWrapEmotion'><div id='emotionText'>" + "Completely disagree" + "</div></div>", 
-                        "<div id='labelWrapEmotion'><div id='emotionText'>" + "Completely agree" + "</div></div>"]
-              ],
-              require_movement: true,
-              button_label: "Continue",
-              //slider_width: 250,
-              labels: [[],[],[]],
-              prompt: "<br>Regarding the music you selected on the previous page...<br>How much do you agree with the following statements?",
-              on_load: function(){
-                document.getElementById("jspsych-content").style.fontSize = "110%";
-                document.getElementById("jspsych-content").style.height = "80vh";
-                document.querySelector(".jspsych-content-wrapper").style.display = "block"
-                document.querySelectorAll("#emotionText").forEach( function(i){
-                  i.style.marginLeft = "6px";
-                })
-                document.querySelectorAll(".jspsych-html-slider-response-container").forEach(
-                  function(i) {
-                    i.style.justifyContent = 'center'
-                    i.style.width = '85%'
-                  }
-                )
-              },
-              on_finish: function(data){
-              }
-            };
-
-            jsPsych.run([trial1, trial2, trial3])
+          jsPsych.run([welcome, instructions, all_first_trials].flat(1000))
 
         }
         );

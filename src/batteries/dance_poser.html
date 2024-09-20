@@ -65,22 +65,32 @@
         } else {
           var video = "singles/control/true_" + video
         }
+
+        var video_trial = {
+          type: jsPsychHtmlButtonResponse,
+          stimulus: "<p>Pay attention to the quality and to the emotions expressed by the dancer.<br>Watch it as many times as you want</p><br><br><video width='320' height='240' controls autoplay loop><source src='./videos/dance_poser/" + video + "' type='video/mp4'>"+"</video>",
+          choices: ["Continue"],
+          prompt: ""
+        };
+
         var emotion = {
           type: jsPsychHtmlMultiSliderResponse,
-          stimulus: ["", ""],
-          nSliders: 2,
+          stimulus: ["Rate the emotions expressed by the dance", "", "How good was the dancer?"],
+          nSliders: 3,
           min: 0,
           max: 7,
           emojis: [["<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/sad.png'</img> <div id='emotionText'>" + "Very negative" + "</div></div>", 
                     "<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/happy.png'</img> <div id='emotionText'>" + "Very positive" + "</div></div>"],
                    ["<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/sleepy.png'</img> <div id='emotionText'>" + "Very low energy" + "</div></div>", 
-                    "<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/surprised.png'</img> <div id='emotionText'>" + "Very high energy" + "</div></div>"]
+                    "<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/surprised.png'</img> <div id='emotionText'>" + "Very high energy" + "</div></div>"],
+                   ["<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/bad.png'</img> <div id='emotionText'>" + "Very bad" + "</div></div>",
+                    "<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/good.png'</img> <div id='emotionText'>" + "Very good" + "</div></div>"],
           ],
           require_movement: true,
           button_label: "Continue",
           //slider_width: 250,
           labels: [[],[],[]],
-          prompt: "<br>Rate the emotions expressed by the dance<br><br>"+"<video width='320' height='240' controls autoplay loop><source src='./videos/dance_poser/" + video + "' type='video/mp4'>"+"</video>",
+          prompt: "",
           on_load: function(){
             document.getElementById("jspsych-content").style.fontSize = "110%";
             document.getElementById("jspsych-content").style.height = "80vh";
@@ -91,6 +101,9 @@
                 i.style.width = '85%'
               }
             )
+            //document.querySelector("#jspsych-html-slider-response-stimulus").innerHTML = "Rate the emotions expressed by the dance<br><br><br>"
+            //document.querySelectorAll("#emotionSliderWrap")[1].innerHTML += "<br><br>How good was the dancer?"
+            document.querySelector(".jspsych-content-wrapper").style.flex = "none"
             console.log(obj.base_name)
             console.log(condition)
           },
@@ -99,7 +112,29 @@
             data.condition = condition
           }
         };
-        return(emotion)
+
+        var aesthetic = {
+          type: jsPsychSurveyLikert,
+          questions: [{
+            prompt: "How good was the dancer?" +
+            "<div id='labelsWrapperLikert'><div id='leftLabel'>" + "<img id='newEmotionEmoji' src='./images/emotion/newEmojis/bad.png'</img>" + "<br>" + "Very bad" + "</div><div id='rightLabel'>" + "<img id='newEmotionEmoji' src='./images/emotion/newEmojis/good.png'</img>" + "<br>" + "Very good" + "</div></div>",
+            labels: [1, 2, 3, 4, 5, 6, 7].map(i => "<div id='labelLikert'>" + i + "</div>"),
+          }],
+          button_label: "Continue",
+          randomize_question_order: false,
+          on_load: function(){
+            document.querySelector(".jspsych-survey-likert-statement").style.fontSize = '1em'
+            console.log(obj.base_name)
+            console.log(condition)
+          },
+          on_finish: function(data){
+            data.video = video
+            data.condition = condition
+          }
+        };
+
+        //return([video_trial, emotion, aesthetic])
+        return([video_trial, emotion])
       }
 
       function generate_similarity(obj, condition){
@@ -109,26 +144,33 @@
         } else {
           var video = "dyads/experiment/" + video
         }
+
+        var video_trial = {
+          type: jsPsychHtmlButtonResponse,
+          stimulus: "Pay attention to how similarly the individuals are dancing.<br><br> Watch it as many times as you want</p><br><br><video width='320' height='240' controls autoplay loop><source src='./videos/dance_poser/" + video + "' type='video/mp4'>"+"</video>",
+          choices: ["Continue"],
+          prompt: ""
+        };
+
         var similarity = {
           type: jsPsychSurveyLikert,
           questions: [{
-            prompt: "How similarly are blue and red dancing?<br><br>" +
-                      "<video width='320' height='240' controls autoplay loop><source src='./videos/dance_poser/" + video + "' type='video/mp4'>"+"</video>" +
-                    "<div id='labelsWrapperLikert'><div id='leftLabel'>" + "Not at all" + "</div><div id='rightLabel'>" + "Very much" + "</div></div>",  
+            prompt: "How similarly were blue and red dancing?<br><br>" +
+                    "<div id='labelsWrapperLikert'><div id='leftLabel'>" + "Not at all" + "</div><div id='rightLabel'>" + "Very much" + "</div></div>",
             labels: [1, 2, 3, 4, 5, 6, 7].map(i => "<div id='labelLikert'>" + i + "</div>"),
           }],
           button_label: "Continue",
           randomize_question_order: false,
           on_load: function(){
             document.querySelector(".jspsych-survey-likert-statement").style.fontSize = '1em'
-            console.log(obj.condition)
+            console.log(condition)
           },
           on_finish: function(data){
             data.video = video
             data.condition = condition
           }
         };
-        return(similarity)
+        return([video_trial, similarity])
       }
 
       function shuffleArray(array) {
@@ -189,7 +231,12 @@
 
       var instructions1 = {
         type: jsPsychInstructions,
-        pages: ["Nice, thank you!", "Now you will watch clips of single dancers", "Your task is to rate the emotions expressed by the dance", "<b>Do not</b> rate the emotions that the dance incites in you", "but rather the emotions that you think the dancer is trying to transmit"],
+        pages: ["Thank you!", "Now you will watch clips of single dancers", 
+                "You will have two tasks:",
+                "1) Rate how good the performance is",
+                "2) Rate the emotions expressed by the dancer",
+                "<b>Do not</b> rate the emotions that the dance incites in you", 
+                "but rather the emotions that you think the dancer is trying to transmit"],
         button_label_next: buttons["next"][lang],
         button_label_previous: buttons["previous"][lang],
         show_clickable_nav: true
