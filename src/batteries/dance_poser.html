@@ -58,6 +58,20 @@
         }
       });
 
+      var agreement = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: '<iframe src="../src/utils/research_notification_dance_poser.pdf" width="100%" height="600px" loading="lazy" title="PDF-file" ></iframe>',
+        choices: ["I agree"],
+        prompt: ""
+      };
+
+      var agreement2 = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: '<iframe src="../src/utils/consent_dance_poser.pdf" width="100%" height="600px" loading="lazy" title="PDF-file" ></iframe>',
+        choices: ["I agree"],
+        prompt: ""
+      };
+
       function generate_emotion(obj, condition){
         var video = obj.base_name
         if(condition == "experiment"){
@@ -75,21 +89,27 @@
 
         var emotion = {
           type: jsPsychHtmlMultiSliderResponse,
-          stimulus: ["Rate the emotions expressed by the dance", "", "How good was the dancer?"],
-          nSliders: 3,
+          stimulus: ["How expressive is the dance?", "Rate the emotions expressed by the dance", "", "How good was the dancer?"],
+          nSliders: 4,
+//1) how fluid and natural do the movements appear in the video,  
+//2) what is the degree of expressivity of the movements, 
+//3) how would they rate the aesthetic quality of the movements. 
           min: 0,
           max: 7,
-          emojis: [["<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/sad.png'</img> <div id='emotionText'>" + "Very negative" + "</div></div>", 
+          emojis: [
+                   ["<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/sad.png'</img> <div id='emotionText'>" + "Not at all" + "</div></div>", 
+                    "<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/happy.png'</img> <div id='emotionText'>" + "Very much" + "</div></div>"],
+                   ["<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/sad.png'</img> <div id='emotionText'>" + "Very negative" + "</div></div>", 
                     "<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/happy.png'</img> <div id='emotionText'>" + "Very positive" + "</div></div>"],
                    ["<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/sleepy.png'</img> <div id='emotionText'>" + "Very low energy" + "</div></div>", 
                     "<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/surprised.png'</img> <div id='emotionText'>" + "Very high energy" + "</div></div>"],
                    ["<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/bad.png'</img> <div id='emotionText'>" + "Very bad" + "</div></div>",
-                    "<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/good.png'</img> <div id='emotionText'>" + "Very good" + "</div></div>"],
+                    "<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/good.png'</img> <div id='emotionText'>" + "Very good" + "</div></div>"]
           ],
           require_movement: true,
           button_label: "Continue",
           //slider_width: 250,
-          labels: [[],[],[]],
+          labels: [[],[],[], []],
           prompt: "",
           on_load: function(){
             document.getElementById("jspsych-content").style.fontSize = "110%";
@@ -100,6 +120,9 @@
                 i.style.justifyContent = 'center'
                 i.style.width = '85%'
               }
+            )
+            document.querySelectorAll("#labelWrapEmotion").forEach(function(i){
+              i.style.width = '20%'}
             )
             //document.querySelector("#jspsych-html-slider-response-stimulus").innerHTML = "Rate the emotions expressed by the dance<br><br><br>"
             //document.querySelectorAll("#emotionSliderWrap")[1].innerHTML += "<br><br>How good was the dancer?"
@@ -116,7 +139,7 @@
         var aesthetic = {
           type: jsPsychSurveyLikert,
           questions: [{
-            prompt: "How good was the dancer?" +
+            prompt: "How would you rate the aesthetic quality of the dance?" +
             "<div id='labelsWrapperLikert'><div id='leftLabel'>" + "<img id='newEmotionEmoji' src='./images/emotion/newEmojis/bad.png'</img>" + "<br>" + "Very bad" + "</div><div id='rightLabel'>" + "<img id='newEmotionEmoji' src='./images/emotion/newEmojis/good.png'</img>" + "<br>" + "Very good" + "</div></div>",
             labels: [1, 2, 3, 4, 5, 6, 7].map(i => "<div id='labelLikert'>" + i + "</div>"),
           }],
