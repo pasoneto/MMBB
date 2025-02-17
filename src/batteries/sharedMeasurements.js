@@ -1,4 +1,19 @@
 function generateSharedMeasurementsTimeline(lang, version){
+
+  var agreement1 = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: '<iframe src="../src/utils/Privacy_Notice_MMBB_' + lang + '.pdf" width="100%" height="600px" loading="lazy" title="PDF-file" ></iframe>',
+    choices: [recurring['continue'][lang]],
+    prompt: ""
+  };
+
+  var agreement2 = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: '<iframe src="../src/utils/informed_consent_' + lang + '.pdf" width="100%" height="600px" loading="lazy" title="PDF-file" ></iframe>',
+    choices: [recurring['continue'][lang]],
+    prompt: ""
+  };
+
   var frontPageShared = {
       type: jsPsychInstructions,
       pages: [sharedMeasurementsT['surveyMMBB'][lang]],
@@ -423,9 +438,9 @@ function generateSharedMeasurementsTimeline(lang, version){
     }
   };
 
-  var timelineBasic = [frontPageShared, yearBirth, countryFrom, genderSurvey, otherGender, educationSurvey, otherEducation, languageSpoken1, languageSpoken2]
+  var timelineBasic = [agreement1, agreement2, frontPageShared, yearBirth, countryFrom, genderSurvey, otherGender, educationSurvey, otherEducation, languageSpoken1, languageSpoken2]
 
-  var timelineShort = [frontPageShared, 
+  var timelineShort = [agreement1, agreement2, frontPageShared, 
                        between1,
                        yearBirth,
                        countryFrom,
@@ -448,7 +463,7 @@ function generateSharedMeasurementsTimeline(lang, version){
                        goldsmithDancingTrialsShort,
                        messageFinishSharedMeasures].flat(100)
 
-  var timelineLong = [frontPageShared, 
+  var timelineLong = [agreement1, agreement2, frontPageShared, 
                       between1,
                       yearBirth,
                       countryFrom,

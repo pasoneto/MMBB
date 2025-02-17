@@ -1,5 +1,19 @@
 function generateGeneralIntroWrap(lang, subBattery){
 
+  var agreement1 = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: '<iframe src="../src/utils/Privacy_Notice_MMBB_' + lang + '.pdf" width="100%" height="600px" loading="lazy" title="PDF-file" ></iframe>',
+    choices: [recurring['continue'][lang]],
+    prompt: ""
+  };
+
+  var agreement2 = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: '<iframe src="../src/utils/informed_consent_' + lang + '.pdf" width="100%" height="600px" loading="lazy" title="PDF-file" ></iframe>',
+    choices: [recurring['continue'][lang]],
+    prompt: ""
+  };
+
   var preloadTest = {
       type: jsPsychPreload,
       audio: ['./songs/movementTapAudio/elPesebre.mp3'],
@@ -134,8 +148,8 @@ function generateGeneralIntroWrap(lang, subBattery){
   };
 
   var generalIntroEmotion = [[preloadTest, testAudioIOS, testAudioAndroid, gettingHelp]];
-  var generalIntroWrapRhythm = [[preloadTest, requirementsRhythm, lockIOS, lockAndroid, testAudioIOS, testAudioAndroid, gettingHelp]];
-  var generalIntroWrapMovement = [[preloadTest, requirementsMovement, lockIOS, lockAndroid, testAudioIOS, testAudioAndroid, gettingHelp]];
+  var generalIntroWrapRhythm = [[agreement1, agreement2, preloadTest, requirementsRhythm, lockIOS, lockAndroid, testAudioIOS, testAudioAndroid, gettingHelp]];
+  var generalIntroWrapMovement = [[agreement1, agreement2, preloadTest, requirementsMovement, lockIOS, lockAndroid, testAudioIOS, testAudioAndroid, gettingHelp]];
   var generalIntroWrapMBEMA = [[preloadTest, testAudioIOS, testAudioAndroid, gettingHelp]];
   
   if(subBattery == "emotion"){

@@ -207,6 +207,20 @@
       }
     } 
 
+    var agreement1 = {
+      type: jsPsychHtmlButtonResponse,
+      stimulus: '<iframe src="../src/utils/Privacy_Notice_MMBB_' + lang + '.pdf" width="100%" height="600px" loading="lazy" title="PDF-file" ></iframe>',
+      choices: [recurring['continue'][lang]],
+      prompt: ""
+    };
+
+    var agreement2 = {
+      type: jsPsychHtmlButtonResponse,
+      stimulus: '<iframe src="../src/utils/informed_consent_' + lang + '.pdf" width="100%" height="600px" loading="lazy" title="PDF-file" ></iframe>',
+      choices: [recurring['continue'][lang]],
+      prompt: ""
+    };
+
     var instruction0 = {
         type: jsPsychInstructions,
         pages: [singing["welcome"][lang]],
@@ -1203,9 +1217,9 @@
 
 		jatos.addAbortButton();
     if(studyID=="lukilapsi"){
-		  var timeline=[instruction0, generalInstructions, initializeMic, testrecord1, loop_record2, testrecord3,voicesel1,voicesel2,voicesel3,voicesel4short];
+		  var timeline=[agreement1, agreement2, instruction0, generalInstructions, initializeMic, testrecord1, loop_record2, testrecord3,voicesel1,voicesel2,voicesel3,voicesel4short];
     } else {
-		  var timeline=[instruction0, generalInstructions, initializeMic, testrecord1, loop_record2, testrecord3,voicesel1,voicesel2,voicesel3,voicesel4];
+		  var timeline=[agreement1, agreement2, instruction0, generalInstructions, initializeMic, testrecord1, loop_record2, testrecord3,voicesel1,voicesel2,voicesel3,voicesel4];
     }
 
 	// tone and tonerep by chance

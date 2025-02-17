@@ -571,7 +571,21 @@
 
   var introCommon = generateGeneralIntroWrap(lang, "mbema")
 
-	var timeline=[helloTrial, introCommon, instruction1].flat(1000);
+  var agreement1 = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: '<iframe src="../src/utils/Privacy_Notice_MMBB_' + lang + '.pdf" width="100%" height="600px" loading="lazy" title="PDF-file" ></iframe>',
+    choices: [recurring['continue'][lang]],
+    prompt: ""
+  };
+
+  var agreement2 = {
+    type: jsPsychHtmlButtonResponse,
+    stimulus: '<iframe src="../src/utils/informed_consent_' + lang + '.pdf" width="100%" height="600px" loading="lazy" title="PDF-file" ></iframe>',
+    choices: [recurring['continue'][lang]],
+    prompt: ""
+  };
+
+	var timeline=[agreement1, agreement2, helloTrial, introCommon, instruction1].flat(1000);
 		
 		if (Math.random()<0.5) {
 		// select order randomly: first memory, then sing-along

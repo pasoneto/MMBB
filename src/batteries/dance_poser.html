@@ -12,6 +12,7 @@
     <script src="./jspsych/dist/plugin-preload.js"> </script>
     <script src="./jspsych/dist/plugin-survey-likert.js"> </script>
     <script src="./jspsych/dist/plugin-audio-button-response.js"></script>
+    <script src="./jspsych/dist/plugin-survey-text.js"></script>
     <script src="./jspsych/dist/plugin-html-button-response.js"></script>
     <script src="./jspsych/dist/plugin-html-slider-response.js"></script>
     <script src="./jspsych/dist/plugin-instructions.js"></script>
@@ -35,6 +36,8 @@
     <script src="./utils/manageCookies.js"> </script>
     <script src="./utils/studyLinks.js"> </script>
 
+    <script src="./utils/preventRefresh.js"> </script>
+
     <script src="./backend/setupLogFile.js"></script>
 
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
@@ -51,25 +54,55 @@
     jatos.onLoad(() => {
 
       var jsPsych = initJsPsych({
+        show_progress_bar: true,
         on_finish: function() {
           var finalData = jsPsych.data.get()
           var urlRedirect = "https://mmbb.fi"
+          allowRefresh()
           jatos.endStudyAndRedirect(urlRedirect, finalData)
         }
       });
 
+      var agreement_all = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: '<a href="https://mmbb.ltdk.helsinki.fi/utils/dance_ai_privacy_notice.pdf" target="_blank">Privacy notice<span class="new-tab-icon" aria-hidden="true"> 🔗</span></a><br> <a href="https://mmbb.ltdk.helsinki.fi/utils/dance_ai_consent.pdf" target="_blank">Informed consent<span class="new-tab-icon" aria-hidden="true"> 🔗</span></a><br> <a href="https://mmbb.ltdk.helsinki.fi/utils/dance_ai_notification.pdf" target="_blank">Research notification<span class="new-tab-icon" aria-hidden="true"> 🔗</span></a>',
+        choices: ["I agree"], 
+        prompt: "",
+        on_load: function(x){
+          document.getElementById("jspsych-html-button-response-stimulus").style.width = "90%"
+          document.getElementById("jspsych-html-button-response-stimulus").style.display = "flex"
+          document.getElementById("jspsych-html-button-response-stimulus").style.flexDirection = "column"
+        }
+      };
+
       var agreement = {
         type: jsPsychHtmlButtonResponse,
-        stimulus: '<iframe src="../src/utils/research_notification_dance_poser.pdf" width="100%" height="600px" loading="lazy" title="PDF-file" ></iframe>',
+        stimulus: '<iframe src="../src/utils/dance_ai_privacy_notice.pdf" width="100%" height="400px" loading="lazy" title="PDF-file" ></iframe>',
         choices: ["I agree"],
-        prompt: ""
+        prompt: "",
+        on_load: function(x){
+          document.getElementById("jspsych-html-button-response-stimulus").style.width = "90%"
+        }
+      };
+
+      var agreement1 = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: '<iframe src="../src/utils/dance_ai_consent.pdf" width="100%" height="400px" loading="lazy" title="PDF-file" ></iframe>',
+        choices: ["I agree"],
+        prompt: "",
+        on_load: function(x){
+          document.getElementById("jspsych-html-button-response-stimulus").style.width = "90%"
+        }
       };
 
       var agreement2 = {
         type: jsPsychHtmlButtonResponse,
-        stimulus: '<iframe src="../src/utils/consent_dance_poser.pdf" width="100%" height="600px" loading="lazy" title="PDF-file" ></iframe>',
+        stimulus: '<iframe src="../src/utils/dance_ai_notification.pdf" width="100%" height="400px" loading="lazy" title="PDF-file" ></iframe>',
         choices: ["I agree"],
-        prompt: ""
+        prompt: "",
+        on_load: function(x){
+          document.getElementById("jspsych-html-button-response-stimulus").style.width = "90%"
+        }
       };
 
       function generate_emotion(obj, condition){
@@ -89,17 +122,14 @@
 
         var emotion = {
           type: jsPsychHtmlMultiSliderResponse,
-          stimulus: ["How expressive is the dance?", "Rate the emotions expressed by the dance", "", "How good was the dancer?"],
-          nSliders: 4,
+          stimulus: ["Rate the emotions expressed by the dance", "", "How good was the dancer?"],
+          nSliders: 3,
 //1) how fluid and natural do the movements appear in the video,  
 //2) what is the degree of expressivity of the movements, 
 //3) how would they rate the aesthetic quality of the movements. 
           min: 0,
           max: 7,
-          emojis: [
-                   ["<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/sad.png'</img> <div id='emotionText'>" + "Not at all" + "</div></div>", 
-                    "<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/happy.png'</img> <div id='emotionText'>" + "Very much" + "</div></div>"],
-                   ["<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/sad.png'</img> <div id='emotionText'>" + "Very negative" + "</div></div>", 
+          emojis: [["<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/sad.png'</img> <div id='emotionText'>" + "Very negative" + "</div></div>", 
                     "<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/happy.png'</img> <div id='emotionText'>" + "Very positive" + "</div></div>"],
                    ["<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/sleepy.png'</img> <div id='emotionText'>" + "Very low energy" + "</div></div>", 
                     "<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/surprised.png'</img> <div id='emotionText'>" + "Very high energy" + "</div></div>"],
@@ -252,9 +282,16 @@
         show_clickable_nav: true
       };
 
+      var movie = {
+        type: jsPsychSurveyText,
+        questions: [
+          {prompt: 'If you would like to participate in the draw for a Finnkino movie ticket, please give us your email.'}
+        ]
+      }
+
       var instructions1 = {
         type: jsPsychInstructions,
-        pages: ["Thank you!", "Now you will watch clips of single dancers", 
+        pages: ["Now you will watch clips of single dancers", 
                 "You will have two tasks:",
                 "1) Rate how good the performance is",
                 "2) Rate the emotions expressed by the dancer",
@@ -279,7 +316,7 @@
         }
       };
 
-      var timeline = [instructions0, all_similarity, instructions1, all_singles, end].flat(1000)
+      var timeline = [agreement_all, instructions0, all_similarity, instructions1, all_singles, movie, end].flat(1000)
 
       jsPsych.run(timeline);
 

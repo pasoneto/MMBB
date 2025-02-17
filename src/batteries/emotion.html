@@ -3167,6 +3167,22 @@
                 excerpt_order.push(jsPsych.randomization.sampleWithoutReplacement([0, 1], 2))
             }
 
+
+            var agreement1 = {
+              type: jsPsychHtmlButtonResponse,
+              stimulus: '<iframe src="../src/utils/Privacy_Notice_MMBB_' + lang + '.pdf" width="100%" height="600px" loading="lazy" title="PDF-file" ></iframe>',
+              choices: [recurring['continue'][lang]],
+              prompt: ""
+            };
+
+            var agreement2 = {
+              type: jsPsychHtmlButtonResponse,
+              stimulus: '<iframe src="../src/utils/informed_consent_' + lang + '.pdf" width="100%" height="600px" loading="lazy" title="PDF-file" ></iframe>',
+              choices: [recurring['continue'][lang]],
+              prompt: ""
+            };
+
+
             //trials 
             var welcomePart1 = {
                 type: jsPsychInstructions,
@@ -3483,7 +3499,7 @@
             var procedureEmotionFinal = {
                 //timeline: [welcomePart1, generalIntroEmotion, instructionsPart1, preload, test, part1_trials, task_repeat, part1_trials, messageFinishEmotion, demographics].flat(1000),
                 //timeline: [welcomePart2, instructionsPart2, part2_trials, messageFinishEmotion].flat(1000),
-                timeline: [welcomePart1, generalIntroEmotion, instructionsPart1, preload, test, part1_trials, welcomePart2, instructionsPart2, part2_trials, messageFinishEmotion].flat(1000),
+                timeline: [agreement1, agreement2, welcomePart1, generalIntroEmotion, instructionsPart1, preload, test, part1_trials, welcomePart2, instructionsPart2, part2_trials, messageFinishEmotion].flat(1000),
                 on_timeline_start: function() {
                     console.log('This timeline has started');
                 }

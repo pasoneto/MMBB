@@ -9,7 +9,9 @@
         <script src="./jspsych/dist/custom/utils.js"></script>
         <script src="./jspsych/dist/plugin-preload.js"></script>
         <script src="./jspsych/dist/plugin-survey-likert.js"></script>
+        <script src="./jspsych/dist/plugin-survey-text.js"></script>
         <script src="./jspsych/dist/plugin-audio-button-response.js"></script>
+        <script src="./jspsych/dist/plugin-survey-html-form.js"></script>
         <script src="./jspsych/dist/plugin-html-button-response.js"></script>
         <script src="./jspsych/dist/plugin-html-slider-response.js"></script>
         <script src="./jspsych/dist/plugin-instructions.js"></script>
@@ -31,6 +33,60 @@
         <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
         <link rel="stylesheet" href="./src/styles/generalCSS.css">
     </head>
+    <style>
+        /* Dropdown Button */
+        .dropbtn {
+          background-color: #3498DB;
+          color: white;
+          padding: 16px;
+          font-size: 16px;
+          border: none;
+          cursor: pointer;
+        }
+        #wrapListenChoose{
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          /* Dropdown button on hover & focus */
+          .dropbtn:hover, .dropbtn:focus {
+            background-color: #2980B9;
+          }
+        }
+        #wrapListenChoices{
+
+        }
+        /* The container <div> - needed to position the dropdown content */
+        .dropdown {
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+        }
+
+        /* Dropdown Content (Hidden by Default) */
+        .dropdown-content {
+          display: none;
+          background-color: #f1f1f1;
+          min-width: 160px;
+          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+          z-index: 1;
+        }
+
+        /* Links inside the dropdown */
+        .dropdown-content a {
+          color: black;
+          padding: 12px 16px;
+          text-decoration: none;
+          display: block;
+        }
+
+        /* Change color of dropdown links on hover */
+        .dropdown-content a:hover {background-color: #ddd;}
+
+        /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+        .show {display:block;}
+    </style>
     <script>
 
         var timeBegin = Date.now();
@@ -43,10 +99,48 @@
         window.chosenSong = "";
         window.order = "";
 
+        //gender, age, musicianship (professional, amateur, listener, don't engage with music)
+        //dance (professional, amateur, listener, don't engage with music)
+
+        function showDropBox() {
+          document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown menu if the user clicks outside of it
+        window.onclick = function(event) {
+          if (!event.target.matches('.dropbtn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+              var openDropdown = dropdowns[i];
+              if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+              }
+            }
+          }
+        }
+
+
+        function shuffle(array) {
+            // Create a copy of the array
+            const shuffledArray = [...array];
+            
+            // Fisher-Yates shuffle
+            for (let i = shuffledArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+            }
+
+            return shuffledArray;
+        }
+
         jatos.onLoad(()=>{
             
             window.song1 = "";
             window.song2 = "";
+            window.clickedFirst = 0;
+            window.clickedSecond = 0;
+
             window.lang = jatos.urlQueryParameters.lang
 
             if (window.lang == undefined) {
@@ -91,28 +185,191 @@
                 window.studyID = "main"
             }
 
+            function changeStyle(){
+                document.querySelector(".sv_body").style.background = "#e9edf5";
+                document.querySelector(".sv_header").style.background = "#e9edf5";
+                document.querySelector(".sv_header").style.marginBottom = "-50px";
+                document.querySelector(".sv_next_btn").style.background = "#fa6400";
+                document.querySelector(".sv_prev_btn").style.background = "purple";
+                document.querySelector(".sv_next_btn").style.color = "#fff";
+                document.querySelector(".sv_prev_btn").style.color = "#fff";
+                document.querySelector(".sv_complete_btn").style.background = "#fa6400";
+                document.getElementById("jspsych-content").style.width = "100%";
+            }
+
+            var firstInstruction = [["Welcome to The Rhythm of Life Survey Study!"], ["In this study you will complete a series of tasks and questionnaires about your musical experiences and preferences."], ["The data we collect will all be pseudonymous. Your data will be analysed by researchers at the Centre of Excellence in Music, Mind, Body and Brain"], ["and results may be published in scientific journals and at conferences."], ["For more information about the data we collect and how we use it, please see the document on the following page."]]
             //trials 
             var welcome = {
                 type: jsPsychInstructions,
-                pages: ["Hello"],
+                pages: firstInstruction,
                 button_label_next: buttons["next"][lang],
                 button_label_previous: buttons["previous"][lang],
                 allow_backward: false,
                 show_clickable_nav: true
             }
+
+            var secondInstructions = [["Next, you will hear two musical excerpts that sound quite similar."], ["Please listen to both carefully until the end and choose the one you prefer."], ["Trust your instincts while making your decision—there's no need to overthink it."]]
             var instructions = {
                 type: jsPsychInstructions,
-                pages: ["instruction1", "instruction2"],
+                pages: secondInstructions,
                 button_label_next: buttons["next"][lang],
                 button_label_previous: buttons["previous"][lang],
                 allow_backward: true,
                 show_clickable_nav: true
             }
 
+          var agreement_all = {
+            type: jsPsychHtmlButtonResponse,
+            stimulus: '<a href="https://mmbb.ltdk.helsinki.fi/utils/Research_Notification_tempo.pdf" target="_blank">Research notification<span class="new-tab-icon" aria-hidden="true"> 🔗</span></a><br> <a href="https://mmbb.ltdk.helsinki.fi/utils/Privacy_Notice_tempo.pdf" target="_blank">Privacy notice<span class="new-tab-icon" aria-hidden="true"> 🔗</span></a><br> <a href="https://mmbb.ltdk.helsinki.fi/utils/consent_page_tempo.pdf" target="_blank">Consent<span class="new-tab-icon" aria-hidden="true"> 🔗</span></a>',
+            choices: ["I agree"], 
+            prompt: "",
+            on_load: function(x){
+              document.getElementById("jspsych-html-button-response-stimulus").style.width = "90%"
+              document.getElementById("jspsych-html-button-response-stimulus").style.display = "flex"
+              document.getElementById("jspsych-html-button-response-stimulus").style.flexDirection = "column"
+            }
+          };
+
+          var emojis2 = [["<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/sad.png'</img> <div id='emotionText'>" + "Very negative" + "</div></div>", 
+                          "<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/happy.png'</img> <div id='emotionText'>" + "Very positive" + "</div></div>"],
+                         ["<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/sleepy.png'</img> <div id='emotionText'>" + "Very low energy" + "</div></div>", 
+                          "<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/surprised.png'</img> <div id='emotionText'>" + "Very high energy" + "</div></div>"]]
+
+
+          var textEmail = "<p>Please give us your email address if you wish to be included in the raffle to win one of the 10 50€ vouchers. Note that you are eligible for the raffle only if you complete the entire survey.</p>";
+          var agree_contacted = "Do you wish to be contacted to participate in our upcoming studies?";
+          var emailCollect = {
+            type: jsPsychSurveyHtmlForm,
+            preamble: textEmail,
+            html: '<p>Email: <input type="text" id="test-resp-box" name="response" size="10"/></p>',
+          };
+
+          var agreeContact = {
+            type: jsPsychHtmlButtonResponse,
+            stimulus: agree_contacted,
+            choices: ['Yes', 'No'],
+            prompt: ""
+          };
+          
+          function generateTextObject(prompt, required, columns, rows){
+                var rObj = {
+                  type: 'text',
+                  prompt: prompt,
+                  placeholder: '',
+                  name: prompt, 
+                  textbox_columns: columns,
+                  textbox_rows: rows,
+                  required: required,
+                }
+            return(rObj)
+          }
+
+          function generateDropdownObject(prompt, options, required){
+                var rObj = {
+                  type: 'drop-down',
+                  prompt: prompt, 
+                  options: options,
+                  name: prompt, 
+                  required: required, //simu
+                  //required: false //simuBack
+                }
+            return(rObj)
+          }
+
+          var lang = "eng"
+          var yearBirth = {
+            type: jsPsychSurvey,
+            pages: [["yearOfBirth"].map(i => generateTextObject(sharedMeasurementsT[i][lang], true, 5, 1))],
+            title: sharedMeasurementsT['pleaseAnswer'][lang],
+            button_label_next: buttons["continue"][lang],
+            button_label_back: buttons["previous"][lang],
+            button_label_finish: buttons["continue"][lang],
+            on_load: () => {changeStyle()}
+          };
+
+          var genderSurvey = {
+            type: jsPsychSurvey,
+            pages: [[generateDropdownObject(sharedMeasurementsT["gender"][lang], ["female", "male", "ratherNotSay", "other"].map(i => sharedMeasurementsT[i][lang]), true)]],
+            title: sharedMeasurementsT['pleaseAnswer'][lang],
+            button_label_next: buttons["continue"][lang],
+            button_label_back: buttons["previous"][lang],
+            button_label_finish: buttons["continue"][lang],
+            on_load: () => {
+              changeStyle()
+            }
+          };
+
+          var dancership = {
+            type: jsPsychHtmlButtonResponse,
+            stimulus: "Which of the followings do you identify yourself with?",
+            choices: ["Professional dancer", "Amateur dancer", "Do not engage in dance"],
+            prompt: "",
+            on_load: function(){
+              document.getElementById("jspsych-html-button-response-btngroup").style.display = "block";
+              document.querySelectorAll(".jspsych-btn").forEach(i => 
+                i.style.width = "100%"
+              )
+            }
+          };
+
+          var musicianship = {
+            type: jsPsychHtmlButtonResponse,
+            stimulus: "Which of the followings do you identify yourself with?",
+            choices: ["Professional musician", "Amateur musician", "Do not engage in music"],
+            prompt: "",
+            on_load: function(){
+              document.getElementById("jspsych-html-button-response-btngroup").style.display = "block";
+              document.querySelectorAll(".jspsych-btn").forEach(i => 
+                i.style.width = "100%"
+              )
+            }
+          };
+
+          var trial2 = {
+            type: jsPsychHtmlMultiSliderResponse,
+            stimulus: ["", ""],
+            nSliders: 2,
+            min: 0,
+            max: 7,
+            emojis: emojis2,
+            require_movement: true, button_label: "Continue",
+            //slider_width: 250,
+            labels: [[],[],[]],
+            prompt: "<br>How do you feel right now?<br>",
+            on_load: function(){
+              document.getElementById("jspsych-content").style.fontSize = "110%";
+              document.getElementById("jspsych-content").style.height = "80vh";
+              document.querySelector(".jspsych-content-wrapper").style.display = "block"
+              document.querySelectorAll(".jspsych-html-slider-response-container").forEach(
+                function(i) {
+                  i.style.justifyContent = 'center'
+                  i.style.width = '85%'
+                }
+              )
+            }
+          };
+
           var makeTrial1 = function(song){
               var trial1 = {
                 type: jsPsychHtmlButtonResponse,
-                stimulus: 'Which one of the two versions do you prefer?<br>Please select the preferred option<div id="buttonWrapDeniz"><button id="option1">Option 1</button><button id="option2">Option 2</button></div>',
+                stimulus: 'Which one of the two versions do you prefer?<br>' +
+                          'Please select the preferred option' +
+                          '<div id="buttonWrapDeniz">' +
+                              '<div id="wrapListenChoose">' +
+                                '<div id="wrapListenChoices">'+
+                                  '<button id="option1">A 🔊</button>' +
+                                  '<button id="option2">B 🔊</button>' +
+                                '</div>' +
+                                '<div class="dropdown">' +
+                                  '<button onclick="showDropBox()" class="dropbtn">Choose an option</button>' +
+                                    '<div id="myDropdown" class="dropdown-content">' +
+                                      '<a id="opt1" href="#">Option A</a>' +
+                                      '<a id="opt2" href="#">Option B</a>' +
+                                    '</div>' +
+                                '</div>' +
+                              '</div>' +
+                            '<div id=currentChoice></div>' +
+                          '</div>',
                 choices: ['Continue'],
                 prompt: "",
                 response_ends_trial: true,
@@ -127,7 +384,10 @@
 
                     var fast_first = Math.random() < 0.5 ? 0 : 1;
                     var speedOptions = ["_f3.mp3", "_s3.mp3"]
-                  
+
+                    window.clickedFirst = 0
+                    window.clickedSecond = 0
+
                     if(fast_first == 1){
                       console.log("fast first")
                       window.song1 = new Audio("./songs/deniz_groove/" + song + speedOptions[0]);
@@ -144,94 +404,109 @@
                         i.style.fontSize = '16px'
                     })
 
+                    document.querySelector("#jspsych-html-button-response-button-0 > button").disabled = true
+
                     document.getElementById("jspsych-html-button-response-btngroup").style.marginTop = "0px"
                     document.getElementById("jspsych-html-button-response-stimulus").style.marginTop = "0"
                     document.getElementById("jspsych-html-button-response-stimulus").style.marginBottom = "auto"
                     document.querySelector(".jspsych-btn").style.backgroundColor = "purple"
-                   
-                    document.getElementById("buttonWrapDeniz").style.display = "flex"
+
+                    document.getElementById("buttonWrapDeniz").style.display = "flex-wrap"
                     document.getElementById("buttonWrapDeniz").style.marginTop = "50%"
                     document.getElementById("buttonWrapDeniz").style.gap = "5%"
                     document.getElementById("buttonWrapDeniz").style.justifyContent = "center"
+                    
+                    document.getElementById("currentChoice").style.marginTop = "10%"
 
-                    document.getElementById("option1").onclick = function(){
+                    document.getElementById("opt1").onclick = function(){
                       if(fast_first == 1){
                         window.chosenSpeed = "f3"
                       } else {
                         window.chosenSpeed = "s3"
                       }
+                      if(window.clickedFirst + window.clickedSecond == 2){
+                        document.querySelector("#jspsych-html-button-response-button-0 > button").disabled = false
+                      }
+                      document.getElementById("currentChoice").innerHTML = "Option A"
+                    }
+
+                    document.getElementById("opt2").onclick = function(){
+                      if(fast_first == 1){
+                        window.chosenSpeed = "s3"
+                      } else {
+                        window.chosenSpeed = "f3"
+                      }
+                      if(window.clickedFirst + window.clickedSecond == 2){
+                        document.querySelector("#jspsych-html-button-response-button-0 > button").disabled = false
+                      }
                       console.log(window.chosenSpeed)
-                      console.log(song1)
+                      console.log(song2)
+                      document.getElementById("currentChoice").innerHTML = "Option B"
+                    }
+
+                    document.getElementById("option1").onclick = function(){
                       song2.pause();    // Stop song 2 if it's playing
                       song2.currentTime = 0; // Reset song 2 to start
                       song1.play();     // Play song 1
                       document.getElementById("option1").style.backgroundColor = "purple"
                       document.getElementById("option2").style.backgroundColor = "#fa6400"
+
+                      window.clickedFirst = 1
+                      console.log(window.chosenSpeed)
+                      console.log(song1)
+
+                      // Re-enable buttons when the song ends
+                      song1.addEventListener('ended', () => {
+                          document.getElementById("option1").style.backgroundColor = "#fa6400";
+                          document.getElementById("option2").style.backgroundColor = "#fa6400";
+                      });
+
+
                     }
                     document.getElementById("option2").onclick = function(){
-                      if(fast_first == 1){
-                        window.chosenSpeed = "s3"
-                      } else {
-                        window.chosenSpeed = "f3"
-                      }
-                      console.log(window.chosenSpeed)
-                      console.log(song2)
                       song1.pause();    // Stop song 1 if it's playing
                       song1.currentTime = 0; // Reset song 1 to start
                       song2.play();     // Play song 2
-                      document.getElementById("option1").style.backgroundColor = "#fa6400"
+
+                      window.clickedSecond = 1
+                      console.log(window.chosenSpeed)
+                      console.log(song2)
+
                       document.getElementById("option2").style.backgroundColor = "purple"
+                      document.getElementById("option1").style.backgroundColor = "#fa6400"
+
+                      //document.getElementById("option1").style.backgroundColor = "grey"
+
+                      //document.getElementById("currentChoice").innerHTML = "Current choice: Option 2"
+
+
+                      // Re-enable buttons when the song ends
+                      song2.addEventListener('ended', () => {
+                          document.getElementById("option1").style.backgroundColor = "#fa6400";
+                          document.getElementById("option2").style.backgroundColor = "#fa6400";
+                      });
+
                     }
                 },
               };
 
-              var trial2 = {
-                type: jsPsychHtmlMultiSliderResponse,
-                stimulus: ["", ""],
-                nSliders: 2,
-                min: 0,
-                max: 7,
-                emojis: [["<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/sad.png'</img> <div id='emotionText'>" + "Very negative" + "</div></div>", 
-                          "<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/happy.png'</img> <div id='emotionText'>" + "Very positive" + "</div></div>"],
-                         ["<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/sleepy.png'</img> <div id='emotionText'>" + "Very low energy" + "</div></div>", 
-                          "<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/surprised.png'</img> <div id='emotionText'>" + "Very high energy" + "</div></div>"]
-                ],
-                require_movement: true,
-                button_label: "Continue",
-                //slider_width: 250,
-                labels: [[],[],[]],
-                prompt: "<br>How do you feel right now?<br>",
-                on_load: function(){
-                  document.getElementById("jspsych-content").style.fontSize = "110%";
-                  document.getElementById("jspsych-content").style.height = "80vh";
-                  document.querySelector(".jspsych-content-wrapper").style.display = "block"
-                  document.querySelectorAll(".jspsych-html-slider-response-container").forEach(
-                    function(i) {
-                      i.style.justifyContent = 'center'
-                      i.style.width = '85%'
-                    }
-                  )
-                },
-                on_finish: function(data){
-                  data.chosenSpeed = window.chosenSpeed
-                  data.song = song
-                  data.order = window.order
-                }
-              };
+              var vars_trial3 = [["<div id='labelWrapEmotion'><div id='emotionText'>" + "Completely disagree" + "</div></div>", 
+                                 "<div id='labelWrapEmotion'><div id='emotionText'>" + "Completely agree" + "</div></div>"],
+                                ["<div id='labelWrapEmotion'><div id='emotionText'>" + "Completely disagree" + "</div></div>", 
+                                 "<div id='labelWrapEmotion'><div id='emotionText'>" + "Completely agree" + "</div></div>"],
+                                ["<div id='labelWrapEmotion'><div id='emotionText'>" + "Completely disagree" + "</div></div>", 
+                                 "<div id='labelWrapEmotion'><div id='emotionText'>" + "Completely agree" + "</div></div>"]]
+
+              var vars2_trial3 = ["This music makes we want to move", "I like this music", "I am familiar with this music"]
+              var order_sliders3 = shuffle([0, 1, 2])
 
               var trial3 = {
                 type: jsPsychHtmlMultiSliderResponse,
-                stimulus: ["This music makes we want to move", "I like this music", "I am familiar with this music"],
+                stimulus: [vars2_trial3[order_sliders3[0]], vars2_trial3[order_sliders3[1]], vars2_trial3[order_sliders3[2]]],
                 nSliders: 3,
                 min: 0,
                 max: 100,
-                emojis: [["<div id='labelWrapEmotion'><div id='emotionText'>" + "Completely disagree" + "</div></div>", 
-                          "<div id='labelWrapEmotion'><div id='emotionText'>" + "Completely agree" + "</div></div>"],
-                         ["<div id='labelWrapEmotion'><div id='emotionText'>" + "Completely disagree" + "</div></div>", 
-                          "<div id='labelWrapEmotion'><div id='emotionText'>" + "Completely agree" + "</div></div>"],
-                         ["<div id='labelWrapEmotion'><div id='emotionText'>" + "Completely disagree" + "</div></div>", 
-                          "<div id='labelWrapEmotion'><div id='emotionText'>" + "Completely agree" + "</div></div>"]
-                ],
+                emojis: vars_trial3,
                 require_movement: true,
                 button_label: "Continue",
                 //slider_width: 250,
@@ -254,17 +529,17 @@
                 on_finish: function(data){
                   data.chosenSpeed = window.chosenSpeed
                   data.song = song
+                  data.order_sliders = order_sliders3
                   data.order = window.order
                 }
               };
 
-            return([trial1, trial2, trial3])
+            return([trial1, trial3])
           }
 
           var all_first_trials = unique_files.map(i => makeTrial1(i))
 
-
-          jsPsych.run([welcome, instructions, all_first_trials].flat(1000))
+          jsPsych.run([welcome, agreement_all, emailCollect, agreeContact, trial2, yearBirth, genderSurvey, dancership, musicianship, instructions, all_first_trials].flat(1000))
 
         }
         );
