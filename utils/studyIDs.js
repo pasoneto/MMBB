@@ -9,7 +9,8 @@ var studyIDtasks = {
     "movementWhole":  ["Movement", "Rhythm", "SharedMeasures"],
     "alicia": ["Rhythm"],
     "testPhase": ["Rhythm"],
-    "edsync": ["Rhythm", "SharedMeasures"]
+    "edsync": ["Rhythm", "SharedMeasures"],
+    "tempo": ["Survey", "Rhythm", "Movement"]
   }
 
 var studyIDtasks = {
@@ -45,5 +46,8 @@ var studyIDtasks = {
   },
   "edsync": {"timeline": ["Rhythm", "SharedMeasures"],
              "version": "full"
+  },
+  "tempo": {"timeline": ["SharedMeasures", "Rhythm", "Movement"],
+            "version": "full"
   }
 }
