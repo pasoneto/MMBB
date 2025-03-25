@@ -105,6 +105,67 @@
         }
       };
 
+      var lang = "eng"
+
+      function generateDropdownObject(prompt, options, required){
+            var rObj = {
+              type: 'drop-down',
+              prompt: prompt, 
+              options: options,
+              name: prompt, 
+              required: required, //simu
+              //required: false //simuBack
+            }
+        return(rObj)
+      }
+
+      function generateTextObject(prompt, required, columns, rows){
+            var rObj = {
+              type: 'text',
+              prompt: prompt,
+              placeholder: '',
+              name: prompt, 
+              textbox_columns: columns,
+              textbox_rows: rows,
+              required: required,
+            }
+        return(rObj)
+      }
+
+      function changeStyle(){
+          document.querySelector(".sv_body").style.background = "#e9edf5";
+          document.querySelector(".sv_header").style.background = "#e9edf5";
+          document.querySelector(".sv_header").style.marginBottom = "-50px";
+          document.querySelector(".sv_next_btn").style.background = "#fa6400";
+          document.querySelector(".sv_prev_btn").style.background = "purple";
+          document.querySelector(".sv_next_btn").style.color = "#fff";
+          document.querySelector(".sv_prev_btn").style.color = "#fff";
+          document.querySelector(".sv_complete_btn").style.background = "#fa6400";
+          document.getElementById("jspsych-content").style.width = "100%";
+      }
+
+      var genderSurvey = {
+        type: jsPsychSurvey,
+        pages: [[generateDropdownObject(sharedMeasurementsT["gender"][lang], ["female", "male", "ratherNotSay", "other"].map(i => sharedMeasurementsT[i][lang]), true)]],
+        title: sharedMeasurementsT['pleaseAnswer'][lang],
+        button_label_next: buttons["continue"][lang],
+        button_label_back: buttons["previous"][lang],
+        button_label_finish: buttons["continue"][lang],
+        on_load: () => {
+          changeStyle()
+        }
+      };
+
+      var yearBirth = {
+        type: jsPsychSurvey,
+        pages: [["yearOfBirth"].map(i => generateTextObject(sharedMeasurementsT[i][lang], true, 5, 1))],
+        title: sharedMeasurementsT['pleaseAnswer'][lang],
+        button_label_next: buttons["continue"][lang],
+        button_label_back: buttons["previous"][lang],
+        button_label_finish: buttons["continue"][lang],
+        on_load: () => {changeStyle()}
+      };
+
       function generate_emotion(obj, condition){
         var video = obj.base_name
         if(condition == "experiment"){
@@ -316,7 +377,7 @@
         }
       };
 
-      var timeline = [agreement_all, instructions0, all_similarity, instructions1, all_singles, movie, end].flat(1000)
+      var timeline = [agreement_all, genderSurvey, yearBirth, instructions0, all_similarity, instructions1, all_singles, movie, end].flat(1000)
 
       jsPsych.run(timeline);
 

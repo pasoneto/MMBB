@@ -150,6 +150,12 @@ function generateTappingTimeline(lang, studyID, version){
     }
   };
 
+  if(version == "short"){
+    var tappingTimeline = [[frontPage, preloadSongs2, instruction0, trialTapping0, messageEndTask, instruction1, trialTapping1, messageEndTask, instruction3, trialTapping3]];
+  } else {
+    var tappingTimeline = [[frontPage, preloadSongs2, instruction0, trialTapping0, messageEndTask, howDifficult, instruction1, trialTapping1, messageEndTask, howDifficult, instruction3, trialTapping3, howDifficult]];
+  }
+
   if(studyID == "alicia"){
     if(version == "short"){
       var tappingTimeline = [[frontPage, preloadSongs2, instruction0, trialTapping0, messageEndTask, instruction1, trialTapping1, messageEndTask]];
@@ -158,11 +164,5 @@ function generateTappingTimeline(lang, studyID, version){
     }
   }
   
-  if(version == "short"){
-    var tappingTimeline = [[frontPage, preloadSongs2, instruction0, trialTapping0, messageEndTask, instruction1, trialTapping1, messageEndTask, instruction3, trialTapping3]];
-  } else {
-    var tappingTimeline = [[frontPage, preloadSongs2, instruction0, trialTapping0, messageEndTask, howDifficult, instruction1, trialTapping1, messageEndTask, howDifficult, instruction3, trialTapping3, howDifficult]];
-  }
-
   return(tappingTimeline)
 }

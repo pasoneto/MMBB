@@ -49,5 +49,8 @@ var studyIDtasks = {
   },
   "tempo": {"timeline": ["SharedMeasures", "Rhythm", "Movement"],
             "version": "full"
+  },
+  "m12": {"timeline": ["Movement", "Singing", "EmotionAdaptive", "EmotionAdaptive2", "Rhythm", "MBEMA", "SharedMeasures"],
+          "version": "full"
   }
 }

@@ -86,6 +86,12 @@
 
         /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
         .show {display:block;}
+
+
+        #iconsTempo{
+          margin-top: 10%
+        }
+
     </style>
     <script>
 
@@ -151,27 +157,18 @@
                 show_progress_bar: true,
                 auto_update_progress_bar: true,
                 default_iti: 100,
-                message_progress_bar: recurring["completionProgress"][lang],
+                message_progress_bar: recurring["completionProgress"]["eng"],
                 on_finish: function() {
 
                     var timeEnd = Date.now();
-
-                    window.userID = jatos.urlQueryParameters.user
-                    window.studyID = jatos.urlQueryParameters.studyID
-                    window.lang = jatos.urlQueryParameters.lang
-                    if (window.studyID == undefined) {
-                        window.studyID = "main"
-                    }
-
                     jsPsych.data.addProperties({
-                        userID: userID,
-                        lang: lang,
-                        studyID: studyID
+                        userID: window.userID,
+                        lang: window.lang,
+                        studyID: window.studyID
                     });
                     var finalData = jsPsych.data.get()
-
                     allowRefresh();
-                    var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&Emotion=done" + "&studyID=" + studyID;
+                    var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&studyID=" + studyID;
                     jatos.endStudyAndRedirect(urlRedirect, finalData)
 
                     //jatos.endStudyAndRedirect("https://mmbb.ltdk.helsinki.fi/publix/oLzabocUoB1?lang=eng", finalData) //simuBack
@@ -179,11 +176,10 @@
                 }
             });
 
-            window.userID = jatos.urlQueryParameters.user
-            window.studyID = jatos.urlQueryParameters.studyID
-            if (window.studyID == undefined) {
-                window.studyID = "main"
-            }
+            window.userID = window.jsPsych.randomization.randomID(10)
+            console.log(userID)
+            window.studyID = "tempo"
+            window.lang = "eng"
 
             function changeStyle(){
                 document.querySelector(".sv_body").style.background = "#e9edf5";
@@ -218,6 +214,16 @@
                 show_clickable_nav: true
             }
 
+            var thirdInstructions = [["Next, we would like you to complete three final tasks which involve 1) Answering questions about you and your musical preferences, 2) tapping your finger, and 3) moving along with the music."], ["First, click on the Survey icon that looks like this: <br> <div id='iconsTempo'><img id='tableSVG' src='./images/survey.svg'></img></div>"], ["and answer the questions truthfully."], ["After that, click on the Rhythm and Movement icons that look like this: <br> <div id='iconsTempo'><img id='tableSVG' src='./images/dance.svg'></img><img id='tableSVG' src='./images/tapping.svg'></img></div>"]]
+            var instructions3 = {
+                type: jsPsychInstructions,
+                pages: thirdInstructions,
+                button_label_next: buttons["next"][lang],
+                button_label_previous: buttons["previous"][lang],
+                allow_backward: true,
+                show_clickable_nav: true,
+            }
+
           var agreement_all = {
             type: jsPsychHtmlButtonResponse,
             stimulus: '<a href="https://mmbb.ltdk.helsinki.fi/utils/Research_Notification_tempo.pdf" target="_blank">Research notification<span class="new-tab-icon" aria-hidden="true"> 🔗</span></a><br> <a href="https://mmbb.ltdk.helsinki.fi/utils/Privacy_Notice_tempo.pdf" target="_blank">Privacy notice<span class="new-tab-icon" aria-hidden="true"> 🔗</span></a><br> <a href="https://mmbb.ltdk.helsinki.fi/utils/consent_page_tempo.pdf" target="_blank">Consent<span class="new-tab-icon" aria-hidden="true"> 🔗</span></a>',
@@ -236,7 +242,7 @@
                           "<div id='labelWrapEmotion'><img id='newEmotionEmoji' src='./images/emotion/newEmojis/surprised.png'</img> <div id='emotionText'>" + "Very high energy" + "</div></div>"]]
 
 
-          var textEmail = "<p>Please give us your email address if you wish to be included in the raffle to win one of the 10 50€ vouchers. Note that you are eligible for the raffle only if you complete the entire survey.</p>";
+          var textEmail = "<p> If you wish to be included in the raffle to win one of the 10 50€ vouchers, please write your email address. Note that you are eligible for the raffle only if you complete the entire survey.</p>";
           var agree_contacted = "Do you wish to be contacted to participate in our upcoming studies?";
           var emailCollect = {
             type: jsPsychSurveyHtmlForm,
@@ -301,7 +307,7 @@
 
           var dancership = {
             type: jsPsychHtmlButtonResponse,
-            stimulus: "Which of the followings do you identify yourself with?",
+            stimulus: "Which of the following do you identify yourself with?",
             choices: ["Professional dancer", "Amateur dancer", "Do not engage in dance"],
             prompt: "",
             on_load: function(){
@@ -314,8 +320,8 @@
 
           var musicianship = {
             type: jsPsychHtmlButtonResponse,
-            stimulus: "Which of the followings do you identify yourself with?",
-            choices: ["Professional musician", "Amateur musician", "Do not engage in music"],
+            stimulus: "Which of the following do you identify yourself with?",
+            choices: ["Professional musician", "Amateur musician", "Music listener", "Do not engage in music"],
             prompt: "",
             on_load: function(){
               document.getElementById("jspsych-html-button-response-btngroup").style.display = "block";
@@ -332,7 +338,8 @@
             min: 0,
             max: 7,
             emojis: emojis2,
-            require_movement: true, button_label: "Continue",
+            require_movement: false, 
+            button_label: "Continue",
             //slider_width: 250,
             labels: [[],[],[]],
             prompt: "<br>How do you feel right now?<br>",
@@ -346,6 +353,35 @@
                   i.style.width = '85%'
                 }
               )
+              document.getElementById("jspsych-html-slider-response-next").disabled = true
+             
+              let slider1Touched = false;
+              let slider2Touched = false;
+
+              function markTouched(sliderNumber) {
+                  if (sliderNumber === 1) slider1Touched = true;
+                  if (sliderNumber === 2) slider2Touched = true;
+                  checkBothSliders();
+              }
+
+              function checkBothSliders() {
+                  if (slider1Touched && slider2Touched) {
+                    document.getElementById("jspsych-html-slider-response-next").disabled = false
+                  }
+              }
+
+              function addSliderListeners(sliderId, sliderNumber) {
+                  const slider = document.getElementById(sliderId);
+                  if (slider) {
+                      ["mousedown", "touchstart", "input"].forEach(event => {
+                          slider.addEventListener(event, () => markTouched(sliderNumber), { once: true });
+                      });
+                  }
+              }
+
+              addSliderListeners("jspsych-html-slider-response-response-0", 1);
+              addSliderListeners("jspsych-html-slider-response-response-1", 2);
+
             }
           };
 
@@ -497,7 +533,7 @@
                                 ["<div id='labelWrapEmotion'><div id='emotionText'>" + "Completely disagree" + "</div></div>", 
                                  "<div id='labelWrapEmotion'><div id='emotionText'>" + "Completely agree" + "</div></div>"]]
 
-              var vars2_trial3 = ["This music makes we want to move", "I like this music", "I am familiar with this music"]
+              var vars2_trial3 = ["This music makes me want to move", "I like this music", "I am familiar with this music"]
               var order_sliders3 = shuffle([0, 1, 2])
 
               var trial3 = {
@@ -507,7 +543,7 @@
                 min: 0,
                 max: 100,
                 emojis: vars_trial3,
-                require_movement: true,
+                require_movement: false,
                 button_label: "Continue",
                 //slider_width: 250,
                 labels: [[],[],[]],
@@ -525,6 +561,39 @@
                       i.style.width = '85%'
                     }
                   )
+
+                  document.getElementById("jspsych-html-slider-response-next").disabled = true
+                 
+                  let slider1Touched = false;
+                  let slider2Touched = false;
+                  let slider3Touched = false;
+
+                  function markTouched(sliderNumber) {
+                      if (sliderNumber === 1) slider1Touched = true;
+                      if (sliderNumber === 2) slider2Touched = true;
+                      if (sliderNumber === 3) slider3Touched = true;
+                      checkBothSliders();
+                  }
+
+                  function checkBothSliders() {
+                      if (slider1Touched && slider2Touched && slider3Touched) {
+                        document.getElementById("jspsych-html-slider-response-next").disabled = false
+                      }
+                  }
+
+                  function addSliderListeners(sliderId, sliderNumber) {
+                      const slider = document.getElementById(sliderId);
+                      if (slider) {
+                          ["mousedown", "touchstart", "input"].forEach(event => {
+                              slider.addEventListener(event, () => markTouched(sliderNumber), { once: true });
+                          });
+                      }
+                  }
+
+                  addSliderListeners("jspsych-html-slider-response-response-0", 1);
+                  addSliderListeners("jspsych-html-slider-response-response-1", 2);
+                  addSliderListeners("jspsych-html-slider-response-response-2", 3);
+
                 },
                 on_finish: function(data){
                   data.chosenSpeed = window.chosenSpeed
@@ -539,7 +608,7 @@
 
           var all_first_trials = unique_files.map(i => makeTrial1(i))
 
-          jsPsych.run([welcome, agreement_all, emailCollect, agreeContact, trial2, yearBirth, genderSurvey, dancership, musicianship, instructions, all_first_trials].flat(1000))
+          jsPsych.run([welcome, agreement_all, emailCollect, agreeContact, trial2, yearBirth, genderSurvey, dancership, musicianship, instructions, all_first_trials, instructions3].flat(1000))
 
         }
         );
