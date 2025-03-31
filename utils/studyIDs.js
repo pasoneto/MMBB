@@ -52,5 +52,8 @@ var studyIDtasks = {
   },
   "m12": {"timeline": ["Movement", "Singing", "EmotionAdaptive", "EmotionAdaptive2", "Rhythm", "MBEMA", "SharedMeasures"],
           "version": "full"
-  }
+  },
+  "mahku": {"timeline": ["Singing", "Emotion", "Rhythm", "MBEMA"],
+          "version": "full"
+  },
 }
