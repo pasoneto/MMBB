@@ -1,18 +1,10 @@
-#Friends-strangers:
+Version 1.0 (deliver before January)
+	- fix mbema (or not?) have same numbers of same/different (same as Muspro) (6 trials)
+	- (Done) Rhythm same as muspro
+	- (Done) Movement (full)
+	- (Done) Emotion (lukilapsi) recognition basic emotions, 16 trials
+	- (Done) Singing (skip single tone and tone sequences). keep familiar song and novel song (only sing along)
 
-- Perform saving by node, similar to movement battery
-- make list of checkpoint links for each part of the timeline (in case the ipad shuts off);
-- make personalized link to Shared Measurements;
-- make post questionnaire;
-
-#Implement questionnaire translations for friends strangers
-- https://jyu-my.sharepoint.com/:x:/g/personal/maarhart_jyu_fi/EVOc-nBuAUJHm4X2U3HPjGgBVw2rWoge47n5PCWtFcb86g?e=9bCRHE
-
-#Privacy note
-- Add to google login system
-    https://jyu-my.sharepoint.com/:w:/r/personal/maarhart_jyu_fi/_layouts/15/Doc.aspx?sourcedoc=%7B25B0EC9E-680B-4DB4-BDB8-4B2A5878B2EC%7D&file=Privacy_Notice_friends_strangers_dance_2023-04-18.docx&action=default&mobileredirect=true
-    https://jyu-my.sharepoint.com/:w:/r/personal/maarhart_jyu_fi/_layouts/15/Doc.aspx?sourcedoc=%7BF1B25C61-F829-4D80-8D82-747016A5BC07%7D&file=Uusi%20Tietosuojailmoitus%20Musiikki%20ja%20tanssi%204_2022.docx&action=default&mobileredirect=true
-
-#Set up questionnaire QR code
-
-f72bdda4-c5f4-4994-8697-e8d74f8e8793
+Paper
+	- Clean data for descriptive statistics (only novel methods)
+	- Behavioral Research Methods

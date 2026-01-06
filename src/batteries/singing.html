@@ -126,7 +126,7 @@
       setTimeout(function() { if (window.play_reps[id]) { audio_to_play.play(); window.play_reps[id]=false;} }, isi);
     }	
 
-  var jsPsych;
+    var jsPsych;
 
 	jatos.onLoad(() => {
 
@@ -1249,68 +1249,78 @@
     timeline.push(thankyoupage);
    
   } else {
-    if (Math.random()<0.5) {
-    // first single tones, then repetition
-      timeline.push(toneintro1);
-      timeline.push(toneintro2);
-      timeline.push(tone_trials);
-      timeline.push(tone_feedback);
-      timeline.push(tonerepintro1);
-      timeline.push(tonerepintro2);
-      timeline.push(tonerep_trials);
-      timeline.push(tonerep_feedback);
-    } else {
-      // first repetition, then single tones
-      timeline.push(tonerepintro1);
-      timeline.push(tonerepintro2);
-      timeline.push(tonerep_trials);
-      timeline.push(tonerep_feedback);
-      timeline.push(toneintro1);
-      timeline.push(toneintro2);
-      timeline.push(tone_trials);
-      timeline.push(tone_feedback);
+    if (studyID!=="m8") { //Removing single tones and sequences of tones for M8
+	    if (Math.random()<0.5) {
+	    // first single tones, then repetition
+	      timeline.push(toneintro1);
+	      timeline.push(toneintro2);
+	      timeline.push(tone_trials);
+	      timeline.push(tone_feedback);
+	      timeline.push(tonerepintro1);
+	      timeline.push(tonerepintro2);
+	      timeline.push(tonerep_trials);
+	      timeline.push(tonerep_feedback);
+	    } else {
+	      // first repetition, then single tones
+	      timeline.push(tonerepintro1);
+	      timeline.push(tonerepintro2);
+	      timeline.push(tonerep_trials);
+	      timeline.push(tonerep_feedback);
+	      timeline.push(toneintro1);
+	      timeline.push(toneintro2);
+	      timeline.push(tone_trials);
+	      timeline.push(tone_feedback);
+	    }
+	    if (Math.random()<0.5) {
+	      // first single tone sequences, then repetition
+	      timeline.push(toneseqintro1);
+	      timeline.push(toneseqintro2);
+	      timeline.push(toneseq_trials);
+	      timeline.push(toneseq_feedback);
+	      timeline.push(toneseqrepintro1);
+	      timeline.push(toneseqrepintro2);
+	      timeline.push(toneseqrep_trials);
+	      timeline.push(toneseqrep_feedback);
+	    } else {
+	      // first repetition, then single tones
+	      timeline.push(toneseqrepintro1);
+	      timeline.push(toneseqrepintro2);
+	      timeline.push(toneseqrep_trials);
+	      timeline.push(toneseqrep_feedback); timeline.push(toneseqintro1);
+	      timeline.push(toneseqintro2);
+	      timeline.push(toneseq_trials);
+	      timeline.push(toneseq_feedback);
+	      }
     }
-    if (Math.random()<0.5) {
-      // first single tone sequences, then repetition
-      timeline.push(toneseqintro1);
-      timeline.push(toneseqintro2);
-      timeline.push(toneseq_trials);
-      timeline.push(toneseq_feedback);
-      timeline.push(toneseqrepintro1);
-      timeline.push(toneseqrepintro2);
-      timeline.push(toneseqrep_trials);
-      timeline.push(toneseqrep_feedback);
-    } else {
-      // first repetition, then single tones
-      timeline.push(toneseqrepintro1);
-      timeline.push(toneseqrepintro2);
-      timeline.push(toneseqrep_trials);
-      timeline.push(toneseqrep_feedback); timeline.push(toneseqintro1);
-      timeline.push(toneseqintro2);
-      timeline.push(toneseq_trials);
-      timeline.push(toneseq_feedback);
-      }
 
     if (Math.random()<0.5) {
     // select order randomly: first memory, then sing-along
-        timeline.push(famsong_memory_intro1);
-        timeline.push(famsong_memory_intro2);
-        timeline.push(famsong_memory_trial);
-        timeline.push(famsong_memory_feedback);
+
+        if(studyID !== "m8"){ //Removing sing back for m8
+           timeline.push(famsong_memory_intro1);
+           timeline.push(famsong_memory_intro2);
+           timeline.push(famsong_memory_trial);
+           timeline.push(famsong_memory_feedback);
+        }
+
         timeline.push(famsong_along_intro1);
         timeline.push(famsong_along_intro2);
         timeline.push(famsong_along_trial);
         timeline.push(famsong_along_feedback);		
+
       } else {
       // select order randomly: first sing-along, then memory
         timeline.push(famsong_along_intro1);
         timeline.push(famsong_along_intro2);
         timeline.push(famsong_along_trial);
         timeline.push(famsong_along_feedback);
-        timeline.push(famsong_memory_intro1);
-        timeline.push(famsong_memory_intro2);
-        timeline.push(famsong_memory_trial);
-        timeline.push(famsong_memory_feedback);
+
+        if(studyID !== "m8"){ //Removing sing back for m8
+           timeline.push(famsong_memory_intro1);
+           timeline.push(famsong_memory_intro2);
+	   timeline.push(famsong_memory_trial);
+           timeline.push(famsong_memory_feedback);
+        }
       }
       
       timeline.push(novsong_intro1);
@@ -1322,7 +1332,7 @@
       timeline.push(thankyoupage);
     }
 		
-		jsPsych.run(timeline.flat(1000));
+     jsPsych.run(timeline.flat(1000));
 
     //jsPsych.simulate(timeline.flat(1000), "visual") //simuBack
 

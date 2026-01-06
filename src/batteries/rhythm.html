@@ -36,7 +36,8 @@
     <script src="./jspsych/dist/custom/beatProductionFunctions.js"></script>
     <script src="./songs/movementTapAudio/songKeysNames.js"></script>
 
-    <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
+    <!--<link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">-->
+    <link rel="stylesheet" href="./jspsych/dist/jspsych.css">
 
     <script src="./utils/translations.js"></script>
 
@@ -236,7 +237,7 @@
       window.completeSequence = [[[frontPageRhythm]], sequenceTrials["intro"], sequenceTrials[indexTrial[0]], sequenceTrials[indexTrial[1]], [[messageFinishSub]]]
 
       //Alicia's test
-      if(studyID == 'alicia'){
+      if (studyID === 'alicia' || studyID === 'm8') {
         window.completeSequence = [[[frontPageRhythm]], sequenceTrials["tapping"], [[messageFinishSub]]]
       }
 
