@@ -58,6 +58,8 @@
       console.log("lukilapsi customizations #1");
     } else if(studyID == "m8") {
       // a few customizations due to shorter task
+      mbema["taskConsists"]["fi"]=mbema["taskConsists"]["fi"].replaceAll("kolmesta osiosta","kahdesta osiosta");
+      mbema["taskConsists"]["eng"]=mbema["taskConsists"]["eng"].replaceAll("three parts","two parts");
       mbema["taskConsists"][lang]=mbema["taskConsists"][lang].replaceAll("15 min"," 10 min");
       mbema["nowContinueB"][lang]=mbema["nowContinueB"][lang].replaceAll(" 20 "," 6 ");
       mbema["totalOfTwentyB"][lang]=mbema["totalOfTwentyB"][lang].replaceAll(" 20 "," 6 ");
