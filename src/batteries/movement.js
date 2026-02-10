@@ -92,7 +92,7 @@ function changeColor(btn) {
       }
 }
 
-function generateMovementTimeline(lang, version){
+function generateMovementTimeline(lang, version, studyID){
 
   var randomChosenSong;
   var chooseSongs = {
@@ -522,6 +522,10 @@ function generateMovementTimeline(lang, version){
 
 
   var movementTimeline = [firstMovement, secondMovement, thirdMovement, fourthMovement];
+  if(studyID === 'm8'){
+    thirdMovement.push(weightHeight);
+    var movementTimeline = [firstMovement, secondMovement, thirdMovement];
+  }
 
   return(movementTimeline)
 }

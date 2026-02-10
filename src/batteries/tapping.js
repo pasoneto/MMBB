@@ -156,7 +156,7 @@ function generateTappingTimeline(lang, studyID, version){
     var tappingTimeline = [[frontPage, preloadSongs2, instruction0, trialTapping0, messageEndTask, howDifficult, instruction1, trialTapping1, messageEndTask, howDifficult, instruction3, trialTapping3, howDifficult]];
   }
 
-  if(studyID == "alicia"){
+  if(studyID == "alicia" || studyID == "m8"){
     if(version == "short"){
       var tappingTimeline = [[frontPage, preloadSongs2, instruction0, trialTapping0, messageEndTask, instruction1, trialTapping1, messageEndTask]];
     } else {

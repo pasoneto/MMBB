@@ -59,7 +59,7 @@ var studyIDtasks = {
   "funchinese": {"timeline": ["Movement", "SharedMeasures", "Rhythm", "MBEMA"],
           "version": "full"
   },
-  "m8": {"timeline": ["Singing", "EmotionAdaptive2", "Rhythm", "MBEMA", "Movement"],
+  "m8": {"timeline": ["Singing", "EmotionAdaptive", "Rhythm", "MBEMA", "Movement"],
           "version": "full"
   }
 }

@@ -237,7 +237,9 @@
       window.completeSequence = [[[frontPageRhythm]], sequenceTrials["intro"], sequenceTrials[indexTrial[0]], sequenceTrials[indexTrial[1]], [[messageFinishSub]]]
 
       //Alicia's test
+      console.log("studyID:", studyID, "Type:", typeof studyID, "Length:", studyID ? studyID.length : 'undefined');
       if (studyID === 'alicia' || studyID === 'm8') {
+        console.log("Using simplified sequence for", studyID);
         window.completeSequence = [[[frontPageRhythm]], sequenceTrials["tapping"], [[messageFinishSub]]]
       }
 
