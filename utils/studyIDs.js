@@ -47,7 +47,7 @@ var studyIDtasks = {
   "edsync": {"timeline": ["Rhythm", "SharedMeasures"],
              "version": "full"
   },
-  "tempo": {"timeline": ["SharedMeasures", "Rhythm", "Movement", "EmotionAdaptive", "EmotionAdaptive2"],
+  "tempo": {"timeline": ["SharedMeasures", "Rhythm", "Movement"],
             "version": "full"
   },
   "m12": {"timeline": ["Movement", "Singing", "EmotionAdaptive", "EmotionAdaptive2", "Rhythm", "MBEMA", "SharedMeasures"],
@@ -61,5 +61,8 @@ var studyIDtasks = {
   },
   "m8": {"timeline": ["Singing", "EmotionAdaptive", "Rhythm", "MBEMA", "Movement"],
           "version": "full"
+  },
+  "m0": {"timeline": ["Movement", "Singing", "EmotionAdaptive", "EmotionAdaptive2", "Rhythm", "MBEMA", "SharedMeasures"],
+           "version": "full"
   }
 }

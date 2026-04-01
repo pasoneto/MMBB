@@ -20,6 +20,7 @@
         <script src="./jspsych/dist/plugin-html-multi-slider-response.js"></script>
         <script src="./jspsych/dist/plugin-emotion-audio-button-response.js"></script>
         <script src="./jspsych/dist/plugin-survey.js"></script>
+    	<script src="./jspsych/dist/plugin-survey-text.js"></script>
         <link rel="stylesheet" href="https://unpkg.com/@jspsych/plugin-survey@0.2.1/css/survey.css">
         <script src="./utils/langFetch.js"></script>
         <script src="./utils/translations.js"></script>
@@ -32,6 +33,37 @@
         <script src="./backend/setupLogFile.js"></script>
         <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
         <link rel="stylesheet" href="./src/styles/generalCSS.css">
+
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta charset="UTF-8">
+    <script src="jatos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://unpkg.com/jspsych@7.1.2"></script>
+    <script src="./jspsych/dist/custom/utils.js"> </script>
+    <script src="./jspsych/dist/plugin-preload.js"> </script>
+    <script src="./jspsych/dist/plugin-audio-button-response.js"></script>
+    <script src="./jspsych/dist/plugin-survey-multi-choice.js"></script>
+    <script src="./jspsych/dist/plugin-html-button-response.js"></script>
+    <script src="./jspsych/dist/plugin-html-slider-response.js"></script>
+    <script src="./jspsych/dist/plugin-instructions.js"></script>
+    <script src="./jspsych/dist/plugin-audio-keyboard-response.js"></script>
+    <script src="./jspsych/dist/plugin-instructions-timedout.js"></script>
+    <script src="./jspsych/dist/plugin-html-multi-slider-response.js"></script>
+    <script src="./jspsych/dist/plugin-survey.js"></script>
+    <script src="./jspsych/dist/plugin-survey-text.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/@jspsych/plugin-survey@0.2.1/css/survey.css">
+    <script src="./utils/translations.js"></script>
+    <script src="./utils/studyLinks.js"></script>
+    <script src="./src/batteries/generalIntro.js"></script>
+    <script src="./src/batteries/sharedMeasurements.js"></script>
+    <script src="./utils/preventRefresh.js"> </script>
+    <script src="./utils/identifyOS.js"> </script>
+    <script src="./utils/manageCookies.js"> </script>
+    <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
+    <link rel="stylesheet" href="./src/styles/generalCSS.css">
+
     </head>
     <style>
         /* Dropdown Button */
@@ -283,15 +315,27 @@
           }
 
           var lang = "eng"
-          var yearBirth = {
-            type: jsPsychSurvey,
-            pages: [["yearOfBirth"].map(i => generateTextObject(sharedMeasurementsT[i][lang], true, 5, 1))],
-            title: sharedMeasurementsT['pleaseAnswer'][lang],
-            button_label_next: buttons["continue"][lang],
-            button_label_back: buttons["previous"][lang],
-            button_label_finish: buttons["continue"][lang],
-            on_load: () => {changeStyle()}
-          };
+	  var yearBirth = {
+	    type: jsPsychSurveyText,
+	    preamble: "<div id='preamble'>" + sharedMeasurementsT["yearOfBirth"][lang] + "</div>",
+	    questions: [
+	      {prompt: '', name: 'yearOfBirth', required: true},
+	    ],
+	    on_load: () => {
+	      document.getElementById("jspsych-survey-text-form").style.height = '20%'
+	      document.getElementById("jspsych-survey-text-form").style.width = '80%'
+	      document.getElementById("jspsych-content").style.height = '100%'
+	      document.getElementById("preamble").style.fontSize = '0.75em'
+	      document.getElementById("input-0").type = "date"
+	      document.getElementById("input-0").autofocus = false
+	      document.getElementById("input-0").inputmode = 'none'
+	      document.getElementById("input-0").style.padding = "20px"
+	      var elelist = document.getElementsByTagName("input");
+	      for(var i = 0; i < elelist.length; i++){
+		  elelist[i].blur();
+	      }
+	    }
+	  }
 
           var genderSurvey = {
             type: jsPsychSurvey,
