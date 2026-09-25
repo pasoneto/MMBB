@@ -1,4 +1,4 @@
-function generateGeneralIntroWrap(lang, subBattery){
+function generateGeneralIntroWrap(lang, subBattery, studyID){
 
   var agreement1 = {
     type: jsPsychHtmlButtonResponse,
@@ -148,8 +148,13 @@ function generateGeneralIntroWrap(lang, subBattery){
   };
 
   var generalIntroEmotion = [[preloadTest, testAudioIOS, testAudioAndroid, gettingHelp]];
-  var generalIntroWrapRhythm = [[agreement1, agreement2, preloadTest, requirementsRhythm, lockIOS, lockAndroid, testAudioIOS, testAudioAndroid, gettingHelp]];
-  var generalIntroWrapMovement = [[agreement1, agreement2, preloadTest, requirementsMovement, lockIOS, lockAndroid, testAudioIOS, testAudioAndroid, gettingHelp]];
+  if(studyID === 'm8'){
+    var generalIntroWrapRhythm = [[preloadTest, requirementsRhythm, lockIOS, lockAndroid, testAudioIOS, testAudioAndroid, gettingHelp]];
+    var generalIntroWrapMovement = [[preloadTest, requirementsMovement, lockIOS, lockAndroid, testAudioIOS, testAudioAndroid, gettingHelp]];
+  } else {
+    var generalIntroWrapRhythm = [[agreement1, agreement2, preloadTest, requirementsRhythm, lockIOS, lockAndroid, testAudioIOS, testAudioAndroid, gettingHelp]];
+    var generalIntroWrapMovement = [[agreement1, agreement2, preloadTest, requirementsMovement, lockIOS, lockAndroid, testAudioIOS, testAudioAndroid, gettingHelp]];
+  }
   var generalIntroWrapMBEMA = [[preloadTest, testAudioIOS, testAudioAndroid, gettingHelp]];
   
   if(subBattery == "emotion"){

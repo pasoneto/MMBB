@@ -210,6 +210,18 @@ function generateBatTimeline(lang, studyID, version){
     var six = [loadTrial6, trialBeat, howSatisfiedBeat, howDifficult]
   }
 
+  // For m8, bypass difficulty assessment
+  if(studyID === 'm8'){
+    var frontPageInstructions = [frontPage, instruction2]
+    var zero = [loadTrial0, trialBeat]
+    var one = [loadTrial1, trialBeat]
+    var two = [loadTrial2, trialBeat]
+    var three = [loadTrial3, trialBeat]
+    var four = [loadTrial4, trialBeat]
+    var five = [loadTrial5, trialBeat]
+    var six = [loadTrial6, trialBeat]
+  }
+
   //Step by step
   var batTimeline = [frontPageInstructions, zero, one, two, three, four, five, six]
 

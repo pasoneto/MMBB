@@ -523,7 +523,10 @@ function generateMovementTimeline(lang, version, studyID){
 
   var movementTimeline = [firstMovement, secondMovement, thirdMovement, fourthMovement];
   if(studyID === 'm8'){
-    thirdMovement.push(weightHeight);
+    // For m8: strip all verbal assessments (difficulty, liking, groove, familiarity, knowThisSong, phoneInPocket) and use 3 blocks
+    var firstMovement = [instruction0a, promptAccel, loadAccel, instruction0b, trial_in_fullscreen, phonePocket, countDown, trialAccelerometer1, pickUpPhone]
+    var secondMovement = [preloadSongs1, instruction1, trial_in_fullscreen, phonePocket, countDown, trialAccelerometer2, pickUpPhone]
+    var thirdMovement = [preloadSongs1, instruction2, trial_in_fullscreen, phonePocket, countDown, trialAccelerometer3, pickUpPhone, weightHeight]
     var movementTimeline = [firstMovement, secondMovement, thirdMovement];
   }
 

@@ -1213,11 +1213,22 @@
 		on_start: function() { window.onbeforeunload = null; },
 	}
 
-    var generalInstructions = generateGeneralIntroWrap(lang, "mbema")
+    var generalInstructions = generateGeneralIntroWrap(lang, "mbema", studyID)
 
 		jatos.addAbortButton();
     if(studyID=="lukilapsi"){
 		  var timeline=[agreement1, agreement2, instruction0, generalInstructions, initializeMic, testrecord1, loop_record2, testrecord3,voicesel1,voicesel2,voicesel3,voicesel4short];
+    } else if(studyID=="m8"){
+      // For m8: bypass agreements and voice selection, auto-set to child (Female) + middle (Mid)
+      voicetype = "Female";
+      voicepitch = "Mid";
+      low_en.src="./songs/singing/HappyBirthday/Female/Low.mp3";
+      mid_en.src="./songs/singing/HappyBirthday/Female/Mid.mp3";
+      high_en.src="./songs/singing/HappyBirthday/Female/High.mp3";
+      low_fi.src="./songs/singing/PaljonOnneaVaan/Female/Low.mp3";
+      mid_fi.src="./songs/singing/PaljonOnneaVaan/Female/Mid.mp3";
+      high_fi.src="./songs/singing/PaljonOnneaVaan/Female/High.mp3";
+      var timeline=[instruction0, generalInstructions, initializeMic, testrecord1, loop_record2, testrecord3,voicesel1];
     } else {
 		  var timeline=[agreement1, agreement2, instruction0, generalInstructions, initializeMic, testrecord1, loop_record2, testrecord3,voicesel1,voicesel2,voicesel3,voicesel4];
     }

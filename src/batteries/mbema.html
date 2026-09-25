@@ -60,7 +60,6 @@
       // a few customizations due to shorter task
       mbema["taskConsists"]["fi"]=mbema["taskConsists"]["fi"].replaceAll("kolmesta osiosta","kahdesta osiosta");
       mbema["taskConsists"]["eng"]=mbema["taskConsists"]["eng"].replaceAll("three parts","two parts");
-      mbema["taskConsists"][lang]=mbema["taskConsists"][lang].replaceAll("15 min"," 10 min");
       mbema["nowContinueB"][lang]=mbema["nowContinueB"][lang].replaceAll(" 20 "," 6 ");
       mbema["totalOfTwentyB"][lang]=mbema["totalOfTwentyB"][lang].replaceAll(" 20 "," 6 ");
       console.log("m8 customizations #1");
@@ -124,9 +123,13 @@
     }
 
 	  // first round instructions
+    var instruction1Pages = ["taskConsists", "wholeTask", "firstPart", "firstPartB", "yourTask", "yourTaskB", "firstLets", "listen"];
+    if(studyID == "m8"){
+      instruction1Pages = instruction1Pages.filter(i => i !== "taskConsists");
+    }
     var instruction1 = {
         type: jsPsychInstructions,
-        pages: ["taskConsists", "wholeTask", "firstPart", "firstPartB", "yourTask", "yourTaskB", "firstLets", "listen"].map(i => mbema[i][lang]),
+        pages: instruction1Pages.map(i => mbema[i][lang]),
         button_label_next: buttons["next"][lang],
         button_label_previous: buttons["previous"][lang],
         show_clickable_nav: true,
@@ -589,7 +592,7 @@
     stimulus: mbema["taskComplete"][lang],
   };
 
-  var introCommon = generateGeneralIntroWrap(lang, "mbema")
+  var introCommon = generateGeneralIntroWrap(lang, "mbema", studyID)
 
   var agreement1 = {
     type: jsPsychHtmlButtonResponse,
@@ -605,7 +608,11 @@
     prompt: ""
   };
 
-	var timeline=[agreement1, agreement2, helloTrial, introCommon, instruction1].flat(1000);
+  if(studyID == "m8"){
+    var timeline=[helloTrial, introCommon, instruction1].flat(1000);
+  } else {
+    var timeline=[agreement1, agreement2, helloTrial, introCommon, instruction1].flat(1000);
+  }
 		
 		if (Math.random()<0.5) {
 		// select order randomly: first memory, then sing-along

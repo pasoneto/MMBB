@@ -3,7 +3,7 @@ const fs = require('fs');
 var pathPlugins = '/assets/jspsych/dist/'
 
 async function pushFileJATOS(string, fileName, fileType = ""){
-  var api_key = "jap_F3uymbK1YIMdqgdkcyzgWNN6kmbRSTo6b9a37"
+  var api_key = process.env.JATOS_TOKEN  // set JATOS_TOKEN before running; never hardcode it
   var study_uuid = "8baf2255-8021-4280-b679-4abfdbc6ae67"
 
   var blob = new Blob([string],{type:"text/plain"});

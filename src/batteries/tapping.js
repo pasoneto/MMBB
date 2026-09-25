@@ -156,12 +156,15 @@ function generateTappingTimeline(lang, studyID, version){
     var tappingTimeline = [[frontPage, preloadSongs2, instruction0, trialTapping0, messageEndTask, howDifficult, instruction1, trialTapping1, messageEndTask, howDifficult, instruction3, trialTapping3, howDifficult]];
   }
 
-  if(studyID == "alicia" || studyID == "m8"){
+  if(studyID == "alicia"){
     if(version == "short"){
       var tappingTimeline = [[frontPage, preloadSongs2, instruction0, trialTapping0, messageEndTask, instruction1, trialTapping1, messageEndTask]];
     } else {
       var tappingTimeline = [[frontPage, preloadSongs2, instruction0, trialTapping0, messageEndTask, howDifficult, instruction1, trialTapping1, messageEndTask, howDifficult]];
     }
+  }
+  if(studyID == "m8"){
+    var tappingTimeline = [[frontPage, preloadSongs2, instruction0, trialTapping0, messageEndTask, instruction1, trialTapping1, messageEndTask]];
   }
   
   return(tappingTimeline)

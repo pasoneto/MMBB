@@ -13,7 +13,7 @@ var pathCustom = '/assets/jspsych/dist/custom/'
 //'content-type': 'multipart/form-data'
 
 async function pushFileJATOS(string, fileName, fileType = ""){
-  var api_key = "jap_F3uymbK1YIMdqgdkcyzgWNN6kmbRSTo6b9a37"
+  var api_key = process.env.JATOS_TOKEN  // set JATOS_TOKEN before running; never hardcode it
   var study_uuid = "8baf2255-8021-4280-b679-4abfdbc6ae67"
 
   var blob = new Blob([string],{type:"text/plain"});
@@ -31,7 +31,7 @@ async function pushFileJATOS(string, fileName, fileType = ""){
 
 async function getFromJATOS(fileName){
 
-  var api_key = "jap_F3uymbK1YIMdqgdkcyzgWNN6kmbRSTo6b9a37"
+  var api_key = process.env.JATOS_TOKEN  // set JATOS_TOKEN before running; never hardcode it
   var url = 'https://mmbb.ltdk.helsinki.fi/jatos/api/v1/studies/28/assets/'
   var headers = {'accept': '*/*', 'Authorization': 'Bearer ' + api_key}
 
@@ -42,7 +42,7 @@ async function getFromJATOS(fileName){
 }
 
 async function deleteFileJATOS(fileName){
-  var api_key = "jap_F3uymbK1YIMdqgdkcyzgWNN6kmbRSTo6b9a37"
+  var api_key = process.env.JATOS_TOKEN  // set JATOS_TOKEN before running; never hardcode it
   var study_uuid = "8baf2255-8021-4280-b679-4abfdbc6ae67"
 
   var url = 'https://mmbb.ltdk.helsinki.fi/jatos/api/v1/studies/28/assets/' + fileName
