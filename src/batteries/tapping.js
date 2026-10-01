@@ -1,7 +1,14 @@
 function generateTappingTimeline(lang, studyID, version){
+  // Each trial's Variability is kept in localStorage for the feedback page at the
+  // end of Rhythm (utils/feedback.js). Nothing is added to the trial data.
+  var userID = jatos.urlQueryParameters.user
+
   var frontPage = {
       type: jsPsychInstructions,
       pages: [tapping["openPage"][lang]],
+      on_start: function(){
+        if(typeof feedbackStore !== "undefined"){ feedbackStore.clear("tap", userID) }
+      },
       button_label_next: buttons["next"][lang],
       button_label_previous: buttons["previous"][lang],
       show_clickable_nav: true,
@@ -95,7 +102,8 @@ function generateTappingTimeline(lang, studyID, version){
         document.querySelector(".jspsych-display-element").style.borderWidth = "5px";
         document.getElementById("jspsych-audio-button-response-btngroup").style.margin = "auto";
       },
-      on_finish: function(){
+      on_finish: function(data){
+        if(typeof feedbackRecordTapTrial === "function"){ feedbackRecordTapTrial(userID, data) }
         document.querySelector(".jspsych-display-element").style.border = "none"
         document.querySelector(".jspsych-display-element").style.borderStyle = "none"
         document.querySelector(".jspsych-display-element").style.borderWidth = "none"
@@ -118,7 +126,8 @@ function generateTappingTimeline(lang, studyID, version){
         document.querySelector(".jspsych-display-element").style.borderWidth = "5px";
         document.getElementById("jspsych-audio-button-response-btngroup").style.margin = "auto";
       },
-      on_finish: function(){
+      on_finish: function(data){
+        if(typeof feedbackRecordTapTrial === "function"){ feedbackRecordTapTrial(userID, data) }
         document.querySelector(".jspsych-display-element").style.border = "none"
         document.querySelector(".jspsych-display-element").style.borderStyle = "none"
         document.querySelector(".jspsych-display-element").style.borderWidth = "none"

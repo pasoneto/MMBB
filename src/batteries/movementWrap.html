@@ -44,6 +44,10 @@
     <link rel="stylesheet" href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css">
 
     <script src="./utils/translations.js"></script>
+    <script src="./utils/feedbackNorms.js"></script>
+    <script src="./utils/feedback.js"></script>
+    <script src="./utils/featureExtraction.js"></script>
+    <script src="./utils/feedbackAnnotations.js"></script>
 
     <!--Fetching timelines for each task-->
     <script src="./src/batteries/generalIntro.js"></script>
@@ -180,7 +184,11 @@
 
                 console.log("Appending result data...")
                 jatos.appendResultData(finalData).then(r => {
-                  jatos.endStudyAndRedirect(urlRedirect)
+                  // Movement feedback, shown only after the data are saved
+                  showFeedbackPage(lang, () => movementFeedbackSections(lang, userID), () => {
+                    feedbackStore.clear("movement", userID)
+                    jatos.endStudyAndRedirect(urlRedirect)
+                  })
                 })
 
             }
@@ -196,6 +204,9 @@
       var frontPageMovement = {
           type: jsPsychInstructions,
           pages: [movement['movementOpen'][lang]],
+          on_start: function(){
+            if(typeof feedbackStore !== "undefined"){ feedbackStore.clear("movement", jatos.urlQueryParameters.user) }
+          },
           button_label_next: buttons["next"][lang],
           button_label_previous: buttons["previous"][lang],
           show_clickable_nav: true

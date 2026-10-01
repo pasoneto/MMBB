@@ -42,6 +42,8 @@
     <script src="./utils/translations.js"></script>
     <script src="./utils/feedbackNorms.js"></script>
     <script src="./utils/feedback.js"></script>
+    <script src="./utils/featureExtraction.js"></script>
+    <script src="./utils/feedbackAnnotations.js"></script>
 
     <!--Fetching timelines for each task-->
     <script src="./src/batteries/generalIntro.js"></script>
@@ -180,9 +182,10 @@
                 //jatos.endStudyAndRedirect(urlRedirect, finalData)
                 console.log("Appending result data...")
                 jatos.appendResultData(finalData).then(r => {
-                  // BAT feedback, shown only after the data are saved
-                  showFeedbackPage(lang, () => batFeedbackSections(lang, userID), () => {
+                  // BAT and tapping feedback, shown only after the data are saved
+                  showFeedbackPage(lang, () => batFeedbackSections(lang, userID).concat(tapFeedbackSections(lang, userID)), () => {
                     feedbackStore.clear("bat", userID)
+                    feedbackStore.clear("tap", userID)
                     jatos.endStudyAndRedirect(urlRedirect)
                   })
                 })

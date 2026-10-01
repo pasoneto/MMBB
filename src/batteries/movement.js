@@ -93,6 +93,12 @@ function changeColor(btn) {
 }
 
 function generateMovementTimeline(lang, version, studyID){
+  // Each dance trial's PeriodConf is kept in localStorage for the feedback page
+  // at the end of Movement (utils/feedback.js). Nothing is added to the trial data.
+  var userID = jatos.urlQueryParameters.user
+  var recordForFeedback = function(data){
+    if(typeof feedbackRecordMovementTrial === "function"){ feedbackRecordMovementTrial(userID, data) }
+  }
 
   var randomChosenSong;
   var chooseSongs = {
@@ -392,6 +398,7 @@ function generateMovementTimeline(lang, version, studyID){
       extensions: [
         {type: jsPsychExtensionAccelerometer }
       ],
+      on_finish: recordForFeedback,
       on_load: function(){
         document.getElementById("pocket").style.marginTop = 0
       }
@@ -426,6 +433,7 @@ function generateMovementTimeline(lang, version, studyID){
       extensions: [
         {type: jsPsychExtensionAccelerometer }
       ],
+      on_finish: recordForFeedback,
   }
 
   var trialAccelerometer4 = {
@@ -438,6 +446,7 @@ function generateMovementTimeline(lang, version, studyID){
       extensions: [
         {type: jsPsychExtensionAccelerometer }
       ],
+      on_finish: recordForFeedback,
       on_start: function(trial) {
           var allData = jsPsych.data.get().values()
           trial.stimulus = './songs/movementTapAudio/modifiedAudio/' + window.randomChosenSong

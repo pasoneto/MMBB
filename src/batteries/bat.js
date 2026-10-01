@@ -11,7 +11,7 @@ function generateBatTimeline(lang, studyID, version){
       button_label_previous: buttons["previous"][lang],
       show_clickable_nav: true,
       on_start: function(){
-        feedbackStore.clear("bat", userID)
+        if(typeof feedbackStore !== "undefined"){ feedbackStore.clear("bat", userID) }
         //disalowRefresh.addEventListener("onbeforeunload", preventRefresh, false);
         //window.removeEventListener("beforeunload", beforeUnloadListener, {capture: true});
       }
@@ -173,7 +173,7 @@ function generateBatTimeline(lang, studyID, version){
       data.offset = window.count; //Final offset
       data.nChanges = window.nChanges; //How many times user changed
       data.initialOffset = window.initialOffset; //Initial offset
-      feedbackStore.put("bat", userID, currentSong, window.count)
+      if(typeof feedbackStore !== "undefined"){ feedbackStore.put("bat", userID, currentSong, window.count) }
       var allSources = [window.source1, window.source2, window.source3, window.source4, window.source5, window.source6, window.source7, window.source8, window.sourceBase] //Stopping all songs
       for(i in allSources) {
         allSources[i].stop() //simuBack
