@@ -453,6 +453,19 @@ button:focus {
 }
 
 /*Score feedback page (utils/feedback.js)*/
+.feedbackOverlay{
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  overflow-y: auto;
+  padding: 1em 16px;
+  box-sizing: border-box;
+  background: #eef1f7;
+  font-family: 'Open Sans', 'Arial', sans-serif;
+  font-size: 18px;
+  text-align: center;
+  color: black;
+}
 .feedbackPage{
   width: 100%;
   max-width: 480px;

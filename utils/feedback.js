@@ -11,8 +11,7 @@
 //   MBEMA  processBatteries/mbema.py               proportion correct per part
 //   SMART  processBatteries/emotion_adaptive.py    Theta of the last trial
 //
-// Needs: feedbackNorms.js, translations.js (feedbackT, buttons), jsPsych with
-// jsPsychHtmlButtonResponse.
+// Needs: feedbackNorms.js, translations.js (feedbackT, buttons).
 
 var FEEDBACK_DECIMALS = 4  // same rounding as make_feedback_norms.py
 
@@ -128,83 +127,83 @@ function feedbackCurveSVG(norm, score, lowLabel, highLabel, lang){
          '</svg>'
 }
 
-// ─── page ────────────────────────────────────────────────────────────────────
-// getSections() runs when the page is reached and returns
-// [{title, norm, score, detail, lowLabel, highLabel}]; sections without a score
-// are dropped, and with none left the page is skipped.
-function generateFeedbackTrial(lang, task, getSections){
+// ─── page ───────────────────────────────────────────────────────────────────
+// The page is NOT a jsPsych trial: it is shown after jsPsych has finished and
+// the battery has saved its data, so the results are exactly what they were
+// without feedback (no extra row, no shifted trial_index).
+// sections: [{title, norm, score, detail, lowLabel, highLabel}]
+function feedbackPageHTML(lang, sections){
+  var html = sections.map(s => {
+    var pct = feedbackPercentile(s.norm, s.score)
+    return '<div class="feedbackSection">' +
+             (s.title ? '<div class="feedbackTitle">' + s.title + '</div>' : '') +
+             feedbackCurveSVG(s.norm, s.score, s.lowLabel, s.highLabel, lang) +
+             '<div class="feedbackText">' + (s.detail ? s.detail + '<br>' : '') +
+               feedbackT["percentile"][lang].replace("{p}", pct).replace("{n}", s.norm.n) +
+             '</div>' +
+           '</div>'
+  }).join("")
+  return '<div class="feedbackPage">' +
+           '<div class="feedbackHeading">' + feedbackT["heading"][lang] + '</div>' +
+           html +
+           '<div class="feedbackNote">' + feedbackT["note"][lang] + '</div>' +
+           '<button class="jspsych-btn" id="feedbackContinue">' + buttons["continue"][lang] + '</button>' +
+         '</div>'
+}
+
+// Shows the page, then calls onContinue. Without a score (or on any error) it
+// calls onContinue straight away, so the redirect never depends on feedback.
+function showFeedbackPage(lang, getSections, onContinue){
   var sections = []
-  var page = {
-    type: jsPsychHtmlButtonResponse,
-    stimulus: function(){
-      var html = sections.map(s => {
-        var pct = feedbackPercentile(s.norm, s.score)
-        return '<div class="feedbackSection">' +
-                 (s.title ? '<div class="feedbackTitle">' + s.title + '</div>' : '') +
-                 feedbackCurveSVG(s.norm, s.score, s.lowLabel, s.highLabel, lang) +
-                 '<div class="feedbackText">' + (s.detail ? s.detail + '<br>' : '') +
-                   feedbackT["percentile"][lang].replace("{p}", pct).replace("{n}", s.norm.n) +
-                 '</div>' +
-               '</div>'
-      }).join("")
-      return '<div class="feedbackPage">' +
-               '<div class="feedbackHeading">' + feedbackT["heading"][lang] + '</div>' +
-               html +
-               '<div class="feedbackNote">' + feedbackT["note"][lang] + '</div>' +
-             '</div>'
-    },
-    choices: [buttons["continue"][lang]],
-    data: { feedback_task: task },
-    on_finish: function(data){
-      data.stimulus = "feedback"  // keep the SVG out of the results
-      data.feedback_scores = sections.map(s => ({
-        measure: s.measure, score: s.score, percentile: feedbackPercentile(s.norm, s.score)
-      }))
-    }
+  try {
+    sections = getSections().filter(s => s && s.norm && typeof s.score === "number" && isFinite(s.score))
+  } catch(e) {
+    console.log("Feedback not shown:", e)
   }
-  return {
-    timeline: [page],
-    conditional_function: function(){
-      try {
-        sections = getSections().filter(s => s && s.norm && typeof s.score === "number" && isFinite(s.score))
-      } catch(e) {
-        console.log("Feedback not shown:", e)
-        sections = []
-      }
-      return sections.length > 0
-    }
+  if(sections.length == 0){ onContinue(); return }
+  try {
+    var wrapper = document.createElement("div")
+    wrapper.className = "feedbackOverlay"
+    wrapper.innerHTML = feedbackPageHTML(lang, sections)
+    document.body.appendChild(wrapper)
+    window.scrollTo(0, 0)
+    var done = false
+    document.getElementById("feedbackContinue").addEventListener("click", function(){
+      if(done){ return }
+      done = true
+      this.disabled = true
+      onContinue()
+    })
+  } catch(e) {
+    console.log("Feedback not shown:", e)
+    onContinue()
   }
 }
 
-// ─── per-battery pages ───────────────────────────────────────────────────────
-function generateBATFeedbackTrial(lang, userID){
-  return generateFeedbackTrial(lang, "bat", function(){
-    var r = feedbackScoreBAT(feedbackStore.get("bat", userID))
-    if(r == null){ return [] }
-    return [{ measure: "bat", norm: feedbackNorms["bat"], score: r.score,
-              title: feedbackT["batTitle"][lang],
-              lowLabel: feedbackT["lower"][lang], highLabel: feedbackT["higher"][lang] }]
-  })
+// ─── per-battery sections ────────────────────────────────────────────────────
+function batFeedbackSections(lang, userID){
+  var r = feedbackScoreBAT(feedbackStore.get("bat", userID))
+  if(r == null){ return [] }
+  return [{ norm: feedbackNorms["bat"], score: r.score,
+            title: feedbackT["batTitle"][lang],
+            lowLabel: feedbackT["lower"][lang], highLabel: feedbackT["higher"][lang] }]
 }
 
-function generateMBEMAFeedbackTrial(lang, jsPsych){
-  return generateFeedbackTrial(lang, "mbema", function(){
-    var r = feedbackScoreMBEMA(jsPsych.data.get().values())
-    return ["Melody", "Rhythm", "Memory"].filter(p => r[p]).map(p => ({
-      measure: "mbema_" + p, norm: feedbackNorms["mbema_" + p], score: r[p].score,
-      title: feedbackT["mbema" + p][lang],
-      detail: feedbackT["nCorrect"][lang].replace("{k}", r[p].correct).replace("{n}", r[p].nItems),
-      lowLabel: "0 %", highLabel: "100 %"
-    }))
-  })
+// trials: jsPsych.data.get().values()
+function mbemaFeedbackSections(lang, trials){
+  var r = feedbackScoreMBEMA(trials)
+  return ["Melody", "Rhythm", "Memory"].filter(p => r[p]).map(p => ({
+    norm: feedbackNorms["mbema_" + p], score: r[p].score,
+    title: feedbackT["mbema" + p][lang],
+    detail: feedbackT["nCorrect"][lang].replace("{k}", r[p].correct).replace("{n}", r[p].nItems),
+    lowLabel: "0 %", highLabel: "100 %"
+  }))
 }
 
-function generateSMARTFeedbackTrial(lang, jsPsych){
-  return generateFeedbackTrial(lang, "smart", function(){
-    var r = feedbackScoreSMART(jsPsych.data.get().values())
-    if(r == null){ return [] }
-    return [{ measure: "smart", norm: feedbackNorms["smart"], score: r.score,
-              title: feedbackT["smartTitle"][lang],
-              lowLabel: feedbackT["lower"][lang], highLabel: feedbackT["higher"][lang] }]
-  })
+function smartFeedbackSections(lang, trials){
+  var r = feedbackScoreSMART(trials)
+  if(r == null){ return [] }
+  return [{ norm: feedbackNorms["smart"], score: r.score,
+            title: feedbackT["smartTitle"][lang],
+            lowLabel: feedbackT["lower"][lang], highLabel: feedbackT["higher"][lang] }]
 }

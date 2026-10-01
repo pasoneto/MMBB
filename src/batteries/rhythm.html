@@ -180,7 +180,11 @@
                 //jatos.endStudyAndRedirect(urlRedirect, finalData)
                 console.log("Appending result data...")
                 jatos.appendResultData(finalData).then(r => {
-                  jatos.endStudyAndRedirect(urlRedirect)
+                  // BAT feedback, shown only after the data are saved
+                  showFeedbackPage(lang, () => batFeedbackSections(lang, userID), () => {
+                    feedbackStore.clear("bat", userID)
+                    jatos.endStudyAndRedirect(urlRedirect)
+                  })
                 })
             }
           }

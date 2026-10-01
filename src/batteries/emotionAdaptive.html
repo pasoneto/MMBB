@@ -76,7 +76,16 @@
             
             allowRefresh();
             var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&Emotion" + window.part + "=done" + "&studyID=" + studyID + '&uniqueID=' + uniqueID;
-            jatos.endStudyAndRedirect(urlRedirect, finalData)
+            if(window.part == "Two"){
+              jatos.endStudyAndRedirect(urlRedirect, finalData)
+            } else {
+              // Same data as endStudyAndRedirect(url, data), which only appends it;
+              // the SMART feedback page is shown after the data are saved
+              jatos.appendResultData(finalData).then(() => {
+                showFeedbackPage(lang, () => smartFeedbackSections(lang, finalData.values()),
+                                 () => jatos.endStudyAndRedirect(urlRedirect))
+              }, () => jatos.endStudyAndRedirect(urlRedirect, finalData))
+            }
 
       }});
 
@@ -798,17 +807,14 @@
      
       var generalIntroEmotion = generateGeneralIntroWrap(lang, "emotion")
 
-      // Score feedback right after the adaptive part (Emotion 2 has no score yet)
-      var smartFeedback = generateSMARTFeedbackTrial(lang, jsPsych)
-
       console.log(window.part)
 
       if(window.part == "One"){
-        var timelineChosen = [agreement1, agreement2, welcome, generalIntroEmotion, instructionsPart1, preload, example_trials, part1_trials, smartFeedback, messageFinishEmotion].flat(1000)
+        var timelineChosen = [agreement1, agreement2, welcome, generalIntroEmotion, instructionsPart1, preload, example_trials, part1_trials, messageFinishEmotion].flat(1000)
       } else if(window.part == "Two"){
         var timelineChosen = [agreement1, agreement2, welcome, generalIntroEmotion, instructionsPart2, part2_trials, messageFinishEmotion].flat(1000)
       } else {
-        var timelineChosen = [agreement1, agreement2, welcome, generalIntroEmotion, instructionsPart1, preload, example_trials, part1_trials, smartFeedback, instructionsPart2, part2_trials, messageFinishEmotion].flat(1000)
+        var timelineChosen = [agreement1, agreement2, welcome, generalIntroEmotion, instructionsPart1, preload, example_trials, part1_trials, instructionsPart2, part2_trials, messageFinishEmotion].flat(1000)
       }
 
       var procedureEmotionFinal = {

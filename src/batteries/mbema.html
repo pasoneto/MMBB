@@ -83,7 +83,12 @@
         var uniqueID = jatos.urlQueryParameters.uniqueID;
 
         var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&MBEMA=done" + "&uniqueID=" + uniqueID + "&studyID=" + studyID;
-        jatos.endStudyAndRedirect(urlRedirect, finalData)
+        // Same data as endStudyAndRedirect(url, data), which only appends it;
+        // the feedback page is shown after the data are saved
+        jatos.appendResultData(finalData).then(() => {
+          showFeedbackPage(lang, () => mbemaFeedbackSections(lang, finalData.values()),
+                           () => jatos.endStudyAndRedirect(urlRedirect))
+        }, () => jatos.endStudyAndRedirect(urlRedirect, finalData))
 
         //jatos.endStudyAndRedirect("https://mmbb.ltdk.helsinki.fi/publix/YK3bdjI0tbl?lang=eng", finalData) //simuBack
 
@@ -651,7 +656,6 @@
     } else {
       console.log("m8 customizations #4 p3: skip completely");
     }
-		timeline.push(generateMBEMAFeedbackTrial(lang, jsPsych));
 		timeline.push(messageFinishMBEMA);
 
 		jsPsych.run(timeline);

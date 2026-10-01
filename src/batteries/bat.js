@@ -1,6 +1,7 @@
 function generateBatTimeline(lang, studyID, version){
   // Each excerpt runs in its own page load, so final offsets are kept in
-  // localStorage for the feedback page after the last one (utils/feedback.js).
+  // localStorage for the feedback page at the end of Rhythm (utils/feedback.js).
+  // Nothing is added to the trial data.
   var userID = jatos.urlQueryParameters.user
 
   var frontPage = {
@@ -227,9 +228,6 @@ function generateBatTimeline(lang, studyID, version){
     var five = [loadTrial5, trialBeat]
     var six = [loadTrial6, trialBeat]
   }
-
-  //Score feedback after the last excerpt
-  six.push(generateBATFeedbackTrial(lang, userID))
 
   //Step by step
   var batTimeline = [frontPageInstructions, zero, one, two, three, four, five, six]
