@@ -148,7 +148,8 @@
           if(Number(trialIndex) < Number(nTrials)){
             trialIndex = Number(trialIndex)+1
 
-            var urlRedirect = studyLinks['movementLink'] + "?user=" + userID + "&trialIndex=" + trialIndex + "&nodeIndex=" + nodeIndex + "&lang=" + lang + '&studyID=' + studyID + '&uniqueID=' + uniqueID
+            // keeps feedback=true across the page reloads (utils/feedback.js)
+            var urlRedirect = studyLinks['movementLink'] + "?user=" + userID + "&trialIndex=" + trialIndex + "&nodeIndex=" + nodeIndex + "&lang=" + lang + '&studyID=' + studyID + '&uniqueID=' + uniqueID + (typeof feedbackUrlParam === "function" ? feedbackUrlParam() : "")
             
             console.log("Next trial")
             console.log(urlRedirect)
@@ -167,7 +168,7 @@
               trialIndex = Number(0)
               nodeIndex = Number(nodeIndex)+1
 
-              var urlRedirect = studyLinks['movementLink'] + "?user=" + userID + "&trialIndex=" + trialIndex + "&nodeIndex=" + nodeIndex + "&lang=" + lang + '&studyID=' + studyID + '&uniqueID=' + uniqueID;
+              var urlRedirect = studyLinks['movementLink'] + "?user=" + userID + "&trialIndex=" + trialIndex + "&nodeIndex=" + nodeIndex + "&lang=" + lang + '&studyID=' + studyID + '&uniqueID=' + uniqueID + (typeof feedbackUrlParam === "function" ? feedbackUrlParam() : "");
 
               console.log("Next node")
               console.log(urlRedirect)

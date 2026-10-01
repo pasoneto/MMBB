@@ -18,6 +18,21 @@
 
 var FEEDBACK_DECIMALS = 4  // same rounding as make_feedback_norms.py
 
+// ─── switch ──────────────────────────────────────────────────────────────────
+// Feedback is off unless the battery URL has feedback=true (any case). Rhythm
+// and Movement pass it on across their page reloads with feedbackUrlParam().
+function feedbackEnabled(){
+  try {
+    return String(jatos.urlQueryParameters.feedback).toLowerCase() === "true"
+  } catch(e) {
+    return false
+  }
+}
+
+function feedbackUrlParam(){
+  return feedbackEnabled() ? "&feedback=true" : ""
+}
+
 // ─── storage across page loads ───────────────────────────────────────────────
 // Rhythm reloads the page between trials, so BAT offsets are kept in
 // localStorage until the last excerpt. Failing storage only means no feedback.
@@ -165,9 +180,11 @@ function feedbackPageHTML(lang, sections){
          '</div>'
 }
 
-// Shows the page, then calls onContinue. Without a score (or on any error) it
-// calls onContinue straight away, so the redirect never depends on feedback.
+// Shows the page, then calls onContinue. Without feedback=true, without a score
+// or on any error it calls onContinue straight away, so the redirect never
+// depends on feedback.
 function showFeedbackPage(lang, getSections, onContinue){
+  if(!feedbackEnabled()){ onContinue(); return }
   var sections = []
   try {
     sections = getSections().filter(s => s && s.norm && typeof s.score === "number" && isFinite(s.score))
@@ -227,6 +244,7 @@ function smartFeedbackSections(lang, trials){
 // stored (by stimulus) when the trial ends. The trial's data are only read.
 // Any failure here only means no feedback; it never touches the task.
 function feedbackRecordTapTrial(userID, data){
+  if(!feedbackEnabled()){ return }
   try {
     var v = tapTrialVariability(data.rt, data.stimulus, feedbackAnnotations)
     if(v !== null){ feedbackStore.put("tap", userID, featureStimulusKey(data.stimulus), v) }
@@ -234,6 +252,7 @@ function feedbackRecordTapTrial(userID, data){
 }
 
 function feedbackRecordMovementTrial(userID, data){
+  if(!feedbackEnabled()){ return }
   try {
     var v = movementTrialPeriodConf(data.accelerometer_data, data.stimulus, feedbackAnnotations)
     if(v !== null){ feedbackStore.put("movement", userID, featureStimulusKey(data.stimulus), v) }
