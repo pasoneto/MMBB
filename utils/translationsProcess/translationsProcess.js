@@ -29,6 +29,7 @@ const sharedMeasurementsFile = './shared'
 const taskIconsFile = "./taskIcons"
 const buttonsFile = './buttons'
 const singingFile = './singing'
+const feedbackFile = './feedback'
 
 processTranslation(movementFile, "movement")
 processTranslation(recurringFile, "recurring")
@@ -41,6 +42,7 @@ processTranslation(sharedMeasurementsFile, "sharedMeasurementsT")
 processTranslation(taskIconsFile, "taskIcons")
 processTranslation(buttonsFile, "buttons")
 processTranslation(singingFile, "singing")
+processTranslation(feedbackFile, "feedbackT")
 
 
 //namesObjects:

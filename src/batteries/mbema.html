@@ -4,6 +4,8 @@
     <title>MMBB battery</title>
 	  <script src="jatos.js"></script>
     <script src="./utils/translations.js"></script>
+    <script src="./utils/feedbackNorms.js"></script>
+    <script src="./utils/feedback.js"></script>
     <script src="./jspsych/dist/graphFunction.js"> </script>
     <script src="./jspsych/dist/jspsych.js"></script>
     <script src="./jspsych/dist/plugin-html-button-response.js"></script>
@@ -649,6 +651,7 @@
     } else {
       console.log("m8 customizations #4 p3: skip completely");
     }
+		timeline.push(generateMBEMAFeedbackTrial(lang, jsPsych));
 		timeline.push(messageFinishMBEMA);
 
 		jsPsych.run(timeline);

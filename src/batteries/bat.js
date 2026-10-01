@@ -1,4 +1,8 @@
 function generateBatTimeline(lang, studyID, version){
+  // Each excerpt runs in its own page load, so final offsets are kept in
+  // localStorage for the feedback page after the last one (utils/feedback.js).
+  var userID = jatos.urlQueryParameters.user
+
   var frontPage = {
       type: jsPsychInstructions,
       pages: [beatProduction["openPage"][lang]],
@@ -6,6 +10,7 @@ function generateBatTimeline(lang, studyID, version){
       button_label_previous: buttons["previous"][lang],
       show_clickable_nav: true,
       on_start: function(){
+        feedbackStore.clear("bat", userID)
         //disalowRefresh.addEventListener("onbeforeunload", preventRefresh, false);
         //window.removeEventListener("beforeunload", beforeUnloadListener, {capture: true});
       }
@@ -167,6 +172,7 @@ function generateBatTimeline(lang, studyID, version){
       data.offset = window.count; //Final offset
       data.nChanges = window.nChanges; //How many times user changed
       data.initialOffset = window.initialOffset; //Initial offset
+      feedbackStore.put("bat", userID, currentSong, window.count)
       var allSources = [window.source1, window.source2, window.source3, window.source4, window.source5, window.source6, window.source7, window.source8, window.sourceBase] //Stopping all songs
       for(i in allSources) {
         allSources[i].stop() //simuBack
@@ -221,6 +227,9 @@ function generateBatTimeline(lang, studyID, version){
     var five = [loadTrial5, trialBeat]
     var six = [loadTrial6, trialBeat]
   }
+
+  //Score feedback after the last excerpt
+  six.push(generateBATFeedbackTrial(lang, userID))
 
   //Step by step
   var batTimeline = [frontPageInstructions, zero, one, two, three, four, five, six]

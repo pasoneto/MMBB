@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-filesRead = ["movement", "recurring", "emotion", "mbema", "bat", "initialInstructions", "tapping", "shared", "taskIcons", "buttons", "singing"]
+filesRead = ["movement", "recurring", "emotion", "mbema", "bat", "initialInstructions", "tapping", "shared", "taskIcons", "buttons", "singing", "feedback"]
 
 var allData = ""
 for(k in filesRead){

@@ -1,0 +1,15 @@
+keys,eng,fi
+heading,<b>Your results</b>,<b>Tuloksesi</b>
+youAreHere,Your result compared with other participants,Tuloksesi verrattuna muihin osallistujiin
+you,You,Sinä
+average,Average,Keskiarvo
+lower,Lower score,Matalampi tulos
+higher,Higher score,Korkeampi tulos
+percentile,Your score was the same as or higher than that of {p}% of the {n} people who have done this task so far.,"Tuloksesi oli yhtä hyvä tai parempi kuin {p} %:lla niistä {n} osallistujasta, jotka ovat tähän mennessä tehneet tämän tehtävän."
+nCorrect,{k} of {n} correct,{k}/{n} oikein
+note,"This feedback is only indicative and is not a diagnosis. Your result can be affected by, for example, your device, headphones and surroundings.","Palaute on vain suuntaa antava, eikä se ole diagnoosi. Tulokseesi voivat vaikuttaa esimerkiksi laitteesi, kuulokkeesi ja ympäristösi."
+batTitle,Aligning the beat with the music,Tahdin sovittaminen musiikkiin
+smartTitle,Recognising emotions in music,Tunteiden tunnistaminen musiikista
+mbemaMelody,Melodies: same or different?,Melodiat: samat vai erilaiset?
+mbemaRhythm,Rhythms: same or different?,Rytmit: samat vai erilaiset?
+mbemaMemory,Melody memory,Melodiamuisti

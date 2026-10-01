@@ -30,6 +30,8 @@
 
     <script src="./utils/langFetch.js"></script>
     <script src="./utils/translations.js"></script>
+    <script src="./utils/feedbackNorms.js"></script>
+    <script src="./utils/feedback.js"></script>
     <script src="./src/batteries/generalIntro.js"></script>
     <script src="./utils/preventRefresh.js"> </script>
     <script src="./utils/identifyOS.js"> </script>
@@ -796,14 +798,17 @@
      
       var generalIntroEmotion = generateGeneralIntroWrap(lang, "emotion")
 
+      // Score feedback right after the adaptive part (Emotion 2 has no score yet)
+      var smartFeedback = generateSMARTFeedbackTrial(lang, jsPsych)
+
       console.log(window.part)
 
       if(window.part == "One"){
-        var timelineChosen = [agreement1, agreement2, welcome, generalIntroEmotion, instructionsPart1, preload, example_trials, part1_trials, messageFinishEmotion].flat(1000)
+        var timelineChosen = [agreement1, agreement2, welcome, generalIntroEmotion, instructionsPart1, preload, example_trials, part1_trials, smartFeedback, messageFinishEmotion].flat(1000)
       } else if(window.part == "Two"){
         var timelineChosen = [agreement1, agreement2, welcome, generalIntroEmotion, instructionsPart2, part2_trials, messageFinishEmotion].flat(1000)
       } else {
-        var timelineChosen = [agreement1, agreement2, welcome, generalIntroEmotion, instructionsPart1, preload, example_trials, part1_trials, instructionsPart2, part2_trials, messageFinishEmotion].flat(1000)
+        var timelineChosen = [agreement1, agreement2, welcome, generalIntroEmotion, instructionsPart1, preload, example_trials, part1_trials, smartFeedback, instructionsPart2, part2_trials, messageFinishEmotion].flat(1000)
       }
 
       var procedureEmotionFinal = {

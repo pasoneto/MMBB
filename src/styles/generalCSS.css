@@ -451,3 +451,34 @@ button:focus {
   border-bottom: 1px solid #dedede;
   color: #555;
 }
+
+/*Score feedback page (utils/feedback.js)*/
+.feedbackPage{
+  width: 100%;
+  max-width: 480px;
+  margin: auto;
+  line-height: 1.3;
+}
+.feedbackHeading{
+  font-size: 1.3em;
+  margin-bottom: 0.5em;
+}
+.feedbackSection{
+  margin: 0.8em 0;
+}
+.feedbackTitle{
+  font-weight: bold;
+}
+.feedbackCurve{
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.feedbackText{
+  font-size: 0.85em;
+}
+.feedbackNote{
+  font-size: 0.8em;
+  color: #555;
+  margin: 1em 0;
+}
