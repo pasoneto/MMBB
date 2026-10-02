@@ -482,9 +482,14 @@ button:focus {
 .feedbackTitle{
   font-weight: bold;
 }
-.feedbackCurve{
-  display: block;
-  width: 100%;
+.feedbackStars{
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin: 0.4em 0;
+}
+.feedbackStar{
+  width: 40px;
   height: auto;
 }
 .feedbackText{

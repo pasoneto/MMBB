@@ -1,12 +1,7 @@
 keys,eng,fi
 heading,<b>Your results</b>,<b>Tuloksesi</b>
-youAreHere,Your result compared with other participants,Tuloksesi verrattuna muihin osallistujiin
-you,You,Sinä
-average,Average,Keskiarvo
-lower,Lower score,Matalampi tulos
-higher,Higher score,Korkeampi tulos
-percentile,Your result was as good as or better than that of {p}% of the {n} people who have done this task so far.,"Tuloksesi oli yhtä hyvä tai parempi kuin {p} %:lla niistä {n} osallistujasta, jotka ovat tähän mennessä tehneet tämän tehtävän."
-nCorrect,{k} of {n} correct,{k}/{n} oikein
+starsExplain,The stars compare your result with everyone who has done this task so far.,"Tähdet vertaavat tulostasi kaikkiin, jotka ovat tähän mennessä tehneet tämän tehtävän."
+starsLabel,{s} of 5 stars,{s}/5 tähteä
 note,"This feedback is only indicative and is not a diagnosis. Your result can be affected by, for example, your device, headphones and surroundings.","Palaute on vain suuntaa antava, eikä se ole diagnoosi. Tulokseesi voivat vaikuttaa esimerkiksi laitteesi, kuulokkeesi ja ympäristösi."
 batTitle,Aligning the beat with the music,Tahdin sovittaminen musiikkiin
 smartTitle,Recognising emotions in music,Tunteiden tunnistaminen musiikista
@@ -15,9 +10,5 @@ mbemaRhythm,Rhythms: same or different?,Rytmit: samat vai erilaiset?
 mbemaMemory,Melody memory,Melodiamuisti
 tapTitle,Steady tapping,Tasainen napauttaminen
 tapDetail,How evenly spaced your taps were.,Kuinka tasaisin välein napautit.
-lessSteady,Less steady,Epätasaisempi
-steadier,Steadier,Tasaisempi
 movementTitle,Regular movement,Säännöllinen liike
 movementDetail,How regular and repetitive your movement was while dancing.,Kuinka säännöllistä ja toistuvaa liikkeesi oli tanssiessasi.
-lessRegular,Less regular,Epäsäännöllisempi
-moreRegular,More regular,Säännöllisempi
