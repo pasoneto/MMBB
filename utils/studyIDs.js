@@ -67,5 +67,8 @@ var studyIDtasks = {
   },
   "yo2026": {"timeline": ["Movement", "Singing", "EmotionAdaptive", "EmotionAdaptive2", "Rhythm", "MBEMA", "SharedMeasures"],
            "version": "full"
+  },
+  "musicotas": {"timeline": ["Movement", "Singing", "EmotionAdaptive", "EmotionAdaptive2", "Rhythm", "MBEMA", "SharedMeasures"],
+           "version": "full"
   }
 }
