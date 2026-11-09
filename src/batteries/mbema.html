@@ -72,8 +72,6 @@
 	    message_progress_bar: recurring["completionProgress"][lang],
       override_safe_mode: true,
       on_finish: function() {
-        jsPsych.data.addProperties({userID: userID, lang: lang, timeEnd: timeEnd, timeBegin: timeBegin, studyID: studyID, uniqueID: uniqueID});
-        
         var finalData = jsPsych.data.get()
 
         var timeEnd = Date.now();
@@ -81,6 +79,10 @@
         var userID = jatos.urlQueryParameters.user;
         var studyID = jatos.urlQueryParameters.studyID;
         var uniqueID = jatos.urlQueryParameters.uniqueID;
+        if(studyID == undefined){
+          var studyID = "main";
+        }
+        jsPsych.data.addProperties({userID: userID, lang: lang, timeEnd: timeEnd, timeBegin: timeBegin, studyID: studyID, uniqueID: uniqueID});
 
         var urlRedirect = studyLinks['chooseBatteryLink'] + "?user=" + userID + "&lang=" + lang + "&MBEMA=done" + "&uniqueID=" + uniqueID + "&studyID=" + studyID;
         // Same data as endStudyAndRedirect(url, data), which only appends it;
